@@ -59,37 +59,48 @@ class FootballApiService
     JSON.parse(response.body)['response'] || []
   end
 
-  def import_fixtures
-    fixtures = fetch_all_remaining_fixtures
+  def import_upcoming_fixtures(league_id: 61, season: 2025)
+    # 1. On récupère les matchs (le plan PRO permet de voir loin)
+    # On peut filtrer par 'status: NS' (Not Started) pour ne pas gâcher de requêtes
+    response = client.get('/fixtures', {
+      league: league_id,
+      season: season,
+      from: Date.today.strftime('%Y-%m-%d'),
+      to: (Date.today + 30.days).strftime('%Y-%m-%d') # On anticipe sur 1 mois !
+    })
+
+    fixtures = JSON.parse(response.body)['response'] || []
     return "Aucun match trouvé" if fixtures.empty?
 
     fixtures.each do |data|
-      # 1. On prépare le slug du matchup (ex: "paris-saint-germain-olympique-lyonnais")
       home_name = data['teams']['home']['name']
       away_name = data['teams']['away']['name']
-      slug = "#{home_name.parameterize}-#{away_name.parameterize}"
 
-      # 2. On trouve ou on crée le Matchup
-      matchup = Matchup.find_or_create_by!(slug: slug)
+      # On crée un slug unique pour le match (SEO)
+      # ex: "2026-02-15-psg-marseille"
+      match_date = DateTime.parse(data['fixture']['date']).to_date
+      match_slug = "#{match_date}-#{home_name.parameterize}-#{away_name.parameterize}"
 
-      # 3. On crée ou met à jour le Match
-      # On utilise l'ID de l'API pour être sûr de ne pas créer de doublons
+      matchup_slug = "#{home_name.parameterize}-#{away_name.parameterize}"
+      matchup = Matchup.find_or_create_by!(slug: matchup_slug)
+
       match = Match.find_or_initialize_by(api_id: data['fixture']['id'])
 
       match.update!(
         matchup: matchup,
         home_team: home_name,
         away_team: away_name,
-        # ON RÉCUPÈRE LES LOGOS ICI
         home_team_logo: data['teams']['home']['logo'],
         away_team_logo: data['teams']['away']['logo'],
-        start_time: DateTime.parse(data['fixture']['date']) + 2.years,
-        competition: "Ligue 1",
-        tv_channels: "À définir",
-        api_id: data['fixture']['id']
+        start_time: DateTime.parse(data['fixture']['date']), # PLUS DE +2 YEARS !
+        competition: data['league']['name'],
+        # On essaie de choper les chaînes si l'API les donne (dépend des pays)
+        tv_channels: data['fixture']['venue']['name'] || "À définir",
+        api_id: data['fixture']['id'],
+        slug: match_slug # Très important pour tes routes
       )
     end
-    "Import terminé : #{fixtures.count} matchs synchronisés !"
+    "Import terminé : #{fixtures.count} matchs synchronisés pour 2026 !"
   end
 
   def get_standings(league_id)
