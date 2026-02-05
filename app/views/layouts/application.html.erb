@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Match TV | Programme TV Foot : Sur quelle chaîne voir le match ?" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Coup d'envoi | Programme TV Sport : Sur quelle chaîne voir le match ?" %></title>
 
-    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Découvrez le programme TV foot complet : horaires, chaînes (Canal+, beIN, DAZN) et streaming de tous les matchs en direct." %>">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Découvrez le programme TV foot et rugby complet pour 2026 : horaires, chaînes (Canal+, beIN, DAZN, TF1) et streaming en direct." %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <link rel="canonical" href="<%= request.original_url %>">
     <link rel="canonical" href="<%= request.original_url %>">
-
-    <%# Open Graph / SEO %>
-    <meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : "Match TV" %>">
-    <meta property="og:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Le programme TV foot le plus complet." %>">
+    <%# Open Graph / SEO (Facebook, WhatsApp, LinkedIn) %>
+    <meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : "Coup d'envoi" %>">
+    <meta property="og:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Le programme TV sport le plus complet et rapide." %>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= request.original_url %>">
-    <meta property="og:image" content="https://placehold.co/1200x630/007bff/ffffff?text=Match+TV">
+    <%# Dès que tu as une image dans app/assets/images/og_logo.jpg, utilise la ligne ci-dessous : %>
+    <%# <meta property="og:image" content="<%= asset_url('og_logo.jpg') % >"> %>
+    <meta property="og:image" content="https://placehold.co/1200x630/010e1b/ffffff?text=Coup+denvoi">
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -24,11 +24,12 @@
     <%# Configuration PWA & Mobile 2026 %>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Match TV">
-    <meta name="theme-color" content="#007bff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Coup d'envoi">
+    <meta name="theme-color" content="#010e1b"> <%# J'ai mis un bleu très foncé, plus élégant pour le sport %>
 
     <link rel="manifest" href="/manifest.json">
+    <%# On essaiera de mettre un vrai logo ici bientôt %>
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5323/5323982.png">
   </head>
 

@@ -12,8 +12,8 @@
   %>
 
   <%# ---- 2. SEO : Envoi des données au Layout ---- %>
-  <% content_for :title, "📺 Sur quelle chaîne voir #{@match.home_team} - #{@match.away_team} ?" %>
-  <% content_for :meta_description, "#{@match.home_team} - #{@match.away_team} : match diffusé #{date_label} à #{@match.start_time.strftime("%H:%M")} sur #{@match.tv_channels}. Retrouvez le guide TV complet." %>
+  <% content_for :title, "📺 #{@match.home_team} - #{@match.away_team} : Sur quelle chaîne voir le match ?" %>
+  <% content_for :meta_description, "Match #{@match.home_team} - #{@match.away_team} diffusé #{date_label} à #{@match.start_time.strftime("%H:%M")} en direct sur #{@match.tv_channels}. Retrouvez le guide TV complet et streaming." %>
 
   <%# ---- 3. Navigation ---- %>
   <nav style="margin: 15px 0;">
@@ -23,47 +23,50 @@
   </nav>
 
   <%# ---- 4. Le Bloc Match "Premium" ---- %>
-  <div class="match-detail-wrapper" style="background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 30px 15px; text-align: center; margin-bottom: 25px;">
+  <div class="match-detail-wrapper" style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 35px 15px; text-align: center; margin-bottom: 25px; border: 1px solid #f0f0f0;">
 
     <div style="margin-bottom: 30px;">
-      <h1 style="font-size: 14px; font-weight: 700; text-transform: uppercase; color: #888; letter-spacing: 1.5px; margin: 0;">
+      <h1 style="font-size: 15px; font-weight: 800; text-transform: uppercase; color: #010e1b; letter-spacing: 1px; margin: 0;">
         <%= @match.competition %>
       </h1>
-      <span style="font-size: 12px; color: #bbb;">Saison 2025/2026</span>
+      <span style="font-size: 12px; color: #999; font-weight: 500;">Saison 2025/2026</span>
     </div>
 
     <div style="display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto 40px;">
 
+      <%# Equipe Domicile %>
       <div style="flex: 1; text-align: center;">
-        <%= link_to team_path(@match.home_team.parameterize), style: "text-decoration: none; color: inherit;" do %>
-          <div style="width: 75px; height: 75px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
-            <img src="<%= @match.home_team_logo %>" alt="<%= @match.home_team %>" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-          </div>
-          <div style="font-weight: 800; font-size: 17px; line-height: 1.2;"><%= @match.home_team %></div>
-        <% end %>
+        <div style="width: 80px; height: 80px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
+          <img src="<%= @match.home_team_logo %>" alt="Logo <%= @match.home_team %>" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 800; font-size: 18px; color: #010e1b; line-height: 1.2;"><%= @match.home_team %></div>
       </div>
 
+      <%# Heure du Match %>
       <div style="flex: 0.8; text-align: center; padding: 0 10px;">
-        <div style="font-size: 12px; color: #666; font-weight: 600; margin-bottom: 4px;"><%= l(@match.start_time, format: "%d/%m") %></div>
+        <div style="font-size: 13px; color: #d9534f; font-weight: 700; margin-bottom: 5px; text-transform: uppercase;">Direct</div>
         <div style="font-size: 42px; font-weight: 900; color: #222; line-height: 1;">
           <%= @match.start_time.strftime("%Hh%M") %>
         </div>
+        <div style="font-size: 12px; color: #666; margin-top: 8px; font-weight: 600;"><%= l(@match.start_time, format: "%d/%m") %></div>
       </div>
 
+      <%# Equipe Extérieur %>
       <div style="flex: 1; text-align: center;">
-        <%= link_to team_path(@match.away_team.parameterize), style: "text-decoration: none; color: inherit;" do %>
-          <div style="width: 75px; height: 75px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
-            <img src="<%= @match.away_team_logo %>" alt="<%= @match.away_team %>" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-          </div>
-          <div style="font-weight: 800; font-size: 17px; line-height: 1.2;"><%= @match.away_team %></div>
-        <% end %>
+        <div style="width: 80px; height: 80px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
+          <img src="<%= @match.away_team_logo %>" alt="Logo <%= @match.away_team %>" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 800; font-size: 18px; color: #010e1b; line-height: 1.2;"><%= @match.away_team %></div>
       </div>
     </div>
 
-    <div style="background: #fdf2f2; border-radius: 50px; padding: 12px 25px; display: inline-flex; align-items: center; border: 1px solid #f9d6d6;">
-      <span style="font-size: 18px; margin-right: 10px;">📺</span>
-      <span style="font-size: 15px; color: #666; margin-right: 8px;">En direct sur</span>
-      <strong style="font-size: 18px; font-weight: 800; color: #d9534f;"><%= @match.tv_channels %></strong>
+    <%# Badge Diffuseur %>
+    <div style="background: #f8f9fa; border-radius: 12px; padding: 15px 25px; display: inline-flex; align-items: center; border: 1px solid #eee;">
+      <span style="font-size: 20px; margin-right: 12px;">📺</span>
+      <div style="text-align: left;">
+        <div style="font-size: 11px; color: #777; font-weight: 600; text-transform: uppercase;">Diffuseur Officiel</div>
+        <strong style="font-size: 19px; font-weight: 900; color: #d9534f;"><%= @match.tv_channels %></strong>
+      </div>
     </div>
   </div>
 
@@ -72,11 +75,14 @@
     ESPACE PUBLICITAIRE
   </div>
 
-  <section style="margin: 30px 0; padding: 0 10px;">
-    <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 15px;">Détails de la diffusion TV</h2>
-    <p style="font-size: 15px; color: #444; line-height: 1.6;">
+  <section style="margin: 40px 0; background: #fff; padding: 25px; border-radius: 12px; line-height: 1.7; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
+    <h2 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 15px;">Détails de la diffusion TV</h2>
+    <p style="font-size: 16px; color: #333; margin-bottom: 15px;">
       Le match <strong><%= @match.home_team %></strong> recevra <strong><%= @match.away_team %></strong> à l'occasion de la <strong><%= @match.competition %></strong>.
       La rencontre sera retransmise en direct ce <strong><%= date_label %></strong> à <strong><%= @match.start_time.strftime("%Hh%M") %></strong> sur la chaîne <strong><%= @match.tv_channels %></strong>.
+    </p>
+    <p style="font-size: 16px; color: #333;">
+      Pour suivre le match en streaming légal sur votre ordinateur, tablette ou smartphone, il vous faudra passer par l'application officielle du diffuseur (Canal+ Foot, beIN CONNECT, DAZN, etc.) muni de votre abonnement.
     </p>
   </section>
 
@@ -100,7 +106,6 @@
   </script>
 
 <% else %>
-  <%# Message de secours si @match est nil %>
   <div style="text-align: center; padding: 60px 20px;">
     <h1 style="font-size: 20px; font-weight: 700;">Match non trouvé</h1>
     <p style="color: #666; margin: 15px 0 25px;">Désolé, nous n'avons aucune information de diffusion pour cette affiche actuellement.</p>
