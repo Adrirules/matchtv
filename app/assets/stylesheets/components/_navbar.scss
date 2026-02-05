@@ -1,12 +1,72 @@
-.navbar-lewagon {
-  justify-content: space-between;
+/* ====== NAVBAR HAUTE ====== */
+.top-nav {
+  padding: 12px;
+  border-bottom: 1px solid #eaeaea;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* ====== NAVBAR BAS MOBILE ====== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background: white;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  transition: transform 0.3s ease;
+  z-index: 1000;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.bottom-nav.hidden {
+  transform: translateY(100%);
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.nav-item {
+  text-align: center;
+  font-size: 12px;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-item span {
+  display: block;
+  font-size: 18px;
+}
+
+/* ====== CALENDRIER STICKY ====== */
+.sticky-calendar {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 900;
+  border-bottom: 1px solid #eaeaea;
+
+  /* Force le calendrier à sortir des marges du container parent */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+
+  /* Optionnel : centre le contenu interne si tes jours flottent trop */
+  display: flex;
+  justify-content: center;
+}
+
+/* pour éviter que la navbar cache le contenu */
+main {
+  padding-bottom: 70px;
+}
+
+/* Desktop : on cache la navbar du bas */
+@media (min-width: 1024px) {
+  .bottom-nav {
+    display: none;
+  }
+
+  main {
+    padding-bottom: 0;
+  }
 }

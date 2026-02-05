@@ -1,0 +1,19 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* Empêche le scroll horizontal causé par le hack du calendrier 100vw */
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.page-wrapper {
+  flex: 1;
+  /* prend tout l’espace disponible */
+}

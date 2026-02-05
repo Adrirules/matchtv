@@ -1,0 +1,29 @@
+<nav id="bottomNav"
+     class="bottom-nav"
+     data-controller="navbar"
+     data-action="scroll@window->navbar#onScroll">
+  <%= link_to "/", class: "nav-item" do %>
+    <span>🏠</span>
+    Accueil
+  <% end %>
+
+  <%= link_to "/", class: "nav-item" do %>
+    <span>📺</span>
+    Programme
+  <% end %>
+
+  <%= link_to competitions_path, class: "nav-item" do %>
+    <span>🏆</span>
+    <p>Ligues</p>
+  <% end %>
+
+  <%= link_to "/equipes", class: "nav-item" do %>
+    <span>⚽</span>
+    Équipes
+  <% end %>
+
+  <%= link_to "/classement", class: "nav-item" do %>
+    <span>📊</span>
+    Classement
+  <% end %>
+</nav>

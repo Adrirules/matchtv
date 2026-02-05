@@ -1,0 +1,89 @@
+<%
+  date_label =
+    if @date == Date.today
+      "aujourd’hui"
+    elsif @date == Date.today + 1.day
+      "demain"
+    else
+      l(@date, format: "%d %B %Y")
+    end
+%>
+
+<%# --- SEO --- %>
+<% content_for :title, "Programme TV foot #{date_label} – Matchs et chaînes" %>
+<% content_for :meta_description, "Retrouvez le programme TV des matchs de football #{date_label} : horaires, chaînes et compétitions diffusées à la télévision." %>
+
+<%# --- CALENDRIER --- %>
+<% content_for :calendar do %>
+  <% day_labels = { 0 => "Dim.", 1 => "Lun.", 2 => "Mar.", 3 => "Mer.", 4 => "Jeu.", 5 => "Ven.", 6 => "Sam." } %>
+  <% @days.each do |day| %>
+    <%= link_to day_path(day), class: "day-pill #{'active' if day == @date}" do %>
+      <div class="day-label"><%= day_labels[day.wday] %></div>
+      <div class="day-number"><%= day.day %></div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# --- CONTENU --- %>
+<h1 style="font-size: 20px; font-weight: 700; margin: 20px 0 15px;">
+  Programme TV foot <%= date_label %>
+</h1>
+
+<% if @matches.any? %>
+  <% @matches.each do |match| %>
+    <%= link_to match_path(match.matchup), style: "text-decoration: none; color: inherit; display: block;" do %>
+      <div style="padding: 16px 0; border-bottom: 1px solid #f0f0f0;">
+
+        <%# Ligne 1 : Heure + Chaîne %>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <div style="font-weight: 800; font-size: 15px; background: #f4f4f4; padding: 2px 8px; border-radius: 4px;">
+            <%= match.start_time.strftime("%H:%M") %>
+          </div>
+          <div style="font-size: 12px; color: #d9534f; font-weight: 700; text-transform: uppercase;">
+            <%= match.tv_channels %>
+          </div>
+        </div>
+
+        <%# Ligne 2 : Équipes avec petits logos %>
+        <div style="display: flex; align-items: center; margin-bottom: 6px;">
+          <div style="display: flex; align-items: center; flex: 1;">
+            <img src="<%= match.home_team_logo %>" style="width: 20px; height: 20px; object-fit: contain; margin-right: 10px;">
+            <span style="font-size: 16px; font-weight: 600;"><%= match.home_team %></span>
+          </div>
+
+          <span style="margin: 0 10px; color: #ccc; font-size: 12px;">vs</span>
+
+          <div style="display: flex; align-items: center; flex: 1; justify-content: flex-end;">
+            <span style="font-size: 16px; font-weight: 600; text-align: right;"><%= match.away_team %></span>
+            <img src="<%= match.away_team_logo %>" style="width: 20px; height: 20px; object-fit: contain; margin-left: 10px;">
+          </div>
+        </div>
+
+        <%# Ligne 3 : Compétition %>
+        <div style="font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">
+          <%= match.competition %>
+        </div>
+      </div>
+    <% end %>
+
+    <%# JSON-LD %>
+    <script type="application/ld+json">
+      <%= {
+        "@context": "https://schema.org",
+        "@type": "SportsEvent",
+        "name": "#{match.home_team} vs #{match.away_team}",
+        "startDate": match.start_time.iso8601,
+        "sport": "Football",
+        "homeTeam": { "@type": "SportsTeam", "name": match.home_team, "logo": match.home_team_logo },
+        "awayTeam": { "@type": "SportsTeam", "name": match.away_team, "logo": match.away_team_logo },
+        "broadcastOfEvent": {
+          "@type": "BroadcastEvent",
+          "isLiveBroadcast": true,
+          "broadcastService": { "@type": "BroadcastService", "name": match.tv_channels }
+        }
+      }.to_json.html_safe %>
+    </script>
+  <% end %>
+<% else %>
+  <p style="text-align: center; padding: 40px 0; color: #666;">Aucun match prévu ce jour-là.</p>
+<% end %>

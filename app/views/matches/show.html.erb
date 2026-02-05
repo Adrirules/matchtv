@@ -1,0 +1,109 @@
+<% if @match.present? %>
+  <%# ---- 1. Logique de Date (Calculs) ---- %>
+  <%
+    date_label =
+      if @match.start_time.to_date == Date.today
+        "aujourd’hui"
+      elsif @match.start_time.to_date == Date.today + 1.day
+        "demain"
+      else
+        l(@match.start_time.to_date, format: "%d %B %Y")
+      end
+  %>
+
+  <%# ---- 2. SEO : Envoi des données au Layout ---- %>
+  <% content_for :title, "📺 Sur quelle chaîne voir #{@match.home_team} - #{@match.away_team} ?" %>
+  <% content_for :meta_description, "#{@match.home_team} - #{@match.away_team} : match diffusé #{date_label} à #{@match.start_time.strftime("%H:%M")} sur #{@match.tv_channels}. Retrouvez le guide TV complet." %>
+
+  <%# ---- 3. Navigation ---- %>
+  <nav style="margin: 15px 0;">
+    <p style="font-size: 13px; color: #777;">
+      <%= link_to "← Programme TV foot #{date_label}", day_path(@match.start_time.to_date), style: "color: #777; text-decoration: none;" %>
+    </p>
+  </nav>
+
+  <%# ---- 4. Le Bloc Match "Premium" ---- %>
+  <div class="match-detail-wrapper" style="background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 30px 15px; text-align: center; margin-bottom: 25px;">
+
+    <div style="margin-bottom: 30px;">
+      <h1 style="font-size: 14px; font-weight: 700; text-transform: uppercase; color: #888; letter-spacing: 1.5px; margin: 0;">
+        <%= @match.competition %>
+      </h1>
+      <span style="font-size: 12px; color: #bbb;">Saison 2025/2026</span>
+    </div>
+
+    <div style="display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto 40px;">
+
+      <div style="flex: 1; text-align: center;">
+        <%= link_to team_path(@match.home_team.parameterize), style: "text-decoration: none; color: inherit;" do %>
+          <div style="width: 75px; height: 75px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
+            <img src="<%= @match.home_team_logo %>" alt="<%= @match.home_team %>" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+          </div>
+          <div style="font-weight: 800; font-size: 17px; line-height: 1.2;"><%= @match.home_team %></div>
+        <% end %>
+      </div>
+
+      <div style="flex: 0.8; text-align: center; padding: 0 10px;">
+        <div style="font-size: 12px; color: #666; font-weight: 600; margin-bottom: 4px;"><%= l(@match.start_time, format: "%d/%m") %></div>
+        <div style="font-size: 42px; font-weight: 900; color: #222; line-height: 1;">
+          <%= @match.start_time.strftime("%Hh%M") %>
+        </div>
+      </div>
+
+      <div style="flex: 1; text-align: center;">
+        <%= link_to team_path(@match.away_team.parameterize), style: "text-decoration: none; color: inherit;" do %>
+          <div style="width: 75px; height: 75px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
+            <img src="<%= @match.away_team_logo %>" alt="<%= @match.away_team %>" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+          </div>
+          <div style="font-weight: 800; font-size: 17px; line-height: 1.2;"><%= @match.away_team %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div style="background: #fdf2f2; border-radius: 50px; padding: 12px 25px; display: inline-flex; align-items: center; border: 1px solid #f9d6d6;">
+      <span style="font-size: 18px; margin-right: 10px;">📺</span>
+      <span style="font-size: 15px; color: #666; margin-right: 8px;">En direct sur</span>
+      <strong style="font-size: 18px; font-weight: 800; color: #d9534f;"><%= @match.tv_channels %></strong>
+    </div>
+  </div>
+
+  <%# ---- 5. Zone Pub / SEO Textuel ---- %>
+  <div style="margin: 20px 0; padding: 15px; background: #fffbe6; border: 1px dashed #ffcc00; border-radius: 8px; text-align: center; font-size: 11px; color: #856404;">
+    ESPACE PUBLICITAIRE
+  </div>
+
+  <section style="margin: 30px 0; padding: 0 10px;">
+    <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 15px;">Détails de la diffusion TV</h2>
+    <p style="font-size: 15px; color: #444; line-height: 1.6;">
+      Le match <strong><%= @match.home_team %></strong> recevra <strong><%= @match.away_team %></strong> à l'occasion de la <strong><%= @match.competition %></strong>.
+      La rencontre sera retransmise en direct ce <strong><%= date_label %></strong> à <strong><%= @match.start_time.strftime("%Hh%M") %></strong> sur la chaîne <strong><%= @match.tv_channels %></strong>.
+    </p>
+  </section>
+
+  <%# ---- 6. Données Structurées JSON-LD ---- %>
+  <script type="application/ld+json">
+    <%= {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": "#{@match.home_team} vs #{@match.away_team}",
+      "startDate": @match.start_time.iso8601,
+      "sport": "Football",
+      "homeTeam": { "@type": "SportsTeam", "name": @match.home_team, "logo": @match.home_team_logo },
+      "awayTeam": { "@type": "SportsTeam", "name": @match.away_team, "logo": @match.away_team_logo },
+      "broadcastOfEvent": {
+        "@type": "BroadcastEvent",
+        "isLiveBroadcast": true,
+        "broadcastService": { "@type": "BroadcastService", "name": @match.tv_channels }
+      },
+      "organizer": { "@type": "SportsOrganization", "name": @match.competition }
+    }.to_json.html_safe %>
+  </script>
+
+<% else %>
+  <%# Message de secours si @match est nil %>
+  <div style="text-align: center; padding: 60px 20px;">
+    <h1 style="font-size: 20px; font-weight: 700;">Match non trouvé</h1>
+    <p style="color: #666; margin: 15px 0 25px;">Désolé, nous n'avons aucune information de diffusion pour cette affiche actuellement.</p>
+    <%= link_to "Retour au programme TV", root_path, style: "background: #007bff; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;" %>
+  </div>
+<% end %>

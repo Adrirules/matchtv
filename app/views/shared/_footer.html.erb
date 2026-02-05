@@ -1,0 +1,42 @@
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <!-- Colonne 1 : Liens -->
+    <div class="footer-col links">
+      <h3 class="footer-title">Liens utiles</h3>
+
+      <ul>
+        <li><%= link_to "Contact", contact_path %></li>
+        <li><%= link_to "Mentions légales", mentions_legales_path %></li>
+        <li><%= link_to "À propos", a_propos_path %></li>
+        <li><%= link_to "Archives", archives_path %></li>
+      </ul>
+
+    <!-- Colonne 2 : PWA (mobile/tablette uniquement) -->
+    <div class="pwa-section">
+      <div class="footer-col pwa">
+
+        <h3 class="footer-title">Installer l’app</h3>
+
+        <p class="pwa-text">
+          Ajoutez Match TV à votre écran d’accueil pour un accès rapide.
+        </p>
+
+        <div class="pwa-buttons">
+          <%= link_to "#", class: "pwa-btn apple" do %>
+            🍎 Ajouter sur iPhone
+          <% end %>
+
+          <%= link_to "#", class: "pwa-btn android" do %>
+            🤖 Ajouter sur Android
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Match TV — Tous droits réservés
+  </div>
+</footer>

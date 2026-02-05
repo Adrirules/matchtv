@@ -1,0 +1,33 @@
+<% content_for :title, "Classement #{@league_name}" %>
+
+<div style="padding: 0 10px;">
+  <h1 style="font-size: 20px; font-weight: 800; margin: 20px 0;"><%= @league_name %></h1>
+
+  <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+    <thead>
+      <tr style="background: #f8f9fa; text-align: left; font-size: 12px; color: #666;">
+        <th style="padding: 12px 8px;">#</th>
+        <th style="padding: 12px 8px;">Équipe</th>
+        <th style="padding: 12px 8px;">Pts</th>
+        <th style="padding: 12px 8px;">J.</th>
+        <th style="padding: 12px 8px;">+/-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @standings.each do |rank| %>
+        <tr style="border-bottom: 1px solid #eee; font-size: 14px;">
+          <td style="padding: 12px 8px; font-weight: 700;"><%= rank["rank"] %></td>
+          <td style="padding: 12px 8px; display: flex; align-items: center;">
+            <img src="<%= rank['team']['logo'] %>" style="width: 20px; height: 20px; margin-right: 10px;">
+            <span style="font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px;">
+              <%= rank["team"]["name"] %>
+            </span>
+          </td>
+          <td style="padding: 12px 8px; font-weight: 800; color: #007bff;"><%= rank["points"] %></td>
+          <td style="padding: 12px 8px; color: #666;"><%= rank["all"]["played"] %></td>
+          <td style="padding: 12px 8px; color: #666;"><%= rank["goalsDiff"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

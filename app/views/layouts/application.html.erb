@@ -1,16 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <title>Matchtv</title>
+    <title><%= content_for?(:title) ? yield(:title) : "Match TV | Programme TV Foot : Sur quelle chaîne voir le match ?" %></title>
+
+    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Découvrez le programme TV foot complet : horaires, chaînes (Canal+, beIN, DAZN) et streaming de tous les matchs en direct." %>">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="<%= request.original_url %>">
+
+    <%# Open Graph / SEO %>
+    <meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : "Match TV" %>">
+    <meta property="og:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Le programme TV foot le plus complet." %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:image" content="https://placehold.co/1200x630/007bff/ffffff?text=Match+TV">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%# Configuration PWA & Mobile 2026 %>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Match TV">
+    <meta name="theme-color" content="#007bff">
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5323/5323982.png">
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/top_nav" %>
+
+    <% if content_for?(:calendar) %>
+      <div class="calendar-full-width-bg">
+        <div class="sticky-calendar">
+          <%= yield :calendar %>
+        </div>
+      </div>
+    <% end %>
+
+    <main class="container">
+      <%= yield %>
+    </main>
+
+    <%= render "shared/bottom_nav" %>
+    <%= render "shared/footer" %>
   </body>
 </html>

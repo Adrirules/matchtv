@@ -1,0 +1,20 @@
+<% content_for :title, @page_title %>
+
+<div style="padding: 0 10px;">
+  <h1 style="font-size: 24px; font-weight: 800; margin: 25px 0 20px;">Toutes les <span style="color: #007bff;">Équipes</span></h1>
+
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+    <% @teams.each do |team| %>
+      <%= link_to team_path(team[:slug]), style: "text-decoration: none; color: inherit;" do %>
+        <div style="background: white; border: 1px solid #eee; border-radius: 12px; padding: 15px 5px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <div style="height: 40px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;">
+            <img src="<%= team[:logo] %>" alt="<%= team[:name] %>" style="max-height: 100%; max-width: 35px; object-fit: contain;">
+          </div>
+          <div style="font-weight: 600; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <%= team[:name] %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>s

@@ -1,0 +1,40 @@
+<% content_for :title, "Classements Football - Programme TV" %>
+<% content_for :meta_description, "Retrouvez les classements complets et à jour des plus grands championnats : Ligue 1, Premier League, Liga..." %>
+
+<div style="padding: 0 15px;">
+  <h1 style="font-size: 24px; font-weight: 800; margin: 25px 0 10px; color: #222;">
+    Classements <span style="color: #007bff;">Football</span>
+  </h1>
+  <p style="font-size: 15px; color: #666; margin-bottom: 30px;">
+    Suivez l'évolution de vos championnats préférés en direct.
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <% @leagues.each do |league| %>
+      <%= link_to standing_path(league[:id]), style: "text-decoration: none; color: inherit;" do %>
+        <div style="background: white; border: 1px solid #eee; border-radius: 16px; padding: 18px; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+
+          <div style="display: flex; align-items: center;">
+            <div style="width: 45px; height: 45px; background: #f8f9fa; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+              <img src="<%= league[:logo] %>" alt="Logo <%= league[:name] %>" style="max-height: 30px; max-width: 30px; object-fit: contain;">
+            </div>
+            <span style="font-weight: 700; font-size: 16px; color: #333;"><%= league[:name] %></span>
+          </div>
+
+          <div style="color: #007bff; font-weight: 800; font-size: 20px;">
+            ›
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  /* Petit effet de clic pour faire pro sur mobile */
+  div[style*="background: white"]:active {
+    transform: scale(0.98);
+    background-color: #f9f9f9 !important;
+  }
+</style>

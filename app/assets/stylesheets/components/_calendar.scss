@@ -1,0 +1,54 @@
+/* 1. Le fond blanc qui prend toute la largeur */
+.calendar-full-width-bg {
+  width: 100vw !important;
+  position: sticky;
+  top: 0;
+  left: 50% !important;
+  margin-left: -50vw !important;
+  background: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  z-index: 1000;
+}
+
+/* 2. L'alignement horizontal des jours */
+.sticky-calendar {
+  display: flex !important;
+  /* Force l'alignement horizontal */
+  flex-direction: row !important;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+}
+
+/* 3. Les pastilles de jours */
+.day-pill {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+
+  &.active {
+    border-bottom: 2px solid #000;
+    color: #000;
+
+    .day-number {
+      font-weight: 800;
+    }
+  }
+}
+
+.day-label {
+  font-size: 11px;
+  text-transform: capitalize;
+  margin-bottom: 2px;
+}
+
+.day-number {
+  font-size: 16px;
+  font-weight: 600;
+}
