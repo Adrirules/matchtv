@@ -1,36 +1,29 @@
 namespace :sync do
-  desc "Synchronise toutes les ligues majeures pour les 30 prochains jours"
+  desc "Synchronise toutes les ligues définies dans le service"
   task all_leagues: :environment do
     api = FootballApiService.new
 
-    # On définit les ligues qu'on veut couvrir (ID API-Football)
-    # Tu peux en ajouter autant que tu veux ici !
-    leagues_to_sync = {
-      61  => "Ligue 1",
-      62  => "Ligue 2",
-      39  => "Premier League",
-      140 => "La Liga",
-      78  => "Bundesliga",
-      135 => "Serie A",
-      2   => "Champions League",
-      3   => "Europa League",
-      193 => "D1 Féminine",
-      141 => "Coupe du Roi",
-      529 => "Coupe de France"
-    }
+    # On récupère la liste des ligues directement depuis le service
+    # C'est ça "boucler sur SUPPORTED_LEAGUES"
+    leagues = FootballApiService::SUPPORTED_LEAGUES
 
-    puts "--- DÉBUT DE LA SYNCHRONISATION GLOBALE ---"
+    puts "🚀 DÉBUT DE LA SYNCHRONISATION GLOBALE"
+    puts "--------------------------------------"
 
-    leagues_to_sync.each do |id, name|
+    leagues.each do |id, name|
       puts "🔄 Importation de : #{name} (ID: #{id})..."
       begin
-        result = api.import_upcoming_fixtures(league_id: id, season: 2025)
+        # On lance l'import pour chaque ligue
+        result = api.import_upcoming_fixtures(league_id: id)
         puts "✅ #{result}"
       rescue => e
         puts "❌ Erreur sur #{name} : #{e.message}"
       end
+      # On attend 1 seconde pour ne pas brusquer l'API
+      sleep 1
     end
 
-    puts "--- SYNCHRONISATION TERMINÉE ---"
+    puts "--------------------------------------"
+    puts "✨ TOUTES LES LIGUES SONT À JOUR !"
   end
 end
