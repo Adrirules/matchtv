@@ -60,12 +60,22 @@
       </div>
     </div>
 
-    <%# Badge Diffuseur %>
+    <%# Badge Diffuseur avec Stylisation Dynamique %>
     <div style="background: #f8f9fa; border-radius: 12px; padding: 15px 25px; display: inline-flex; align-items: center; border: 1px solid #eee;">
       <span style="font-size: 20px; margin-right: 12px;">📺</span>
       <div style="text-align: left;">
         <div style="font-size: 11px; color: #777; font-weight: 600; text-transform: uppercase;">Diffuseur Officiel</div>
-        <strong style="font-size: 19px; font-weight: 900; color: #d9534f;"><%= @match.tv_channels %></strong>
+        <strong style="font-size: 19px; font-weight: 900;">
+          <% if @match.tv_channels.to_s.include?("DAZN") %>
+            <span style="color: #000;">DAZN</span>
+          <% elsif @match.tv_channels.to_s.include?("Canal") %>
+            <span style="color: #ed1c24;">CANAL+</span>
+          <% elsif @match.tv_channels.to_s.include?("beIN") %>
+            <span style="color: #004a99;">beIN SPORTS</span>
+          <% else %>
+            <span style="color: #d9534f;"><%= @match.tv_channels %></span>
+          <% end %>
+        </strong>
       </div>
     </div>
   </div>
