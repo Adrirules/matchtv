@@ -1,90 +1,84 @@
 class FootballApiService
   BASE_URL = 'https://v3.football.api-sports.io'
 
+  # Liste des compétitions à synchroniser (Tu peux en ajouter ici)
+  # Format: { id_api => "Nom Propre" }
+  SUPPORTED_LEAGUES = {
+    61  => "Ligue 1",
+    62  => "Ligue 2",
+    39  => "Premier League",
+    140 => "La Liga",
+    78  => "Bundesliga",
+    135 => "Serie A",
+    2   => "Champions League",
+    3   => "Europa League",
+    141 => "Coupe du Roi"
+  }
+
   def initialize
     @api_key = ENV['FOOTBALL_API_KEY']
   end
 
-  def test_connection
-    response = client.get('/leagues', { country: 'France', name: 'Ligue 1' })
-
-    if response.success?
-      JSON.parse(response.body)
+  # --- LOGIQUE DE MAPPING DES DIFFUSEURS (Le secret pour éviter la fausse info) ---
+  def guess_tv_channel(league_id, start_time)
+    case league_id
+    when 61 # Ligue 1
+      # On affine selon le créneau horaire (Mapping LFP classique)
+      if start_time.strftime("%A %H:%M") == "Sunday 20:45"
+        "DAZN 1 (Top Match)"
+      elsif start_time.strftime("%A %H:%M") == "Sunday 17:00"
+        "DAZN (Multiplex)"
+      elsif start_time.strftime("%A %H:%M") == "Saturday 17:00"
+        "beIN Sports 1"
+      else
+        "DAZN"
+      end
+    when 62 # Ligue 2
+      "beIN Sports"
+    when 39 # Premier League
+      "Canal+"
+    when 140, 78, 135 # Liga, Bundesliga, Serie A
+      "beIN Sports"
+    when 2, 3 # Coupes d'Europe
+      "Canal+ / Canal+ Foot"
+    when 193, 194, 202 # D1 Féminine ou coupes
+      "Canal+ Foot"
     else
-      { error: "Échec : #{response.status}", message: response.body }
+      "À confirmer"
     end
-  end
-
-  def fetch_fixtures(date)
-    # On appelle l'endpoint /fixtures
-    # league: 61 (Ligue 1), season: 2025 (à ajuster selon la saison en cours)
-    response = client.get('/fixtures', {
-      league: 61,
-      season: 2025,
-      date: date.strftime('%Y-%m-%d')
-    })
-
-    if response.success?
-      JSON.parse(response.body)['response']
-    else
-      []
-    end
-  end
-  def fetch_upcoming
-    # L'argument 'next: 10' demande les 10 prochains matchs à venir
-    response = client.get('/fixtures', {
-      league: 61,
-      season: 2025,
-      next: 10
-    })
-
-    if response.success?
-      JSON.parse(response.body)['response']
-    else
-      []
-    end
-  end
-  def check_seasons
-    response = client.get('/leagues', { id: 61 })
-    JSON.parse(response.body)['response']
-  end
-
-
-  def fetch_all_remaining_fixtures
-    # On demande la saison 2023 car c'est la seule accessible en gratuit
-    response = client.get('/fixtures', {
-      league: 61,
-      season: 2023
-    })
-    JSON.parse(response.body)['response'] || []
   end
 
   def import_upcoming_fixtures(league_id: 61, season: 2025)
-    # 1. On récupère les matchs (le plan PRO permet de voir loin)
-    # On peut filtrer par 'status: NS' (Not Started) pour ne pas gâcher de requêtes
+    # 1. On récupère les matchs sur une fenêtre de 30 jours
     response = client.get('/fixtures', {
       league: league_id,
       season: season,
       from: Date.today.strftime('%Y-%m-%d'),
-      to: (Date.today + 30.days).strftime('%Y-%m-%d') # On anticipe sur 1 mois !
+      to: (Date.today + 30.days).strftime('%Y-%m-%d')
     })
 
     fixtures = JSON.parse(response.body)['response'] || []
-    return "Aucun match trouvé" if fixtures.empty?
+    return "Aucun match trouvé pour la ligue #{league_id}" if fixtures.empty?
 
     fixtures.each do |data|
       home_name = data['teams']['home']['name']
       away_name = data['teams']['away']['name']
+      match_date_time = DateTime.parse(data['fixture']['date'])
+      match_date = match_date_time.to_date
 
-      # On crée un slug unique pour le match (SEO)
-      # ex: "2026-02-15-psg-marseille"
-      match_date = DateTime.parse(data['fixture']['date']).to_date
+      # SEO Slug
       match_slug = "#{match_date}-#{home_name.parameterize}-#{away_name.parameterize}"
 
+      # Gestion du Matchup (Relation 1-N)
       matchup_slug = "#{home_name.parameterize}-#{away_name.parameterize}"
       matchup = Matchup.find_or_create_by!(slug: matchup_slug)
 
+      # Création ou Mise à jour du Match
       match = Match.find_or_initialize_by(api_id: data['fixture']['id'])
+
+      # --- UTILISATION DU MAPPING INTELLIGENT ---
+      # On n'utilise plus data['fixture']['venue']['name']
+      precise_tv = guess_tv_channel(league_id, match_date_time)
 
       match.update!(
         matchup: matchup,
@@ -92,32 +86,29 @@ class FootballApiService
         away_team: away_name,
         home_team_logo: data['teams']['home']['logo'],
         away_team_logo: data['teams']['away']['logo'],
-        start_time: DateTime.parse(data['fixture']['date']), # PLUS DE +2 YEARS !
+        start_time: match_date_time,
         competition: data['league']['name'],
-        # On essaie de choper les chaînes si l'API les donne (dépend des pays)
-        tv_channels: data['fixture']['venue']['name'] || "À définir",
+        tv_channels: precise_tv, # <--- C'est ici que la magie opère !
         api_id: data['fixture']['id'],
-        slug: match_slug # Très important pour tes routes
+        slug: match_slug
       )
     end
-    "Import terminé : #{fixtures.count} matchs synchronisés pour 2026 !"
+    "Import terminé : #{fixtures.count} matchs synchronisés pour la ligue #{league_id} !"
+  end
+
+  # --- METHODES DE DIAGNOSTIC / TESTS ---
+
+  def test_connection
+    response = client.get('/leagues', { country: 'France', name: 'Ligue 1' })
+    response.success? ? JSON.parse(response.body) : { error: response.status }
   end
 
   def get_standings(league_id)
-    # Mise en cache pour 2h (Expertise Performance)
     Rails.cache.fetch("standings_league_#{league_id}", expires_in: 2.hours) do
-      # On utilise ton client Faraday déjà prêt
       response = client.get('/standings', { league: league_id, season: 2025 })
-
-      if response.success?
-        JSON.parse(response.body)['response']
-      else
-        []
-      end
+      response.success? ? JSON.parse(response.body)['response'] : []
     end
   end
-
-
 
   private
 
