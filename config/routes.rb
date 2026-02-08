@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "days/:date", to: "days#show", as: :day
 
   # 3. Équipes
+  # Redirection automatique de l'ancien vers le nouveau (SEO 301)
+  get '/equipe/:team_slug', to: redirect('/equipes/%{team_slug}')
   get "equipes", to: "teams#index", as: :teams
   get "equipes/:team_slug", to: "teams#show", as: :team
 
