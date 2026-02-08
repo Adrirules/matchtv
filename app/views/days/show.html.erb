@@ -67,22 +67,7 @@
     <% end %>
 
     <%# JSON-LD %>
-    <script type="application/ld+json">
-      <%= {
-        "@context": "https://schema.org",
-        "@type": "SportsEvent",
-        "name": "#{match.home_team} vs #{match.away_team}",
-        "startDate": match.start_time.iso8601,
-        "sport": "Football",
-        "homeTeam": { "@type": "SportsTeam", "name": match.home_team, "logo": match.home_team_logo },
-        "awayTeam": { "@type": "SportsTeam", "name": match.away_team, "logo": match.away_team_logo },
-        "broadcastOfEvent": {
-          "@type": "BroadcastEvent",
-          "isLiveBroadcast": true,
-          "broadcastService": { "@type": "BroadcastService", "name": match.tv_channels }
-        }
-      }.to_json.html_safe %>
-    </script>
+      <%= render 'shared/json_ld', match: match %>
   <% end %>
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun match prévu ce jour-là.</p>
