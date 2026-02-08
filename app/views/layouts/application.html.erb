@@ -4,15 +4,16 @@
     <title><%= content_for?(:title) ? yield(:title) : "Coup d'envoi | Programme TV Sport : Sur quelle chaîne voir le match ?" %></title>
 
     <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Découvrez le programme TV foot et rugby complet pour 2026 : horaires, chaînes (Canal+, beIN, DAZN, TF1) et streaming en direct." %>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <link rel="canonical" href="<%= request.original_url %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%# J'ai supprimé le doublon ici, une seule ligne suffit %>
     <link rel="canonical" href="<%= request.original_url %>">
+
     <%# Open Graph / SEO (Facebook, WhatsApp, LinkedIn) %>
     <meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : "Coup d'envoi" %>">
     <meta property="og:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Le programme TV sport le plus complet et rapide." %>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= request.original_url %>">
-    <%# Dès que tu as une image dans app/assets/images/og_logo.jpg, utilise la ligne ci-dessous : %>
-    <%# <meta property="og:image" content="<%= asset_url('og_logo.jpg') % >"> %>
     <meta property="og:image" content="https://placehold.co/1200x630/010e1b/ffffff?text=Coup+denvoi">
 
     <%= csrf_meta_tags %>
@@ -26,19 +27,22 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Coup d'envoi">
-    <meta name="theme-color" content="#010e1b"> <%# J'ai mis un bleu très foncé, plus élégant pour le sport %>
+    <meta name="theme-color" content="#010e1b">
 
     <link rel="manifest" href="/manifest.json">
-    <%# On essaiera de mettre un vrai logo ici bientôt %>
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5323/5323982.png">
 
-    <!-- Google Tag Manager -->
+    <%# --- C'EST ICI QUE TU MODIFIES --- %>
+    <%# Icône pour iPhone / iPad (Apple Touch Icon) %>
+    <link rel="apple-touch-icon" href="/icon-512.png">
+
+    <%# Favicon pour les onglets de navigateur (PC/Mac) %>
+    <link rel="icon" type="image/png" href="/icon-512.png">
+
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-T49VLVWX');</script>
-    <!-- End Google Tag Manager -->
   </head>
 
   <body>

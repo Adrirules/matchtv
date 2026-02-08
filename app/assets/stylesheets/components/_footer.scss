@@ -119,3 +119,15 @@
     display: none;
   }
 }
+
+
+button.pwa-btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "name": "Match TV - Programme Foot",
-  "short_name": "Match TV",
+  "name": "Coup d'envoi TV - Programme Foot",
+  "short_name": "Coup d'envoi TV",
   "description": "Le programme TV foot complet : chaînes, horaires et classements.",
   "start_url": "/",
   "display": "standalone",
@@ -8,16 +8,10 @@
   "theme_color": "#007bff",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/5323/5323982.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "https://cdn-icons-png.flaticon.com/512/5323/5323982.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ]
 }
