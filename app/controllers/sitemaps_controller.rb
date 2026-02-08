@@ -2,13 +2,16 @@ class SitemapsController < ApplicationController
   layout false
 
   def index
-    @today = Date.today
-    @days = (0..6).map { |i| @today + i.days }
+    # 1. Les Matchs (les 1000 plus récents/futurs)
+    @matches = Match.where("start_time > ?", 30.days.ago)
+                    .where.not(slug: [nil, ""])
+                    .order(start_time: :desc).limit(1000)
 
-    # On utilise "to_a" pour forcer le chargement depuis la BDD immédiatement
-    @competitions = Match.distinct.pluck(:competition).compact
+    # 2. Les Équipes (uniques)
     @teams = (Match.distinct.pluck(:home_team) + Match.distinct.pluck(:away_team)).uniq.compact
-    @matchups = Matchup.all.to_a
+
+    # 3. Les Compétitions (Ligues)
+    @competitions = Match.distinct.pluck(:competition).compact
 
     respond_to do |format|
       format.xml
