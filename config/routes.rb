@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get "archives", to: "pages#archives", as: :archives
 # Équipes
   get "equipes", to: "teams#index", as: :teams
-  get "equipe/:team_slug", to: "teams#show", as: :team
+  get "equipes/:team_slug", to: "teams#show", as: :team
 
   # Compétitions
   get "ligues", to: "competitions#index", as: :competitions
@@ -25,6 +25,4 @@ Rails.application.routes.draw do
   get "classements", to: "standings#index", as: :standings
   get "classement/:competition_id", to: "standings#show", as: :standing
 
-  # Sitemap
-  get "sitemap.xml", to: "sitemaps#index", defaults: { format: "xml" }
 end

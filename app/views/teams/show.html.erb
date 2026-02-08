@@ -1,12 +1,18 @@
 <% content_for :title, @page_title %>
 <% content_for :meta_description, @page_desc %>
 
+<%# Fil d'Ariane pour le SEO (Breadcrumbs) %>
+<nav style="padding: 10px 15px; font-size: 12px; color: #999;">
+  <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+  <%= @team_name %>
+  </nav>
+
 <div style="text-align: center; padding: 30px 15px; background: white; border-bottom: 1px solid #eee; margin-bottom: 20px;">
   <% if @team_logo.present? %>
-    <img src="<%= @team_logo %>" alt="Logo <%= @team_name %>" style="height: 80px; width: 80px; object-fit: contain; margin-bottom: 10px;">
+    <img src="<%= @team_logo %>" alt="Logo officiel <%= @team_name %>" style="height: 80px; width: 80px; object-fit: contain; margin-bottom: 10px;">
   <% end %>
-  <h1 style="font-size: 24px; font-weight: 800; margin: 0;"><%= @team_name %></h1>
-  <p style="color: #666; font-size: 14px;">Guide TV & Prochaines diffusions</p>
+  <h1 style="font-size: 24px; font-weight: 800; margin: 0;">Programme TV <%= @team_name %></h1>
+    <p style="color: #666; font-size: 14px;">Guide TV & Prochaines diffusions</p>
 </div>
 
 <div style="padding: 0 10px;">
@@ -66,3 +72,15 @@
     <p style="text-align: center; color: #666; padding: 40px 0;">Aucun match prévu pour <%= @team_name %> prochainement.</p>
   <% end %>
 </div>
+
+<%# AJOUT : JSON-LD spécifique équipe %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsTeam",
+  "name": "<%= @team_name %>",
+  "sport": "Football",
+  "logo": "<%= @team_logo %>",
+  "url": "<%= request.original_url %>"
+}
+</script>

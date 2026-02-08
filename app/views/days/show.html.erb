@@ -31,9 +31,8 @@
 
 <% if @matches.any? %>
   <% @matches.each do |match| %>
-    <%= link_to match_path(match.matchup), style: "text-decoration: none; color: inherit; display: block;" do %>
-      <div style="padding: 16px 0; border-bottom: 1px solid #f0f0f0;">
-
+    <%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block;" do %>
+    <div style="padding: 16px 0; border-bottom: 1px solid #f0f0f0;">
         <%# Ligne 1 : Heure + Chaîne %>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
           <div style="font-weight: 800; font-size: 15px; background: #f4f4f4; padding: 2px 8px; border-radius: 4px;">
