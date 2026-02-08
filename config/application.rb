@@ -6,12 +6,6 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require_relative "boot"
-
-require "rails/all"
-
-Bundler.require(*Rails.groups)
-
 module Matchtv
   class Application < Rails::Application
     config.generators do |generate|
@@ -22,8 +16,11 @@ module Matchtv
 
     config.load_defaults 7.0
 
-    # LA CORRECTION EST ICI :
+    # Configuration de la langue et du fuseau horaire
     config.time_zone = "Paris"
     config.active_record.default_timezone = :utc
+
+    # C'est ici qu'on définit le français par défaut
+    config.i18n.default_locale = :fr
   end
 end

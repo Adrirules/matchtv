@@ -2,15 +2,14 @@
   <%# ---- 1. Logique de Date (Calculs) ---- %>
   <%
     date_label =
-      if @match.start_time.to_date == Date.today
+      if @match.start_time.to_date == Time.zone.today
         "aujourd’hui"
-      elsif @match.start_time.to_date == Date.today + 1.day
+      elsif @match.start_time.to_date == Time.zone.today + 1.day
         "demain"
       else
-        l(@match.start_time.to_date, format: "%d %B %Y")
+        l(@match.start_time.to_date, format: :long) # On utilise le format :long défini dans le YAML
       end
   %>
-
   <%# ---- 2. SEO : Envoi des données au Layout ---- %>
   <% content_for :title, "📺 #{@match.home_team} - #{@match.away_team} : Sur quelle chaîne voir le match ?" %>
   <% content_for :meta_description, "Match #{@match.home_team} - #{@match.away_team} diffusé #{date_label} à #{@match.start_time.strftime("%H:%M")} en direct sur #{@match.tv_channels}. Retrouvez le guide TV complet et streaming." %>
