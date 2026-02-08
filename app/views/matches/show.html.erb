@@ -102,19 +102,56 @@
       "@context": "https://schema.org",
       "@type": "SportsEvent",
       "name": "#{@match.home_team} vs #{@match.away_team}",
+      "description": "Retrouvez sur quelle chaîne voir le match #{@match.home_team} vs #{@match.away_team} en direct pour la #{@match.competition}. Guide TV complet et streaming.",
       "startDate": @match.start_time.iso8601,
+      "endDate": (@match.start_time + 110.minutes).iso8601, # On estime la fin du match
+      "eventStatus": "https://schema.org/ScheduledScheduled",
+      "image": [@match.home_team_logo, @match.away_team_logo],
       "sport": "Football",
-      "homeTeam": { "@type": "SportsTeam", "name": @match.home_team, "logo": @match.home_team_logo },
-      "awayTeam": { "@type": "SportsTeam", "name": @match.away_team, "logo": @match.away_team_logo },
+      "homeTeam": {
+        "@type": "SportsTeam",
+        "name": @match.home_team,
+        "logo": @match.home_team_logo,
+        "url": "https://www.coupdenvoi.tv/equipes/#{@match.home_team.parameterize}"
+      },
+      "awayTeam": {
+        "@type": "SportsTeam",
+        "name": @match.away_team,
+        "logo": @match.away_team_logo,
+        "url": "https://www.coupdenvoi.tv/equipes/#{@match.away_team.parameterize}"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Stade à confirmer", # Tu pourras affiner si tu ajoutes le venue dans ta DB
+        "address": { "@type": "PostalAddress", "addressCountry": "FR" }
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.coupdenvoi.tv#{request.fullpath}",
+        "availability": "https://schema.org/InStock",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "performer": {
+        "@type": "SportsTeam",
+        "name": "#{@match.home_team} et #{@match.away_team}"
+      },
+      "organizer": {
+        "@type": "SportsOrganization",
+        "name": @match.competition,
+        "url": "https://www.coupdenvoi.tv/competitions/#{@match.competition.parameterize}"
+      },
       "broadcastOfEvent": {
         "@type": "BroadcastEvent",
         "isLiveBroadcast": true,
-        "broadcastService": { "@type": "BroadcastService", "name": @match.tv_channels }
-      },
-      "organizer": { "@type": "SportsOrganization", "name": @match.competition }
+        "broadcastService": {
+          "@type": "BroadcastService",
+          "name": @match.tv_channels,
+          "url": "https://www.coupdenvoi.tv"
+        }
+      }
     }.to_json.html_safe %>
   </script>
-
 <% else %>
   <div style="text-align: center; padding: 60px 20px;">
     <h1 style="font-size: 20px; font-weight: 700;">Match non trouvé</h1>
