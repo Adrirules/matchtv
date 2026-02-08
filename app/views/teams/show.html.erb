@@ -13,25 +13,35 @@
   <% if @matches.any? %>
     <% @matches.each do |match| %>
       <div style="margin-bottom: 15px;">
-        <%# Lien vers la compétition (Petit badge discret au-dessus du match) %>
+
+        <%# 1. Lien vers la compétition (sécurisé avec parameterize) %>
         <div style="margin-bottom: 5px; padding-left: 5px;">
-          <%= link_to competition_path(match.competition.parameterize), style: "text-decoration: none; font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase;" do %>
-            <%= match.competition %>
+          <% if match.competition.present? %>
+            <%= link_to competition_path(match.competition.parameterize), style: "text-decoration: none; font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase;" do %>
+              <%= match.competition %>
+            <% end %>
           <% end %>
         </div>
 
-        <%# Bloc Match cliquable %>
-        <%= link_to match_path(match.slug), style: "text-decoration: none; color: inherit; display: block;" do %>
+        <%# 2. Bloc Match cliquable (on utilise le slug s'il existe, sinon l'ID pour éviter l'erreur) %>
+        <% match_identifier = match.slug.present? ? match.slug : match.id %>
+
+        <%= link_to match_path(match_identifier), style: "text-decoration: none; color: inherit; display: block;" do %>
           <div style="background: white; border: 1px solid #f0f0f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
+
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-              <span style="font-weight: 800; font-size: 13px; color: #222;"><%= l(match.start_time, format: "%d/%m — %H:%M") %></span>
-              <span style="font-size: 12px; color: #d9534f; font-weight: 700;"><%= match.tv_channels %></span>
+              <span style="font-weight: 800; font-size: 13px; color: #222;">
+                <%= l(match.start_time, format: "%d/%m — %H:%M") %>
+              </span>
+              <span style="font-size: 12px; color: #d9534f; font-weight: 700;">
+                <%= match.tv_channels %>
+              </span>
             </div>
 
             <div style="display: flex; align-items: center; justify-content: space-between;">
                <%# Equipe Domicile %>
                <div style="flex: 1; display: flex; align-items: center;">
-                 <img src="<%= match.home_team_logo %>" style="width: 20px; height: 20px; margin-right: 8px; object-fit: contain;">
+                 <img src="<%= match.home_team_logo %>" style="width: 20px; height: 20px; margin-right: 8px; object-fit: contain;" alt="">
                  <span style="font-size: 15px; font-weight: 600; <%= 'color: #007bff;' if match.home_team.parameterize == params[:team_slug] %>">
                    <%= match.home_team %>
                  </span>
@@ -44,9 +54,10 @@
                  <span style="font-size: 15px; font-weight: 600; text-align: right; <%= 'color: #007bff;' if match.away_team.parameterize == params[:team_slug] %>">
                    <%= match.away_team %>
                  </span>
-                 <img src="<%= match.away_team_logo %>" style="width: 20px; height: 20px; margin-left: 8px; object-fit: contain;">
+                 <img src="<%= match.away_team_logo %>" style="width: 20px; height: 20px; margin-left: 8px; object-fit: contain;" alt="">
                </div>
             </div>
+
           </div>
         <% end %>
       </div>
