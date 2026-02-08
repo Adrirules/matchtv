@@ -1,29 +1,39 @@
 namespace :sync do
-  desc "Synchronise toutes les ligues définies dans le service"
+  desc "Synchronise toutes les ligues et actualise le sitemap pour le SEO"
   task all_leagues: :environment do
     api = FootballApiService.new
 
-    # On récupère la liste des ligues directement depuis le service
-    # C'est ça "boucler sur SUPPORTED_LEAGUES"
+    # On récupère la liste des 20 ligues définie dans ton service
     leagues = FootballApiService::SUPPORTED_LEAGUES
 
-    puts "🚀 DÉBUT DE LA SYNCHRONISATION GLOBALE"
-    puts "--------------------------------------"
+    puts "🚀 [#{Time.now.strftime('%H:%M')}] DÉBUT DE LA MÉGA-SYNCHRONISATION"
+    puts "--------------------------------------------------"
 
     leagues.each do |id, name|
-      puts "🔄 Importation de : #{name} (ID: #{id})..."
+      print "🔄 Importation de : #{name.ljust(20)} "
       begin
-        # On lance l'import pour chaque ligue
-        result = api.import_upcoming_fixtures(league_id: id)
-        puts "✅ #{result}"
+        # On appelle ton service d'import
+        api.import_upcoming_fixtures(league_id: id)
+        puts "✅ OK"
       rescue => e
-        puts "❌ Erreur sur #{name} : #{e.message}"
+        puts "❌ ERREUR : #{e.message}"
       end
-      # On attend 1 seconde pour ne pas brusquer l'API
+      # Pause de 1 seconde pour respecter les quotas de l'API
       sleep 1
     end
 
-    puts "--------------------------------------"
-    puts "✨ TOUTES LES LIGUES SONT À JOUR !"
+    puts "--------------------------------------------------"
+    puts "🛰️  MISE À JOUR DU SITEMAP (Génération du XML)..."
+
+    begin
+      # Cette ligne magique déclenche la gem sitemap_generator
+      Rake::Task['sitemap:refresh'].invoke
+      puts "✅ SITEMAP ACTUALISÉ AVEC SUCCÈS"
+    rescue => e
+      puts "⚠️ ÉCHEC SITEMAP : #{e.message}"
+    end
+
+    puts "--------------------------------------------------"
+    puts "✨ TOUT EST À JOUR : Tes matchs sont prêts pour Google !"
   end
 end
