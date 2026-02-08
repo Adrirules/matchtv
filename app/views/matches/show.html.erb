@@ -95,8 +95,7 @@
       Pour suivre le match en streaming légal sur votre ordinateur, tablette ou smartphone, il vous faudra passer par l'application officielle du diffuseur (Canal+ Foot, beIN CONNECT, DAZN, etc.) muni de votre abonnement.
     </p>
   </section>
-
-  <%# ---- 6. Données Structurées JSON-LD ---- %>
+<%# ---- 6. Données Structurées JSON-LD ---- %>
   <script type="application/ld+json">
     <%= {
       "@context": "https://schema.org",
@@ -104,25 +103,26 @@
       "name": "#{@match.home_team} vs #{@match.away_team}",
       "description": "Retrouvez sur quelle chaîne voir le match #{@match.home_team} vs #{@match.away_team} en direct pour la #{@match.competition}. Guide TV complet et streaming.",
       "startDate": @match.start_time.iso8601,
-      "endDate": (@match.start_time + 110.minutes).iso8601, # On estime la fin du match
-      "eventStatus": "https://schema.org/ScheduledScheduled",
+      "endDate": (@match.start_time + 110.minutes).iso8601,
+      "eventStatus": "https://schema.org/EventScheduled", # Corrigé : était ScheduledScheduled
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", # Recommandé par Google
       "image": [@match.home_team_logo, @match.away_team_logo],
       "sport": "Football",
       "homeTeam": {
         "@type": "SportsTeam",
         "name": @match.home_team,
         "logo": @match.home_team_logo,
-        "url": "https://www.coupdenvoi.tv/equipes/#{@match.home_team.parameterize}"
+        "url": "https://www.coupdenvoi.tv/equipes/#{@match.home_team&.parameterize}"
       },
       "awayTeam": {
         "@type": "SportsTeam",
         "name": @match.away_team,
         "logo": @match.away_team_logo,
-        "url": "https://www.coupdenvoi.tv/equipes/#{@match.away_team.parameterize}"
+        "url": "https://www.coupdenvoi.tv/equipes/#{@match.away_team&.parameterize}"
       },
       "location": {
         "@type": "Place",
-        "name": "Stade à confirmer", # Tu pourras affiner si tu ajoutes le venue dans ta DB
+        "name": "Diffusion TV / Stade",
         "address": { "@type": "PostalAddress", "addressCountry": "FR" }
       },
       "offers": {
@@ -130,25 +130,13 @@
         "url": "https://www.coupdenvoi.tv#{request.fullpath}",
         "availability": "https://schema.org/InStock",
         "price": "0",
-        "priceCurrency": "EUR"
-      },
-      "performer": {
-        "@type": "SportsTeam",
-        "name": "#{@match.home_team} et #{@match.away_team}"
+        "priceCurrency": "EUR",
+        "validFrom": @match.created_at.iso8601
       },
       "organizer": {
         "@type": "SportsOrganization",
         "name": @match.competition,
-        "url": "https://www.coupdenvoi.tv/competitions/#{@match.competition.parameterize}"
-      },
-      "broadcastOfEvent": {
-        "@type": "BroadcastEvent",
-        "isLiveBroadcast": true,
-        "broadcastService": {
-          "@type": "BroadcastService",
-          "name": @match.tv_channels,
-          "url": "https://www.coupdenvoi.tv"
-        }
+        "url": "https://www.coupdenvoi.tv/competitions/#{@match.competition&.parameterize}"
       }
     }.to_json.html_safe %>
   </script>
