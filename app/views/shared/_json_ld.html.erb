@@ -8,7 +8,7 @@
     "endDate": (match.start_time + 110.minutes).iso8601,
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "image": [match.home_team_logo, match.away_team_logo],
+    "image": [match.home_team_logo, match.away_team_logo].reject(&:blank?),
     "sport": "Football",
     "homeTeam": {
       "@type": "SportsTeam",
@@ -24,15 +24,19 @@
     },
     "location": {
       "@type": "Place",
-      "name": "Diffusion TV",
-      "address": { "@type": "PostalAddress", "addressCountry": "FR" }
+      "name": match.competition || "Stade de football",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR"
+      }
     },
     "offers": {
       "@type": "Offer",
-      "url": "https://www.coupdenvoi.tv/matches/#{match.matchup}",
-      "availability": "https://schema.org/InStock",
+      "url": "https://www.coupdenvoi.tv/matches/#{match.slug}",
       "price": "0",
-      "priceCurrency": "EUR"
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "validFrom": match.created_at&.iso8601
     }
   }.to_json.html_safe %>
 </script>

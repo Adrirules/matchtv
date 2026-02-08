@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.matchtv.fr/sitemap.xml
+Sitemap: https://www.coupdenvoi.tv/sitemap.xml
