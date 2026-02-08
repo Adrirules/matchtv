@@ -36,3 +36,12 @@
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
+
+
+# Ignore local SQLite databases (on ne veut pas tes 900 matchs locaux sur Git)
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/*.sqlite3-wal
+
+# Ignore the generated sitemap (Heroku le génère tout seul)
+/public/sitemap.xml.gz
