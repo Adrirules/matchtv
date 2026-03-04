@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get "contact", to: "pages#contact", as: :contact
   get "a-propos", to: "pages#about", as: :a_propos
   get "mentions-legales", to: "pages#legal", as: :mentions_legales
+  get "politique-de-confidentialite", to: "pages#privacy", as: :politique_confidentialite
   get "archives", to: "pages#archives", as: :archives
 
   # 7. MATCHS (EN DERNIER)

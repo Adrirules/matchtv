@@ -3,30 +3,49 @@
 
   <h2>Éditeur du site</h2>
   <p>
-    Match TV
-    <br>
-    Email : hello@matchtv.fr
+    Coup d'envoi TV<br>
+    13 Allées Léon Gambetta<br>
+    92110 Clichy<br>
+    France<br>
+    Email : <%= mail_to "coupdenvoi@gmail.com" %>
   </p>
 
   <h2>Hébergement</h2>
   <p>
-    Hébergé sur Heroku (Salesforce).
+    Ce site est hébergé par Heroku (Salesforce, Inc.)<br>
+    415 Mission Street, Suite 300<br>
+    San Francisco, CA 94105 — États-Unis<br>
+    <a href="https://www.heroku.com" target="_blank" rel="noopener">www.heroku.com</a>
   </p>
 
-  <h2>Données personnelles</h2>
+  <h2>Données personnelles et cookies</h2>
   <p>
-    Match TV peut utiliser des cookies à des fins statistiques et d’amélioration
-    de l’expérience utilisateur.
+    Coup d'envoi TV utilise des outils de mesure d'audience (Google Analytics via Google Tag Manager)
+    ainsi que des cookies publicitaires (Google AdSense) afin de financer le service.
+    Ces traitements sont soumis à votre consentement, recueilli via notre bandeau de gestion des cookies.
+  </p>
+  <p>
+    Pour en savoir plus, consultez notre <%= link_to "Politique de confidentialité", politique_confidentialite_path %>.
   </p>
 
   <h2>Propriété intellectuelle</h2>
   <p>
-    Le contenu du site est protégé par le droit d’auteur. Toute reproduction non autorisée est interdite.
+    Le contenu éditorial du site (textes, mise en forme, interface) est la propriété de Coup d'envoi TV.
+    Les données sportives (résultats, horaires, logos d'équipes) sont issues d'une API tierce
+    et restent la propriété de leurs ayants droit respectifs.
+    Toute reproduction non autorisée du contenu éditorial est interdite.
   </p>
 
   <h2>Responsabilité</h2>
   <p>
-    Match TV ne garantit pas l’exactitude en temps réel des horaires de diffusion.
-    Les informations sont fournies à titre indicatif.
+    Les informations relatives aux horaires et chaînes de diffusion sont fournies à titre indicatif
+    et peuvent être modifiées par les diffuseurs sans préavis.
+    Coup d'envoi TV ne saurait être tenu responsable d'une erreur ou d'une omission dans ces informations.
+  </p>
+
+  <h2>Droit applicable</h2>
+  <p>
+    Le présent site est soumis au droit français. Tout litige relatif à son utilisation
+    relève de la compétence exclusive des tribunaux français.
   </p>
 </div>

@@ -11,6 +11,9 @@ class PagesController < ApplicationController
   def legal
   end
 
+  def privacy
+  end
+
   def archives
   end
 end
