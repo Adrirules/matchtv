@@ -30,8 +30,14 @@
     <%= csp_meta_tag %>
 
     <%# Preconnect pour réduire la latence réseau %>
+    <%# Fonts — chargées ici (non bloquantes) au lieu d'un @import CSS %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <%# Preconnect CDN logos équipes (améliore le LCP) %>
+    <link rel="preconnect" href="https://media.api-sports.io">
+    <link rel="dns-prefetch" href="https://media.api-sports.io">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
