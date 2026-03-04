@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   # 2. Les jours
   get "days/:date", to: "days#show", as: :day
 
+  # Résultats
+  get "resultats", to: "results#show", as: :resultats
+  get "resultats/:date", to: "results#show", as: :resultat_date
+
   # 3. Équipes
   # Redirection automatique de l'ancien vers le nouveau (SEO 301)
   get '/equipe/:team_slug', to: redirect('/equipes/%{team_slug}')
@@ -29,5 +33,9 @@ Rails.application.routes.draw do
 
   # 7. MATCHS (EN DERNIER)
   # On le met en dernier pour qu'il ne "vole" pas les URLs des autres pages
-  resources :matches, only: [:show], param: :slug
+  resources :matches, only: [:show], param: :slug do
+    member do
+      get :live_score
+    end
+  end
 end

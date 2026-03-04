@@ -1,0 +1,67 @@
+<%
+  def event_icon(type, detail)
+    case type
+    when "Goal"
+      case detail
+      when "Own Goal"      then { icon: "⚽", label: "CSC",      color: "#999" }
+      when "Penalty"       then { icon: "⚽", label: "Penalty",  color: "#d9534f" }
+      when "Missed Penalty" then { icon: "❌", label: "Penalty raté", color: "#999" }
+      else                      { icon: "⚽", label: nil,         color: "#010e1b" }
+      end
+    when "Card"
+      case detail
+      when "Yellow Card"      then { icon: "🟨", label: nil, color: "#f0ad4e" }
+      when "Red Card"         then { icon: "🟥", label: nil, color: "#d9534f" }
+      when "Yellow Red Card"  then { icon: "🟧", label: "2e jaune", color: "#e67e22" }
+      else                         { icon: "🃏", label: detail, color: "#999" }
+      end
+    when "subst"
+      { icon: "🔁", label: nil, color: "#5bc0de" }
+    when "Var"
+      { icon: "📺", label: detail, color: "#999" }
+    else
+      { icon: "•", label: detail, color: "#999" }
+    end
+  end
+
+  # Filtre : on n'affiche pas les remplacements (trop verbeux sur mobile)
+  displayed_events = events.reject { |e| e['type'] == 'subst' }
+%>
+
+<div class="timeline">
+  <% displayed_events.each do |event| %>
+    <%
+      info        = event_icon(event['type'], event['detail'])
+      minute      = event['time']['elapsed']
+      extra       = event['time']['extra']
+      time_label  = extra ? "#{minute}+#{extra}'" : "#{minute}'"
+      player      = event['player']['name']
+      # Raccourcit le prénom : "Bruno Fernandes" → "B. Fernandes"
+      short_name  = player.to_s.split(' ').then { |parts| parts.length > 1 ? "#{parts.first[0]}. #{parts[1..]&.join(' ')}" : player }
+      is_home     = event['team']['name'] == match.home_team
+    %>
+    <div class="timeline-row <%= is_home ? 'home' : 'away' %>">
+      <% if is_home %>
+        <div class="tl-player home-side">
+          <span class="tl-name"><%= short_name %></span>
+          <% if info[:label] %><span class="tl-label"><%= info[:label] %></span><% end %>
+        </div>
+        <div class="tl-center">
+          <span class="tl-icon"><%= info[:icon] %></span>
+          <span class="tl-time"><%= time_label %></span>
+        </div>
+        <div class="tl-player away-side"></div>
+      <% else %>
+        <div class="tl-player home-side"></div>
+        <div class="tl-center">
+          <span class="tl-time"><%= time_label %></span>
+          <span class="tl-icon"><%= info[:icon] %></span>
+        </div>
+        <div class="tl-player away-side">
+          <% if info[:label] %><span class="tl-label"><%= info[:label] %></span><% end %>
+          <span class="tl-name"><%= short_name %></span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

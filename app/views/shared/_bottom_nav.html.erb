@@ -2,14 +2,14 @@
      class="bottom-nav"
      data-controller="navbar"
      data-action="scroll@window->navbar#onScroll">
-  <%= link_to "/", class: "nav-item" do %>
-    <span>🏠</span>
-    Accueil
-  <% end %>
-
-  <%= link_to "/", class: "nav-item" do %>
+  <%= link_to root_path, class: "nav-item" do %>
     <span>📺</span>
     Programme
+  <% end %>
+
+  <%= link_to resultats_path, class: "nav-item" do %>
+    <span>🏁</span>
+    Résultats
   <% end %>
 
   <%= link_to competitions_path, class: "nav-item" do %>

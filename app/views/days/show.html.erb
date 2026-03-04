@@ -29,6 +29,19 @@
   Programme TV foot <%= date_label %>
 </h1>
 
+<%
+  live_statuses     = %w[1H HT 2H ET BT P]
+  finished_statuses = %w[FT AET PEN]
+  has_live_matches  = @date == Date.today && @matches.any? { |m| live_statuses.include?(m.status) }
+%>
+
+<% if has_live_matches %>
+  <script>
+    // Auto-refresh toutes les 60s si des matchs sont en cours
+    setTimeout(function() { location.reload(); }, 60000);
+  </script>
+<% end %>
+
 <% if @matches.any? %>
   <% @matches.each_with_index do |match, index| %>
     <%# Ad slot après le 4e match — Activer après approbation AdSense %>
@@ -41,13 +54,30 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> %>
     <% end %>
+    <%
+      is_live     = live_statuses.include?(match.status)
+      is_finished = finished_statuses.include?(match.status)
+      has_score   = match.home_score.present? && match.away_score.present?
+    %>
     <%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block;" do %>
     <% cache [match, match.updated_at] do %>
     <div style="padding: 16px 0; border-bottom: 1px solid #f0f0f0;">
-        <%# Ligne 1 : Heure + Chaîne %>
+        <%# Ligne 1 : Heure + Score + Chaîne %>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <div style="font-weight: 800; font-size: 15px; background: #f4f4f4; padding: 2px 8px; border-radius: 4px;">
-            <%= match.start_time.strftime("%H:%M") %>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="font-weight: 800; font-size: 15px; background: #f4f4f4; padding: 2px 8px; border-radius: 4px;">
+              <%= match.start_time.strftime("%H:%M") %>
+            </div>
+            <% if has_score %>
+              <span style="font-weight: 900; font-size: 15px; color: #222;"><%= match.home_score %> - <%= match.away_score %></span>
+              <% if is_live %>
+                <span class="match-status live" style="font-size: 11px;">
+                  <%= match.status == "HT" ? "MT" : "#{match.elapsed}′" %>
+                </span>
+              <% else %>
+                <span class="match-status finished" style="font-size: 11px;">Terminé</span>
+              <% end %>
+            <% end %>
           </div>
           <div style="font-size: 12px; color: #d9534f; font-weight: 700; text-transform: uppercase;">
             <%= match.tv_channels %>

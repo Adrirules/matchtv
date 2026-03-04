@@ -32,9 +32,21 @@
       <span style="font-size: 12px; color: #999; font-weight: 500;">Saison 2025/2026</span>
     </div>
 
-    <div style="display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto 40px;">
+    <%
+      live_statuses     = %w[1H HT 2H ET BT P]
+      finished_statuses = %w[FT AET PEN]
+      is_live     = live_statuses.include?(@match.status)
+      is_finished = finished_statuses.include?(@match.status)
+      has_score   = @match.home_score.present? && @match.away_score.present?
+    %>
 
-      <%# Equipe Domicile (Lien vers la page équipe) %>
+    <div data-controller="live-score"
+         data-live-score-url-value="<%= live_score_match_path(@match.slug) %>"
+         data-live-score-status-value="<%= @match.status %>"
+         data-home-team="<%= @match.home_team %>"
+         style="display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto 40px;">
+
+      <%# Equipe Domicile %>
       <div style="flex: 1; text-align: center;">
         <%= link_to team_path(@match.home_team.parameterize), style: "text-decoration: none; color: inherit;" do %>
           <div style="width: 80px; height: 80px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
@@ -48,16 +60,33 @@
         <% end %>
       </div>
 
-      <%# Heure du Match %>
+      <%# Centre : Score ou Heure %>
       <div style="flex: 0.8; text-align: center; padding: 0 10px;">
-        <div style="font-size: 13px; color: #d9534f; font-weight: 700; margin-bottom: 5px; text-transform: uppercase;">Direct</div>
-        <div style="font-size: 42px; font-weight: 900; color: #222; line-height: 1;">
-          <%= @match.start_time.strftime("%Hh%M") %>
-        </div>
-        <div style="font-size: 12px; color: #666; margin-top: 8px; font-weight: 600;"><%= l(@match.start_time, format: "%d/%m") %></div>
+        <% if is_live || (is_finished && has_score) %>
+          <%# Statut (minute ou FT) %>
+          <div data-live-score-target="status"
+               class="match-status <%= is_live ? 'live' : 'finished' %>">
+            <% if @match.status == "HT" %>Mi-temps
+            <% elsif is_finished %>Terminé
+            <% else %><%= @match.elapsed %>′
+            <% end %>
+          </div>
+          <%# Score %>
+          <div data-live-score-target="score"
+               style="font-size: 42px; font-weight: 900; color: #222; line-height: 1; margin: 6px 0;">
+            <%= @match.home_score %> - <%= @match.away_score %>
+          </div>
+        <% else %>
+          <%# Match pas encore commencé %>
+          <div style="font-size: 13px; color: #999; font-weight: 700; margin-bottom: 5px; text-transform: uppercase;">Coup d'envoi</div>
+          <div style="font-size: 42px; font-weight: 900; color: #222; line-height: 1;">
+            <%= @match.start_time.strftime("%Hh%M") %>
+          </div>
+          <div style="font-size: 12px; color: #666; margin-top: 8px; font-weight: 600;"><%= l(@match.start_time, format: "%d/%m") %></div>
+        <% end %>
       </div>
 
-      <%# Equipe Extérieur (Lien vers la page équipe) %>
+      <%# Equipe Extérieur %>
       <div style="flex: 1; text-align: center;">
         <%= link_to team_path(@match.away_team.parameterize), style: "text-decoration: none; color: inherit;" do %>
           <div style="width: 80px; height: 80px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
@@ -91,6 +120,14 @@
       </div>
     </div>
   </div>
+
+  <%# ---- Timeline des événements ---- %>
+  <% if @events&.any? %>
+    <section id="match-timeline" style="margin: 25px 0; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
+      <h2 style="font-size: 18px; font-weight: 800; color: #010e1b; margin-bottom: 16px;">Résumé du match</h2>
+      <%= render 'matches/timeline', events: @events, match: @match %>
+    </section>
+  <% end %>
 
   <%# Zone Pub — Activer après approbation AdSense %>
   <%# <ins class="adsbygoogle"

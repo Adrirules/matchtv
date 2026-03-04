@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_03_04_182602) do
+ActiveRecord::Schema[7.0].define(version: 2026_03_04_220000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,10 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_04_182602) do
     t.string "home_team_logo"
     t.string "away_team_logo"
     t.string "slug"
+    t.string "status", default: "NS"
+    t.integer "home_score"
+    t.integer "away_score"
+    t.integer "elapsed"
     t.index ["api_id"], name: "index_matches_on_api_id"
     t.index ["competition"], name: "index_matches_on_competition"
     t.index ["matchup_id"], name: "index_matches_on_matchup_id"

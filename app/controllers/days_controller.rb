@@ -19,10 +19,7 @@ class DaysController < ApplicationController
     # Matchs pour le jour sélectionné
     scope = Match.where(start_time: @date.all_day)
 
-    # Si c'est aujourd'hui, on ne montre que ceux qui n'ont pas encore commencé (ou pas fini)
-    if @date == today
-      scope = scope.where("start_time >= ?", Time.current - 2.hours) # -2h pour garder le match affiché pendant qu'il joue
-    end
+    # Pas de filtre sur l'heure : on affiche tous les matchs du jour (y compris terminés)
 
     @matches = scope.order(:start_time)
   end
