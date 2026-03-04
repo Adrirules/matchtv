@@ -1,0 +1,28 @@
+# coupdenvoi.tv - Guide TV Football France
+
+## About
+coupdenvoi.tv is a French football TV guide. It tells users which TV channel broadcasts each football match in France and Europe. The site covers Ligue 1, Champions League, Europa League, Premier League, La Liga, and more.
+
+## Data available
+- Football matches for the next 30 days (Ligue 1, Champions League, Europa League, Premier League, La Liga, Coupe de France, etc.)
+- TV channels broadcasting each match (Canal+, DAZN, beIN Sports, France TV, TF1, M6, RMC Sport)
+- Teams and their upcoming match schedule
+- Competitions and their full schedule
+- Match details: kick-off time, broadcaster, home team, away team
+
+## URL patterns
+- / — homepage with today's matches
+- /days/YYYY-MM-DD — all matches for a given day
+- /equipes/:slug — team schedule and upcoming TV broadcasts
+- /competitions/:slug — competition schedule with TV channels
+- /classements/:id — league standings
+- /matches/:slug — match detail page with TV channel, kick-off time, and streaming info
+
+## Language
+French (fr-FR)
+
+## Data freshness
+Match data is updated daily. TV channel assignments are updated as soon as broadcaster information is available.
+
+## Contact
+https://www.coupdenvoi.tv/contact

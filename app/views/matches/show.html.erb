@@ -92,10 +92,14 @@
     </div>
   </div>
 
-  <%# Zone Pub %>
-  <div style="margin: 20px 0; padding: 15px; background: #fffbe6; border: 1px dashed #ffcc00; border-radius: 8px; text-align: center; font-size: 11px; color: #856404;">
-    ESPACE PUBLICITAIRE
-  </div>
+  <%# Zone Pub — Activer après approbation AdSense %>
+  <%# <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> %>
 
   <section style="margin: 40px 0; background: #fff; padding: 25px; border-radius: 12px; line-height: 1.7; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
     <h2 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 15px;">Détails de la diffusion TV</h2>
@@ -103,12 +107,108 @@
       Le match <strong><%= @match.home_team %></strong> recevra <strong><%= @match.away_team %></strong> à l'occasion de la <strong><%= @match.competition %></strong>.
       La rencontre sera retransmise en direct ce <strong><%= date_label %></strong> à <strong><%= @match.start_time.strftime("%Hh%M") %></strong> sur la chaîne <strong><%= @match.tv_channels %></strong>.
     </p>
-    <p style="font-size: 16px; color: #333;">
+    <p style="font-size: 16px; color: #333; margin-bottom: 15px;">
       Pour suivre le match en streaming légal sur votre ordinateur, tablette ou smartphone, il vous faudra passer par l'application officielle du diffuseur (Canal+ Foot, beIN CONNECT, DAZN, etc.) muni de votre abonnement.
+    </p>
+    <p style="font-size: 16px; color: #333;">
+      Ce match de <strong><%= @match.competition %></strong> entre <strong><%= @match.home_team %></strong> et <strong><%= @match.away_team %></strong>
+      est l'une des affiches de la saison 2025/2026. Coup d'envoi prévu à <strong><%= @match.start_time.strftime("%Hh%M") %></strong>,
+      diffusé en exclusivité sur <strong><%= @match.tv_channels %></strong>.
     </p>
   </section>
 
+  <%# FAQ visible (requis pour valider le FAQPage schema) %>
+  <section style="margin: 0 0 40px; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
+    <h2 style="font-size: 20px; font-weight: 800; color: #010e1b; margin-bottom: 20px;">Questions fréquentes</h2>
+
+    <div style="border-bottom: 1px solid #f0f0f0; padding-bottom: 15px; margin-bottom: 15px;">
+      <h3 style="font-size: 16px; font-weight: 700; color: #222; margin-bottom: 8px;">Sur quelle chaîne voir <%= @match.home_team %> - <%= @match.away_team %> ?</h3>
+      <p style="font-size: 15px; color: #555; line-height: 1.6;">
+        Le match <%= @match.home_team %> - <%= @match.away_team %> est diffusé sur <strong><%= @match.tv_channels %></strong>.
+        Vérifiez votre abonnement ou accédez à l'application officielle de la chaîne pour regarder en direct.
+      </p>
+    </div>
+
+    <div style="border-bottom: 1px solid #f0f0f0; padding-bottom: 15px; margin-bottom: 15px;">
+      <h3 style="font-size: 16px; font-weight: 700; color: #222; margin-bottom: 8px;">À quelle heure commence le match <%= @match.home_team %> - <%= @match.away_team %> ?</h3>
+      <p style="font-size: 15px; color: #555; line-height: 1.6;">
+        Le coup d'envoi de <%= @match.home_team %> - <%= @match.away_team %> est prévu à <strong><%= @match.start_time.strftime("%Hh%M") %></strong>
+        le <strong><%= l(@match.start_time.to_date, format: :long) %></strong> (heure française).
+      </p>
+    </div>
+
+    <div>
+      <h3 style="font-size: 16px; font-weight: 700; color: #222; margin-bottom: 8px;">Comment voir <%= @match.home_team %> - <%= @match.away_team %> en streaming ?</h3>
+      <p style="font-size: 15px; color: #555; line-height: 1.6;">
+        Pour regarder <%= @match.home_team %> - <%= @match.away_team %> en streaming légal, connectez-vous à l'application ou au site officiel de <strong><%= @match.tv_channels %></strong>.
+        Un abonnement actif est nécessaire pour accéder au direct.
+      </p>
+    </div>
+  </section>
+
   <%= render 'shared/json_ld', match: @match %>
+
+  <%# BreadcrumbList schema %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Programme TV foot",
+        "item": "https://www.coupdenvoi.tv/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "<%= @match.competition %>",
+        "item": "https://www.coupdenvoi.tv/competitions/<%= @match.competition&.parameterize %>"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "<%= @match.home_team %> - <%= @match.away_team %>",
+        "item": "<%= request.original_url %>"
+      }
+    ]
+  }
+  </script>
+
+  <%# FAQPage schema %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Sur quelle chaîne voir <%= @match.home_team %> vs <%= @match.away_team %> ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le match <%= @match.home_team %> - <%= @match.away_team %> est diffusé sur <%= @match.tv_channels %>. Connectez-vous à l'application officielle de la chaîne pour regarder en direct."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "À quelle heure commence le match <%= @match.home_team %> vs <%= @match.away_team %> ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le coup d'envoi est prévu à <%= @match.start_time.strftime("%Hh%M") %> le <%= l(@match.start_time.to_date, format: :long) %> (heure française)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment voir <%= @match.home_team %> vs <%= @match.away_team %> en streaming ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pour regarder <%= @match.home_team %> - <%= @match.away_team %> en streaming légal, connectez-vous à l'application officielle de <%= @match.tv_channels %>. Un abonnement actif est requis."
+        }
+      }
+    ]
+  }
+  </script>
 <% else %>
   <div style="text-align: center; padding: 60px 20px;">
     <h1 style="font-size: 20px; font-weight: 700;">Match non trouvé</h1>

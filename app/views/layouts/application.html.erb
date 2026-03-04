@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <meta charset="utf-8">
     <title><%= content_for?(:title) ? yield(:title) : "Coup d'envoi | Programme TV Sport : Sur quelle chaîne voir le match ?" %></title>
 
     <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Découvrez le programme TV foot et rugby complet pour 2026 : horaires, chaînes (Canal+, beIN, DAZN, TF1) et streaming en direct." %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <%# J'ai supprimé le doublon ici, une seule ligne suffit %>
     <link rel="canonical" href="<%= request.original_url %>">
 
     <%# Open Graph / SEO (Facebook, WhatsApp, LinkedIn) %>
@@ -14,10 +14,25 @@
     <meta property="og:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Le programme TV sport le plus complet et rapide." %>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= request.original_url %>">
-    <meta property="og:image" content="https://placehold.co/1200x630/010e1b/ffffff?text=Coup+denvoi">
+    <meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : "https://www.coupdenvoi.tv/og-default.png" %>">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Coup d'envoi">
+    <meta property="og:locale" content="fr_FR">
+
+    <%# Twitter Cards %>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= content_for?(:title) ? yield(:title) : "Coup d'envoi" %>">
+    <meta name="twitter:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Le programme TV sport le plus complet et rapide." %>">
+    <meta name="twitter:image" content="<%= content_for?(:og_image) ? yield(:og_image) : "https://www.coupdenvoi.tv/og-default.png" %>">
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%# Preconnect pour réduire la latence réseau %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -30,13 +45,33 @@
     <meta name="theme-color" content="#010e1b">
 
     <link rel="manifest" href="/manifest.json">
-
-    <%# --- C'EST ICI QUE TU MODIFIES --- %>
-    <%# Icône pour iPhone / iPad (Apple Touch Icon) %>
     <link rel="apple-touch-icon" href="/icon-512.png">
-
-    <%# Favicon pour les onglets de navigateur (PC/Mac) %>
     <link rel="icon" type="image/png" href="/icon-512.png">
+
+    <%# WebSite schema avec SearchAction (Sitelinks Searchbox) %>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Coup d'envoi",
+      "url": "https://www.coupdenvoi.tv",
+      "description": "Programme TV football : retrouvez sur quelle chaîne voir chaque match en direct.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.coupdenvoi.tv/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <%# AdSense : activer après approbation du compte %>
+    <%# <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> %>
+
+    <%# Google CMP (Funding Choices) : ajouter le snippet fourni par AdSense après approbation %>
+    <%# [FUNDING CHOICES SNIPPET ICI] %>
 
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

@@ -28,5 +28,7 @@ class CompetitionsController < ApplicationController
                     .order(:start_time)
 
     @page_title = "Programme TV #{@competition_name} : calendrier et chaînes"
+
+    expires_in 5.minutes, public: true
   end
 end

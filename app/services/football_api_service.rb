@@ -42,16 +42,42 @@ class FootballApiService
       else
         "DAZN"
       end
-    when 62, 140, 78, 135, 141, 203, 307 # beIN Sports Pack
+    when 62 # Ligue 2
       "beIN Sports"
+    when 63 # National
+      "Canal+ Foot"
     when 39 # Premier League
       "Canal+"
-    when 2, 3, 848, 193 # Canal+ Pack (Europe & D1F)
-      "Canal+ / Canal+ Foot"
+    when 140 # La Liga
+      "beIN Sports"
+    when 78 # Bundesliga
+      "beIN Sports"
+    when 135 # Serie A
+      "beIN Sports"
+    when 141 # Coupe du Roi
+      "beIN Sports"
+    when 2 # Champions League
+      "Canal+"
+    when 3 # Europa League
+      "Canal+ / beIN Sports"
+    when 848 # Conference League
+      "Canal+"
+    when 193 # D1 Féminine
+      "Canal+ Foot"
     when 529 # Coupe de France
       "France TV / beIN Sports"
-    when 63 # National
-      "FFF tv / Canal+ Foot"
+    when 88 # Eredivisie
+      "DAZN"
+    when 94 # Liga Portugal
+      "Canal+ Foot"
+    when 203 # MLS
+      "Apple TV+"
+    when 307 # Saudi Pro League
+      "beIN Sports"
+    when 4 # Euro / Nations League
+      "TF1 / M6"
+    when 9 # Copa America
+      "beIN Sports"
     else
       "À confirmer"
     end

@@ -21,6 +21,8 @@ class MatchesController < ApplicationController
     # 3. Ultime sécurité : si vraiment aucun match n'est trouvé
     if @match.nil?
       redirect_to root_path, alert: "Aucune diffusion trouvée pour ce match."
+    else
+      expires_in 5.minutes, public: true
     end
   end
 end

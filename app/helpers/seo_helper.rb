@@ -10,15 +10,15 @@ module SeoHelper
   def generate_match_seo(match)
     templates = [
       {
-        title: "⚽ %{match} : Chaîne, Heure et Direct | Coup d'Envoi",
+        title: "%{match} : Chaîne TV, Heure et Direct | Coup d'Envoi",
         desc: "Sur quelle chaîne et à quelle heure regarder %{match} ? Découvrez le programme TV complet, l'horaire de diffusion et les compos d'équipes."
       },
       {
-        title: "📺 %{match} : Quel programme TV pour le match ce soir ?",
+        title: "%{match} : sur quelle chaîne voir le match ce soir ?",
         desc: "Diffusion %{match} : à quelle heure et sur quelle chaîne télé ? Retrouvez notre guide complet pour ne rien rater du match en direct."
       },
       {
-        title: "⌚ %{match} : Heure de diffusion, chaîne et streaming",
+        title: "%{match} : Heure de diffusion, chaîne et streaming",
         desc: "Besoin de l'horaire du match %{match} ? Voici la chaîne TV, le coup d'envoi et toutes les infos pour suivre la diffusion en live."
       }
     ]

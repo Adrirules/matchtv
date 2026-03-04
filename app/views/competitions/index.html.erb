@@ -15,7 +15,7 @@
         <div style="background: white; border: 1px solid #eee; border-radius: 16px; padding: 25px 15px; text-align: center; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
           <div style="height: 70px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
             <% if comp[:thumbnail].present? %>
-              <img src="<%= comp[:thumbnail] %>" alt="Logo <%= comp[:name] %>" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+              <img src="<%= comp[:thumbnail] %>" alt="Logo <%= comp[:name] %>" width="70" height="70" loading="lazy" style="max-height: 100%; max-width: 100%; object-fit: contain;">
             <% else %>
               <span style="font-size: 40px;">🏆</span>
             <% end %>

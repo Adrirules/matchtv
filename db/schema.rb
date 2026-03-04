@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_02_05_223436) do
+ActiveRecord::Schema[7.0].define(version: 2026_03_04_182602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,8 +28,10 @@ ActiveRecord::Schema[7.0].define(version: 2026_02_05_223436) do
     t.string "away_team_logo"
     t.string "slug"
     t.index ["api_id"], name: "index_matches_on_api_id"
+    t.index ["competition"], name: "index_matches_on_competition"
     t.index ["matchup_id"], name: "index_matches_on_matchup_id"
     t.index ["slug"], name: "index_matches_on_slug"
+    t.index ["start_time"], name: "index_matches_on_start_time"
   end
 
   create_table "matchups", force: :cascade do |t|

@@ -6,10 +6,14 @@
 </nav>
 
 <div style="padding: 0 10px;">
-  <div style="display: flex; align-items: center; margin-bottom: 30px;">
+  <div style="display: flex; align-items: center; margin-bottom: 15px;">
     <h1 style="font-size: 22px; font-weight: 800; margin: 0;"><%= @competition_name %></h1>
     <span style="margin-left: 10px; background: #e7f3ff; color: #007bff; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700;">LIVE</span>
   </div>
+  <p style="font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 25px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+    Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
+    Programme TV complet avec horaires et chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV) pour toute la saison 2025/2026.
+  </p>
 
   <% if @matches.any? %>
     <% @matches.each do |match| %>
@@ -25,7 +29,7 @@
           <%# Équipes et Logos %>
           <div style="display: flex; align-items: center; justify-content: space-between;">
             <div style="flex: 1; display: flex; align-items: center;">
-              <img src="<%= match.home_team_logo %>" style="width: 25px; height: 25px; object-fit: contain; margin-right: 8px;">
+              <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="25" height="25" loading="lazy" style="width: 25px; height: 25px; object-fit: contain; margin-right: 8px;">
               <span style="font-weight: 600; font-size: 15px;"><%= match.home_team %></span>
             </div>
 
@@ -33,7 +37,7 @@
 
             <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
               <span style="font-weight: 600; font-size: 15px; text-align: right;"><%= match.away_team %></span>
-              <img src="<%= match.away_team_logo %>" style="width: 25px; height: 25px; object-fit: contain; margin-left: 8px;">
+              <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="25" height="25" loading="lazy" style="width: 25px; height: 25px; object-fit: contain; margin-left: 8px;">
             </div>
           </div>
         </div>
@@ -45,3 +49,31 @@
     </div>
   <% end %>
 </div>
+
+<%# BreadcrumbList schema %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Programme TV foot",
+      "item": "https://www.coupdenvoi.tv/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Compétitions",
+      "item": "https://www.coupdenvoi.tv/competitions"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "<%= @competition_name %>",
+      "item": "<%= request.original_url %>"
+    }
+  ]
+}
+</script>

@@ -44,7 +44,9 @@ class TeamsController < ApplicationController
       @team_name = current_slug.tr('-', ' ').split.map(&:capitalize).join(' ')
     end
 
-    @page_title = "📺 Programme TV #{@team_name} : sur quelle chaîne voir le match ?"
+    @page_title = "Programme TV #{@team_name} : sur quelle chaîne voir le match ?"
     @page_desc = "Calendrier complet du #{@team_name} à la télé. Retrouvez les horaires, les chaînes et les diffusions en direct pour la saison 2025/2026."
+
+    expires_in 5.minutes, public: true
   end
 end
