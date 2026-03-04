@@ -1,3 +1,20 @@
 <header class="top-nav">
-  <%= link_to "Coup d'envoi TV", root_path %>
+  <%= link_to "Coup d'envoi TV", root_path, class: "top-nav-logo" %>
+  <nav class="top-nav-links">
+    <%= link_to root_path, class: "top-nav-item" do %>
+      <span>📺</span> Programme
+    <% end %>
+    <%= link_to resultats_path, class: "top-nav-item" do %>
+      <span>🏁</span> Résultats
+    <% end %>
+    <%= link_to competitions_path, class: "top-nav-item" do %>
+      <span>🏆</span> Ligues
+    <% end %>
+    <%= link_to teams_path, class: "top-nav-item" do %>
+      <span>⚽</span> Équipes
+    <% end %>
+    <%= link_to standings_path, class: "top-nav-item" do %>
+      <span>📊</span> Classement
+    <% end %>
+  </nav>
 </header>

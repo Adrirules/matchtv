@@ -1,13 +1,4 @@
-<%
-  date_label =
-    if @date == Date.today
-      "aujourd’hui"
-    elsif @date == Date.today + 1.day
-      "demain"
-    else
-      l(@date, format: "%d %B %Y")
-    end
-%>
+<% date_label = format_date_label(@date) %>
 
 <%# --- SEO --- %>
 <% content_for :title, "Programme TV foot #{date_label} – Matchs et chaînes" %>
@@ -15,10 +6,9 @@
 
 <%# --- CALENDRIER --- %>
 <% content_for :calendar do %>
-  <% day_labels = { 0 => "Dim.", 1 => "Lun.", 2 => "Mar.", 3 => "Mer.", 4 => "Jeu.", 5 => "Ven.", 6 => "Sam." } %>
   <% @days.each do |day| %>
     <%= link_to day_path(day), class: "day-pill #{'active' if day == @date}" do %>
-      <div class="day-label"><%= day_labels[day.wday] %></div>
+      <div class="day-label"><%= ApplicationHelper::DAY_LABELS[day.wday] %></div>
       <div class="day-number"><%= day.day %></div>
     <% end %>
   <% end %>
@@ -29,15 +19,8 @@
   Programme TV foot <%= date_label %>
 </h1>
 
-<%
-  live_statuses     = %w[1H HT 2H ET BT P]
-  finished_statuses = %w[FT AET PEN]
-  has_live_matches  = @date == Date.today && @matches.any? { |m| live_statuses.include?(m.status) }
-%>
-
-<% if has_live_matches %>
+<% if @date == Date.today && @matches.any?(&:live?) %>
   <script>
-    // Auto-refresh toutes les 60s si des matchs sont en cours
     setTimeout(function() { location.reload(); }, 60000);
   </script>
 <% end %>
@@ -48,68 +31,15 @@
     <% if index == 4 %>
       <%# <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-client="ca-pub-1509060692668087"
            data-ad-slot="XXXXXXXXXX"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> %>
     <% end %>
-    <%
-      is_live     = live_statuses.include?(match.status)
-      is_finished = finished_statuses.include?(match.status)
-      has_score   = match.home_score.present? && match.away_score.present?
-    %>
-    <%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block;" do %>
-    <% cache [match, match.updated_at] do %>
-    <div style="padding: 16px 0; border-bottom: 1px solid #f0f0f0;">
-        <%# Ligne 1 : Heure + Score + Chaîne %>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="font-weight: 800; font-size: 15px; background: #f4f4f4; padding: 2px 8px; border-radius: 4px;">
-              <%= match.start_time.strftime("%H:%M") %>
-            </div>
-            <% if has_score %>
-              <span style="font-weight: 900; font-size: 15px; color: #222;"><%= match.home_score %> - <%= match.away_score %></span>
-              <% if is_live %>
-                <span class="match-status live" style="font-size: 11px;">
-                  <%= match.status == "HT" ? "MT" : "#{match.elapsed}′" %>
-                </span>
-              <% else %>
-                <span class="match-status finished" style="font-size: 11px;">Terminé</span>
-              <% end %>
-            <% end %>
-          </div>
-          <div style="font-size: 12px; color: #d9534f; font-weight: 700; text-transform: uppercase;">
-            <%= match.tv_channels %>
-          </div>
-        </div>
-
-        <%# Ligne 2 : Équipes avec petits logos %>
-        <div style="display: flex; align-items: center; margin-bottom: 6px;">
-          <div style="display: flex; align-items: center; flex: 1;">
-            <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="20" height="20" loading="lazy" style="width: 20px; height: 20px; object-fit: contain; margin-right: 10px;">
-            <span style="font-size: 16px; font-weight: 600;"><%= match.home_team %></span>
-          </div>
-
-          <span style="margin: 0 10px; color: #ccc; font-size: 12px;">vs</span>
-
-          <div style="display: flex; align-items: center; flex: 1; justify-content: flex-end;">
-            <span style="font-size: 16px; font-weight: 600; text-align: right;"><%= match.away_team %></span>
-            <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="20" height="20" loading="lazy" style="width: 20px; height: 20px; object-fit: contain; margin-left: 10px;">
-          </div>
-        </div>
-
-        <%# Ligne 3 : Compétition %>
-        <div style="font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">
-          <%= match.competition %>
-        </div>
-      </div>
-    <% end %><%# end cache %>
-    <% end %><%# end link_to %>
-
-    <%# JSON-LD %>
-      <%= render 'shared/json_ld', match: match %>
-  <% end %><%# end each_with_index %>
+    <%= render 'shared/match_card', match: match %>
+    <%= render 'shared/json_ld', match: match %>
+  <% end %>
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun match prévu ce jour-là.</p>
 <% end %>

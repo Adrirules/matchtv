@@ -7,10 +7,17 @@ body {
   overflow-x: hidden;
 }
 
+@media (min-width: 1024px) {
+  main.container {
+    max-width: 680px !important;
+  }
+}
+
 body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  background: #f7f8fa;
 }
 
 .page-wrapper {

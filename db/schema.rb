@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_03_04_220000) do
+ActiveRecord::Schema[7.0].define(version: 2026_03_04_230000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,10 +32,14 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_04_220000) do
     t.integer "away_score"
     t.integer "elapsed"
     t.index ["api_id"], name: "index_matches_on_api_id"
+    t.index ["away_team"], name: "index_matches_on_away_team"
     t.index ["competition"], name: "index_matches_on_competition"
+    t.index ["home_team"], name: "index_matches_on_home_team"
     t.index ["matchup_id"], name: "index_matches_on_matchup_id"
     t.index ["slug"], name: "index_matches_on_slug"
+    t.index ["start_time", "competition"], name: "index_matches_on_start_time_and_competition"
     t.index ["start_time"], name: "index_matches_on_start_time"
+    t.index ["status"], name: "index_matches_on_status"
   end
 
   create_table "matchups", force: :cascade do |t|

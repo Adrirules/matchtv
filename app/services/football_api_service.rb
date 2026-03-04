@@ -145,106 +145,39 @@ class FootballApiService
 
   # --- LIVE SCORES ---
 
-  # Récupère tous les matchs en cours en UN seul appel API, met à jour la DB
   def fetch_live_scores
-    response = client.get('/fixtures', { live: 'all' })
-    return unless response.success?
+    fixtures = get_fixtures(live: 'all')
+    api_ids  = fixtures.map { |f| f['fixture']['id'] }
 
-    fixtures = JSON.parse(response.body)['response'] || []
-    api_ids = fixtures.map { |f| f['fixture']['id'] }
+    fixtures.each { |data| update_match_from_data(data) }
 
-    # Met à jour les matchs en cours
-    fixtures.each do |data|
-      match = Match.find_by(api_id: data['fixture']['id'])
-      next unless match
-
-      match.update_columns(
-        status:     data['fixture']['status']['short'],
-        elapsed:    data['fixture']['status']['elapsed'],
-        home_score: data['goals']['home'],
-        away_score: data['goals']['away'],
-        updated_at: Time.current
-      )
-    end
-
-    # Les matchs qui étaient live mais ne le sont plus → on fetch leur score final
-    previously_live = Match.where(status: %w[1H HT 2H ET BT P])
-                           .where.not(api_id: api_ids)
-    previously_live.find_each { |m| fetch_fixture_result(m.api_id) }
+    # Matchs qui étaient live mais ne le sont plus → score final
+    Match.where(status: Match::LIVE_STATUSES).where.not(api_id: api_ids)
+         .find_each { |m| fetch_fixture_result(m.api_id) }
   end
 
-  # Récupère les scores pour une date donnée (utilisé par la page Résultats)
   def fetch_date_results(date)
-    response = client.get('/fixtures', {
-      date:   date.strftime('%Y-%m-%d'),
-      status: 'FT-AET-PEN-1H-HT-2H-ET-BT-P'
-    })
-    return unless response.success?
-
-    fixtures = JSON.parse(response.body)['response'] || []
-    fixtures.each do |data|
-      match = Match.find_by(api_id: data['fixture']['id'])
-      next unless match
-
-      match.update_columns(
-        status:     data['fixture']['status']['short'],
-        elapsed:    data['fixture']['status']['elapsed'],
-        home_score: data['goals']['home'],
-        away_score: data['goals']['away'],
-        updated_at: Time.current
-      )
-    end
+    fixtures = get_fixtures(date: date.strftime('%Y-%m-%d'), status: 'FT-AET-PEN-1H-HT-2H-ET-BT-P')
+    fixtures.each { |data| update_match_from_data(data) }
   end
 
-  # Récupère les scores des matchs terminés aujourd'hui (catchup pour les matchs manqués)
   def fetch_today_results
-    response = client.get('/fixtures', {
-      date:   Date.today.strftime('%Y-%m-%d'),
-      status: 'FT-AET-PEN-1H-HT-2H-ET-BT-P'
-    })
-    return unless response.success?
-
-    fixtures = JSON.parse(response.body)['response'] || []
-    fixtures.each do |data|
-      match = Match.find_by(api_id: data['fixture']['id'])
-      next unless match
-
-      match.update_columns(
-        status:     data['fixture']['status']['short'],
-        elapsed:    data['fixture']['status']['elapsed'],
-        home_score: data['goals']['home'],
-        away_score: data['goals']['away'],
-        updated_at: Time.current
-      )
-    end
+    fetch_date_results(Date.today)
   end
 
-  # Récupère les events d'un match (buts, cartons, remplacements)
   def fetch_fixture_events(fixture_id)
     response = client.get('/fixtures/events', { fixture: fixture_id })
     return [] unless response.success?
-
     JSON.parse(response.body)['response'] || []
   end
 
-  # Met à jour un match unique (utilisé pour le cache endpoint)
   def fetch_fixture_result(api_id)
     response = client.get('/fixtures', { id: api_id })
     return unless response.success?
-
-    data = JSON.parse(response.body)['response']&.first
-    return unless data
-
+    data  = JSON.parse(response.body)['response']&.first
     match = Match.find_by(api_id: api_id)
-    return unless match
-
-    match.update_columns(
-      status:     data['fixture']['status']['short'],
-      elapsed:    data['fixture']['status']['elapsed'],
-      home_score: data['goals']['home'],
-      away_score: data['goals']['away'],
-      updated_at: Time.current
-    )
+    return unless data && match
+    update_match_from_data(data, match)
     match
   end
 
@@ -256,6 +189,24 @@ class FootballApiService
   end
 
   private
+
+  def get_fixtures(params)
+    response = client.get('/fixtures', params)
+    return [] unless response.success?
+    JSON.parse(response.body)['response'] || []
+  end
+
+  def update_match_from_data(data, match = nil)
+    match ||= Match.find_by(api_id: data['fixture']['id'])
+    return unless match
+    match.update_columns(
+      status:     data['fixture']['status']['short'],
+      elapsed:    data['fixture']['status']['elapsed'],
+      home_score: data['goals']['home'],
+      away_score: data['goals']['away'],
+      updated_at: Time.current
+    )
+  end
 
   def client
     @client ||= Faraday.new(url: BASE_URL) do |config|

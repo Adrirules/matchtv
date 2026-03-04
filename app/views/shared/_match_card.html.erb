@@ -1,0 +1,45 @@
+<%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block;" do %>
+<% cache [match, match.updated_at] do %>
+<div class="match-card">
+  <%# Ligne 1 : Heure + Score + Chaîne %>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="font-weight: 800; font-size: 15px; background: #f4f4f4; padding: 2px 8px; border-radius: 4px;">
+        <%= match.start_time.strftime("%H:%M") %>
+      </div>
+      <% if match.has_score? %>
+        <span style="font-weight: 900; font-size: 15px; color: #222;"><%= match.home_score %> - <%= match.away_score %></span>
+        <% if match.live? %>
+          <span class="match-status live" style="font-size: 11px;">
+            <%= match.status == "HT" ? "MT" : "#{match.elapsed}′" %>
+          </span>
+        <% else %>
+          <span class="match-status finished" style="font-size: 11px;">Terminé</span>
+        <% end %>
+      <% end %>
+    </div>
+    <div style="font-size: 12px; color: #d9534f; font-weight: 700; text-transform: uppercase;">
+      <%= match.tv_channels %>
+    </div>
+  </div>
+
+  <%# Ligne 2 : Équipes avec logos %>
+  <div style="display: flex; align-items: center; margin-bottom: 6px;">
+    <div style="display: flex; align-items: center; flex: 1;">
+      <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="20" height="20" loading="lazy" style="width: 20px; height: 20px; object-fit: contain; margin-right: 10px;">
+      <span style="font-size: 16px; font-weight: 600;"><%= match.home_team %></span>
+    </div>
+    <span style="margin: 0 10px; color: #ccc; font-size: 12px;">vs</span>
+    <div style="display: flex; align-items: center; flex: 1; justify-content: flex-end;">
+      <span style="font-size: 16px; font-weight: 600; text-align: right;"><%= match.away_team %></span>
+      <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="20" height="20" loading="lazy" style="width: 20px; height: 20px; object-fit: contain; margin-left: 10px;">
+    </div>
+  </div>
+
+  <%# Ligne 3 : Compétition %>
+  <div style="font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">
+    <%= match.competition %>
+  </div>
+</div>
+<% end %>
+<% end %>

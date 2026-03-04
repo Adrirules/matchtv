@@ -48,6 +48,9 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
   config.active_record.dump_schema_after_migration = false
 
+  # --- GZIP (réduit le poids des réponses de 60-70%) ---
+  config.middleware.use Rack::Deflater
+
   # --- URLS & DOMAINE (Essentiel pour le Sitemap dynamique) ---
   config.action_controller.default_url_options = { host: "www.coupdenvoi.tv", protocol: "https" }
   config.action_mailer.default_url_options = { host: "www.coupdenvoi.tv", protocol: "https" }

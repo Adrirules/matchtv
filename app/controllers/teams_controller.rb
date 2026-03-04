@@ -1,35 +1,30 @@
 class TeamsController < ApplicationController
 
   def index
-    # On reste sur ton index qui est très bon
-    home_teams = Match.distinct.pluck(:home_team)
-    away_teams = Match.distinct.pluck(:away_team)
-    team_names = (home_teams + away_teams).uniq.compact.sort
+    # Un seul appel SQL : on récupère nom + logo en une passe
+    logos_by_team = Match.where.not(home_team_logo: nil)
+                         .pluck(:home_team, :home_team_logo, :away_team, :away_team_logo)
+                         .each_with_object({}) do |(ht, hl, at, al), h|
+                           h[ht] ||= hl
+                           h[at] ||= al
+                         end
 
-    @teams = team_names.map do |name|
-      {
-        name: name,
-        slug: name.parameterize,
-        logo: Match.where(home_team: name).or(Match.where(away_team: name)).last&.then { |m| m.home_team == name ? m.home_team_logo : m.away_team_logo }
-      }
+    @teams = logos_by_team.keys.compact.sort.map do |name|
+      { name: name, slug: name.parameterize, logo: logos_by_team[name] }
     end
+
     @page_title = "Toutes les équipes de Football - Programme TV"
   end
 
   def show
-    # 1. On garde le slug brut pour comparer
     current_slug = params[:team_slug]
 
-    # 2. On récupère TOUS les matchs récents/à venir
-    # On va filtrer en Ruby pour être CERTAIN que le parameterize correspond parfaitement au slug
-    all_potential_matches = Match.where("start_time >= ?", Time.current - 3.hours)
-                                 .order(:start_time)
+    # Cherche les matchs dont le slug de home_team OU away_team correspond
+    # On charge tout en SQL puis on filtre en Ruby uniquement sur le slug
+    @matches = Match.where("start_time >= ?", Time.current - 3.hours)
+                    .order(:start_time)
+                    .select { |m| m.home_team&.parameterize == current_slug || m.away_team&.parameterize == current_slug }
 
-    @matches = all_potential_matches.select do |m|
-      m.home_team&.parameterize == current_slug || m.away_team&.parameterize == current_slug
-    end
-
-    # 3. On définit le nom de l'équipe et le logo à partir du premier match trouvé
     if @matches.any?
       first_match = @matches.first
       if first_match.home_team&.parameterize == current_slug
@@ -40,12 +35,11 @@ class TeamsController < ApplicationController
         @team_logo = first_match.away_team_logo
       end
     else
-      # Fallback si aucun match à venir : on décode le slug proprement
       @team_name = current_slug.tr('-', ' ').split.map(&:capitalize).join(' ')
     end
 
     @page_title = "Programme TV #{@team_name} : sur quelle chaîne voir le match ?"
-    @page_desc = "Calendrier complet du #{@team_name} à la télé. Retrouvez les horaires, les chaînes et les diffusions en direct pour la saison 2025/2026."
+    @page_desc  = "Calendrier complet du #{@team_name} à la télé. Retrouvez les horaires, les chaînes et les diffusions en direct pour la saison 2025/2026."
 
     expires_in 5.minutes, public: true
   end
