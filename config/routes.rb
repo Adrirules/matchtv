@@ -42,4 +42,8 @@ Rails.application.routes.draw do
       get :live_score
     end
   end
+
+  # Erreurs (en tout dernier)
+  match "/404", to: "errors#not_found", via: :all
+  match "*path", to: "errors#not_found", via: :all
 end

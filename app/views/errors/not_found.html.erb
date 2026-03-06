@@ -1,0 +1,31 @@
+<% content_for :title, "Page introuvable – Coup d'Envoi TV" %>
+<% content_for :meta_description, "La page que vous cherchez n'existe pas ou a été déplacée." %>
+
+<div style="text-align: center; padding: 60px 20px; max-width: 480px; margin: 0 auto;">
+
+  <div style="font-size: 80px; font-weight: 900; color: #f0f0f0; line-height: 1; margin-bottom: 8px;">404</div>
+
+  <div style="font-size: 48px; margin-bottom: 16px;">⚽</div>
+
+  <h1 style="font-size: 22px; font-weight: 800; color: #010e1b; margin: 0 0 10px;">Page introuvable</h1>
+
+  <p style="font-size: 15px; color: #666; line-height: 1.6; margin-bottom: 32px;">
+    Cette page n'existe pas ou a été déplacée.<br>
+    Le ballon est sorti du terrain !
+  </p>
+
+  <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+    <%= link_to root_path, style: "display: inline-block; background: #010e1b; color: white; font-weight: 700; font-size: 14px; padding: 12px 24px; border-radius: 10px; text-decoration: none;" do %>
+      Programme TV du jour
+    <% end %>
+
+    <%= link_to teams_path, style: "display: inline-block; background: #f4f4f4; color: #333; font-weight: 600; font-size: 14px; padding: 12px 24px; border-radius: 10px; text-decoration: none;" do %>
+      Toutes les équipes
+    <% end %>
+
+    <%= link_to competitions_path, style: "display: inline-block; background: #f4f4f4; color: #333; font-weight: 600; font-size: 14px; padding: 12px 24px; border-radius: 10px; text-decoration: none;" do %>
+      Compétitions
+    <% end %>
+  </div>
+
+</div>

@@ -11,7 +11,7 @@ class PlayersController < ApplicationController
     @player = Player.find_by(slug: params[:slug])
 
     if @player.nil?
-      render file: "public/404.html", status: :not_found and return
+      render "errors/not_found", status: :not_found and return
     end
 
     api = FootballApiService.new

@@ -22,5 +22,8 @@ module Matchtv
 
     # C'est ici qu'on définit le français par défaut
     config.i18n.default_locale = :fr
+
+    # Pages d'erreur custom
+    config.exceptions_app = self.routes
   end
 end
