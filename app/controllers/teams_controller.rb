@@ -51,10 +51,10 @@ class TeamsController < ApplicationController
     if @team_api_id.present?
       api = FootballApiService.new
 
-      # Trouver la ligue principale de cette équipe (première compétition SUPPORTED trouvée)
-      primary_league_id = FootballApiService::SUPPORTED_LEAGUES.key(
-        all_team_matches.map(&:competition).compact.first
-      )
+      # Trouver la ligue principale = compétition la plus fréquente dans les matchs
+      most_common_competition = all_team_matches.map(&:competition).compact
+                                                .tally.max_by { |_, count| count }&.first
+      primary_league_id = FootballApiService::SUPPORTED_LEAGUES.key(most_common_competition)
 
       if primary_league_id
         @stats   = api.fetch_team_stats(@team_api_id, primary_league_id)
