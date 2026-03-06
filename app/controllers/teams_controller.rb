@@ -67,6 +67,9 @@ class TeamsController < ApplicationController
       @recent_results = api.fetch_recent_results(@team_api_id)
     end
 
+    # Effectif de l'équipe (depuis la DB players)
+    @squad = @team_api_id.present? ? Player.where(team_api_id: @team_api_id).order(:position, :name) : []
+
     @page_title = "#{@team_name} 2025-2026 — Stats, résultats et programme TV | Coup d'Envoi TV"
     @page_desc  = "Retrouvez tous les matchs de #{@team_name} à la télé : horaires, chaînes (Canal+, beIN, DAZN, France TV), résultats et statistiques de la saison 2025-2026."
 
