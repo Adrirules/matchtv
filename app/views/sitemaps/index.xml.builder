@@ -28,11 +28,12 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     end
   end
 
-  # CLASSEMENTS (On ajoute un lien par compétition)
-  @competitions.each do |comp|
+  # CLASSEMENTS (14 ligues avec slugs officiels)
+  @standing_slugs.each do |slug|
     xml.url do
-      xml.loc standing_url(comp.parameterize)
-      xml.priority 0.5
+      xml.loc standing_url(slug)
+      xml.changefreq "daily"
+      xml.priority 0.8
     end
   end
 

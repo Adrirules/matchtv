@@ -1,6 +1,35 @@
 class FootballApiService
   BASE_URL = 'https://v3.football.api-sports.io'
 
+  # Source de vérité unique — ordre par popularité en France
+  COMPETITIONS_META = [
+    { id: 61,  name: "Ligue 1",            country: "France",          has_standings: true  },
+    { id: 2,   name: "Champions League",   country: "Europe",          has_standings: true  },
+    { id: 39,  name: "Premier League",     country: "Angleterre",      has_standings: true  },
+    { id: 62,  name: "Ligue 2",            country: "France",          has_standings: true  },
+    { id: 529, name: "Coupe de France",    country: "France",          has_standings: false },
+    { id: 3,   name: "Europa League",      country: "Europe",          has_standings: true  },
+    { id: 140, name: "La Liga",            country: "Espagne",         has_standings: true  },
+    { id: 78,  name: "Bundesliga",         country: "Allemagne",       has_standings: true  },
+    { id: 135, name: "Serie A",            country: "Italie",          has_standings: true  },
+    { id: 848, name: "Conference League",  country: "Europe",          has_standings: true  },
+    { id: 63,  name: "National",           country: "France",          has_standings: true  },
+    { id: 203, name: "Süper Lig",          country: "Turquie",         has_standings: true  },
+    { id: 307, name: "Saudi Pro League",   country: "Arabie Saoudite", has_standings: true  },
+    { id: 193, name: "D1 Féminine",        country: "France",          has_standings: true  },
+    { id: 88,  name: "Eredivisie",         country: "Pays-Bas",        has_standings: true  },
+    { id: 94,  name: "Liga Portugal",      country: "Portugal",        has_standings: true  },
+    { id: 141, name: "Coupe du Roi",       country: "Espagne",         has_standings: false },
+    { id: 253, name: "Major League Soccer",country: "USA",             has_standings: true  },
+    { id: 4,   name: "Euro / Nations League", country: "Europe",       has_standings: false },
+    { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false },
+  ].freeze
+
+  # Helper : logo officiel depuis l'API Sports CDN
+  def self.league_logo(id)
+    "https://media.api-sports.io/football/leagues/#{id}.png"
+  end
+
   # Liste exhaustive des 20 ligues (Pack Foot Mercato + Arabie Saoudite + Coupes)
   SUPPORTED_LEAGUES = {
     61  => "Ligue 1",

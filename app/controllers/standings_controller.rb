@@ -1,21 +1,10 @@
 class StandingsController < ApplicationController
 
-  LEAGUES = [
-    { id: 61,  slug: "ligue-1",            name: "Ligue 1",            country: "France" },
-    { id: 2,   slug: "champions-league",   name: "Champions League",   country: "Europe" },
-    { id: 39,  slug: "premier-league",     name: "Premier League",     country: "Angleterre" },
-    { id: 62,  slug: "ligue-2",            name: "Ligue 2",            country: "France" },
-    { id: 140, slug: "la-liga",            name: "La Liga",            country: "Espagne" },
-    { id: 3,   slug: "europa-league",      name: "Europa League",      country: "Europe" },
-    { id: 78,  slug: "bundesliga",         name: "Bundesliga",         country: "Allemagne" },
-    { id: 135, slug: "serie-a",            name: "Serie A",            country: "Italie" },
-    { id: 848, slug: "conference-league",  name: "Conference League",  country: "Europe" },
-    { id: 63,  slug: "national",           name: "National",           country: "France" },
-    { id: 307, slug: "saudi-pro-league",   name: "Saudi Pro League",   country: "Arabie Saoudite" },
-    { id: 193, slug: "d1-feminine",        name: "D1 Féminine",        country: "France" },
-    { id: 88,  slug: "eredivisie",         name: "Eredivisie",         country: "Pays-Bas" },
-    { id: 94,  slug: "liga-portugal",      name: "Liga Portugal",      country: "Portugal" },
-  ].freeze
+  # Dérivé de la source de vérité FootballApiService::COMPETITIONS_META
+  LEAGUES = FootballApiService::COMPETITIONS_META
+              .select { |c| c[:has_standings] }
+              .map { |c| c.merge(slug: c[:name].parameterize) }
+              .freeze
 
   SLUG_TO_ID = LEAGUES.index_by { |l| l[:slug] }.transform_values { |l| l[:id] }.freeze
   ID_TO_SLUG = LEAGUES.index_by { |l| l[:id] }.transform_values { |l| l[:slug] }.freeze

@@ -16,6 +16,9 @@ class SitemapsController < ApplicationController
     # 4. Les Joueurs
     @players = Player.select(:slug, :updated_at).all
 
+    # 5. Les Classements (slugs officiels uniquement)
+    @standing_slugs = StandingsController::LEAGUES.map { |l| l[:slug] }
+
     respond_to do |format|
       format.xml
     end
