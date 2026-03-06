@@ -1,79 +1,119 @@
-<% content_for :title, "Programme TV #{@competition_name} : match ce soir et cette semaine" %>
-<% content_for :meta_description, "Sur quelle chaîne voir la #{@competition_name} ? Liste complète des matchs, horaires et diffuseurs TV." %>
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
 
-<nav style="margin: 15px 10px;">
-  <%= link_to "← Toutes les compétitions", competitions_path, style: "color: #777; text-decoration: none; font-size: 13px;" %>
+<%# Fil d'Ariane %>
+<nav style="padding: 10px 15px; font-size: 12px; color: #999;">
+  <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+  <%= link_to "Compétitions", competitions_path, style: "color: #999; text-decoration: none;" %> ›
+  <%= @competition_name %>
 </nav>
 
-<div style="padding: 0 10px;">
-  <div style="display: flex; align-items: center; margin-bottom: 15px;">
-    <h1 style="font-size: 22px; font-weight: 800; margin: 0;"><%= @competition_name %></h1>
-    <span style="margin-left: 10px; background: #e7f3ff; color: #007bff; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700;">LIVE</span>
-  </div>
-  <p style="font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 25px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
-    Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
-    Programme TV complet avec horaires et chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV) pour toute la saison 2025/2026.
-  </p>
-
-  <% if @matches.any? %>
-    <% @matches.each do |match| %>
-      <%= link_to match_path(match.matchup), style: "text-decoration: none; color: inherit; display: block;" do %>
-        <div style="background: white; border: 1px solid #f0f0f0; border-radius: 12px; padding: 16px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
-
-          <%# Header du match %>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-            <div style="font-weight: 800; font-size: 14px; color: #222;"><%= match.start_time.strftime("%d/%m — %H:%M") %></div>
-            <div style="font-size: 12px; color: #d9534f; font-weight: 700;"><%= match.tv_channels %></div>
-          </div>
-
-          <%# Équipes et Logos %>
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div style="flex: 1; display: flex; align-items: center;">
-              <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="25" height="25" loading="lazy" style="width: 25px; height: 25px; object-fit: contain; margin-right: 8px;">
-              <span style="font-weight: 600; font-size: 15px;"><%= match.home_team %></span>
-            </div>
-
-            <div style="padding: 0 10px; color: #ccc; font-size: 12px; font-weight: bold;">VS</div>
-
-            <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
-              <span style="font-weight: 600; font-size: 15px; text-align: right;"><%= match.away_team %></span>
-              <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="25" height="25" loading="lazy" style="width: 25px; height: 25px; object-fit: contain; margin-left: 8px;">
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  <% else %>
-    <div style="text-align: center; padding: 40px 20px; background: #f9f9f9; border-radius: 12px;">
-      <p style="color: #666;">Aucun match prévu prochainement pour cette compétition.</p>
-    </div>
+<%# Header compétition %>
+<div style="text-align: center; padding: 20px 15px; background: white; border-bottom: 1px solid #eee; margin-bottom: 20px;">
+  <% if @competition_logo.present? %>
+    <img src="<%= @competition_logo %>" alt="Logo <%= @competition_name %>" width="60" height="60" loading="eager"
+         style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 10px;">
   <% end %>
+  <h1 style="font-size: 22px; font-weight: 800; margin: 0;"><%= @competition_name %></h1>
+  <p style="color: #666; font-size: 13px; margin-top: 4px;">Saison 2025-2026 · Programme TV & Résultats</p>
 </div>
 
-<%# BreadcrumbList schema %>
+<div style="padding: 0 10px;">
+
+  <%# Texte SEO %>
+  <p style="font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 14px; border-radius: 10px;">
+    Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
+    Programme TV complet avec horaires et chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV) pour toute la saison 2025-2026.
+    <% if @has_standings %>
+      Consultez également le <%= link_to "classement #{@competition_name}", standing_path(@standing_slug), style: "color: #007bff; font-weight: 600;" %> mis à jour en temps réel.
+    <% end %>
+  </p>
+
+  <%# Classement mini (top 5) %>
+  <% if @has_standings && @standing_slug %>
+    <%
+      standings_data = FootballApiService.new.get_standings(@league_id)
+      mini_standings = standings_data&.dig(0, "league", "standings", 0)&.first(5)
+    %>
+    <% if mini_standings.present? %>
+      <section style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h2 style="font-size: 15px; font-weight: 800; margin: 0; color: #010e1b;">Classement</h2>
+          <%= link_to "Voir complet →", standing_path(@standing_slug), style: "font-size: 13px; color: #007bff; font-weight: 600; text-decoration: none;" %>
+        </div>
+        <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+          <% mini_standings.each do |rank| %>
+            <% team_slug = rank.dig("team", "name")&.parameterize %>
+            <%= link_to team_path(team_slug), style: "text-decoration: none; color: inherit; display: flex; align-items: center; padding: 10px 14px; border-bottom: 1px solid #f0f0f0;" do %>
+              <span style="font-weight: 700; font-size: 13px; color: #999; width: 20px;"><%= rank["rank"] %></span>
+              <img src="<%= rank.dig("team", "logo") %>" alt="<%= rank.dig("team", "name") %>"
+                   width="20" height="20" loading="lazy"
+                   style="width: 20px; height: 20px; object-fit: contain; margin: 0 10px;">
+              <span style="flex: 1; font-size: 14px; font-weight: 600;"><%= rank.dig("team", "name") %></span>
+              <span style="font-weight: 900; font-size: 14px; color: #010e1b;"><%= rank["points"] %> pts</span>
+            <% end %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+  <% end %>
+
+  <%= render 'shared/ad_unit', slot_id: '2773465276' %>
+
+  <%# Liste des matchs %>
+  <section>
+    <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: #010e1b;">Prochains matchs</h2>
+
+    <% if @matches.any? %>
+      <% @matches.each do |match| %>
+        <% identifier = match.slug.present? ? match.slug : match.id %>
+        <%= link_to match_path(identifier), style: "text-decoration: none; color: inherit; display: block; margin-bottom: 10px;" do %>
+          <div style="background: white; border: 1px solid #f0f0f0; border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+              <span style="font-weight: 700; font-size: 13px; color: #222;">
+                <time datetime="<%= match.start_time.iso8601 %>"><%= l(match.start_time, format: "%d/%m — %H:%M") %></time>
+              </span>
+              <span style="font-size: 12px; color: #d9534f; font-weight: 700;"><%= match.tv_channels %></span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="flex: 1; display: flex; align-items: center;">
+                <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="22" height="22" loading="lazy"
+                     style="width: 22px; height: 22px; object-fit: contain; margin-right: 8px;">
+                <span style="font-weight: 600; font-size: 14px;"><%= match.home_team %></span>
+              </div>
+              <% if match.has_score? %>
+                <span style="font-weight: 900; font-size: 15px; color: #222; padding: 0 10px;"><%= match.home_score %> - <%= match.away_score %></span>
+              <% else %>
+                <span style="padding: 0 10px; color: #ccc; font-size: 11px; font-weight: 700;">VS</span>
+              <% end %>
+              <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
+                <span style="font-weight: 600; font-size: 14px; text-align: right;"><%= match.away_team %></span>
+                <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="22" height="22" loading="lazy"
+                     style="width: 22px; height: 22px; object-fit: contain; margin-left: 8px;">
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div style="text-align: center; padding: 40px 20px; background: #f9f9f9; border-radius: 12px;">
+        <p style="color: #666;">Aucun match prévu prochainement pour cette compétition.</p>
+        <%= link_to "Voir le programme du jour", root_path, style: "color: #007bff; font-weight: 600; font-size: 14px;" %>
+      </div>
+    <% end %>
+  </section>
+
+</div>
+
+<%# JSON-LD %>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Programme TV foot",
-      "item": "https://www.coupdenvoi.tv/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Compétitions",
-      "item": "https://www.coupdenvoi.tv/competitions"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "<%= @competition_name %>",
-      "item": "<%= request.original_url %>"
-    }
+<%= {
+  "@context" => "https://schema.org",
+  "@type" => "BreadcrumbList",
+  "itemListElement" => [
+    { "@type" => "ListItem", "position" => 1, "name" => "Accueil", "item" => "https://www.coupdenvoi.tv/" },
+    { "@type" => "ListItem", "position" => 2, "name" => "Compétitions", "item" => "https://www.coupdenvoi.tv/competitions" },
+    { "@type" => "ListItem", "position" => 3, "name" => @competition_name, "item" => request.base_url + request.path }
   ]
-}
+}.to_json.html_safe %>
 </script>

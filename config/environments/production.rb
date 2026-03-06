@@ -6,6 +6,7 @@ Rails.application.configure do
   config.eager_load = true
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  config.cache_store = :file_store, "/tmp/rails_cache"
   config.require_master_key = true
 
   # --- PERFORMANCE & ASSETS (Boost Lighthouse) ---
