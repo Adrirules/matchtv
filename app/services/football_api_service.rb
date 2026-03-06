@@ -232,7 +232,8 @@ class FootballApiService
     Rails.cache.fetch("team_stats_#{team_api_id}_#{league_id}_#{season}", expires_in: 6.hours) do
       response = client.get('/teams/statistics', { team: team_api_id, league: league_id, season: season })
       return nil unless response.success?
-      JSON.parse(response.body)['response']
+      result = JSON.parse(response.body)['response']
+      result.is_a?(Hash) ? result : nil
     end
   end
 

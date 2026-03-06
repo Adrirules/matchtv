@@ -206,7 +206,7 @@
   </section>
 
   <%# Lien classement %>
-  <% if @stats&.dig("league", "name") %>
+  <% if @stats.is_a?(Hash) && @stats.dig("league", "name") %>
     <% league_slug = StandingsController::SLUG_TO_ID.key(FootballApiService::SUPPORTED_LEAGUES.key(@stats.dig("league", "name"))) %>
     <% if league_slug %>
       <div style="margin-top: 8px; margin-bottom: 24px; text-align: center;">
