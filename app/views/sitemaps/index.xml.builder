@@ -35,4 +35,13 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
       xml.priority 0.5
     end
   end
+
+  # JOUEURS
+  @players.each do |player|
+    xml.url do
+      xml.loc player_url(player.slug)
+      xml.lastmod player.updated_at.to_date.to_s
+      xml.priority 0.7
+    end
+  end
 end

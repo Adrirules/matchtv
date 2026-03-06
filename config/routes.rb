@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   get "equipes", to: "teams#index", as: :teams
   get "equipes/:team_slug", to: "teams#show", as: :team
 
-  # 4. Compétitions
+  # 4. Joueurs
+  get "joueurs", to: "players#index", as: :players
+  get "joueurs/:slug", to: "players#show", as: :player
+
+  # 5. Compétitions
   get "competitions", to: "competitions#index", as: :competitions
   get "competitions/:slug", to: "competitions#show", as: :competition
 

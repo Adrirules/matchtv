@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_03_06_130000) do
+ActiveRecord::Schema[7.0].define(version: 2026_03_06_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,24 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_06_130000) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.integer "api_id", null: false
+    t.string "team_name"
+    t.integer "team_api_id"
+    t.string "team_logo"
+    t.string "position"
+    t.string "nationality"
+    t.string "photo"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["api_id"], name: "index_players_on_api_id", unique: true
+    t.index ["slug"], name: "index_players_on_slug", unique: true
+    t.index ["team_api_id"], name: "index_players_on_team_api_id"
   end
 
   add_foreign_key "matches", "matchups"

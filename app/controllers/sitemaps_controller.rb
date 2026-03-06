@@ -13,6 +13,9 @@ class SitemapsController < ApplicationController
     # 3. Les Compétitions (Ligues)
     @competitions = Match.distinct.pluck(:competition).compact
 
+    # 4. Les Joueurs
+    @players = Player.select(:slug, :updated_at).all
+
     respond_to do |format|
       format.xml
     end

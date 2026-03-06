@@ -1,0 +1,175 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+
+<%# Fil d'Ariane %>
+<nav style="padding: 10px 15px; font-size: 12px; color: #999;">
+  <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+  <%= link_to "Joueurs", players_path, style: "color: #999; text-decoration: none;" %> ›
+  <%= @player.name %>
+</nav>
+
+<%# Header joueur %>
+<div style="text-align: center; padding: 30px 15px; background: white; border-bottom: 1px solid #eee; margin-bottom: 20px;">
+  <% if @player.photo.present? %>
+    <img src="<%= @player.photo %>" alt="Photo <%= @player.name %>" width="80" height="80" loading="eager"
+         style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 10px;">
+  <% end %>
+  <h1 style="font-size: 24px; font-weight: 800; margin: 0;"><%= @player.name %></h1>
+  <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 6px;">
+    <% if @player.team_logo.present? %>
+      <img src="<%= @player.team_logo %>" alt="<%= @player.team_name %>" width="20" height="20"
+           style="width: 20px; height: 20px; object-fit: contain;">
+    <% end %>
+    <span style="color: #666; font-size: 14px;"><%= @team || @player.team_name %></span>
+    <% if @player.position.present? %>
+      <span style="background: #f0f0f0; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: #555; text-transform: uppercase;"><%= @player.position %></span>
+    <% end %>
+  </div>
+</div>
+
+<div style="padding: 0 10px;">
+
+  <%# Stats saison %>
+  <% if @games > 0 %>
+    <section style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+      <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 14px; color: #010e1b;">
+        Saison 2025-2026
+        <% if @league %><span style="font-weight: 400; color: #888; font-size: 13px;">— <%= @league %></span><% end %>
+      </h2>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px;">
+        <div style="text-align: center; background: #f0faf0; border-radius: 8px; padding: 12px 4px;">
+          <div style="font-size: 26px; font-weight: 900; color: #28a745;"><%= @goals %></div>
+          <div style="font-size: 11px; color: #666; font-weight: 600;">Buts</div>
+        </div>
+        <div style="text-align: center; background: #f0f6ff; border-radius: 8px; padding: 12px 4px;">
+          <div style="font-size: 26px; font-weight: 900; color: #007bff;"><%= @assists %></div>
+          <div style="font-size: 11px; color: #666; font-weight: 600;">Passes D.</div>
+        </div>
+        <div style="text-align: center; background: #f9f9f9; border-radius: 8px; padding: 12px 4px;">
+          <div style="font-size: 26px; font-weight: 900; color: #222;"><%= @games %></div>
+          <div style="font-size: 11px; color: #666; font-weight: 600;">Matchs</div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+        <% if @rating && @rating > 0 %>
+          <div style="text-align: center; background: #f9f9f9; border-radius: 8px; padding: 10px 4px;">
+            <div style="font-size: 20px; font-weight: 900; color: #222;"><%= @rating %></div>
+            <div style="font-size: 11px; color: #666; font-weight: 600;">Note</div>
+          </div>
+        <% end %>
+        <% if @minutes > 0 %>
+          <div style="text-align: center; background: #f9f9f9; border-radius: 8px; padding: 10px 4px;">
+            <div style="font-size: 20px; font-weight: 900; color: #222;"><%= @minutes %>'</div>
+            <div style="font-size: 11px; color: #666; font-weight: 600;">Minutes</div>
+          </div>
+        <% end %>
+        <% if @yellow > 0 || @red > 0 %>
+          <div style="text-align: center; background: #f9f9f9; border-radius: 8px; padding: 10px 4px;">
+            <div style="font-size: 20px; font-weight: 900;">
+              <% if @yellow > 0 %><span style="color: #ffc107;">🟨 <%= @yellow %></span><% end %>
+              <% if @red > 0 %><span style="color: #dc3545; margin-left: 4px;">🟥 <%= @red %></span><% end %>
+            </div>
+            <div style="font-size: 11px; color: #666; font-weight: 600;">Cartons</div>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Texte SEO %>
+      <p style="font-size: 14px; color: #555; line-height: 1.75; margin-top: 14px; margin-bottom: 0;">
+        <%= @player.name %> évolue en tant que <%= @player.position&.downcase || "joueur" %>
+        à <%= @team || @player.team_name %><% if @league %> en <%= @league %><% end %>.
+        Cette saison 2025-2026, il compte <%= @goals %> but<%= 's' if @goals != 1 %>
+        et <%= @assists %> passe<%= 's' if @assists != 1 %> décisive<%= 's' if @assists != 1 %>
+        en <%= @games %> match<%= 'es' if @games != 1 %> disputés<%= " (#{@minutes} minutes de jeu)" if @minutes > 0 %>.
+        <% if @rating && @rating > 0 %>Sa note moyenne est de <%= @rating %>/10.<% end %>
+        <% if @player.nationality.present? %>International <%= @player.nationality %>, il<% end %>
+        <% if @goals > 10 %>fait partie des meilleurs buteurs de sa ligue cette saison.<% elsif @assists > 5 %>est l'un des joueurs les plus décisifs de son équipe.<% else %>participe activement aux performances de son équipe.<% end %>
+      </p>
+    </section>
+  <% else %>
+    <p style="font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+      <%= @player.name %> est <%= @player.position&.downcase || "joueur" %> à <%= @player.team_name %>.
+      <% if @player.nationality.present? %>International <%= @player.nationality %>.<% end %>
+      Retrouvez ses prochains matchs à la télévision ci-dessous.
+    </p>
+  <% end %>
+
+  <%# Prochains matchs %>
+  <% if @upcoming_matches.any? %>
+    <section style="margin-bottom: 24px;">
+      <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: #010e1b;">
+        Prochains matchs de <%= @player.team_name %>
+      </h2>
+      <% @upcoming_matches.each do |match| %>
+        <% identifier = match.slug.present? ? match.slug : match.id %>
+        <%= link_to match_path(identifier), style: "text-decoration: none; color: inherit; display: block; margin-bottom: 8px;" do %>
+          <div style="background: white; border-radius: 10px; padding: 12px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <img src="<%= match.home_team_logo %>" alt="<%= match.home_team %>" width="20" height="20"
+                   style="width: 20px; height: 20px; object-fit: contain;" loading="lazy">
+              <span style="font-size: 14px; font-weight: 600;"><%= match.home_team %></span>
+              <span style="color: #ccc; font-size: 11px;">vs</span>
+              <span style="font-size: 14px; font-weight: 600;"><%= match.away_team %></span>
+              <img src="<%= match.away_team_logo %>" alt="<%= match.away_team %>" width="20" height="20"
+                   style="width: 20px; height: 20px; object-fit: contain;" loading="lazy">
+            </div>
+            <div style="text-align: right; flex-shrink: 0; margin-left: 8px;">
+              <div style="font-size: 12px; color: #d9534f; font-weight: 700;"><%= match.tv_channels %></div>
+              <div style="font-size: 11px; color: #999;">
+                <time datetime="<%= match.start_time.iso8601 %>"><%= l(match.start_time, format: "%d/%m %Hh%M") %></time>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+  <% end %>
+
+  <%# Lien vers la page équipe %>
+  <% if @player.team_name.present? %>
+    <div style="text-align: center; margin-bottom: 30px;">
+      <%= link_to team_path(@player.team_name.parameterize),
+          style: "display: inline-flex; align-items: center; gap: 8px; background: #f4f4f4; border-radius: 10px; padding: 10px 18px; text-decoration: none; color: #333; font-size: 14px; font-weight: 600;" do %>
+        <% if @player.team_logo.present? %>
+          <img src="<%= @player.team_logo %>" alt="<%= @player.team_name %>" width="20" height="20"
+               style="width: 20px; height: 20px; object-fit: contain;">
+        <% end %>
+        Voir toute l'équipe <%= @player.team_name %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+
+<%# JSON-LD Person %>
+<script type="application/ld+json">
+<%= {
+  "@context" => "https://schema.org",
+  "@type" => "Person",
+  "name" => @player.name,
+  "image" => @player.photo,
+  "nationality" => @player.nationality,
+  "jobTitle" => @player.position,
+  "memberOf" => {
+    "@type" => "SportsTeam",
+    "name" => @player.team_name,
+    "sport" => "Football"
+  },
+  "url" => request.original_url
+}.to_json.html_safe %>
+</script>
+
+<%# BreadcrumbList schema %>
+<script type="application/ld+json">
+<%= {
+  "@context" => "https://schema.org",
+  "@type" => "BreadcrumbList",
+  "itemListElement" => [
+    { "@type" => "ListItem", "position" => 1, "name" => "Accueil", "item" => "https://www.coupdenvoi.tv/" },
+    { "@type" => "ListItem", "position" => 2, "name" => "Joueurs", "item" => "https://www.coupdenvoi.tv/joueurs" },
+    { "@type" => "ListItem", "position" => 3, "name" => @player.name, "item" => request.original_url }
+  ]
+}.to_json.html_safe %>
+</script>

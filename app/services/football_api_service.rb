@@ -183,6 +183,22 @@ class FootballApiService
     match
   end
 
+  def fetch_squad(team_api_id)
+    Rails.cache.fetch("squad_#{team_api_id}", expires_in: 24.hours) do
+      response = client.get('/players/squads', { team: team_api_id })
+      return [] unless response.success?
+      JSON.parse(response.body).dig('response', 0, 'players') || []
+    end
+  end
+
+  def fetch_player_stats(player_api_id, season: 2025)
+    Rails.cache.fetch("player_stats_#{player_api_id}_#{season}", expires_in: 6.hours) do
+      response = client.get('/players', { id: player_api_id, season: season })
+      return nil unless response.success?
+      JSON.parse(response.body).dig('response', 0)
+    end
+  end
+
   def fetch_team_stats(team_api_id, league_id, season: 2025)
     Rails.cache.fetch("team_stats_#{team_api_id}_#{league_id}_#{season}", expires_in: 6.hours) do
       response = client.get('/teams/statistics', { team: team_api_id, league: league_id, season: season })
