@@ -126,6 +126,8 @@ class FootballApiService
         away_team: away_name,
         home_team_logo: data['teams']['home']['logo'],
         away_team_logo: data['teams']['away']['logo'],
+        home_team_api_id: data['teams']['home']['id'],
+        away_team_api_id: data['teams']['away']['id'],
         start_time: match_date_time,
         competition: SUPPORTED_LEAGUES[league_id] || data['league']['name'],
         tv_channels: precise_tv,
@@ -179,6 +181,22 @@ class FootballApiService
     return unless data && match
     update_match_from_data(data, match)
     match
+  end
+
+  def fetch_team_stats(team_api_id, league_id, season: 2025)
+    Rails.cache.fetch("team_stats_#{team_api_id}_#{league_id}_#{season}", expires_in: 6.hours) do
+      response = client.get('/teams/statistics', { team: team_api_id, league: league_id, season: season })
+      return nil unless response.success?
+      JSON.parse(response.body)['response']
+    end
+  end
+
+  def fetch_recent_results(team_api_id, count: 5)
+    Rails.cache.fetch("team_recent_#{team_api_id}_#{count}", expires_in: 1.hour) do
+      response = client.get('/fixtures', { team: team_api_id, last: count, status: 'FT-AET-PEN' })
+      return [] unless response.success?
+      JSON.parse(response.body)['response'] || []
+    end
   end
 
   def get_standings(league_id, season: 2025)

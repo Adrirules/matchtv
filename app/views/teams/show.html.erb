@@ -1,95 +1,180 @@
 <% content_for :title, @page_title %>
 <% content_for :meta_description, @page_desc %>
 
-<%# Fil d'Ariane pour le SEO (Breadcrumbs) %>
+<%# Fil d'Ariane %>
 <nav style="padding: 10px 15px; font-size: 12px; color: #999;">
   <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
   <%= @team_name %>
-  </nav>
+</nav>
 
+<%# Header équipe %>
 <div style="text-align: center; padding: 30px 15px; background: white; border-bottom: 1px solid #eee; margin-bottom: 20px;">
   <% if @team_logo.present? %>
     <img src="<%= @team_logo %>" alt="Logo officiel <%= @team_name %>" width="80" height="80" loading="eager" style="height: 80px; width: 80px; object-fit: contain; margin-bottom: 10px;">
   <% end %>
-  <h1 style="font-size: 24px; font-weight: 800; margin: 0;">Programme TV <%= @team_name %></h1>
-    <p style="color: #666; font-size: 14px;">Guide TV & Prochaines diffusions</p>
+  <h1 style="font-size: 24px; font-weight: 800; margin: 0;"><%= @team_name %></h1>
+  <p style="color: #666; font-size: 14px; margin-top: 4px;">Programme TV & Résultats 2025-2026</p>
 </div>
 
 <div style="padding: 0 10px;">
-  <p style="font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
-    Retrouvez tous les matchs de <strong><%= @team_name %></strong> à la télévision.
-    Horaires, chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV) et programme complet des prochaines rencontres.
-  </p>
 
-  <%# Ad slot — Activer après approbation AdSense %>
-  <%# <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> %>
+  <%# Bloc stats saison (si dispo) %>
+  <% if @stats.present? %>
+    <%
+      played    = @stats.dig("fixtures", "played", "total").to_i
+      wins      = @stats.dig("fixtures", "wins", "total").to_i
+      draws     = @stats.dig("fixtures", "draws", "total").to_i
+      losses    = @stats.dig("fixtures", "losses", "total").to_i
+      goals_for = @stats.dig("goals", "for", "total", "total").to_i
+      goals_against = @stats.dig("goals", "against", "total", "total").to_i
+      league_name = @stats.dig("league", "name")
+      form = @stats.dig("form") || ""
+    %>
+    <section style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+      <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 12px; color: #010e1b;">
+        Saison 2025-2026 <% if league_name %><span style="font-weight: 400; color: #888; font-size: 13px;">— <%= league_name %></span><% end %>
+      </h2>
 
-  <% if @matches.any? %>
-    <% @matches.each do |match| %>
-      <div style="margin-bottom: 15px;">
+      <%# Bilan W/D/L %>
+      <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+        <div style="flex: 1; text-align: center; background: #f0faf0; border-radius: 8px; padding: 10px 4px;">
+          <div style="font-size: 22px; font-weight: 900; color: #28a745;"><%= wins %></div>
+          <div style="font-size: 11px; color: #666; font-weight: 600;">Victoires</div>
+        </div>
+        <div style="flex: 1; text-align: center; background: #f9f9f9; border-radius: 8px; padding: 10px 4px;">
+          <div style="font-size: 22px; font-weight: 900; color: #888;"><%= draws %></div>
+          <div style="font-size: 11px; color: #666; font-weight: 600;">Nuls</div>
+        </div>
+        <div style="flex: 1; text-align: center; background: #fff5f5; border-radius: 8px; padding: 10px 4px;">
+          <div style="font-size: 22px; font-weight: 900; color: #dc3545;"><%= losses %></div>
+          <div style="font-size: 11px; color: #666; font-weight: 600;">Défaites</div>
+        </div>
+        <div style="flex: 1; text-align: center; background: #f4f4f4; border-radius: 8px; padding: 10px 4px;">
+          <div style="font-size: 22px; font-weight: 900; color: #222;"><%= goals_for %></div>
+          <div style="font-size: 11px; color: #666; font-weight: 600;">Buts marqués</div>
+        </div>
+        <div style="flex: 1; text-align: center; background: #f4f4f4; border-radius: 8px; padding: 10px 4px;">
+          <div style="font-size: 22px; font-weight: 900; color: #222;"><%= goals_against %></div>
+          <div style="font-size: 11px; color: #666; font-weight: 600;">Buts encaissés</div>
+        </div>
+      </div>
 
-        <%# 1. Lien vers la compétition (sécurisé avec parameterize) %>
-        <div style="margin-bottom: 5px; padding-left: 5px;">
+      <%# Forme récente %>
+      <% if form.length >= 5 %>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span style="font-size: 12px; color: #888; font-weight: 600;">Forme :</span>
+          <% form.last(5).each_char do |r| %>
+            <% bg = r == 'W' ? '#28a745' : (r == 'D' ? '#aaa' : '#dc3545') %>
+            <span style="background: <%= bg %>; color: white; border-radius: 4px; padding: 2px 6px; font-size: 11px; font-weight: 800;">
+              <%= r == 'W' ? 'V' : (r == 'D' ? 'N' : 'D') %>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%# Texte SEO généré %>
+      <% intro = generate_team_intro(@team_name, @stats, @standing) %>
+      <% if intro.present? %>
+        <p style="font-size: 14px; color: #555; line-height: 1.7; margin-top: 14px; margin-bottom: 0;">
+          <%= intro %>
+        </p>
+      <% end %>
+    </section>
+  <% else %>
+    <%# Fallback texte si pas de stats API %>
+    <p style="font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+      Retrouvez tous les matchs de <strong><%= @team_name %></strong> à la télévision.
+      Horaires, chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV) et programme complet des prochaines rencontres pour la saison 2025-2026.
+    </p>
+  <% end %>
+
+  <%# Derniers résultats %>
+  <% if @recent_results.present? %>
+    <section style="margin-bottom: 24px;">
+      <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: #010e1b;">Derniers résultats</h2>
+      <% @recent_results.each do |fixture| %>
+        <% home = fixture.dig("teams", "home", "name") %>
+        <% away = fixture.dig("teams", "away", "name") %>
+        <% hs   = fixture.dig("goals", "home") %>
+        <% as_  = fixture.dig("goals", "away") %>
+        <% date = Date.parse(fixture.dig("fixture", "date")) rescue nil %>
+        <% match_in_db = Match.find_by(api_id: fixture.dig("fixture", "id")) %>
+        <% is_home = fixture.dig("teams", "home", "id") == @team_api_id %>
+        <% won = is_home ? hs.to_i > as_.to_i : as_.to_i > hs.to_i %>
+        <% drawn = hs.to_i == as_.to_i %>
+        <% result_color = drawn ? '#888' : (won ? '#28a745' : '#dc3545') %>
+        <% result_label = drawn ? 'N' : (won ? 'V' : 'D') %>
+
+        <% if match_in_db %>
+          <%= link_to match_path(match_in_db.slug || match_in_db.id), style: "text-decoration: none; color: inherit;" do %>
+            <div style="display: flex; align-items: center; background: white; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+              <span style="background: <%= result_color %>; color: white; border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 800; margin-right: 12px; min-width: 20px; text-align: center;"><%= result_label %></span>
+              <span style="flex: 1; font-size: 14px; font-weight: 600;"><%= home %> <strong><%= hs %> - <%= as_ %></strong> <%= away %></span>
+              <% if date %><span style="font-size: 11px; color: #999;"><%= l(date, format: "%d/%m") %></span><% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <div style="display: flex; align-items: center; background: white; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: <%= result_color %>; color: white; border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 800; margin-right: 12px; min-width: 20px; text-align: center;"><%= result_label %></span>
+            <span style="flex: 1; font-size: 14px; font-weight: 600;"><%= home %> <strong><%= hs %> - <%= as_ %></strong> <%= away %></span>
+            <% if date %><span style="font-size: 11px; color: #999;"><%= l(date, format: "%d/%m") %></span><% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+  <% end %>
+
+  <%# Prochains matchs %>
+  <section>
+    <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: #010e1b;">Prochains matchs</h2>
+
+    <% if @matches.any? %>
+      <% @matches.each do |match| %>
+        <div style="margin-bottom: 15px;">
           <% if match.competition.present? %>
-            <%= link_to competition_path(match.competition.parameterize), style: "text-decoration: none; font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase;" do %>
+            <%= link_to competition_path(match.competition.parameterize), style: "text-decoration: none; font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; display: block; margin-bottom: 4px; padding-left: 5px;" do %>
               <%= match.competition %>
             <% end %>
           <% end %>
+
+          <% match_identifier = match.slug.present? ? match.slug : match.id %>
+          <%= link_to match_path(match_identifier), style: "text-decoration: none; color: inherit; display: block;" do %>
+            <% cache [match, match.updated_at] do %>
+              <div style="background: white; border: 1px solid #f0f0f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                  <span style="font-weight: 800; font-size: 13px; color: #222;">
+                    <time datetime="<%= match.start_time.iso8601 %>"><%= l(match.start_time, format: "%d/%m — %H:%M") %></time>
+                  </span>
+                  <span style="font-size: 12px; color: #d9534f; font-weight: 700;"><%= match.tv_channels %></span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div style="flex: 1; display: flex; align-items: center;">
+                    <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="20" height="20" loading="lazy" style="width: 20px; height: 20px; margin-right: 8px; object-fit: contain;">
+                    <span style="font-size: 15px; font-weight: 600; <%= 'color: #007bff;' if match.home_team.parameterize == params[:team_slug] %>"><%= match.home_team %></span>
+                  </div>
+                  <% if match.has_score? %>
+                    <span style="font-weight: 900; font-size: 15px; color: #222; padding: 0 10px;"><%= match.home_score %> - <%= match.away_score %></span>
+                  <% else %>
+                    <span style="padding: 0 10px; color: #ccc; font-size: 11px;">VS</span>
+                  <% end %>
+                  <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
+                    <span style="font-size: 15px; font-weight: 600; text-align: right; <%= 'color: #007bff;' if match.away_team.parameterize == params[:team_slug] %>"><%= match.away_team %></span>
+                    <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="20" height="20" loading="lazy" style="width: 20px; height: 20px; margin-left: 8px; object-fit: contain;">
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
+      <% end %>
+    <% else %>
+      <p style="text-align: center; color: #666; padding: 40px 0;">Aucun match prévu pour <%= @team_name %> prochainement.</p>
+    <% end %>
+  </section>
 
-        <%# 2. Bloc Match cliquable (on utilise le slug s'il existe, sinon l'ID pour éviter l'erreur) %>
-        <% match_identifier = match.slug.present? ? match.slug : match.id %>
-
-        <%= link_to match_path(match_identifier), style: "text-decoration: none; color: inherit; display: block;" do %>
-          <% cache [match, match.updated_at] do %>
-          <div style="background: white; border: 1px solid #f0f0f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
-
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-              <span style="font-weight: 800; font-size: 13px; color: #222;">
-                <%= l(match.start_time, format: "%d/%m — %H:%M") %>
-              </span>
-              <span style="font-size: 12px; color: #d9534f; font-weight: 700;">
-                <%= match.tv_channels %>
-              </span>
-            </div>
-
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-               <%# Equipe Domicile %>
-               <div style="flex: 1; display: flex; align-items: center;">
-                 <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="20" height="20" loading="lazy" style="width: 20px; height: 20px; margin-right: 8px; object-fit: contain;">
-                 <span style="font-size: 15px; font-weight: 600; <%= 'color: #007bff;' if match.home_team.parameterize == params[:team_slug] %>">
-                   <%= match.home_team %>
-                 </span>
-               </div>
-
-               <span style="padding: 0 10px; color: #ccc; font-size: 11px;">VS</span>
-
-               <%# Equipe Extérieur %>
-               <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
-                 <span style="font-size: 15px; font-weight: 600; text-align: right; <%= 'color: #007bff;' if match.away_team.parameterize == params[:team_slug] %>">
-                   <%= match.away_team %>
-                 </span>
-                 <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="20" height="20" loading="lazy" style="width: 20px; height: 20px; margin-left: 8px; object-fit: contain;">
-               </div>
-            </div>
-
-          </div>
-          <% end %><%# end cache %>
-        <% end %><%# end link_to %>
-      </div>
-    <% end %><%# end each %>
-  <% else %>
-    <p style="text-align: center; color: #666; padding: 40px 0;">Aucun match prévu pour <%= @team_name %> prochainement.</p>
-  <% end %>
 </div>
 
-<%# JSON-LD SportsTeam %>
+<%# JSON-LD SportsTeam enrichi %>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -97,7 +182,11 @@
   "name": "<%= @team_name %>",
   "sport": "Football",
   "logo": "<%= @team_logo %>",
-  "url": "<%= request.original_url %>"
+  "url": "<%= request.original_url %>"<% if @stats&.dig("league", "name") %>,
+  "memberOf": {
+    "@type": "SportsOrganization",
+    "name": "<%= @stats.dig("league", "name") %>"
+  }<% end %>
 }
 </script>
 
@@ -107,18 +196,8 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Programme TV foot",
-      "item": "https://www.coupdenvoi.tv/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Programme TV <%= @team_name %>",
-      "item": "<%= request.original_url %>"
-    }
+    { "@type": "ListItem", "position": 1, "name": "Programme TV foot", "item": "https://www.coupdenvoi.tv/" },
+    { "@type": "ListItem", "position": 2, "name": "<%= @team_name %>", "item": "<%= request.original_url %>" }
   ]
 }
 </script>
