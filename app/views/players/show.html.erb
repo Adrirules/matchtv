@@ -1,5 +1,6 @@
 <% content_for :title, @page_title %>
 <% content_for :meta_description, @page_desc %>
+<% position_fr = { "Goalkeeper" => "gardien", "Defender" => "défenseur", "Midfielder" => "milieu de terrain", "Attacker" => "attaquant" } %>
 
 <%# Fil d'Ariane %>
 <nav style="padding: 10px 15px; font-size: 12px; color: #999;">
@@ -22,8 +23,7 @@
     <% end %>
     <span style="color: #666; font-size: 14px;"><%= @team || @player.team_name %></span>
     <% if @player.position.present? %>
-      <% position_fr = { "Goalkeeper" => "Gardien", "Defender" => "Défenseur", "Midfielder" => "Milieu", "Attacker" => "Attaquant" } %>
-      <span style="background: #f0f0f0; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: #555; text-transform: uppercase;"><%= position_fr[@player.position] || @player.position %></span>
+      <span style="background: #f0f0f0; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: #555; text-transform: uppercase;"><%= position_fr[@player.position]&.capitalize || @player.position %></span>
     <% end %>
   </div>
 </div>
@@ -79,8 +79,7 @@
 
       <%# Texte SEO %>
       <p style="font-size: 14px; color: #555; line-height: 1.75; margin-top: 14px; margin-bottom: 0;">
-        <% position_fr_text = { "Goalkeeper" => "gardien", "Defender" => "défenseur", "Midfielder" => "milieu de terrain", "Attacker" => "attaquant" } %>
-        <%= @player.name %> évolue en tant que <%= position_fr_text[@player.position] || @player.position&.downcase || "joueur" %>
+        <%= @player.name %> évolue en tant que <%= position_fr[@player.position] || "joueur" %>
         à <%= @team || @player.team_name %><% if @league %> en <%= @league %><% end %>.
         Cette saison 2025-2026, il compte <%= @goals %> but<%= 's' if @goals != 1 %>
         et <%= @assists %> passe<%= 's' if @assists != 1 %> décisive<%= 's' if @assists != 1 %>
@@ -92,7 +91,7 @@
     </section>
   <% else %>
     <p style="font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
-      <%= @player.name %> est <%= @player.position&.downcase || "joueur" %> à <%= @player.team_name %>.
+      <%= @player.name %> est <%= position_fr[@player.position] || "joueur" %> à <%= @player.team_name %>.
       <% if @player.nationality.present? %>International <%= @player.nationality %>.<% end %>
       Retrouvez ses prochains matchs à la télévision ci-dessous.
     </p>
