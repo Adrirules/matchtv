@@ -23,17 +23,6 @@ namespace :sync do
     end
 
     puts "--------------------------------------------------"
-    puts "🛰️  MISE À JOUR DU SITEMAP (Génération du XML)..."
-
-    begin
-      # Cette ligne magique déclenche la gem sitemap_generator
-      Rake::Task['sitemap:refresh'].invoke
-      puts "✅ SITEMAP ACTUALISÉ AVEC SUCCÈS"
-    rescue => e
-      puts "⚠️ ÉCHEC SITEMAP : #{e.message}"
-    end
-
-    puts "--------------------------------------------------"
     puts "✨ TOUT EST À JOUR : Tes matchs sont prêts pour Google !"
   end
 end

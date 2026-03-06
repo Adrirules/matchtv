@@ -20,27 +20,26 @@ class TeamsController < ApplicationController
   def show
     current_slug = params[:team_slug]
 
-    all_team_matches = Match.where(
-      "home_team_api_id IS NOT NULL OR away_team_api_id IS NOT NULL"
-    ).where(
-      "home_team ILIKE ? OR away_team ILIKE ?",
-      current_slug.tr('-', ' ') + '%', current_slug.tr('-', ' ') + '%'
-    ).order(:start_time)
-
     # Filtrage précis par slug en Ruby (noms composés, accents, etc.)
     all_team_matches = Match.order(:start_time)
                             .select { |m| m.home_team&.parameterize == current_slug || m.away_team&.parameterize == current_slug }
 
-    ref_match = all_team_matches.first
+    # Nom, logo et api_id depuis n'importe quel match (préférer ceux avec api_id renseigné)
+    ref_match = all_team_matches.find { |m|
+      m.home_team&.parameterize == current_slug && m.home_team_api_id.present?
+    } || all_team_matches.find { |m|
+      m.away_team&.parameterize == current_slug && m.away_team_api_id.present?
+    } || all_team_matches.first
+
     if ref_match
       if ref_match.home_team&.parameterize == current_slug
-        @team_name      = ref_match.home_team
-        @team_logo      = ref_match.home_team_logo
-        @team_api_id    = ref_match.home_team_api_id
+        @team_name   = ref_match.home_team
+        @team_logo   = ref_match.home_team_logo
+        @team_api_id = ref_match.home_team_api_id
       else
-        @team_name      = ref_match.away_team
-        @team_logo      = ref_match.away_team_logo
-        @team_api_id    = ref_match.away_team_api_id
+        @team_name   = ref_match.away_team
+        @team_logo   = ref_match.away_team_logo
+        @team_api_id = ref_match.away_team_api_id
       end
     else
       @team_name = current_slug.tr('-', ' ').split.map(&:capitalize).join(' ')
