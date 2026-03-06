@@ -205,6 +205,19 @@
     <% end %>
   </section>
 
+  <%# Lien classement %>
+  <% if @stats&.dig("league", "name") %>
+    <% league_slug = StandingsController::SLUG_TO_ID.key(FootballApiService::SUPPORTED_LEAGUES.key(@stats.dig("league", "name"))) %>
+    <% if league_slug %>
+      <div style="margin-top: 8px; margin-bottom: 24px; text-align: center;">
+        <%= link_to standing_path(league_slug),
+            style: "display: inline-flex; align-items: center; gap: 6px; background: #f4f4f4; border-radius: 10px; padding: 10px 18px; text-decoration: none; color: #333; font-size: 14px; font-weight: 600;" do %>
+          Classement <%= @stats.dig("league", "name") %> →
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
 </div>
 
 <%# JSON-LD SportsTeam enrichi %>
