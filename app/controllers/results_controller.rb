@@ -26,5 +26,8 @@ class ResultsController < ApplicationController
     end
 
     @matches = scope.reload
+
+    ttl = @date < Date.today ? 1.day : 10.minutes
+    expires_in ttl, public: true
   end
 end

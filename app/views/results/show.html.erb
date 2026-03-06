@@ -1,8 +1,11 @@
 <% date_label = format_date_label(@date) %>
 
 <%# --- SEO --- %>
-<% content_for :title, "Résultats foot #{date_label} – Scores et résultats des matchs" %>
-<% content_for :meta_description, "Retrouvez les résultats et scores des matchs de football #{date_label} : buts, équipes et compétitions." %>
+<% match_count = @matches.size %>
+<% goal_count = @matches.sum { |m| m.home_score.to_i + m.away_score.to_i } %>
+<% comp_names = @matches.map(&:competition).compact.uniq.first(3).join(", ") %>
+<% content_for :title, "Résultats foot #{date_label} — #{match_count} matchs, #{goal_count} buts | Coup d'Envoi TV" %>
+<% content_for :meta_description, "Scores et résultats des matchs de football #{date_label} : #{comp_names}. #{match_count} rencontres, #{goal_count} buts au total." %>
 
 <%# --- CALENDRIER (7 jours vers le passé) --- %>
 <% content_for :calendar do %>
@@ -14,15 +17,91 @@
   <% end %>
 <% end %>
 
-<%# --- CONTENU --- %>
-<h1 style="font-size: 20px; font-weight: 700; margin: 20px 0 15px;">
+<%# --- HEADER --- %>
+<h1 style="font-size: 20px; font-weight: 700; margin: 20px 0 10px;">
   Résultats foot <%= date_label %>
 </h1>
 
 <% if @matches.any? %>
-  <% @matches.each do |match| %>
-    <%= render 'shared/match_card', match: match %>
+  <%# Stats du jour %>
+  <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <div style="background: white; border-radius: 10px; padding: 10px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); text-align: center; flex: 1;">
+      <div style="font-size: 22px; font-weight: 900; color: #010e1b;"><%= match_count %></div>
+      <div style="font-size: 11px; color: #999; font-weight: 600; text-transform: uppercase;">Matchs</div>
+    </div>
+    <div style="background: white; border-radius: 10px; padding: 10px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); text-align: center; flex: 1;">
+      <div style="font-size: 22px; font-weight: 900; color: #28a745;"><%= goal_count %></div>
+      <div style="font-size: 11px; color: #999; font-weight: 600; text-transform: uppercase;">Buts</div>
+    </div>
+    <div style="background: white; border-radius: 10px; padding: 10px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); text-align: center; flex: 1;">
+      <div style="font-size: 22px; font-weight: 900; color: #010e1b;"><%= goal_count > 0 && match_count > 0 ? (goal_count.to_f / match_count).round(1) : 0 %></div>
+      <div style="font-size: 11px; color: #999; font-weight: 600; text-transform: uppercase;">Buts/match</div>
+    </div>
+  </div>
+
+  <%# Groupement par compétition %>
+  <%
+    known_order = FootballApiService::COMPETITIONS_META.map { |c| c[:name] }
+    grouped = @matches.group_by(&:competition)
+    sorted_groups = grouped.sort_by { |comp, _| known_order.index(comp) || 999 }
+  %>
+
+  <% sorted_groups.each_with_index do |(competition, matches), group_index| %>
+    <% if group_index == 2 %>
+      <%= render 'shared/ad_unit', slot_id: '2773465276' %>
+    <% end %>
+
+    <%# Header compétition %>
+    <% comp_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == competition } %>
+    <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0 8px;">
+      <% if comp_meta %>
+        <img src="<%= FootballApiService.league_logo(comp_meta[:id]) %>" alt="<%= competition %>"
+             width="18" height="18" loading="lazy"
+             style="width: 18px; height: 18px; object-fit: contain;">
+      <% end %>
+      <span style="font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px;"><%= competition %></span>
+      <% if comp_meta&.dig(:has_standings) %>
+        <%= link_to standing_path(competition.parameterize),
+            style: "font-size: 10px; font-weight: 700; color: #007bff; background: #f0f6ff; padding: 2px 7px; border-radius: 5px; text-decoration: none;" do %>Classement<% end %>
+      <% end %>
+    </div>
+
+    <% matches.each do |match| %>
+      <%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block; margin-bottom: 8px;" do %>
+        <div style="background: white; border-radius: 10px; padding: 12px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <%# Équipe domicile %>
+            <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+              <img src="<%= match.home_team_logo %>" alt="<%= match.home_team %>" width="20" height="20" loading="lazy"
+                   style="width: 20px; height: 20px; object-fit: contain;">
+              <span style="font-size: 14px; font-weight: <%= match.home_score.to_i > match.away_score.to_i ? '800' : '500' %>; color: <%= match.home_score.to_i > match.away_score.to_i ? '#010e1b' : '#666' %>;"><%= match.home_team %></span>
+            </div>
+            <%# Score %>
+            <div style="padding: 0 12px; text-align: center; min-width: 50px;">
+              <% if match.has_score? %>
+                <span style="font-weight: 900; font-size: 16px; color: #010e1b;"><%= match.home_score %> - <%= match.away_score %></span>
+              <% else %>
+                <span style="font-size: 11px; color: #ccc; font-weight: 700;">-</span>
+              <% end %>
+            </div>
+            <%# Équipe extérieur %>
+            <div style="flex: 1; display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
+              <span style="font-size: 14px; font-weight: <%= match.away_score.to_i > match.home_score.to_i ? '800' : '500' %>; color: <%= match.away_score.to_i > match.home_score.to_i ? '#010e1b' : '#666' %>; text-align: right;"><%= match.away_team %></span>
+              <img src="<%= match.away_team_logo %>" alt="<%= match.away_team %>" width="20" height="20" loading="lazy"
+                   style="width: 20px; height: 20px; object-fit: contain;">
+            </div>
+          </div>
+          <%# Résumé Groq si disponible %>
+          <% if match.summary.present? %>
+            <p style="font-size: 12px; color: #777; margin: 8px 0 0; line-height: 1.5; border-top: 1px solid #f0f0f0; padding-top: 8px;">
+              <%= truncate(match.summary, length: 120) %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
+
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun résultat disponible pour ce jour.</p>
 <% end %>
