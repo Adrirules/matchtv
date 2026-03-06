@@ -44,5 +44,14 @@
       "availability": "https://schema.org/InStock",
       "validFrom": (match.created_at || Time.current).iso8601
     }
+  }.tap { |s|
+    if match.finished? && match.home_score.present?
+      s["description"] = "Résultat : #{match.home_team} #{match.home_score}-#{match.away_score} #{match.away_team} — #{match.competition}"
+      s["subEvent"] = {
+        "@type" => "SportsEvent",
+        "name" => "Score final",
+        "description" => "#{match.home_team} #{match.home_score} - #{match.away_score} #{match.away_team}"
+      }
+    end
   }.to_json.html_safe %>
 </script>
