@@ -27,15 +27,8 @@
 
 <% if @matches.any? %>
   <% @matches.each_with_index do |match, index| %>
-    <%# Ad slot après le 4e match — Activer après approbation AdSense %>
     <% if index == 4 %>
-      <%# <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-1509060692668087"
-           data-ad-slot="XXXXXXXXXX"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> %>
+      <%= render 'shared/ad_unit', slot_id: '2773465276' %>
     <% end %>
     <%= render 'shared/match_card', match: match %>
     <%= render 'shared/json_ld', match: match %>
