@@ -33,7 +33,7 @@ class MatchSummaryService
   def self.generate_batch(matches)
     matches.each do |match|
       generate(match)
-      sleep 0.5 # respecter le rate limit Groq (30 req/min free tier)
+      sleep 2.1 # respecter le rate limit Groq (30 req/min free tier = 1 req/2s)
     end
   end
 
