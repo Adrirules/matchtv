@@ -43,6 +43,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # Statut / Connexion API
+  get "status", to: "status#check", as: :status
+
   # Erreurs (en tout dernier)
   match "/404", to: "errors#not_found", via: :all
   match "*path", to: "errors#not_found", via: :all
