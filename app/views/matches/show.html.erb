@@ -129,7 +129,15 @@
     </section>
   <% end %>
 
-  <%# ---- Résumé Groq ---- %>
+  <%# ---- Preview avant-match (Groq) ---- %>
+  <% if @match.preview.present? && !is_finished && !is_live %>
+    <section style="margin: 25px 0; background: #fff; border-radius: 12px; padding: 20px 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border-left: 4px solid #28a745;">
+      <h2 style="font-size: 16px; font-weight: 800; color: #010e1b; margin: 0 0 10px;">Avant-match</h2>
+      <p style="font-size: 15px; color: #333; line-height: 1.75; margin: 0;"><%= @match.preview %></p>
+    </section>
+  <% end %>
+
+  <%# ---- Résumé Groq (match terminé) ---- %>
   <% if @match.summary.present? %>
     <section style="margin: 25px 0; background: #fff; border-radius: 12px; padding: 20px 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border-left: 4px solid #007bff;">
       <h2 style="font-size: 16px; font-weight: 800; color: #010e1b; margin: 0 0 10px;">Résumé du match</h2>

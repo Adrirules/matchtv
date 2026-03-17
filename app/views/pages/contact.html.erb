@@ -1,16 +1,43 @@
-<div class="page container">
-  <h1>Contact</h1>
+<% content_for :title, "Contact — Coup d'envoi TV" %>
+<% content_for :meta_description, "Contactez l'équipe de Coup d'envoi TV pour signaler une erreur, suggérer une amélioration ou poser une question sur le programme TV football." %>
 
-  <p>
-    Une question sur le site, une erreur dans les horaires, une suggestion d’amélioration ?
-    N’hésitez pas à nous écrire, nous lisons tous les messages.
-  </p>
+<div class="page container" style="max-width: 680px; margin: 0 auto; padding: 20px 16px;">
+  <h1 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 8px;">Contactez-nous</h1>
+  <p style="font-size: 14px; color: #777; margin-bottom: 28px;">Nous lisons tous les messages et répondons sous 48h ouvrées.</p>
 
-  <p>
-    <strong><%= mail_to "coupdenvoi@gmail.com" %></strong>
-  </p>
+  <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px;">
 
-  <p>
-    Nous répondons généralement sous 48 heures ouvrées.
-  </p>
+    <div style="background: white; border-radius: 12px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+      <div style="font-size: 13px; font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 6px;">Signaler une erreur</div>
+      <p style="font-size: 14px; color: #444; margin: 0 0 10px; line-height: 1.6;">
+        Mauvaise chaîne TV, horaire incorrect, score erroné ? Indiquez-nous l'URL de la page concernée et le problème rencontré.
+      </p>
+      <a href="mailto:coupdenvoi@gmail.com?subject=Erreur%20sur%20le%20site"
+         style="color: #007bff; font-size: 14px; font-weight: 600;">coupdenvoi@gmail.com</a>
+    </div>
+
+    <div style="background: white; border-radius: 12px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+      <div style="font-size: 13px; font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 6px;">Suggestion ou partenariat</div>
+      <p style="font-size: 14px; color: #444; margin: 0 0 10px; line-height: 1.6;">
+        Une compétition manquante, une fonctionnalité souhaitée, une proposition de partenariat ? On est à l'écoute.
+      </p>
+      <a href="mailto:coupdenvoi@gmail.com?subject=Suggestion"
+         style="color: #007bff; font-size: 14px; font-weight: 600;">coupdenvoi@gmail.com</a>
+    </div>
+
+    <div style="background: white; border-radius: 12px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+      <div style="font-size: 13px; font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 6px;">Données & confidentialité (RGPD)</div>
+      <p style="font-size: 14px; color: #444; margin: 0 0 10px; line-height: 1.6;">
+        Pour exercer vos droits d'accès, rectification ou suppression conformément au RGPD, contactez-nous à l'adresse ci-dessous en précisant votre demande.
+      </p>
+      <a href="mailto:coupdenvoi@gmail.com?subject=Demande%20RGPD"
+         style="color: #007bff; font-size: 14px; font-weight: 600;">coupdenvoi@gmail.com</a>
+    </div>
+
+  </div>
+
+  <div style="background: #f8f9fa; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #666; line-height: 1.6;">
+    <strong style="color: #333;">Coup d'envoi TV</strong> — 13 Allées Léon Gambetta, 92110 Clichy, France.<br>
+    Réponse garantie sous 48h ouvrées. Pas de support téléphonique.
+  </div>
 </div>
