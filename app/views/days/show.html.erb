@@ -19,6 +19,28 @@
   Programme TV foot <%= date_label %>
 </h1>
 
+<% if @date == Date.today %>
+  <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
+    <p style="margin: 0 0 10px;">
+      <strong>Coup d'envoi TV</strong> est votre guide du programme TV football en France.
+      Retrouvez chaque jour les matchs diffusés à la télévision avec l'heure de coup d'envoi,
+      la chaîne (Canal+, beIN Sports, DAZN, TF1, M6, France TV, RMC Sport) et le score en direct.
+    </p>
+    <p style="margin: 0 0 10px;">
+      Nous couvrons toutes les grandes compétitions : <strong>Ligue 1</strong>, <strong>Champions League</strong>,
+      <strong>Premier League</strong>, <strong>Bundesliga</strong>, <strong>Serie A</strong>,
+      <strong>La Liga</strong>, <strong>Europa League</strong>, <strong>Coupe de France</strong> et bien d'autres.
+      Le programme est mis à jour plusieurs fois par jour.
+    </p>
+    <p style="margin: 0;">
+      Pour chaque match terminé, retrouvez le score final et un résumé de la rencontre.
+      Consultez aussi les <%= link_to "classements", standings_path, style: "color: #007bff;" %>,
+      les <%= link_to "résultats", results_path, style: "color: #007bff;" %> et les
+      <%= link_to "pages équipes", teams_path, style: "color: #007bff;" %> pour tout savoir sur la saison en cours.
+    </p>
+  </div>
+<% end %>
+
 <% if @date == Date.today && @matches.any?(&:live?) %>
   <script>
     setTimeout(function() { location.reload(); }, 60000);
@@ -35,4 +57,125 @@
   <% end %>
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun match prévu ce jour-là.</p>
+<% end %>
+
+<% if @date == Date.today %>
+  <%# --- NOS COMPÉTITIONS --- %>
+  <section style="margin-top: 32px;">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 12px;">Toutes nos compétitions</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <% FootballApiService::COMPETITIONS_META.each do |comp| %>
+        <%= link_to competition_path(comp[:name].parameterize),
+            style: "display: flex; align-items: center; gap: 6px; background: white; border-radius: 8px; padding: 8px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-decoration: none; font-size: 13px; font-weight: 600; color: #333;" do %>
+          <img src="<%= FootballApiService.league_logo(comp[:id]) %>" alt="<%= comp[:name] %>"
+               width="16" height="16" loading="lazy" style="width:16px;height:16px;object-fit:contain;">
+          <%= comp[:name] %>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+
+  <%# --- FAQ --- %>
+  <section style="margin-top: 36px;" itemscope itemtype="https://schema.org/FAQPage">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Questions fréquentes sur le programme TV foot</h2>
+
+    <% faq_items = [
+      {
+        q: "Sur quelle chaîne voir la Ligue 1 en 2025-2026 ?",
+        a: "La Ligue 1 est diffusée principalement sur DAZN, qui détient la majorité des droits TV. beIN Sports diffuse également certains matchs le samedi à 17h. Le multiplex du dimanche (17h) et le match du soir (20h45) sont sur DAZN."
+      },
+      {
+        q: "Où regarder la Champions League en France ?",
+        a: "La Champions League est diffusée en France sur Canal+, qui détient les droits exclusifs de la compétition. Vous pouvez regarder les matchs sur Canal+ ou en streaming via MyCanal."
+      },
+      {
+        q: "Sur quelle chaîne voir la Premier League ?",
+        a: "La Premier League anglaise est diffusée en France sur Canal+. Les abonnés Canal+ ont accès à une sélection de matchs chaque week-end, dont les affiches les plus attendues."
+      },
+      {
+        q: "La Coupe de France est-elle diffusée gratuitement ?",
+        a: "Certains matchs de la Coupe de France sont diffusés gratuitement sur France Télévisions (France 2, France 3). Les autres rencontres sont sur beIN Sports. Les demi-finales et la finale sont généralement sur France TV."
+      },
+      {
+        q: "Quelle chaîne diffuse la Bundesliga et la Serie A ?",
+        a: "La Bundesliga allemande et la Serie A italienne sont diffusées sur beIN Sports en France. L'abonnement beIN Sports donne accès à ces deux championnats, ainsi qu'à La Liga espagnole."
+      },
+      {
+        q: "Sur quelle chaîne voir les matchs de l'équipe de France ?",
+        a: "Les matchs de l'équipe de France sont diffusés sur TF1 ou M6 pour les grands rendez-vous (Euro, Coupe du Monde). Les matchs de Ligue des Nations et qualifications peuvent être sur TF1, M6 ou beIN Sports selon les droits."
+      },
+      {
+        q: "Comment voir le foot sans abonnement payant ?",
+        a: "Certains matchs sont accessibles gratuitement : la Coupe de France sur France TV, les matchs de l'équipe de France sur TF1/M6, et quelques affiches de Ligue Europa sur W9. Coup d'envoi TV indique chaque jour quelle chaîne gratuite diffuse un match."
+      },
+      {
+        q: "À quoi sert Coup d'envoi TV ?",
+        a: "Coup d'envoi TV est un guide du programme TV foot mis à jour quotidiennement. En un coup d'œil, vous savez sur quelle chaîne est le match du soir, à quelle heure, et quelle compétition. Le site couvre plus de 20 ligues et diffuse les scores en direct."
+      }
+    ] %>
+
+    <% faq_items.each do |item| %>
+      <div style="background: white; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);"
+           itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" style="font-size: 14px; font-weight: 700; color: #010e1b; margin: 0 0 8px;">
+          <%= item[:q] %>
+        </h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size: 13px; color: #555; margin: 0; line-height: 1.6;">
+            <%= item[:a] %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </section>
+
+  <%# FAQ JSON-LD pour Google Featured Snippets %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Sur quelle chaîne voir la Ligue 1 en 2025-2026 ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La Ligue 1 est diffusée principalement sur DAZN, qui détient la majorité des droits TV. beIN Sports diffuse également certains matchs le samedi à 17h. Le multiplex du dimanche (17h) et le match du soir (20h45) sont sur DAZN." }
+      },
+      {
+        "@type": "Question",
+        "name": "Où regarder la Champions League en France ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La Champions League est diffusée en France sur Canal+, qui détient les droits exclusifs de la compétition. Vous pouvez regarder les matchs sur Canal+ ou en streaming via MyCanal." }
+      },
+      {
+        "@type": "Question",
+        "name": "Sur quelle chaîne voir la Premier League ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La Premier League anglaise est diffusée en France sur Canal+. Les abonnés Canal+ ont accès à une sélection de matchs chaque week-end, dont les affiches les plus attendues." }
+      },
+      {
+        "@type": "Question",
+        "name": "La Coupe de France est-elle diffusée gratuitement ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Certains matchs de la Coupe de France sont diffusés gratuitement sur France Télévisions (France 2, France 3). Les autres rencontres sont sur beIN Sports. Les demi-finales et la finale sont généralement sur France TV." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle chaîne diffuse la Bundesliga et la Serie A ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La Bundesliga allemande et la Serie A italienne sont diffusées sur beIN Sports en France. L'abonnement beIN Sports donne accès à ces deux championnats, ainsi qu'à La Liga espagnole." }
+      },
+      {
+        "@type": "Question",
+        "name": "Sur quelle chaîne voir les matchs de l'équipe de France ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Les matchs de l'équipe de France sont diffusés sur TF1 ou M6 pour les grands rendez-vous (Euro, Coupe du Monde). Les matchs de Ligue des Nations et qualifications peuvent être sur TF1, M6 ou beIN Sports selon les droits." }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment voir le foot sans abonnement payant ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Certains matchs sont accessibles gratuitement : la Coupe de France sur France TV, les matchs de l'équipe de France sur TF1/M6, et quelques affiches de Ligue Europa sur W9. Coup d'envoi TV indique chaque jour quelle chaîne gratuite diffuse un match." }
+      },
+      {
+        "@type": "Question",
+        "name": "À quoi sert Coup d'envoi TV ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Coup d'envoi TV est un guide du programme TV foot mis à jour quotidiennement. En un coup d'œil, vous savez sur quelle chaîne est le match du soir, à quelle heure, et quelle compétition. Le site couvre plus de 20 ligues et diffuse les scores en direct." }
+      }
+    ]
+  }
+  </script>
 <% end %>

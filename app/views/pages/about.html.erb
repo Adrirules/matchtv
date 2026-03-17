@@ -1,25 +1,60 @@
-<div class="page container">
-  <h1>À propos de Coup d’envoi TV</h1>
+<% content_for :title, "À propos de Coup d'envoi TV — Programme TV foot en France" %>
+<% content_for :meta_description, "Coup d'envoi TV est le guide du programme TV football en France. Découvrez notre mission, les compétitions couvertes et comment nous mettons à jour les informations." %>
 
-  <p>
-    Coup d’envoi TV est un service indépendant dédié aux fans de football et de sport en général,
-    qui souhaitent savoir rapidement sur quelle chaîne voir leurs matchs préférés.
-  </p>
+<div class="page container" style="max-width: 680px; margin: 0 auto; padding: 20px 16px;">
+  <h1 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 20px;">À propos de Coup d'envoi TV</h1>
 
-  <p>
-    Notre mission est simple : afficher en un coup d’œil le programme TV sport du jour et des jours
-    à venir — avec les horaires, les chaînes (Canal+, beIN Sports, DAZN, TF1, M6...) et les compétitions,
-    le tout optimisé pour mobile, tablette et desktop.
-  </p>
+  <section style="margin-bottom: 28px;">
+    <h2 style="font-size: 16px; font-weight: 700; color: #010e1b; margin-bottom: 10px;">Notre mission</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 10px;">
+      Coup d'envoi TV est né d'un constat simple : trouver sur quelle chaîne passe un match de foot en France est devenu un casse-tête. Entre Canal+, beIN Sports, DAZN, Amazon Prime, TF1, M6 et France TV, les droits TV sont éparpillés sur une dizaine de plateformes différentes.
+    </p>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 10px;">
+      Notre mission est simple : vous dire en un coup d'œil, <strong>sur quelle chaîne est le match ce soir</strong>, à quelle heure il commence, et quelle compétition est concernée. Pas de compte à créer, pas d'abonnement — juste l'information, claire et à jour.
+    </p>
+  </section>
 
-  <p>
-    Les données de matchs et de compétitions sont issues d’une API sportive tierce.
-    Nous les agrégeons et les mettons en forme pour vous offrir une expérience de lecture claire et rapide.
-    Les horaires sont fournis à titre indicatif et peuvent être sujets à modifications de la part des diffuseurs.
-  </p>
+  <section style="margin-bottom: 28px;">
+    <h2 style="font-size: 16px; font-weight: 700; color: #010e1b; margin-bottom: 10px;">Ce que nous couvrons</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 12px;">
+      Coup d'envoi TV couvre plus de 20 compétitions de football, classées par popularité en France :
+    </p>
+    <ul style="font-size: 14px; color: #444; line-height: 1.8; padding-left: 20px; margin-bottom: 10px;">
+      <li><strong>Ligues françaises</strong> : Ligue 1, Ligue 2, National, Coupe de France, D1 Féminine</li>
+      <li><strong>Compétitions européennes</strong> : Champions League, Europa League, Conference League, Ligue des Nations</li>
+      <li><strong>Championnats étrangers</strong> : Premier League, La Liga, Bundesliga, Serie A, Liga Portugal, Eredivisie, Süper Lig</li>
+      <li><strong>Autres</strong> : Saudi Pro League, Major League Soccer, Copa America</li>
+    </ul>
+    <p style="font-size: 14px; color: #444; line-height: 1.75;">
+      Pour chaque match, nous affichons l'heure de coup d'envoi, la chaîne TV, le score en direct et le résumé de la rencontre une fois terminée.
+    </p>
+  </section>
 
-  <p>
-    Coup d’envoi TV est un projet indépendant, non affilié aux ligues, fédérations ou diffuseurs officiels.
-    Pour toute question, vous pouvez nous contacter à <%= mail_to "coupdenvoi@gmail.com" %>.
-  </p>
+  <section style="margin-bottom: 28px;">
+    <h2 style="font-size: 16px; font-weight: 700; color: #010e1b; margin-bottom: 10px;">Comment nous mettons à jour les données</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 10px;">
+      Les données de matchs (calendrier, scores, compositions) sont issues de l'API Football, une source de données sportives professionnelle. Les informations sont mises à jour plusieurs fois par jour de façon automatique.
+    </p>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 10px;">
+      Les chaînes TV sont vérifiées quotidiennement via un système de collecte automatique. <strong>Les horaires et chaînes sont fournis à titre indicatif</strong> : les diffuseurs peuvent modifier leur programme jusqu'au dernier moment. En cas de doute, vérifiez toujours directement auprès de la chaîne concernée.
+    </p>
+  </section>
+
+  <section style="margin-bottom: 28px;">
+    <h2 style="font-size: 16px; font-weight: 700; color: #010e1b; margin-bottom: 10px;">Contact et signalement d'erreur</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75;">
+      Vous avez repéré une erreur (mauvaise chaîne, score incorrect, match manquant) ? Écrivez-nous à
+      <a href="mailto:coupdenvoi@gmail.com" style="color: #007bff;">coupdenvoi@gmail.com</a>.
+      Nous traitons les signalements sous 24h. Coup d'envoi TV est un projet indépendant, non affilié aux ligues, fédérations ou diffuseurs officiels.
+    </p>
+  </section>
+
+  <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
+    <%= link_to root_path, style: "background: #010e1b; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700;" do %>
+      Voir le programme TV du jour
+    <% end %>
+    <%= link_to politique_confidentialite_path, style: "background: #f5f5f5; color: #333; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700;" do %>
+      Politique de confidentialité
+    <% end %>
+  </div>
 </div>
