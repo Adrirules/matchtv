@@ -24,7 +24,7 @@
       played    = @stats.dig("fixtures", "played", "total").to_i
       wins      = @stats.dig("fixtures", "wins", "total").to_i
       draws     = @stats.dig("fixtures", "draws", "total").to_i
-      losses    = @stats.dig("fixtures", "losses", "total").to_i
+      losses    = @stats.dig("fixtures", "loses", "total").to_i
       goals_for = @stats.dig("goals", "for", "total", "total").to_i
       goals_against = @stats.dig("goals", "against", "total", "total").to_i
       league_name = @stats.dig("league", "name")
@@ -229,7 +229,7 @@
     { q: "Quand joue #{@team_name} le prochain match ?",
       a: @matches.first ? "Le prochain match de #{@team_name} est #{@matches.first.home_team} - #{@matches.first.away_team} le #{l(@matches.first.start_time, format: "%d/%m/%Y à %Hh%M")} sur #{@matches.first.tv_channels}." : "Aucun prochain match de #{@team_name} n'est programmé dans notre base pour le moment." },
     { q: "Quel est le bilan de #{@team_name} cette saison ?",
-      a: @stats.present? ? "#{@team_name} affiche #{@stats.dig('fixtures','wins','total').to_i} victoire(s), #{@stats.dig('fixtures','draws','total').to_i} nul(s) et #{@stats.dig('fixtures','losses','total').to_i} défaite(s) en #{@stats.dig('fixtures','played','total').to_i} matchs cette saison 2025-2026." : "Les statistiques de #{@team_name} pour la saison 2025-2026 sont disponibles sur notre page équipe." }
+      a: @stats.present? ? "#{@team_name} affiche #{@stats.dig('fixtures','wins','total').to_i} victoire(s), #{@stats.dig('fixtures','draws','total').to_i} nul(s) et #{@stats.dig('fixtures','loses','total').to_i} défaite(s) en #{@stats.dig('fixtures','played','total').to_i} matchs cette saison 2025-2026." : "Les statistiques de #{@team_name} pour la saison 2025-2026 sont disponibles sur notre page équipe." }
   ] %>
   <%= render 'shared/faq_accordion', items: team_faq, schema: true %>
 </section>
