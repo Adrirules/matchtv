@@ -116,6 +116,49 @@ class FootballApiService
     end
   end
 
+  def import_historical_fixtures(league_id:, season: 2025, from_date:, to_date:)
+    response = client.get('/fixtures', {
+      league:  league_id,
+      season:  season,
+      from:    from_date.strftime('%Y-%m-%d'),
+      to:      to_date.strftime('%Y-%m-%d')
+    })
+
+    fixtures = JSON.parse(response.body)['response'] || []
+    return "Aucun match trouvé pour ligue #{league_id}" if fixtures.empty?
+
+    fixtures.each do |data|
+      home_name      = data['teams']['home']['name']
+      away_name      = data['teams']['away']['name']
+      match_date_time = DateTime.parse(data['fixture']['date'])
+      match_date     = match_date_time.to_date
+      match_slug     = "#{match_date}-#{home_name.parameterize}-#{away_name.parameterize}"
+      matchup_slug   = "#{home_name.parameterize}-#{away_name.parameterize}"
+      matchup        = Matchup.find_or_create_by!(slug: matchup_slug)
+      match          = Match.find_or_initialize_by(api_id: data['fixture']['id'])
+
+      match.update!(
+        matchup:           matchup,
+        home_team:         home_name,
+        away_team:         away_name,
+        home_team_logo:    data['teams']['home']['logo'],
+        away_team_logo:    data['teams']['away']['logo'],
+        home_team_api_id:  data['teams']['home']['id'],
+        away_team_api_id:  data['teams']['away']['id'],
+        start_time:        match_date_time,
+        competition:       SUPPORTED_LEAGUES[league_id] || data['league']['name'],
+        tv_channels:       guess_tv_channel(league_id, match_date_time),
+        api_id:            data['fixture']['id'],
+        slug:              match_slug
+      )
+
+      # Mise à jour score + statut pour les matchs terminés
+      update_match_from_data(data, match)
+    end
+
+    "#{fixtures.count} matchs importés pour #{SUPPORTED_LEAGUES[league_id]}"
+  end
+
   def import_upcoming_fixtures(league_id: 61, season: 2025)
     # On récupère les matchs sur une fenêtre de 30 jours
     response = client.get('/fixtures', {
