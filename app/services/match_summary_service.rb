@@ -40,13 +40,18 @@ class MatchSummaryService
       }.to_json
     end
 
-    return nil unless response.success?
+    unless response.success?
+      puts "  💥 HTTP #{response.status} pour match #{match.id}: #{response.body.truncate(300)}"
+      Rails.logger.error("[MatchSummaryService] HTTP #{response.status} match #{match.id}: #{response.body}")
+      return nil
+    end
 
     text = JSON.parse(response.body).dig("choices", 0, "message", "content")&.strip
     match.update_column(field, text) if text.present?
     text
 
   rescue => e
+    puts "  💥 EXCEPTION #{e.class} pour match #{match.id}: #{e.message}"
     Rails.logger.error("[MatchSummaryService] Erreur match #{match.id}: #{e.message}")
     nil
   end
