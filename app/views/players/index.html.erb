@@ -2,9 +2,23 @@
 <% content_for :meta_description, @page_desc %>
 
 <div style="padding: 0 10px;">
-  <h1 style="font-size: 24px; font-weight: 800; margin: 25px 0 20px;">
+  <h1 style="font-size: 24px; font-weight: 800; margin: 25px 0 12px;">
     Tous les <span style="color: #007bff;">Joueurs</span>
   </h1>
+
+  <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.75;">
+    <p style="margin: 0 0 10px;">
+      Coup d'Envoi TV suit les statistiques de plus de <strong>7 000 joueurs</strong> pour la saison 2025-2026.
+      Pour chaque joueur, retrouvez le nombre de matchs joués, les buts marqués, les passes décisives,
+      la note moyenne et les prochains matchs de son équipe à la télévision.
+    </p>
+    <p style="margin: 0;">
+      Les données sont issues des 20 compétitions couvertes : Ligue 1, Ligue 2, Champions League,
+      Premier League, La Liga, Bundesliga, Serie A, Europa League et bien d'autres.
+      Recherchez un joueur par son nom ou naviguez par équipe depuis la
+      <%= link_to "page équipes", teams_path, style: "color: #007bff;" %>.
+    </p>
+  </div>
 
   <% if @players.any? %>
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
@@ -24,9 +38,19 @@
       <% end %>
     </div>
   <% else %>
-    <p style="text-align: center; color: #666; padding: 40px 0;">
-      Aucun joueur importé pour le moment.<br>
-      <small>Lance <code>rails players:import</code> pour importer les effectifs.</small>
-    </p>
+    <p style="text-align: center; color: #666; padding: 40px 0;">Aucun joueur disponible pour le moment.</p>
   <% end %>
+
+  <div style="margin-top: 28px;">
+    <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
+    <% players_faq = [
+      { q: "Quelles statistiques sont disponibles par joueur ?",
+        a: "Pour chaque joueur, Coup d'Envoi TV affiche : le nombre de matchs joués, les buts marqués, les passes décisives, la note moyenne, les minutes jouées, et les prochains matchs de son équipe avec les chaînes TV. Les données sont mises à jour quotidiennement." },
+      { q: "Comment trouver les stats d'un joueur spécifique ?",
+        a: "Utilisez la liste ci-dessus ou naviguez via la page de l'équipe du joueur. Sur chaque page d'équipe, la liste des joueurs de l'effectif est disponible avec un lien direct vers leurs statistiques individuelles." },
+      { q: "Les statistiques couvrent quelle saison ?",
+        a: "Toutes les statistiques affichées correspondent à la saison 2025-2026 en cours. Les données sont issues des 20 compétitions suivies par Coup d'Envoi TV et mises à jour après chaque journée." }
+    ] %>
+    <%= render 'shared/faq_accordion', items: players_faq, schema: true %>
+  </div>
 </div>

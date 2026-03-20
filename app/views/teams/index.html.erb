@@ -1,7 +1,22 @@
 <% content_for :title, @page_title %>
+<% content_for :meta_description, "Retrouvez toutes les équipes de football suivies sur Coup d'Envoi TV : programme TV, résultats, statistiques et classements pour la saison 2025-2026." %>
 
 <div style="padding: 0 10px;">
-  <h1 style="font-size: 24px; font-weight: 800; margin: 25px 0 20px;">Toutes les <span style="color: #007bff;">Équipes</span></h1>
+  <h1 style="font-size: 24px; font-weight: 800; margin: 25px 0 12px;">Toutes les <span style="color: #007bff;">Équipes</span></h1>
+
+  <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.75;">
+    <p style="margin: 0 0 10px;">
+      Coup d'Envoi TV suit les équipes de plus de <strong>20 compétitions</strong> pour la saison 2025-2026 :
+      Ligue 1, Ligue 2, Champions League, Premier League, La Liga, Bundesliga, Serie A et bien d'autres.
+      Pour chaque club, retrouvez le programme TV des prochains matchs avec les chaînes de diffusion,
+      les résultats récents, le bilan de la saison et le classement dans la ligue.
+    </p>
+    <p style="margin: 0;">
+      Cliquez sur une équipe pour accéder à sa page dédiée : forme des 5 derniers matchs, statistiques
+      victoires/nuls/défaites, buts marqués et encaissés, et les prochains matchs à regarder à la télé.
+      Les données sont mises à jour après chaque journée de championnat.
+    </p>
+  </div>
 
   <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
     <% @teams.each do |team| %>
@@ -16,5 +31,18 @@
         </div>
       <% end %>
     <% end %>
+  </div>
+
+  <div style="margin-top: 28px;">
+    <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
+    <% teams_faq = [
+      { q: "Comment trouver le prochain match de mon équipe à la TV ?",
+        a: "Cliquez sur l'équipe dans la liste ci-dessus pour accéder à sa page. Vous y trouverez les prochains matchs avec l'heure exacte, la chaîne de diffusion (Canal+, beIN Sports, DAZN, France TV...) et la compétition." },
+      { q: "Quelles équipes sont couvertes sur Coup d'Envoi TV ?",
+        a: "Plus de 200 clubs sont suivis pour la saison 2025-2026 : tous les clubs de Ligue 1 et Ligue 2, les grands clubs européens (Real Madrid, Barcelona, Manchester City, Bayern Munich, Juventus...) et les équipes des 20 compétitions couvertes." },
+      { q: "Les statistiques d'équipe sont-elles à jour ?",
+        a: "Les statistiques (bilan V/N/D, buts, forme) sont actualisées après chaque match. Le classement et les données de saison proviennent directement des ligues officielles et sont rafraichis automatiquement." }
+    ] %>
+    <%= render 'shared/faq_accordion', items: teams_faq, schema: true %>
   </div>
 </div>
