@@ -105,3 +105,21 @@
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun résultat disponible pour ce jour.</p>
 <% end %>
+
+<%# FAQ résultats %>
+<%
+  results_faq = [
+    { q: "Les scores sont-ils mis à jour en temps réel ?",
+      a: "Oui, les scores sont actualisés automatiquement toutes les minutes pendant les matchs en cours. La page se rafraichit sans action de votre part pour afficher les derniers résultats." },
+    { q: "Comment voir le résumé d'un match ?",
+      a: "Cliquez sur n'importe quel match pour accéder à sa page dédiée. Vous y trouverez le score détaillé, le résumé de la rencontre et un lien vers les pages des deux équipes." },
+    { q: "Combien de compétitions sont couvertes dans les résultats ?",
+      a: "Plus de 20 compétitions sont suivies : Ligue 1, Ligue 2, Champions League, Europa League, Conference League, Premier League, La Liga, Bundesliga, Serie A, et bien d'autres. Tous les résultats sont regroupés par compétition." },
+    { q: "Comment naviguer entre les jours de résultats ?",
+      a: "Utilisez le calendrier en haut de page pour passer d'un jour à l'autre. Les 7 derniers jours sont accessibles directement. Pour les archives complètes, consultez la page <%= link_to 'Archives', archives_path %>." }
+  ]
+%>
+<div style="margin-top: 28px;">
+  <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
+  <%= render 'shared/faq_accordion', items: results_faq, schema: true %>
+</div>

@@ -167,6 +167,43 @@
 
   <%= render 'shared/ad_unit', slot_id: '1499436694' %>
 
+  <%# FAQ dynamique par ligue %>
+  <%
+    league_slug = params[:competition_id]
+    league_display = @league_name || @league_info[:name]
+    promo_info = case league_slug
+      when "ligue-1" then "Les 2 derniers clubs sont relégués en Ligue 2 directement. Le 16e dispute un barrage contre le 3e de Ligue 2."
+      when "ligue-2" then "Les 2 premiers montent en Ligue 1 directement. Les 3e et 4e disputent des barrages. Les 17e et 18e descendent en National."
+      when "premier-league" then "Les 3 derniers descendent en Championship. Il n'y a pas de barrage en Premier League."
+      when "la-liga" then "Les 3 derniers clubs descendent en Segunda Division. Il n'y a pas de barrage."
+      when "bundesliga" then "Les 2 derniers descendent en 2. Bundesliga. Le 16e dispute un barrage."
+      when "serie-a" then "Les 3 derniers clubs descendent en Serie B. Il n'y a pas de barrage en Serie A."
+      when "champions-league" then "Les 8 premiers du classement de ligue sont qualifiés directement pour les 8es de finale."
+      else "Les derniers du classement sont relégués ou éliminés selon les règles de la compétition."
+    end
+    euro_info = case league_slug
+      when "ligue-1" then "Les 2 premiers sont qualifiés pour la Champions League. Le 3e passe par les qualifs. Le 4e va en Europa League. Le 5e en Conference League."
+      when "premier-league" then "Les 4 premiers vont en Champions League. Le 5e en Europa League. Le 6e en Conference League."
+      when "la-liga" then "Les 4 premiers vont en Champions League. Le 5e en Europa League. Le 6e en Conference League."
+      when "bundesliga" then "Les 4 premiers vont en Champions League. Le 5e en Europa League. Le 6e en Conference League."
+      when "serie-a" then "Les 4 premiers vont en Champions League. Le 5e en Europa League. Le 6e en Conference League."
+      else nil
+    end
+    faq_items = [
+      { q: "Comment est calculé le classement de #{league_display} ?",
+        a: "Le classement est établi en points : 3 points pour une victoire, 1 point pour un match nul, 0 point pour une défaite. En cas d'égalité de points, la différence de buts puis le nombre de buts marqués départagent les équipes." },
+      { q: "Quelle est la relégation en #{league_display} ?",
+        a: promo_info },
+      *(euro_info ? [{ q: "Quelles places qualifient pour les coupes européennes en #{league_display} ?", a: euro_info }] : []),
+      { q: "À quelle fréquence le classement #{league_display} est-il mis à jour ?",
+        a: "Le classement est mis à jour automatiquement après chaque match. Les données proviennent de l'API officielle et sont rafraichies toutes les heures en dehors des matchs, et en temps réel pendant les rencontres." }
+    ]
+  %>
+  <div style="margin-top: 24px; margin-bottom: 8px;">
+    <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
+    <%= render 'shared/faq_accordion', items: faq_items, schema: true %>
+  </div>
+
   <%# Lien vers autres classements %>
   <div style="margin-top: 8px;">
     <h2 style="font-size: 14px; font-weight: 700; color: #010e1b; margin-bottom: 10px;">Autres classements</h2>

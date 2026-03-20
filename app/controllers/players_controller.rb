@@ -51,8 +51,8 @@ class PlayersController < ApplicationController
     @page_title = "#{@full_name} — Stats 2025-2026, buts et passes | Coup d'Envoi TV"
     @page_desc  = "Statistiques complètes de #{@full_name} pour la saison 2025-2026 : #{@goals} but#{'s' if @goals != 1}, #{@assists} passe#{'s' if @assists != 1} décisive#{'s' if @assists != 1} en #{@games} match#{'s' if @games != 1}. Programme TV des prochains matchs."
 
-    # noindex si aucune stat ET aucun prochain match — contenu trop mince
-    @noindex = @games == 0 && @upcoming_matches.empty?
+    # noindex si moins de 3 matchs joués ET aucun prochain match — contenu trop mince
+    @noindex = @games < 3 && @upcoming_matches.empty?
 
     expires_in 6.hours, public: true
   end

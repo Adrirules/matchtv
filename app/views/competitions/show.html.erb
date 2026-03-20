@@ -105,6 +105,35 @@
 
 </div>
 
+<%# FAQ compétition %>
+<%
+  tv_channels_str = case @competition_slug
+    when "ligue-1" then "Canal+ et DAZN détiennent les droits TV de la Ligue 1. Certains matchs sont diffusés sur beIN Sports."
+    when "ligue-2" then "La Ligue 2 est diffusée principalement sur beIN Sports et Canal+."
+    when "champions-league" then "La Champions League est diffusée sur Canal+ et RMC Sport (beIN Sports) en France."
+    when "europa-league" then "L'Europa League est diffusée sur Canal+ et RMC Sport en France."
+    when "conference-league" then "La Conference League est diffusée sur Canal+ et RMC Sport en France."
+    when "premier-league" then "La Premier League est diffusée sur Canal+ en France."
+    when "la-liga" then "La Liga espagnole est diffusée sur beIN Sports en France."
+    when "bundesliga" then "La Bundesliga est diffusée sur beIN Sports en France."
+    when "serie-a" then "La Serie A italienne est diffusée sur beIN Sports en France."
+    when "coupe-de-france" then "La Coupe de France est diffusée sur France TV (France 3, France 2) et beIN Sports."
+    else "Les matchs de #{@competition_name} sont diffusés sur différentes chaînes selon les rencontres. Consultez chaque match pour la chaîne exacte."
+  end
+  comp_faq = [
+    { q: "Sur quelle chaîne TV regarder #{@competition_name} ?",
+      a: tv_channels_str + " Le programme complet avec les chaînes est disponible sur chaque page de match." },
+    { q: "Comment accéder au classement #{@competition_name} ?",
+      a: @has_standings ? "Le classement #{@competition_name} 2025-2026 est disponible en bas de cette page avec le top 5. Pour le classement complet, cliquez sur \"Voir complet\"." : "#{@competition_name} est une compétition à élimination directe, il n'y a pas de classement au sens strict." },
+    { q: "Combien de matchs #{@competition_name} sont couverts par Coup d'Envoi TV ?",
+      a: "Tous les matchs de #{@competition_name} pour la saison 2025-2026 sont suivis : programme à venir avec horaires et chaînes TV, scores en direct, et résultats avec résumés." }
+  ]
+%>
+<div style="padding: 0 10px; margin-top: 8px;">
+  <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
+  <%= render 'shared/faq_accordion', items: comp_faq, schema: true %>
+</div>
+
 <%# JSON-LD %>
 <script type="application/ld+json">
 <%= {
