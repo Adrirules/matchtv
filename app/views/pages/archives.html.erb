@@ -1,13 +1,84 @@
-<div class="page container">
-  <h1>Archives des matchs</h1>
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
 
-  <p>
-    Retrouvez ici les matchs passés classés par compétition et par saison.
+<div class="container" style="max-width: 720px; margin: 0 auto; padding: 20px 16px;">
+
+  <nav style="font-size: 12px; color: #999; margin-bottom: 16px;">
+    <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+    <%= link_to "Résultats", resultats_path, style: "color: #999; text-decoration: none;" %> ›
+    Archives
+  </nav>
+
+  <h1 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 6px;">Archives des matchs</h1>
+  <p style="font-size: 14px; color: #777; margin-bottom: 28px;">
+    Retrouvez les résultats de tous les matchs passés, classés par date.
+    Cliquez sur un jour pour accéder au programme complet avec scores et résumés.
   </p>
 
-  <ul>
-    <li>Saison 2024–2025</li>
-    <li>Saison 2023–2024</li>
-    <li>Saison 2022–2023</li>
-  </ul>
+  <% if @months.any? %>
+    <%
+      month_fr = {
+        "01" => "Janvier", "02" => "Février", "03" => "Mars", "04" => "Avril",
+        "05" => "Mai",     "06" => "Juin",     "07" => "Juillet", "08" => "Août",
+        "09" => "Septembre","10" => "Octobre", "11" => "Novembre","12" => "Décembre"
+      }
+    %>
+
+    <% @months.each_with_index do |(month_key, days), idx| %>
+      <%
+        year, month_num = month_key.split("-")
+        month_label = "#{month_fr[month_num]} #{year}"
+        total_matches = days.values.sum
+      %>
+
+      <details <%= idx == 0 ? "open" : "" %> style="margin-bottom: 12px;">
+        <summary style="
+          display: flex; justify-content: space-between; align-items: center;
+          background: white; border-radius: 12px; padding: 14px 18px;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.06); cursor: pointer;
+          font-weight: 700; font-size: 16px; color: #010e1b; list-style: none;
+          user-select: none;
+          &::-webkit-details-marker { display: none; }
+        ">
+          <span>📅 <%= month_label %></span>
+          <span style="font-size: 13px; font-weight: 500; color: #888;">
+            <%= total_matches %> match<%= total_matches > 1 ? "s" : "" %> &nbsp;&#8964;
+          </span>
+        </summary>
+
+        <div style="background: #fafafa; border-radius: 0 0 12px 12px; padding: 10px 8px; margin-top: -4px;">
+          <% days.each do |date, count| %>
+            <%= link_to day_path(date), style: "text-decoration: none; color: inherit; display: block;" do %>
+              <div style="
+                display: flex; justify-content: space-between; align-items: center;
+                background: white; border-radius: 8px; padding: 10px 14px; margin-bottom: 6px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+              ">
+                <span style="font-size: 14px; font-weight: 600; color: #222;">
+                  <time datetime="<%= date.iso8601 %>">
+                    <%= l(date, format: "%A %d %B %Y").capitalize %>
+                  </time>
+                </span>
+                <span style="font-size: 12px; font-weight: 700; color: #007bff; background: #e8f0fe; border-radius: 20px; padding: 3px 10px;">
+                  <%= count %> match<%= count > 1 ? "s" : "" %>
+                </span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </details>
+    <% end %>
+
+  <% else %>
+    <p style="text-align: center; padding: 40px 0; color: #888;">Aucune archive disponible pour le moment.</p>
+  <% end %>
+
+  <div style="margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap;">
+    <%= link_to resultats_path, style: "background: #010e1b; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700;" do %>
+      Résultats récents
+    <% end %>
+    <%= link_to root_path, style: "background: #f5f5f5; color: #333; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700;" do %>
+      Programme TV du jour
+    <% end %>
+  </div>
 </div>

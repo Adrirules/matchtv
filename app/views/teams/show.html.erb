@@ -220,6 +220,20 @@
 
 </div>
 
+<%# FAQ accordion équipe %>
+<section style="padding: 0 10px; margin-bottom: 24px;">
+  <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 12px;">Questions fréquentes</h2>
+  <% team_faq = [
+    { q: "Sur quelle chaîne voir les matchs de #{@team_name} ?",
+      a: "Les matchs de #{@team_name} sont diffusés selon la compétition : #{@stats&.dig('league','name') || 'championnat'} sur #{@matches.first&.tv_channels || 'Canal+, beIN Sports ou DAZN'}. Consultez chaque fiche match pour connaître la chaîne exacte." },
+    { q: "Quand joue #{@team_name} le prochain match ?",
+      a: @matches.first ? "Le prochain match de #{@team_name} est #{@matches.first.home_team} - #{@matches.first.away_team} le #{l(@matches.first.start_time, format: "%d/%m/%Y à %Hh%M")} sur #{@matches.first.tv_channels}." : "Aucun prochain match de #{@team_name} n'est programmé dans notre base pour le moment." },
+    { q: "Quel est le bilan de #{@team_name} cette saison ?",
+      a: @stats.present? ? "#{@team_name} affiche #{@stats.dig('fixtures','wins','total').to_i} victoire(s), #{@stats.dig('fixtures','draws','total').to_i} nul(s) et #{@stats.dig('fixtures','losses','total').to_i} défaite(s) en #{@stats.dig('fixtures','played','total').to_i} matchs cette saison 2025-2026." : "Les statistiques de #{@team_name} pour la saison 2025-2026 sont disponibles sur notre page équipe." }
+  ] %>
+  <%= render 'shared/faq_accordion', items: team_faq, schema: true %>
+</section>
+
 <%# JSON-LD SportsTeam enrichi %>
 <script type="application/ld+json">
 {

@@ -1,0 +1,26 @@
+<%# Partial FAQ accordion — usage: render 'shared/faq_accordion', items: [{q: "...", a: "..."}], schema: true %>
+<%# schema: true → génère le JSON-LD FAQPage (ne mettre qu'une seule fois par page) %>
+
+<section itemscope itemtype="https://schema.org/FAQPage">
+  <% items.each do |item| %>
+    <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary class="faq-question" itemprop="name">
+        <%= item[:q] %>
+        <span class="faq-chevron">&#8964;</span>
+      </summary>
+      <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <p itemprop="text"><%= item[:a] %></p>
+      </div>
+    </details>
+  <% end %>
+</section>
+
+<% if local_assigns[:schema] %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": <%= items.map { |i| { "@type" => "Question", "name" => i[:q], "acceptedAnswer" => { "@type" => "Answer", "text" => i[:a] } } }.to_json.html_safe %>
+  }
+  </script>
+<% end %>
