@@ -16,7 +16,10 @@ namespace :summaries do
 
     matches.each_with_index do |match, i|
       result = MatchSummaryService.generate(match)
-      if result
+      if result == :daily_limit_reached
+        puts "  🛑 Quota journalier Groq atteint. Reprise demain."
+        break
+      elsif result
         puts "  ✅ [#{i+1}/#{matches.count}] #{match.home_team} #{match.home_score}-#{match.away_score} #{match.away_team}"
       else
         puts "  ⚠️  [#{i+1}/#{matches.count}] Échec : #{match.home_team} vs #{match.away_team}"
@@ -48,7 +51,10 @@ namespace :summaries do
     ok = 0
     matches.each_with_index do |match, i|
       result = MatchSummaryService.generate(match)
-      if result
+      if result == :daily_limit_reached
+        puts "  🛑 Quota journalier Groq atteint (100k tokens/jour). Relance demain."
+        break
+      elsif result
         ok += 1
         puts "  ✅ [#{i+1}/#{matches.count}] #{match.home_team} #{match.home_score}-#{match.away_score} #{match.away_team} (#{match.competition})"
       else
@@ -78,7 +84,10 @@ namespace :summaries do
 
     matches.each_with_index do |match, i|
       result = MatchSummaryService.generate_preview(match)
-      if result
+      if result == :daily_limit_reached
+        puts "  🛑 Quota journalier Groq atteint. Reprise demain."
+        break
+      elsif result
         puts "  ✅ [#{i+1}/#{matches.count}] #{match.home_team} vs #{match.away_team} (#{match.competition})"
       else
         puts "  ⚠️  [#{i+1}/#{matches.count}] Échec : #{match.home_team} vs #{match.away_team}"

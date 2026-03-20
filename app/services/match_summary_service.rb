@@ -41,8 +41,11 @@ class MatchSummaryService
     end
 
     unless response.success?
-      puts "  💥 HTTP #{response.status} pour match #{match.id}: #{response.body.truncate(300)}"
-      Rails.logger.error("[MatchSummaryService] HTTP #{response.status} match #{match.id}: #{response.body}")
+      body = response.body
+      puts "  💥 HTTP #{response.status} pour match #{match.id}: #{body.truncate(300)}"
+      Rails.logger.error("[MatchSummaryService] HTTP #{response.status} match #{match.id}: #{body}")
+      # Quota journalier épuisé → signal spécial pour stopper le batch
+      return :daily_limit_reached if response.status == 429 && body.include?("tokens per day")
       return nil
     end
 
