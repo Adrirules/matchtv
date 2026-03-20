@@ -79,13 +79,10 @@
   border-radius: 8px;
   transition: background 0.15s;
 
-  &:hover {
-    background: #f4f4f4;
-  }
+  &:hover { background: #f4f4f4; }
+  &.active { color: #007bff; font-weight: 700; }
 
-  span {
-    margin-right: 4px;
-  }
+  span { margin-right: 4px; }
 }
 
 @media (min-width: 1024px) {
@@ -120,6 +117,7 @@
   font-size: 12px;
   color: #333;
   text-decoration: none;
+  &.active { color: #007bff; font-weight: 700; }
 }
 
 .nav-item span {

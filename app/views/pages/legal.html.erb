@@ -1,51 +1,65 @@
-<div class="page container">
-  <h1>Mentions légales</h1>
+<% content_for :title, "Mentions légales - Coup d'Envoi TV" %>
+<% content_for :meta_description, "Mentions légales de Coup d'Envoi TV : éditeur, hébergement, propriété intellectuelle et responsabilité." %>
 
-  <h2>Éditeur du site</h2>
-  <p>
-    Coup d'envoi TV<br>
-    13 Allées Léon Gambetta<br>
-    92110 Clichy<br>
-    France<br>
-    Email : <%= mail_to "coupdenvoi@gmail.com" %>
-  </p>
+<div style="max-width: 680px; margin: 0 auto; padding: 20px 16px;">
 
-  <h2>Hébergement</h2>
-  <p>
-    Ce site est hébergé par Heroku (Salesforce, Inc.)<br>
-    415 Mission Street, Suite 300<br>
-    San Francisco, CA 94105 — États-Unis<br>
-    <a href="https://www.heroku.com" target="_blank" rel="noopener">www.heroku.com</a>
-  </p>
+  <nav style="font-size: 12px; color: #999; margin-bottom: 16px;">
+    <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> › Mentions légales
+  </nav>
 
-  <h2>Données personnelles et cookies</h2>
-  <p>
-    Coup d'envoi TV utilise des outils de mesure d'audience (Google Analytics via Google Tag Manager)
-    ainsi que des cookies publicitaires (Google AdSense) afin de financer le service.
-    Ces traitements sont soumis à votre consentement, recueilli via notre bandeau de gestion des cookies.
-  </p>
-  <p>
-    Pour en savoir plus, consultez notre <%= link_to "Politique de confidentialité", politique_confidentialite_path %>.
-  </p>
+  <h1 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 24px;">Mentions légales</h1>
 
-  <h2>Propriété intellectuelle</h2>
-  <p>
-    Le contenu éditorial du site (textes, mise en forme, interface) est la propriété de Coup d'envoi TV.
-    Les données sportives (résultats, horaires, logos d'équipes) sont issues d'une API tierce
-    et restent la propriété de leurs ayants droit respectifs.
-    Toute reproduction non autorisée du contenu éditorial est interdite.
-  </p>
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">Éditeur du site</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Coup d'Envoi TV - projet indépendant édité par Adrien<br>
+      13 Allées Léon Gambetta, 92110 Clichy, France<br>
+      Contact : <a href="mailto:coupdenvoi@gmail.com" style="color: #007bff;">coupdenvoi@gmail.com</a>
+    </p>
+  </section>
 
-  <h2>Responsabilité</h2>
-  <p>
-    Les informations relatives aux horaires et chaînes de diffusion sont fournies à titre indicatif
-    et peuvent être modifiées par les diffuseurs sans préavis.
-    Coup d'envoi TV ne saurait être tenu responsable d'une erreur ou d'une omission dans ces informations.
-  </p>
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">Hébergement</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Ce site est hébergé par Heroku (Salesforce, Inc.)<br>
+      415 Mission Street, Suite 300, San Francisco, CA 94105 - États-Unis<br>
+      <a href="https://www.heroku.com" target="_blank" rel="noopener" style="color: #007bff;">www.heroku.com</a>
+    </p>
+  </section>
 
-  <h2>Droit applicable</h2>
-  <p>
-    Le présent site est soumis au droit français. Tout litige relatif à son utilisation
-    relève de la compétence exclusive des tribunaux français.
-  </p>
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">Données personnelles et cookies</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Coup d'Envoi TV utilise des outils de mesure d'audience et de publicité afin de financer le service.
+      Ces traitements sont soumis à votre consentement, recueilli via notre bandeau de gestion des cookies.
+      Pour en savoir plus, consultez notre <%= link_to "Politique de confidentialité", politique_confidentialite_path, style: "color: #007bff;" %>.
+    </p>
+  </section>
+
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">Propriété intellectuelle</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Le contenu éditorial du site (textes, mise en forme, interface) est la propriété de Coup d'Envoi TV.
+      Les données sportives (résultats, horaires, logos d'équipes) restent la propriété de leurs ayants droit respectifs.
+      Toute reproduction non autorisée du contenu éditorial est interdite.
+    </p>
+  </section>
+
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">Responsabilité</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Les informations relatives aux horaires et chaînes de diffusion sont fournies à titre indicatif
+      et peuvent être modifiées par les diffuseurs sans préavis.
+      Coup d'Envoi TV ne saurait être tenu responsable d'une erreur ou d'une omission dans ces informations.
+    </p>
+  </section>
+
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 24px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">Droit applicable</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Le présent site est soumis au droit français. Tout litige relatif à son utilisation
+      relève de la compétence exclusive des tribunaux français.
+    </p>
+  </section>
+
 </div>

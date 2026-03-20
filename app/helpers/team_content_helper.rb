@@ -103,7 +103,7 @@ module TeamContentHelper
       elsif goals_for == goals_against
         parts << "Avec autant de buts marqués (#{goals_for}) qu'encaissés (#{goals_against}), #{team_name} cherche encore son équilibre."
       else
-        parts << "La défense est mise à rude épreuve avec #{goals_against} buts encaissés contre #{goals_for} marqués — un déséquilibre à corriger."
+        parts << "La défense est mise à rude épreuve avec #{goals_against} buts encaissés contre #{goals_for} marqués - un déséquilibre à corriger."
       end
       parts << rank ? "Résultat : une #{rank}e place en #{league_name} après #{played} journées." : "Le bilan global : #{wins}V #{draws}N #{losses}D en #{played} matchs."
       parts.join(" ")
@@ -130,7 +130,7 @@ module TeamContentHelper
       end
       momentum = form_recent_wins >= 3 ? "en pleine confiance" : form_recent_wins <= 1 ? "en quête de régularité" : "dans une forme correcte"
       parts << "Le groupe est actuellement #{momentum} avec #{form_label} sur ses 5 dernières sorties." unless form.empty?
-      parts << "Au total : #{goals_for} buts pour, #{goals_against} contre — différence de #{diff_label}."
+      parts << "Au total : #{goals_for} buts pour, #{goals_against} contre - différence de #{diff_label}."
       parts.join(" ")
 
     when 9

@@ -46,7 +46,7 @@
     }
   }.tap { |s|
     if match.finished? && match.home_score.present?
-      s["description"] = "Résultat : #{match.home_team} #{match.home_score}-#{match.away_score} #{match.away_team} — #{match.competition}"
+      s["description"] = "Résultat : #{match.home_team} #{match.home_score}-#{match.away_score} #{match.away_team} - #{match.competition}"
     end
   }.to_json.html_safe %>
 </script>

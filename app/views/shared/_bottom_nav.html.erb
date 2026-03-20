@@ -2,27 +2,27 @@
      class="bottom-nav"
      data-controller="navbar"
      data-action="scroll@window->navbar#onScroll">
-  <%= link_to root_path, class: "nav-item" do %>
+  <%= link_to root_path, class: "nav-item #{request.path == '/' || request.path.start_with?('/days') ? 'active' : ''}" do %>
     <span>📺</span>
     Programme
   <% end %>
 
-  <%= link_to resultats_path, class: "nav-item" do %>
+  <%= link_to resultats_path, class: "nav-item #{request.path.start_with?('/resultats') ? 'active' : ''}" do %>
     <span>🏁</span>
     Résultats
   <% end %>
 
-  <%= link_to competitions_path, class: "nav-item" do %>
+  <%= link_to competitions_path, class: "nav-item #{request.path.start_with?('/competitions') ? 'active' : ''}" do %>
     <span>🏆</span>
     <p>Ligues</p>
   <% end %>
 
-  <%= link_to "/equipes", class: "nav-item" do %>
+  <%= link_to teams_path, class: "nav-item #{request.path.start_with?('/equipes') ? 'active' : ''}" do %>
     <span>⚽</span>
     Équipes
   <% end %>
 
-  <%= link_to "/classement", class: "nav-item" do %>
+  <%= link_to standings_path, class: "nav-item #{request.path.start_with?('/classement') ? 'active' : ''}" do %>
     <span>📊</span>
     Classement
   <% end %>

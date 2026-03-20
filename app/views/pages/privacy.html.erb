@@ -1,58 +1,79 @@
-<div class="page container">
-  <h1>Politique de confidentialité</h1>
-  <p><em>Dernière mise à jour : mars 2026</em></p>
+<% content_for :title, "Politique de confidentialité - Coup d'Envoi TV" %>
+<% content_for :meta_description, "Politique de confidentialité de Coup d'Envoi TV : données collectées, cookies, droits RGPD et gestion des préférences." %>
 
-  <h2>1. Qui sommes-nous ?</h2>
-  <p>
-    Coup d'envoi TV est un service d'information sur le programme TV sport,
-    édité à titre indépendant (13 Allées Léon Gambetta, 92110 Clichy, France).
-    Contact : <%= mail_to "coupdenvoi@gmail.com" %>.
-  </p>
+<div style="max-width: 680px; margin: 0 auto; padding: 20px 16px;">
 
-  <h2>2. Données collectées</h2>
-  <p>
-    Coup d'envoi TV ne collecte aucune donnée personnelle directement (pas de compte,
-    pas de formulaire d'inscription). Cependant, des tiers intégrés au site peuvent
-    déposer des cookies et collecter des données de navigation :
-  </p>
-  <ul>
-    <li><strong>Google Analytics (via Google Tag Manager)</strong> : mesure d'audience anonymisée (pages vues, durée de visite, type d'appareil). Les données sont traitées par Google LLC.</li>
-    <li><strong>Google AdSense</strong> : affichage de publicités personnalisées en fonction de vos centres d'intérêt. Ce service dépose des cookies publicitaires.</li>
-  </ul>
+  <nav style="font-size: 12px; color: #999; margin-bottom: 16px;">
+    <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> › Politique de confidentialité
+  </nav>
 
-  <h2>3. Base légale (RGPD)</h2>
-  <p>
-    Ces traitements reposent sur votre <strong>consentement</strong> (article 6.1.a du RGPD),
-    recueilli via notre bandeau de gestion des cookies à votre première visite.
-    Vous pouvez retirer votre consentement à tout moment.
-  </p>
+  <h1 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 4px;">Politique de confidentialité</h1>
+  <p style="font-size: 12px; color: #bbb; margin-bottom: 24px;">Dernière mise à jour : mars 2026</p>
 
-  <h2>4. Durée de conservation</h2>
-  <p>
-    Les données de navigation collectées via Google Analytics sont conservées 14 mois.
-    Les cookies publicitaires Google ont une durée maximale de 13 mois.
-  </p>
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">1. Qui sommes-nous ?</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Coup d'Envoi TV est un service d'information sur le programme TV sport, édité à titre indépendant
+      (13 Allées Léon Gambetta, 92110 Clichy, France).
+      Contact : <a href="mailto:coupdenvoi@gmail.com" style="color: #007bff;">coupdenvoi@gmail.com</a>.
+    </p>
+  </section>
 
-  <h2>5. Vos droits</h2>
-  <p>
-    Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d'un droit
-    d'accès, de rectification, d'effacement et d'opposition concernant vos données.
-    Pour exercer ces droits, contactez-nous à <%= mail_to "coupdenvoi@gmail.com" %>.
-    Vous pouvez également adresser une réclamation à la
-    <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>.
-  </p>
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">2. Données collectées</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 10px;">
+      Coup d'Envoi TV ne collecte aucune donnée personnelle directement (pas de compte, pas de formulaire d'inscription).
+      Cependant, des tiers intégrés au site peuvent déposer des cookies et collecter des données de navigation :
+    </p>
+    <ul style="font-size: 14px; color: #444; line-height: 1.9; padding-left: 20px; margin: 0;">
+      <li><strong>Google Analytics (via Google Tag Manager)</strong> : mesure d'audience anonymisée (pages vues, durée de visite, type d'appareil). Les données sont traitées par Google LLC.</li>
+      <li><strong>Google AdSense</strong> : affichage de publicités. Ce service dépose des cookies publicitaires.</li>
+    </ul>
+  </section>
 
-  <h2>6. Gestion des cookies</h2>
-  <p>
-    Vous pouvez modifier vos préférences de cookies à tout moment en cliquant sur
-    "Gérer mes cookies" en bas de page, ou en paramétrant votre navigateur pour refuser
-    les cookies tiers.
-  </p>
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">3. Base légale (RGPD)</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Ces traitements reposent sur votre <strong>consentement</strong> (article 6.1.a du RGPD),
+      recueilli via notre bandeau de gestion des cookies à votre première visite.
+      Vous pouvez retirer votre consentement à tout moment.
+    </p>
+  </section>
 
-  <h2>7. Hébergement</h2>
-  <p>
-    Le site est hébergé par Heroku (Salesforce, Inc.), San Francisco, CA — États-Unis.
-    Les données de trafic transitent par leurs serveurs conformément à leurs propres
-    politiques de sécurité.
-  </p>
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">4. Durée de conservation</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Les données de navigation collectées via Google Analytics sont conservées 14 mois.
+      Les cookies publicitaires Google ont une durée maximale de 13 mois.
+    </p>
+  </section>
+
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">5. Vos droits</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d'un droit
+      d'accès, de rectification, d'effacement et d'opposition concernant vos données.
+      Pour exercer ces droits, contactez-nous à <a href="mailto:coupdenvoi@gmail.com" style="color: #007bff;">coupdenvoi@gmail.com</a>.
+      Vous pouvez également adresser une réclamation à la
+      <a href="https://www.cnil.fr" target="_blank" rel="noopener" style="color: #007bff;">CNIL</a>.
+    </p>
+  </section>
+
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">6. Gestion des cookies</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Vous pouvez modifier vos préférences de cookies à tout moment en cliquant sur
+      "Gérer mes cookies" en bas de page, ou en paramétrant votre navigateur pour refuser
+      les cookies tiers.
+    </p>
+  </section>
+
+  <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 24px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 10px;">7. Hébergement</h2>
+    <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+      Le site est hébergé par Heroku (Salesforce, Inc.), San Francisco, CA - États-Unis.
+      Les données de trafic transitent par leurs serveurs conformément à leurs propres politiques de sécurité.
+    </p>
+  </section>
+
 </div>

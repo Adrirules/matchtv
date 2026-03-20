@@ -4,7 +4,7 @@
 <% match_count = @matches.size %>
 <% goal_count = @matches.sum { |m| m.home_score.to_i + m.away_score.to_i } %>
 <% comp_names = @matches.map(&:competition).compact.uniq.first(3).join(", ") %>
-<% content_for :title, "Résultats foot #{date_label} — #{match_count} matchs, #{goal_count} buts | Coup d'Envoi TV" %>
+<% content_for :title, "Résultats foot #{date_label} - #{match_count} matchs, #{goal_count} buts | Coup d'Envoi TV" %>
 <% content_for :meta_description, "Scores et résultats des matchs de football #{date_label} : #{comp_names}. #{match_count} rencontres, #{goal_count} buts au total." %>
 
 <%# --- CALENDRIER (7 jours vers le passé) --- %>

@@ -1,19 +1,19 @@
 <header class="top-nav">
-  <%= link_to "Coup d'envoi TV", root_path, class: "top-nav-logo" %>
+  <%= link_to "Coup d'Envoi TV", root_path, class: "top-nav-logo" %>
   <nav class="top-nav-links">
-    <%= link_to root_path, class: "top-nav-item" do %>
+    <%= link_to root_path, class: "top-nav-item #{request.path == '/' || request.path.start_with?('/days') ? 'active' : ''}" do %>
       <span>📺</span> Programme
     <% end %>
-    <%= link_to resultats_path, class: "top-nav-item" do %>
+    <%= link_to resultats_path, class: "top-nav-item #{request.path.start_with?('/resultats') ? 'active' : ''}" do %>
       <span>🏁</span> Résultats
     <% end %>
-    <%= link_to competitions_path, class: "top-nav-item" do %>
+    <%= link_to competitions_path, class: "top-nav-item #{request.path.start_with?('/competitions') ? 'active' : ''}" do %>
       <span>🏆</span> Ligues
     <% end %>
-    <%= link_to teams_path, class: "top-nav-item" do %>
+    <%= link_to teams_path, class: "top-nav-item #{request.path.start_with?('/equipes') ? 'active' : ''}" do %>
       <span>⚽</span> Équipes
     <% end %>
-    <%= link_to standings_path, class: "top-nav-item" do %>
+    <%= link_to standings_path, class: "top-nav-item #{request.path.start_with?('/classement') ? 'active' : ''}" do %>
       <span>📊</span> Classement
     <% end %>
   </nav>
