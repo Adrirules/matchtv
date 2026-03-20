@@ -33,6 +33,13 @@ class PlayersController < ApplicationController
       @minutes  = @stats&.dig('games', 'minutes').to_i
     end
 
+    # Nom complet depuis l'API (firstname + lastname) — plus SEO que l'abrégé "M. Gonzalez"
+    @full_name = if @info
+      "#{@info['firstname']} #{@info['lastname']}".strip.presence || @player.name
+    else
+      @player.name
+    end
+
     # Prochains matchs de l'équipe du joueur
     @upcoming_matches = Match.where(
       "home_team_api_id = ? OR away_team_api_id = ?",
@@ -41,8 +48,8 @@ class PlayersController < ApplicationController
      .order(:start_time)
      .limit(5)
 
-    @page_title = "#{@player.name} — Stats 2025-2026, buts et passes | Coup d'Envoi TV"
-    @page_desc  = "Statistiques complètes de #{@player.name} pour la saison 2025-2026 : #{@goals} but#{'s' if @goals != 1}, #{@assists} passe#{'s' if @assists != 1} décisive#{'s' if @assists != 1} en #{@games} match#{'s' if @games != 1}. Programme TV des prochains matchs."
+    @page_title = "#{@full_name} — Stats 2025-2026, buts et passes | Coup d'Envoi TV"
+    @page_desc  = "Statistiques complètes de #{@full_name} pour la saison 2025-2026 : #{@goals} but#{'s' if @goals != 1}, #{@assists} passe#{'s' if @assists != 1} décisive#{'s' if @assists != 1} en #{@games} match#{'s' if @games != 1}. Programme TV des prochains matchs."
 
     expires_in 6.hours, public: true
   end

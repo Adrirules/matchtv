@@ -148,19 +148,10 @@
   <%= render 'shared/ad_unit', slot_id: '2773465276' %>
 
   <section style="margin: 40px 0; background: #fff; padding: 25px; border-radius: 12px; line-height: 1.7; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
-    <h2 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 15px;">Détails de la diffusion TV</h2>
-    <p style="font-size: 16px; color: #333; margin-bottom: 15px;">
-      Le match <strong><%= @match.home_team %></strong> recevra <strong><%= @match.away_team %></strong> à l'occasion de la <strong><%= @match.competition %></strong>.
-      La rencontre sera retransmise en direct ce <strong><%= date_label %></strong> à <strong><%= @match.start_time.strftime("%Hh%M") %></strong> sur la chaîne <strong><%= @match.tv_channels %></strong>.
-    </p>
-    <p style="font-size: 16px; color: #333; margin-bottom: 15px;">
-      Pour suivre le match en streaming légal sur votre ordinateur, tablette ou smartphone, il vous faudra passer par l'application officielle du diffuseur (Canal+ Foot, beIN CONNECT, DAZN, etc.) muni de votre abonnement.
-    </p>
-    <p style="font-size: 16px; color: #333;">
-      Ce match de <strong><%= @match.competition %></strong> entre <strong><%= @match.home_team %></strong> et <strong><%= @match.away_team %></strong>
-      est l'une des affiches de la saison 2025/2026. Coup d'envoi prévu à <strong><%= @match.start_time.strftime("%Hh%M") %></strong>,
-      diffusé en exclusivité sur <strong><%= @match.tv_channels %></strong>.
-    </p>
+    <h2 style="font-size: 22px; font-weight: 800; color: #010e1b; margin-bottom: 15px;">Diffusion TV et streaming</h2>
+    <% generate_match_diffusion_paragraphs(@match).each do |para| %>
+      <p style="font-size: 16px; color: #333; margin-bottom: 15px;"><%= para.html_safe %></p>
+    <% end %>
   </section>
 
   <%# FAQ visible (requis pour valider le FAQPage schema) %>
