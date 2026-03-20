@@ -90,11 +90,27 @@
       </p>
     </section>
   <% else %>
-    <p style="font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
-      <%= @player.name %> est <%= position_fr[@player.position] || "joueur" %> à <%= @player.team_name %>.
-      <% if @player.nationality.present? %>International <%= @player.nationality %>.<% end %>
-      Retrouvez ses prochains matchs à la télévision ci-dessous.
-    </p>
+    <section style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+      <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 10px; color: #010e1b;">Profil — Saison 2025-2026</h2>
+      <p style="font-size: 14px; color: #555; line-height: 1.75; margin: 0 0 10px;">
+        <%
+          pos_label  = position_fr[@player.position] || "footballeur professionnel"
+          age_str    = @info&.dig('age').present? ? ", #{@info.dig('age')} ans" : ""
+          height_str = @info&.dig('height').present? ? " (#{@info.dig('height')})" : ""
+          weight_str = @info&.dig('weight').present? ? ", #{@info.dig('weight')}" : ""
+          nat_str    = @player.nationality.present? ? "De nationalité #{@player.nationality}, il" : "Il"
+          birth_city = @info&.dig('birth','place').presence
+          birth_country = @info&.dig('birth','country').presence
+          birth_str  = birth_city ? " né à #{birth_city}#{birth_country ? " (#{birth_country})" : ""}" : ""
+        %>
+        <strong><%= @full_name %></strong> est <%= pos_label %><%= age_str %><%= height_str %><%= weight_str %><%= birth_str %>,
+        qui évolue cette saison 2025-2026 sous les couleurs de <strong><%= @team || @player.team_name %></strong><%= @league.present? ? " en #{@league}" : "" %>.
+      </p>
+      <p style="font-size: 14px; color: #555; line-height: 1.75; margin: 0;">
+        <%= nat_str %> n'a pas encore disputé de match comptabilisé cette saison.
+        Retrouvez ci-dessous les prochains matchs de <strong><%= @player.team_name %></strong> à la télévision pour suivre <%= @full_name %> en direct.
+      </p>
+    </section>
   <% end %>
 
   <%= render 'shared/ad_unit', slot_id: '2182108767' %>
