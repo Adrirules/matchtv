@@ -77,39 +77,46 @@
         <% end %>
       </div>
 
-      <%# Texte SEO %>
-      <p style="font-size: 14px; color: #555; line-height: 1.75; margin-top: 14px; margin-bottom: 0;">
-        <%= @player.name %> évolue en tant que <%= position_fr[@player.position] || "joueur" %>
-        à <%= @team || @player.team_name %><% if @league %> en <%= @league %><% end %>.
-        Cette saison 2025-2026, il compte <%= @goals %> but<%= 's' if @goals != 1 %>
-        et <%= @assists %> passe<%= 's' if @assists != 1 %> décisive<%= 's' if @assists != 1 %>
-        en <%= @games %> match<%= 'es' if @games != 1 %> disputés<%= " (#{@minutes} minutes de jeu)" if @minutes > 0 %>.
-        <% if @rating && @rating > 0 %>Sa note moyenne est de <%= @rating %>/10.<% end %>
-        <% if @player.nationality.present? %>International <%= @player.nationality %>, il<% end %>
-        <% if @goals > 10 %>fait partie des meilleurs buteurs de sa ligue cette saison.<% elsif @assists > 5 %>est l'un des joueurs les plus décisifs de son équipe.<% else %>participe activement aux performances de son équipe.<% end %>
-      </p>
+      <%# Texte éditorial combinatoire %>
+      <%
+        intro_text     = player_intro_block(@player, @full_name, @info, @league)
+        off_text       = player_offensive_block(@player, @full_name, @stats, @goals, @assists, @games, @rating, @minutes)
+        def_text       = player_defensive_block(@player, @full_name, @stats, @games)
+        profile_text   = player_profile_block(@player, @full_name, @info)
+        league_text    = player_league_block(@player, @full_name, @league, @team || @player.team_name)
+        cta_text       = player_cta_block(@player, @full_name, @player.team_name, @upcoming_matches)
+
+        is_defensive   = %w[Goalkeeper Defender].include?(@player.position)
+        stats_text     = is_defensive ? def_text : off_text
+      %>
+      <div style="font-size: 14px; color: #555; line-height: 1.75; margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+        <p style="margin: 0;"><%= raw intro_text %></p>
+        <% if stats_text.present? %><p style="margin: 0;"><%= raw stats_text %></p><% end %>
+        <% if profile_text.present? %><p style="margin: 0;"><%= raw profile_text %></p><% end %>
+        <% if league_text.present? %><p style="margin: 0;"><%= raw league_text %></p><% end %>
+        <% if cta_text.present? %><p style="margin: 0;"><%= raw cta_text %></p><% end %>
+      </div>
     </section>
   <% else %>
+    <%# Joueur sans stats — profil combinatoire aussi %>
+    <%
+      intro_text   = player_intro_block(@player, @full_name, @info, @league)
+      profile_text = player_profile_block(@player, @full_name, @info)
+      league_text  = player_league_block(@player, @full_name, @league, @team || @player.team_name)
+      cta_text     = player_cta_block(@player, @full_name, @player.team_name, @upcoming_matches)
+    %>
     <section style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-      <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 10px; color: #010e1b;">Profil - Saison 2025-2026</h2>
-      <p style="font-size: 14px; color: #555; line-height: 1.75; margin: 0 0 10px;">
-        <%
-          pos_label  = position_fr[@player.position] || "footballeur professionnel"
-          age_str    = @info&.dig('age').present? ? ", #{@info.dig('age')} ans" : ""
-          height_str = @info&.dig('height').present? ? " (#{@info.dig('height')})" : ""
-          weight_str = @info&.dig('weight').present? ? ", #{@info.dig('weight')}" : ""
-          nat_str    = @player.nationality.present? ? "De nationalité #{@player.nationality}, il" : "Il"
-          birth_city = @info&.dig('birth','place').presence
-          birth_country = @info&.dig('birth','country').presence
-          birth_str  = birth_city ? " né à #{birth_city}#{birth_country ? " (#{birth_country})" : ""}" : ""
-        %>
-        <strong><%= @full_name %></strong> est <%= pos_label %><%= age_str %><%= height_str %><%= weight_str %><%= birth_str %>,
-        qui évolue cette saison 2025-2026 sous les couleurs de <strong><%= @team || @player.team_name %></strong><%= @league.present? ? " en #{@league}" : "" %>.
-      </p>
-      <p style="font-size: 14px; color: #555; line-height: 1.75; margin: 0;">
-        <%= nat_str %> n'a pas encore disputé de match comptabilisé cette saison.
-        Retrouvez ci-dessous les prochains matchs de <strong><%= @player.team_name %></strong> à la télévision pour suivre <%= @full_name %> en direct.
-      </p>
+      <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 12px; color: #010e1b;">Profil 2025-2026</h2>
+      <div style="font-size: 14px; color: #555; line-height: 1.75; display: flex; flex-direction: column; gap: 8px;">
+        <p style="margin: 0;"><%= raw intro_text %></p>
+        <% if profile_text.present? %><p style="margin: 0;"><%= raw profile_text %></p><% end %>
+        <% if league_text.present? %><p style="margin: 0;"><%= raw league_text %></p><% end %>
+        <% if cta_text.present? %>
+          <p style="margin: 0;"><%= raw cta_text %></p>
+        <% else %>
+          <p style="margin: 0;">Aucun match comptabilisé cette saison pour le moment. Retrouvez le programme TV de <strong><%= @player.team_name %></strong> pour suivre ce joueur en direct.</p>
+        <% end %>
+      </div>
     </section>
   <% end %>
 
