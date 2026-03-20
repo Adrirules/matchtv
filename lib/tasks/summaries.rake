@@ -21,7 +21,7 @@ namespace :summaries do
       else
         puts "  ⚠️  [#{i+1}/#{matches.count}] Échec : #{match.home_team} vs #{match.away_team}"
       end
-      sleep 3
+      sleep 4
     end
 
     puts "🎉 Résumés générés !"
@@ -54,7 +54,7 @@ namespace :summaries do
       else
         puts "  ⚠️  [#{i+1}/#{matches.count}] Échec : #{match.home_team} vs #{match.away_team}"
       end
-      sleep 3
+      sleep 4
     end
 
     remaining = Match.where(status: Match::FINISHED_STATUSES).where(summary: nil).count
@@ -83,7 +83,7 @@ namespace :summaries do
       else
         puts "  ⚠️  [#{i+1}/#{matches.count}] Échec : #{match.home_team} vs #{match.away_team}"
       end
-      sleep 2.1
+      sleep 4
     end
 
     puts "🎉 Previews générés !"
