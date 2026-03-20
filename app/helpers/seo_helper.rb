@@ -8,38 +8,74 @@ module SeoHelper
   end
 
   def generate_match_seo(match)
-    templates = [
-      {
-        title: "%{match} : Chaîne TV, Heure et Direct | Coup d'Envoi TV",
-        desc: "Sur quelle chaîne et à quelle heure regarder %{match} ? Programme TV complet, horaire de diffusion et infos match en direct."
-      },
-      {
-        title: "%{match} : sur quelle chaîne voir le match ? | Coup d'Envoi TV",
-        desc: "Diffusion %{match} : heure de coup d'envoi et chaîne TV. Notre guide complet pour ne rien rater du match en direct ou en streaming."
-      },
-      {
-        title: "%{match} - Heure, chaîne TV et streaming | Coup d'Envoi TV",
-        desc: "Tout savoir sur la diffusion de %{match} : heure de coup d'envoi, chaîne TV et accès streaming légal. Mis à jour en temps réel."
-      },
-      {
-        title: "Où voir %{match} ? Chaîne et heure | Coup d'Envoi TV",
-        desc: "Vous cherchez sur quelle chaîne passe %{match} ? Retrouvez l'heure de diffusion, la chaîne TV et le lien streaming officiel."
-      },
-      {
-        title: "%{match} en direct : chaîne TV et coup d'envoi | Coup d'Envoi TV",
-        desc: "%{match} : découvrez à quelle heure et sur quelle chaîne regarder ce match en direct. Streaming légal disponible sur l'application officielle."
-      },
-      {
-        title: "%{match} : programme TV et streaming | Coup d'Envoi TV",
-        desc: "Ne ratez pas %{match} ! Heure de coup d'envoi, chaîne TV et accès streaming. Toutes les infos pour suivre le match en direct."
-      }
-    ]
-
-    template = templates[match.id % templates.size]
     match_name = "#{match.home_team} - #{match.away_team}"
 
-    meta_title(template[:title] % { match: match_name })
-    meta_description(template[:desc] % { match: match_name })
+    if match.finished? && match.has_score?
+      score = "#{match.home_score}-#{match.away_score}"
+      comp  = match.competition
+
+      winner_phrase = if match.home_score.to_i > match.away_score.to_i
+        "#{match.home_team} s'impose #{score}"
+      elsif match.away_score.to_i > match.home_score.to_i
+        "#{match.away_team} s'impose #{score}"
+      else
+        "match nul #{score}"
+      end
+
+      result_templates = [
+        {
+          title: "%{h} %{score} %{a} - Résultat et résumé %{comp} | Coup d'Envoi TV",
+          desc: "Résultat %{h} - %{a} : %{winner}. Retrouvez le résumé complet et les stats de ce match de %{comp}."
+        },
+        {
+          title: "Résultat %{h} vs %{a} (%{score}) - %{comp} | Coup d'Envoi TV",
+          desc: "Score final %{h} - %{a} : %{score} en %{comp}. Résumé du match, faits marquants et classement mis à jour."
+        },
+        {
+          title: "%{h} - %{a} : score %{score} et résumé du match | Coup d'Envoi TV",
+          desc: "%{winner} face à %{a} en %{comp} (%{score}). Compte-rendu complet de la rencontre sur Coup d'Envoi TV."
+        },
+        {
+          title: "Score %{h} - %{a} : %{score} - Résumé %{comp} | Coup d'Envoi TV",
+          desc: "Vous cherchez le résultat de %{h} - %{a} ? Score final : %{score} en %{comp}. Résumé et analyse de la rencontre."
+        }
+      ]
+
+      template = result_templates[match.id % result_templates.size]
+      meta_title(template[:title] % { h: match.home_team, a: match.away_team, score: score, comp: comp })
+      meta_description(template[:desc] % { h: match.home_team, a: match.away_team, score: score, comp: comp, winner: winner_phrase })
+    else
+      upcoming_templates = [
+        {
+          title: "%{match} : Chaîne TV, Heure et Direct | Coup d'Envoi TV",
+          desc: "Sur quelle chaîne et à quelle heure regarder %{match} ? Programme TV complet, horaire de diffusion et infos match en direct."
+        },
+        {
+          title: "%{match} : sur quelle chaîne voir le match ? | Coup d'Envoi TV",
+          desc: "Diffusion %{match} : heure de coup d'envoi et chaîne TV. Notre guide complet pour ne rien rater du match en direct ou en streaming."
+        },
+        {
+          title: "%{match} - Heure, chaîne TV et streaming | Coup d'Envoi TV",
+          desc: "Tout savoir sur la diffusion de %{match} : heure de coup d'envoi, chaîne TV et accès streaming légal. Mis à jour en temps réel."
+        },
+        {
+          title: "Où voir %{match} ? Chaîne et heure | Coup d'Envoi TV",
+          desc: "Vous cherchez sur quelle chaîne passe %{match} ? Retrouvez l'heure de diffusion, la chaîne TV et le lien streaming officiel."
+        },
+        {
+          title: "%{match} en direct : chaîne TV et coup d'envoi | Coup d'Envoi TV",
+          desc: "%{match} : découvrez à quelle heure et sur quelle chaîne regarder ce match en direct. Streaming légal disponible sur l'application officielle."
+        },
+        {
+          title: "%{match} : programme TV et streaming | Coup d'Envoi TV",
+          desc: "Ne ratez pas %{match} ! Heure de coup d'envoi, chaîne TV et accès streaming. Toutes les infos pour suivre le match en direct."
+        }
+      ]
+
+      template = upcoming_templates[match.id % upcoming_templates.size]
+      meta_title(template[:title] % { match: match_name })
+      meta_description(template[:desc] % { match: match_name })
+    end
   end
 
   # 10 variations du bloc "Détails diffusion" - sélection stable par match.id
