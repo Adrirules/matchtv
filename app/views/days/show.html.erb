@@ -19,24 +19,58 @@
   Programme TV foot <%= date_label %>
 </h1>
 
+<%
+  is_future  = @date > Date.today
+  is_past    = @date < Date.today
+  count      = @matches.size
+  comps      = @matches.map(&:competition).compact.uniq.first(4)
+  comps_str  = comps.any? ? comps.to_sentence(words_connector: ', ', two_words_connector: ' et ', last_word_connector: ' et ') : nil
+%>
+
 <% if @date == Date.today %>
   <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
     <p style="margin: 0 0 10px;">
-      <strong>Coup d'envoi TV</strong> est votre guide du programme TV football en France.
+      <strong>Coup d'Envoi TV</strong> est votre guide du programme TV football en France.
       Retrouvez chaque jour les matchs diffusés à la télévision avec l'heure de coup d'envoi,
-      la chaîne (Canal+, beIN Sports, DAZN, TF1, M6, France TV, RMC Sport) et le score en direct.
+      la chaîne (Canal+, beIN Sports, DAZN, TF1, M6, France TV) et le score en direct.
     </p>
     <p style="margin: 0 0 10px;">
       Nous couvrons toutes les grandes compétitions : <strong>Ligue 1</strong>, <strong>Champions League</strong>,
       <strong>Premier League</strong>, <strong>Bundesliga</strong>, <strong>Serie A</strong>,
       <strong>La Liga</strong>, <strong>Europa League</strong>, <strong>Coupe de France</strong> et bien d'autres.
-      Le programme est mis à jour plusieurs fois par jour.
     </p>
     <p style="margin: 0;">
       Pour chaque match terminé, retrouvez le score final et un résumé de la rencontre.
       Consultez aussi les <%= link_to "classements", standings_path, style: "color: #007bff;" %>,
       les <%= link_to "résultats", resultats_path, style: "color: #007bff;" %> et les
       <%= link_to "pages équipes", teams_path, style: "color: #007bff;" %> pour tout savoir sur la saison en cours.
+    </p>
+  </div>
+
+<% elsif is_future && count > 0 %>
+  <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
+    <p style="margin: 0 0 8px;">
+      <strong><%= count %> match<%= count > 1 ? 's' : '' %></strong>
+      <%= count > 1 ? 'sont programmés' : 'est programmé' %> le <strong><%= l(@date, format: :long) %></strong> à la télévision.
+      <% if comps_str %> Au programme ce jour-là : <strong><%= comps_str %></strong>.<% end %>
+    </p>
+    <p style="margin: 0;">
+      Retrouvez pour chaque rencontre l'heure de coup d'envoi et la chaîne de diffusion.
+      Consultez les <%= link_to "classements", standings_path, style: "color: #007bff;" %>
+      et les <%= link_to "pages équipes", teams_path, style: "color: #007bff;" %> pour suivre la saison en cours.
+    </p>
+  </div>
+
+<% elsif is_past && count > 0 %>
+  <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
+    <p style="margin: 0 0 8px;">
+      Le <strong><%= l(@date, format: :long) %></strong>, <strong><%= count %> match<%= count > 1 ? 's' : '' %></strong>
+      <%= count > 1 ? 'étaient diffusés' : 'était diffusé' %> à la télévision.
+      <% if comps_str %> Les compétitions au programme : <strong><%= comps_str %></strong>.<% end %>
+    </p>
+    <p style="margin: 0;">
+      Pour chaque match terminé, le score final et un résumé sont disponibles sur la page de la rencontre.
+      Retrouvez toute l'actualité dans les <%= link_to "résultats récents", resultats_path, style: "color: #007bff;" %>.
     </p>
   </div>
 <% end %>

@@ -18,7 +18,7 @@
     <meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : "https://www.coupdenvoi.tv/og-default.png" %>">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Coup d'envoi">
+    <meta property="og:site_name" content="Coup d'Envoi TV">
     <meta property="og:locale" content="fr_FR">
 
     <%# Twitter Cards %>
@@ -55,27 +55,21 @@
     <link rel="apple-touch-icon" href="/icon-512.png">
     <link rel="icon" type="image/png" href="/icon-512.png">
 
-    <%# WebSite schema avec SearchAction (Sitelinks Searchbox) %>
+    <%# WebSite schema %>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Coup d'envoi",
+      "name": "Coup d'Envoi TV",
       "url": "https://www.coupdenvoi.tv",
-      "description": "Programme TV football : retrouvez sur quelle chaîne voir chaque match en direct.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://www.coupdenvoi.tv/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
+      "description": "Programme TV football : retrouvez sur quelle chaîne voir chaque match en direct."
     }
     </script>
 
-    <%# AdSense %>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1509060692668087" crossorigin="anonymous"></script>
+    <%# AdSense — uniquement sur les pages avec contenu (pas sur noindex) %>
+    <% unless @noindex %>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1509060692668087" crossorigin="anonymous"></script>
+    <% end %>
 
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
