@@ -124,7 +124,7 @@
   <%# ---- Timeline des événements ---- %>
   <% if @events&.any? %>
     <section id="match-timeline" style="margin: 25px 0; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
-      <h2 style="font-size: 18px; font-weight: 800; color: #010e1b; margin-bottom: 16px;">Résumé du match</h2>
+      <h2 style="font-size: 18px; font-weight: 800; color: #010e1b; margin-bottom: 16px;">Buts et faits de jeu</h2>
       <%= render 'matches/timeline', events: @events, match: @match %>
     </section>
   <% end %>

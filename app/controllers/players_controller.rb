@@ -1,4 +1,9 @@
 class PlayersController < ApplicationController
+  # Ligues "friendlies" de l'API — pas de valeur éditoriale, on les masque
+  FRIENDLY_LEAGUES = %w[
+    Friendlies\ Clubs Club\ Friendlies Friendlies\ International
+    International\ Friendlies Friendlies
+  ].freeze
 
   def index
     @players = Player.order(:name)
@@ -14,13 +19,20 @@ class PlayersController < ApplicationController
       render "errors/not_found", status: :not_found and return
     end
 
+    # Valeurs par défaut — évite les nil dans les vues et la description SEO
+    @goals = 0; @assists = 0; @games = 0; @rating = nil
+    @yellow = 0; @red = 0; @minutes = 0
+    @stats = nil; @info = nil; @league = nil; @is_friendly = false
+
     api = FootballApiService.new
     data = api.fetch_player_stats(@player.api_id)
 
     if data
       @stats    = data['statistics']&.first
       @info     = data['player']
-      @league   = @stats&.dig('league', 'name')
+      raw_league = @stats&.dig('league', 'name')
+      @is_friendly = FRIENDLY_LEAGUES.any? { |f| raw_league.to_s.include?(f) }
+      @league   = @is_friendly ? nil : raw_league
       @team     = @stats&.dig('team', 'name') || @player.team_name
 
       # Stats clés
@@ -51,8 +63,11 @@ class PlayersController < ApplicationController
     @page_title = "#{@full_name} — Stats 2025-2026, buts et passes | Coup d'Envoi TV"
     @page_desc  = "Statistiques complètes de #{@full_name} pour la saison 2025-2026 : #{@goals} but#{'s' if @goals != 1}, #{@assists} passe#{'s' if @assists != 1} décisive#{'s' if @assists != 1} en #{@games} match#{'s' if @games != 1}. Programme TV des prochains matchs."
 
-    # noindex si moins de 3 matchs joués ET aucun prochain match — contenu trop mince
-    @noindex = @games < 3 && @upcoming_matches.empty?
+    # noindex si contenu trop mince :
+    # - 0 stats du tout + aucun match à venir
+    # - stats uniquement issues de matchs amicaux + aucun match à venir
+    @noindex = (@games.to_i == 0 && @upcoming_matches.empty?) ||
+               (@is_friendly && @upcoming_matches.empty?)
 
     expires_in 6.hours, public: true
   end
