@@ -1,0 +1,20 @@
+<section style="background:white; border-radius:12px; padding:16px; margin-bottom:16px; box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+  <h2 style="font-size:15px; font-weight:800; margin:0 0 12px; color:#010e1b;">
+    Dernières confrontations
+  </h2>
+  <% matches.each do |m| %>
+    <% home = m.dig('teams','home','name'); away = m.dig('teams','away','name') %>
+    <% hs = m.dig('goals','home').to_i; as = m.dig('goals','away').to_i %>
+    <% date = Date.parse(m.dig('fixture','date')) rescue nil %>
+    <% comp = m.dig('league','name') %>
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid #f5f5f5;">
+      <span style="font-size:13px; color:#999; min-width:60px;"><%= date&.strftime('%d/%m/%y') %></span>
+      <div style="flex:1; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+        <span style="font-size:13px; font-weight:<%= hs > as ? '800' : '500' %>; color:<%= hs > as ? '#010e1b' : '#888' %>; text-align:right; flex:1;"><%= home %></span>
+        <span style="font-size:14px; font-weight:900; color:#010e1b; min-width:40px; text-align:center;"><%= hs %> - <%= as %></span>
+        <span style="font-size:13px; font-weight:<%= as > hs ? '800' : '500' %>; color:<%= as > hs ? '#010e1b' : '#888' %>; flex:1;"><%= away %></span>
+      </div>
+      <span style="font-size:11px; color:#bbb; min-width:70px; text-align:right;"><%= comp %></span>
+    </div>
+  <% end %>
+</section>

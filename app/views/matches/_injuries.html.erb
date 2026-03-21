@@ -1,0 +1,42 @@
+<section style="background:white; border-radius:12px; padding:16px; margin-bottom:16px; box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+  <h2 style="font-size:15px; font-weight:800; margin:0 0 12px; color:#010e1b;">
+    Joueurs absents
+  </h2>
+  <%
+    home_injuries = injuries.select { |i| i.dig('team','id').to_s == home_team_api_id.to_s }
+    away_injuries = injuries.reject { |i| i.dig('team','id').to_s == home_team_api_id.to_s }
+  %>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+    <div>
+      <div style="font-size:12px; font-weight:700; color:#999; margin-bottom:8px; text-transform:uppercase;"><%= home_team %></div>
+      <% if home_injuries.any? %>
+        <% home_injuries.each do |inj| %>
+          <% type = inj.dig('player','type') %>
+          <% color = type == 'Suspended' ? '#ffc107' : '#dc3545' %>
+          <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+            <span style="width:8px; height:8px; background:<%= color %>; border-radius:50%; flex-shrink:0;"></span>
+            <span style="font-size:12px; color:#333;"><%= inj.dig('player','name') %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <p style="font-size:12px; color:#aaa; margin:0;">Aucun absent connu</p>
+      <% end %>
+    </div>
+    <div>
+      <div style="font-size:12px; font-weight:700; color:#999; margin-bottom:8px; text-transform:uppercase;"><%= away_team %></div>
+      <% if away_injuries.any? %>
+        <% away_injuries.each do |inj| %>
+          <% type = inj.dig('player','type') %>
+          <% color = type == 'Suspended' ? '#ffc107' : '#dc3545' %>
+          <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+            <span style="width:8px; height:8px; background:<%= color %>; border-radius:50%; flex-shrink:0;"></span>
+            <span style="font-size:12px; color:#333;"><%= inj.dig('player','name') %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <p style="font-size:12px; color:#aaa; margin:0;">Aucun absent connu</p>
+      <% end %>
+    </div>
+  </div>
+  <p style="font-size:11px; color:#bbb; margin:10px 0 0;"><%= @match.finished? ? "Situation au moment du match." : "Mis à jour toutes les 6h." %></p>
+</section>

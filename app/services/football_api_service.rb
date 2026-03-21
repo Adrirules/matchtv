@@ -299,6 +299,22 @@ class FootballApiService
     end
   end
 
+  def fetch_head_to_head(home_id, away_id, count: 5)
+    Rails.cache.fetch("h2h_#{home_id}_#{away_id}", expires_in: 7.days) do
+      response = client.get('/fixtures/headtohead', { h2h: "#{home_id}-#{away_id}", last: count })
+      return [] unless response.success?
+      JSON.parse(response.body)['response'] || []
+    end
+  end
+
+  def fetch_injuries(fixture_id)
+    Rails.cache.fetch("injuries_#{fixture_id}", expires_in: 6.hours) do
+      response = client.get('/injuries', { fixture: fixture_id })
+      return [] unless response.success?
+      JSON.parse(response.body)['response'] || []
+    end
+  end
+
   private
 
   def get_fixtures(params)

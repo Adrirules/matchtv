@@ -129,6 +129,19 @@
     </section>
   <% end %>
 
+  <%# ---- Head-to-Head ---- %>
+  <% if @head_to_head&.any? %>
+    <%= render 'matches/head_to_head', matches: @head_to_head,
+        home_team: @match.home_team, away_team: @match.away_team %>
+  <% end %>
+
+  <%# ---- Joueurs absents ---- %>
+  <% if @injuries&.any? %>
+    <%= render 'matches/injuries', injuries: @injuries,
+        home_team: @match.home_team, away_team: @match.away_team,
+        home_team_api_id: @match.home_team_api_id %>
+  <% end %>
+
   <%# ---- Preview avant-match (Groq) ---- %>
   <% if @match.preview.present? && !is_finished && !is_live %>
     <section style="margin: 25px 0; background: #fff; border-radius: 12px; padding: 20px 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border-left: 4px solid #28a745;">
