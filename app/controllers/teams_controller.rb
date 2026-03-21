@@ -65,6 +65,9 @@ class TeamsController < ApplicationController
       end
 
       @recent_results = api.fetch_recent_results(@team_api_id)
+      @coach = Rails.cache.fetch("coach_#{@team_api_id}", expires_in: 7.days) do
+        api.fetch_coach(@team_api_id)
+      end
     end
 
     # Effectif de l'équipe (depuis la DB players)

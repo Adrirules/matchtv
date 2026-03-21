@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   # 5. Classements
   get "classement", to: "standings#index"
   get "classements", to: "standings#index", as: :standings
+  get "classements/:competition_id/buteurs", to: "standings#top_scorers", as: :top_scorers
   get "classements/:competition_id", to: "standings#show", as: :standing
 
   # 6. Pages Statiques

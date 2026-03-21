@@ -13,7 +13,34 @@
     <img src="<%= @team_logo %>" alt="Logo officiel <%= @team_name %>" width="80" height="80" loading="eager" style="height: 80px; width: 80px; object-fit: contain; margin-bottom: 10px;">
   <% end %>
   <h1 style="font-size: 24px; font-weight: 800; margin: 0;"><%= @team_name %></h1>
-  <p style="color: #666; font-size: 14px; margin-top: 4px;">Programme TV & Résultats 2025-2026</p>
+  <%
+    require 'zlib'
+    subtitle = if @standing.present? && @stats.present?
+      rank     = @standing["rank"]
+      pts      = @standing["points"].to_i
+      lname    = @stats.dig("league", "name")
+      ord      = rank == 1 ? "1er" : "#{rank}e"
+      "#{ord} de #{lname} · #{pts} pt#{pts > 1 ? 's' : ''} · Saison 2025-2026"
+    elsif @stats.present? && @stats.dig("league", "name")
+      lname    = @stats.dig("league", "name")
+      variants = [
+        "#{lname} · Programme TV & résultats 2025-2026",
+        "#{lname} · Calendrier et statistiques 2025-2026",
+        "#{lname} · Matchs TV, bilan et effectif 2025-2026",
+        "#{lname} · Programme des matchs 2025-2026"
+      ]
+      variants[Zlib.crc32(@team_name.to_s) % variants.size]
+    else
+      generic = [
+        "Programme TV & Résultats 2025-2026",
+        "Calendrier, résultats et statistiques 2025-2026",
+        "Matchs TV, bilan de saison et effectif 2025-2026",
+        "Programme des matchs et résultats 2025-2026"
+      ]
+      generic[Zlib.crc32(@team_name.to_s) % generic.size]
+    end
+  %>
+  <p style="color: #666; font-size: 14px; margin-top: 4px;"><%= subtitle %></p>
 </div>
 
 <div style="padding: 0 10px;">
@@ -89,6 +116,39 @@
   <% end %>
 
   <%= render 'shared/ad_unit', slot_id: '2182108767' %>
+
+  <%# Entraîneur %>
+  <% if @coach.present? %>
+    <%
+      coach_name    = @coach.dig('name')
+      coach_nat     = @coach.dig('nationality')
+      coach_age     = @coach.dig('age')
+      coach_photo   = @coach.dig('photo')
+      career        = @coach.dig('career') || []
+      current_job   = career.find { |c| c.dig('team','id') == @team_api_id }
+      since_date    = current_job&.dig('start')
+      since_label   = since_date ? Date.parse(since_date).strftime('%B %Y') rescue since_date : nil
+    %>
+    <section style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+      <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 12px; color: #010e1b;">Entraîneur</h2>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <% if coach_photo.present? %>
+          <img src="<%= coach_photo %>" alt="Photo <%= coach_name %>" width="52" height="52" loading="lazy"
+               style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+        <% end %>
+        <div>
+          <div style="font-size: 16px; font-weight: 800; color: #010e1b;"><%= coach_name %></div>
+          <div style="font-size: 12px; color: #888; margin-top: 3px;">
+            <% parts = [] %>
+            <% parts << coach_nat if coach_nat.present? %>
+            <% parts << "#{coach_age} ans" if coach_age.present? %>
+            <% parts << "en poste depuis #{since_label}" if since_label.present? %>
+            <%= parts.join(' · ') %>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end %>
 
   <%# Derniers résultats %>
   <% if @recent_results.present? %>

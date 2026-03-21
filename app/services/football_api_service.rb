@@ -299,6 +299,22 @@ class FootballApiService
     end
   end
 
+  def fetch_top_scorers(league_id, season: 2025)
+    Rails.cache.fetch("top_scorers_#{league_id}_#{season}", expires_in: 6.hours) do
+      response = client.get('/players/topscorers', { league: league_id, season: season })
+      return [] unless response.success?
+      JSON.parse(response.body)['response'] || []
+    end
+  end
+
+  def fetch_coach(team_api_id)
+    Rails.cache.fetch("coach_#{team_api_id}", expires_in: 7.days) do
+      response = client.get('/coachs', { team: team_api_id })
+      return nil unless response.success?
+      JSON.parse(response.body)['response']&.first
+    end
+  end
+
   def fetch_head_to_head(home_id, away_id, count: 5)
     Rails.cache.fetch("h2h_#{home_id}_#{away_id}", expires_in: 7.days) do
       response = client.get('/fixtures/headtohead', { h2h: "#{home_id}-#{away_id}", last: count })

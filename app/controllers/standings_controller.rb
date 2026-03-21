@@ -48,6 +48,28 @@ class StandingsController < ApplicationController
     expires_in 6.hours, public: true
   end
 
+  def top_scorers
+    slug = params[:competition_id]
+    league_id = SLUG_TO_ID[slug]
+
+    unless league_id
+      render "errors/not_found", status: :not_found and return
+    end
+
+    @league_info = LEAGUES.find { |l| l[:id] == league_id }
+    @league_name = @league_info[:name]
+    @league_logo = FootballApiService.league_logo(league_id)
+
+    @top_scorers = Rails.cache.fetch("top_scorers_#{league_id}", expires_in: 6.hours) do
+      FootballApiService.new.fetch_top_scorers(league_id)
+    end
+
+    @page_title = "Meilleurs buteurs #{@league_name} 2025-2026 — Classement des buteurs | Coup d'Envoi TV"
+    @page_desc  = "Classement des meilleurs buteurs #{@league_name} 2025-2026 : nombre de buts, passes décisives et statistiques complètes saison en cours."
+
+    expires_in 6.hours, public: true
+  end
+
   private
 
   def redirect_numeric_id

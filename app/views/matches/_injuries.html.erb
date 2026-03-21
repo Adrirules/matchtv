@@ -38,5 +38,7 @@
       <% end %>
     </div>
   </div>
-  <p style="font-size:11px; color:#bbb; margin:10px 0 0;"><%= @match.finished? ? "Situation au moment du match." : "Mis à jour toutes les 6h." %></p>
+  <% if @match.finished? %>
+    <p style="font-size:11px; color:#bbb; margin:10px 0 0;">Situation au moment du match.</p>
+  <% end %>
 </section>

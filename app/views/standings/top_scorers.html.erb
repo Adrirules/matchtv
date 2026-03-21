@@ -1,0 +1,171 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+
+<%# Fil d'Ariane %>
+<nav style="padding: 10px 15px; font-size: 12px; color: #999;">
+  <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+  <%= link_to "Classements", standings_path, style: "color: #999; text-decoration: none;" %> ›
+  <%= link_to @league_name, standing_path(params[:competition_id]), style: "color: #999; text-decoration: none;" %> ›
+  Buteurs
+</nav>
+
+<%# Header %>
+<div style="text-align: center; padding: 20px 15px; background: white; border-bottom: 1px solid #eee; margin-bottom: 20px;">
+  <% if @league_logo.present? %>
+    <img src="<%= @league_logo %>" alt="Logo <%= @league_name %>" width="60" height="60" loading="eager"
+         style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 10px;">
+  <% end %>
+  <h1 style="font-size: 22px; font-weight: 800; margin: 0;">Meilleurs buteurs <%= @league_name %></h1>
+  <p style="color: #666; font-size: 13px; margin-top: 4px;">Classement buteurs 2025-2026 · Mis à jour régulièrement</p>
+</div>
+
+<div style="padding: 0 10px;">
+
+  <% if @top_scorers.present? %>
+
+    <div style="overflow-x: auto; margin-bottom: 20px;">
+      <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-size: 13px;">
+        <thead>
+          <tr style="background: #f8f9fa; font-size: 11px; color: #888; font-weight: 700; text-transform: uppercase;">
+            <th style="padding: 10px 8px; text-align: center; width: 28px;">#</th>
+            <th style="padding: 10px 8px; text-align: left;">Joueur</th>
+            <th style="padding: 10px 8px; text-align: left;">Équipe</th>
+            <th style="padding: 10px 8px; text-align: center;">J</th>
+            <th style="padding: 10px 8px; text-align: center; font-weight: 900; color: #010e1b;">Buts</th>
+            <th style="padding: 10px 8px; text-align: center;">P.D.</th>
+            <th style="padding: 10px 8px; text-align: center;">Min.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @top_scorers.each_with_index do |entry, i| %>
+            <% player       = entry.dig('player') %>
+            <% stats        = entry.dig('statistics', 0) %>
+            <% goals        = stats&.dig('goals', 'total').to_i %>
+            <% assists      = stats&.dig('goals', 'assists').to_i %>
+            <% games        = stats&.dig('games', 'appearences').to_i %>
+            <% minutes      = stats&.dig('games', 'minutes').to_i %>
+            <% team_name    = stats&.dig('team', 'name') %>
+            <% team_logo    = stats&.dig('team', 'logo') %>
+            <% player_slug  = player&.[]('name')&.parameterize %>
+            <% player_in_db = Player.find_by(slug: player_slug) %>
+            <tr style="border-bottom: 1px solid #f0f0f0; <%= i.even? ? '' : 'background: #fafafa;' %>">
+              <td style="padding: 10px 6px; text-align: center;">
+                <% if i == 0 %>
+                  <span style="font-size: 16px;">🥇</span>
+                <% elsif i == 1 %>
+                  <span style="font-size: 16px;">🥈</span>
+                <% elsif i == 2 %>
+                  <span style="font-size: 16px;">🥉</span>
+                <% else %>
+                  <span style="font-weight: 700; font-size: 12px; color: #666;"><%= i + 1 %></span>
+                <% end %>
+              </td>
+              <td style="padding: 10px 8px;">
+                <% if player_in_db %>
+                  <%= link_to player_path(player_in_db.slug), style: "text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;" do %>
+                    <% if player&.[]('photo').present? %>
+                      <img src="<%= player['photo'] %>" alt="<%= player['name'] %>" width="28" height="28" loading="lazy"
+                           style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+                    <% end %>
+                    <span style="font-weight: 700; font-size: 13px;"><%= player&.[]('name') %></span>
+                  <% end %>
+                <% else %>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <% if player&.[]('photo').present? %>
+                      <img src="<%= player['photo'] %>" alt="<%= player['name'] %>" width="28" height="28" loading="lazy"
+                           style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+                    <% end %>
+                    <span style="font-weight: 700; font-size: 13px;"><%= player&.[]('name') %></span>
+                  </div>
+                <% end %>
+              </td>
+              <td style="padding: 10px 8px;">
+                <% if team_name %>
+                  <%= link_to team_path(team_name.parameterize), style: "text-decoration: none; color: inherit; display: flex; align-items: center; gap: 6px;" do %>
+                    <% if team_logo.present? %>
+                      <img src="<%= team_logo %>" alt="<%= team_name %>" width="18" height="18" loading="lazy"
+                           style="width: 18px; height: 18px; object-fit: contain; flex-shrink: 0;">
+                    <% end %>
+                    <span style="font-size: 12px; color: #555;"><%= team_name %></span>
+                  <% end %>
+                <% end %>
+              </td>
+              <td style="padding: 10px 6px; text-align: center; color: #666;"><%= games %></td>
+              <td style="padding: 10px 6px; text-align: center; font-weight: 900; font-size: 16px; color: #28a745;"><%= goals %></td>
+              <td style="padding: 10px 6px; text-align: center; color: #007bff; font-weight: 600;"><%= assists > 0 ? assists : '—' %></td>
+              <td style="padding: 10px 6px; text-align: center; color: #888; font-size: 12px;"><%= minutes > 0 ? "#{minutes}'" : '—' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%# Leader editorial %>
+    <% top = @top_scorers.first %>
+    <% if top %>
+      <% top_name  = top.dig('player', 'name') %>
+      <% top_goals = top.dig('statistics', 0, 'goals', 'total').to_i %>
+      <% top_team  = top.dig('statistics', 0, 'team', 'name') %>
+      <% top_games = top.dig('statistics', 0, 'games', 'appearences').to_i %>
+      <p style="font-size: 14px; color: #555; line-height: 1.7; background: #f9f9f9; padding: 12px 14px; border-radius: 10px; margin-bottom: 20px;">
+        <strong><%= top_name %></strong> est le meilleur buteur de <%= @league_name %> cette saison avec
+        <strong><%= top_goals %> but<%= 's' if top_goals > 1 %></strong> en <%= top_games %> match<%= 'es' if top_games > 1 %> sous les couleurs de
+        <strong><%= top_team %></strong>.
+        <% second = @top_scorers[1] %>
+        <% if second %>
+          <% second_goals = second.dig('statistics', 0, 'goals', 'total').to_i %>
+          <% second_name  = second.dig('player', 'name') %>
+          <% gap = top_goals - second_goals %>
+          <%= gap > 0 ? "Il devance #{second_name} de #{gap} but#{gap > 1 ? 's' : ''} au classement." : "#{second_name} est à égalité avec lui." %>
+        <% end %>
+      </p>
+    <% end %>
+
+  <% else %>
+    <p style="text-align: center; color: #666; padding: 40px 0;">Classement des buteurs non disponible pour le moment.</p>
+  <% end %>
+
+  <%= render 'shared/ad_unit', slot_id: '1499436694' %>
+
+  <%# Maillage interne %>
+  <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;">
+    <%= link_to standing_path(params[:competition_id]),
+        style: "flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: #f4f4f4; border-radius: 10px; padding: 12px; text-decoration: none; color: #333; font-size: 14px; font-weight: 600; min-width: 140px;" do %>
+      Classement <%= @league_name %>
+    <% end %>
+    <%= link_to competition_path(params[:competition_id]),
+        style: "flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: #f4f4f4; border-radius: 10px; padding: 12px; text-decoration: none; color: #333; font-size: 14px; font-weight: 600; min-width: 140px;" do %>
+      Matchs <%= @league_name %>
+    <% end %>
+  </div>
+
+  <%# FAQ %>
+  <section style="margin-bottom: 24px;">
+    <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
+    <% top1 = @top_scorers.first %>
+    <% faq_items = [
+      { q: "Qui est le meilleur buteur de #{@league_name} cette saison ?",
+        a: top1 ? "#{top1.dig('player','name')} est le meilleur buteur de #{@league_name} 2025-2026 avec #{top1.dig('statistics',0,'goals','total')} buts sous les couleurs de #{top1.dig('statistics',0,'team','name')}." : "Le classement des buteurs de #{@league_name} est mis à jour régulièrement." },
+      { q: "Comment est mis à jour le classement des buteurs de #{@league_name} ?",
+        a: "Les statistiques sont mises à jour automatiquement depuis l'API officielle après chaque journée. Le classement est rafraichi toutes les 6 heures." },
+      { q: "Sur quelle chaîne voir les matchs de #{@league_name} ?",
+        a: "Les matchs de #{@league_name} sont diffusés en France sur Canal+, beIN Sports ou DAZN selon les affiches. Consultez notre programme TV pour connaître la chaîne exacte de chaque rencontre." }
+    ] %>
+    <%= render 'shared/faq_accordion', items: faq_items, schema: true %>
+  </section>
+
+</div>
+
+<%# JSON-LD %>
+<script type="application/ld+json">
+<%= {
+  "@context" => "https://schema.org",
+  "@type" => "BreadcrumbList",
+  "itemListElement" => [
+    { "@type" => "ListItem", "position" => 1, "name" => "Accueil", "item" => "https://www.coupdenvoi.tv/" },
+    { "@type" => "ListItem", "position" => 2, "name" => "Classements", "item" => "https://www.coupdenvoi.tv/classements" },
+    { "@type" => "ListItem", "position" => 3, "name" => @league_name, "item" => "https://www.coupdenvoi.tv/classements/#{params[:competition_id]}" },
+    { "@type" => "ListItem", "position" => 4, "name" => "Buteurs", "item" => request.original_url }
+  ]
+}.to_json.html_safe %>
+</script>

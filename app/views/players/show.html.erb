@@ -108,14 +108,7 @@
     <section style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
       <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 12px; color: #010e1b;">Profil 2025-2026</h2>
       <div style="font-size: 14px; color: #555; line-height: 1.75; display: flex; flex-direction: column; gap: 8px;">
-        <p style="margin: 0;"><%= raw intro_text %></p>
-        <% if profile_text.present? %><p style="margin: 0;"><%= raw profile_text %></p><% end %>
-        <% if league_text.present? %><p style="margin: 0;"><%= raw league_text %></p><% end %>
-        <% if cta_text.present? %>
-          <p style="margin: 0;"><%= raw cta_text %></p>
-        <% else %>
-          <p style="margin: 0;">Aucun match comptabilisé cette saison pour le moment. Retrouvez le programme TV de <strong><%= @player.team_name %></strong> pour suivre ce joueur en direct.</p>
-        <% end %>
+        <p style="margin: 0;"><%= raw player_no_stats_fallback(@player, @full_name, @info, @league, @upcoming_matches) %></p>
       </div>
     </section>
   <% end %>

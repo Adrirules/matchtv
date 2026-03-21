@@ -21,10 +21,11 @@ module PlayerContentHelper
       "Retrouvez sur cette page ses statistiques complètes en #{ligue} et le programme TV des prochains matchs de son équipe."
     when 1
       age_str = age ? "Âgé de <strong>#{age} ans</strong>, " : ""
-      "#{age_str}<strong>#{full_name}</strong> est #{pos} professionnel sous les couleurs de <strong>#{team}</strong> cette saison. " \
+      nat_str = nat ? " (#{nationality_fr(nat)})" : ""
+      "#{age_str}<strong>#{full_name}</strong>#{nat_str} est #{pos} professionnel sous les couleurs de <strong>#{team}</strong> cette saison. " \
       "Buts, passes décisives, note moyenne et prochains matchs TV : tout est ici."
     when 2
-      nat_str = nat ? "De nationalité <strong>#{nat}</strong>, " : ""
+      nat_str = nat ? "De nationalité <strong>#{nationality_fr(nat)}</strong>, " : ""
       "#{nat_str}<strong>#{full_name}</strong> occupe le poste de #{pos} à <strong>#{team}</strong> pour la saison 2025-2026. " \
       "Ses performances en #{ligue} et le calendrier TV de son équipe sont disponibles ci-dessous."
     when 3
@@ -145,26 +146,26 @@ module PlayerContentHelper
     when 0
       parts = []
       parts << "âgé de <strong>#{age} ans</strong>" if age
-      parts << "de nationalité <strong>#{nat}</strong>" if nat
-      parts << "mesurant <strong>#{height} cm</strong> pour <strong>#{weight} kg</strong>" if height && weight
+      parts << "de nationalité <strong>#{nationality_fr(nat)}</strong>" if nat
+      parts << "mesurant <strong>#{height}</strong> pour <strong>#{weight}</strong>" if height && weight
       return nil if parts.empty?
       "<strong>#{full_name}</strong>, #{parts.join(', ')}."
     when 1
       if height && weight
-        "<strong>#{full_name}</strong> présente un gabarit de <strong>#{height} cm pour #{weight} kg</strong>, " \
+        "<strong>#{full_name}</strong> présente un gabarit de <strong>#{height} pour #{weight}</strong>, " \
         "caractéristiques adaptées à son poste de #{pos}. " \
-        "#{nat ? "Originaire de <strong>#{nat}</strong>, il évolue" : "Il évolue"} à #{player.team_name} cette saison."
+        "#{nat ? "Originaire de <strong>#{country_fr(nat)}</strong>, il évolue" : "Il évolue"} à #{player.team_name} cette saison."
       elsif nat && age
-        "<strong>#{full_name}</strong> est de nationalité <strong>#{nat}</strong> et est âgé de <strong>#{age} ans</strong>. " \
+        "<strong>#{full_name}</strong> est <strong>#{nationality_fr(nat)}</strong> et est âgé de <strong>#{age} ans</strong>. " \
         "Il évolue au poste de #{pos} sous les couleurs de #{player.team_name}."
       else
         nil
       end
     when 2
       origin = if birth_city
-        "né à <strong>#{birth_city}#{birth_country ? " (#{birth_country})" : ""}</strong>"
+        "né à <strong>#{birth_city}#{birth_country ? " (#{country_fr(birth_country)})" : ""}</strong>"
       elsif nat
-        "originaire de <strong>#{nat}</strong>"
+        "originaire de <strong>#{country_fr(nat)}</strong>"
       end
       return nil unless origin || age
       "<strong>#{full_name}</strong>#{origin ? ", #{origin}," : ""} " \
@@ -241,6 +242,46 @@ module PlayerContentHelper
     else
       "Acteur de <strong>#{ligue}</strong>, <strong>#{full_name}</strong> défend les couleurs de <strong>#{team}</strong> " \
       "avec l'objectif de marquer la saison 2025-2026 de son empreinte."
+    end
+  end
+
+  # Bloc spécial — JOUEUR SANS STATS SAISON (5 variantes)
+  # Évite le duplicate content sur les centaines de joueurs sans données 2025-2026
+  def player_no_stats_fallback(player, full_name, info, league, upcoming_matches)
+    pos    = POSITION_FR[player.position] || "joueur"
+    team   = player.team_name
+    age    = player.age || info&.dig('age')
+    nat    = info&.dig('nationality').presence
+    ligue  = league || "sa compétition"
+    next_m = upcoming_matches.first
+
+    case player.id % 5
+    when 0
+      age_str = age ? "Âgé de <strong>#{age} ans</strong>, " : ""
+      "#{age_str}<strong>#{full_name}</strong> fait partie de l'effectif de <strong>#{team}</strong> " \
+      "pour la saison 2025-2026 en #{ligue}. " \
+      "Ses statistiques individuelles ne sont pas encore comptabilisées cette saison. " \
+      "Retrouvez le programme TV de son équipe ci-dessous pour suivre ses prochaines apparitions."
+    when 1
+      nat_str = nat ? "De nationalité <strong>#{nationality_fr(nat)}</strong>, " : ""
+      "#{nat_str}<strong>#{full_name}</strong> occupe le poste de #{pos} à <strong>#{team}</strong>. " \
+      "Il n'a pas encore de statistiques enregistrées en #{ligue} cette saison 2025-2026. " \
+      "#{next_m ? "Le prochain match de <strong>#{team}</strong> est prévu le #{next_m.start_time.strftime('%d/%m')} contre #{next_m.home_team == team ? next_m.away_team : next_m.home_team} sur <strong>#{next_m.tv_channels}</strong>." : "Consultez le calendrier de #{team} ci-dessous pour ne pas manquer ses prochaines rencontres."}"
+    when 2
+      "Dans le groupe de <strong>#{team}</strong> cette saison, <strong>#{full_name}</strong> " \
+      "est #{pos}#{age ? " de #{age} ans" : ""}#{nat ? " de nationalité #{nationality_fr(nat)}" : ""}. " \
+      "Aucune donnée statistique 2025-2026 n'est disponible pour ce joueur pour le moment. " \
+      "Son équipe dispute la #{ligue} - retrouvez le programme TV complet ci-dessous."
+    when 3
+      "#{full_name.split.last} figure dans l'effectif de <strong>#{team}</strong> pour " \
+      "la saison 2025-2026 au poste de #{pos}. " \
+      "Les statistiques de <strong>#{full_name}</strong> en #{ligue} seront disponibles au fil de la saison. " \
+      "En attendant, suivez les prochains matchs de <strong>#{team}</strong> à la télé ci-dessous."
+    else
+      profile = [nat ? "Nationalité : <strong>#{nationality_fr(nat)}</strong>" : nil, age ? "#{age} ans" : nil, "Poste : #{pos}"].compact.join(' · ')
+      "<strong>#{full_name}</strong> - #{profile}. " \
+      "Aucun match comptabilisé cette saison en #{ligue}. " \
+      "Le programme TV de <strong>#{team}</strong> est disponible ci-dessous pour suivre ce joueur en direct."
     end
   end
 

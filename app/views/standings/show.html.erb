@@ -22,17 +22,22 @@
 
   <% if @standings.present? %>
 
-    <%# Résumé rapide leader %>
-    <% leader = @standings.first %>
-    <% if leader %>
-      <% leader_name = leader.dig("team", "name") %>
-      <% leader_pts  = leader["points"] %>
-      <% second_pts  = @standings[1]&.[]("points").to_i %>
-      <p style="font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; background: #f9f9f9; padding: 12px 14px; border-radius: 10px;">
-        <strong><%= leader_name %></strong> est en tête du classement avec <strong><%= leader_pts %> points</strong><% if leader_pts - second_pts > 0 %>, soit <strong><%= leader_pts - second_pts %> point<%= 's' if leader_pts - second_pts > 1 %> d'avance</strong> sur le deuxième<% end %>.
-        <% total_played = leader.dig("all", "played").to_i %>
-        <% if total_played > 0 %> <%= total_played %> journée<%= 's' if total_played > 1 %> ont été disputées cette saison.<% end %>
+    <%# Résumé narratif ligue %>
+    <% narrative = generate_standings_narrative(@standings, params[:competition_id], @league_name || @league_info[:name]) %>
+    <% if narrative %>
+      <p style="font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 16px; background: #f9f9f9; padding: 12px 14px; border-radius: 10px;">
+        <%= narrative.html_safe %>
       </p>
+    <% end %>
+
+    <%# Lien Top Buteurs %>
+    <% if FootballApiService::COMPETITIONS_META.find { |c| c[:name] == (@league_name || @league_info[:name]) } %>
+      <div style="margin-bottom: 16px;">
+        <%= link_to top_scorers_path(params[:competition_id]),
+            style: "display: inline-flex; align-items: center; gap: 6px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 8px 14px; text-decoration: none; color: #856404; font-size: 13px; font-weight: 700;" do %>
+          Meilleurs buteurs <%= @league_name || @league_info[:name] %> →
+        <% end %>
+      </div>
     <% end %>
 
     <%# Légende zones %>
