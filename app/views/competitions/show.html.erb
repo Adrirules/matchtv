@@ -20,14 +20,25 @@
 
 <div style="padding: 0 10px;">
 
-  <%# Texte SEO %>
-  <p style="font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 14px; border-radius: 10px;">
-    Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
-    Programme TV complet avec horaires et chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV) pour toute la saison 2025-2026.
-    <% if @has_standings %>
-      Consultez également le <%= link_to "classement #{@competition_name}", standing_path(@standing_slug), style: "color: #007bff; font-weight: 600;" %> mis à jour en temps réel.
-    <% end %>
-  </p>
+  <%# Texte éditorial (Groq) ou fallback générique %>
+  <% if @description.present? %>
+    <div style="font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 20px; background: #f9f9f9; padding: 16px; border-radius: 10px;">
+      <% @description.split(/\n+/).reject(&:blank?).each do |para| %>
+        <p style="margin: 0 0 10px;"><%= para %></p>
+      <% end %>
+      <% if @has_standings %>
+        <p style="margin: 0;">Consultez également le <%= link_to "classement #{@competition_name}", standing_path(@standing_slug), style: "color: #007bff; font-weight: 600;" %> mis à jour après chaque journée.</p>
+      <% end %>
+    </div>
+  <% else %>
+    <p style="font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 14px; border-radius: 10px;">
+      Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
+      Programme TV complet avec horaires et chaînes de diffusion pour toute la saison 2025-2026.
+      <% if @has_standings %>
+        Consultez le <%= link_to "classement #{@competition_name}", standing_path(@standing_slug), style: "color: #007bff; font-weight: 600;" %> mis à jour après chaque journée.
+      <% end %>
+    </p>
+  <% end %>
 
   <%# Classement mini (top 5) %>
   <% if @has_standings && @standing_slug %>

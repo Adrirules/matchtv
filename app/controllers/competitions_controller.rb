@@ -28,6 +28,14 @@ class CompetitionsController < ApplicationController
     expires_in 1.hour, public: true
   end
 
+  COMPETITION_DESCRIPTIONS = begin
+    path = Rails.root.join("config", "competition_descriptions.yml")
+    File.exist?(path) ? YAML.load_file(path) || {} : {}
+  rescue => e
+    Rails.logger.error("competition_descriptions.yml load error: #{e.message}")
+    {}
+  end
+
   def show
     slug = params[:slug]
 
@@ -51,6 +59,8 @@ class CompetitionsController < ApplicationController
                     .where("start_time >= ?", Time.current - 3.hours)
                     .order(:start_time)
                     .limit(50)
+
+    @description = COMPETITION_DESCRIPTIONS[@competition_name]
 
     @page_title = "#{@competition_name} 2025-2026 — Programme TV, matchs et résultats | Coup d'Envoi TV"
     @page_desc  = "Programme TV complet #{@competition_name} 2025-2026 : matchs à venir, horaires et chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV)."
