@@ -22,6 +22,10 @@
       "logo": match.away_team_logo,
       "url": "https://www.coupdenvoi.tv/equipes/#{match.away_team&.parameterize}"
     },
+    "organizer": {
+      "@type": "Organization",
+      "name": match.competition || "Fédération de Football"
+    },
     "performer": [
       { "@type": "SportsTeam", "name": match.home_team },
       { "@type": "SportsTeam", "name": match.away_team }

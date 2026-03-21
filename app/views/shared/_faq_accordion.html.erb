@@ -1,15 +1,15 @@
 <%# Partial FAQ accordion - usage: render 'shared/faq_accordion', items: [{q: "...", a: "..."}], schema: true %>
 <%# schema: true → génère le JSON-LD FAQPage (ne mettre qu'une seule fois par page) %>
 
-<section itemscope itemtype="https://schema.org/FAQPage">
+<section>
   <% items.each do |item| %>
-    <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="faq-question" itemprop="name">
+    <details class="faq-item">
+      <summary class="faq-question">
         <%= item[:q] %>
         <span class="faq-chevron">&#8964;</span>
       </summary>
-      <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <p itemprop="text"><%= item[:a] %></p>
+      <div class="faq-answer">
+        <p><%= item[:a] %></p>
       </div>
     </details>
   <% end %>
