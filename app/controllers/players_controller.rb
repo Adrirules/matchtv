@@ -60,8 +60,35 @@ class PlayersController < ApplicationController
      .order(:start_time)
      .limit(5)
 
-    @page_title = "#{@full_name} — Stats 2025-2026, buts et passes | Coup d'Envoi TV"
-    @page_desc  = "Statistiques complètes de #{@full_name} pour la saison 2025-2026 : #{@goals} but#{'s' if @goals != 1}, #{@assists} passe#{'s' if @assists != 1} décisive#{'s' if @assists != 1} en #{@games} match#{'s' if @games != 1}. Programme TV des prochains matchs."
+    pos_fr    = { "Goalkeeper" => "Gardien", "Defender" => "Défenseur",
+                  "Midfielder" => "Milieu",  "Attacker"  => "Attaquant" }
+    pos_label = pos_fr[@player.position]
+    team      = @team.presence || @player.team_name.presence
+    is_short  = @full_name.split.size <= 1
+
+    @page_title = if is_short && pos_label.present? && team.present?
+      "#{@full_name} (#{pos_label}, #{team}) — Stats 2025-2026 | Coup d'Envoi TV"
+    elsif is_short && team.present?
+      "#{@full_name} (#{team}) — Stats 2025-2026 | Coup d'Envoi TV"
+    elsif team.present?
+      "#{@full_name} (#{team}) — Stats 2025-2026, buts et passes | Coup d'Envoi TV"
+    else
+      "#{@full_name} — Stats 2025-2026, buts et passes | Coup d'Envoi TV"
+    end
+
+    @page_desc = if @games > 0
+      pos_str  = pos_label ? "#{pos_label.downcase} " : ""
+      team_str = team ? "à #{team} " : ""
+      "Statistiques de #{@full_name}, #{pos_str}#{team_str}en 2025-2026 : " \
+      "#{@goals} but#{'s' if @goals != 1}, #{@assists} passe#{'s' if @assists != 1}" \
+      " décisive#{'s' if @assists != 1} en #{@games} match#{'es' if @games > 1}. " \
+      "Programme TV des prochains matchs#{team ? " de #{team}" : ""}."
+    else
+      pos_str  = pos_label ? "#{pos_label.downcase} " : ""
+      team_str = team ? "à #{team}" : ""
+      "Profil de #{@full_name}, #{pos_str}#{team_str} pour la saison 2025-2026. " \
+      "Statistiques et programme TV des prochains matchs."
+    end
 
     # noindex si contenu trop mince :
     # - 0 stats du tout + aucun match à venir
