@@ -146,8 +146,8 @@
     <% faq_items = [
       { q: "Qui est le meilleur buteur de #{@league_name} cette saison ?",
         a: top1 ? "#{top1.dig('player','name')} est le meilleur buteur de #{@league_name} 2025-2026 avec #{top1.dig('statistics',0,'goals','total')} buts sous les couleurs de #{top1.dig('statistics',0,'team','name')}." : "Le classement des buteurs de #{@league_name} est mis à jour régulièrement." },
-      { q: "Comment est mis à jour le classement des buteurs de #{@league_name} ?",
-        a: "Les statistiques sont mises à jour automatiquement depuis l'API officielle après chaque journée. Le classement est rafraichi toutes les 6 heures." },
+      { q: "Les buts en coupe sont-ils comptabilisés dans ce classement ?",
+        a: "Non, seuls les buts marqués en #{@league_name} sont pris en compte. Les réalisations en coupe nationale, en coupe d'Europe ou en matchs amicaux ne figurent pas dans ce classement de buteurs." },
       { q: "Sur quelle chaîne voir les matchs de #{@league_name} ?",
         a: "Les matchs de #{@league_name} sont diffusés en France sur Canal+, beIN Sports ou DAZN selon les affiches. Consultez notre programme TV pour connaître la chaîne exacte de chaque rencontre." }
     ] %>
