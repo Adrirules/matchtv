@@ -14,32 +14,55 @@ if ('serviceWorker' in navigator) {
   });
 }
 // --- Logique d'installation PWA ---
+
+// Capture l'événement d'installation natif Chrome/Android dès qu'il est disponible
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  window.deferredPrompt = e;
+
+  // Affiche le bouton Android uniquement quand Chrome confirme qu'on peut installer
+  const androidBtn = document.getElementById('pwa-android');
+  if (androidBtn) androidBtn.style.display = 'inline-flex';
+});
+
+// Masque le bouton Android si l'app est déjà installée
+window.addEventListener('appinstalled', () => {
+  window.deferredPrompt = null;
+  const androidBtn = document.getElementById('pwa-android');
+  if (androidBtn) {
+    androidBtn.textContent = '✅ Installée !';
+    androidBtn.disabled = true;
+  }
+});
+
 document.addEventListener('turbo:load', () => {
   const appleBtn = document.getElementById('pwa-apple');
   const androidBtn = document.getElementById('pwa-android');
 
+  // Bouton Android caché par défaut — visible seulement si beforeinstallprompt a déjà fired
+  if (androidBtn && !window.deferredPrompt) {
+    androidBtn.style.display = 'none';
+  }
+
   if (appleBtn) {
     appleBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      alert("📲 Installation sur iPhone :\n\n1. Appuyez sur l'icône 'Partager' (le carré avec une flèche en bas de l'écran).\n2. Faites défiler et appuyez sur 'Sur l'écran d'accueil'.\n3. Cliquez sur 'Ajouter'.");
+      alert("📲 Sur iPhone :\n\n1. Appuyez sur l'icône Partager (carré avec flèche).\n2. Faites défiler → 'Sur l'écran d'accueil'.\n3. Appuyez sur 'Ajouter'.");
     });
   }
 
   if (androidBtn) {
-    androidBtn.addEventListener('click', (e) => {
+    androidBtn.addEventListener('click', async (e) => {
       e.preventDefault();
-      // Si Chrome Android propose l'installation native
       if (window.deferredPrompt) {
         window.deferredPrompt.prompt();
-      } else {
-        alert("📲 Installation sur Android :\n\n1. Appuyez sur les 3 points en haut à droite.\n2. Choisissez 'Installer l'application' ou 'Ajouter à l'écran d'accueil'.");
+        const { outcome } = await window.deferredPrompt.userChoice;
+        window.deferredPrompt = null;
+        if (outcome === 'accepted') {
+          androidBtn.textContent = '✅ Installée !';
+          androidBtn.disabled = true;
+        }
       }
     });
   }
-});
-
-// Capture l'événement d'installation natif pour Android
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  window.deferredPrompt = e;
 });
