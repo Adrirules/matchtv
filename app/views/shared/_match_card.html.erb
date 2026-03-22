@@ -1,5 +1,6 @@
+<% priority = local_assigns.fetch(:priority, false) %>
 <%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block;" do %>
-<% cache [match, match.updated_at] do %>
+<% cache [match, match.updated_at, priority] do %>
 <div class="match-card">
   <%# Ligne 1 : Heure + Score + Chaîne %>
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -26,13 +27,13 @@
   <%# Ligne 2 : Équipes avec logos %>
   <div style="display: flex; align-items: center; margin-bottom: 6px;">
     <div style="display: flex; align-items: center; flex: 1;">
-      <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="20" height="20" loading="lazy" fetchpriority="low" style="width: 20px; height: 20px; object-fit: contain; margin-right: 10px;">
+      <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="20" height="20" loading="<%= priority ? 'eager' : 'lazy' %>" fetchpriority="<%= priority ? 'high' : 'low' %>" style="width: 20px; height: 20px; object-fit: contain; margin-right: 10px;">
       <span style="font-size: 16px; font-weight: 600;"><%= match.home_team %></span>
     </div>
     <span style="margin: 0 10px; color: #bbb; font-size: 12px;">vs</span>
     <div style="display: flex; align-items: center; flex: 1; justify-content: flex-end;">
       <span style="font-size: 16px; font-weight: 600; text-align: right;"><%= match.away_team %></span>
-      <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="20" height="20" loading="lazy" fetchpriority="low" style="width: 20px; height: 20px; object-fit: contain; margin-left: 10px;">
+      <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="20" height="20" loading="<%= priority ? 'eager' : 'lazy' %>" fetchpriority="<%= priority ? 'high' : 'low' %>" style="width: 20px; height: 20px; object-fit: contain; margin-left: 10px;">
     </div>
   </div>
 

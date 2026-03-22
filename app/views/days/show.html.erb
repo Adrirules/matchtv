@@ -86,7 +86,7 @@
     <% if index == 4 %>
       <%= render 'shared/ad_unit', slot_id: '2773465276' %>
     <% end %>
-    <%= render 'shared/match_card', match: match %>
+    <%= render 'shared/match_card', match: match, priority: index < 2 %>
     <%= render 'shared/json_ld', match: match %>
   <% end %>
 <% else %>
