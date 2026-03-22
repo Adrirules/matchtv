@@ -121,13 +121,21 @@
   <% if @coach.present? %>
     <%
       coach_name    = @coach.dig('name')
-      coach_nat     = @coach.dig('nationality')
+      coach_nat     = country_fr(@coach.dig('nationality'))
       coach_age     = @coach.dig('age')
       coach_photo   = @coach.dig('photo')
       career        = @coach.dig('career') || []
       current_job   = career.find { |c| c.dig('team','id') == @team_api_id }
       since_date    = current_job&.dig('start')
-      since_label   = since_date ? (Date.parse(since_date).strftime('%B %Y') rescue since_date) : nil
+      mois_fr       = %w[janvier février mars avril mai juin juillet août septembre octobre novembre décembre]
+      since_label   = if since_date
+        begin
+          d = Date.parse(since_date)
+          "#{mois_fr[d.month - 1]} #{d.year}"
+        rescue
+          nil
+        end
+      end
     %>
     <section style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
       <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 12px; color: #010e1b;">Entraîneur</h2>
