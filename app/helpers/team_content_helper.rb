@@ -54,7 +54,7 @@ module TeamContentHelper
       end
       unless form.empty?
         parts << "Sur les 5 derniers matchs, le club affiche #{form_to_text(form)}."
-        parts << form_wins >= 4 ? "Une forme étincelante qui en fait l'une des équipes les plus en vue en ce moment." : form_wins <= 1 ? "Une passe difficile qui incite le club à se remobiliser rapidement." : "Un bilan en demi-teinte qui laisse de la marge de progression."
+        parts << (form_wins >= 4 ? "Une forme étincelante qui en fait l'une des équipes les plus en vue en ce moment." : form_wins <= 1 ? "Une passe difficile qui incite le club à se remobiliser rapidement." : "Un bilan en demi-teinte qui laisse de la marge de progression.")
       end
       parts.join(" ")
 
