@@ -100,9 +100,42 @@ module ApplicationHelper
     "Zimbabwe" => "Zimbabwe"
   }.freeze
 
-  # "Belgium" → "belge"  (pour "De nationalité belge")
+  # "Belgium" → "belge"  (pour "il est belge" — forme masculine)
   def nationality_fr(nat)
     NATIONALITY_ADJECTIVES[nat] || nat
+  end
+
+  # "Belgium" → "belge"  (pour "de nationalité belge" — forme féminine accordée avec "nationalité")
+  NATIONALITY_ADJ_F_EXCEPTIONS = {
+    "Turkey" => "turque",
+    "Greece" => "grecque",
+  }.freeze
+
+  def nationality_fr_feminine(nat)
+    return NATIONALITY_ADJ_F_EXCEPTIONS[nat] if NATIONALITY_ADJ_F_EXCEPTIONS.key?(nat)
+    adj = NATIONALITY_ADJECTIVES[nat] || nat
+    return adj if adj.end_with?('e')
+    return adj.sub(/éen$/, 'éenne') if adj.end_with?('éen')  # sud-coréen→sud-coréenne
+    return adj.sub(/ien$/, 'ienne') if adj.end_with?('ien')  # brésilien→brésilienne
+    return adj.sub(/ois$/, 'oise')  if adj.end_with?('ois')  # danois→danoise
+    return adj.sub(/ain$/, 'aine')  if adj.end_with?('ain')  # américain→américaine
+    return adj.sub(/ais$/, 'aise')  if adj.end_with?('ais')  # français→française
+    adj + 'e'                                                  # allemand→allemande, etc.
+  end
+
+  # "192 cm" ou "192" → "1m92"
+  def format_height(h)
+    return nil unless h.present?
+    cm = h.to_s.scan(/\d+/).first&.to_i
+    return nil unless cm && cm > 100
+    "#{cm / 100}m#{(cm % 100).to_s.rjust(2, '0')}"
+  end
+
+  # "88 kg" ou "88" → "88 kg"
+  def format_weight(w)
+    return nil unless w.present?
+    kg = w.to_s.scan(/\d+/).first
+    kg ? "#{kg} kg" : nil
   end
 
   # "Belgium" → "Belgique"  (pour "né à Liège (Belgique)")
