@@ -10,7 +10,7 @@ module StandingsHelper
     gap           = leader_pts - second_pts
     played        = leader.dig("all", "played").to_i
     challenger    = second&.dig("team", "name")
-    leader_form   = leader["form"].to_s.last(5).gsub("W", "V").gsub("D", "N").gsub("L", "D").chars.join("-")
+    leader_form_text = form_to_text(leader["form"].to_s.last(5))
 
     # Zone relégation : 3 derniers ou 2 selon config
     bottom = standings.last(3).map { |s| s.dig("team", "name") }
@@ -34,7 +34,7 @@ module StandingsHelper
       "#{intro} #{lead}#{releg}"
 
     when 2
-      form_str = leader_form.present? ? " Forme récente de #{leader_name} : #{leader_form}." : ""
+      form_str = leader_form_text.present? ? " #{leader_name} affiche #{leader_form_text} sur ses 5 derniers matchs." : ""
       title_race = gap <= 3 ? "Le titre est encore très ouvert avec seulement #{gap} point#{gap > 1 ? 's' : ''} séparant le leader de son dauphin." : gap >= 8 ? "<strong>#{leader_name}</strong> semble parti pour loin devant." : "La course au titre est lancée, <strong>#{challenger}</strong> reste menaçant."
       "<strong>#{leader_name}</strong> mène #{league_name} avec <strong>#{leader_pts} points</strong> après #{played} journées.#{form_str} #{title_race}"
 

@@ -21,7 +21,6 @@ module TeamContentHelper
     goal_diff    = goals_for - goals_against
     diff_label   = goal_diff >= 0 ? "+#{goal_diff}" : goal_diff.to_s
     form_wins    = form.count("W")
-    form_label   = form.gsub("W", "V").gsub("D", "N").gsub("L", "D").chars.join(" ")
 
     # Sélection stable par nom d'équipe
     require 'zlib'
@@ -54,7 +53,7 @@ module TeamContentHelper
         parts << "#{team_name} a disputé #{played} matchs en #{league_name} cette saison."
       end
       unless form.empty?
-        parts << "Sur les 5 derniers matchs, le club affiche la séquence suivante : #{form_label}."
+        parts << "Sur les 5 derniers matchs, le club affiche #{form_to_text(form)}."
         parts << form_wins >= 4 ? "Une forme étincelante qui en fait l'une des équipes les plus en vue en ce moment." : form_wins <= 1 ? "Une passe difficile qui incite le club à se remobiliser rapidement." : "Un bilan en demi-teinte qui laisse de la marge de progression."
       end
       parts.join(" ")
@@ -129,8 +128,8 @@ module TeamContentHelper
         parts << "#{team_name} a disputé #{played} matchs en #{league_name} cette saison."
       end
       momentum = form_recent_wins >= 3 ? "en pleine confiance" : form_recent_wins <= 1 ? "en quête de régularité" : "dans une forme correcte"
-      parts << "Le groupe est actuellement #{momentum} avec #{form_label} sur ses 5 dernières sorties." unless form.empty?
-      parts << "Au total : #{goals_for} buts pour, #{goals_against} contre - différence de #{diff_label}."
+      parts << "Le groupe est actuellement #{momentum} avec #{form_to_text(form)} sur ses 5 dernières sorties." unless form.empty?
+      parts << "Au total : #{goals_for} buts marqués et #{goals_against} encaissés, soit une différence de #{diff_label} buts."
       parts.join(" ")
 
     when 9

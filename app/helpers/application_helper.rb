@@ -123,6 +123,20 @@ module ApplicationHelper
     adj + 'e'                                                  # allemand→allemande, etc.
   end
 
+  # "WDLWD" → "2 victoires, 1 nul et 2 défaites"
+  def form_to_text(form)
+    return nil if form.blank?
+    v = form.count("W")
+    n = form.count("D")
+    d = form.count("L")
+    parts = []
+    parts << "#{v} victoire#{'s' if v > 1}" if v > 0
+    parts << "#{n} nul#{'s' if n > 1}" if n > 0
+    parts << "#{d} défaite#{'s' if d > 1}" if d > 0
+    return nil if parts.empty?
+    parts.length == 1 ? parts.first : "#{parts[0..-2].join(', ')} et #{parts.last}"
+  end
+
   # "192 cm" ou "192" → "1m92"
   def format_height(h)
     return nil unless h.present?
