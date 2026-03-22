@@ -28,14 +28,6 @@ class CompetitionsController < ApplicationController
     expires_in 1.hour, public: true
   end
 
-  COMPETITION_DESCRIPTIONS = begin
-    path = Rails.root.join("config", "competition_descriptions.yml")
-    File.exist?(path) ? YAML.load_file(path) || {} : {}
-  rescue => e
-    Rails.logger.error("competition_descriptions.yml load error: #{e.message}")
-    {}
-  end
-
   def show
     slug = params[:slug]
 
@@ -44,6 +36,7 @@ class CompetitionsController < ApplicationController
 
     if meta
       @competition_name = meta[:name]
+      @competition_slug = slug
       @competition_logo = FootballApiService.league_logo(meta[:id])
       @has_standings    = meta[:has_standings]
       @standing_slug    = meta[:has_standings] ? meta[:name].parameterize : nil
@@ -51,6 +44,7 @@ class CompetitionsController < ApplicationController
     else
       # Fallback pour les compétitions hors liste
       @competition_name = slug.tr('-', ' ').split.map(&:capitalize).join(' ')
+      @competition_slug = slug
       @competition_logo = nil
       @has_standings    = false
     end
@@ -60,11 +54,23 @@ class CompetitionsController < ApplicationController
                     .order(:start_time)
                     .limit(50)
 
-    @description = COMPETITION_DESCRIPTIONS[@competition_name]
+    @description = competition_description(@competition_name)
 
     @page_title = "#{@competition_name} 2025-2026 — Programme TV, matchs et résultats | Coup d'Envoi TV"
     @page_desc  = "Programme TV complet #{@competition_name} 2025-2026 : matchs à venir, horaires et chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV)."
 
     expires_in 10.minutes, public: true
+  end
+
+  private
+
+  def competition_description(name)
+    yaml_path = Rails.root.join("config", "competition_descriptions.yml")
+    return nil unless File.exist?(yaml_path)
+    require "yaml"
+    (YAML.load_file(yaml_path) || {})[name]
+  rescue => e
+    Rails.logger.error("competition_descriptions.yml error: #{e.message}")
+    nil
   end
 end
