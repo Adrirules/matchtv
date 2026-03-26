@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_03_17_175417) do
+ActiveRecord::Schema[7.0].define(version: 2026_03_26_170530) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,16 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_17_175417) do
     t.index ["api_id"], name: "index_players_on_api_id", unique: true
     t.index ["slug"], name: "index_players_on_slug", unique: true
     t.index ["team_api_id"], name: "index_players_on_team_api_id"
+  end
+
+  create_table "standings", force: :cascade do |t|
+    t.integer "league_id", null: false
+    t.integer "season", default: 2025, null: false
+    t.jsonb "data"
+    t.datetime "synced_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id", "season"], name: "index_standings_on_league_id_and_season", unique: true
   end
 
   add_foreign_key "matches", "matchups"

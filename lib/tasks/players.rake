@@ -15,6 +15,12 @@ namespace :players do
     team_ids.each_with_index do |(team_api_id, team_name, team_logo), i|
       print "  [#{i+1}/#{team_ids.count}] #{team_name.ljust(25)} "
 
+      # Skip si l'effectif a déjà été importé dans les 7 derniers jours
+      if Player.where(team_api_id: team_api_id).where('updated_at > ?', 7.days.ago).exists?
+        puts "⏭️  (à jour)"
+        next
+      end
+
       squad = api.fetch_squad(team_api_id)
 
       if squad.empty?

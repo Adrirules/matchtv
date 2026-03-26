@@ -58,7 +58,8 @@ class TeamsController < ApplicationController
 
       if primary_league_id
         @stats   = api.fetch_team_stats(@team_api_id, primary_league_id)
-        standings_data = api.get_standings(primary_league_id)
+        standing_record = Standing.for_league(primary_league_id)
+        standings_data = standing_record&.data.presence || api.get_standings(primary_league_id)
         @standing = standings_data
                       &.dig(0, "league", "standings", 0)
                       &.find { |s| s["team"]["id"] == @team_api_id }

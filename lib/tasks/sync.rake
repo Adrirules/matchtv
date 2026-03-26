@@ -9,16 +9,27 @@ namespace :sync do
     puts "🚀 [#{Time.now.strftime('%H:%M')}] DÉBUT DE LA MÉGA-SYNCHRONISATION"
     puts "--------------------------------------------------"
 
+    midnight_sync = Time.now.hour == 0
+
     leagues.each do |id, name|
+      # Hors minuit, skip les ligues sans match dans les 7 prochains jours
+      unless midnight_sync
+        has_upcoming = Match.where(competition: name)
+                            .where(start_time: Date.today..7.days.from_now)
+                            .exists?
+        unless has_upcoming
+          puts "⏭️  #{name.ljust(20)} — aucun match cette semaine, sync quotidienne"
+          next
+        end
+      end
+
       print "🔄 Importation de : #{name.ljust(20)} "
       begin
-        # On appelle ton service d'import
         api.import_upcoming_fixtures(league_id: id)
         puts "✅ OK"
       rescue => e
         puts "❌ ERREUR : #{e.message}"
       end
-      # Pause de 1 seconde pour respecter les quotas de l'API
       sleep 1
     end
 

@@ -29,7 +29,14 @@ class StandingsController < ApplicationController
     end
 
     @league_info = LEAGUES.find { |l| l[:id] == league_id }
-    api_data     = FootballApiService.new.get_standings(league_id)
+
+    # Lecture depuis la DB — fallback API si la DB est vide (premier déploiement)
+    standing_record = Standing.for_league(league_id)
+    api_data = if standing_record&.data.present?
+      standing_record.data
+    else
+      FootballApiService.new.get_standings(league_id)
+    end
 
     if api_data.present? && api_data[0]
       @league_name = api_data[0]["league"]["name"]
