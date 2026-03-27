@@ -16,6 +16,7 @@
 </section>
 
 <% if local_assigns[:schema] %>
+  <% content_for :json_ld do %>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -23,4 +24,5 @@
     "mainEntity": <%= items.map { |i| { "@type" => "Question", "name" => i[:q], "acceptedAnswer" => { "@type" => "Answer", "text" => i[:a] } } }.to_json.html_safe %>
   }
   </script>
+  <% end %>
 <% end %>

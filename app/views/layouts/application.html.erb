@@ -67,6 +67,8 @@
     }
     </script>
 
+    <%= yield :json_ld %>
+
     <%# AdSense — uniquement sur les pages avec contenu (pas sur noindex) %>
     <% unless @noindex %>
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1509060692668087" crossorigin="anonymous"></script>

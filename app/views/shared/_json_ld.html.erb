@@ -1,3 +1,4 @@
+<% content_for :json_ld do %>
 <script type="application/ld+json">
   <%= {
     "@context": "https://schema.org",
@@ -54,3 +55,4 @@
     end
   }.to_json.html_safe %>
 </script>
+<% end %>
