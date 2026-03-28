@@ -140,7 +140,7 @@ module TeamContentHelper
                   else "difficile" end
       parts = ["#{team_name} signe une saison #{qualifier} en #{league_name} avec #{wins} victoire#{'s' if wins > 1} pour #{losses} défaite#{'s' if losses > 1} en #{played} matchs."]
       parts << "L'attaque a trouvé le chemin des filets à #{goals_for} reprises (#{avg_scored}/match), tandis que la défense a capitulé #{goals_against} fois (#{avg_conceded}/match)."
-      parts << points ? "Bilan : #{points} point#{'s' if points > 1}#{rank ? ", #{rank}e au classement de #{league_name}" : " au compteur"}." : "Différence de buts : #{diff_label}."
+      parts << (points ? "Bilan : #{points} point#{'s' if points > 1}#{rank ? ", #{rank}e au classement de #{league_name}" : " au compteur"}." : "Différence de buts : #{diff_label}.")
       parts.join(" ")
     end
   end
