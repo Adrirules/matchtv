@@ -42,6 +42,18 @@
     </div>
   </div>
 
+  <%# Sommaire automatique %>
+  <% if @toc.length >= 2 %>
+    <nav class="blog-toc">
+      <p class="blog-toc-title">Dans cet article</p>
+      <ol>
+        <% @toc.each do |item| %>
+          <li><%= link_to item[:text], "##{item[:anchor]}" %></li>
+        <% end %>
+      </ol>
+    </nav>
+  <% end %>
+
   <%# Corps de l'article %>
   <div class="blog-content">
     <%= @article_html %>
