@@ -35,7 +35,7 @@ class BlogController < ApplicationController
     return nil unless raw.start_with?('---')
     parts = raw.split('---', 3)
     return nil if parts.length < 3
-    meta = YAML.safe_load(parts[1]) rescue {}
+    meta = YAML.safe_load(parts[1], permitted_classes: [Date]) rescue {}
     result = {
       title:            meta['title'],
       meta_description: meta['meta_description'],
