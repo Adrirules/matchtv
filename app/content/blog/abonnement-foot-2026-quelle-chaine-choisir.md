@@ -9,6 +9,8 @@ excerpt: "En 2026, suivre le foot en France demande de jongler entre plusieurs a
 
 # Abonnement foot 2026 : quelle chaîne choisir pour regarder tous les matchs de la Ligue 1 ?
 
+<img src="/images/blog/abonnement-foot-2026.jpg" alt="Stade de football illuminé la nuit - abonnements foot 2026" width="800" height="533" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
+
 En 2026, si on veut suivre le football on doit avoir différents abonnements. C'est un casse-tête, à quelle chaîne doit-on souscrire pour voir le Classico ou un match de [La Liga](/competitions/la-liga) ? Chez coupdenvoi TV on a bossé et on a décrypté la diffusion de tous les matchs de foot pour vous. Cet article est là pour vous dire ce que vous pouvez voir avec chaque abonnement. Et si vous avez encore un doute, il vous suffit d'aller sur [le programme](/) et vous verrez la chaîne de télévision ou la chaîne de streaming qui diffuse votre match de football chaque jour. Allez, c'est parti.
 
 ## Comment voir la Ligue 1 sans Canal+ ?
