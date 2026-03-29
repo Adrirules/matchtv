@@ -1,0 +1,60 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+
+<% content_for :json_ld do %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '')&.gsub('"', '\"') %>",
+  "datePublished": "<%= @article[:published_at]&.to_date&.iso8601 %>",
+  "dateModified": "<%= @article[:published_at]&.to_date&.iso8601 %>",
+  "author": { "@type": "Person", "name": "Adrien" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Coup d'Envoi TV",
+    "url": "https://www.coupdenvoi.tv"
+  },
+  "description": "<%= @article[:meta_description]&.gsub('"', '\"') %>"
+}
+</script>
+<% end %>
+
+<article style="max-width: 800px; margin: 0 auto; padding: 30px 15px;">
+
+  <%# Fil d'Ariane %>
+  <nav style="font-size: 12px; color: #999; margin-bottom: 20px;">
+    <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+    <%= link_to "Blog", blog_path, style: "color: #999; text-decoration: none;" %> ›
+    <span><%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '')&.truncate(60) %></span>
+  </nav>
+
+  <%# Métadonnées auteur %>
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 28px;">
+    <div style="width: 36px; height: 36px; border-radius: 50%; background: #010e1b; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0;">A</div>
+    <div>
+      <span style="font-weight: 600; font-size: 14px; color: #010e1b;">Adrien</span>
+      <span style="color: #999; font-size: 13px; margin-left: 8px;">·</span>
+      <time datetime="<%= @article[:published_at] %>" style="font-size: 13px; color: #999; margin-left: 8px;">
+        <%= @article[:published_at]&.strftime("%-d %B %Y") %>
+      </time>
+    </div>
+  </div>
+
+  <%# Corps de l'article %>
+  <div class="blog-content">
+    <%= @article_html %>
+  </div>
+
+  <%# Bio auteur %>
+  <div style="margin-top: 48px; padding: 20px; background: #f8f9fa; border-left: 3px solid #010e1b; border-radius: 4px;">
+    <p style="font-size: 14px; font-weight: 700; margin: 0 0 6px; color: #010e1b;">Adrien</p>
+    <p style="font-size: 14px; color: #555; margin: 0; line-height: 1.6;">Passionné de foot depuis toujours, je gère coupdenvoi.tv pour que personne ne rate un match faute d'avoir trouvé la bonne chaîne. Je suis les transferts, les classements et les droits TV de près — surtout quand ça change aussi vite qu'en ce moment.</p>
+  </div>
+
+  <%# Retour blog %>
+  <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+    <%= link_to "← Retour au blog", blog_path, style: "font-size: 14px; color: #1a73e8; text-decoration: none;" %>
+  </div>
+
+</article>

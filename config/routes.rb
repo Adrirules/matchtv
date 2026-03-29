@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   get "classements/:competition_id/buteurs", to: "standings#top_scorers", as: :top_scorers
   get "classements/:competition_id", to: "standings#show", as: :standing
 
-  # 6. Pages Statiques
+  # 6. Blog éditorial
+  get 'blog', to: 'blog#index', as: :blog
+  get 'blog/:slug', to: 'blog#show', as: :blog_article
+
+  # 7. Pages Statiques
   get "contact", to: "pages#contact", as: :contact
   get "a-propos", to: "pages#about", as: :a_propos
   get "mentions-legales", to: "pages#legal", as: :mentions_legales
