@@ -12,7 +12,7 @@
       <% @articles.each do |article| %>
         <article class="blog-article-item">
           <time datetime="<%= article[:published_at] %>" style="font-size: 12px; color: #999; display: block; margin-bottom: 6px;">
-            <%= article[:published_at]&.strftime("%-d %B %Y") %>
+            <%= date_fr(article[:published_at]) %>
           </time>
           <h2 style="font-size: 20px; font-weight: 700; margin: 0 0 10px;">
             <%= link_to article[:title]&.gsub(' | Coup d\'Envoi TV', ''), blog_article_path(article[:slug]),

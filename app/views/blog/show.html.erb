@@ -37,7 +37,7 @@
       <span style="font-weight: 600; font-size: 14px; color: #010e1b;">Adrien</span>
       <span style="color: #999; font-size: 13px; margin-left: 8px;">·</span>
       <time datetime="<%= @article[:published_at] %>" style="font-size: 13px; color: #999; margin-left: 8px;">
-        <%= @article[:published_at]&.strftime("%-d %B %Y") %>
+        <%= date_fr(@article[:published_at]) %>
       </time>
     </div>
   </div>

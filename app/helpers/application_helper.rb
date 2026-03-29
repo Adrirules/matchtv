@@ -157,6 +157,14 @@ module ApplicationHelper
     COUNTRY_FR[nat] || nat
   end
 
+  MONTHS_FR = %w[janvier février mars avril mai juin juillet août septembre octobre novembre décembre].freeze
+
+  # Date en français : 29 mars 2026
+  def date_fr(date)
+    return '' unless date
+    "#{date.day} #{MONTHS_FR[date.month - 1]} #{date.year}"
+  end
+
   def format_date_label(date)
     today = Date.today
     if date == today         then "aujourd'hui"
