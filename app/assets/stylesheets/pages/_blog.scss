@@ -1,3 +1,38 @@
+.blog-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 30px 15px;
+
+  @media (max-width: 600px) {
+    padding: 20px 12px;
+  }
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+  padding: 36px 40px;
+
+  @media (max-width: 600px) {
+    padding: 22px 18px;
+  }
+}
+
+.blog-article-item {
+  border-bottom: 1px solid #eee;
+  padding: 24px 0;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
 .blog-content {
   font-size: 16px;
   line-height: 1.8;

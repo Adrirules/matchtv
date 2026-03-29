@@ -1,28 +1,30 @@
 <% content_for :title, @page_title %>
 <% content_for :meta_description, @page_desc %>
 
-<section style="max-width: 800px; margin: 0 auto; padding: 30px 15px;">
-  <h1 style="font-size: 26px; font-weight: 800; margin-bottom: 6px;">Blog foot</h1>
-  <p style="color: #666; font-size: 15px; margin-bottom: 30px;">Guides pratiques, comparatifs d'abonnements et analyses rédigés par Adrien.</p>
+<div class="blog-wrapper">
+  <section class="blog-card">
+    <h1 style="font-size: 26px; font-weight: 800; margin: 0 0 6px;">Blog foot</h1>
+    <p style="color: #666; font-size: 15px; margin-bottom: 30px;">Guides pratiques, comparatifs d'abonnements et analyses rédigés par Adrien.</p>
 
-  <% if @articles.empty? %>
-    <p style="color: #999;">Aucun article pour le moment.</p>
-  <% else %>
-    <% @articles.each do |article| %>
-      <article style="border-bottom: 1px solid #eee; padding: 24px 0;">
-        <time datetime="<%= article[:published_at] %>" style="font-size: 12px; color: #999; display: block; margin-bottom: 6px;">
-          <%= article[:published_at]&.strftime("%-d %B %Y") %>
-        </time>
-        <h2 style="font-size: 20px; font-weight: 700; margin: 0 0 10px;">
-          <%= link_to article[:title]&.gsub(' | Coup d\'Envoi TV', ''), blog_article_path(article[:slug]),
-              style: "color: #010e1b; text-decoration: none;" %>
-        </h2>
-        <% if article[:excerpt].present? %>
-          <p style="color: #555; font-size: 15px; line-height: 1.6; margin: 0 0 12px;"><%= article[:excerpt] %></p>
-        <% end %>
-        <%= link_to "Lire l'article →", blog_article_path(article[:slug]),
-            style: "font-size: 14px; font-weight: 600; color: #1a73e8; text-decoration: none;" %>
-      </article>
+    <% if @articles.empty? %>
+      <p style="color: #999;">Aucun article pour le moment.</p>
+    <% else %>
+      <% @articles.each do |article| %>
+        <article class="blog-article-item">
+          <time datetime="<%= article[:published_at] %>" style="font-size: 12px; color: #999; display: block; margin-bottom: 6px;">
+            <%= article[:published_at]&.strftime("%-d %B %Y") %>
+          </time>
+          <h2 style="font-size: 20px; font-weight: 700; margin: 0 0 10px;">
+            <%= link_to article[:title]&.gsub(' | Coup d\'Envoi TV', ''), blog_article_path(article[:slug]),
+                style: "color: #010e1b; text-decoration: none;" %>
+          </h2>
+          <% if article[:excerpt].present? %>
+            <p style="color: #555; font-size: 15px; line-height: 1.6; margin: 0 0 12px;"><%= article[:excerpt] %></p>
+          <% end %>
+          <%= link_to "Lire l'article →", blog_article_path(article[:slug]),
+              style: "font-size: 14px; font-weight: 600; color: #1a73e8; text-decoration: none;" %>
+        </article>
+      <% end %>
     <% end %>
-  <% end %>
-</section>
+  </section>
+</div>
