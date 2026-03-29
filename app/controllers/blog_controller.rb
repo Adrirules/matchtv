@@ -42,6 +42,7 @@ class BlogController < ApplicationController
       slug:             meta['slug'],
       published_at:     meta['published_at'],
       author:           meta['author'] || 'Adrien',
+      image:            meta['image'],
       excerpt:          meta['excerpt']
     }
     result[:body] = parts[2].strip if with_body
