@@ -170,15 +170,7 @@
   <%# FAQ accordion %>
   <section style="margin: 0 0 40px;">
     <h2 style="font-size: 20px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
-    <% match_faq = [
-      { q: "Sur quelle chaîne voir #{@match.home_team} - #{@match.away_team} ?",
-        a: "Le match #{@match.home_team} - #{@match.away_team} est diffusé sur #{@match.tv_channels}. Vérifiez votre abonnement ou accédez à l'application officielle de la chaîne pour regarder en direct." },
-      { q: "À quelle heure commence le match #{@match.home_team} - #{@match.away_team} ?",
-        a: "Le coup d'envoi de #{@match.home_team} - #{@match.away_team} est prévu à #{@match.start_time.strftime("%Hh%M")} le #{l(@match.start_time.to_date, format: :long)} (heure française)." },
-      { q: "Comment voir #{@match.home_team} - #{@match.away_team} en streaming ?",
-        a: "Pour regarder #{@match.home_team} - #{@match.away_team} en streaming légal, connectez-vous à l'application officielle de #{@match.tv_channels}. Un abonnement actif est nécessaire pour accéder au direct." }
-    ] %>
-    <%= render 'shared/faq_accordion', items: match_faq, schema: true %>
+    <%= render 'shared/faq_accordion', items: generate_match_faq(@match), schema: true %>
   </section>
 
   <%# Maillage interne : lien vers classement de la compétition %>

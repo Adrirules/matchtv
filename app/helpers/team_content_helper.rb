@@ -24,7 +24,7 @@ module TeamContentHelper
 
     # Sélection stable par nom d'équipe
     require 'zlib'
-    variant = Zlib.crc32(team_name.to_s) % 10
+    variant = Zlib.crc32(team_name.to_s) % 20
 
     case variant
     when 0
@@ -141,6 +141,94 @@ module TeamContentHelper
       parts = ["#{team_name} signe une saison #{qualifier} en #{league_name} avec #{wins} victoire#{'s' if wins > 1} pour #{losses} défaite#{'s' if losses > 1} en #{played} matchs."]
       parts << "L'attaque a trouvé le chemin des filets à #{goals_for} reprises (#{avg_scored}/match), tandis que la défense a capitulé #{goals_against} fois (#{avg_conceded}/match)."
       parts << (points ? "Bilan : #{points} point#{'s' if points > 1}#{rank ? ", #{rank}e au classement de #{league_name}" : " au compteur"}." : "Différence de buts : #{diff_label}.")
+      parts.join(" ")
+
+    when 10
+      # Focus sur l'équilibre collectif
+      balance = goals_for > goals_against ? "un collectif offensivement solide" : goals_for == goals_against ? "un équilibre fragile entre attaque et défense" : "des lacunes défensives à combler"
+      parts = ["#{team_name} présente cette saison #{balance} en #{league_name}."]
+      parts << "En #{played} rencontres, le club a inscrit #{goals_for} but#{'s' if goals_for > 1} et en a concédé #{goals_against}, ce qui reflète #{win_rate >= 50 ? "une réelle capacité à peser offensivement" : "un chantier encore en cours"}."
+      parts << rank ? "Au classement, #{team_name} pointe à la #{rank}e place de #{league_name}." : "#{wins} succès, #{draws} partages et #{losses} revers composent le bilan de la saison."
+      parts.join(" ")
+
+    when 11
+      # Narration en mode supporter
+      parts = []
+      parts << "En #{league_name} cette saison, #{team_name} a alterné le meilleur et le moins bon avec #{wins} victoire#{'s' if wins > 1}, #{draws} match#{'es' if draws > 1} nul#{'s' if draws > 1} et #{losses} défaite#{'s' if losses > 1} en #{played} matchs."
+      unless form.empty?
+        parts << "Les cinq dernières sorties donnent #{form_to_text(form)} - #{form_wins >= 3 ? "de quoi aborder la suite avec optimisme" : form_wins <= 1 ? "un bilan qui incite à la prudence" : "un résultat qui appelle à la régularité"}."
+      end
+      parts << "#{goals_for} buts à l'actif, #{goals_against} au passif : une différence de #{diff_label} qui en dit long sur la saison."
+      parts.join(" ")
+
+    when 12
+      # Angle chiffres clés / densité stat
+      pts_per_game = points ? (points.to_f / played).round(2) : nil
+      parts = ["#{team_name} : #{played} matchs joués en #{league_name}, #{wins}V #{draws}N #{losses}D."]
+      parts << "#{goals_for} buts marqués (#{avg_scored}/match) et #{goals_against} encaissés (#{avg_conceded}/match), différence #{diff_label}."
+      if pts_per_game && rank
+        parts << "#{points} points, #{pts_per_game} par match en moyenne, #{rank}e du championnat."
+      end
+      parts.join(" ")
+
+    when 13
+      # Angle défi / ambition
+      level = rank ? (rank <= 5 ? "jouer les premiers rôles" : rank <= 12 ? "rester dans le bon wagon" : "se maintenir et progresser") : "franchir un cap"
+      parts = ["L'objectif de #{team_name} en #{league_name} cette saison est de #{level}."]
+      parts << "Après #{played} matchs, le club affiche #{wins} victoire#{'s' if wins > 1} et #{losses} défaite#{'s' if losses > 1}, avec une attaque qui a planté #{goals_for} buts."
+      parts << rank ? "#{rank}e au classement avec #{points} point#{'s' if points && points > 1}, #{team_name} garde le cap." : "Le bilan reste à construire pour la fin de saison."
+      parts.join(" ")
+
+    when 14
+      # Comparaison buts pour/contre narrative
+      ratio_label = if avg_scored > avg_conceded + 0.5 then "nettement plus d'attaque que de défense"
+                    elsif avg_conceded > avg_scored + 0.5 then "plus de failles défensives que d'efficacité offensive"
+                    else "un équilibre entre les deux compartiments du jeu" end
+      parts = ["#{team_name} montre #{ratio_label} en #{league_name} cette saison : #{avg_scored} but#{'s' if avg_scored != 1} marqué#{'s' if avg_scored != 1} par match contre #{avg_conceded} encaissé#{'s' if avg_conceded != 1}."]
+      parts << "En #{played} journées, le club totalise #{wins} victoire#{'s' if wins > 1}, #{draws} nul#{'s' if draws > 1} et #{losses} défaite#{'s' if losses > 1}."
+      parts << rank ? "Classement actuel : #{rank}e de #{league_name} avec #{points} point#{'s' if points && points > 1}." : "Bilan global : #{diff_label} en différence de buts."
+      parts.join(" ")
+
+    when 15
+      # Angle progression / trajectoire
+      momentum_label = form_wins >= 4 ? "sur une trajectoire ascendante" : form_wins <= 1 ? "dans une période de turbulences" : "dans une dynamique correcte"
+      parts = ["#{team_name} est actuellement #{momentum_label} en #{league_name}."]
+      parts << "Sur l'ensemble de la saison : #{played} matchs, #{goals_for} buts inscrits et #{goals_against} concédés pour un total de #{wins} victoire#{'s' if wins > 1}."
+      parts << rank ? "Le club occupe la #{rank}e place de #{league_name}#{points ? " avec #{points} point#{'s' if points > 1}" : ""}." : "Les #{played} matchs disputés donnent un aperçu des forces en présence."
+      parts.join(" ")
+
+    when 16
+      # Format court percutant
+      parts = ["#{wins} victoires. #{draws} nuls. #{losses} défaites. Tel est le bilan de #{team_name} après #{played} matchs de #{league_name} cette saison."]
+      parts << "#{goals_for} buts marqués, #{goals_against} encaissés, différence #{diff_label}."
+      parts << rank ? "Position actuelle : #{rank}e de #{league_name}#{points ? " (#{points} pts)" : ""}." : "Un bilan à consulter en détail dans les statistiques ci-dessous."
+      parts.join(" ")
+
+    when 17
+      # Angle contexte ligue
+      tier_label = rank ? (rank <= 4 ? "en haut de tableau" : rank <= 10 ? "dans le milieu de tableau" : "dans le bas de classement") : "dans le peloton"
+      parts = ["Dans le paysage de la #{league_name} 2025-2026, #{team_name} évolue #{tier_label}."]
+      parts << "Le club compile #{wins} victoire#{'s' if wins > 1}, #{draws} nul#{'s' if draws > 1} et #{losses} défaite#{'s' if losses > 1} en #{played} rencontres, avec #{goals_for} réalisations offensives."
+      parts << "La défense, elle, a encaissé #{goals_against} buts#{avg_conceded <= 1.0 ? " - un des meilleurs ratios du championnat" : avg_conceded >= 1.8 ? " - un secteur qui nécessite des ajustements" : ""}."
+      parts.join(" ")
+
+    when 18
+      # Focus sur les victoires
+      home_wins = stats.dig("fixtures", "wins", "home").to_i
+      away_wins = stats.dig("fixtures", "wins", "away").to_i
+      parts = ["#{team_name} a remporté #{wins} de ses #{played} matchs de #{league_name} cette saison, soit un taux de #{win_rate}%."]
+      if home_wins + away_wins == wins && (home_wins > 0 || away_wins > 0)
+        parts << "#{home_wins} de ces victoires ont été obtenues à domicile, #{away_wins} à l'extérieur."
+      end
+      parts << "Avec #{goals_for} buts inscrits et #{goals_against} concédés#{rank ? ", le club se retrouve #{rank}e de #{league_name}" : ""}."
+      parts.join(" ")
+
+    when 19
+      # Synthèse saison finale alternative
+      adjective = win_rate >= 55 ? "convaincant" : win_rate >= 40 ? "honnête" : "décevant"
+      parts = ["Le bilan de #{team_name} en #{league_name} cette saison est #{adjective} : #{wins} victoire#{'s' if wins > 1}, #{draws} nul#{'s' if draws > 1} et #{losses} défaite#{'s' if losses > 1} en #{played} matchs joués."]
+      parts << "Côté statistiques, #{avg_scored} but#{'s' if avg_scored != 1} inscrit#{'s' if avg_scored != 1} par rencontre et #{avg_conceded} concédé#{'s' if avg_conceded != 1} dessinent le profil de l'équipe."
+      parts << (rank ? "#{team_name} est #{rank}e de #{league_name} avec #{points} point#{'s' if points && points > 1} au compteur." : "Différence de buts globale : #{diff_label}.")
       parts.join(" ")
     end
   end
