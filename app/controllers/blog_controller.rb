@@ -50,7 +50,7 @@ class BlogController < ApplicationController
   end
 
   def render_markdown_with_toc(text)
-    renderer = Redcarpet::Render::HTML.new(hard_wrap: false, safe_links_only: true)
+    renderer = Redcarpet::Render::HTML.new(hard_wrap: false)
     md = Redcarpet::Markdown.new(renderer, tables: true, no_intra_emphasis: true, autolink: false)
     html = md.render(text)
     doc = Nokogiri::HTML::DocumentFragment.parse(html)

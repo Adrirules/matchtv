@@ -49,11 +49,11 @@
     <% end %>
   <% end %>
 
-  <%# Texte éditorial (Groq) ou fallback générique %>
+  <%# Texte éditorial humain ou description Groq %>
   <% if @description.present? %>
-    <div style="font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 20px; background: #f9f9f9; padding: 16px; border-radius: 10px;">
+    <div style="font-size: 15px; color: #444; line-height: 1.85; margin-bottom: 20px; background: #f9f9f9; padding: 20px; border-radius: 10px;">
       <% @description.split(/\n+/).reject(&:blank?).each do |para| %>
-        <p style="margin: 0 0 10px;"><%= para %></p>
+        <p style="margin: 0 0 14px;"><%= @editorial_html ? para.html_safe : para %></p>
       <% end %>
     </div>
   <% else %>

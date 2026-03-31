@@ -54,7 +54,9 @@ class CompetitionsController < ApplicationController
                     .order(:start_time)
                     .limit(50)
 
-    @description = competition_description(@competition_name)
+    editorial = competition_editorial(@competition_name)
+    @description  = editorial || competition_description(@competition_name)
+    @editorial_html = editorial.present?
 
     @page_title = "#{@competition_name} 2025-2026 — Programme TV, matchs et résultats | Coup d'Envoi TV"
     @page_desc  = "Programme TV complet #{@competition_name} 2025-2026 : matchs à venir, horaires et chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV)."
@@ -63,6 +65,15 @@ class CompetitionsController < ApplicationController
   end
 
   private
+
+  def competition_editorial(name)
+    yaml_path = Rails.root.join("config", "competition_editorial.yml")
+    return nil unless File.exist?(yaml_path)
+    (YAML.load_file(yaml_path) || {})[name]&.strip
+  rescue => e
+    Rails.logger.error("competition_editorial.yml error: #{e.message}")
+    nil
+  end
 
   def competition_description(name)
     yaml_path = Rails.root.join("config", "competition_descriptions.yml")
