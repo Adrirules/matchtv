@@ -194,15 +194,65 @@
       when "serie-a" then "Les 4 premiers vont en Champions League. Le 5e en Europa League. Le 6e en Conference League."
       else nil
     end
-    faq_items = [
-      { q: "Comment est calculé le classement de #{league_display} ?",
-        a: "Le classement est établi en points : 3 points pour une victoire, 1 point pour un match nul, 0 point pour une défaite. En cas d'égalité de points, la différence de buts puis le nombre de buts marqués départagent les équipes." },
-      { q: "Quelle est la relégation en #{league_display} ?",
-        a: promo_info },
-      *(euro_info ? [{ q: "Quelles places qualifient pour les coupes européennes en #{league_display} ?", a: euro_info }] : []),
-      { q: "À quelle fréquence le classement #{league_display} est-il mis à jour ?",
-        a: "Le classement est mis à jour après chaque journée de championnat. Pendant les matchs, les scores sont suivis en direct et le classement reflète la situation en temps réel dès le coup de sifflet final." }
+    standing_faq_sets = [
+      [
+        { q: "Comment est calculé le classement de #{league_display} ?",
+          a: "Le classement est établi en points : 3 points pour une victoire, 1 point pour un match nul, 0 point pour une défaite. En cas d'égalité de points, la différence de buts puis le nombre de buts marqués départagent les équipes." },
+        { q: "Quelle est la relégation en #{league_display} cette saison ?",
+          a: promo_info },
+        { q: "À quelle fréquence le classement #{league_display} est-il mis à jour ?",
+          a: "Le classement est mis à jour après chaque journée de championnat. Les scores sont suivis en direct pendant les matchs et le classement reflète la situation réelle dès le coup de sifflet final." }
+      ],
+      [
+        { q: "Quelles places qualifient pour les coupes européennes en #{league_display} ?",
+          a: euro_info || "Les places qualificatives pour les coupes européennes dépendent du classement final de #{league_display} en fin de saison. Consultez le classement complet sur cette page." },
+        { q: "Quel est le critère de départage en #{league_display} en cas d'égalité de points ?",
+          a: "En cas d'égalité de points en #{league_display}, la différence de buts est le premier critère, suivie du nombre de buts marqués. En cas d'égalité persistante, les confrontations directes entre les clubs concernés sont utilisées." },
+        { q: "Combien d'équipes jouent en #{league_display} cette saison ?",
+          a: "Le nombre d'équipes et le format de #{league_display} sont visibles dans le classement ci-dessus. Cliquez sur chaque club pour accéder à sa page avec calendrier et statistiques." }
+      ],
+      [
+        { q: "Comment fonctionne la promotion et la relégation en #{league_display} ?",
+          a: promo_info },
+        { q: "Combien de journées compte la saison #{league_display} 2025-2026 ?",
+          a: "Le nombre de journées de #{league_display} dépend du nombre d'équipes participantes. Le programme complet des matchs est disponible sur la page de chaque club et sur la page de la compétition." },
+        { q: "Le classement #{league_display} est-il disponible en temps réel ?",
+          a: "Oui, le classement de #{league_display} sur Coup d'Envoi TV est synchronisé régulièrement. Les scores en direct sont suivis pendant les matchs et mis à jour automatiquement." }
+      ],
+      [
+        { q: "Y a-t-il des barrages en #{league_display} ?",
+          a: promo_info },
+        { q: "Quand se termine la saison #{league_display} 2025-2026 ?",
+          a: "La saison 2025-2026 de #{league_display} se termine en mai ou juin 2026 selon la compétition. Le programme des dernières journées est disponible sur cette page." },
+        { q: "Peut-on consulter le classement #{league_display} sur mobile ?",
+          a: "Oui, le classement de #{league_display} est entièrement optimisé pour mobile sur Coup d'Envoi TV. Toutes les colonnes (points, victoires, buts) sont accessibles en faisant défiler le tableau." }
+      ],
+      [
+        { q: "Quelles places qualifient pour la Champions League en #{league_display} ?",
+          a: euro_info || "Les places qualificatives pour la Champions League en #{league_display} dépendent du classement final. Consultez le classement complet sur cette page pour suivre la course aux places européennes." },
+        { q: "Comment interpréter la différence de buts dans le classement #{league_display} ?",
+          a: "La différence de buts en #{league_display} est calculée en soustrayant les buts encaissés des buts marqués. Elle sert de premier critère de départage entre deux équipes à égalité de points." },
+        { q: "Où voir le programme des prochains matchs des équipes de #{league_display} ?",
+          a: "Le programme des prochains matchs de chaque équipe de #{league_display} est disponible sur leur page respective. Cliquez sur le nom d'un club dans le classement pour accéder à son calendrier complet." }
+      ],
+      [
+        { q: "Quel est le format de la compétition #{league_display} ?",
+          a: "#{league_display} est un championnat où chaque équipe affronte toutes les autres deux fois (domicile et extérieur). L'équipe avec le plus de points à l'issue de toutes les journées est sacrée championne." },
+        { q: "Combien de points rapporte une victoire en #{league_display} ?",
+          a: "Une victoire rapporte 3 points en #{league_display}, un match nul 1 point, et une défaite 0 point. Ce système de points est utilisé dans l'ensemble des championnats professionnels européens." },
+        { q: "Sur quelle chaîne TV voir les matchs du leader de #{league_display} ?",
+          a: "Les matchs des équipes de #{league_display} sont diffusés sur différentes chaînes selon les accords de diffusion. Consultez la page de chaque match pour connaître la chaîne exacte." }
+      ],
+      [
+        { q: "Quelle équipe a le meilleur bilan défensif en #{league_display} ?",
+          a: "Le nombre de buts encaissés par chaque équipe est visible dans le classement ci-dessus (colonne 'C'). L'équipe avec le moins de buts encaissés possède la meilleure défense de #{league_display} cette saison." },
+        { q: "Le classement #{league_display} prend-il en compte les matchs en retard ?",
+          a: "Oui, le classement de #{league_display} reflète les résultats de tous les matchs disputés, y compris les rencontres reportées une fois jouées. Les matchs à venir n'influencent pas le classement affiché." },
+        { q: "Comment accéder aux statistiques détaillées de chaque équipe de #{league_display} ?",
+          a: "Cliquez sur le nom de n'importe quelle équipe dans le classement de #{league_display} pour accéder à sa page complète : statistiques, résultats récents, prochains matchs et programme TV." }
+      ]
     ]
+    faq_items = standing_faq_sets[league_slug.to_s.bytes.sum % standing_faq_sets.size]
   %>
   <div style="margin-top: 24px; margin-bottom: 8px;">
     <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
