@@ -115,24 +115,77 @@
   tv_channels_str = case @competition_slug
     when "ligue-1" then "Canal+ et DAZN détiennent les droits TV de la Ligue 1. Certains matchs sont diffusés sur beIN Sports."
     when "ligue-2" then "La Ligue 2 est diffusée principalement sur beIN Sports et Canal+."
-    when "champions-league" then "La Champions League est diffusée sur Canal+ et RMC Sport (beIN Sports) en France."
-    when "europa-league" then "L'Europa League est diffusée sur Canal+ et RMC Sport en France."
-    when "conference-league" then "La Conference League est diffusée sur Canal+ et RMC Sport en France."
-    when "premier-league" then "La Premier League est diffusée sur Canal+ en France."
+    when "champions-league" then "La Champions League est diffusée sur Canal+ en France."
+    when "europa-league" then "L'Europa League est diffusée sur Canal+ et beIN Sports en France."
+    when "conference-league" then "La Conference League est diffusée sur Canal+ en France."
+    when "premier-league" then "La Premier League est diffusée sur beIN Sports en France."
     when "la-liga" then "La Liga espagnole est diffusée sur beIN Sports en France."
     when "bundesliga" then "La Bundesliga est diffusée sur beIN Sports en France."
     when "serie-a" then "La Serie A italienne est diffusée sur beIN Sports en France."
-    when "coupe-de-france" then "La Coupe de France est diffusée sur France TV (France 3, France 2) et beIN Sports."
+    when "coupe-de-france" then "La Coupe de France est diffusée sur France TV (France 2 et France 3) et beIN Sports."
+    when "national" then "Le National est diffusé sur beIN Sports en France."
+    when "d1-feminine" then "La D1 Féminine est diffusée sur Canal+ et DAZN en France."
+    when "qualif-mondial-2026" then "Les qualifications pour le Mondial 2026 (Europe) sont diffusées sur TF1 et M6 en France pour les matchs des Bleus."
+    when "euro-nations-league" then "La Nations League est diffusée sur TF1, M6 et beIN Sports en France."
     else "Les matchs de #{@competition_name} sont diffusés sur différentes chaînes selon les rencontres. Consultez chaque match pour la chaîne exacte."
   end
-  comp_faq = [
-    { q: "Sur quelle chaîne TV regarder #{@competition_name} ?",
-      a: tv_channels_str + " Le programme complet avec les chaînes est disponible sur chaque page de match." },
-    { q: "Comment accéder au classement #{@competition_name} ?",
-      a: @has_standings ? "Le classement #{@competition_name} 2025-2026 est disponible en bas de cette page avec le top 5. Pour le classement complet, cliquez sur \"Voir complet\"." : "#{@competition_name} est une compétition à élimination directe, il n'y a pas de classement au sens strict." },
-    { q: "Combien de matchs #{@competition_name} sont couverts par Coup d'Envoi TV ?",
-      a: "Tous les matchs de #{@competition_name} pour la saison 2025-2026 sont suivis : programme à venir avec horaires et chaînes TV, scores en direct, et résultats avec résumés." }
+
+  standings_a = @has_standings \
+    ? "Le classement #{@competition_name} 2025-2026 est affiché en haut de cette page avec le top 5. Cliquez sur \"Voir complet\" pour la vue intégrale." \
+    : "#{@competition_name} fonctionne en élimination directe, il n'y a donc pas de classement à proprement parler."
+
+  faq_sets = [
+    [
+      { q: "Sur quelle chaîne TV regarder #{@competition_name} ?",
+        a: tv_channels_str + " Le programme complet avec les chaînes est disponible sur chaque page de match." },
+      { q: "Comment suivre le classement #{@competition_name} 2025-2026 ?",
+        a: standings_a },
+      { q: "Peut-on regarder #{@competition_name} en streaming ?",
+        a: "Oui, la plupart des diffuseurs proposent une option streaming : application Canal+, DAZN, beIN Sports Connect ou MyTF1 selon la compétition. Vérifiez votre abonnement actuel avant d'en souscrire un nouveau." }
+    ],
+    [
+      { q: "Où voir les matchs #{@competition_name} en direct ?",
+        a: tv_channels_str + " Pensez aussi aux options streaming sur les applications de chaque chaîne." },
+      { q: "Quand se déroule la saison #{@competition_name} 2025-2026 ?",
+        a: "La saison 2025-2026 de #{@competition_name} se déroule d'août 2025 à mai-juin 2026. Le programme complet et les prochains matchs sont listés sur cette page." },
+      { q: "Comment avoir les résultats #{@competition_name} en temps réel ?",
+        a: "Les scores en direct de #{@competition_name} sont disponibles sur chaque page de match de Coup d'Envoi TV, mise à jour automatiquement pendant les rencontres." }
+    ],
+    [
+      { q: "Faut-il un abonnement pour regarder #{@competition_name} ?",
+        a: tv_channels_str + " Un abonnement payant est généralement nécessaire sauf pour les matchs diffusés en clair sur les chaînes gratuites." },
+      { q: "Combien d'équipes participent à #{@competition_name} cette saison ?",
+        a: "Le format et le nombre d'équipes de #{@competition_name} sont détaillés dans la présentation ci-dessus. Retrouvez aussi le calendrier complet des matchs sur cette page." },
+      { q: "Où trouver le programme TV #{@competition_name} ?",
+        a: "Le programme TV complet de #{@competition_name} est disponible sur cette page : horaires, chaînes de diffusion et résultats pour chaque journée de la saison 2025-2026." }
+    ],
+    [
+      { q: "#{@competition_name} : quelles chaînes diffusent les matchs en France ?",
+        a: tv_channels_str + " Les droits peuvent évoluer en cours de saison, consultez chaque fiche match pour l'information à jour." },
+      { q: "Peut-on regarder #{@competition_name} depuis l'étranger ?",
+        a: "Depuis l'étranger, les services de streaming des diffuseurs français sont souvent géobloqués. Un VPN peut être nécessaire pour accéder à Canal+, beIN Sports ou DAZN hors de France." },
+      { q: "Où voir les résumés et les buts de #{@competition_name} ?",
+        a: "Les résumés des matchs de #{@competition_name} sont disponibles sur chaque page de match de Coup d'Envoi TV après la rencontre, avec le score final et les temps forts." }
+    ],
+    [
+      { q: "Comment regarder #{@competition_name} sur smartphone ou tablette ?",
+        a: tv_channels_str + " Toutes ces chaînes proposent des applications mobiles pour suivre les matchs en streaming sur iOS et Android." },
+      { q: "#{@competition_name} : y a-t-il des matchs diffusés gratuitement ?",
+        a: "Certains matchs de #{@competition_name} peuvent être diffusés en clair selon les accords de diffusion. Consultez le programme sur cette page pour voir quelle chaîne diffuse chaque rencontre." },
+      { q: "Comment suivre #{@competition_name} cette saison sur Coup d'Envoi TV ?",
+        a: "Tous les matchs de #{@competition_name} 2025-2026 sont référencés ici : programme à venir, scores en direct et résultats. Vous pouvez aussi consulter les pages de chaque équipe pour leur calendrier spécifique." }
+    ],
+    [
+      { q: "Quel est le format de #{@competition_name} ?",
+        a: "Le format de #{@competition_name} est détaillé dans la présentation ci-dessus. Retrouvez également tous les matchs de la saison 2025-2026 listés sur cette page avec horaires et diffuseurs." },
+      { q: "Sur quelle plateforme voir #{@competition_name} en replay ?",
+        a: tv_channels_str + " Les replays sont généralement disponibles sur les plateformes des diffuseurs (Canal+, beIN Sports Connect, DAZN) dans les 24h suivant le match." },
+      { q: "Qui sont les favoris de #{@competition_name} cette saison ?",
+        a: "Les favoris et les enjeux de #{@competition_name} 2025-2026 sont évoqués dans la présentation ci-dessus. Suivez les résultats match par match pour voir qui prend la tête de la compétition." }
+    ]
   ]
+
+  comp_faq = faq_sets[@competition_slug.bytes.sum % faq_sets.size]
 %>
 <div style="padding: 0 10px; margin-top: 8px;">
   <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
