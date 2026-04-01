@@ -55,6 +55,7 @@ class TeamsController < ApplicationController
       most_common_competition = all_team_matches.map(&:competition).compact
                                                 .tally.max_by { |_, count| count }&.first
       primary_league_id = FootballApiService::SUPPORTED_LEAGUES.key(most_common_competition)
+      @primary_league_name = most_common_competition
 
       if primary_league_id
         @stats   = api.fetch_team_stats(@team_api_id, primary_league_id)

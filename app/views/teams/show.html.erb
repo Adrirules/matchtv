@@ -294,7 +294,7 @@
   <%
     _tn  = @team_name
     _ch  = @matches.first&.tv_channels || "Canal+, beIN Sports ou DAZN"
-    _lg  = @stats&.dig('league','name') || 'championnat'
+    _lg  = @primary_league_name || @stats&.dig('league','name') || 'championnat'
     _comp_slug  = _lg.parameterize
     _comp_link  = "<a href=\"/competitions/#{_comp_slug}\">#{_lg}</a>"
     _stand_link = "<a href=\"/classements/#{_comp_slug}\">classement #{_lg}</a>"
