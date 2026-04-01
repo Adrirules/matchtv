@@ -295,6 +295,9 @@
     _tn  = @team_name
     _ch  = @matches.first&.tv_channels || "Canal+, beIN Sports ou DAZN"
     _lg  = @stats&.dig('league','name') || 'championnat'
+    _comp_slug  = _lg.parameterize
+    _comp_link  = "<a href=\"/competitions/#{_comp_slug}\">#{_lg}</a>"
+    _stand_link = "<a href=\"/classements/#{_comp_slug}\">classement #{_lg}</a>"
     _w   = @stats&.dig('fixtures','wins','total').to_i
     _d   = @stats&.dig('fixtures','draws','total').to_i
     _l   = @stats&.dig('fixtures','loses','total').to_i
@@ -307,7 +310,7 @@
     team_faq_sets = [
       [
         { q: "Sur quelle chaîne voir les matchs de #{_tn} ?",
-          a: "Les matchs de #{_tn} sont diffusés selon la compétition (#{_lg}) sur #{_ch}. Consultez chaque fiche match pour connaître la chaîne exacte." },
+          a: "Les matchs de #{_tn} sont diffusés selon la compétition (#{_comp_link}) sur #{_ch}. Consultez chaque fiche match pour connaître la chaîne exacte." },
         { q: "Quand joue #{_tn} le prochain match ?",
           a: _next_label ? "Le prochain match de #{_tn} : #{_next_label}." : "Aucun prochain match de #{_tn} n'est programmé pour le moment." },
         { q: "Quel est le bilan de #{_tn} cette saison ?",
@@ -323,7 +326,7 @@
       ],
       [
         { q: "Dans quelle compétition joue #{_tn} cette saison ?",
-          a: "#{_tn} évolue en #{_lg} cette saison 2025-2026. Retrouvez tous ses matchs avec horaires et chaînes TV sur cette page." },
+          a: "#{_tn} évolue en #{_comp_link} cette saison 2025-2026. Retrouvez tous ses matchs avec horaires et chaînes TV sur cette page." },
         { q: "Quelle est la forme récente de #{_tn} ?",
           a: "La forme récente de #{_tn} (5 derniers matchs) est affichée sur cette page. Victoires, nuls et défaites y sont détaillés avec les scores." },
         { q: "Comment suivre #{_tn} en direct sur Coup d'Envoi TV ?",
@@ -339,9 +342,9 @@
       ],
       [
         { q: "Combien de victoires #{_tn} a-t-il remportées cette saison ?",
-          a: @stats.present? ? "#{_tn} compte #{_w} victoire(s) en #{_p} matchs joués cette saison 2025-2026 en #{_lg}." : "Le nombre de victoires de #{_tn} pour 2025-2026 est affiché sur cette page." },
+          a: @stats.present? ? "#{_tn} compte #{_w} victoire(s) en #{_p} matchs joués cette saison 2025-2026 en #{_comp_link}." : "Le nombre de victoires de #{_tn} pour 2025-2026 est affiché sur cette page." },
         { q: "#{_tn} est-il qualifié pour les coupes européennes ?",
-          a: "La situation de #{_tn} au classement de #{_lg} est visible sur cette page. Les places qualificatives pour les coupes européennes dépendent du classement final en mai 2026." },
+          a: "La situation de #{_tn} au #{_stand_link} est visible sur cette page. Les places qualificatives pour les coupes européennes dépendent du classement final en mai 2026." },
         { q: "Où trouver les statistiques complètes de #{_tn} 2025-2026 ?",
           a: "Les statistiques de #{_tn} (matchs joués, victoires, buts marqués et encaissés) sont affichées sur cette page. Cliquez sur chaque match pour les détails de la rencontre." }
       ],

@@ -109,27 +109,70 @@
     </div>
   </section>
 
-  <%# --- FAQ --- %>
+  <%# --- FAQ programme du jour — 7 sets, sélection par jour de la semaine + parité de date --- %>
   <section style="margin-top: 36px;">
     <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 12px;">Questions fréquentes sur le programme TV foot</h2>
-    <% home_faq = [
-      { q: "Sur quelle chaîne voir la Ligue 1 en 2025-2026 ?",
-        a: "La Ligue 1 est diffusée principalement sur DAZN, qui détient la majorité des droits TV. beIN Sports diffuse également certains matchs le samedi à 17h. Le multiplex du dimanche (17h) et le match du soir (20h45) sont sur DAZN." },
-      { q: "Où regarder la Champions League en France ?",
-        a: "La Champions League est diffusée en France sur Canal+, qui détient les droits exclusifs de la compétition. Vous pouvez regarder les matchs sur Canal+ ou en streaming via MyCanal." },
-      { q: "Sur quelle chaîne voir la Premier League ?",
-        a: "La Premier League anglaise est diffusée en France sur Canal+. Les abonnés Canal+ ont accès à une sélection de matchs chaque week-end, dont les affiches les plus attendues." },
-      { q: "La Coupe de France est-elle diffusée gratuitement ?",
-        a: "Certains matchs de la Coupe de France sont diffusés gratuitement sur France Télévisions (France 2, France 3). Les autres rencontres sont sur beIN Sports. Les demi-finales et la finale sont généralement sur France TV." },
-      { q: "Quelle chaîne diffuse la Bundesliga et la Serie A ?",
-        a: "La Bundesliga allemande et la Serie A italienne sont diffusées sur beIN Sports en France. L'abonnement beIN Sports donne accès à ces deux championnats, ainsi qu'à La Liga espagnole." },
-      { q: "Sur quelle chaîne voir les matchs de l'équipe de France ?",
-        a: "Les matchs de l'équipe de France sont diffusés sur TF1 ou M6 pour les grands rendez-vous (Euro, Coupe du Monde). Les matchs de Ligue des Nations et qualifications peuvent être sur TF1, M6 ou beIN Sports selon les droits." },
-      { q: "Comment voir le foot sans abonnement payant ?",
-        a: "Certains matchs sont accessibles gratuitement : la Coupe de France sur France TV, les matchs de l'équipe de France sur TF1/M6, et quelques affiches de Ligue Europa sur W9. Coup d'envoi TV indique chaque jour quelle chaîne gratuite diffuse un match." },
-      { q: "À quoi sert Coup d'envoi TV ?",
-        a: "Coup d'envoi TV est un guide du programme TV foot mis à jour quotidiennement. En un coup d'œil, vous savez sur quelle chaîne est le match du soir, à quelle heure, et quelle compétition. Le site couvre plus de 20 ligues et diffuse les scores en direct." }
-    ] %>
+    <%
+      day_faq_sets = [
+        [ # 0
+          { q: "Sur quelle chaîne voir la <a href=\"/competitions/ligue-1\">Ligue 1</a> en 2025-2026 ?",
+            a: "La Ligue 1 est diffusée principalement sur DAZN, qui détient la majorité des droits TV. beIN Sports diffuse aussi certains matchs le samedi à 17h. Le multiplex du dimanche (17h) et le match du soir (20h45) sont sur DAZN." },
+          { q: "Où regarder la <a href=\"/competitions/champions-league\">Champions League</a> en France ?",
+            a: "La Champions League est diffusée en France sur Canal+. Vous pouvez regarder les matchs en direct sur Canal+ ou en streaming via MyCanal sur PC, mobile et Smart TV." },
+          { q: "Comment voir le foot sans abonnement payant ?",
+            a: "Certains matchs sont gratuits : la <a href=\"/competitions/coupe-de-france\">Coupe de France</a> sur France TV, les matchs de l'équipe de France sur TF1/M6. Coup d'Envoi TV indique chaque jour la chaîne gratuite qui diffuse un match." }
+        ],
+        [ # 1
+          { q: "Sur quelle chaîne voir la <a href=\"/competitions/premier-league\">Premier League</a> en France ?",
+            a: "La Premier League est diffusée en France sur beIN Sports. Les abonnés ont accès à une large sélection de matchs chaque week-end, dont les plus belles affiches." },
+          { q: "Quelle chaîne diffuse la <a href=\"/competitions/bundesliga\">Bundesliga</a> et la <a href=\"/competitions/serie-a\">Serie A</a> ?",
+            a: "La Bundesliga et la Serie A sont toutes les deux diffusées sur beIN Sports en France, avec La Liga espagnole. Un seul abonnement suffit pour les trois championnats." },
+          { q: "À quoi sert Coup d'Envoi TV ?",
+            a: "Coup d'Envoi TV est un guide du programme TV foot mis à jour quotidiennement. En un coup d'œil, vous savez sur quelle chaîne est le match du soir, à quelle heure, et dans quelle compétition. Le site couvre plus de 20 ligues." }
+        ],
+        [ # 2
+          { q: "La <a href=\"/competitions/coupe-de-france\">Coupe de France</a> est-elle diffusée gratuitement ?",
+            a: "Certains matchs de la Coupe de France sont diffusés en clair sur France 2 et France 3. Les autres tours sont sur beIN Sports. Les demi-finales et la finale sont en général sur France TV, accessibles à tous." },
+          { q: "Sur quelle chaîne voir les matchs de l'équipe de France ?",
+            a: "Les matchs de l'équipe de France sont diffusés sur TF1 ou M6 pour les grands rendez-vous. Les qualifications Mondial 2026 et la Nations League peuvent être sur TF1, M6 ou beIN Sports selon les droits." },
+          { q: "Comment voir les résultats de foot en direct sur Coup d'Envoi TV ?",
+            a: "Les scores en direct sont disponibles sur chaque page de match. La page <a href=\"/resultats\">résultats du jour</a> regroupe tous les scores en cours et terminés, toutes compétitions confondues." }
+        ],
+        [ # 3
+          { q: "Faut-il plusieurs abonnements pour voir tout le foot en 2025-2026 ?",
+            a: "Pour voir l'essentiel du foot en France, il faut Canal+ (Champions League, Conference League), beIN Sports (Liga, Bundesliga, Serie A, Premier League) et DAZN (Ligue 1). Consultez notre <a href=\"/blog/abonnement-foot-2026-quelle-chaine-choisir\">guide des abonnements foot</a> pour y voir plus clair." },
+          { q: "Sur quelle chaîne voir la <a href=\"/competitions/la-liga\">Liga espagnole</a> ?",
+            a: "La Liga est diffusée sur beIN Sports en France. L'abonnement beIN Sports donne aussi accès à la Bundesliga, la Serie A et de nombreuses autres compétitions." },
+          { q: "Comment trouver les prochains matchs d'une équipe spécifique ?",
+            a: "Chaque équipe dispose d'une page dédiée sur Coup d'Envoi TV avec son calendrier complet. Consultez la <a href=\"/equipes\">liste des équipes</a> pour trouver votre club favori." }
+        ],
+        [ # 4
+          { q: "Peut-on regarder le foot en streaming sur mobile ?",
+            a: "Oui, Canal+, beIN Sports et DAZN proposent des applications mobiles sur iOS et Android. La plupart permettent aussi la diffusion en direct sur Smart TV via Chromecast ou AirPlay." },
+          { q: "Où voir les classements de foot en 2025-2026 ?",
+            a: "Les classements de toutes les ligues sont disponibles sur Coup d'Envoi TV : <a href=\"/classements/ligue-1\">Ligue 1</a>, <a href=\"/classements/champions-league\">Champions League</a>, <a href=\"/classements/premier-league\">Premier League</a> et bien d'autres. Mis à jour après chaque journée." },
+          { q: "Quelles compétitions de foot sont couvertes par Coup d'Envoi TV ?",
+            a: "Coup d'Envoi TV couvre plus de 20 compétitions : Ligue 1, Ligue 2, Champions League, Europa League, Premier League, La Liga, Bundesliga, Serie A, Coupe de France et bien d'autres. Toutes les <a href=\"/competitions\">compétitions sont listées ici</a>." }
+        ],
+        [ # 5
+          { q: "Sur quelle chaîne voir l'<a href=\"/competitions/europa-league\">Europa League</a> ?",
+            a: "L'Europa League est diffusée sur Canal+ et beIN Sports en France. Certains matchs sont aussi accessibles sur les applications streaming des deux chaînes." },
+          { q: "Où voir le foot le week-end en France ?",
+            a: "Le week-end, les principaux matchs sont sur DAZN (Ligue 1 samedi/dimanche), beIN Sports (Premier League, Liga, Bundesliga) et Canal+ (Champions League les mardis/mercredis en semaine). Consultez le programme de chaque jour sur Coup d'Envoi TV." },
+          { q: "Comment ne rater aucun match de foot cette saison ?",
+            a: "Consultez le programme TV du jour sur Coup d'Envoi TV chaque matin. Chaque match indique l'heure, la chaîne et la compétition. Vous pouvez aussi aller directement sur la page de votre <a href=\"/equipes\">équipe favorite</a> pour voir son prochain match." }
+        ],
+        [ # 6
+          { q: "Quelle chaîne diffuse la <a href=\"/competitions/conference-league\">Conference League</a> ?",
+            a: "La Conference League est diffusée sur Canal+ en France. Les clubs français engagés dans la compétition y disputent leurs matchs européens à domicile et à l'extérieur." },
+          { q: "Comment voir les résumés des matchs de la veille ?",
+            a: "Les résumés des matchs sont disponibles sur chaque page de match de Coup d'Envoi TV. La <a href=\"/resultats\">page résultats</a> regroupe tous les scores et résumés des dernières rencontres." },
+          { q: "Peut-on voir le foot en direct gratuitement sur internet ?",
+            a: "Les matchs en clair (équipe de France sur TF1/M6, Coupe de France sur France TV) sont diffusés gratuitement sur les plateformes officielles (TF1+, France.tv). Les autres nécessitent un abonnement payant." }
+        ]
+      ]
+      home_faq = day_faq_sets[@date.wday % day_faq_sets.size]
+    %>
     <%= render 'shared/faq_accordion', items: home_faq, schema: true %>
   </section>
 <% end %>

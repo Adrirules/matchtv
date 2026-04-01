@@ -5,11 +5,11 @@
   <% items.each do |item| %>
     <details class="faq-item">
       <summary class="faq-question">
-        <%= item[:q] %>
+        <%= item[:q].html_safe %>
         <span class="faq-chevron">&#8964;</span>
       </summary>
       <div class="faq-answer">
-        <p><%= item[:a] %></p>
+        <p><%= item[:a].html_safe %></p>
       </div>
     </details>
   <% end %>

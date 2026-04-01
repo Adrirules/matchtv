@@ -194,6 +194,7 @@
       when "serie-a" then "Les 4 premiers vont en Champions League. Le 5e en Europa League. Le 6e en Conference League."
       else nil
     end
+    comp_link_str = "<a href=\"/competitions/#{league_slug}\">#{league_display}</a>"
     standing_faq_sets = [
       [
         { q: "Comment est calculé le classement de #{league_display} ?",
@@ -223,7 +224,7 @@
         { q: "Y a-t-il des barrages en #{league_display} ?",
           a: promo_info },
         { q: "Quand se termine la saison #{league_display} 2025-2026 ?",
-          a: "La saison 2025-2026 de #{league_display} se termine en mai ou juin 2026 selon la compétition. Le programme des dernières journées est disponible sur cette page." },
+          a: "La saison 2025-2026 de #{league_display} se termine en mai ou juin 2026 selon la compétition. Le programme des dernières journées et le calendrier complet sont disponibles sur la page <a href="/competitions/#{league_slug}">#{league_display}</a>." },
         { q: "Peut-on consulter le classement #{league_display} sur mobile ?",
           a: "Oui, le classement de #{league_display} est entièrement optimisé pour mobile sur Coup d'Envoi TV. Toutes les colonnes (points, victoires, buts) sont accessibles en faisant défiler le tableau." }
       ],
