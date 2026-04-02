@@ -1,0 +1,42 @@
+ligue_1:
+  league_id: 61
+  season: 2025
+  synced_at: <%= 1.hour.ago.iso8601 %>
+  data:
+    - league:
+        id: 61
+        name: "Ligue 1"
+        logo: "https://media.api-sports.io/football/leagues/61.png"
+        standings:
+          - - rank: 1
+              points: 60
+              goalsDiff: 45
+              form: "WWWWW"
+              team:
+                id: 85
+                name: "Paris Saint-Germain"
+                logo: "https://media.api-sports.io/football/teams/85.png"
+              all:
+                played: 25
+                win: 19
+                draw: 3
+                lose: 3
+              goals:
+                for: 55
+                against: 10
+            - rank: 2
+              points: 45
+              goalsDiff: 15
+              form: "WWDLW"
+              team:
+                id: 80
+                name: "Olympique Lyonnais"
+                logo: "https://media.api-sports.io/football/teams/80.png"
+              all:
+                played: 25
+                win: 14
+                draw: 3
+                lose: 8
+              goals:
+                for: 40
+                against: 25
