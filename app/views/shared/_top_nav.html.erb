@@ -1,5 +1,8 @@
 <header class="top-nav">
   <%= link_to "Coup d'Envoi TV", root_path, class: "top-nav-logo" %>
+  <%= link_to blog_path, class: "top-nav-blog-mobile #{request.path.start_with?('/blog') ? 'active' : ''}" do %>
+    ✍️ Blog
+  <% end %>
   <nav class="top-nav-links">
     <%= link_to root_path, class: "top-nav-item #{request.path == '/' || request.path.start_with?('/days') ? 'active' : ''}" do %>
       <span>📺</span> Programme
@@ -15,6 +18,9 @@
     <% end %>
     <%= link_to standings_path, class: "top-nav-item #{request.path.start_with?('/classement') ? 'active' : ''}" do %>
       <span>📊</span> Classement
+    <% end %>
+    <%= link_to blog_path, class: "top-nav-item #{request.path.start_with?('/blog') ? 'active' : ''}" do %>
+      <span>✍️</span> Blog
     <% end %>
   </nav>
 </header>

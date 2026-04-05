@@ -91,11 +91,29 @@
   span { margin-right: 4px; }
 }
 
+/* Bouton Blog visible uniquement sur mobile dans le header */
+.top-nav-blog-mobile {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+  white-space: nowrap;
+
+  &.active { border-color: #0f172a; }
+}
+
 @media (min-width: 1024px) {
   .top-nav-links {
     display: flex;
     align-items: center;
     gap: 4px;
+  }
+
+  .top-nav-blog-mobile {
+    display: none; // caché sur desktop, le lien est dans top-nav-links
   }
 }
 
