@@ -4,10 +4,13 @@ meta_description: "Les 12 groupes du Mondial 2026 décortiqués : favoris, surpr
 slug: groupes-coupe-du-monde-2026
 published_at: 2026-04-06
 author: Adrien
+image: https://images.unsplash.com/photo-1527871369852-eb58cb2b54e2?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "Alea Jacta Est. Les 12 groupes du Mondial 2026 sont connus. On les décortique un par un avec nos verdicts, nos anecdotes et nos pronos."
 ---
 
 # Coupe du monde 2026 : les 12 groupes complets et notre verdict sur chaque groupe
+
+<img src="https://images.unsplash.com/photo-1527871369852-eb58cb2b54e2?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ballon de football Coupe du monde 2026" width="2062" height="1375" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
 
 Alea Jacta Est (on parle pas latin nous ?!). Ça y est le couperet est tombé, les douze groupes sont faits. Oui, vous avez bien lu, cette année pour la 23e édition, on passe à 12 groupes de 4 contre 8 groupes de 4 en 2022.
 Le grand absent cette année est l'Italie, [dont on vous a raconté l'élimination ici](/blog/italie-absente-mondial-2026), et on retrouve des nations comme l'Irak que nous allons rencontrer ou encore la Jordanie qui aura le plaisir de jouer contre les tenants du titre. Dans cet article on va décortiquer les groupes et vous donner un maximum d'anecdotes pour briller en société.
