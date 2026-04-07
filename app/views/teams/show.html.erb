@@ -273,6 +273,21 @@
     <% end %>
   </section>
 
+  <%# Texte éditorial humain (clubs prioritaires) %>
+  <% if @team_editorial.present? %>
+    <section style="background: white; border-radius: 12px; padding: 20px; margin-top: 24px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+      <% @team_editorial.split(/\n+/).reject(&:blank?).each_with_index do |para, i| %>
+        <% if i == 0 %>
+          <h2 style="font-size: 17px; font-weight: 800; color: #010e1b; margin: 0 0 14px;"><%= para.html_safe %></h2>
+        <% elsif para =~ /\A[A-ZÀ-Ü].{5,60}\z/ %>
+          <h3 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 18px 0 10px;"><%= para.html_safe %></h3>
+        <% else %>
+          <p style="margin: 0 0 14px; font-size: 15px; line-height: 1.65; color: #333;"><%= para.html_safe %></p>
+        <% end %>
+      <% end %>
+    </section>
+  <% end %>
+
   <%# Lien classement %>
   <% if @stats.is_a?(Hash) && @stats.dig("league", "name") %>
     <% league_slug = StandingsController::SLUG_TO_ID.key(FootballApiService::SUPPORTED_LEAGUES.key(@stats.dig("league", "name"))) %>
