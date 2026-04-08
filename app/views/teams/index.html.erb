@@ -18,10 +18,22 @@
     </p>
   </div>
 
-  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+  <div style="margin-bottom: 14px; position: relative;">
+    <input
+      type="search"
+      id="team-search"
+      placeholder="Rechercher un club..."
+      autocomplete="off"
+      style="width: 100%; box-sizing: border-box; padding: 10px 14px 10px 38px; border: 1px solid #e0e0e0; border-radius: 10px; font-size: 15px; outline: none; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);"
+    >
+    <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 16px; pointer-events: none;">🔍</span>
+    <p id="team-no-results" style="display: none; text-align: center; color: #999; font-size: 14px; margin-top: 24px;">Aucun club trouvé.</p>
+  </div>
+
+  <div id="teams-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
     <% @teams.each do |team| %>
-      <%= link_to team_path(team[:slug]), style: "text-decoration: none; color: inherit;" do %>
-        <div style="background: white; border: 1px solid #eee; border-radius: 12px; padding: 15px 5px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+      <%= link_to team_path(team[:slug]), class: "team-card", style: "text-decoration: none; color: inherit;" do %>
+        <div data-name="<%= team[:name].downcase %>" style="background: white; border: 1px solid #eee; border-radius: 12px; padding: 15px 5px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
           <div style="height: 40px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;">
             <img src="<%= team[:logo] %>" alt="<%= team[:name] %>" style="max-height: 100%; max-width: 35px; object-fit: contain;">
           </div>
@@ -32,6 +44,27 @@
       <% end %>
     <% end %>
   </div>
+
+  <script>
+    (function() {
+      var input = document.getElementById('team-search');
+      var cards = document.querySelectorAll('.team-card');
+      var noResults = document.getElementById('team-no-results');
+
+      input.addEventListener('input', function() {
+        var query = this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        var visible = 0;
+        cards.forEach(function(card) {
+          var name = card.querySelector('[data-name]').dataset.name
+                       .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          var match = name.includes(query);
+          card.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+      });
+    })();
+  </script>
 
   <div style="margin-top: 28px;">
     <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
