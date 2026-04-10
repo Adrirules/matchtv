@@ -157,6 +157,104 @@ module ApplicationHelper
     COUNTRY_FR[nat] || nat
   end
 
+  # Noms d'équipes nationales avec variantes API non couvertes par COUNTRY_FR
+  NATIONAL_TEAM_OVERRIDES = {
+    "Bosnia & Herzegovina" => "Bosnie-Herzégovine",
+    "Cape Verde Islands"   => "Cap-Vert",
+    "Türkiye"              => "Turquie",
+    "Congo DR"             => "RD Congo",
+  }.freeze
+
+  # Affiche le nom français d'une équipe (nationale → traduction, club → inchangé)
+  def team_display_name(name)
+    NATIONAL_TEAM_OVERRIDES[name] || COUNTRY_FR[name] || name
+  end
+
+  # Aliases de recherche par slug : "psg" → Paris Saint-Germain, "brésil" → Brazil, etc.
+  TEAM_SEARCH_ALIASES = {
+    "paris-saint-germain"  => "psg paris",
+    "olympique-marseille"  => "om marseille olympique de marseille",
+    "olympique-lyonnais"   => "ol lyon olympique de lyon",
+    "losc-lille"           => "losc",
+    "as-saint-etienne"     => "asse verts saint etienne",
+    "fc-nantes"            => "fcn canaris",
+    "stade-rennais-fc"     => "srfc",
+    "rc-lens"              => "rcl",
+    "ogc-nice"             => "ogcn",
+    "as-monaco"            => "asm",
+    "rc-strasbourg-alsace" => "strasbourg rcsa",
+    "girondins-de-bordeaux"=> "bordeaux girondins",
+    "stade-de-reims"       => "reims",
+    "toulouse-fc"          => "tfc",
+    "havre-ac"             => "hac le havre",
+    "manchester-city"      => "city man city citizens",
+    "manchester-united"    => "united man united manu red devils",
+    "tottenham-hotspur"    => "spurs tottenham london londres",
+    "chelsea"              => "blues london londres",
+    "arsenal"              => "gunners london londres",
+    "west-ham-united"      => "hammers london londres",
+    "liverpool"            => "reds kop",
+    "aston-villa"          => "villa",
+    "newcastle-united"     => "newcastle magpies",
+    "everton"              => "toffees",
+    "barcelona"            => "barca barça fcb blaugrana",
+    "real-madrid"          => "real merengues blancos",
+    "atletico-madrid"      => "atletico atm colchoneros",
+    "sevilla-fc"           => "sevilla",
+    "borussia-dortmund"    => "bvb",
+    "bayer-leverkusen"     => "leverkusen bayer",
+    "rb-leipzig"           => "leipzig rbl",
+    "fc-bayern-munchen"    => "fcb munchen munich",
+    "juventus"             => "juve bianconeri",
+    "inter"                => "nerazzurri inter milan",
+    "ac-milan"             => "milan rossoneri",
+    "as-roma"              => "roma giallorossi",
+    "ss-lazio"             => "lazio biancocelesti",
+    "brazil"               => "brésil bresil brasil",
+    "england"              => "angleterre",
+    "germany"              => "allemagne mannschaft",
+    "spain"                => "espagne roja",
+    "netherlands"          => "pays-bas hollande",
+    "ivory-coast"          => "cote d ivoire côte d ivoire",
+    "south-korea"          => "coree corée du sud",
+    "usa"                  => "etats-unis états-unis amerique",
+    "cape-verde-islands"   => "cap-vert",
+    "saudi-arabia"         => "arabie saoudite",
+    "congo-dr"             => "rdc congo",
+    "czech-republic"       => "tcheque tchekie",
+    "new-zealand"          => "nouvelle-zelande",
+    "south-africa"         => "afrique du sud",
+    "bosnia-&-herzegovina" => "bosnie herzegovine",
+    "mexico"               => "mexique",
+    "argentina"            => "argentine albiceleste",
+    "belgium"              => "belgique diables rouges",
+    "switzerland"          => "suisse",
+    "sweden"               => "suede suède",
+    "norway"               => "norvege norvège",
+    "scotland"             => "ecosse écosse",
+    "senegal"              => "sénégal",
+    "morocco"              => "maroc lions",
+    "egypt"                => "egypte égypte",
+    "japan"                => "japon",
+    "turkiye"              => "turquie turk",
+    "uruguay"              => "uruguay céleste",
+    "colombia"             => "colombie",
+    "ecuador"              => "equateur équateur",
+    "canada"               => "canada",
+    "ghana"                => "ghana",
+    "haiti"                => "haïti",
+    "iraq"                 => "irak",
+    "australia"            => "australie",
+    "austria"              => "autriche",
+    "uzbekistan"           => "ouzbekistan ouzbékistan",
+    "tunisia"              => "tunisie",
+    "algeria"              => "algerie algérie",
+  }.freeze
+
+  def team_search_aliases(slug)
+    TEAM_SEARCH_ALIASES[slug] || ""
+  end
+
   MONTHS_FR = %w[janvier février mars avril mai juin juillet août septembre octobre novembre décembre].freeze
 
   # Date en français : 29 mars 2026
