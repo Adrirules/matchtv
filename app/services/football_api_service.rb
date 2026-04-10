@@ -113,6 +113,8 @@ class FootballApiService
       "TF1 / M6"
     when 9 # Copa America
       "beIN Sports"
+    when 1 # Coupe du Monde 2026
+      "TF1 / M6"
     else
       "À confirmer"
     end
