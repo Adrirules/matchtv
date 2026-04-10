@@ -24,6 +24,7 @@ class FootballApiService
     { id: 5,   name: "Qualif. Mondial 2026", country: "Europe",        has_standings: false },
     { id: 4,   name: "Euro / Nations League", country: "Europe",       has_standings: false },
     { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false },
+    { id: 1,   name: "Coupe du Monde 2026", country: "Monde",          has_standings: false },
   ].freeze
 
   # Helper : logo officiel depuis l'API Sports CDN
@@ -53,7 +54,8 @@ class FootballApiService
     253 => "Major League Soccer",
     5   => "Qualif. Mondial 2026",
     4   => "Euro / Nations League",
-    9   => "Copa America"
+    9   => "Copa America",
+    1   => "Coupe du Monde 2026"
   }
 
   def initialize
