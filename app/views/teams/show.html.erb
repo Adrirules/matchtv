@@ -1,5 +1,6 @@
-<% content_for :title, @page_title %>
-<% content_for :meta_description, @page_desc %>
+<% @team_name = team_display_name(@team_name) %>
+<% content_for :title, "#{@team_name} 2025-2026 — Stats, résultats et programme TV | Coup d'Envoi TV" %>
+<% content_for :meta_description, "Retrouvez tous les matchs de #{@team_name} à la télé : horaires, chaînes (Canal+, beIN, DAZN, France TV), résultats et statistiques de la saison 2025-2026." %>
 
 <%# Fil d'Ariane %>
 <nav style="padding: 10px 15px; font-size: 12px; color: #999;">
