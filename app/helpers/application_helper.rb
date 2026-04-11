@@ -347,10 +347,10 @@ module ApplicationHelper
     "anderlecht"           => "rsc anderlecht bruxelles",
     "union-st-gilloise"    => "union saint-gilloise bruxelles",
     "genk"                 => "racing genk",
-    # Clubs portugais
-    "sporting-cp"          => "sporting lisbonne lions",
-    "benfica"              => "sl benfica aguias lisbonne",
-    "sc-braga"             => "braga guerreiros do minho",
+    # Clubs portugais (entrées uniques — ne pas dupliquer avec la section précédente)
+    "guimaraes"            => "vitoria guimaraes",
+    "rio-ave"              => "rio ave fc",
+    "famalicao"            => "famalicao fc",
     # Clubs suisses / autrichiens
     "bsc-young-boys"       => "young boys berne ybe",
     "fc-basel-1893"        => "bale fc bale",
@@ -382,7 +382,7 @@ module ApplicationHelper
     "switzerland"          => "suisse",
     "sweden"               => "suede",
     "norway"               => "norvege",
-    "scotland"             => "ecosse",
+    "scotland"             => "ecosse highlanders",
     "senegal"              => "lion teranga",
     "morocco"              => "maroc lions",
     "egypt"                => "egypte",
@@ -407,8 +407,7 @@ module ApplicationHelper
     "romania"              => "roumanie",
     "hungary"              => "hongrie",
     "denmark"              => "danemark",
-    "austria"              => "autriche",
-    "scotland"             => "ecosse",
+    "austria"              => "autriche wunderteam",
   }.freeze
 
   def team_search_aliases(slug)
