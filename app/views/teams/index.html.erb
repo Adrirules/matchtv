@@ -109,7 +109,6 @@
       document.querySelectorAll('.vote-pill').forEach(function(btn) {
         if (localStorage.getItem('voted_' + btn.dataset.slug)) {
           btn.classList.add('voted');
-          btn.disabled = true;
         }
       });
     })();
