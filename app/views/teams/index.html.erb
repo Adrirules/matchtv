@@ -33,17 +33,15 @@
   <%# Tri + dropdown compétitions — même ligne %>
   <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
 
-    <%# Segmented control Tri %>
-    <div style="display: inline-flex; background: #f1f5f9; border-radius: 8px; padding: 3px; gap: 2px; flex-shrink: 0;">
-      <button id="sort-popular" onclick="setSort('popular', this)"
-        style="padding: 5px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; background: white; color: #0f172a; box-shadow: 0 1px 2px rgba(0,0,0,0.08);">
-        Populaire
-      </button>
-      <button id="sort-alpha" onclick="setSort('alpha', this)"
-        style="padding: 5px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; background: transparent; color: #64748b; box-shadow: none;">
-        A-Z
-      </button>
-    </div>
+    <%# Boutons de tri %>
+    <button id="sort-popular" onclick="setSort('popular', this)"
+      style="padding: 6px 12px; border: 1px solid #010e1b; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; background: #010e1b; color: white; flex-shrink: 0;">
+      Populaire
+    </button>
+    <button id="sort-alpha" onclick="setSort('alpha', this)"
+      style="padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; background: white; color: #64748b; flex-shrink: 0;">
+      A-Z
+    </button>
 
     <%# Dropdown compétitions %>
     <div style="position: relative; flex: 1;">
@@ -183,9 +181,9 @@
       currentSort = type;
       document.querySelectorAll('#sort-popular, #sort-alpha').forEach(function(b) {
         var active = b.id === 'sort-' + type;
-        b.style.background    = active ? 'white' : 'transparent';
-        b.style.color         = active ? '#0f172a' : '#64748b';
-        b.style.boxShadow     = active ? '0 1px 2px rgba(0,0,0,0.08)' : 'none';
+        b.style.background  = active ? '#010e1b' : 'white';
+        b.style.color       = active ? 'white' : '#64748b';
+        b.style.borderColor = active ? '#010e1b' : '#e2e8f0';
       });
       reorderGrid();
     }
