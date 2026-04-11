@@ -18,17 +18,48 @@
     </p>
   </div>
 
-  <div style="margin-bottom: 14px; position: relative;">
+  <%# Barre de recherche %>
+  <div style="margin-bottom: 10px; position: relative;">
     <input
       type="search"
       id="team-search"
       placeholder="Rechercher un club..."
       autocomplete="off"
-      style="width: 100%; box-sizing: border-box; padding: 10px 14px 10px 38px; border: 1px solid #e0e0e0; border-radius: 10px; font-size: 16px; outline: none; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);"
+      style="width: 100%; box-sizing: border-box; padding: 10px 14px 10px 38px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 16px; outline: none; background: white;"
     >
-    <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 16px; pointer-events: none;">🔍</span>
+    <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; pointer-events: none; color: #94a3b8;">&#128269;</span>
   </div>
-  <p id="team-no-results" style="display: none; text-align: center; color: #999; font-size: 14px; margin-top: 24px;">Aucun club trouvé.</p>
+
+  <%# Tri + filtre ligues %>
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+    <%# Segmented control Tri %>
+    <div style="display: inline-flex; background: #f1f5f9; border-radius: 8px; padding: 3px; gap: 2px; flex-shrink: 0;">
+      <button id="sort-popular" onclick="setSort('popular', this)"
+        style="padding: 5px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; background: white; color: #0f172a; box-shadow: 0 1px 2px rgba(0,0,0,0.08);">
+        Populaire
+      </button>
+      <button id="sort-alpha" onclick="setSort('alpha', this)"
+        style="padding: 5px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; background: transparent; color: #64748b; box-shadow: none;">
+        A-Z
+      </button>
+    </div>
+  </div>
+
+  <%# Filtre ligues (pills horizontales scrollables) %>
+  <div style="overflow-x: auto; white-space: nowrap; margin-bottom: 14px; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
+    <button class="league-pill active" data-league="all" onclick="toggleLeague(this)"
+      style="display: inline-flex; align-items: center; margin-right: 6px; padding: 4px 12px; border-radius: 9999px; border: 1px solid #0f172a; background: #0f172a; color: white; font-size: 11px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.15s;">
+      Toutes
+    </button>
+    <% @filter_leagues.each do |league| %>
+      <button class="league-pill" data-league="<%= league %>" onclick="toggleLeague(this)"
+        style="display: inline-flex; align-items: center; margin-right: 6px; padding: 4px 12px; border-radius: 9999px; border: 1px solid #e2e8f0; background: white; color: #64748b; font-size: 11px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.15s;">
+        <%= league %>
+      </button>
+    <% end %>
+  </div>
+
+  <p id="team-no-results" style="display: none; text-align: center; color: #94a3b8; font-size: 14px; margin-top: 24px;">Aucun club trouvé.</p>
 
   <style>
     .vote-pill {
@@ -54,7 +85,7 @@
     <% @teams.each do |team| %>
       <% display_name = team_display_name(team[:name]) %>
       <% aliases = team_search_aliases(team[:slug]) %>
-      <div class="team-card-wrap" data-votes="<%= team[:votes] %>" style="position: relative;">
+      <div class="team-card-wrap" data-votes="<%= team[:votes] %>" data-leagues="<%= team[:leagues].join('|') %>" style="position: relative;">
         <%= link_to team_path(team[:slug]), class: "team-card", style: "text-decoration: none; color: inherit; display: block;" do %>
           <div data-name="<%= display_name.downcase %>" data-aliases="<%= aliases %>" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 8px 28px; text-align: center;">
             <div style="height: 40px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;">
@@ -82,41 +113,42 @@
   </div>
 
   <script>
-    (function() {
-      var input     = document.getElementById('team-search');
-      var noResults = document.getElementById('team-no-results');
+    var currentSort    = 'popular';
+    var activeLeagues  = [];   // vide = toutes
 
-      function normalize(s) {
-        return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      }
+    function normalize(s) {
+      return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
 
-      // Recherche
-      input.addEventListener('input', function() {
-        var query   = normalize(this.value);
-        var visible = 0;
-        document.querySelectorAll('.team-card-wrap').forEach(function(wrap) {
-          var el      = wrap.querySelector('[data-name]');
-          var name    = normalize(el.dataset.name);
-          var aliases = normalize(el.dataset.aliases || '');
-          var match   = name.includes(query) || aliases.includes(query);
-          wrap.style.display = match ? '' : 'none';
-          if (match) visible++;
-        });
-        noResults.style.display = visible === 0 ? 'block' : 'none';
+    function applyFilters() {
+      var query   = normalize(document.getElementById('team-search').value);
+      var visible = 0;
+      document.querySelectorAll('.team-card-wrap').forEach(function(wrap) {
+        var el      = wrap.querySelector('[data-name]');
+        var name    = normalize(el.dataset.name);
+        var aliases = normalize(el.dataset.aliases || '');
+        var leagues = (wrap.dataset.leagues || '').split('|');
+
+        var matchSearch  = !query || name.includes(query) || aliases.includes(query);
+        var matchLeague  = activeLeagues.length === 0 ||
+                           activeLeagues.some(function(l) { return leagues.includes(l); });
+        var show = matchSearch && matchLeague;
+        wrap.style.display = show ? '' : 'none';
+        if (show) visible++;
       });
-
-      // Restaurer état des votes depuis localStorage
-      document.querySelectorAll('.vote-pill').forEach(function(btn) {
-        if (localStorage.getItem('voted_' + btn.dataset.slug)) {
-          btn.classList.add('voted');
-        }
-      });
-    })();
+      document.getElementById('team-no-results').style.display = visible === 0 ? 'block' : 'none';
+    }
 
     function reorderGrid() {
       var grid  = document.getElementById('teams-grid');
       var wraps = Array.from(grid.querySelectorAll('.team-card-wrap'));
       wraps.sort(function(a, b) {
+        if (currentSort === 'alpha') {
+          var na = a.querySelector('[data-name]').dataset.name;
+          var nb = b.querySelector('[data-name]').dataset.name;
+          return na.localeCompare(nb);
+        }
+        // popular : votes desc puis alpha
         var va = parseInt(a.dataset.votes) || 0;
         var vb = parseInt(b.dataset.votes) || 0;
         if (vb !== va) return vb - va;
@@ -126,6 +158,65 @@
       });
       wraps.forEach(function(w) { grid.appendChild(w); });
     }
+
+    function setSort(type, btn) {
+      currentSort = type;
+      document.querySelectorAll('#sort-popular, #sort-alpha').forEach(function(b) {
+        var active = b.id === 'sort-' + type;
+        b.style.background    = active ? 'white' : 'transparent';
+        b.style.color         = active ? '#0f172a' : '#64748b';
+        b.style.boxShadow     = active ? '0 1px 2px rgba(0,0,0,0.08)' : 'none';
+      });
+      reorderGrid();
+    }
+
+    function toggleLeague(btn) {
+      var league = btn.dataset.league;
+      if (league === 'all') {
+        // Tout réinitialiser
+        activeLeagues = [];
+        document.querySelectorAll('.league-pill').forEach(function(p) {
+          var isAll = p.dataset.league === 'all';
+          p.style.background = isAll ? '#0f172a' : 'white';
+          p.style.color      = isAll ? 'white'   : '#64748b';
+          p.style.borderColor= isAll ? '#0f172a'  : '#e2e8f0';
+        });
+      } else {
+        // Désactiver "Toutes"
+        var allBtn = document.querySelector('.league-pill[data-league="all"]');
+        allBtn.style.background  = 'white';
+        allBtn.style.color       = '#64748b';
+        allBtn.style.borderColor = '#e2e8f0';
+
+        var idx = activeLeagues.indexOf(league);
+        if (idx >= 0) {
+          activeLeagues.splice(idx, 1);
+          btn.style.background  = 'white';
+          btn.style.color       = '#64748b';
+          btn.style.borderColor = '#e2e8f0';
+        } else {
+          activeLeagues.push(league);
+          btn.style.background  = '#0f172a';
+          btn.style.color       = 'white';
+          btn.style.borderColor = '#0f172a';
+        }
+        // Si plus rien de sélectionné → revenir à "Toutes"
+        if (activeLeagues.length === 0) {
+          allBtn.style.background  = '#0f172a';
+          allBtn.style.color       = 'white';
+          allBtn.style.borderColor = '#0f172a';
+        }
+      }
+      applyFilters();
+    }
+
+    (function init() {
+      document.getElementById('team-search').addEventListener('input', applyFilters);
+      // Restaurer votes
+      document.querySelectorAll('.vote-pill').forEach(function(btn) {
+        if (localStorage.getItem('voted_' + btn.dataset.slug)) btn.classList.add('voted');
+      });
+    })();
 
     function handleVote(e, btn) {
       e.preventDefault();

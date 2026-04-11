@@ -2,19 +2,32 @@ class TeamsController < ApplicationController
   helper TeamContentHelper
 
   def index
-    logos_by_team = Match.where.not(home_team_logo: nil)
-                         .pluck(:home_team, :home_team_logo, :away_team, :away_team_logo)
-                         .each_with_object({}) do |(ht, hl, at, al), h|
-                           h[ht] ||= hl
-                           h[at] ||= al
-                         end
+    rows = Match.where.not(home_team_logo: nil)
+                .pluck(:home_team, :home_team_logo, :away_team, :away_team_logo, :competition)
+
+    logos_by_team   = {}
+    leagues_by_team = Hash.new { |h, k| h[k] = Set.new }
+
+    rows.each do |ht, hl, at, al, comp|
+      logos_by_team[ht] ||= hl
+      logos_by_team[at] ||= al
+      leagues_by_team[ht] << comp if ht && comp
+      leagues_by_team[at] << comp if at && comp
+    end
 
     vote_counts = TeamVote.group(:team_slug).count
 
     @teams = logos_by_team.keys.compact.map do |name|
       slug = name.parameterize
-      { name: name, slug: slug, logo: logos_by_team[name], votes: vote_counts[slug] || 0 }
+      { name: name, slug: slug, logo: logos_by_team[name],
+        votes: vote_counts[slug] || 0,
+        leagues: leagues_by_team[name].to_a }
     end.sort_by { |t| [-t[:votes], t[:name]] }
+
+    # Ligues disponibles, ordonnées par popularité (COMPETITIONS_META)
+    league_order    = FootballApiService::COMPETITIONS_META.map { |c| c[:name] }
+    present_leagues = @teams.flat_map { |t| t[:leagues] }.uniq
+    @filter_leagues = league_order.select { |l| present_leagues.include?(l) }
 
     @page_title = "Toutes les équipes de Football - Programme TV"
   end
