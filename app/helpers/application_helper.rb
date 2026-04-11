@@ -195,8 +195,39 @@ module ApplicationHelper
     # Clubs italiens
     "Inter"                => "Inter Milan",
     "Napoli"               => "Naples",
+    "Torino"               => "Torino (Turin)",
+    "Bologna"              => "Bologne",
+    "Genoa"                => "Gênes",
+    "Fiorentina"           => "Fiorentina (Florence)",
     # Clubs néerlandais
     "Ajax"                 => "Ajax Amsterdam",
+    # Clubs grecs
+    "AEK Athens FC"        => "AEK Athènes",
+    "Olympiakos Piraeus"   => "Olympiakos",
+    "Panathinaikos"        => "Panathinaïkos",
+    "PAOK"                 => "PAOK Salonique",
+    "Aris Thessalonikis"   => "Aris Thessalonique",
+    # Clubs écossais
+    "Celtic"               => "Celtic Glasgow",
+    "Rangers"              => "Rangers Glasgow",
+    # Clubs portugais
+    "Sporting CP"          => "Sporting Lisbonne",
+    "SC Braga"             => "Braga",
+    # Clubs belges
+    "Club Brugge KV"       => "Club Bruges",
+    "Union St. Gilloise"   => "Union Saint-Gilloise",
+    "Anderlecht"           => "RSC Anderlecht",
+    # Clubs néerlandais compléments
+    "PSV Eindhoven"        => "PSV",
+    "Feyenoord"            => "Feyenoord Rotterdam",
+    "AZ Alkmaar"           => "AZ",
+    # Clubs croates / est-européens
+    "Dinamo Zagreb"        => "Dinamo Zagreb",
+    "HNK Hajduk Split"     => "Hajduk Split",
+    # Clubs turcs
+    "Beşiktaş"             => "Besiktas",
+    "Başakşehir"           => "Istanbul Basaksehir",
+    "Göztepe"              => "Göztepe",
   }.freeze
 
   # Affiche le nom français d'une équipe :
@@ -279,12 +310,16 @@ module ApplicationHelper
     "ac-milan"             => "milan rossoneri",
     "as-roma"              => "roma giallorossi",
     "lazio"                => "ss lazio biancocelesti",
-    "atalanta"             => "bergame la dea",
-    "napoli"               => "ssc naples naples",
-    "fiorentina"           => "la viola florence",
-    "torino"               => "granata",
-    "bologna"              => "bologne",
-    "genoa"                => "genes gênes",
+    "atalanta"             => "bergame la dea atalante",
+    "napoli"               => "ssc naples",
+    "fiorentina"           => "la viola florence fiorentina",
+    "torino"               => "turin granata",
+    "bologna"              => "bologne fc bologne",
+    "genoa"                => "genes gênes fc genes",
+    "udinese"              => "udine",
+    "cagliari"             => "sardaigne",
+    "lecce"                => "giallorossi salento",
+    "como"                 => "como 1907",
     # Clubs néerlandais
     "ajax"                 => "ajax amsterdam afc",
     "psv-eindhoven"        => "psv eindhoven",
@@ -296,10 +331,35 @@ module ApplicationHelper
     "fc-porto"             => "porto dragons",
     "sporting-cp"          => "sporting lisbonne",
     "sc-braga"             => "braga",
+    # Clubs grecs
+    "aek-athens-fc"        => "aek athenes grece",
+    "olympiakos-piraeus"   => "olympiakos le piree",
+    "panathinaikos"        => "pao athenes",
+    "paok"                 => "salonique thessalonique",
+    "aris-thessalonikis"   => "aris thessalonique",
+    # Clubs écossais
+    "celtic"               => "celtic glasgow",
+    "rangers"              => "rangers glasgow ibrox",
+    "aberdeen"             => "dons",
+    "hibernian"            => "hibs edinburgh",
+    # Clubs belges
+    "club-brugge-kv"       => "bruges club de bruges",
+    "anderlecht"           => "rsc anderlecht bruxelles",
+    "union-st-gilloise"    => "union saint-gilloise bruxelles",
+    "genk"                 => "racing genk",
+    # Clubs portugais
+    "sporting-cp"          => "sporting lisbonne lions",
+    "benfica"              => "sl benfica aguias lisbonne",
+    "sc-braga"             => "braga guerreiros do minho",
+    # Clubs suisses / autrichiens
+    "bsc-young-boys"       => "young boys berne ybe",
+    "fc-basel-1893"        => "bale fc bale",
+    "red-bull-salzburg"    => "salzburg rbs autriche",
     # Clubs turcs
-    "galatasaray"          => "cim bom",
-    "fenerbahce"           => "fener sarı kanaryalar",
-    "besiktas"             => "kartallar",
+    "galatasaray"          => "cim bom istanbul",
+    "fenerbahce"           => "fener istanbul sarı kanaryalar",
+    "besiktas"             => "besiktas kartallar istanbul",
+    "trabzonspor"          => "trabzon",
     # Équipes nationales (slug = nom anglais parameterizé)
     "brazil"               => "brésil bresil brasil",
     "england"              => "angleterre",
