@@ -8,16 +8,18 @@ module SeoHelper
   end
 
   def generate_match_seo(match)
-    match_name = "#{match.home_team} - #{match.away_team}"
+    ht = team_display_name(match.home_team)
+    at = team_display_name(match.away_team)
+    match_name = "#{ht} - #{at}"
 
     if match.finished? && match.has_score?
       score = "#{match.home_score}-#{match.away_score}"
       comp  = match.competition
 
       winner_phrase = if match.home_score.to_i > match.away_score.to_i
-        "#{match.home_team} s'impose #{score}"
+        "#{ht} s'impose #{score}"
       elsif match.away_score.to_i > match.home_score.to_i
-        "#{match.away_team} s'impose #{score}"
+        "#{at} s'impose #{score}"
       else
         "match nul #{score}"
       end
@@ -42,8 +44,8 @@ module SeoHelper
       ]
 
       template = result_templates[match.id % result_templates.size]
-      meta_title(template[:title] % { h: match.home_team, a: match.away_team, score: score, comp: comp })
-      meta_description(template[:desc] % { h: match.home_team, a: match.away_team, score: score, comp: comp, winner: winner_phrase })
+      meta_title(template[:title] % { h: ht, a: at, score: score, comp: comp })
+      meta_description(template[:desc] % { h: ht, a: at, score: score, comp: comp, winner: winner_phrase })
     else
       time    = match.start_time.strftime("%Hh%M")
       channel = match.tv_channels.to_s
@@ -87,8 +89,8 @@ module SeoHelper
 
   # 10 variations du bloc "Détails diffusion" - sélection stable par match.id
   def generate_match_diffusion_paragraphs(match)
-    h   = match.home_team
-    a   = match.away_team
+    h   = team_display_name(match.home_team)
+    a   = team_display_name(match.away_team)
     ch  = match.tv_channels.to_s
     hr  = match.start_time.strftime("%Hh%M")
     cp  = match.competition
@@ -221,8 +223,8 @@ module SeoHelper
 
   # 20 sets de FAQ variées selon match.id — questions et réponses différentes à chaque fois
   def generate_match_faq(match)
-    h   = match.home_team
-    a   = match.away_team
+    h   = team_display_name(match.home_team)
+    a   = team_display_name(match.away_team)
     ch  = match.tv_channels.to_s
     hr  = match.start_time.strftime("%Hh%M")
     cp  = match.competition.to_s

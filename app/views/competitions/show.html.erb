@@ -82,9 +82,9 @@
             </div>
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <div style="flex: 1; display: flex; align-items: center;">
-                <img src="<%= match.home_team_logo %>" alt="Logo <%= match.home_team %>" width="22" height="22" loading="lazy"
+                <img src="<%= match.home_team_logo %>" alt="Logo <%= team_display_name(match.home_team) %>" width="22" height="22" loading="lazy"
                      style="width: 22px; height: 22px; object-fit: contain; margin-right: 8px;">
-                <span style="font-weight: 600; font-size: 14px;"><%= match.home_team %></span>
+                <span style="font-weight: 600; font-size: 14px;"><%= team_display_name(match.home_team) %></span>
               </div>
               <% if match.has_score? %>
                 <span style="font-weight: 900; font-size: 15px; color: #222; padding: 0 10px;"><%= match.home_score %> - <%= match.away_score %></span>
@@ -92,8 +92,8 @@
                 <span style="padding: 0 10px; color: #ccc; font-size: 11px; font-weight: 700;">VS</span>
               <% end %>
               <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
-                <span style="font-weight: 600; font-size: 14px; text-align: right;"><%= match.away_team %></span>
-                <img src="<%= match.away_team_logo %>" alt="Logo <%= match.away_team %>" width="22" height="22" loading="lazy"
+                <span style="font-weight: 600; font-size: 14px; text-align: right;"><%= team_display_name(match.away_team) %></span>
+                <img src="<%= match.away_team_logo %>" alt="Logo <%= team_display_name(match.away_team) %>" width="22" height="22" loading="lazy"
                      style="width: 22px; height: 22px; object-fit: contain; margin-left: 8px;">
               </div>
             </div>

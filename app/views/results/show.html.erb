@@ -72,9 +72,9 @@
           <div style="display: flex; align-items: center; justify-content: space-between;">
             <%# Équipe domicile %>
             <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
-              <img src="<%= match.home_team_logo %>" alt="<%= match.home_team %>" width="20" height="20" loading="lazy"
+              <img src="<%= match.home_team_logo %>" alt="<%= team_display_name(match.home_team) %>" width="20" height="20" loading="lazy"
                    style="width: 20px; height: 20px; object-fit: contain;">
-              <span style="font-size: 14px; font-weight: <%= match.home_score.to_i > match.away_score.to_i ? '800' : '500' %>; color: <%= match.home_score.to_i > match.away_score.to_i ? '#010e1b' : '#666' %>;"><%= match.home_team %></span>
+              <span style="font-size: 14px; font-weight: <%= match.home_score.to_i > match.away_score.to_i ? '800' : '500' %>; color: <%= match.home_score.to_i > match.away_score.to_i ? '#010e1b' : '#666' %>;"><%= team_display_name(match.home_team) %></span>
             </div>
             <%# Score %>
             <div style="padding: 0 12px; text-align: center; min-width: 50px;">
@@ -86,8 +86,8 @@
             </div>
             <%# Équipe extérieur %>
             <div style="flex: 1; display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
-              <span style="font-size: 14px; font-weight: <%= match.away_score.to_i > match.home_score.to_i ? '800' : '500' %>; color: <%= match.away_score.to_i > match.home_score.to_i ? '#010e1b' : '#666' %>; text-align: right;"><%= match.away_team %></span>
-              <img src="<%= match.away_team_logo %>" alt="<%= match.away_team %>" width="20" height="20" loading="lazy"
+              <span style="font-size: 14px; font-weight: <%= match.away_score.to_i > match.home_score.to_i ? '800' : '500' %>; color: <%= match.away_score.to_i > match.home_score.to_i ? '#010e1b' : '#666' %>; text-align: right;"><%= team_display_name(match.away_team) %></span>
+              <img src="<%= match.away_team_logo %>" alt="<%= team_display_name(match.away_team) %>" width="20" height="20" loading="lazy"
                    style="width: 20px; height: 20px; object-fit: contain;">
             </div>
           </div>
