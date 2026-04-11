@@ -254,7 +254,8 @@
     function handleVote(e, btn) {
       e.preventDefault();
       e.stopPropagation();
-      var slug = btn.dataset.slug;
+      var slug     = btn.dataset.slug;
+      var wasVoted = btn.classList.contains('voted');
       btn.disabled = true;
 
       fetch(btn.dataset.url, {
@@ -266,10 +267,11 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(data) {
-        if (data.status === 'ok') {
+        // N'update l'UI que si le résultat correspond à l'intention
+        if (!wasVoted && data.status === 'ok') {
           localStorage.setItem('voted_' + slug, '1');
           btn.classList.add('voted');
-        } else if (data.status === 'removed') {
+        } else if (wasVoted && data.status === 'removed') {
           localStorage.removeItem('voted_' + slug);
           btn.classList.remove('voted');
         }
