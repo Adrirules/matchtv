@@ -30,8 +30,9 @@
     <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; pointer-events: none; color: #94a3b8;">&#128269;</span>
   </div>
 
-  <%# Tri + filtre ligues %>
-  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+  <%# Tri + dropdown compétitions — même ligne %>
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+
     <%# Segmented control Tri %>
     <div style="display: inline-flex; background: #f1f5f9; border-radius: 8px; padding: 3px; gap: 2px; flex-shrink: 0;">
       <button id="sort-popular" onclick="setSort('popular', this)"
@@ -43,20 +44,39 @@
         A-Z
       </button>
     </div>
-  </div>
 
-  <%# Filtre ligues (pills horizontales scrollables) %>
-  <div style="overflow-x: auto; white-space: nowrap; margin-bottom: 14px; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
-    <button class="league-pill active" data-league="all" onclick="toggleLeague(this)"
-      style="display: inline-flex; align-items: center; margin-right: 6px; padding: 4px 12px; border-radius: 9999px; border: 1px solid #0f172a; background: #0f172a; color: white; font-size: 11px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.15s;">
-      Toutes
-    </button>
-    <% @filter_leagues.each do |league| %>
-      <button class="league-pill" data-league="<%= league %>" onclick="toggleLeague(this)"
-        style="display: inline-flex; align-items: center; margin-right: 6px; padding: 4px 12px; border-radius: 9999px; border: 1px solid #e2e8f0; background: white; color: #64748b; font-size: 11px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.15s;">
-        <%= league %>
+    <%# Dropdown compétitions %>
+    <div style="position: relative; flex: 1;">
+      <button id="league-trigger" onclick="toggleDropdown(event)"
+        style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 8px; background: white; font-size: 12px; font-weight: 500; color: #64748b; cursor: pointer; transition: border-color 0.15s; text-align: left;">
+        <span id="league-trigger-label">Compétitions</span>
+        <svg style="flex-shrink:0; transition: transform 0.15s;" id="league-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-    <% end %>
+
+      <div id="league-dropdown"
+        style="display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 50; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 4px; max-height: 280px; overflow-y: auto;">
+
+        <%# Option "Toutes" %>
+        <label style="display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 500; color: #0f172a;"
+          onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+          <input type="checkbox" id="cb-all" checked onchange="onCheckAll(this)"
+            style="width: 14px; height: 14px; accent-color: #0f172a; cursor: pointer; flex-shrink: 0;">
+          Toutes les compétitions
+        </label>
+
+        <div style="height: 1px; background: #f1f5f9; margin: 3px 0;"></div>
+
+        <% @filter_leagues.each do |league| %>
+          <label style="display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 6px; cursor: pointer; font-size: 12px; color: #374151;"
+            onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+            <input type="checkbox" class="league-cb" data-league="<%= league %>" onchange="onLeagueCheck()"
+              style="width: 14px; height: 14px; accent-color: #0f172a; cursor: pointer; flex-shrink: 0;">
+            <%= league %>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 
   <p id="team-no-results" style="display: none; text-align: center; color: #94a3b8; font-size: 14px; margin-top: 24px;">Aucun club trouvé.</p>
@@ -170,48 +190,63 @@
       reorderGrid();
     }
 
-    function toggleLeague(btn) {
-      var league = btn.dataset.league;
-      if (league === 'all') {
-        // Tout réinitialiser
-        activeLeagues = [];
-        document.querySelectorAll('.league-pill').forEach(function(p) {
-          var isAll = p.dataset.league === 'all';
-          p.style.background = isAll ? '#0f172a' : 'white';
-          p.style.color      = isAll ? 'white'   : '#64748b';
-          p.style.borderColor= isAll ? '#0f172a'  : '#e2e8f0';
-        });
-      } else {
-        // Désactiver "Toutes"
-        var allBtn = document.querySelector('.league-pill[data-league="all"]');
-        allBtn.style.background  = 'white';
-        allBtn.style.color       = '#64748b';
-        allBtn.style.borderColor = '#e2e8f0';
+    function toggleDropdown(e) {
+      e.stopPropagation();
+      var dd      = document.getElementById('league-dropdown');
+      var chevron = document.getElementById('league-chevron');
+      var open    = dd.style.display !== 'none';
+      dd.style.display     = open ? 'none' : 'block';
+      chevron.style.transform = open ? '' : 'rotate(180deg)';
+    }
 
-        var idx = activeLeagues.indexOf(league);
-        if (idx >= 0) {
-          activeLeagues.splice(idx, 1);
-          btn.style.background  = 'white';
-          btn.style.color       = '#64748b';
-          btn.style.borderColor = '#e2e8f0';
-        } else {
-          activeLeagues.push(league);
-          btn.style.background  = '#0f172a';
-          btn.style.color       = 'white';
-          btn.style.borderColor = '#0f172a';
-        }
-        // Si plus rien de sélectionné → revenir à "Toutes"
-        if (activeLeagues.length === 0) {
-          allBtn.style.background  = '#0f172a';
-          allBtn.style.color       = 'white';
-          allBtn.style.borderColor = '#0f172a';
-        }
-      }
+    function onCheckAll(cb) {
+      // Décocher toutes les compétitions et effacer le filtre
+      document.querySelectorAll('.league-cb').forEach(function(c) { c.checked = false; });
+      activeLeagues = [];
+      updateTriggerLabel();
       applyFilters();
+    }
+
+    function onLeagueCheck() {
+      var checked = Array.from(document.querySelectorAll('.league-cb:checked'))
+                         .map(function(c) { return c.dataset.league; });
+      activeLeagues = checked;
+      // "Toutes" cochée seulement si rien d'autre
+      document.getElementById('cb-all').checked = checked.length === 0;
+      updateTriggerLabel();
+      applyFilters();
+    }
+
+    function updateTriggerLabel() {
+      var label = document.getElementById('league-trigger-label');
+      var trigger = document.getElementById('league-trigger');
+      if (activeLeagues.length === 0) {
+        label.textContent = 'Compétitions';
+        trigger.style.borderColor = '#e2e8f0';
+        trigger.style.color       = '#64748b';
+      } else if (activeLeagues.length === 1) {
+        label.textContent = activeLeagues[0];
+        trigger.style.borderColor = '#0f172a';
+        trigger.style.color       = '#0f172a';
+      } else {
+        label.textContent = 'Compétitions (' + activeLeagues.length + ')';
+        trigger.style.borderColor = '#0f172a';
+        trigger.style.color       = '#0f172a';
+      }
     }
 
     (function init() {
       document.getElementById('team-search').addEventListener('input', applyFilters);
+
+      // Fermer dropdown au clic extérieur
+      document.addEventListener('click', function(e) {
+        var dd = document.getElementById('league-dropdown');
+        if (dd.style.display !== 'none' && !dd.contains(e.target) && e.target.id !== 'league-trigger') {
+          dd.style.display = 'none';
+          document.getElementById('league-chevron').style.transform = '';
+        }
+      });
+
       // Restaurer votes
       document.querySelectorAll('.vote-pill').forEach(function(btn) {
         if (localStorage.getItem('voted_' + btn.dataset.slug)) btn.classList.add('voted');
