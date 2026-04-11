@@ -259,6 +259,96 @@ module SeoHelper
           { q: "#{h} a-t-il gagné contre #{a} ?", a: match.home_score.to_i > match.away_score.to_i ? "Oui, #{h} s'est imposé #{score} face à #{a} en #{cp}." : match.home_score.to_i < match.away_score.to_i ? "Non, #{a} a remporté la victoire #{score} face à #{h} en #{cp}." : "Non, les deux équipes ont fait match nul #{score} en #{cp}." },
           { q: "Quelle était la cote de ce match #{cp} ?", a: "#{h} et #{a} se sont affrontés dans le cadre de la #{cp} 2025-2026. Le score final #{score} est à retrouver sur cette page." },
           { q: "Replay #{h} - #{a} : comment le regarder ?", a: "Connectez-vous à l'espace abonné de #{ch} pour accéder au replay complet de #{h} - #{a} en #{cp}." }
+        ],
+        # 5
+        [
+          { q: "#{h} - #{a} : combien de buts dans ce match de #{cp} ?", a: "#{h} et #{a} ont inscrit #{match.home_score.to_i + match.away_score.to_i} but(s) au total dans cette rencontre de #{cp} terminée #{score}." },
+          { q: "Où revoir les buts de #{h} vs #{a} ?", a: "Les buts de #{h} - #{a} (#{score}) sont disponibles en replay sur l'application #{ch}. Le résumé éditorial est également sur cette page." },
+          { q: "#{winner ? "#{winner} reste-t-il dans le top du classement #{cp} ?" : "Ce match nul #{score} change-t-il le classement #{cp} ?"}", a: "#{winner ? "Cette victoire #{score} est un bon point pour #{winner} en #{cp}. Consultez le classement mis à jour sur la page de la compétition." : "Ce match nul #{score} entre #{h} et #{a} rapporte 1 point à chaque équipe en #{cp}. Le classement est disponible sur notre page dédiée."}" }
+        ],
+        # 6
+        [
+          { q: "Quel est le résultat de #{h} contre #{a} en #{cp} ?", a: "#{winner ? "#{winner} s'est imposé #{score} face à #{match.home_score.to_i > match.away_score.to_i ? a : h} dans ce match de #{cp}." : "#{h} et #{a} se sont quittés sur un nul #{score} en #{cp}."}" },
+          { q: "Y avait-il un enjeu particulier pour #{h} - #{a} ?", a: "Cette rencontre comptait pour la #{cp} saison 2025-2026. Retrouvez les prochains matchs des deux équipes sur leurs pages respectives." },
+          { q: "#{h} - #{a} #{score} : peut-on voir le résumé vidéo ?", a: "Le résumé de #{h} - #{a} (#{score}) est accessible sur #{ch} pour les abonnés, ainsi que sur cette page." }
+        ],
+        # 7
+        [
+          { q: "Combien de points #{winner ? "#{winner} a-t-il pris" : "chaque équipe a-t-elle pris"} contre #{winner ? (match.home_score.to_i > match.away_score.to_i ? a : h) : "l'autre"} ?", a: "#{winner ? "#{winner} repart avec 3 points après sa victoire #{score} en #{cp}." : "#{h} et #{a} prennent chacun 1 point après ce nul #{score} en #{cp}."}" },
+          { q: "Ce match #{h} - #{a} s'est joué dans quel stade ?", a: "#{h} recevait #{a} à domicile pour ce match de #{cp}. Score final : #{score}." },
+          { q: "Résultat #{cp} du #{date_label} : #{h} - #{a} ?", a: "#{winner ? "#{winner} l'a emporté #{score} sur #{match.home_score.to_i > match.away_score.to_i ? a : h}." : "Nul #{score} entre #{h} et #{a}."} Résultat enregistré lors de la journée #{cp} du #{date_label}." }
+        ],
+        # 8
+        [
+          { q: "#{h} - #{a} : ce score #{score} était-il prévisible ?", a: "#{winner ? "#{winner} s'est montré plus fort #{score} dans cette rencontre de #{cp}." : "Les deux équipes ont rendu une copie équilibrée avec un nul #{score} en #{cp}."}" },
+          { q: "Comment #{winner ? winner : "les deux équipes"} #{winner ? "a-t-il" : "ont-elles"} performé dans ce #{cp} ?", a: "Le résumé complet de #{h} - #{a} (#{score}) est disponible sur cette page. Retrouvez aussi les stats détaillées sur #{ch}." },
+          { q: "Ce résultat #{score} en #{cp} impacte-t-il le classement ?", a: "#{winner ? "La victoire #{score} de #{winner} lui permet de grappiller des points en #{cp}." : "Le match nul #{score} entre #{h} et #{a} répartit équitablement les points en #{cp}."} Classement mis à jour sur notre page dédiée." }
+        ],
+        # 9
+        [
+          { q: "#{a} a-t-il perdu face à #{h} ?", a: match.home_score.to_i > match.away_score.to_i ? "Oui, #{a} s'est incliné #{score} face à #{h} en #{cp}." : match.home_score.to_i < match.away_score.to_i ? "Non, c'est #{a} qui a gagné #{score} à l'extérieur en #{cp}." : "Non, le match s'est terminé sur un nul #{score} entre #{h} et #{a} en #{cp}." },
+          { q: "Où trouver la fiche complète du match #{h} - #{a} ?", a: "Vous êtes déjà dessus. Score : #{score} en #{cp}. Résumé, faits de jeu et replay disponibles ci-dessus." },
+          { q: "#{h} - #{a} en #{cp} : qui a inscrit les buts ?", a: "Les buteurs de #{h} - #{a} (#{score}) sont détaillés dans la timeline des événements sur cette page." }
+        ],
+        # 10
+        [
+          { q: "Résultat final #{h} vs #{a} : #{score} est-ce exact ?", a: "Oui, le score final officiel de #{h} - #{a} en #{cp} est bien #{score}." },
+          { q: "Y a-t-il eu des prolongations dans #{h} - #{a} ?", a: "Le score final de #{h} - #{a} en #{cp} est #{score}. Les détails du déroulement du match sont disponibles dans la section résumé ci-dessus." },
+          { q: "Comment se portent #{h} et #{a} dans le classement #{cp} après ce match ?", a: "Consultez le classement #{cp} sur notre page dédiée pour voir la situation de #{h} et #{a} après ce résultat #{score}." }
+        ],
+        # 11
+        [
+          { q: "#{h} - #{a} #{score} : match nul ou victoire ?", a: "#{winner ? "Victoire de #{winner} sur le score de #{score} en #{cp}." : "Match nul #{score} entre #{h} et #{a} en #{cp}."}" },
+          { q: "Où regarder le replay de ce #{cp} entre #{h} et #{a} ?", a: "Le replay intégral de #{h} - #{a} (#{score}) est disponible sur l'espace abonné de #{ch} dans les heures suivant la rencontre." },
+          { q: "Quelle équipe a dominé le match #{h} - #{a} ?", a: "#{winner ? "#{winner} s'est imposé #{score} dans ce #{cp}, confirmant sa maîtrise sur #{match.home_score.to_i > match.away_score.to_i ? a : h}." : "Ce nul #{score} entre #{h} et #{a} reflète un équilibre entre les deux équipes en #{cp}."}" }
+        ],
+        # 12
+        [
+          { q: "Quel était le score à la mi-temps de #{h} - #{a} ?", a: "Le score final du match #{h} - #{a} en #{cp} est #{score}. Le détail mi-temps est disponible dans le résumé sur cette page." },
+          { q: "Ce #{cp} #{h} - #{a} avait-il lieu en semaine ou le week-end ?", a: "La rencontre #{h} - #{a} (#{score} en #{cp}) s'est disputée le #{date_label}. Retrouvez le programme complet sur Coup d'Envoi TV." },
+          { q: "#{winner ? "Combien de victoires consécutives pour #{winner} ?" : "Combien de matchs nuls #{h} et #{a} ont-ils cette saison ?"}", a: "#{winner ? "Cette victoire #{score} est un nouveau succès pour #{winner} en #{cp}. Retrouvez les statistiques complètes sur la page de l'équipe." : "Ce nul #{score} s'ajoute au bilan de #{h} et #{a} en #{cp} 2025-2026. Statistiques complètes sur leurs pages d'équipes."}" }
+        ],
+        # 13
+        [
+          { q: "#{h} - #{a} : y avait-il des cartons dans ce match ?", a: "Retrouvez l'ensemble des faits de jeu de #{h} - #{a} (#{score} en #{cp}) dans la timeline des événements sur cette page." },
+          { q: "Ce résultat #{score} confirme-t-il la hiérarchie en #{cp} ?", a: "#{winner ? "#{winner} s'est imposé #{score} face à #{match.home_score.to_i > match.away_score.to_i ? a : h} en #{cp}. Le classement est disponible sur notre page dédiée." : "Ce nul #{score} entre #{h} et #{a} ne bouscule pas forcément la hiérarchie en #{cp}. Consultez le classement mis à jour."}" },
+          { q: "Puis-je revoir #{h} - #{a} gratuitement ?", a: "Le replay complet est réservé aux abonnés #{ch}. Des extraits peuvent être disponibles sur les réseaux sociaux officiels des clubs." }
+        ],
+        # 14
+        [
+          { q: "#{h} joue-t-il bien à domicile cette saison en #{cp} ?", a: "Retrouvez le bilan à domicile de #{h} sur sa page d'équipe. Ce match face à #{a} s'est terminé #{score} en #{cp}." },
+          { q: "#{a} avait-il des absents pour ce #{cp} contre #{h} ?", a: "Les informations sur les absents et blessés sont disponibles sur la page du match. Score final : #{h} #{score} #{a} en #{cp}." },
+          { q: "Quel était le contexte de #{h} - #{a} avant la rencontre ?", a: "#{h} recevait #{a} dans le cadre de la #{cp} 2025-2026. Le match s'est conclu sur le score de #{score}. Résumé complet disponible ci-dessus." }
+        ],
+        # 15
+        [
+          { q: "#{h} et #{a} se sont-ils déjà affrontés cette saison ?", a: "Les confrontations directes entre #{h} et #{a} sont disponibles dans la section head-to-head sur cette page. Score de ce match : #{score} en #{cp}." },
+          { q: "#{winner ? "#{winner} monte-t-il au classement #{cp} après ce #{score} ?" : "Ce nul #{score} en #{cp} pénalise-t-il #{h} ou #{a} ?"}", a: "#{winner ? "Oui, cette victoire #{score} est positive pour #{winner} au classement #{cp}. Retrouvez le classement complet sur notre page dédiée." : "Un point chacun pour #{h} et #{a} après ce nul #{score} en #{cp}. Classement disponible sur notre page dédiée."}" },
+          { q: "Résumé de #{h} - #{a} : où le lire ?", a: "Le résumé éditorial de #{h} - #{a} (#{score} en #{cp}) est disponible sur cette page, rédigé par notre équipe après le coup de sifflet final." }
+        ],
+        # 16
+        [
+          { q: "#{h} - #{a} : ce match de #{cp} était-il décisif ?", a: "#{winner ? "La victoire de #{winner} sur le score de #{score} en #{cp} pèse dans la course à la qualification ou au titre." : "Ce nul #{score} entre #{h} et #{a} en #{cp} peut avoir son importance selon la situation au classement."} Détails sur la page compétition." },
+          { q: "Quelle note donner à ce #{cp} entre #{h} et #{a} ?", a: "#{winner ? "#{winner} s'est imposé #{score} dans une rencontre de #{cp} finalement maîtrisée." : "Un match équilibré entre #{h} et #{a} en #{cp}, ponctué d'un nul #{score}."} Retrouvez le résumé complet ci-dessus." },
+          { q: "À quelle heure s'est terminé #{h} - #{a} ?", a: "Le match #{h} - #{a} a débuté et s'est conclu lors de la journée du #{date_label} en #{cp}. Score final : #{score}." }
+        ],
+        # 17
+        [
+          { q: "#{h} - #{a} : victoire, défaite ou nul pour #{h} ?", a: "#{match.home_score.to_i > match.away_score.to_i ? "Victoire de #{h} sur le score de #{score} face à #{a} en #{cp}." : match.home_score.to_i < match.away_score.to_i ? "Défaite de #{h} #{score} face à #{a} en #{cp}." : "Match nul #{score} pour #{h} contre #{a} en #{cp}."}" },
+          { q: "Où voir les temps forts de #{h} - #{a} en #{cp} ?", a: "Les temps forts de #{h} - #{a} (#{score}) sont disponibles en replay sur #{ch} et résumés sur cette page." },
+          { q: "#{cp} : quel bilan pour #{h} et #{a} cette saison ?", a: "Retrouvez les statistiques complètes de #{h} et de #{a} en #{cp} 2025-2026 sur leurs pages d'équipes respectives. Dernier résultat : #{h} #{score} #{a}." }
+        ],
+        # 18
+        [
+          { q: "#{h} - #{a} s'est fini comment exactement ?", a: "#{winner ? "#{winner} a remporté ce match de #{cp} sur le score de #{score}." : "Le match #{h} - #{a} en #{cp} s'est terminé sur un match nul #{score}."}" },
+          { q: "Ce #{cp} entre #{h} et #{a} était-il retransmis sur #{ch} ?", a: "Oui, #{h} - #{a} (#{score}) était diffusé sur #{ch} dans le cadre de la #{cp} 2025-2026. Le replay est disponible pour les abonnés." },
+          { q: "Quel est le palmarès de #{h} contre #{a} en #{cp} ?", a: "L'historique des confrontations entre #{h} et #{a} est disponible dans la section head-to-head sur cette page. Dernier résultat connu : #{score}." }
+        ],
+        # 19
+        [
+          { q: "Score : #{h} #{score} #{a} — est-ce bien le résultat officiel ?", a: "Oui, #{score} est le score officiel du match #{h} - #{a} en #{cp} disputé le #{date_label}." },
+          { q: "Après #{score}, qui est en meilleure position en #{cp} ?", a: "#{winner ? "#{winner} tire profit de ce #{score} en #{cp}. Consultez le classement complet sur notre page dédiée." : "Après ce nul #{score}, #{h} et #{a} progressent à égalité en #{cp}. Classement disponible sur notre page."}" },
+          { q: "Le résumé de #{h} - #{a} est-il disponible en français ?", a: "Oui, le résumé de #{h} - #{a} (#{score} en #{cp}) est rédigé en français sur cette page. Replay intégral sur #{ch} pour les abonnés." }
         ]
       ]
       finished_sets[match.id % finished_sets.size]
@@ -323,6 +413,54 @@ module SeoHelper
           { q: "#{a} - #{h} ou #{h} - #{a} : quelle est l'équipe à domicile ?", a: "Dans cette rencontre de #{cp}, c'est #{h} qui reçoit #{a} à #{hr} sur #{ch}." },
           { q: "Le match #{h} vs #{a} est-il en direct ou en différé ?", a: "#{ch} diffuse #{h} - #{a} en direct à #{hr}. Le replay sera disponible pour les abonnés après la fin de la rencontre." },
           { q: "Où voir les stats en direct de #{h} - #{a} ?", a: "Les statistiques en temps réel de #{h} - #{a} sont disponibles sur Coup d'Envoi TV pendant toute la durée du match." }
+        ],
+        # 12
+        [
+          { q: "#{h} - #{a} : peut-on regarder depuis une télévision connectée ?", a: "Oui, #{ch} est disponible sur les principales smart TV (Samsung, LG, Sony) ainsi que via Apple TV, Chromecast et Amazon Fire TV. Connectez-vous avec vos identifiants avant #{hr}." },
+          { q: "Ce match de #{cp} est-il important pour le classement ?", a: "#{h} et #{a} s'affrontent dans le cadre de la #{cp} 2025-2026. Chaque point compte — retrouvez le classement mis à jour sur notre page dédiée." },
+          { q: "À quel endroit se joue #{h} - #{a} ?", a: "#{h} reçoit #{a} à domicile pour ce match de #{cp} diffusé à #{hr} sur #{ch}." }
+        ],
+        # 13
+        [
+          { q: "#{h} contre #{a} : y a-t-il une retransmission gratuite ?", a: "Ce match de #{cp} est diffusé sur #{ch}, une chaîne à accès payant. Aucune diffusion gratuite n'est prévue en France pour #{h} - #{a}." },
+          { q: "Quelle application utiliser pour voir #{h} - #{a} en streaming ?", a: "L'application officielle de #{ch} (disponible sur iOS et Android) vous permet de suivre #{h} - #{a} en direct à #{hr} avec votre abonnement." },
+          { q: "#{h} - #{a} est diffusé à quelle heure en France ?", a: "Le coup d'envoi de #{h} - #{a} est fixé à #{hr}, heure de Paris. Match de #{cp} à suivre sur #{ch}." }
+        ],
+        # 14
+        [
+          { q: "Comment être sûr de ne pas rater #{h} - #{a} ?", a: "Notez l'heure : #{hr} le #{date_label} sur #{ch}. Vous pouvez aussi activer les notifications sur l'application #{ch} pour un rappel avant le coup d'envoi." },
+          { q: "#{h} - #{a} : le match est-il en HD sur #{ch} ?", a: "#{ch} diffuse ses matchs en haute définition pour les abonnés. Assurez-vous d'avoir une connexion stable pour profiter de #{h} - #{a} en HD à #{hr}." },
+          { q: "Peut-on voir #{h} vs #{a} en famille ce #{date_label} ?", a: "Absolument - rendez-vous à #{hr} sur #{ch} pour ce #{cp}. L'application permet aussi de caster le match sur votre télévision depuis un smartphone." }
+        ],
+        # 15
+        [
+          { q: "#{h} reçoit #{a} : c'est sur quelle chaîne ?", a: "Ce match à domicile de #{h} contre #{a} en #{cp} est diffusé sur #{ch} à #{hr}. Accès via télévision, box internet ou application mobile." },
+          { q: "Y a-t-il un match #{cp} ce #{date_label} ?", a: "Oui, #{h} affronte #{a} en #{cp} à #{hr} sur #{ch}. Retrouvez le programme complet des matchs du jour sur Coup d'Envoi TV." },
+          { q: "Le direct de #{h} - #{a} commence à #{hr} : est-ce l'heure du coup d'envoi ?", a: "Oui, #{hr} est l'heure officielle du coup d'envoi. Les chaînes comme #{ch} diffusent généralement les avant-matchs quelques minutes avant." }
+        ],
+        # 16
+        [
+          { q: "#{h} vs #{a} en #{cp} : qui est favori ?", a: "Ce match de #{cp} entre #{h} et #{a} s'annonce ouvert. Retrouvez les prochains matchs et le classement des deux équipes sur leurs pages respectives." },
+          { q: "Puis-je enregistrer #{h} - #{a} sur mon décodeur ?", a: "Si vous recevez #{ch} via votre box TV (Orange, Free, SFR, Bouygues), vous pouvez programmer l'enregistrement de #{h} - #{a} depuis votre guide des programmes." },
+          { q: "Le match #{h} - #{a} de #{cp} sera-t-il commenté en français ?", a: "Oui, #{ch} propose une diffusion commentée en français. Coup d'envoi à #{hr} pour cette rencontre de #{cp}." }
+        ],
+        # 17
+        [
+          { q: "Où acheter des billets pour voir #{h} - #{a} au stade ?", a: "Les billets pour #{h} - #{a} sont disponibles sur le site officiel du club domicile. Pour suivre le match depuis chez vous, c'est sur #{ch} à #{hr}." },
+          { q: "#{h} - #{a} : c'est quelle journée de #{cp} ?", a: "Ce match compte pour la saison 2025-2026 de #{cp}. Retrouvez le calendrier complet sur la page de la compétition." },
+          { q: "Comment regarder #{cp} sans se ruiner ?", a: "#{ch} propose plusieurs formules d'abonnement pour suivre la #{cp}. Vérifiez les offres groupées avec votre fournisseur internet pour obtenir le meilleur tarif." }
+        ],
+        # 18
+        [
+          { q: "#{h} - #{a} est-il retransmis à l'international ?", a: "En France, ce match de #{cp} est diffusé sur #{ch} à #{hr}. Les droits à l'international varient selon les pays - vérifiez les diffuseurs locaux si vous êtes à l'étranger." },
+          { q: "Quelle est la forme récente de #{h} avant ce match ?", a: "Retrouvez le bilan récent de #{h} et de #{a} sur leurs pages d'équipes respectives. Le match est à suivre sur #{ch} à #{hr} en #{cp}." },
+          { q: "#{h} - #{a} : les deux équipes se connaissent bien ?", a: "Retrouvez les confrontations directes entre #{h} et #{a} sur cette page. Le prochain rendez-vous est fixé à #{hr} sur #{ch} en #{cp}." }
+        ],
+        # 19
+        [
+          { q: "Sur quelle fréquence trouver #{ch} sur ma box ?", a: "Le numéro de canal de #{ch} varie selon votre opérateur. Cherchez #{ch} dans votre guide TV ou sur l'application de votre box pour suivre #{h} - #{a} à #{hr}." },
+          { q: "#{h} - #{a} : le match risque-t-il d'être reporté ?", a: "Aucun report n'est signalé pour #{h} - #{a}. Le coup d'envoi reste prévu à #{hr} sur #{ch} dans le cadre de la #{cp}." },
+          { q: "C'est quoi #{cp} : un championnat ou une coupe ?", a: "#{cp} est l'une des compétitions majeures du calendrier footballistique européen. #{h} et #{a} s'y affrontent le #{date_label} à #{hr} sur #{ch}." }
         ]
       ]
       upcoming_sets[match.id % upcoming_sets.size]
