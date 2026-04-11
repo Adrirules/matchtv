@@ -20,14 +20,19 @@ class TeamsController < ApplicationController
   end
 
   def vote
-    slug     = params[:team_slug]
-    ip_hash  = Digest::SHA256.hexdigest("#{request.remote_ip}-cdtv")[0..15]
+    slug    = params[:team_slug]
+    ip_hash = Digest::SHA256.hexdigest("#{request.remote_ip}-cdtv")[0..15]
+    record  = TeamVote.find_by(team_slug: slug, ip_hash: ip_hash)
 
-    already  = TeamVote.exists?(team_slug: slug, ip_hash: ip_hash)
-    TeamVote.create!(team_slug: slug, ip_hash: ip_hash) unless already
+    if record
+      record.destroy
+      status = 'removed'
+    else
+      TeamVote.create!(team_slug: slug, ip_hash: ip_hash)
+      status = 'ok'
+    end
 
-    count = TeamVote.where(team_slug: slug).count
-    render json: { status: already ? 'already_voted' : 'ok', count: count }
+    render json: { status: status, count: TeamVote.where(team_slug: slug).count }
   rescue => e
     render json: { status: 'error' }, status: 422
   end

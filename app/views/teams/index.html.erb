@@ -32,46 +32,51 @@
 
   <style>
     .vote-pill {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: #f0f0f0; border: none; border-radius: 20px;
-      padding: 4px 10px; cursor: pointer; font-size: 12px; font-weight: 600;
-      color: #666; transition: background 0.15s, color 0.15s; line-height: 1;
+      display: inline-flex; align-items: center; gap: 3px;
+      background: transparent;
+      border: 1px solid #e2e8f0;
+      border-radius: 9999px;
+      padding: 2px 7px 2px 5px;
+      cursor: pointer;
+      font-size: 11px; font-weight: 500;
+      color: #94a3b8;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      line-height: 1.4;
     }
-    .vote-pill:hover { background: #e2e8f0; }
-    .vote-pill:hover .v-arrow { color: #ff6314; }
-    .vote-pill.voted { background: #e8f0fe; }
-    .vote-pill.voted .v-arrow { color: #007bff; }
-    .vote-pill .v-arrow { font-size: 15px; transition: color 0.15s; }
+    .vote-pill:hover { border-color: #94a3b8; color: #475569; }
+    .vote-pill:hover .v-arrow { color: #f97316; }
+    .vote-pill.voted { border-color: #3b82f6; background: #eff6ff; color: #3b82f6; }
+    .vote-pill.voted .v-arrow { color: #3b82f6; }
+    .vote-pill .v-arrow { font-size: 13px; transition: color 0.15s; }
   </style>
 
   <div id="teams-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
     <% @teams.each do |team| %>
       <% display_name = team_display_name(team[:name]) %>
       <% aliases = team_search_aliases(team[:slug]) %>
-      <div class="team-card-wrap" data-votes="<%= team[:votes] %>" style="display: flex; flex-direction: column;">
-        <%= link_to team_path(team[:slug]), class: "team-card", style: "text-decoration: none; color: inherit; flex: 1;" do %>
-          <div data-name="<%= display_name.downcase %>" data-aliases="<%= aliases %>" style="background: white; border: 1px solid #eee; border-radius: 12px 12px 0 0; padding: 12px 5px 10px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); height: 100%; box-sizing: border-box;">
+      <div class="team-card-wrap" data-votes="<%= team[:votes] %>" style="position: relative;">
+        <%= link_to team_path(team[:slug]), class: "team-card", style: "text-decoration: none; color: inherit; display: block;" do %>
+          <div data-name="<%= display_name.downcase %>" data-aliases="<%= aliases %>" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 8px 28px; text-align: center;">
             <div style="height: 40px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;">
               <img src="<%= team[:logo] %>" alt="<%= display_name %>" style="max-height: 100%; max-width: 35px; object-fit: contain;">
             </div>
-            <div style="font-weight: 600; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">
+            <div style="font-weight: 600; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; color: #0f172a;">
               <%= display_name %>
             </div>
           </div>
         <% end %>
-        <div style="background: white; border: 1px solid #eee; border-top: none; border-radius: 0 0 12px 12px; padding: 6px 0 8px; text-align: center;">
-          <button
-            class="vote-pill<%= ' voted' if false %>"
-            id="vote-btn-<%= team[:slug] %>"
-            data-slug="<%= team[:slug] %>"
-            data-url="<%= vote_team_path(team[:slug]) %>"
-            onclick="handleVote(event, this)"
-            title="Voter pour cette équipe"
-          >
-            <span class="v-arrow">↑</span>
-            <span class="v-count" id="vote-count-<%= team[:slug] %>"><%= team[:votes] %></span>
-          </button>
-        </div>
+        <button
+          class="vote-pill"
+          id="vote-btn-<%= team[:slug] %>"
+          data-slug="<%= team[:slug] %>"
+          data-url="<%= vote_team_path(team[:slug]) %>"
+          onclick="handleVote(event, this)"
+          title="Voter pour cette équipe"
+          style="position: absolute; bottom: 6px; right: 6px;"
+        >
+          <span class="v-arrow">↑</span>
+          <span class="v-count" id="vote-count-<%= team[:slug] %>"><%= team[:votes] %></span>
+        </button>
       </div>
     <% end %>
   </div>
@@ -127,7 +132,6 @@
       e.preventDefault();
       e.stopPropagation();
       var slug = btn.dataset.slug;
-      if (localStorage.getItem('voted_' + slug)) return;
       btn.disabled = true;
 
       fetch(btn.dataset.url, {
@@ -139,16 +143,19 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(data) {
-        if (data.status === 'ok' || data.status === 'already_voted') {
+        if (data.status === 'ok') {
           localStorage.setItem('voted_' + slug, '1');
           btn.classList.add('voted');
-          // Mettre à jour compteur + data-votes pour le tri
-          var countEl = document.getElementById('vote-count-' + slug);
-          if (countEl) countEl.textContent = data.count;
-          var wrap = btn.closest('.team-card-wrap');
-          if (wrap) wrap.dataset.votes = data.count;
-          reorderGrid();
+        } else if (data.status === 'removed') {
+          localStorage.removeItem('voted_' + slug);
+          btn.classList.remove('voted');
         }
+        var countEl = document.getElementById('vote-count-' + slug);
+        if (countEl) countEl.textContent = data.count;
+        var wrap = btn.closest('.team-card-wrap');
+        if (wrap) wrap.dataset.votes = data.count;
+        reorderGrid();
+        btn.disabled = false;
       })
       .catch(function() { btn.disabled = false; });
     }
