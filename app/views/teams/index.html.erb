@@ -30,51 +30,66 @@
   </div>
   <p id="team-no-results" style="display: none; text-align: center; color: #999; font-size: 14px; margin-top: 24px;">Aucun club trouvé.</p>
 
+  <style>
+    .vote-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #f0f0f0; border: none; border-radius: 20px;
+      padding: 4px 10px; cursor: pointer; font-size: 12px; font-weight: 600;
+      color: #666; transition: background 0.15s, color 0.15s; line-height: 1;
+    }
+    .vote-pill:hover { background: #e2e8f0; }
+    .vote-pill:hover .v-arrow { color: #ff6314; }
+    .vote-pill.voted { background: #e8f0fe; }
+    .vote-pill.voted .v-arrow { color: #007bff; }
+    .vote-pill .v-arrow { font-size: 15px; transition: color 0.15s; }
+  </style>
+
   <div id="teams-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
     <% @teams.each do |team| %>
       <% display_name = team_display_name(team[:name]) %>
       <% aliases = team_search_aliases(team[:slug]) %>
-      <div class="team-card-wrap" style="position: relative;">
-        <%= link_to team_path(team[:slug]), class: "team-card", style: "text-decoration: none; color: inherit; display: block;" do %>
-          <div data-name="<%= display_name.downcase %>" data-aliases="<%= aliases %>" style="background: white; border: 1px solid #eee; border-radius: 12px; padding: 12px 5px 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+      <div class="team-card-wrap" data-votes="<%= team[:votes] %>" style="display: flex; flex-direction: column;">
+        <%= link_to team_path(team[:slug]), class: "team-card", style: "text-decoration: none; color: inherit; flex: 1;" do %>
+          <div data-name="<%= display_name.downcase %>" data-aliases="<%= aliases %>" style="background: white; border: 1px solid #eee; border-radius: 12px 12px 0 0; padding: 12px 5px 10px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); height: 100%; box-sizing: border-box;">
             <div style="height: 40px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;">
               <img src="<%= team[:logo] %>" alt="<%= display_name %>" style="max-height: 100%; max-width: 35px; object-fit: contain;">
             </div>
             <div style="font-weight: 600; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">
               <%= display_name %>
             </div>
-            <div style="margin-top: 8px; font-size: 11px; color: #aaa; min-height: 16px;">
-              <span id="vote-count-<%= team[:slug] %>"><%= team[:votes] > 0 ? "▲ #{team[:votes]}" : "" %></span>
-            </div>
           </div>
         <% end %>
-        <button
-          class="vote-btn"
-          data-slug="<%= team[:slug] %>"
-          data-url="<%= vote_team_path(team[:slug]) %>"
-          onclick="handleVote(event, this)"
-          style="position: absolute; bottom: 10px; right: 8px; background: none; border: none; cursor: pointer; font-size: 16px; padding: 2px 4px; color: #ccc; line-height: 1;"
-          title="Voter pour cette équipe"
-        >▲</button>
+        <div style="background: white; border: 1px solid #eee; border-top: none; border-radius: 0 0 12px 12px; padding: 6px 0 8px; text-align: center;">
+          <button
+            class="vote-pill<%= ' voted' if false %>"
+            id="vote-btn-<%= team[:slug] %>"
+            data-slug="<%= team[:slug] %>"
+            data-url="<%= vote_team_path(team[:slug]) %>"
+            onclick="handleVote(event, this)"
+            title="Voter pour cette équipe"
+          >
+            <span class="v-arrow">↑</span>
+            <span class="v-count" id="vote-count-<%= team[:slug] %>"><%= team[:votes] %></span>
+          </button>
+        </div>
       </div>
     <% end %>
   </div>
 
   <script>
     (function() {
-      // Recherche
-      var input    = document.getElementById('team-search');
-      var wraps    = document.querySelectorAll('.team-card-wrap');
+      var input     = document.getElementById('team-search');
       var noResults = document.getElementById('team-no-results');
 
       function normalize(s) {
         return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       }
 
+      // Recherche
       input.addEventListener('input', function() {
         var query   = normalize(this.value);
         var visible = 0;
-        wraps.forEach(function(wrap) {
+        document.querySelectorAll('.team-card-wrap').forEach(function(wrap) {
           var el      = wrap.querySelector('[data-name]');
           var name    = normalize(el.dataset.name);
           var aliases = normalize(el.dataset.aliases || '');
@@ -85,29 +100,37 @@
         noResults.style.display = visible === 0 ? 'block' : 'none';
       });
 
-      // Initialiser l'état visuel des boutons déjà votés
-      document.querySelectorAll('.vote-btn').forEach(function(btn) {
-        var slug = btn.dataset.slug;
-        if (localStorage.getItem('voted_' + slug)) {
-          btn.style.color = '#007bff';
+      // Restaurer état des votes depuis localStorage
+      document.querySelectorAll('.vote-pill').forEach(function(btn) {
+        if (localStorage.getItem('voted_' + btn.dataset.slug)) {
+          btn.classList.add('voted');
           btn.disabled = true;
         }
       });
     })();
 
+    function reorderGrid() {
+      var grid  = document.getElementById('teams-grid');
+      var wraps = Array.from(grid.querySelectorAll('.team-card-wrap'));
+      wraps.sort(function(a, b) {
+        var va = parseInt(a.dataset.votes) || 0;
+        var vb = parseInt(b.dataset.votes) || 0;
+        if (vb !== va) return vb - va;
+        var na = a.querySelector('[data-name]').dataset.name;
+        var nb = b.querySelector('[data-name]').dataset.name;
+        return na.localeCompare(nb);
+      });
+      wraps.forEach(function(w) { grid.appendChild(w); });
+    }
+
     function handleVote(e, btn) {
       e.preventDefault();
       e.stopPropagation();
-
       var slug = btn.dataset.slug;
-      var url  = btn.dataset.url;
-
-      // Guard localStorage
       if (localStorage.getItem('voted_' + slug)) return;
-
       btn.disabled = true;
 
-      fetch(url, {
+      fetch(btn.dataset.url, {
         method: 'POST',
         headers: {
           'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
@@ -118,9 +141,13 @@
       .then(function(data) {
         if (data.status === 'ok' || data.status === 'already_voted') {
           localStorage.setItem('voted_' + slug, '1');
-          btn.style.color = '#007bff';
+          btn.classList.add('voted');
+          // Mettre à jour compteur + data-votes pour le tri
           var countEl = document.getElementById('vote-count-' + slug);
-          if (countEl) countEl.textContent = data.count > 0 ? '\u25b2 ' + data.count : '';
+          if (countEl) countEl.textContent = data.count;
+          var wrap = btn.closest('.team-card-wrap');
+          if (wrap) wrap.dataset.votes = data.count;
+          reorderGrid();
         }
       })
       .catch(function() { btn.disabled = false; });
