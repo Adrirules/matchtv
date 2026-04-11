@@ -1,4 +1,5 @@
 <% return if @noindex %>
+<% return unless ENV['ADSENSE_VALIDATED'] == 'true' %>
 <ins class="adsbygoogle"
      style="display:block; margin: 16px 0;"
      data-ad-client="ca-pub-1509060692668087"
