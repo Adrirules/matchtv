@@ -34,23 +34,37 @@
     <% @teams.each do |team| %>
       <% display_name = team_display_name(team[:name]) %>
       <% aliases = team_search_aliases(team[:slug]) %>
-      <%= link_to team_path(team[:slug]), class: "team-card", style: "text-decoration: none; color: inherit;" do %>
-        <div data-name="<%= display_name.downcase %>" data-aliases="<%= aliases %>" style="background: white; border: 1px solid #eee; border-radius: 12px; padding: 15px 5px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-          <div style="height: 40px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;">
-            <img src="<%= team[:logo] %>" alt="<%= display_name %>" style="max-height: 100%; max-width: 35px; object-fit: contain;">
+      <div class="team-card-wrap" style="position: relative;">
+        <%= link_to team_path(team[:slug]), class: "team-card", style: "text-decoration: none; color: inherit; display: block;" do %>
+          <div data-name="<%= display_name.downcase %>" data-aliases="<%= aliases %>" style="background: white; border: 1px solid #eee; border-radius: 12px; padding: 12px 5px 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+            <div style="height: 40px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;">
+              <img src="<%= team[:logo] %>" alt="<%= display_name %>" style="max-height: 100%; max-width: 35px; object-fit: contain;">
+            </div>
+            <div style="font-weight: 600; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">
+              <%= display_name %>
+            </div>
+            <div style="margin-top: 8px; font-size: 11px; color: #aaa; min-height: 16px;">
+              <span id="vote-count-<%= team[:slug] %>"><%= team[:votes] > 0 ? "▲ #{team[:votes]}" : "" %></span>
+            </div>
           </div>
-          <div style="font-weight: 600; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-            <%= display_name %>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+        <button
+          class="vote-btn"
+          data-slug="<%= team[:slug] %>"
+          data-url="<%= vote_team_path(team[:slug]) %>"
+          onclick="handleVote(event, this)"
+          style="position: absolute; bottom: 10px; right: 8px; background: none; border: none; cursor: pointer; font-size: 16px; padding: 2px 4px; color: #ccc; line-height: 1;"
+          title="Voter pour cette équipe"
+        >▲</button>
+      </div>
     <% end %>
   </div>
 
   <script>
     (function() {
-      var input = document.getElementById('team-search');
-      var cards = document.querySelectorAll('.team-card');
+      // Recherche
+      var input    = document.getElementById('team-search');
+      var wraps    = document.querySelectorAll('.team-card-wrap');
       var noResults = document.getElementById('team-no-results');
 
       function normalize(s) {
@@ -58,19 +72,59 @@
       }
 
       input.addEventListener('input', function() {
-        var query = normalize(this.value);
+        var query   = normalize(this.value);
         var visible = 0;
-        cards.forEach(function(card) {
-          var el      = card.querySelector('[data-name]');
+        wraps.forEach(function(wrap) {
+          var el      = wrap.querySelector('[data-name]');
           var name    = normalize(el.dataset.name);
           var aliases = normalize(el.dataset.aliases || '');
           var match   = name.includes(query) || aliases.includes(query);
-          card.style.display = match ? '' : 'none';
+          wrap.style.display = match ? '' : 'none';
           if (match) visible++;
         });
         noResults.style.display = visible === 0 ? 'block' : 'none';
       });
+
+      // Initialiser l'état visuel des boutons déjà votés
+      document.querySelectorAll('.vote-btn').forEach(function(btn) {
+        var slug = btn.dataset.slug;
+        if (localStorage.getItem('voted_' + slug)) {
+          btn.style.color = '#007bff';
+          btn.disabled = true;
+        }
+      });
     })();
+
+    function handleVote(e, btn) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      var slug = btn.dataset.slug;
+      var url  = btn.dataset.url;
+
+      // Guard localStorage
+      if (localStorage.getItem('voted_' + slug)) return;
+
+      btn.disabled = true;
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+          'Accept': 'application/json'
+        }
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.status === 'ok' || data.status === 'already_voted') {
+          localStorage.setItem('voted_' + slug, '1');
+          btn.style.color = '#007bff';
+          var countEl = document.getElementById('vote-count-' + slug);
+          if (countEl) countEl.textContent = data.count > 0 ? '\u25b2 ' + data.count : '';
+        }
+      })
+      .catch(function() { btn.disabled = false; });
+    }
   </script>
 
   <div style="margin-top: 28px;">

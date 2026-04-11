@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   # 3. Équipes
   # Redirection automatique de l'ancien vers le nouveau (SEO 301)
   get '/equipe/:team_slug', to: redirect('/equipes/%{team_slug}')
-  get "equipes", to: "teams#index", as: :teams
-  get "equipes/:team_slug", to: "teams#show", as: :team
+  get  "equipes",                 to: "teams#index", as: :teams
+  post "equipes/:team_slug/vote", to: "teams#vote",  as: :vote_team
+  get  "equipes/:team_slug",      to: "teams#show",  as: :team
 
   # 4. Joueurs
   get "joueurs", to: "players#index", as: :players

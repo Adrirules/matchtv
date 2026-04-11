@@ -2,7 +2,6 @@ class TeamsController < ApplicationController
   helper TeamContentHelper
 
   def index
-    # Un seul appel SQL : on récupère nom + logo en une passe
     logos_by_team = Match.where.not(home_team_logo: nil)
                          .pluck(:home_team, :home_team_logo, :away_team, :away_team_logo)
                          .each_with_object({}) do |(ht, hl, at, al), h|
@@ -10,11 +9,27 @@ class TeamsController < ApplicationController
                            h[at] ||= al
                          end
 
-    @teams = logos_by_team.keys.compact.sort.map do |name|
-      { name: name, slug: name.parameterize, logo: logos_by_team[name] }
-    end
+    vote_counts = TeamVote.group(:team_slug).count
+
+    @teams = logos_by_team.keys.compact.map do |name|
+      slug = name.parameterize
+      { name: name, slug: slug, logo: logos_by_team[name], votes: vote_counts[slug] || 0 }
+    end.sort_by { |t| [-t[:votes], t[:name]] }
 
     @page_title = "Toutes les équipes de Football - Programme TV"
+  end
+
+  def vote
+    slug     = params[:team_slug]
+    ip_hash  = Digest::SHA256.hexdigest("#{request.remote_ip}-cdtv")[0..15]
+
+    already  = TeamVote.exists?(team_slug: slug, ip_hash: ip_hash)
+    TeamVote.create!(team_slug: slug, ip_hash: ip_hash) unless already
+
+    count = TeamVote.where(team_slug: slug).count
+    render json: { status: already ? 'already_voted' : 'ok', count: count }
+  rescue => e
+    render json: { status: 'error' }, status: 422
   end
 
   def show

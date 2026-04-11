@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_03_26_170530) do
+ActiveRecord::Schema[7.0].define(version: 2026_04_11_095635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,15 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_26_170530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["league_id", "season"], name: "index_standings_on_league_id_and_season", unique: true
+  end
+
+  create_table "team_votes", force: :cascade do |t|
+    t.string "team_slug", null: false
+    t.string "ip_hash", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_slug", "ip_hash"], name: "index_team_votes_on_team_slug_and_ip_hash", unique: true
+    t.index ["team_slug"], name: "index_team_votes_on_team_slug"
   end
 
   add_foreign_key "matches", "matchups"
