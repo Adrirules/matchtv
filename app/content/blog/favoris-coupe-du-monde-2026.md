@@ -40,4 +40,4 @@ Deux éliminations en phase de poules en 2018 et 2022. Pour la Mannschaft c'est 
 
 Et vous ? Dites-moi en commentaire celui que vous voyez soulever le trophée à Los Angeles. Moi je vais regarder chaque match, du premier en groupe jusqu'à la finale, et si vous cherchez où voir tous ces matchs en France, [c'est par ici](/).
 
-*Retrouvez aussi notre [décryptage des 12 groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026) et l'histoire de [l'Italie absente](/blog/italie-absente-mondial-2026).*
+*Retrouvez aussi notre [décryptage des 12 groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026), l'histoire de [l'Italie absente](/blog/italie-absente-mondial-2026) et le [calendrier de la Coupe du monde 2026](/competitions/coupe-du-monde-2026).*

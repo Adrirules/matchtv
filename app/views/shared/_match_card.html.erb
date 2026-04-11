@@ -1,6 +1,6 @@
 <% priority = local_assigns.fetch(:priority, false) %>
 <%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block;" do %>
-<% cache [match, match.updated_at, priority] do %>
+<% cache [match, match.updated_at, priority, 'tdnv1'] do %>
 <div class="match-card">
   <%# Ligne 1 : Heure + Score + Chaîne %>
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">

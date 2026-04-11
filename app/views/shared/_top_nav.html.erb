@@ -11,7 +11,7 @@
       <span>🏁</span> Résultats
     <% end %>
     <%= link_to competitions_path, class: "top-nav-item #{request.path.start_with?('/competitions') ? 'active' : ''}" do %>
-      <span>🏆</span> Ligues
+      <span>🏆</span> Compétitions
     <% end %>
     <%= link_to teams_path, class: "top-nav-item #{request.path.start_with?('/equipes') ? 'active' : ''}" do %>
       <span>⚽</span> Équipes
