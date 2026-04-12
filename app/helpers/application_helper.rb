@@ -233,10 +233,12 @@ module ApplicationHelper
   # Affiche le nom français d'une équipe :
   # clubs connus → TEAM_NAME_OVERRIDES, équipes nationales → COUNTRY_FR, autres → inchangé
   def team_display_name(name)
-    TEAM_NAME_OVERRIDES[name] ||
-      NATIONAL_TEAM_OVERRIDES[name] ||
-      COUNTRY_FR[name] ||
-      name
+    result = TEAM_NAME_OVERRIDES[name] ||
+             NATIONAL_TEAM_OVERRIDES[name] ||
+             COUNTRY_FR[name] ||
+             name
+    # Remplace le suffixe anglais " W" (Women) par " F" (Féminin)
+    result.sub(/ W$/, ' F')
   end
 
   # Aliases de recherche (slug DB réel → termes alternatifs)
