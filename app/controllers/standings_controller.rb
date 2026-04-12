@@ -49,6 +49,8 @@ class StandingsController < ApplicationController
       @standings = []
     end
 
+    @editorial_html = standing_editorial(@league_info[:name])
+
     @page_title = "Classement #{@league_name || @league_info[:name]} 2025-2026 | Coup d'Envoi TV"
     @page_desc  = "Classement officiel #{@league_name || @league_info[:name]} 2025-2026 mis à jour en temps réel : points, victoires, défaites, différence de buts de toutes les équipes."
 
@@ -78,6 +80,15 @@ class StandingsController < ApplicationController
   end
 
   private
+
+  def standing_editorial(name)
+    yaml_path = Rails.root.join("config", "standing_editorial.yml")
+    return nil unless File.exist?(yaml_path)
+    (YAML.load_file(yaml_path) || {})[name]&.strip
+  rescue => e
+    Rails.logger.error("standing_editorial.yml error: #{e.message}")
+    nil
+  end
 
   def redirect_numeric_id
     if params[:competition_id] =~ /\A\d+\z/
