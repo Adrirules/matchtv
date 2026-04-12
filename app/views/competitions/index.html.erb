@@ -72,4 +72,26 @@
     </div>
   <% end %>
 
+  <% if @archived_competitions.any? %>
+    <div style="font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Compétitions passées</div>
+    <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+      <% @archived_competitions.each do |comp| %>
+        <%= link_to competition_path(comp[:slug]), style: "text-decoration: none; color: inherit;" do %>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <% if comp[:logo].present? %>
+                <img src="<%= comp[:logo] %>" alt="Logo <%= comp[:name] %>" width="28" height="28"
+                     style="width: 28px; height: 28px; object-fit: contain; opacity: 0.7;" loading="lazy">
+              <% else %>
+                <span style="font-size: 22px; width: 28px; text-align: center; opacity: 0.7;">🏆</span>
+              <% end %>
+              <span style="font-weight: 600; font-size: 14px; color: #64748b;"><%= comp[:name] %></span>
+            </div>
+            <span style="font-size: 11px; font-weight: 600; color: #94a3b8; background: #f1f5f9; padding: 2px 8px; border-radius: 6px;">Terminée</span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
 </div>

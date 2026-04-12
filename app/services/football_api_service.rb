@@ -21,9 +21,9 @@ class FootballApiService
     { id: 94,  name: "Liga Portugal",      country: "Portugal",        has_standings: true  },
     { id: 141, name: "Coupe du Roi",       country: "Espagne",         has_standings: false },
     { id: 253, name: "Major League Soccer",country: "USA",             has_standings: true  },
-    { id: 5,   name: "Qualif. Mondial 2026", country: "Europe",        has_standings: false },
-    { id: 4,   name: "Euro / Nations League", country: "Europe",       has_standings: false },
-    { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false },
+    { id: 5,   name: "Qualif. Mondial 2026", country: "Europe",        has_standings: false, archived: true },
+    { id: 4,   name: "Euro / Nations League", country: "Europe",       has_standings: false, archived: true },
+    { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false, archived: true },
     { id: 1,   name: "Coupe du Monde 2026", country: "Monde",          has_standings: false },
   ].freeze
 

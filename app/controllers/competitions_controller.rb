@@ -4,7 +4,7 @@ class CompetitionsController < ApplicationController
     db_competitions = Match.distinct.pluck(:competition).compact
 
     # On ordonne selon COMPETITIONS_META (popularité), les inconnus vont à la fin
-    known = FootballApiService::COMPETITIONS_META
+    all_known = FootballApiService::COMPETITIONS_META
               .select { |c| db_competitions.include?(c[:name]) }
               .map do |c|
                 {
@@ -12,16 +12,19 @@ class CompetitionsController < ApplicationController
                   slug:         c[:name].parameterize,
                   logo:         FootballApiService.league_logo(c[:id]),
                   has_standings: c[:has_standings],
-                  standing_slug: c[:has_standings] ? c[:name].parameterize : nil
+                  standing_slug: c[:has_standings] ? c[:name].parameterize : nil,
+                  archived:     c[:archived] || false
                 }
               end
 
-    known_names = known.map { |c| c[:name] }
+    known_names = all_known.map { |c| c[:name] }
     unknown = (db_competitions - known_names).sort.map do |name|
-      { name: name, slug: name.parameterize, logo: nil, has_standings: false, standing_slug: nil }
+      { name: name, slug: name.parameterize, logo: nil, has_standings: false, standing_slug: nil, archived: false }
     end
 
-    @competitions = known + unknown
+    all_comps       = all_known + unknown
+    @competitions   = all_comps.reject { |c| c[:archived] }
+    @archived_competitions = all_comps.select { |c| c[:archived] }
     @page_title = "Compétitions Football 2025-2026 — Programme TV et Calendrier | Coup d'Envoi TV"
     @page_desc  = "Retrouvez le programme TV de toutes les compétitions de football : Ligue 1, Champions League, Coupe de France, Premier League et plus encore."
 

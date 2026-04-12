@@ -73,6 +73,24 @@
     <p style="text-align: center; padding: 40px 0; color: #888;">Aucune archive disponible pour le moment.</p>
   <% end %>
 
+  <div style="margin-top: 32px; margin-bottom: 28px;">
+    <h2 style="font-size: 16px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Compétitions passées</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+      <% FootballApiService::COMPETITIONS_META.select { |c| c[:archived] }.each do |comp| %>
+        <%= link_to competition_path(comp[:name].parameterize), style: "text-decoration: none; color: inherit;" do %>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; display: flex; align-items: center; gap: 10px;">
+            <img src="<%= FootballApiService.league_logo(comp[:id]) %>" alt="<%= comp[:name] %>" width="24" height="24"
+                 style="width: 24px; height: 24px; object-fit: contain; opacity: 0.7;" loading="lazy">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: #374151;"><%= comp[:name] %></div>
+              <div style="font-size: 11px; color: #94a3b8;">Terminée</div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
   <div style="margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap;">
     <%= link_to resultats_path, style: "background: #010e1b; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700;" do %>
       Résultats récents
