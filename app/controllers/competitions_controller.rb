@@ -61,6 +61,9 @@ class CompetitionsController < ApplicationController
     @description  = editorial || competition_description(@competition_name)
     @editorial_html = editorial.present?
 
+    # noindex si page vide : pas de texte éditorial humain + aucun match à venir
+    @noindex = !@editorial_html && @matches.empty?
+
     @page_title = "#{@competition_name} 2025-2026 — Programme TV, matchs et résultats | Coup d'Envoi TV"
     @page_desc  = "Programme TV complet #{@competition_name} 2025-2026 : matchs à venir, horaires et chaînes de diffusion (Canal+, beIN Sports, DAZN, France TV)."
 

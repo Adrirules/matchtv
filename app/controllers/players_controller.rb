@@ -96,10 +96,12 @@ class PlayersController < ApplicationController
     end
 
     # noindex si contenu trop mince :
-    # - 0 stats du tout + aucun match à venir
-    # - stats uniquement issues de matchs amicaux + aucun match à venir
+    # - 0 stats + aucun match à venir
+    # - stats amicaux seulement + aucun match à venir
+    # - moins de 3 matchs joués + aucun match à venir (page quasi vide)
     @noindex = (@games.to_i == 0 && @upcoming_matches.empty?) ||
-               (@is_friendly && @upcoming_matches.empty?)
+               (@is_friendly && @upcoming_matches.empty?) ||
+               (@games.to_i < 3 && @upcoming_matches.empty?)
 
     expires_in 6.hours, public: true
   end
