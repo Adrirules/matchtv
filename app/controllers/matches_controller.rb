@@ -17,6 +17,10 @@ class MatchesController < ApplicationController
       redirect_to root_path, alert: "Aucune diffusion trouvée pour ce match."
     else
       expires_in 5.minutes, public: true
+
+      # noindex : match terminé depuis plus de 6 mois sans résumé = page vide sans valeur
+      @noindex = @match.finished? && @match.start_time < 6.months.ago && @match.summary.blank?
+
       @events = fetch_events(@match)
       if @match.home_team_api_id.present? && @match.away_team_api_id.present?
         @head_to_head = fetch_head_to_head(@match)
