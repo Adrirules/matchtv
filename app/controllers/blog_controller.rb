@@ -51,13 +51,16 @@ class BlogController < ApplicationController
 
   def all_articles
     Dir.glob(BLOG_PATH.join('*.md')).filter_map { |f| parse_file(f) }
+       .select { |a| a[:published_at] && a[:published_at] <= Date.today }
        .sort_by { |a| a[:published_at] }.reverse
   end
 
   def load_article(slug)
     file = BLOG_PATH.join("#{slug}.md")
     return nil unless File.exist?(file)
-    parse_file(file, with_body: true)
+    article = parse_file(file, with_body: true)
+    return nil if article && article[:published_at] && article[:published_at] > Date.today
+    article
   end
 
   def parse_file(path, with_body: false)
