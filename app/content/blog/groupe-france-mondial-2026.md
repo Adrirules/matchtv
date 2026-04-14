@@ -64,4 +64,4 @@ Allez les Bleus.
 
 ---
 
-*Suivez tous les matchs de l'équipe de France au [Mondial 2026](/competitions/coupe-du-monde-2026) sur Coup d'Envoi TV. Retrouvez aussi notre [analyse des 12 groupes](/blog/groupes-coupe-du-monde-2026), nos [5 favoris pour le titre](/blog/favoris-coupe-du-monde-2026) et tous les [articles du blog](/blog).*
+*Suivez tous les matchs de l'équipe de France au [Mondial 2026](/competitions/coupe-du-monde-2026) sur Coup d'Envoi TV. Retrouvez aussi le [calendrier complet des matchs des Bleus](/blog/calendrier-france-mondial-2026), le [guide des 16 stades](/blog/stades-villes-coupe-du-monde-2026), notre [analyse des 12 groupes](/blog/groupes-coupe-du-monde-2026), nos [5 favoris pour le titre](/blog/favoris-coupe-du-monde-2026) et tous les [articles du blog](/blog).*

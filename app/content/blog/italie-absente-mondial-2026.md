@@ -43,4 +43,4 @@ La vraie question est, est-ce que sans une de ses équipes le mondial aurait ét
 
 ---
 
-*Retrouvez tous les [articles du blog Coup d'Envoi TV](/blog), le [programme TV complet de la Coupe du monde 2026](/competitions/coupe-du-monde-2026), les [qualifications au Mondial 2026](/competitions/qualif-mondial-2026) et notre [décryptage des 12 groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026).*
+*Retrouvez tous les [articles du blog Coup d'Envoi TV](/blog), le [programme TV complet de la Coupe du monde 2026](/competitions/coupe-du-monde-2026), les [qualifications au Mondial 2026](/competitions/qualif-mondial-2026), notre [décryptage des 12 groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026), notre [analyse du Groupe I de la France](/blog/groupe-france-mondial-2026) et le [guide des 16 stades du Mondial](/blog/stades-villes-coupe-du-monde-2026).*

@@ -80,4 +80,4 @@ Les matchs de la [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) sont d
 
 ---
 
-*[Programme TV complet des matchs des Bleus sur Coup d'Envoi TV.](/competitions/coupe-du-monde-2026) Retrouvez aussi notre [analyse complète du Groupe I](/blog/groupe-france-mondial-2026), le [décryptage des 12 groupes](/blog/groupes-coupe-du-monde-2026), nos [favoris pour le titre](/blog/favoris-coupe-du-monde-2026) et tous les [articles du blog](/blog).*
+*[Programme TV complet des matchs des Bleus sur Coup d'Envoi TV.](/competitions/coupe-du-monde-2026) Retrouvez aussi notre [analyse complète du Groupe I](/blog/groupe-france-mondial-2026), le [guide des 16 stades du Mondial](/blog/stades-villes-coupe-du-monde-2026), le [décryptage des 12 groupes](/blog/groupes-coupe-du-monde-2026), nos [favoris pour le titre](/blog/favoris-coupe-du-monde-2026) et tous les [articles du blog](/blog).*
