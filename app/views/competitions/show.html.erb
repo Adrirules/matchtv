@@ -51,16 +51,24 @@
 
   <%# Texte éditorial humain ou description Groq %>
   <% if @description.present? %>
-    <div style="font-size: 15px; color: #444; line-height: 1.85; margin-bottom: 20px; background: #f9f9f9; padding: 20px; border-radius: 10px;">
+    <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
       <% @description.split(/\n+/).reject(&:blank?).each do |para| %>
-        <p style="margin: 0 0 14px;"><%= @editorial_html ? para.html_safe : para %></p>
+        <% if @editorial_html && para =~ /\A\s*<h[23]/ %>
+          <%= para.html_safe %>
+        <% elsif @editorial_html %>
+          <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;"><%= para.html_safe %></p>
+        <% else %>
+          <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;"><%= para %></p>
+        <% end %>
       <% end %>
-    </div>
+    </section>
   <% else %>
-    <p style="font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 20px; background: #f9f9f9; padding: 14px; border-radius: 10px;">
-      Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
-      Programme TV complet avec horaires et chaînes de diffusion pour toute la saison 2025-2026.
-    </p>
+    <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+      <p style="font-size: 15px; color: #444; line-height: 1.7; margin: 0;">
+        Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
+        Programme TV complet avec horaires et chaînes de diffusion pour toute la saison 2025-2026.
+      </p>
+    </div>
   <% end %>
 
   <%= render 'shared/ad_unit', slot_id: '2773465276' %>

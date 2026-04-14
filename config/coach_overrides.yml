@@ -1,0 +1,4 @@
+# Corrections manuelles des entraîneurs (bug API team_api_id)
+# Clé = slug de l'équipe (parameterize du nom)
+# Valeur = nom exact de l'entraîneur
+france: "Didier Deschamps"

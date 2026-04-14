@@ -100,8 +100,14 @@ class TeamsController < ApplicationController
       end
 
       @recent_results = api.fetch_recent_results(@team_api_id)
-      @coach = Rails.cache.fetch("coach_#{@team_api_id}", expires_in: 48.hours) do
-        api.fetch_coach(@team_api_id)
+      coach_overrides_path = Rails.root.join('config', 'coach_overrides.yml')
+      coach_overrides = File.exist?(coach_overrides_path) ? (YAML.load_file(coach_overrides_path) rescue {}) : {}
+      if coach_overrides[current_slug]
+        @coach = { 'name' => coach_overrides[current_slug] }
+      else
+        @coach = Rails.cache.fetch("coach_#{@team_api_id}", expires_in: 48.hours) do
+          api.fetch_coach(@team_api_id)
+        end
       end
     end
 
