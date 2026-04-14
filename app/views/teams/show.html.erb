@@ -105,7 +105,7 @@
       goals_against = @stats.dig("goals", "against", "total", "total").to_i
       league_name = @stats.dig("league", "name")
       form = if @recent_results.present?
-        @recent_results.reverse.map do |fx|
+        @recent_results.map do |fx|
           h_id = fx.dig("teams", "home", "id")
           hs_  = fx.dig("goals", "home").to_i
           as__ = fx.dig("goals", "away").to_i
@@ -152,7 +152,7 @@
       <% if form.length >= 5 %>
         <div style="display: flex; align-items: center; gap: 6px;">
           <span style="font-size: 12px; color: #888; font-weight: 600;">Forme :</span>
-          <% form.last(5).each_char do |r| %>
+          <% form.each_char do |r| %>
             <% bg = r == 'W' ? '#28a745' : (r == 'D' ? '#aaa' : '#dc3545') %>
             <span style="background: <%= bg %>; color: white; border-radius: 4px; padding: 2px 6px; font-size: 11px; font-weight: 800;">
               <%= r == 'W' ? 'V' : (r == 'D' ? 'N' : 'D') %>
