@@ -59,6 +59,46 @@
     <%= @article_html %>
   </div>
 
+  <%# Prochains derbies (dynamique) %>
+  <% if @derby_matches.any? %>
+    <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid #e2e8f0;">
+      <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Les prochains derbies</h2>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <% @derby_matches.each do |match| %>
+          <%= link_to match_path(match.slug), style: "display:block; text-decoration:none; color:inherit;" do %>
+            <div style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px 16px; background: #fff; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8faff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='#fff'">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;">
+                  <% if match.home_team_logo.present? %>
+                    <img src="<%= match.home_team_logo %>" alt="<%= match.home_team %>" width="24" height="24" style="object-fit:contain; flex-shrink:0;" loading="lazy">
+                  <% end %>
+                  <span style="font-weight: 600; font-size: 14px; color: #010e1b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= team_display_name(match.home_team) %></span>
+                  <span style="color: #94a3b8; font-size: 13px; font-weight: 500; flex-shrink: 0;">vs</span>
+                  <span style="font-weight: 600; font-size: 14px; color: #010e1b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= team_display_name(match.away_team) %></span>
+                  <% if match.away_team_logo.present? %>
+                    <img src="<%= match.away_team_logo %>" alt="<%= match.away_team %>" width="24" height="24" style="object-fit:contain; flex-shrink:0;" loading="lazy">
+                  <% end %>
+                </div>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <div style="font-size: 13px; font-weight: 600; color: #010e1b;">
+                    <% if match.status == 'NS' %>
+                      <%= match.start_time.strftime("%-d %b, %Hh%M") %>
+                    <% else %>
+                      <span style="color: #ef4444;">En direct</span>
+                    <% end %>
+                  </div>
+                  <% if match.tv_channels.present? %>
+                    <div style="font-size: 11px; color: #64748b; margin-top: 2px;"><%= match.tv_channels.split(',').first&.strip %></div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <%# Bio auteur %>
   <div style="margin-top: 48px; padding: 20px; background: #f8f9fa; border-left: 3px solid #010e1b; border-radius: 4px;">
     <p style="font-size: 14px; font-weight: 700; margin: 0 0 6px; color: #010e1b;">Adrien</p>

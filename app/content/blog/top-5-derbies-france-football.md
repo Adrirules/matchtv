@@ -4,13 +4,20 @@ meta_description: "Derby du Nord, OL-ASSE, Classique PSG-OM, Nice-Monaco, Nantes
 slug: top-5-derbies-france-football
 published_at: 2026-04-14
 author: Adrien
-image: https://images.unsplash.com/photo-82BoVUtXapQ?q=80&w=2062&auto=format&fit=crop
+image: https://images.unsplash.com/photo-1564833592193-3270b5618e7f?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "Derby du Nord, OL-ASSE, Classique... Notre top 5 (+1 bonus) des derbies les plus intenses de France, avec les prises de position du chirurgien du ballon rond."
+derby_pairs:
+  - ["Lens", "Lille"]
+  - ["Olympique Lyonnais", "Saint-Etienne"]
+  - ["Paris Saint-Germain", "Olympique de Marseille"]
+  - ["OGC Nice", "AS Monaco"]
+  - ["Nantes", "Stade Rennais"]
+  - ["Metz", "Nancy"]
 ---
 
 # Notre Top 5 (+1 bonus) des meilleurs derbies en France
 
-<img src="https://images.unsplash.com/photo-82BoVUtXapQ?q=80&w=2062&auto=format&fit=crop" alt="Terrain de football vu depuis les tribunes" width="2062" height="1375" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
+<img src="https://images.unsplash.com/photo-1564833592193-3270b5618e7f?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Terrain de football vu depuis les tribunes" width="2062" height="1375" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
 
 Le derby. Ce mot-là, dans le football, déclenche quelque chose de particulier dans le cerveau humain. Une montée d'adrénaline, un sourire, parfois une grimace. Parce qu'un derby, c'est pas un match. C'est un règlement de comptes entre voisins qui ont décidé un jour, pour des raisons souvent floues et toujours profondes, de ne pas s'aimer. Voilà notre top 5, plus un bonus pour les connaisseurs, avec les prises de position assumées et les diagnostics du chirurgien du ballon rond : Bac +10 en football et en apéro. Allez, on y va.
 

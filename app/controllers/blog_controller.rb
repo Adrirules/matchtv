@@ -14,6 +14,20 @@ class BlogController < ApplicationController
     @page_title  = @article[:title]
     @page_desc   = @article[:meta_description]
     @article_html, @toc = render_markdown_with_toc(@article[:body])
+
+    @derby_matches = []
+    if @article[:derby_pairs].present?
+      @derby_matches = @article[:derby_pairs].filter_map do |pair|
+        team_a, team_b = pair
+        Match.where(
+          "(home_team ILIKE :a AND away_team ILIKE :b) OR (home_team ILIKE :b AND away_team ILIKE :a)",
+          a: "%#{team_a}%", b: "%#{team_b}%"
+        ).where("start_time >= ?", Time.current - 3.hours)
+         .order(:start_time)
+         .first
+      end
+    end
+
     expires_in 1.hour, public: true
   end
 
@@ -43,7 +57,8 @@ class BlogController < ApplicationController
       published_at:     meta['published_at'],
       author:           meta['author'] || 'Adrien',
       image:            meta['image'],
-      excerpt:          meta['excerpt']
+      excerpt:          meta['excerpt'],
+      derby_pairs:      meta['derby_pairs']
     }
     result[:body] = parts[2].strip if with_body
     result
