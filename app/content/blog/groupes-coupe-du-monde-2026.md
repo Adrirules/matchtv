@@ -6,6 +6,20 @@ published_at: 2026-04-06
 author: Adrien
 image: https://images.unsplash.com/photo-1527871369852-eb58cb2b54e2?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "Alea Jacta Est. Les 12 groupes du Mondial 2026 sont connus. On les décortique un par un avec nos verdicts, nos anecdotes et nos pronos."
+match_pairs_title: "Les affiches à ne pas rater"
+match_groups:
+  "Groupe A": [["Mexico", "South Korea"]]
+  "Groupe B": [["Canada", "Bosnia"]]
+  "Groupe C": [["Brazil", "Morocco"]]
+  "Groupe D": [["United States", "Turkey"]]
+  "Groupe E": [["Germany", "Ivory Coast"]]
+  "Groupe F": [["Netherlands", "Japan"]]
+  "Groupe G": [["Belgium", "Egypt"]]
+  "Groupe H": [["Spain", "Uruguay"]]
+  "Groupe I": [["France", "Senegal"]]
+  "Groupe J": [["Argentina", "Austria"]]
+  "Groupe K": [["Portugal", "Colombia"]]
+  "Groupe L": [["England", "Croatia"]]
 ---
 
 # Coupe du monde 2026 : les 12 groupes complets et notre verdict sur chaque groupe

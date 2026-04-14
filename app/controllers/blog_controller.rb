@@ -28,6 +28,22 @@ class BlogController < ApplicationController
       end
     end
 
+    @match_groups = []
+    if @article[:match_groups].present?
+      @match_groups = @article[:match_groups].filter_map do |group_name, pairs|
+        matches = (pairs || []).filter_map do |pair|
+          team_a, team_b = pair
+          Match.where(
+            "(home_team ILIKE :a AND away_team ILIKE :b) OR (home_team ILIKE :b AND away_team ILIKE :a)",
+            a: "%#{team_a}%", b: "%#{team_b}%"
+          ).where("start_time >= ?", Time.current - 3.hours)
+           .order(:start_time)
+           .first
+        end
+        matches.any? ? { name: group_name, matches: matches } : nil
+      end
+    end
+
     expires_in 1.hour, public: true
   end
 
@@ -58,8 +74,9 @@ class BlogController < ApplicationController
       author:           meta['author'] || 'Adrien',
       image:            meta['image'],
       excerpt:          meta['excerpt'],
-      derby_pairs:      meta['derby_pairs'],
-      match_pairs_title: meta['match_pairs_title']
+      derby_pairs:       meta['derby_pairs'],
+      match_pairs_title: meta['match_pairs_title'],
+      match_groups:      meta['match_groups']
     }
     result[:body] = parts[2].strip if with_body
     result

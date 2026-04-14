@@ -6,13 +6,30 @@ published_at: 2026-04-07
 author: Adrien
 image: https://images.unsplash.com/photo-1731870881782-1948058d9ce1?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "France, Argentine, Brésil, Angleterre, Allemagne : cinq équipes, une liste qui tourne en boucle depuis que les groupes sont tombés. Notre podium avant le coup d'envoi."
+match_pairs_title: "Les prochains matchs des 5 favoris"
+derby_pairs:
+  - ["France", "Senegal"]
+  - ["France", "Norway"]
+  - ["France", "Iraq"]
+  - ["Argentina", "Austria"]
+  - ["Argentina", "Algeria"]
+  - ["Argentina", "Jordan"]
+  - ["Brazil", "Morocco"]
+  - ["Brazil", "Haiti"]
+  - ["Brazil", "Scotland"]
+  - ["England", "Croatia"]
+  - ["England", "Ghana"]
+  - ["England", "Panama"]
+  - ["Germany", "Ecuador"]
+  - ["Germany", "Ivory Coast"]
+  - ["Germany", "Curacao"]
 ---
 
 # Coupe du monde 2026 : nos 5 favoris pour soulever le trophée
 
 <img src="https://images.unsplash.com/photo-1731870881782-1948058d9ce1?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trophée Coupe du monde FIFA 2026" width="1548" height="1032" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
 
-Bon, je vais vous dire un truc. Depuis que les groupes sont tombés, j'ai une liste dans la tête qui tourne en boucle. Cinq équipes. Pas six, pas sept, cinq. Celles que je vois encore là le 19 juillet à Los Angeles quand le dernier coup de sifflet retentit. On va en parler.
+Bon, je vais vous dire un truc. Depuis que les groupes sont tombés, j'ai une liste dans la tête qui tourne en boucle. Cinq équipes. Pas six, pas sept, cinq. Celles que je vois encore là le 19 juillet à New York quand le dernier coup de sifflet retentit. On va en parler.
 
 ## La France - le favori qu'on n'ose pas appeler favori
 
@@ -38,6 +55,6 @@ Deux éliminations en phase de poules en 2018 et 2022. Pour la Mannschaft c'est 
 
 **Mon podium :** France, Argentine, Angleterre. Avec l'Allemagne qui peut tout renverser.
 
-Et vous ? Dites-moi en commentaire celui que vous voyez soulever le trophée à Los Angeles. Moi je vais regarder chaque match, du premier en groupe jusqu'à la finale, et si vous cherchez où voir tous ces matchs en France, [c'est par ici](/).
+Et vous ? Dites-moi en commentaire celui que vous voyez soulever le trophée à New York. Moi je vais regarder chaque match, du premier en groupe jusqu'à la finale, et si vous cherchez où voir tous ces matchs en France, [c'est par ici](/).
 
 *Retrouvez aussi notre [décryptage des 12 groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026), notre [analyse du Groupe I de la France](/blog/groupe-france-mondial-2026), le [calendrier complet des Bleus](/blog/calendrier-france-mondial-2026), le [guide des 16 stades](/blog/stades-villes-coupe-du-monde-2026), l'histoire de [l'Italie absente](/blog/italie-absente-mondial-2026) et le [calendrier de la Coupe du monde 2026](/competitions/coupe-du-monde-2026).*
