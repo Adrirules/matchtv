@@ -8,10 +8,10 @@ image: https://images.unsplash.com/photo-1564833592193-3270b5618e7f?q=80&w=2062&
 excerpt: "Derby du Nord, OL-ASSE, Classique... Notre top 5 (+1 bonus) des derbies les plus intenses de France, avec les prises de position du chirurgien du ballon rond."
 derby_pairs:
   - ["Lens", "Lille"]
-  - ["Olympique Lyonnais", "Saint-Etienne"]
-  - ["Paris Saint-Germain", "Olympique de Marseille"]
-  - ["OGC Nice", "AS Monaco"]
-  - ["Nantes", "Stade Rennais"]
+  - ["Lyon", "Saint-Etienne"]
+  - ["Paris Saint Germain", "Marseille"]
+  - ["Nice", "Monaco"]
+  - ["Nantes", "Rennes"]
   - ["Metz", "Nancy"]
 ---
 
