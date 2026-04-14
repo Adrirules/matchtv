@@ -104,7 +104,20 @@
       goals_for = @stats.dig("goals", "for", "total", "total").to_i
       goals_against = @stats.dig("goals", "against", "total", "total").to_i
       league_name = @stats.dig("league", "name")
-      form = @stats.dig("form") || ""
+      form = if @recent_results.present?
+        @recent_results.reverse.map do |fx|
+          h_id = fx.dig("teams", "home", "id")
+          hs_  = fx.dig("goals", "home").to_i
+          as__ = fx.dig("goals", "away").to_i
+          is_h = h_id == @team_api_id
+          if hs_ == as__   then 'D'
+          elsif is_h ? hs_ > as__ : as__ > hs_ then 'W'
+          else 'L'
+          end
+        end.join
+      else
+        @stats.dig("form") || ""
+      end
     %>
     <section style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
       <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 12px; color: #010e1b;">
