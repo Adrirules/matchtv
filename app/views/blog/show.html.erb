@@ -82,7 +82,7 @@
                 <div style="text-align: right; flex-shrink: 0;">
                   <div style="font-size: 13px; font-weight: 600; color: #010e1b;">
                     <% if match.status == 'NS' %>
-                      <%= match.start_time.strftime("%-d %b, %Hh%M") %>
+                      <%= "#{match.start_time.day} #{ApplicationHelper::MONTHS_FR[match.start_time.month - 1]}, #{match.start_time.strftime('%Hh%M')}" %>
                     <% else %>
                       <span style="color: #ef4444;">En direct</span>
                     <% end %>
