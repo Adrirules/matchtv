@@ -1,5 +1,5 @@
 ---
-title: "Top 5 des meilleurs derbies de football en France — Lens-Lille, OL-ASSE, Classique | Coup d'Envoi TV"
+title: "Top 5 des meilleurs derbies de football en France - Lens-Lille, OL-ASSE, Classique | Coup d'Envoi TV"
 meta_description: "Derby du Nord, OL-ASSE, Classique PSG-OM, Nice-Monaco, Nantes-Rennes : notre top 5 des derbies les plus intenses de France, + le bonus Metz-Nancy."
 slug: top-5-derbies-france-football
 published_at: 2026-04-14
@@ -21,7 +21,7 @@ derby_pairs:
 
 Le derby. Ce mot-là, dans le football, déclenche quelque chose de particulier dans le cerveau humain. Une montée d'adrénaline, un sourire, parfois une grimace. Parce qu'un derby, c'est pas un match. C'est un règlement de comptes entre voisins qui ont décidé un jour, pour des raisons souvent floues et toujours profondes, de ne pas s'aimer. Voilà notre top 5, plus un bonus pour les connaisseurs, avec les prises de position assumées et les diagnostics du chirurgien du ballon rond : Bac +10 en football et en apéro. Allez, on y va.
 
-## 1. Derby du Nord : Le Mythe contre la Machine — Lens - Lille
+## 1. Derby du Nord : Le Mythe contre la Machine - Lens - Lille
 
 C'est le seul derby en France qui possède une vraie dimension sociologique. Pas besoin d'inventer la haine, elle existait avant que les clubs ne soient fondés. C'est le pays minier contre la métropole, les corons contre les grandes artères, [Bollaert](/equipes/lens) contre le [Pierre-Mauroy](/equipes/lille).
 
@@ -33,7 +33,7 @@ Ce que les forums ne disent pas ouvertement mais que tout le monde pense : les u
 
 Résultat du dernier derby : Lille 3-0 Lens, le 4 avril 2026. Lens a pris un carton plein. Le débat continue.
 
-## 2. Derby Rhône-Alpes : La Thérapie de groupe qui finit toujours mal — OL - ASSE
+## 2. Derby Rhône-Alpes : La Thérapie de groupe qui finit toujours mal - OL - ASSE
 
 C'est le derby du ressentiment. Le plus toxique de France, sans hésitation. Et le plus fascinant parce qu'il raconte quelque chose de vrai sur l'histoire du football français.
 
@@ -43,7 +43,7 @@ La cerise sur le gâteau en 2026 : les Magic Fans et les Green Angels de Saint-�
 
 **Le diagnostic :** Ce match est une thérapie de groupe qui finit toujours mal. Dans un village de la frontière entre le Rhône et la Loire, un habitant a dit à France 3 : "Après le match, c'est ricard !" C'est peut-être le vrai résumé de ce derby. Sur la pelouse, la guerre. À la buvette, la paix.
 
-## 3. Le Classique PSG-OM : L'Algorithme contre le Ventre — Paris - Marseille
+## 3. Le Classique PSG-OM : L'Algorithme contre le Ventre - Paris - Marseille
 
 Précision chirurgicale d'abord : ce n'est pas un derby. Géographiquement, 775 km séparent le Parc des Princes du Vélodrome. Mais c'est devenu une rivalité organique, forgée par Canal+ dans les années 90 et entretenue depuis par une opposition culturelle réelle (si vous voulez savoir comment suivre ce Classique et tous les matchs de [Ligue 1](/competitions/ligue-1) en 2026, on a [comparé tous les abonnements foot](/blog/abonnement-foot-2026-quelle-chaine-choisir)).
 
@@ -53,7 +53,7 @@ Ce qui est fascinant dans cette rivalité en 2026 : l'OM a gagné le Classique a
 
 **Le diagnostic :** Indispensable pour la Ligue 1 et pour l'audience de beIN Sports. Mais parfois épuisant parce qu'il sature tout l'espace médiatique alors que le vrai football se joue parfois ailleurs. Le Classique mérite d'être regardé, pas vénéré.
 
-## 4. Derby de la Côte d'Azur : La Rivalité à sens unique — Nice - Monaco
+## 4. Derby de la Côte d'Azur : La Rivalité à sens unique - Nice - Monaco
 
 C'est le Derby Fantôme. La rivalité la plus déséquilibrée de France.
 
@@ -63,7 +63,7 @@ Il y a quelque chose de profondément absurde et comique dans ce derby. Nice arr
 
 **Le diagnostic :** Nice apporte le feu. Monaco apporte la clim'. C'est visuellement contrasté, émotionnellement frustrant pour les Niçois, et parfaitement résumé par un fait : Monaco n'a pas de vrais supporters locaux au sens traditionnel du terme parce que Monaco n'a pas de vrais habitants locaux au sens traditionnel du terme. C'est structurel, pas un manque d'amour.
 
-## 5. Derby de l'Ouest : La Guerre de l'élégance — Nantes - Rennes
+## 5. Derby de l'Ouest : La Guerre de l'élégance - Nantes - Rennes
 
 Le plus sous-côté, le plus "football", le plus mal aimé des médias parisiens. Et pourtant.
 
@@ -71,7 +71,7 @@ Le plus sous-côté, le plus "football", le plus mal aimé des médias parisiens
 
 **Le diagnostic :** Le plus "football" des cinq. Ça joue, ça se respecte, ça produit souvent de bons matchs. Mais il manque ce côté venimeux, cette haine de fond qui fait que vous regardez un derby même quand votre équipe est nulle. Nantes-Rennes, c'est un beau match. Pas encore une guerre sainte.
 
-## Bonus : Le Derby de l'Est — Metz-Nancy, la haine authentique
+## Bonus : Le Derby de l'Est - Metz-Nancy, la haine authentique
 
 Pour les connaisseurs. Pour ceux qui n'ont pas besoin des projecteurs pour aimer le football.
 
