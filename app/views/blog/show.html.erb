@@ -62,7 +62,7 @@
   <%# Prochains derbies (dynamique) %>
   <% if @derby_matches.any? %>
     <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid #e2e8f0;">
-      <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Les prochains derbies</h2>
+      <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;"><%= @article[:match_pairs_title].presence || "Les prochains derbies" %></h2>
       <div style="display: flex; flex-direction: column; gap: 10px;">
         <% @derby_matches.each do |match| %>
           <%= link_to match_path(match.slug), style: "display:block; text-decoration:none; color:inherit;" do %>

@@ -58,7 +58,8 @@ class BlogController < ApplicationController
       author:           meta['author'] || 'Adrien',
       image:            meta['image'],
       excerpt:          meta['excerpt'],
-      derby_pairs:      meta['derby_pairs']
+      derby_pairs:      meta['derby_pairs'],
+      match_pairs_title: meta['match_pairs_title']
     }
     result[:body] = parts[2].strip if with_body
     result
