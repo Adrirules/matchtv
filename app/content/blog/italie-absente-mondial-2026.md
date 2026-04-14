@@ -20,7 +20,7 @@ C'est le malaise chez nos cousins italiens qui encore une fois doivent sentir mo
 Ce n'est pas la première CDM que loupe la Nazionale, mais bel et bien la 3e. On connaît tous ce sentiment quand on se fait refouler de boîte de nuit, le videur nous trouve un peu trop fatigué et on s'éloigne gentiment de la soirée, alors qu'on entend la foule qui s'éclate à l'intérieur. On ne passera pas par le vestiaire, on ne commandera pas une bouteille bien trop chère, et on ne parlera pas à un inconnu aux toilettes avec un verre à la main en faisant chacun notre affaire. Et oui, c'est bien ce sentiment que doit avoir en ce moment toute l'équipe italienne, le staff, mais aussi tous les italiens qui sont privés de [coupe du monde 2026](/competitions/qualif-mondial-2026). La fête est finie alors qu'elle n'a pratiquement pas commencé. Le coup du chapeau, mais pas celui qu'on croit. Déjà absente en 2018 et en 2022, ce sera donc la 3e fois d'affilée, ce qui est inédit dans l'histoire italienne.
 La malédiction italienne va plus loin, car c'est à chaque fois en barrage, jamais en phase de groupe que l'élimination se fait.
 La plus grosse anomalie, c'est Giggio, [Gianluigi Donnarumma](/joueurs/g-donnarumma), du haut de ses 27 ans, le
-gardien du PSG n'a toujours pas participé à une coupe du monde.
+gardien du [PSG](/equipes/paris-saint-germain) n'a toujours pas participé à une coupe du monde.
 
 ## On refait le match
 
@@ -37,10 +37,10 @@ La petite cerise sur le gâteau, c'est ce qu'on a pu lire dans la Repubblica, le
 
 On s'était dit qu'avec maintenant 48 équipes au lieu de 32, soit 16 de plus, que les italiens allaient réussir à se qualifier. Loupé. Une humiliation de plus pour tous les italiens.
 Ils ne sont pas là non plus, tout comme l'Italie ils n'ont pas réussi à se qualifier : la Géorgie, la Slovénie et l'Ukraine n'iront pas en Amérique du Nord.
-Ça ne va pas réellement changer le mondial, même si on avait envie de voir évoluer sur le terrain des joueurs de classe mondiale comme [Donnarumma](/joueurs/g-donnarumma), [Bastoni](/joueurs/a-bastoni), [Tonali](/joueurs/s-tonali) ou encore [Barella](/joueurs/n-barella), mais c'est plutôt symboliquement que l'absence de l'Italie est choquante. Ça fait du bruit médiatiquement car c'est une équipe historique, mais les grosses équipes sont toujours là : [la France](/competitions/qualif-mondial-2026), le Brésil, l'Argentine, [l'Espagne](/competitions/la-liga), l'Angleterre, l'Allemagne.
+Ça ne va pas réellement changer le mondial, même si on avait envie de voir évoluer sur le terrain des joueurs de classe mondiale comme [Donnarumma](/joueurs/g-donnarumma), [Bastoni](/joueurs/a-bastoni) de l'[Inter](/equipes/inter-milan), [Tonali](/joueurs/s-tonali) ou encore [Barella](/joueurs/n-barella), mais c'est plutôt symboliquement que l'absence de l'Italie est choquante. Ça fait du bruit médiatiquement car c'est une équipe historique, mais les grosses équipes sont toujours là : [la France](/competitions/qualif-mondial-2026), le Brésil, l'Argentine, [l'Espagne](/competitions/la-liga), l'Angleterre, l'Allemagne.
 
 La vraie question est, est-ce que sans une de ses équipes le mondial aurait été différent ?
 
 ---
 
-*Retrouvez tous les [articles du blog Coup d'Envoi TV](/blog), le [programme TV complet de la Coupe du monde 2026](/competitions/coupe-du-monde-2026) et les [qualifications au Mondial 2026](/competitions/qualif-mondial-2026).*
+*Retrouvez tous les [articles du blog Coup d'Envoi TV](/blog), le [programme TV complet de la Coupe du monde 2026](/competitions/coupe-du-monde-2026), les [qualifications au Mondial 2026](/competitions/qualif-mondial-2026) et notre [décryptage des 12 groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026).*
