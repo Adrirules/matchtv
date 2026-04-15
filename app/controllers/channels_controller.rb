@@ -46,8 +46,8 @@ class ChannelsController < ApplicationController
       slug:      "tf1",
       name:      "TF1",
       keywords:  ["TF1"],
-      tagline:   "Coupe du Monde, Équipe de France",
-      meta_desc: "Matchs football en clair sur TF1 : Coupe du Monde 2026, Équipe de France. Programme foot gratuit sur TF1."
+      tagline:   "Équipe de France, Ligue des Nations - gratuit",
+      meta_desc: "TF1 diffuse les matchs de l'équipe de France masculine (Ligue des Nations, qualifications) gratuitement. TF1+ pour les replays. Attention : le Mondial 2026 est sur M6."
     },
     {
       slug:      "m6",
