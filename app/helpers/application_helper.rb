@@ -418,6 +418,40 @@ module ApplicationHelper
 
   MONTHS_FR = %w[janvier février mars avril mai juin juillet août septembre octobre novembre décembre].freeze
 
+  # Mapping chaîne TV → slug /chaines/:slug
+  CHANNEL_SLUG_MAP = {
+    "canal+"                    => "canal-plus",
+    "canal+ sport"              => "canal-plus",
+    "canal+ live"               => "canal-plus",
+    "canal+ décalé"             => "canal-plus",
+    "canal+ foot"               => "canal-plus",
+    "bein sports"               => "bein-sports",
+    "bein sports 1"             => "bein-sports",
+    "bein sports 2"             => "bein-sports",
+    "bein sports 3"             => "bein-sports",
+    "dazn"                      => "dazn",
+    "dazn 1"                    => "dazn",
+    "dazn 2"                    => "dazn",
+    "dazn 3"                    => "dazn",
+    "amazon prime"              => "amazon-prime",
+    "amazon prime video"        => "amazon-prime",
+    "amazon prime video sport"  => "amazon-prime",
+    "rmc sport"                 => "rmc-sport",
+    "rmc sport 1"               => "rmc-sport",
+    "rmc sport 2"               => "rmc-sport",
+    "france 2"                  => "france-tv",
+    "france 3"                  => "france-tv",
+    "france 4"                  => "france-tv",
+    "france tv"                 => "france-tv",
+    "francetv sport"            => "france-tv",
+    "tf1"                       => "tf1",
+    "m6"                        => "m6",
+  }.freeze
+
+  def channel_slug_for(channel_name)
+    CHANNEL_SLUG_MAP[channel_name.downcase.strip]
+  end
+
   # Date en français : 29 mars 2026
   def date_fr(date)
     return '' unless date

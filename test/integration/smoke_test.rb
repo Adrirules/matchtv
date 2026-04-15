@@ -141,6 +141,27 @@ class SmokeTest < ActionDispatch::IntegrationTest
     assert_response :success, "La page contact retourne une erreur"
   end
 
+  # --- CHAÎNES TV ---
+  test "channels index responds 200" do
+    get channels_url
+    assert_response :success, "La liste des chaînes retourne une erreur"
+  end
+
+  test "channel canal-plus responds 200" do
+    get channel_url("canal-plus")
+    assert_response :success, "La page Canal+ retourne une erreur"
+  end
+
+  test "channel bein-sports responds 200" do
+    get channel_url("bein-sports")
+    assert_response :success, "La page beIN Sports retourne une erreur"
+  end
+
+  test "channel slug inexistant retourne 404" do
+    get channel_url("chaine-inconnue-xyz")
+    assert_response :not_found, "Un slug chaîne invalide devrait retourner 404"
+  end
+
   # --- REDIRECTIONS LEGACY (anti-régression SEO) ---
   test "classement numerique redirige en 301" do
     get "/classements/61"

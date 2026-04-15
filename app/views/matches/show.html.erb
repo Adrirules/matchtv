@@ -101,24 +101,24 @@
       </div>
     </div>
 
-    <%# Badge Diffuseur %>
-    <div style="background: #f8f9fa; border-radius: 12px; padding: 15px 25px; display: inline-flex; align-items: center; border: 1px solid #eee;">
-      <span style="font-size: 20px; margin-right: 12px;">📺</span>
-      <div style="text-align: left;">
-        <div style="font-size: 11px; color: #777; font-weight: 600; text-transform: uppercase;">Diffuseur Officiel</div>
-        <strong style="font-size: 19px; font-weight: 900;">
-          <% if @match.tv_channels.to_s.include?("DAZN") %>
-            <span style="color: #000;">DAZN</span>
-          <% elsif @match.tv_channels.to_s.include?("Canal") %>
-            <span style="color: #ed1c24;">CANAL+</span>
-          <% elsif @match.tv_channels.to_s.include?("beIN") %>
-            <span style="color: #004a99;">beIN SPORTS</span>
-          <% else %>
-            <span style="color: #d9534f;"><%= @match.tv_channels %></span>
+    <%# Badge Diffuseur — chaînes cliquables vers /chaines/:slug %>
+    <% if @match.tv_channels.present? %>
+      <div style="background: #f8f9fa; border-radius: 12px; padding: 14px 24px; display: inline-block; border: 1px solid #eee; text-align: center;">
+        <div style="font-size: 11px; color: #777; font-weight: 600; text-transform: uppercase; margin-bottom: 10px;">Diffusion TV</div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+          <% @match.tv_channels.split(",").map(&:strip).each do |ch_name| %>
+            <% slug = channel_slug_for(ch_name) %>
+            <% if slug %>
+              <%= link_to channel_path(slug), style: "text-decoration: none;" do %>
+                <span style="display: inline-block; background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 14px; font-weight: 700; font-size: 15px; color: #010e1b; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6'" onmouseout="this.style.borderColor='#e2e8f0';this.style.color='#010e1b'"><%= ch_name %></span>
+              <% end %>
+            <% else %>
+              <span style="display: inline-block; background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 14px; font-weight: 700; font-size: 15px; color: #010e1b;"><%= ch_name %></span>
+            <% end %>
           <% end %>
-        </strong>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 
   <%# ---- Timeline des événements ---- %>

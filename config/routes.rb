@@ -35,7 +35,11 @@ Rails.application.routes.draw do
   get 'blog/auteur/adrien', to: 'blog#auteur', as: :blog_auteur
   get 'blog/:slug', to: 'blog#show', as: :blog_article
 
-  # 7. Pages Statiques
+  # 7. Chaînes TV
+  get "chaines",       to: "channels#index", as: :channels
+  get "chaines/:slug", to: "channels#show",  as: :channel
+
+  # 8. Pages Statiques
   get "contact", to: "pages#contact", as: :contact
   get "a-propos", to: "pages#about", as: :a_propos
   get "mentions-legales", to: "pages#legal", as: :mentions_legales

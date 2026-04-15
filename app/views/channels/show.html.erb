@@ -1,0 +1,97 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+
+<% content_for :json_ld do %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "<%= @channel[:name] %> Football 2025-2026",
+  "description": "<%= @channel[:meta_desc]&.gsub('"', '\"') %>",
+  "url": "https://www.coupdenvoi.tv/chaines/<%= @channel[:slug] %>",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Coup d'Envoi TV",
+    "url": "https://www.coupdenvoi.tv"
+  }
+}
+</script>
+<% end %>
+
+<div style="max-width: 860px; margin: 0 auto; padding: 0 16px;">
+
+  <%# Fil d'Ariane %>
+  <nav style="font-size: 12px; color: #999; margin-bottom: 20px;">
+    <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+    <%= link_to "Chaînes TV", channels_path, style: "color: #999; text-decoration: none;" %> ›
+    <span><%= @channel[:name] %></span>
+  </nav>
+
+  <h1 style="font-size: 24px; font-weight: 800; color: #010e1b; margin: 0 0 6px;"><%= @channel[:name] %> - programme foot 2025-2026</h1>
+  <p style="font-size: 14px; color: #64748b; margin: 0 0 28px;"><%= @channel[:tagline] %></p>
+
+  <%# Prochains matchs %>
+  <% if @matches.any? %>
+    <section style="margin-bottom: 36px;">
+      <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Prochains matchs sur <%= @channel[:name] %></h2>
+
+      <%
+        grouped = @matches.group_by { |m| m.start_time.to_date }
+      %>
+
+      <% grouped.each do |date, day_matches| %>
+        <p style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 8px;"><%= date_fr(date) %></p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <% day_matches.each do |match| %>
+            <%= link_to match_path(match.slug), style: "display: block; text-decoration: none; color: inherit;" do %>
+              <div style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px 16px; background: white; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8faff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;">
+                    <% if match.home_team_logo.present? %>
+                      <img src="<%= match.home_team_logo %>" alt="<%= match.home_team %>" width="22" height="22" style="object-fit: contain; flex-shrink: 0;" loading="lazy">
+                    <% end %>
+                    <span style="font-weight: 600; font-size: 14px; color: #010e1b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= team_display_name(match.home_team) %></span>
+                    <% if match.home_score.present? %>
+                      <span style="font-weight: 700; font-size: 14px; color: #010e1b; flex-shrink: 0;"><%= match.home_score %> - <%= match.away_score %></span>
+                    <% else %>
+                      <span style="font-size: 13px; color: #94a3b8; flex-shrink: 0;">vs</span>
+                    <% end %>
+                    <span style="font-weight: 600; font-size: 14px; color: #010e1b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= team_display_name(match.away_team) %></span>
+                    <% if match.away_team_logo.present? %>
+                      <img src="<%= match.away_team_logo %>" alt="<%= match.away_team %>" width="22" height="22" style="object-fit: contain; flex-shrink: 0;" loading="lazy">
+                    <% end %>
+                  </div>
+                  <div style="text-align: right; flex-shrink: 0;">
+                    <div style="font-size: 13px; font-weight: 600; color: #010e1b;"><%= match.start_time.strftime("%Hh%M") %></div>
+                    <div style="font-size: 11px; color: #64748b; margin-top: 2px;"><%= match.competition %></div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% else %>
+    <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; text-align: center; margin-bottom: 36px;">
+      <p style="font-size: 15px; color: #64748b; margin: 0;">Aucun match à venir sur <%= @channel[:name] %> pour le moment.</p>
+    </div>
+  <% end %>
+
+  <%# Contenu éditorial %>
+  <% if @editorial.present? %>
+    <section style="background: white; border-radius: 12px; padding: 24px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04); font-size: 15px; color: #444; line-height: 1.85;">
+      <%= @editorial.html_safe %>
+    </section>
+  <% end %>
+
+  <%# Maillage interne %>
+  <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0; display: flex; gap: 20px; flex-wrap: wrap;">
+    <p style="font-size: 13px; color: #64748b; margin: 0; flex-basis: 100%; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Voir aussi</p>
+    <%= link_to "Toutes les chaînes TV", channels_path, style: "font-size: 14px; color: #3b82f6; text-decoration: none;" %>
+    <%= link_to "Programme TV du jour", root_path, style: "font-size: 14px; color: #3b82f6; text-decoration: none;" %>
+    <%= link_to "Compétitions", competitions_path, style: "font-size: 14px; color: #3b82f6; text-decoration: none;" %>
+    <%= link_to "Guide abonnements foot 2026", blog_article_path("abonnement-foot-2026-quelle-chaine-choisir"), style: "font-size: 14px; color: #3b82f6; text-decoration: none;" %>
+  </div>
+
+</div>
