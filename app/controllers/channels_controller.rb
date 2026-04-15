@@ -18,8 +18,8 @@ class ChannelsController < ApplicationController
       slug:      "dazn",
       name:      "DAZN",
       keywords:  ["DAZN"],
-      tagline:   "Ligue 1, Serie A, Premier League",
-      meta_desc: "Programme des matchs DAZN en France : Ligue 1, Serie A. Abonnement et prochains matchs disponibles sur DAZN."
+      tagline:   "Ligue 1, Serie A, Betclic Élite, sports de combat",
+      meta_desc: "DAZN France 2025-2026 : Ligue 1 incluse pour 16,99 €/mois, Serie A, Eredivisie, boxe, MMA et PFL. Le meilleur rapport qualité/prix du marché foot."
     },
     {
       slug:      "amazon-prime",
