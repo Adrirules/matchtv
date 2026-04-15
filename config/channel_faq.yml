@@ -1,0 +1,30 @@
+# FAQ structurée par chaîne — utilisée pour le JSON-LD FAQPage et la section FAQ visible
+# Format : clé = slug, valeur = liste de questions/réponses
+
+"canal-plus":
+  - q: "Combien coûte Canal+ en 2025-2026 ?"
+    a: "Canal+ classique coûte 19,99 €/mois avec engagement 2 ans. Canal+ Sport coûte 29,99 €/mois la première année puis 45,99 €/mois. Pour les moins de 26 ans, Canal+ Sport est accessible à 22,99 €/mois."
+  - q: "Est-ce que beIN Sports est inclus dans Canal+ ?"
+    a: "Oui, beIN Sports est inclus dans l'abonnement Canal+ Sport. Inutile de souscrire beIN Sports séparément si vous avez déjà Canal+ Sport - vous la paieriez deux fois."
+  - q: "Quelles compétitions de foot sont sur Canal+ ?"
+    a: "Canal+ diffuse l'intégralité de la Champions League, de l'Europa League et de la Conference League en 2025-2026. C'est la seule chaîne en France à proposer les trois compétitions européennes en totalité."
+  - q: "Canal+ est-il accessible sans décodeur ?"
+    a: "Oui, Canal+ est accessible via l'application MyCanal sur Smart TV, smartphone, tablette et ordinateur. Pas besoin de décodeur ni de technicien."
+
+"bein-sports":
+  - q: "Combien coûte beIN Sports ?"
+    a: "beIN Sports coûte 15 €/mois sans engagement ou 14 €/mois avec un engagement annuel. C'est l'une des offres les moins chères du marché pour un catalogue sport aussi large."
+  - q: "Quelles ligues étrangères sont sur beIN Sports ?"
+    a: "beIN Sports diffuse la Liga espagnole, la Bundesliga allemande, la Ligue 2 française et la Coupe de France en intégralité. Un match de Ligue 1 par journée est également diffusé le samedi à 17h jusqu'à la fin de la saison 2025-2026."
+  - q: "beIN Sports diffuse-t-il d'autres sports que le foot ?"
+    a: "Oui, beIN Sports propose aussi la NBA, la NFL, la MLB, la NHL, du tennis (Wimbledon, WTA), du rugby (Champions Cup) et du handball (Starligue). Tout ça dans un seul abonnement à 15 €/mois."
+
+"dazn":
+  - q: "Combien coûte DAZN en 2026 ?"
+    a: "DAZN coûte 9,99 €/mois les 3 premiers mois puis 16,99 €/mois avec engagement 12 mois. Sans engagement, le tarif est de 19,99 €/mois. L'engagement reste la formule la plus économique."
+  - q: "La Ligue 1 est-elle incluse dans DAZN ?"
+    a: "Oui, DAZN inclut la chaîne Ligue 1+ dans son abonnement. Sachant que Ligue 1+ seule coûte 14,99 €/mois, DAZN avec Ligue 1+ incluse à 16,99 €/mois ne coûte que 2 euros de plus pour un catalogue bien plus large."
+  - q: "Sur quels écrans fonctionne DAZN ?"
+    a: "DAZN est compatible Smart TV, smartphone, tablette, Chromecast et Apple TV. L'application fonctionne sur tous les écrans sans décodeur ni changement d'opérateur."
+  - q: "DAZN diffuse-t-il la Champions League ?"
+    a: "Non. DAZN ne diffuse pas la Champions League, la Premier League ni la Liga en France. Pour ces compétitions, il faut se tourner vers Canal+ et beIN Sports."

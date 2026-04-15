@@ -16,7 +16,38 @@
   }
 }
 </script>
+<% if @faq.any? %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <% @faq.each_with_index do |item, i| %>
+    {
+      "@type": "Question",
+      "name": "<%= item['q'].gsub('"', '\"') %>",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<%= item['a'].gsub('"', '\"') %>"
+      }
+    }<%= i < @faq.length - 1 ? ',' : '' %>
+    <% end %>
+  ]
+}
+</script>
 <% end %>
+<% end %>
+
+<style>
+  .channel-editorial h2 { font-size: 17px; font-weight: 700; color: #010e1b; margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #f1f5f9; }
+  .channel-editorial h2:first-child { margin-top: 0; }
+  .channel-editorial p  { margin: 0 0 14px; }
+  .channel-editorial ul { margin: 0 0 14px; padding-left: 22px; }
+  .channel-editorial li { margin-bottom: 6px; }
+  .channel-editorial a  { color: #3b82f6; text-decoration: none; }
+  .channel-editorial a:hover { text-decoration: underline; }
+  .channel-editorial strong { font-weight: 700; color: #010e1b; }
+</style>
 
 <div style="max-width: 860px; margin: 0 auto; padding: 0 16px;">
 
@@ -30,14 +61,21 @@
   <h1 style="font-size: 24px; font-weight: 800; color: #010e1b; margin: 0 0 6px;"><%= @channel[:name] %> - programme foot 2025-2026</h1>
   <p style="font-size: 14px; color: #64748b; margin: 0 0 28px;"><%= @channel[:tagline] %></p>
 
-  <%# Prochains matchs %>
+  <%# 1. Contenu éditorial EN PREMIER — contexte avant les données %>
+  <% if @editorial.present? %>
+    <section style="background: white; border-radius: 12px; padding: 24px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04); margin-bottom: 32px; font-size: 15px; color: #444; line-height: 1.85;">
+      <div class="channel-editorial">
+        <%= @editorial.html_safe %>
+      </div>
+    </section>
+  <% end %>
+
+  <%# 2. Prochains matchs %>
   <% if @matches.any? %>
     <section style="margin-bottom: 36px;">
       <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Prochains matchs sur <%= @channel[:name] %></h2>
 
-      <%
-        grouped = @matches.group_by { |m| m.start_time.to_date }
-      %>
+      <% grouped = @matches.group_by { |m| m.start_time.to_date } %>
 
       <% grouped.each do |date, day_matches| %>
         <p style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 8px;"><%= date_fr(date) %></p>
@@ -78,15 +116,28 @@
     </div>
   <% end %>
 
-  <%# Contenu éditorial %>
-  <% if @editorial.present? %>
-    <section style="background: white; border-radius: 12px; padding: 24px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.04); font-size: 15px; color: #444; line-height: 1.85;">
-      <%= @editorial.html_safe %>
+  <%# 3. FAQ (Canal+, beIN, DAZN uniquement pour l'instant) %>
+  <% if @faq.any? %>
+    <section style="margin-bottom: 36px;">
+      <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Questions fréquentes sur <%= @channel[:name] %></h2>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <% @faq.each do |item| %>
+          <details style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; background: white;">
+            <summary style="padding: 14px 16px; font-weight: 600; font-size: 14px; color: #010e1b; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none;" onclick="this.parentElement.open ? this.querySelector('span').textContent='+' : this.querySelector('span').textContent='−'">
+              <%= item['q'] %>
+              <span style="font-size: 18px; font-weight: 400; color: #64748b; flex-shrink: 0; margin-left: 12px;">+</span>
+            </summary>
+            <div style="padding: 0 16px 14px; font-size: 14px; color: #555; line-height: 1.7; border-top: 1px solid #f1f5f9;">
+              <p style="margin: 12px 0 0;"><%= item['a'] %></p>
+            </div>
+          </details>
+        <% end %>
+      </div>
     </section>
   <% end %>
 
   <%# Maillage interne %>
-  <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0; display: flex; gap: 20px; flex-wrap: wrap;">
+  <div style="margin-top: 8px; padding-top: 24px; border-top: 1px solid #e2e8f0; display: flex; gap: 20px; flex-wrap: wrap;">
     <p style="font-size: 13px; color: #64748b; margin: 0; flex-basis: 100%; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Voir aussi</p>
     <%= link_to "Toutes les chaînes TV", channels_path, style: "font-size: 14px; color: #3b82f6; text-decoration: none;" %>
     <%= link_to "Programme TV du jour", root_path, style: "font-size: 14px; color: #3b82f6; text-decoration: none;" %>

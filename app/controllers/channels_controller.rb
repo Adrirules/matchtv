@@ -86,6 +86,7 @@ class ChannelsController < ApplicationController
                     .limit(30)
 
     @editorial = channel_editorial(@channel[:slug])
+    @faq       = channel_faq(@channel[:slug])
     @noindex   = @editorial.blank? && @matches.empty?
 
     @page_title = "#{@channel[:name]} Football 2025-2026 : #{@channel[:tagline]} | Coup d'Envoi TV"
@@ -102,5 +103,14 @@ class ChannelsController < ApplicationController
   rescue => e
     Rails.logger.error("channel_editorial.yml error: #{e.message}")
     nil
+  end
+
+  def channel_faq(slug)
+    yaml_path = Rails.root.join("config", "channel_faq.yml")
+    return [] unless File.exist?(yaml_path)
+    (YAML.load_file(yaml_path) || {})[slug] || []
+  rescue => e
+    Rails.logger.error("channel_faq.yml error: #{e.message}")
+    []
   end
 end
