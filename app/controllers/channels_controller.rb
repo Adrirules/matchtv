@@ -4,6 +4,9 @@ class ChannelsController < ApplicationController
       slug:      "canal-plus",
       name:      "Canal+",
       keywords:  ["Canal+"],
+      free:      false,
+      price:     "19,99 €/mois",
+      highlight: "Champions League (1 match/sem.)",
       tagline:   "Champions League, Europa League, Conference League",
       meta_desc: "Programme des matchs Canal+ : Champions League, Europa League, Conference League. Abonnements à partir de 19,99 €/mois. Tous les prochains matchs sur Canal+."
     },
@@ -11,6 +14,9 @@ class ChannelsController < ApplicationController
       slug:      "bein-sports",
       name:      "beIN Sports",
       keywords:  ["beIN"],
+      free:      false,
+      price:     "15 €/mois",
+      highlight: "Liga + Bundesliga + NBA",
       tagline:   "La Liga, Bundesliga, Ligue 2, NBA",
       meta_desc: "Programme des matchs beIN Sports : La Liga, Bundesliga, Ligue 2, NBA. 15 €/mois sans engagement. Tous les prochains matchs sur beIN Sports."
     },
@@ -18,6 +24,9 @@ class ChannelsController < ApplicationController
       slug:      "dazn",
       name:      "DAZN",
       keywords:  ["DAZN"],
+      free:      false,
+      price:     "16,99 €/mois",
+      highlight: "Ligue 1 + Serie A",
       tagline:   "Ligue 1, Serie A, Betclic Élite, sports de combat",
       meta_desc: "DAZN France 2025-2026 : Ligue 1 incluse pour 16,99 €/mois, Serie A, Eredivisie, boxe, MMA et PFL. Le meilleur rapport qualité/prix du marché foot."
     },
@@ -25,6 +34,9 @@ class ChannelsController < ApplicationController
       slug:      "amazon-prime",
       name:      "Amazon Prime",
       keywords:  ["Amazon"],
+      free:      false,
+      price:     "6,99 €/mois + Pass",
+      highlight: "Pass Ligue 1 en option",
       tagline:   "Pass Ligue 1, quelques affiches foot",
       meta_desc: "Pass Ligue 1 Amazon Prime Video : ce qu'il inclut vraiment, le prix réel et notre avis honnête. Prochains matchs disponibles sur Amazon Prime Video Sport."
     },
@@ -32,6 +44,9 @@ class ChannelsController < ApplicationController
       slug:      "rmc-sport",
       name:      "RMC Sport",
       keywords:  ["RMC"],
+      free:      false,
+      price:     "Variable",
+      highlight: "UFC + NFL",
       tagline:   "UFC, PFL, foot européen, NFL",
       meta_desc: "RMC Sport : la chaîne des sports de combat (UFC, PFL) et du foot européen. Disponible sans SFR en version digitale. Programme et prochains matchs sur RMC Sport."
     },
@@ -39,6 +54,9 @@ class ChannelsController < ApplicationController
       slug:      "france-tv",
       name:      "France TV",
       keywords:  ["France 2", "France 3", "France 4", "France TV"],
+      free:      true,
+      price:     "Gratuit",
+      highlight: "Coupe de France + Bleues",
       tagline:   "Coupe de France, Bleues, Espoirs - gratuit et sans pub",
       meta_desc: "France TV diffuse la Coupe de France, les Bleues et les Espoirs gratuitement et sans pub pendant les matchs. Programme foot sur France 2 et France 3."
     },
@@ -46,6 +64,9 @@ class ChannelsController < ApplicationController
       slug:      "tf1",
       name:      "TF1",
       keywords:  ["TF1"],
+      free:      true,
+      price:     "Gratuit",
+      highlight: "Équipe de France masculine",
       tagline:   "Équipe de France, Ligue des Nations - gratuit",
       meta_desc: "TF1 diffuse les matchs de l'équipe de France masculine (Ligue des Nations, qualifications) gratuitement. TF1+ pour les replays. Attention : le Mondial 2026 est sur M6."
     },
@@ -53,6 +74,9 @@ class ChannelsController < ApplicationController
       slug:      "m6",
       name:      "M6",
       keywords:  ["M6"],
+      free:      true,
+      price:     "Gratuit",
+      highlight: "Mondial 2026",
       tagline:   "Mondial 2026 - 54 matchs dont tous les Bleus, gratuit",
       meta_desc: "M6 diffuse le Mondial 2026 gratuitement : 54 matchs dont tous les matchs des Bleus. Replay gratuit sur 6play sans abonnement."
     },

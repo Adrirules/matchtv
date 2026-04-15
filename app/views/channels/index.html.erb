@@ -1,6 +1,18 @@
 <% content_for :title, @page_title %>
 <% content_for :meta_description, @page_desc %>
 
+<style>
+  .channels-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .channels-table th { background: #f8fafc; font-weight: 700; color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 14px; text-align: left; border-bottom: 2px solid #e2e8f0; }
+  .channels-table td { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; color: #333; vertical-align: middle; }
+  .channels-table tr:last-child td { border-bottom: none; }
+  .channels-table tr:hover td { background: #f8faff; }
+  .channels-table td a { color: #3b82f6; text-decoration: none; font-weight: 600; }
+  .channels-table td a:hover { text-decoration: underline; }
+  .badge-free  { background: #dcfce7; color: #166534; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; }
+  .badge-paid  { background: #f0f7ff; color: #1d4ed8; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; }
+</style>
+
 <div style="max-width: 860px; margin: 0 auto; padding: 0 16px;">
 
   <nav style="font-size: 12px; color: #999; margin-bottom: 20px;">
@@ -8,31 +20,93 @@
     <span>Chaînes TV foot</span>
   </nav>
 
-  <h1 style="font-size: 24px; font-weight: 800; color: #010e1b; margin: 0 0 8px;">Chaînes TV foot 2025-2026</h1>
-  <p style="font-size: 15px; color: #555; margin: 0 0 28px; line-height: 1.6;">Canal+, beIN Sports, DAZN, Amazon Prime... Retrouvez le programme football par diffuseur et tous les prochains matchs sur chaque chaîne.</p>
+  <h1 style="font-size: 24px; font-weight: 800; color: #010e1b; margin: 0 0 10px;">Où regarder le foot en 2026 ? Le guide complet des chaînes</h1>
+  <p style="font-size: 15px; color: #555; margin: 0 0 32px; line-height: 1.7;">En 2026, suivre le football en France c'est jongler entre plusieurs diffuseurs. Ligue 1, Champions League, Liga, Mondial - chaque compétition a sa chaîne, et se tromper d'abonnement ça coûte cher. On a décrypté tout ça pour vous : retrouvez ci-dessous nos guides complets sur chaque diffuseur pour ne plus rater un match et payer le juste prix.</p>
 
-  <div style="display: flex; flex-direction: column; gap: 10px;">
-    <% @channels.each do |ch| %>
-      <%= link_to channel_path(ch[:slug]), style: "text-decoration: none; color: inherit;" do %>
-        <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px 20px; background: white; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8faff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'">
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
-            <div>
-              <p style="font-weight: 700; font-size: 16px; color: #010e1b; margin: 0 0 4px;"><%= ch[:name] %></p>
-              <p style="font-size: 13px; color: #64748b; margin: 0;"><%= ch[:tagline] %></p>
+  <%# Tableau comparatif %>
+  <section style="margin-bottom: 40px;">
+    <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Tableau comparatif rapide</h2>
+    <div style="border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; overflow-x: auto;">
+      <table class="channels-table">
+        <thead>
+          <tr>
+            <th>Chaîne</th>
+            <th>Prix</th>
+            <th>Compétition phare</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @channels.each do |ch| %>
+            <tr>
+              <td><%= link_to ch[:name], channel_path(ch[:slug]) %></td>
+              <td>
+                <% if ch[:free] %>
+                  <span class="badge-free"><%= ch[:price] %></span>
+                <% else %>
+                  <span class="badge-paid"><%= ch[:price] %></span>
+                <% end %>
+              </td>
+              <td style="color: #555;"><%= ch[:highlight] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size: 12px; color: #94a3b8; margin: 8px 0 0;">* Prix de base en avril 2026, peuvent varier selon les promotions et durées d'engagement.</p>
+  </section>
+
+  <%# Diffuseurs payants %>
+  <section style="margin-bottom: 36px;">
+    <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Les diffuseurs payants : le prix de l'exclusivité</h2>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <% @channels.reject { |ch| ch[:free] }.each do |ch| %>
+        <%= link_to channel_path(ch[:slug]), style: "text-decoration: none; color: inherit;" do %>
+          <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; background: white; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8faff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <div>
+                <p style="font-weight: 700; font-size: 15px; color: #010e1b; margin: 0 0 3px;"><%= ch[:name] %></p>
+                <p style="font-size: 13px; color: #64748b; margin: 0;"><%= ch[:tagline] %></p>
+              </div>
+              <div style="text-align: right; flex-shrink: 0;">
+                <span class="badge-paid"><%= ch[:price] %></span>
+                <% if ch[:upcoming_count] > 0 %>
+                  <p style="font-size: 11px; color: #94a3b8; margin: 4px 0 0;"><%= ch[:upcoming_count] %> match<%= ch[:upcoming_count] > 1 ? 's' : '' %> à venir</p>
+                <% end %>
+              </div>
             </div>
-            <% if ch[:upcoming_count] > 0 %>
-              <span style="background: #f0f7ff; color: #3b82f6; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 9999px; white-space: nowrap; flex-shrink: 0;">
-                <%= ch[:upcoming_count] %> match<%= ch[:upcoming_count] > 1 ? 's' : '' %> à venir
-              </span>
-            <% end %>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  </section>
+
+  <%# Chaînes gratuites %>
+  <section style="margin-bottom: 36px;">
+    <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Le foot gratuit : les chaînes de la TNT</h2>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <% @channels.select { |ch| ch[:free] }.each do |ch| %>
+        <%= link_to channel_path(ch[:slug]), style: "text-decoration: none; color: inherit;" do %>
+          <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; background: white; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8faff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <div>
+                <p style="font-weight: 700; font-size: 15px; color: #010e1b; margin: 0 0 3px;"><%= ch[:name] %></p>
+                <p style="font-size: 13px; color: #64748b; margin: 0;"><%= ch[:tagline] %></p>
+              </div>
+              <div style="text-align: right; flex-shrink: 0;">
+                <span class="badge-free"><%= ch[:price] %></span>
+                <% if ch[:upcoming_count] > 0 %>
+                  <p style="font-size: 11px; color: #94a3b8; margin: 4px 0 0;"><%= ch[:upcoming_count] %> match<%= ch[:upcoming_count] > 1 ? 's' : '' %> à venir</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
 
   <%# Maillage interne %>
-  <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid #e2e8f0; display: flex; gap: 20px; flex-wrap: wrap;">
+  <div style="padding-top: 24px; border-top: 1px solid #e2e8f0; display: flex; gap: 20px; flex-wrap: wrap;">
     <p style="font-size: 13px; color: #64748b; margin: 0; flex-basis: 100%; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Voir aussi</p>
     <%= link_to "Programme TV du jour", root_path, style: "font-size: 14px; color: #3b82f6; text-decoration: none;" %>
     <%= link_to "Toutes les compétitions", competitions_path, style: "font-size: 14px; color: #3b82f6; text-decoration: none;" %>
