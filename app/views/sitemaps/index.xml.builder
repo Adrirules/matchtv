@@ -37,6 +37,26 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     end
   end
 
+  # CHAÎNES TV
+  xml.url { xml.loc channels_url; xml.changefreq "weekly"; xml.priority 0.7 }
+  @channel_slugs.each do |slug|
+    xml.url do
+      xml.loc channel_url(slug)
+      xml.changefreq "weekly"
+      xml.priority 0.7
+    end
+  end
+
+  # BLOG
+  xml.url { xml.loc blog_url; xml.changefreq "weekly"; xml.priority 0.6 }
+  @blog_articles.each do |article|
+    xml.url do
+      xml.loc blog_article_url(article[:slug])
+      xml.lastmod article[:date].to_s
+      xml.priority 0.6
+    end
+  end
+
   # JOUEURS
   @players.each do |player|
     xml.url do

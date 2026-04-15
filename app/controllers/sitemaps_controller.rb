@@ -19,6 +19,22 @@ class SitemapsController < ApplicationController
     # 5. Les Classements (slugs officiels uniquement)
     @standing_slugs = StandingsController::LEAGUES.map { |l| l[:slug] }
 
+    # 6. Les Chaînes TV
+    @channel_slugs = ChannelsController::CHANNELS_META.map { |c| c[:slug] }
+
+    # 7. Les Articles de blog (publiés uniquement)
+    @blog_articles = Dir.glob(Rails.root.join("app/content/blog/*.md")).map do |path|
+      content = File.read(path)
+      frontmatter = content.match(/\A---\n(.*?)\n---/m)&.[](1)
+      next unless frontmatter
+      slug         = frontmatter.match(/^slug:\s*(.+)/)&.[](1)&.strip
+      published_at = frontmatter.match(/^published_at:\s*(.+)/)&.[](1)&.strip
+      next unless slug && published_at
+      date = Date.parse(published_at) rescue nil
+      next unless date && date <= Date.today
+      { slug: slug, date: date }
+    end.compact
+
     respond_to do |format|
       format.xml
     end

@@ -21,6 +21,13 @@
 
     &::-webkit-details-marker { display: none; }
 
+    > span:first-child {
+      flex: 1;
+      min-width: 0;
+
+      a { color: #3b82f6; text-decoration: none; &:hover { text-decoration: underline; } }
+    }
+
     .faq-chevron {
       flex-shrink: 0;
       font-size: 18px;
