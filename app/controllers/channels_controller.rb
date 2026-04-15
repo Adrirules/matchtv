@@ -53,8 +53,8 @@ class ChannelsController < ApplicationController
       slug:      "m6",
       name:      "M6",
       keywords:  ["M6"],
-      tagline:   "Coupe du Monde, Équipe de France",
-      meta_desc: "Matchs football en clair sur M6 : Coupe du Monde 2026, Équipe de France. Programme foot gratuit sur M6."
+      tagline:   "Mondial 2026 - 54 matchs dont tous les Bleus, gratuit",
+      meta_desc: "M6 diffuse le Mondial 2026 gratuitement : 54 matchs dont tous les matchs des Bleus. Replay gratuit sur 6play sans abonnement."
     },
   ].freeze
 
