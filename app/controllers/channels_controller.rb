@@ -25,8 +25,8 @@ class ChannelsController < ApplicationController
       slug:      "amazon-prime",
       name:      "Amazon Prime",
       keywords:  ["Amazon"],
-      tagline:   "Champions League",
-      meta_desc: "Matchs Champions League sur Amazon Prime Video. Programme et prochains matchs disponibles sur Amazon Prime Video Sport."
+      tagline:   "Pass Ligue 1, quelques affiches foot",
+      meta_desc: "Pass Ligue 1 Amazon Prime Video : ce qu'il inclut vraiment, le prix réel et notre avis honnête. Prochains matchs disponibles sur Amazon Prime Video Sport."
     },
     {
       slug:      "rmc-sport",
