@@ -1,14 +1,24 @@
 <footer class="site-footer">
   <div class="footer-container">
     <div class="footer-col links">
-      <h3 class="footer-title">Liens utiles</h3>
+      <h3 class="footer-title">Explorer</h3>
       <ul>
+        <li><%= link_to "Chaînes TV", channels_path %></li>
+        <li><%= link_to "Compétitions", competitions_path %></li>
+        <li><%= link_to "Classements", standings_path %></li>
+        <li><%= link_to "Équipes", teams_path %></li>
+        <li><%= link_to "Blog", blog_path %></li>
+      </ul>
+    </div>
+
+    <div class="footer-col links">
+      <h3 class="footer-title">Informations</h3>
+      <ul>
+        <li><%= link_to "À propos", a_propos_path %></li>
         <li><%= link_to "Contact", contact_path %></li>
+        <li><%= link_to "Archives", archives_path %></li>
         <li><%= link_to "Mentions légales", mentions_legales_path %></li>
         <li><%= link_to "Politique de confidentialité", politique_confidentialite_path %></li>
-        <li><%= link_to "À propos", a_propos_path %></li>
-        <li><%= link_to "Archives", archives_path %></li>
-        <li><%= link_to "Blog", blog_path %></li>
       </ul>
     </div>
 
