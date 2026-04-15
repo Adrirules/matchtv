@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   # 6. Blog éditorial
   get 'blog', to: 'blog#index', as: :blog
+  get 'blog/auteur/adrien', to: 'blog#auteur', as: :blog_auteur
   get 'blog/:slug', to: 'blog#show', as: :blog_article
 
   # 7. Pages Statiques

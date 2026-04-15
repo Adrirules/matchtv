@@ -1,0 +1,106 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+
+<% content_for :json_ld do %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Adrien",
+  "url": "https://www.coupdenvoi.tv/blog/auteur/adrien",
+  "jobTitle": "Journaliste football indépendant",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Coup d'Envoi TV",
+    "url": "https://www.coupdenvoi.tv"
+  },
+  "knowsAbout": [
+    "Football",
+    "Ligue 1",
+    "Champions League",
+    "Droits TV football",
+    "Programme TV football",
+    "Coupe du Monde 2026",
+    "Transferts football"
+  ],
+  "description": "Passionné de football depuis l'enfance, Adrien suit de près les droits de diffusion, les classements et l'actualité des ligues françaises et européennes. Il publie sur Coup d'Envoi TV des guides pratiques et des analyses pour aider les fans à ne rater aucun match."
+}
+</script>
+<% end %>
+
+<div class="blog-wrapper">
+<article class="blog-card">
+
+  <%# Fil d'Ariane %>
+  <nav style="font-size: 12px; color: #999; margin-bottom: 24px;">
+    <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+    <%= link_to "Blog", blog_path, style: "color: #999; text-decoration: none;" %> ›
+    <span>Adrien</span>
+  </nav>
+
+  <%# En-tête auteur %>
+  <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid #e2e8f0;">
+    <div style="width: 72px; height: 72px; border-radius: 50%; background: #010e1b; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 28px; flex-shrink: 0;">A</div>
+    <div>
+      <h1 style="font-size: 22px; font-weight: 700; color: #010e1b; margin: 0 0 4px;">Adrien</h1>
+      <p style="font-size: 14px; color: #64748b; margin: 0;">Fondateur de Coup d'Envoi TV - Passionné de football</p>
+    </div>
+  </div>
+
+  <%# Bio %>
+  <section style="margin-bottom: 40px;">
+    <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">A propos</h2>
+
+    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;">
+      Le foot, c'est ma passion depuis que mon père m'a emmené voir mes premiers matchs. J'ai grandi avec les soirées Ligue des Champions sur TF1, les résumés du dimanche soir, et cette obsession de ne jamais rater un but important faute d'avoir trouvé la bonne chaîne.
+    </p>
+
+    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;">
+      C'est de là qu'est né Coup d'Envoi TV. J'en avais assez de chercher pendant dix minutes sur quelle chaîne passait tel match, de découvrir que c'était sur une appli que je n'avais pas, ou pire, que le match n'était diffusé nulle part en clair. J'ai donc construit l'outil que j'aurais voulu avoir : un programme TV football simple, rapide, complet.
+    </p>
+
+    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;">
+      Je suis de près les droits de diffusion en France - Canal+, beIN Sports, DAZN, Amazon Prime, RMC Sport - et leurs évolutions permanentes. Quand un accord change, quand une compétition change de main, je le sais souvent avant que ça soit annoncé officiellement. C'est ce que j'essaie de transmettre ici : des informations concrètes et vérifiées pour que vous puissiez regarder le foot sans vous prendre la tête.
+    </p>
+
+    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;">
+      Sur le site, vous trouverez le programme TV en temps réel, les résultats, les classements des grandes ligues et des articles que j'écris quand l'actualité le mérite : la Coupe du Monde 2026, les derbies à ne pas rater, les guides pour choisir son abonnement foot. Tout est rédigé par moi, avec mes yeux de fan.
+    </p>
+
+    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;">
+      Si vous avez une question, une erreur à signaler ou juste envie de parler foot, la page <%= link_to "contact", contact_path, style: "color: #3b82f6; text-decoration: none;" %> est là pour ça.
+    </p>
+  </section>
+
+  <%# Articles de l'auteur %>
+  <section>
+    <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 20px;">Articles publiés</h2>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <% @articles.each do |article| %>
+        <%= link_to blog_article_path(article[:slug]), style: "display: block; text-decoration: none; color: inherit;" do %>
+          <div style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #fff; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8faff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='#fff'">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
+              <div style="flex: 1; min-width: 0;">
+                <p style="font-weight: 600; font-size: 15px; color: #010e1b; margin: 0 0 6px; line-height: 1.4;"><%= article[:title]&.gsub(' | Coup d\'Envoi TV', '') %></p>
+                <% if article[:excerpt].present? %>
+                  <p style="font-size: 13px; color: #64748b; margin: 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"><%= article[:excerpt] %></p>
+                <% end %>
+              </div>
+              <% if article[:published_at].present? %>
+                <time datetime="<%= article[:published_at] %>" style="font-size: 12px; color: #94a3b8; white-space: nowrap; flex-shrink: 0; margin-top: 2px;"><%= date_fr(article[:published_at]) %></time>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+
+  <%# Retour blog %>
+  <div style="margin-top: 36px; padding-top: 20px; border-top: 1px solid #eee;">
+    <%= link_to "← Retour au blog", blog_path, style: "font-size: 14px; color: #1a73e8; text-decoration: none;" %>
+  </div>
+
+</article>
+</div>

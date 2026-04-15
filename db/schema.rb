@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_04_11_095635) do
+ActiveRecord::Schema[7.0].define(version: 2026_04_14_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coaches", force: :cascade do |t|
+    t.integer "team_api_id", null: false
+    t.string "name"
+    t.string "photo"
+    t.string "nationality"
+    t.integer "age"
+    t.jsonb "career", default: []
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_api_id"], name: "index_coaches_on_team_api_id", unique: true
+  end
 
   create_table "matches", force: :cascade do |t|
     t.string "home_team"

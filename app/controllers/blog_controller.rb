@@ -8,6 +8,13 @@ class BlogController < ApplicationController
     expires_in 1.hour, public: true
   end
 
+  def auteur
+    @articles = all_articles
+    @page_title = "Adrien - Auteur football | Coup d'Envoi TV"
+    @page_desc  = "Adrien, passionné de foot et fondateur de Coup d'Envoi TV. Guides pratiques, analyses, programmes TV et droits diffusion du football français et européen."
+    expires_in 1.hour, public: true
+  end
+
   def show
     @article = load_article(params[:slug])
     render "errors/not_found", status: :not_found and return unless @article
