@@ -61,36 +61,44 @@ class MatchSummaryService
 
   def self.build_summary_prompt(match)
     winner = if match.home_score > match.away_score
-      "#{match.home_team} s'impose"
+      "#{match.home_team} s'impose #{match.home_score}-#{match.away_score}"
     elsif match.away_score > match.home_score
-      "#{match.away_team} s'impose"
+      "#{match.away_team} s'impose #{match.away_score}-#{match.home_score}"
     else
-      "Match nul"
+      "Match nul #{match.home_score}-#{match.away_score}"
     end
+
+    date_fr = match.start_time.strftime("%d/%m/%Y")
+    diffusion = match.tv_channels.presence || "non diffusé en France"
 
     <<~PROMPT
       Écris un compte-rendu de match de football en français, en 2 à 3 phrases, naturel et factuel.
       Pas de titre, pas de mise en forme, pas d'exagération. Commence directement par le résultat.
+      Si la diffusion TV est pertinente (match important, grande affiche), mentionne-la naturellement.
 
       Match : #{match.home_team} #{match.home_score} - #{match.away_score} #{match.away_team}
       Compétition : #{match.competition}
+      Date : #{date_fr}
+      Diffusion : #{diffusion}
       Résultat : #{winner}
     PROMPT
   end
 
   def self.build_preview_prompt(match)
     date_fr = match.start_time.strftime("%d/%m/%Y à %Hh%M")
+    diffusion = match.tv_channels.presence || "non diffusé en France"
 
     <<~PROMPT
       Écris une présentation avant-match de football en français, en 3 à 4 phrases, naturelle et informative.
       Pas de titre, pas de liste, pas de mise en forme. Commence directement par une phrase d'accroche sur l'affiche.
       Parle de l'enjeu de la rencontre dans la compétition, du contexte général des deux équipes cette saison.
+      Mentionne où regarder le match (#{diffusion}) de façon naturelle dans le texte.
       N'invente pas de statistiques précises ou de résultats récents que tu ne connais pas avec certitude.
 
       Match : #{match.home_team} vs #{match.away_team}
       Compétition : #{match.competition}
       Date : #{date_fr}
-      Diffusion : #{match.tv_channels}
+      Diffusion : #{diffusion}
     PROMPT
   end
 end
