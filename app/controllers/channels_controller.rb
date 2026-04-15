@@ -32,8 +32,8 @@ class ChannelsController < ApplicationController
       slug:      "rmc-sport",
       name:      "RMC Sport",
       keywords:  ["RMC"],
-      tagline:   "Premier League, NBA",
-      meta_desc: "Programme des matchs RMC Sport : Premier League, NBA. Prochains matchs disponibles sur RMC Sport 1 et RMC Sport 2."
+      tagline:   "UFC, PFL, foot européen, NFL",
+      meta_desc: "RMC Sport : la chaîne des sports de combat (UFC, PFL) et du foot européen. Disponible sans SFR en version digitale. Programme et prochains matchs sur RMC Sport."
     },
     {
       slug:      "france-tv",
