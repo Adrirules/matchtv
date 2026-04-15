@@ -39,8 +39,8 @@ class ChannelsController < ApplicationController
       slug:      "france-tv",
       name:      "France TV",
       keywords:  ["France 2", "France 3", "France 4", "France TV"],
-      tagline:   "Coupe de France, Équipe de France",
-      meta_desc: "Matchs football en clair sur France TV : Coupe de France, Équipe de France. Programme foot gratuit sur France 2 et France 3."
+      tagline:   "Coupe de France, Bleues, Espoirs - gratuit et sans pub",
+      meta_desc: "France TV diffuse la Coupe de France, les Bleues et les Espoirs gratuitement et sans pub pendant les matchs. Programme foot sur France 2 et France 3."
     },
     {
       slug:      "tf1",
