@@ -5,14 +5,14 @@ class BlogController < ApplicationController
     @articles = all_articles
     @page_title = "Blog football — Guides et analyses | Coup d'Envoi TV"
     @page_desc  = "Guides pratiques, comparatifs d'abonnements et analyses football rédigés par Adrien pour ne rater aucun match en 2026."
-    expires_in 1.hour, public: true
+    expires_in 1.hour, private: true
   end
 
   def auteur
     @articles = all_articles
     @page_title = "Adrien - Auteur football | Coup d'Envoi TV"
     @page_desc  = "Adrien, passionné de foot et fondateur de Coup d'Envoi TV. Guides pratiques, analyses, programmes TV et droits diffusion du football français et européen."
-    expires_in 1.hour, public: true
+    expires_in 1.hour, private: true
   end
 
   def show
@@ -51,7 +51,7 @@ class BlogController < ApplicationController
       end
     end
 
-    expires_in 1.hour, public: true
+    expires_in 1.hour, private: true
   end
 
   private
