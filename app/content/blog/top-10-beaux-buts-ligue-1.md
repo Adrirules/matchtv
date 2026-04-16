@@ -19,8 +19,6 @@ derby_pairs:
 
 # Top 10 des plus beaux buts de la Ligue 1 (oui, celui de Zidane est numéro 1)
 
-<img src="https://images.unsplash.com/photo-1607142426428-ce8910c7e425?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Frappe de football - plus beaux buts Ligue 1" width="774" height="968" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
-
 Quels sont les plus beaux buts de l'histoire de la [Ligue 1](/competitions/ligue-1) ? Voici notre top 10 des réalisations les plus spectaculaires du championnat de France. Un classement subjectif, donc indiscutable. Avec des souvenirs, des prises de position assumées, et la conviction absolue que ce que vous allez lire va vous donner envie de retrouver ces buts sur YouTube à 23h un mercredi alors que vous aviez prévu de dormir tôt.
 
 Avant de commencer, une précision nécessaire : ce classement des plus beaux buts de Ligue 1 n'est pas une liste Wikipedia. C'est un avis de passionné, construit sur des années de visionnage compulsif, des discussions d'apéro et une télévision cathodique de salon qui a connu des moments de grâce. Si votre but préféré n'est pas là, c'est soit qu'on a tort, soit que vous avez tort. Probablement les deux.

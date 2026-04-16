@@ -11,7 +11,6 @@ excerpt: "En 2026, suivre le foot en France demande de jongler entre plusieurs a
 
 # Abonnement foot 2026 : quelle chaîne choisir pour regarder tous les matchs de la Ligue 1 ?
 
-<img src="/images/blog/abonnement-foot-2026.jpg" alt="Stade de football illuminé la nuit - abonnements foot 2026" width="800" height="533" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
 
 **Réponse rapide :**
 - Ligue 1 → **Ligue 1+** (14,99 €/mois) ou **DAZN** avec Ligue 1+ incluse (16,99 €/mois)

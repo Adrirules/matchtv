@@ -12,8 +12,6 @@ excerpt: "L'Italie ne sera pas au Mondial 2026. Troisième absence consécutive,
 
 # Coupe du monde 2026 - La Squadra Azzurra, la grande absente du Mondial 2026
 
-<img src="https://images.unsplash.com/photo-1693517364815-294a62062e02?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Stade de football illuminé la nuit - Coupe du monde 2026" width="1740" height="1160" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
-
 Arrivederci, ciao, bisous, salut ou comme dirait Valéry Giscard d'Estaing « Au revoir ». C'est la grande absente de ce mondial, l'équipe d'Italie n'ira pas en Amérique du Nord, ou alors elle sera dans les tribunes pour voir les matchs des autres équipes, mais elle ne foulera pas la pelouse.
 C'est le malaise chez nos cousins italiens qui encore une fois doivent sentir monter en eux un mélange de déception et de honte.
 

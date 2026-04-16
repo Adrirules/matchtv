@@ -20,8 +20,6 @@ derby_pairs:
 
 # Groupe de la France au Mondial 2026 - Analyse complète
 
-<img src="https://images.pexels.com/photos/34201725/pexels-photo-34201725.jpeg" alt="Équipe de France - Coupe du Monde 2026" width="1260" height="750" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
-
 Le 5 décembre 2025 au Kennedy Center de Washington, la France a appris son sort pour la [Coupe du Monde 2026](/competitions/coupe-du-monde-2026). Groupe I. Sénégal, Norvège, Irak. Tête de série, troisième nation mondiale au classement FIFA, les Bleus avaient ce qu'on appelle poliment une situation favorable. Et pourtant, le groupe est loin d'être une promenade de santé.
 
 Avant de rentrer dans le détail, il faut parler de l'éléphant dans la pièce. Ce Mondial 2026, c'est le dernier de Didier Deschamps sur le banc des Bleus. L'homme qui nous a offert la deuxième étoile en 2018, qui nous a menés en finale en 2022, qui a construit en silence l'une des générations les plus talentueuses de l'histoire du football français. On est derrière Dédé jusqu'au bout, et on le sera avec fierté et reconnaissance jusqu'au coup de sifflet final de son dernier match. Mais je ne vais pas mentir : j'ai hâte de voir Zidane aux manettes. Zizou sélectionneur de l'équipe de France, avec Mbappé comme capitaine. C'est presque trop beau pour être vrai. Presque. Parce que Zidane qui accepte ce poste après des années de refus, c'est courageux. C'est s'exposer, c'est prendre le risque de ternir une légende absolue si ça se passe mal. Il le sait. Et il a dit oui quand même. Pour ça, on lui fait confiance. Mais d'abord, on gagne ce Mondial avec Dédé. Dans l'ordre.

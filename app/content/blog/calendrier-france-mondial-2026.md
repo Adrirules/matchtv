@@ -20,8 +20,6 @@ derby_pairs:
 
 # Le calendrier complet de la France au Mondial 2026
 
-<img src="https://images.unsplash.com/photo-1531692435623-5ee3b403c033?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Équipe de France de football - Mondial 2026" width="1740" height="1160" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
-
 Vous voulez savoir quand joue la France au [Mondial 2026](/competitions/coupe-du-monde-2026), à quelle heure et dans quel stade ? Voilà tout ce qu'il faut savoir pour bloquer les soirées dans votre agenda, prévenir vos copains et vous organiser pour n'en louper aucun. Tous derrière les Bleus de Didier.
 
 Et avant même de commencer : la France n'a raté aucun match de préparation, deux victoires convaincantes contre le Brésil et la Colombie aux États-Unis en mars. C'est beau, ça donne confiance, et ça montre que ce groupe est sérieux dans son approche. On arrive en ordre de marche.

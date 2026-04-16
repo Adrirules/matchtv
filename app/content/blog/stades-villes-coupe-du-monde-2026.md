@@ -12,8 +12,6 @@ excerpt: "16 stades, 3 pays, 4000 kilomètres d'est en ouest. De l'Azteca de Mex
 
 # Coupe du Monde 2026 : les 16 stades, villes et infos clés à connaître
 
-<img src="https://images.pexels.com/photos/13144052/pexels-photo-13144052.jpeg" alt="Stade de la Coupe du Monde 2026" width="1260" height="750" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
-
 Pour la première fois de l'histoire, une [Coupe du Monde](/competitions/coupe-du-monde-2026) se joue dans 3 pays et 16 stades différents. États-Unis, Canada, Mexique, du 11 juin au 19 juillet 2026. Cent quatre matchs, 4000 kilomètres entre le stade le plus occidental et le plus oriental, et des enceintes qui vont de la cathédrale historique au parc d'attractions climatisé. Voilà le guide complet des villes et stades du Mondial 2026, avec tout ce qu'il faut savoir avant de regarder les matchs.
 
 ## La zone Est : là où joue la France

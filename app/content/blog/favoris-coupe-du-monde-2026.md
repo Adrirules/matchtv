@@ -29,8 +29,6 @@ derby_pairs:
 
 # Coupe du monde 2026 : nos 5 favoris pour soulever le trophée
 
-<img src="https://images.unsplash.com/photo-1731870881782-1948058d9ce1?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trophée Coupe du monde FIFA 2026" width="1548" height="1032" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
-
 Bon, je vais vous dire un truc. Depuis que les groupes sont tombés, j'ai une liste dans la tête qui tourne en boucle. Cinq équipes. Pas six, pas sept, cinq. Celles que je vois encore là le 19 juillet à New York quand le dernier coup de sifflet retentit. On va en parler.
 
 ## La France - le favori qu'on n'ose pas appeler favori
