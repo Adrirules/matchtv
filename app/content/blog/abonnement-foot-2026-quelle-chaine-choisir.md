@@ -13,6 +13,14 @@ excerpt: "En 2026, suivre le foot en France demande de jongler entre plusieurs a
 
 <img src="/images/blog/abonnement-foot-2026.jpg" alt="Stade de football illuminé la nuit - abonnements foot 2026" width="800" height="533" style="width:100%;height:auto;border-radius:8px;margin:16px 0 24px;">
 
+**Réponse rapide :**
+- Ligue 1 → **Ligue 1+** (14,99 €/mois) ou **DAZN** avec Ligue 1+ incluse (16,99 €/mois)
+- Champions League → **[Canal+](/chaines/canal-plus)** (19,99 €/mois minimum)
+- Liga + Bundesliga → **[beIN Sports](/chaines/bein-sports)** (15 €/mois)
+- Mondial 2026 → **[M6](/chaines/m6)** (gratuit)
+
+---
+
 En 2026, si on veut suivre le football on doit avoir différents abonnements. C'est un casse-tête, à quelle chaîne doit-on souscrire pour voir le Classico ou un match de [La Liga](/competitions/la-liga) ? Chez coupdenvoi TV on a bossé et on a décrypté la diffusion de tous les matchs de foot pour vous. Cet article est là pour vous dire ce que vous pouvez voir avec chaque abonnement. Et si vous avez encore un doute, il vous suffit d'aller sur [le programme](/) et vous verrez la chaîne de télévision ou la chaîne de streaming qui diffuse votre match de football chaque jour. Allez, c'est parti.
 
 ## Comment voir la Ligue 1 sans Canal+ ?
@@ -41,7 +49,7 @@ En résumé, si vous voulez voir uniquement la ligue 1, le plus facile est de pr
 
 ## DAZN foot 2026 : quelles compétitions peut-on regarder ?
 
-DAZN c'est quoi ? C'est ce qu'on appelle le "Netflix du sport". Il s'agit d'une seule application avec un seul abonnement qui vous donne accès à un large catalogue de compétitions sportives qui va au-delà du foot.
+**[DAZN](/chaines/dazn)** c'est quoi ? C'est ce qu'on appelle le "Netflix du sport". Il s'agit d'une seule application avec un seul abonnement qui vous donne accès à un large catalogue de compétitions sportives qui va au-delà du foot.
 En France en 2026, voilà ce que vous pouvez regarder avec l'abonnement à la chaîne DAZN :
 
 Du football :
@@ -107,19 +115,19 @@ La bonne nouvelle pour les moins de 26 ans : Canal+ Sport est accessible à 22,9
 
 ## Foot gratuit en 2026 : TF1, M6, ce qui change avec le Mondial
 
-Vous avez dit « gratuit », salut à tous mes rats et bonne nouvelle pour ceux qui ne veulent pas débourser un seul centime (on vous voit) : il y a encore du foot gratuit en France en 2026. Mais il y a une grosse surprise cette année, et elle concerne TF1.
+Vous avez dit « gratuit », salut à tous mes rats et bonne nouvelle pour ceux qui ne veulent pas débourser un seul centime (on vous voit) : il y a encore du foot gratuit en France en 2026. Mais il y a une grosse surprise cette année, et elle concerne [TF1](/chaines/tf1).
 
-**TF1 sera absent du Mondial pour la première fois depuis 1978**
+**[TF1](/chaines/tf1) sera absent du Mondial pour la première fois depuis 1978**
 
 C'est tout simplement historique. Depuis Mexico 1986 et les buts de Platini, depuis France 98 et la nuit dorée du Stade de France, la Coupe du Monde c'était TF1. On a tous en souvenir dans notre mémoire Thierry Roland, la voix du foot français, avec son binôme mythique Jean-Michel Larqué. Et dernièrement Grégoire Margotton, le dernier grand commentateur de l'ère TF1, voix des finales et des matchs des Bleus.
 Et bien cette année c'est terminé, finito, c'est ciao. Pour la première fois en presque 50 ans, TF1 ne diffusera aucun match du Mondial 2026. Oui, vous avez bien lu.
 
-C'est M6 qui récupère les droits de diffusion gratuite. Concrètement voilà ce que ça donne :
+C'est [M6](/chaines/m6) qui récupère les droits de diffusion gratuite. Concrètement voilà ce que ça donne :
 
-- M6 diffuse 54 matchs gratuitement, dont l'intégralité des matchs des Bleus, du 11 juin au 19 juillet 2026. Vous pouvez regarder ça sur M6 classique ou sur M6+ depuis n'importe quel écran, sans abonnement.
+- [M6](/chaines/m6) diffuse 54 matchs gratuitement, dont l'intégralité des matchs des Bleus, du 11 juin au 19 juillet 2026. Vous pouvez regarder ça sur M6 classique ou sur M6+ depuis n'importe quel écran, sans abonnement.
 - beIN Sports diffuse les 104 matchs dont 48 en exclusivité pour ses abonnés.
 
-Donc pour suivre l'équipe de France au Mondial 2026, pas besoin d'abonnement. M6 a été très claire là-dessus : tous les matchs des Bleus, y compris une éventuelle finale, seront accessibles gratuitement.
+Donc pour suivre l'équipe de France au Mondial 2026, pas besoin d'abonnement. [M6](/chaines/m6) a été très claire là-dessus : tous les matchs des Bleus, y compris une éventuelle finale, seront accessibles gratuitement.
 
 Et en dehors du Mondial, que reste-t-il en clair ?
 En dehors de la Coupe du Monde, le foot gratuit se résume essentiellement aux matchs de l'équipe de France en qualifications et aux grandes affiches de Coupe de France diffusées ponctuellement. Le reste est derrière un abonnement payant comme détaillé dans les précédents paragraphes.
@@ -174,9 +182,11 @@ Franchement, pour 15 € par mois chez beIN Sports ou 14,99 € sur Ligue 1+, le
 |--------|----------|--------|
 | Je veux juste la Ligue 1 | Ligue 1+ Pass Mobile | 14,99 €/mois |
 | J'ai moins de 26 ans | Ligue 1+ Pass -26 ans | 9,99 €/mois |
-| Je veux la Ligue 1 + l'Europe | DAZN + Ligue 1+ | 16,99 €/mois |
-| Je veux la Champions League | Canal+ classique | 19,99 €/mois |
-| Je veux tout | Canal+ Sport | 29,99 €/mois |
-| Je veux juste le Mondial | M6+ | Gratuit |
+| Je veux la Ligue 1 + l'Europe | [DAZN](/chaines/dazn) + Ligue 1+ | 16,99 €/mois |
+| Je veux la Champions League | [Canal+](/chaines/canal-plus) classique | 19,99 €/mois |
+| Je veux tout | [Canal+](/chaines/canal-plus) Sport | 29,99 €/mois |
+| Je veux juste le Mondial | [M6+](/chaines/m6) | Gratuit |
 
 Voilà, on espère que vous n'avez pas trop mal à la tête, on vous a évité des heures de comparaisons et maintenant vous avez toutes les cartes en main. Le foot en 2026 c'est fragmenté, c'est vrai on doit l'accepter mais avec le bon abonnement au bon prix, vous ne raterez plus aucun match.
+
+Et pour savoir ce soir précisément quel match est sur quelle chaîne, c'est sur [le programme TV de Coup d'Envoi TV](/) que ça se passe.
