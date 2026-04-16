@@ -60,16 +60,6 @@
     </div>
   </div>
 
-  <%# Image hero %>
-  <% if @article[:image].present? %>
-    <figure style="margin: 0 0 28px; border-radius: 8px; overflow: hidden;">
-      <img src="<%= @article[:image] %>" alt="<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '') %>" style="width: 100%; height: auto; display: block;" loading="lazy">
-      <% if @article[:image_credit].present? %>
-        <figcaption style="font-size: 11px; color: #94a3b8; padding: 6px 2px 0; text-align: right;"><%= @article[:image_credit] %></figcaption>
-      <% end %>
-    </figure>
-  <% end %>
-
   <%# Sommaire automatique %>
   <% if @toc.length >= 2 %>
     <nav class="blog-toc">
