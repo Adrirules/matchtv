@@ -26,6 +26,15 @@ class MatchesController < ApplicationController
         @head_to_head = fetch_head_to_head(@match)
       end
       @injuries = fetch_injuries(@match)
+
+      # Matchs du même jour (même compétition en priorité, sinon tous)
+      day_start = @match.start_time.beginning_of_day
+      day_end   = @match.start_time.end_of_day
+      @same_day_matches = Match.where(start_time: day_start..day_end)
+                               .where.not(id: @match.id)
+                               .where.not(slug: [nil, ""])
+                               .order(:start_time)
+                               .limit(12)
     end
   end
 

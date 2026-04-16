@@ -173,6 +173,45 @@
     <%= render 'shared/faq_accordion', items: generate_match_faq(@match), schema: true %>
   </section>
 
+  <%# Matchs du même jour %>
+  <% if @same_day_matches.any? %>
+    <section style="margin: 0 0 32px;">
+      <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 14px;">Autres matchs ce jour-là</h2>
+      <% same_day_by_comp = @same_day_matches.group_by(&:competition) %>
+      <% same_day_by_comp.each do |comp, matches| %>
+        <% if same_day_by_comp.keys.length > 1 %>
+          <p style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: 12px 0 6px;"><%= comp %></p>
+        <% end %>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <% matches.each do |m| %>
+            <%= link_to match_path(m.slug), style: "display: block; text-decoration: none; color: inherit;" do %>
+              <div style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 14px; background: white; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8faff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; font-size: 13px; font-weight: 600; color: #010e1b;">
+                    <% if m.home_team_logo.present? %>
+                      <img src="<%= m.home_team_logo %>" alt="<%= m.home_team %>" width="18" height="18" style="object-fit: contain; flex-shrink: 0;" loading="lazy">
+                    <% end %>
+                    <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= team_display_name(m.home_team) %></span>
+                    <% if m.home_score.present? %>
+                      <span style="font-weight: 700; flex-shrink: 0; color: #010e1b;"><%= m.home_score %> - <%= m.away_score %></span>
+                    <% else %>
+                      <span style="color: #94a3b8; flex-shrink: 0; font-weight: 400;">vs</span>
+                    <% end %>
+                    <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= team_display_name(m.away_team) %></span>
+                    <% if m.away_team_logo.present? %>
+                      <img src="<%= m.away_team_logo %>" alt="<%= m.away_team %>" width="18" height="18" style="object-fit: contain; flex-shrink: 0;" loading="lazy">
+                    <% end %>
+                  </div>
+                  <span style="font-size: 12px; color: #64748b; flex-shrink: 0;"><%= m.start_time.strftime("%Hh%M") %></span>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+
   <%# Maillage interne : lien vers classement de la compétition %>
   <% if @match.competition.present? %>
     <% comp_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == @match.competition } %>
