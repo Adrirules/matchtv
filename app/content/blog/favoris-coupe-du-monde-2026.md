@@ -3,6 +3,7 @@ title: "Coupe du monde 2026 : nos 5 favoris pour soulever le trophée | Coup d'E
 meta_description: "France, Argentine, Brésil, Angleterre, Allemagne : qui va gagner la Coupe du monde 2026 ? Notre analyse et notre podium avant le coup d'envoi du 11 juin."
 slug: favoris-coupe-du-monde-2026
 published_at: 2026-04-07
+published_time: "14h52"
 author: Adrien
 image: https://images.unsplash.com/photo-1731870881782-1948058d9ce1?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "France, Argentine, Brésil, Angleterre, Allemagne : cinq équipes, une liste qui tourne en boucle depuis que les groupes sont tombés. Notre podium avant le coup d'envoi."

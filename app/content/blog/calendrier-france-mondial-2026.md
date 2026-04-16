@@ -3,6 +3,7 @@ title: "Calendrier France Mondial 2026 - Dates, horaires et stades des matchs de
 meta_description: "Tout le calendrier de la France au Mondial 2026 : Sénégal le 16 juin, Irak le 22 juin, Norvège le 26 juin. Horaires, stades et parcours potentiel jusqu'à la finale."
 slug: calendrier-france-mondial-2026
 published_at: 2026-04-17
+published_time: "11h34"
 author: Adrien
 image: https://images.unsplash.com/photo-1531692435623-5ee3b403c033?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "Sénégal le 16 juin, Irak le 22 juin, Norvège le 26 juin. Dates, horaires, stades et parcours potentiel : tout pour bloquer les soirées dans votre agenda et ne rater aucun match des Bleus."

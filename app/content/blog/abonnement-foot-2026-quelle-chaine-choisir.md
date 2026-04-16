@@ -3,6 +3,7 @@ title: "Canal+, DAZN, beIN Sports, Ligue 1+ : quel abonnement foot choisir en 20
 meta_description: "Canal+, DAZN, beIN Sports ou Ligue 1+ : on a comparé tous les abonnements foot 2026 pour savoir qui diffuse quoi et comment payer le moins cher."
 slug: abonnement-foot-2026-quelle-chaine-choisir
 published_at: 2026-03-29
+published_time: "09h17"
 author: Adrien
 image: /images/blog/abonnement-foot-2026.jpg
 excerpt: "En 2026, suivre le foot en France demande de jongler entre plusieurs abonnements. Canal+, DAZN, beIN Sports, Ligue 1+ : on a tout comparé pour vous aider à choisir sans vous ruiner."

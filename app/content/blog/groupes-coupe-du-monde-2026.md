@@ -3,6 +3,7 @@ title: "Coupe du monde 2026 : les 12 groupes complets et notre verdict | Coup d'
 meta_description: "Les 12 groupes du Mondial 2026 décortiqués : favoris, surprises et anecdotes pour chaque groupe. Notre verdict avant le coup d'envoi du 11 juin 2026."
 slug: groupes-coupe-du-monde-2026
 published_at: 2026-04-06
+published_time: "16h23"
 author: Adrien
 image: https://images.unsplash.com/photo-1527871369852-eb58cb2b54e2?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "Alea Jacta Est. Les 12 groupes du Mondial 2026 sont connus. On les décortique un par un avec nos verdicts, nos anecdotes et nos pronos."

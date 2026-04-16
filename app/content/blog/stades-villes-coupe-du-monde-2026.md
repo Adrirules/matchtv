@@ -3,6 +3,7 @@ title: "Coupe du Monde 2026 : les 16 stades et villes hôtes en détail | Coup d
 meta_description: "Les 16 stades de la Coupe du Monde 2026 : capacité, histoire et infos clés sur chaque enceinte aux États-Unis, Canada et Mexique. Du MetLife à l'Azteca."
 slug: stades-villes-coupe-du-monde-2026
 published_at: 2026-04-16
+published_time: "13h15"
 author: Adrien
 image: https://images.pexels.com/photos/13144052/pexels-photo-13144052.jpeg
 excerpt: "16 stades, 3 pays, 4000 kilomètres d'est en ouest. De l'Azteca de Mexico au MetLife de New York, le guide complet des enceintes de la Coupe du Monde 2026."

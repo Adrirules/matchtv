@@ -76,19 +76,26 @@ class BlogController < ApplicationController
     parts = raw.split('---', 3)
     return nil if parts.length < 3
     meta = YAML.safe_load(parts[1], permitted_classes: [Date]) rescue {}
+    body_text = parts[2].strip
+    word_count = body_text.gsub(/[#*`\[\]()>-]/, '').split.length
+    reading_time = [(word_count / 200.0).ceil, 1].max
+
     result = {
       title:            meta['title'],
       meta_description: meta['meta_description'],
       slug:             meta['slug'],
       published_at:     meta['published_at'],
+      published_time:   meta['published_time'],
+      updated_at:       meta['updated_at'],
       author:           meta['author'] || 'Adrien',
       image:            meta['image'],
       excerpt:          meta['excerpt'],
       derby_pairs:       meta['derby_pairs'],
       match_pairs_title: meta['match_pairs_title'],
-      match_groups:      meta['match_groups']
+      match_groups:      meta['match_groups'],
+      reading_time:      reading_time
     }
-    result[:body] = parts[2].strip if with_body
+    result[:body] = body_text if with_body
     result
   end
 

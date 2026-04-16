@@ -3,6 +3,7 @@ title: "Italie absente du Mondial 2026 : la Squadra Azzurra, grande absente | Co
 meta_description: "L'Italie manque sa qualification pour le Mondial 2026, éliminée par la Bosnie aux tirs au but. Troisième absence consécutive pour la Squadra Azzurra."
 slug: italie-absente-mondial-2026
 published_at: 2026-04-05
+published_time: "08h41"
 author: Adrien
 image: https://images.unsplash.com/photo-1693517364815-294a62062e02?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "L'Italie ne sera pas au Mondial 2026. Troisième absence consécutive, éliminée par la Bosnie aux tirs au but - retour sur le cauchemar de la Squadra Azzurra."

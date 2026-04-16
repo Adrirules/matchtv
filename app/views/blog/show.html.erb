@@ -47,10 +47,16 @@
     <img src="<%= asset_path('adrien-avatar.png') %>" alt="Adrien" width="36" height="36" style="border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0;">
     <div>
       <%= link_to "Adrien", blog_auteur_path, style: "font-weight: 600; font-size: 14px; color: #010e1b; text-decoration: none;" %>
-      <span style="color: #999; font-size: 13px; margin-left: 8px;">·</span>
-      <time datetime="<%= @article[:published_at] %>" style="font-size: 13px; color: #999; margin-left: 8px;">
-        <%= date_fr(@article[:published_at]) %>
+      <span style="color: #e2e8f0; font-size: 13px; margin: 0 6px;">|</span>
+      <time datetime="<%= @article[:published_at] %>" style="font-size: 13px; color: #64748b;">
+        Publié le <%= date_fr(@article[:published_at]) %><%= @article[:published_time].present? ? " à #{@article[:published_time]}" : "" %>
       </time>
+      <% if @article[:updated_at].present? %>
+        <span style="color: #e2e8f0; font-size: 13px; margin: 0 6px;">·</span>
+        <time style="font-size: 13px; color: #64748b;">Modifié le <%= @article[:updated_at] %></time>
+      <% end %>
+      <span style="color: #e2e8f0; font-size: 13px; margin: 0 6px;">|</span>
+      <span style="font-size: 13px; color: #64748b;"><%= @article[:reading_time] %> min de lecture</span>
     </div>
   </div>
 

@@ -3,6 +3,7 @@ title: "Programme foot ce soir télévision : comment trouver le match en 30 sec
 meta_description: "Quel match de foot passe ce soir à la télé ? Canal+, DAZN, beIN Sports, TF1, M6 : notre guide pour ne plus jamais rater un coup d'envoi en 2026."
 slug: programme-foot-ce-soir-television
 published_at: 2026-04-19
+published_time: "10h43"
 author: Adrien
 image: https://images.unsplash.com/photo-1678483789123-e8a73f82addb?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "Zapper entre Canal+, beIN et DAZN pendant 15 min pour trouver son match... on est tous passés par là. Voici la méthode pour ne plus jamais rater un coup d'envoi."

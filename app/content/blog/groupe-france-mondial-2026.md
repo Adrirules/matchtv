@@ -3,6 +3,7 @@ title: "Groupe I Mondial 2026 - France, Sénégal, Norvège, Irak : analyse comp
 meta_description: "Groupe I de la France au Mondial 2026 : calendrier, analyse des adversaires, parcours potentiel et verdict. Sénégal, Norvège, Irak décortiqués."
 slug: groupe-france-mondial-2026
 published_at: 2026-04-15
+published_time: "10h08"
 author: Adrien
 image: https://images.pexels.com/photos/34201725/pexels-photo-34201725.jpeg
 excerpt: "Le 5 décembre 2025, la France a tiré le Groupe I : Sénégal, Norvège, Irak. Pas une promenade de santé. Analyse complète des trois adversaires, du calendrier et du parcours potentiel jusqu'à la finale."

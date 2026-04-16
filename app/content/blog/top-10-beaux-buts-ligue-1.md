@@ -3,6 +3,7 @@ title: "Top 10 des plus beaux buts de la Ligue 1 : notre classement | Coup d'Env
 meta_description: "Zidane, Gourcuff, Zlatan, Ben Arfa, Juninho : notre top 10 des plus beaux buts de l'histoire de la Ligue 1. Un classement subjectif, donc indiscutable."
 slug: top-10-beaux-buts-ligue-1
 published_at: 2026-04-18
+published_time: "09h55"
 author: Adrien
 image: https://images.unsplash.com/photo-1607142426428-ce8910c7e425?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 excerpt: "Zidane contre Nantes en 1995, Gourcuff en roulette-pointu contre le PSG, Zlatan en kung-fu contre Bastia : notre top 10 des buts les plus spectaculaires de l'histoire de la Ligue 1."
