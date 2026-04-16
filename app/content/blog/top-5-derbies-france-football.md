@@ -6,6 +6,7 @@ published_at: 2026-04-14
 published_time: "15h37"
 author: Adrien
 image: https://images.unsplash.com/photo-1564833592193-3270b5618e7f?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+image_credit: "Photo : Unsplash"
 excerpt: "Derby du Nord, OL-ASSE, Classique... Notre top 5 (+1 bonus) des derbies les plus intenses de France, avec les prises de position du chirurgien du ballon rond."
 derby_pairs:
   - ["Lens", "Lille"]

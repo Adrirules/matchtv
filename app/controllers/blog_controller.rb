@@ -89,6 +89,7 @@ class BlogController < ApplicationController
       updated_at:       meta['updated_at'],
       author:           meta['author'] || 'Adrien',
       image:            meta['image'],
+      image_credit:     meta['image_credit'],
       excerpt:          meta['excerpt'],
       derby_pairs:       meta['derby_pairs'],
       match_pairs_title: meta['match_pairs_title'],

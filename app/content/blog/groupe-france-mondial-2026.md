@@ -6,6 +6,7 @@ published_at: 2026-04-15
 published_time: "10h08"
 author: Adrien
 image: https://images.pexels.com/photos/34201725/pexels-photo-34201725.jpeg
+image_credit: "Photo : Unsplash"
 excerpt: "Le 5 décembre 2025, la France a tiré le Groupe I : Sénégal, Norvège, Irak. Pas une promenade de santé. Analyse complète des trois adversaires, du calendrier et du parcours potentiel jusqu'à la finale."
 match_pairs_title: "Les matchs du Groupe I"
 derby_pairs:

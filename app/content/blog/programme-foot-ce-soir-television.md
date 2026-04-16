@@ -6,6 +6,7 @@ published_at: 2026-04-19
 published_time: "10h43"
 author: Adrien
 image: https://images.unsplash.com/photo-1678483789123-e8a73f82addb?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+image_credit: "Photo : Unsplash"
 excerpt: "Zapper entre Canal+, beIN et DAZN pendant 15 min pour trouver son match... on est tous passés par là. Voici la méthode pour ne plus jamais rater un coup d'envoi."
 ---
 
