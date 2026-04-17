@@ -5,7 +5,7 @@ slug: programme-tv-coupe-du-monde-2026
 published_at: 2026-04-23
 published_time: "09h14"
 author: Adrien
-image: https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2093&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+image: https://images.unsplash.com/photo-1728060555005-6bd4a359b431?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "Le programme TV complet de la Coupe du Monde 2026 : tous les matchs, horaires en heure de Paris, chaînes (M6 en clair, beIN Sports). Calendrier des Bleus et infos essentielles."
 ---
