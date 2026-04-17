@@ -67,7 +67,7 @@ class CompetitionsController < ApplicationController
                              .group_by(&:round)
       # Garder uniquement les rounds de phase finale (pas les phases de groupe)
       @knockout_rounds = knockout_rounds.reject do |round_name, _|
-        round_name.to_s.downcase.match?(/group|league phase|ligue|pool|poule|regular/)
+        round_name.to_s.downcase.match?(/group|league phase|league stage|ligue|pool|poule|regular/)
       end
     else
       @knockout_rounds = {}

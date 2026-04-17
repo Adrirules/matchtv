@@ -49,6 +49,9 @@
     <% end %>
   <% end %>
 
+  <%# Phases finales / bracket %>
+  <%= render 'competitions/knockout_bracket', knockout_rounds: @knockout_rounds %>
+
   <%# Texte éditorial humain ou description Groq %>
   <% if @description.present? %>
     <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
@@ -72,9 +75,6 @@
   <% end %>
 
   <%= render 'shared/ad_unit', slot_id: '2773465276' %>
-
-  <%# Phases finales / bracket %>
-  <%= render 'competitions/knockout_bracket', knockout_rounds: @knockout_rounds %>
 
   <%# Liste des matchs %>
   <section>
