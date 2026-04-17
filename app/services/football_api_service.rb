@@ -153,7 +153,8 @@ class FootballApiService
         competition:       SUPPORTED_LEAGUES[league_id] || data['league']['name'],
         tv_channels:       guess_tv_channel(league_id, match_date_time),
         api_id:            data['fixture']['id'],
-        slug:              match_slug
+        slug:              match_slug,
+        round:             data['league']['round']
       )
 
       # Mise à jour score + statut pour les matchs terminés
@@ -212,7 +213,8 @@ class FootballApiService
         competition: SUPPORTED_LEAGUES[league_id] || data['league']['name'],
         tv_channels: precise_tv,
         api_id: data['fixture']['id'],
-        slug: match_slug
+        slug: match_slug,
+        round: data['league']['round']
       )
     end
     "Import terminé : #{fixtures.count} matchs pour #{SUPPORTED_LEAGUES[league_id]}"

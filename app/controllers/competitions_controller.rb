@@ -57,6 +57,22 @@ class CompetitionsController < ApplicationController
                     .order(:start_time)
                     .limit(50)
 
+    # Phases finales / bracket pour les compétitions à élimination directe
+    knockout_league_ids = [2, 3, 848, 529, 141, 1]
+    if meta && knockout_league_ids.include?(meta[:id])
+      knockout_rounds = Match.where("competition ILIKE ?", "%#{@competition_name}%")
+                             .where.not(round: [nil, ''])
+                             .where("start_time >= ?", 3.months.ago)
+                             .order(:start_time)
+                             .group_by(&:round)
+      # Garder uniquement les rounds de phase finale (pas les phases de groupe)
+      @knockout_rounds = knockout_rounds.reject do |round_name, _|
+        round_name.to_s.downcase.match?(/group|league phase|ligue|pool|poule|regular/)
+      end
+    else
+      @knockout_rounds = {}
+    end
+
     editorial = competition_editorial(@competition_name)
     @description  = editorial || competition_description(@competition_name)
     @editorial_html = editorial.present?
