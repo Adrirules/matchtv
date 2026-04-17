@@ -1,100 +1,230 @@
 <% if knockout_rounds.any? %>
 <section style="margin: 32px 0;">
-  <h2 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 20px;">Phases finales</h2>
+  <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0 0 16px;">Phases finales</h2>
 
   <%
-    # Ordre canonique des rounds (du plus récent au plus lointain)
+    # Ordre canonique : du tour le plus précoce au plus tardif (gauche → droite)
     round_order = [
-      'Final', 'Finale',
-      '3rd Place Final', 'Match pour la 3e place',
-      'Semi-finals', 'Demi-finales', 'Semi Finals',
-      'Quarter-finals', 'Quarts de finale', 'Quarter Finals',
-      'Round of 16', 'Huitièmes de finale', 'Round Of 16',
       'Round of 32', 'Seizièmes de finale', 'Round Of 32',
       '5th Round', '4th Round', '3rd Round', '2nd Round', '1st Round',
       'Round 1', 'Round 2', 'Round 3', 'Round 4', 'Round 5',
+      'Round of 16', 'Huitièmes de finale', 'Round Of 16',
+      'Quarter-finals', 'Quarts de finale', 'Quarter Finals',
+      'Semi-finals', 'Demi-finales', 'Semi Finals',
+      '3rd Place Final', 'Match pour la 3e place',
+      'Final', 'Finale',
     ]
 
     sorted_rounds = knockout_rounds.sort_by do |name, _|
       idx = round_order.index { |r| r.downcase == name.to_s.downcase }
-      idx || 999
+      idx.nil? ? 999 : idx
     end
+
+    # Noms francisés des rounds
+    round_labels = {
+      'Round of 32'    => 'Seizièmes de finale',
+      'Round Of 32'    => 'Seizièmes de finale',
+      'Round of 16'    => 'Huitièmes de finale',
+      'Round Of 16'    => 'Huitièmes de finale',
+      'Quarter-finals' => 'Quarts de finale',
+      'Quarter Finals' => 'Quarts de finale',
+      'Semi-finals'    => 'Demi-finales',
+      'Semi Finals'    => 'Demi-finales',
+      'Final'          => 'Finale',
+      '3rd Place Final'=> 'Match 3e place',
+    }
+
+    # Jours abrégés en français
+    day_fr = { 'Mon' => 'Lun', 'Tue' => 'Mar', 'Wed' => 'Mer', 'Thu' => 'Jeu',
+               'Fri' => 'Ven', 'Sat' => 'Sam', 'Sun' => 'Dim' }
   %>
 
-  <% sorted_rounds.each do |round_name, matches| %>
-    <div style="margin-bottom: 24px;">
-      <h3 style="font-size: 14px; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
-        <%= round_name %>
-      </h3>
+  <%# Wrapper scrollable horizontal %>
+  <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px;">
+    <div style="display: flex; gap: 16px; min-width: max-content; align-items: flex-start;">
 
-      <%
-        # Regrouper les matchs aller/retour par paires d'équipes
-        pairs = {}
-        matches.each do |m|
-          key = [m.home_team, m.away_team].sort.join('|')
-          pairs[key] ||= []
-          pairs[key] << m
-        end
-      %>
+      <% sorted_rounds.each do |round_name, matches| %>
+        <%
+          label = round_labels[round_name] || round_name
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px;">
-        <% pairs.each do |_key, pair_matches| %>
-          <% pair_matches.sort_by(&:start_time).each_with_index do |match, leg_idx| %>
-            <%
-              is_finished = match.finished?
-              home_wins = is_finished && match.home_score.to_i > match.away_score.to_i
-              away_wins = is_finished && match.away_score.to_i > match.home_score.to_i
-              leg_label = pair_matches.size > 1 ? (leg_idx == 0 ? 'Aller' : 'Retour') : ''
-            %>
-            <%= link_to match_path(match.slug), style: "display: block; text-decoration: none; color: inherit;" do %>
-              <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px 14px; transition: all 0.15s; cursor: pointer;"
-                   onmouseover="this.style.borderColor='#94a3b8'; this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)'"
-                   onmouseout="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'">
+          # Grouper les matchs en ties (paires d'équipes)
+          ties_hash = {}
+          matches.each do |m|
+            key = [m.home_team, m.away_team].sort.join('|')
+            ties_hash[key] ||= []
+            ties_hash[key] << m
+          end
+          # Trier chaque tie par date
+          ties_hash.each_value { |legs| legs.sort_by!(&:start_time) }
 
-                <% if leg_label.present? %>
-                  <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;"><%= leg_label.strip %></div>
+          # Déterminer si ce round est en matchs aller-retour
+          is_two_legs = ties_hash.values.any? { |legs| legs.size > 1 }
+        %>
+
+        <div style="width: 260px; flex-shrink: 0;">
+          <%# Titre du round %>
+          <div style="font-size: 13px; font-weight: 600; color: #64748b; text-align: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
+            <%= label %>
+          </div>
+
+          <%# Cartes de ties %>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <% ties_hash.each do |_key, legs| %>
+              <%
+                leg1 = legs[0]
+                leg2 = legs[1]
+
+                # team_a = home du match aller (ou unique)
+                team_a       = leg1.home_team
+                team_b       = leg1.away_team
+                logo_a       = leg1.home_team_logo
+                logo_b       = leg1.away_team_logo
+
+                if is_two_legs
+                  # M1 scores (leg1)
+                  a_m1 = leg1.finished? ? leg1.home_score.to_i : nil
+                  b_m1 = leg1.finished? ? leg1.away_score.to_i : nil
+
+                  # M2 scores (leg2 — équipes inversées en domicile/extérieur)
+                  # leg2.home_team == team_b, leg2.away_team == team_a
+                  if leg2
+                    a_m2 = leg2.finished? ? leg2.away_score.to_i : nil
+                    b_m2 = leg2.finished? ? leg2.home_score.to_i : nil
+                  else
+                    a_m2 = nil
+                    b_m2 = nil
+                  end
+
+                  agg_a = (a_m1 || 0) + (a_m2 || 0)
+                  agg_b = (b_m1 || 0) + (b_m2 || 0)
+                  tie_complete = leg1.finished? && (leg2.nil? || leg2.finished?)
+                  a_qualifies  = tie_complete && agg_a > agg_b
+                  b_qualifies  = tie_complete && agg_b > agg_a
+
+                  # Prochain match à jouer
+                  if !leg1.finished?
+                    next_match = leg1
+                    next_leg_num = 1
+                  elsif leg2 && !leg2.finished?
+                    next_match = leg2
+                    next_leg_num = 2
+                  else
+                    next_match = nil
+                    next_leg_num = nil
+                  end
+                else
+                  # Match sec
+                  a_score     = leg1.finished? ? leg1.home_score.to_i : nil
+                  b_score     = leg1.finished? ? leg1.away_score.to_i : nil
+                  a_qualifies = leg1.finished? && a_score.to_i > b_score.to_i
+                  b_qualifies = leg1.finished? && b_score.to_i > a_score.to_i
+                end
+              %>
+
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px;">
+
+                <%# Header M1 / M2 %>
+                <% if is_two_legs %>
+                  <div style="display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 8px;">
+                    <span style="background: #e2e8f0; color: #475569; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px; letter-spacing: 0.03em;">M1</span>
+                    <span style="background: #e2e8f0; color: #475569; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px; letter-spacing: 0.03em;">M2</span>
+                    <div style="width: 14px;"></div><%# espace pour la flèche %>
+                  </div>
                 <% end %>
 
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-                  <%# Équipe domicile %>
-                  <div style="display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0;">
-                    <% if match.home_team_logo.present? %>
-                      <img src="<%= match.home_team_logo %>" alt="" width="18" height="18" style="object-fit: contain; flex-shrink: 0;" loading="lazy">
-                    <% end %>
-                    <span style="font-size: 13px; font-weight: <%= home_wins ? '600' : '400' %>; color: <%= home_wins ? '#0f172a' : '#334155' %>; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                      <%= team_display_name(match.home_team) %>
+                <%# Ligne équipe A %>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                  <% if logo_a.present? %>
+                    <img src="<%= logo_a %>" alt="" width="20" height="20" loading="lazy" style="object-fit: contain; flex-shrink: 0;">
+                  <% else %>
+                    <div style="width: 20px; height: 20px; background: #cbd5e1; border-radius: 50%; flex-shrink: 0;"></div>
+                  <% end %>
+                  <span style="flex: 1; font-size: 13px; font-weight: <%= a_qualifies ? '700' : '500' %>; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <%= team_display_name(team_a) %>
+                  </span>
+                  <% if is_two_legs %>
+                    <span style="width: 22px; text-align: center; font-size: 14px; font-weight: <%= a_qualifies ? '700' : '400' %>; color: <%= a_m1 ? '#0f172a' : '#94a3b8' %>;">
+                      <%= a_m1.nil? ? '-' : a_m1 %>
                     </span>
-                  </div>
-
-                  <%# Score / heure %>
-                  <div style="flex-shrink: 0; text-align: center; min-width: 50px;">
-                    <% if is_finished %>
-                      <span style="font-size: 15px; font-weight: 700; color: #0f172a;"><%= match.home_score %> - <%= match.away_score %></span>
-                    <% else %>
-                      <span style="font-size: 12px; color: #64748b;"><%= match.start_time.strftime('%d/%m') %> <%= match.start_time.strftime('%Hh%M') %></span>
-                    <% end %>
-                  </div>
-
-                  <%# Équipe extérieur %>
-                  <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px; flex: 1; min-width: 0;">
-                    <span style="font-size: 13px; font-weight: <%= away_wins ? '600' : '400' %>; color: <%= away_wins ? '#0f172a' : '#334155' %>; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: right;">
-                      <%= team_display_name(match.away_team) %>
+                    <span style="width: 22px; text-align: center; font-size: 14px; font-weight: <%= a_qualifies ? '700' : '400' %>; color: <%= a_m2 ? '#0f172a' : '#94a3b8' %>;">
+                      <%= a_m2.nil? ? '-' : a_m2 %>
                     </span>
-                    <% if match.away_team_logo.present? %>
-                      <img src="<%= match.away_team_logo %>" alt="" width="18" height="18" style="object-fit: contain; flex-shrink: 0;" loading="lazy">
-                    <% end %>
-                  </div>
+                    <div style="width: 14px; text-align: center; color: #3b82f6; font-size: 12px;">
+                      <%= a_qualifies ? '◄' : '' %>
+                    </div>
+                  <% else %>
+                    <span style="font-size: 15px; font-weight: <%= a_qualifies ? '700' : '400' %>; color: <%= a_score ? '#0f172a' : '#94a3b8' %>; min-width: 20px; text-align: center;">
+                      <%= a_score.nil? ? '-' : a_score %>
+                    </span>
+                    <div style="width: 14px; text-align: center; color: #3b82f6; font-size: 12px;">
+                      <%= a_qualifies ? '◄' : '' %>
+                    </div>
+                  <% end %>
                 </div>
 
-                <% if !is_finished && match.tv_channels.present? %>
-                  <div style="margin-top: 6px; font-size: 11px; color: #64748b; text-align: center;"><%= match.tv_channels %></div>
-                <% end %>
+                <%# Ligne équipe B %>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                  <% if logo_b.present? %>
+                    <img src="<%= logo_b %>" alt="" width="20" height="20" loading="lazy" style="object-fit: contain; flex-shrink: 0;">
+                  <% else %>
+                    <div style="width: 20px; height: 20px; background: #cbd5e1; border-radius: 50%; flex-shrink: 0;"></div>
+                  <% end %>
+                  <span style="flex: 1; font-size: 13px; font-weight: <%= b_qualifies ? '700' : '500' %>; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <%= team_display_name(team_b) %>
+                  </span>
+                  <% if is_two_legs %>
+                    <span style="width: 22px; text-align: center; font-size: 14px; font-weight: <%= b_qualifies ? '700' : '400' %>; color: <%= b_m1 ? '#0f172a' : '#94a3b8' %>;">
+                      <%= b_m1.nil? ? '-' : b_m1 %>
+                    </span>
+                    <span style="width: 22px; text-align: center; font-size: 14px; font-weight: <%= b_qualifies ? '700' : '400' %>; color: <%= b_m2 ? '#0f172a' : '#94a3b8' %>;">
+                      <%= b_m2.nil? ? '-' : b_m2 %>
+                    </span>
+                    <div style="width: 14px; text-align: center; color: #3b82f6; font-size: 12px;">
+                      <%= b_qualifies ? '◄' : '' %>
+                    </div>
+                  <% else %>
+                    <span style="font-size: 15px; font-weight: <%= b_qualifies ? '700' : '400' %>; color: <%= b_score ? '#0f172a' : '#94a3b8' %>; min-width: 20px; text-align: center;">
+                      <%= b_score.nil? ? '-' : b_score %>
+                    </span>
+                    <div style="width: 14px; text-align: center; color: #3b82f6; font-size: 12px;">
+                      <%= b_qualifies ? '◄' : '' %>
+                    </div>
+                  <% end %>
+                </div>
+
+                <%# Footer : cumul ou date prochain match %>
+                <div style="border-top: 1px solid #e2e8f0; padding-top: 7px; font-size: 11px; color: #64748b;">
+                  <% if is_two_legs %>
+                    <% if tie_complete %>
+                      Cumul des scores : <%= agg_a %> à <%= agg_b %>
+                    <% elsif next_match %>
+                      <%
+                        day_name = next_match.start_time.strftime('%a')
+                        day_name_fr = day_fr[day_name] || day_name
+                      %>
+                      Match <%= next_leg_num %> le <%= day_name_fr %>. <%= next_match.start_time.strftime('%d/%m') %> · <%= next_match.start_time.strftime('%Hh%M') %>
+                    <% end %>
+                  <% else %>
+                    <% if leg1.finished? %>
+                      <%# Rien ou "Terminé" %>
+                    <% else %>
+                      <%
+                        day_name = leg1.start_time.strftime('%a')
+                        day_name_fr = day_fr[day_name] || day_name
+                      %>
+                      <%= day_name_fr %>. <%= leg1.start_time.strftime('%d/%m') %> · <%= leg1.start_time.strftime('%Hh%M') %>
+                    <% end %>
+                  <% end %>
+                </div>
+
               </div>
             <% end %>
-          <% end %>
-        <% end %>
-      </div>
+          </div>
+        </div>
+
+      <% end %>
+
     </div>
-  <% end %>
+  </div>
 </section>
 <% end %>
