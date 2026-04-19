@@ -5,13 +5,13 @@ slug: ou-regarder-liga-france
 published_at: 2026-04-29
 published_time: "11h14"
 author: Adrien
-image: https://images.unsplash.com/photo-1540747913346-19378e4c5b97?q=80&w=1705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+image: https://images.unsplash.com/photo-1769348193442-6d3b1655266d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "Tout le monde pense au Clasico. Mais la vraie Liga, celle qui te tient sur une saison, elle est ailleurs. Et en France, elle passe sur beIN Sports."
 dazn_card: false
 ---
 
-# Où regarder la Liga en France en 2025-2026 ?
+# La vraie Liga n'est pas le Clasico - et voilà où la regarder en France
 
 > **Réponse rapide :** La Liga est diffusée en exclusivité en France sur **[beIN Sports](/chaines/bein-sports)** en 2025-2026. Tous les matchs sont inclus, à partir de **15 €/mois**. Il n'existe pas de diffusion gratuite en clair cette saison.
 
