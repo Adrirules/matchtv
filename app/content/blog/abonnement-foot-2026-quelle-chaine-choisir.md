@@ -35,11 +35,10 @@ Pour la prochaine saison 2026-2027, les 9 matchs seront diffusés en direct sur 
 
 Et la chaîne Ligue 1+ combien ça coûte ? Voici les tarifs :
 
-- **Pass Ligue 1** : 14,99 € par mois avec engagement 12 mois, ou 19,99 €/mois sans engagement (2 écrans simultanés)
-- **Pass Mobile** : 14,99 € par mois sans engagement, sur smartphones/tablettes/PC uniquement (1 écran)
-- **Pass -26 ans** : 9,99 € par mois sans engagement (1 écran, mobile uniquement)
+- **Ligue 1+ avec engagement 12 mois** : 14,99 €/mois (2 écrans simultanés)
+- **Ligue 1+ sans engagement** : 19,99 €/mois (2 écrans simultanés, résiliable à tout moment)
+- **Ligue 1+ annuel** : 179,99 €/an (soit 15 €/mois environ)
 
-Pour ceux qui n'ont plus la jeunesse et qui font attention à leur portefeuille le Pass Mobile fonctionne très bien en faisant une copie d'écran sur sa TV, ou en castant sur sa télé et sinon avec un bon vieux câble HDMI depuis son ordinateur.
 Et pour les plus malins, ceux qui veulent voir la ligue 1 pas cher, le pass Ligue 1 fonctionne pour 2 écrans en simultanés et peut se payer à deux avec un ami, à bon entendeur.
 
 Mais ce n'est pas tout, c'est là que ça se corse, l'abonnement DAZN vous donne aussi accès à la chaîne Ligue 1+ et vous propose un pack couplé DAZN + Ligue 1+ à 16,99 € par mois avec engagement 12 mois, ce qui inclut la Serie A, l'Eredivisie, la Jupiler Pro League, la Betclic Élite et des contenus comme le MMA ou encore la boxe.
@@ -136,10 +135,9 @@ En dehors de la Coupe du Monde, le foot gratuit se résume essentiellement aux m
 
 Soyons honnêtes, suivre le football en 2026 ça peut vite coûter cher. Si vous voulez tout voir, la Ligue 1, la Champions League, la Liga, la Premier League ; vous pouvez facilement dépasser les 50 € par mois. Mais avec un peu de stratégie, on peut s'en tirer beaucoup mieux.
 
-**Le minimum syndical : 9,99 € par mois**
+**Le minimum syndical : 14,99 € par mois**
 
-Si vous avez moins de 26 ans, c'est le deal du siècle. Le Pass -26 ans de Ligue 1+ vous donne accès à toute la Ligue 1 pour 9,99 € par mois sans engagement. Pas d'excuse.
-Si vous avez passé la trentaine, que votre front grandit et que vos abdos sont un lointain souvenir, le Pass Mobile de Ligue 1+ est à 14,99 € par mois sans engagement. Certes c'est uniquement sur smartphone, tablette ou ordinateur, mais comme on l'a dit plus haut, un câble HDMI ou un Chromecast et vous êtes sur votre télé sans problème. Chauve et bedonnant mais malin !
+Ligue 1+ avec engagement 12 mois, c'est 14,99 €/mois pour 2 écrans simultanés. C'est le ticket d'entrée pour voir toute la Ligue 1 sans se ruiner. Et si vous ne voulez pas vous engager, c'est 19,99 €/mois sans contrainte - vous résiliez quand vous voulez avec 30 jours de préavis.
 
 **L'astuce du partage à deux : 7,50 € par mois chacun**
 
@@ -180,8 +178,8 @@ Franchement, pour 15 € par mois chez beIN Sports ou 14,99 € sur Ligue 1+, le
 
 | Profil | Solution | Budget |
 |--------|----------|--------|
-| Je veux juste la Ligue 1 | Ligue 1+ Pass Mobile | 14,99 €/mois |
-| J'ai moins de 26 ans | Ligue 1+ Pass -26 ans | 9,99 €/mois |
+| Je veux juste la Ligue 1 | [Ligue 1+](/chaines/dazn) avec engagement | 14,99 €/mois |
+| Je veux la Ligue 1 sans engagement | [Ligue 1+](/chaines/dazn) sans engagement | 19,99 €/mois |
 | Je veux la Ligue 1 + l'Europe | [DAZN](/chaines/dazn) + Ligue 1+ | 16,99 €/mois |
 | Je veux la Champions League | [Canal+](/chaines/canal-plus) classique | 19,99 €/mois |
 | Je veux tout | [Canal+](/chaines/canal-plus) Sport | 29,99 €/mois |
