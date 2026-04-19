@@ -65,8 +65,7 @@ Au-delà du foot :
 - Pour les fans de golf vous aurez la possibilité de suivre le LIV Tour, le circuit pro qui a fait débat et qui fait concurrence au PGA Tour
 
 Le tarif :
-Pour 9,99 € par mois les 3 premiers mois puis environ 16,99 € par mois avec un engagement 12 mois.
-Vous ne souhaitez pas vous engager, il vous faudra alors débourser 19,99 € pour avoir accès à la chaîne pendant un mois. Chez DAZN, s'engager c'est faire des économies.
+**9,99 € par mois avec engagement 12 mois**, ou **14,99 € par mois sans engagement**. Et si vous voulez le pack DAZN + Ligue 1+, c'est 16,99 €/mois avec engagement. Chez DAZN, s'engager c'est faire des économies.
 
 Ce qui est intéressant avec DAZN c'est que vous avez accès à la chaîne Ligue 1+ inclus dans l'abonnement. Donc si vous hésitez entre prendre Ligue 1+ seul à 14,99 € par mois ou DAZN avec Ligue 1+ à 16,99 € par mois, la différence est de seulement 2 euros par mois pour avoir en plus toute la Serie A et les autres compétitions. Pour nous le choix est vite fait.
 

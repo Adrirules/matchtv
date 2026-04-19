@@ -62,13 +62,14 @@ Soyons honnêtes, c'est le point qui fait hésiter.
 
 | Formule | Prix | Ce que ça inclut |
 |---------|------|-----------------|
+| DAZN avec engagement 12 mois | 9,99 €/mois | Serie A + sports |
+| DAZN sans engagement | 14,99 €/mois | Idem, sans contrainte |
 | DAZN + Ligue 1+ avec engagement | 16,99 €/mois | Serie A + Ligue 1 + sports |
-| DAZN + Ligue 1+ sans engagement | 21,99 €/mois | Idem, sans contrainte |
 | Via Canal+ Sport | à partir de 34,99 €/mois | Serie A + Champions League |
 
 *Les tarifs peuvent varier selon les offres en cours - vérifiez directement sur [DAZN](/chaines/dazn).*
 
-Le meilleur rapport qualité/prix reste **DAZN + Ligue 1+ à 16,99 €/mois** - pour 2 euros de plus que Ligue 1+ seul, tu as toute la Serie A en bonus. C'est le deal à prendre si tu suis les deux championnats. Notre [guide complet des abonnements foot](/blog/abonnement-foot-2026-quelle-chaine-choisir) compare toutes les offres en détail.
+Le meilleur rapport qualité/prix reste **DAZN + Ligue 1+ à 16,99 €/mois** avec engagement - pour 2 euros de plus que Ligue 1+ seul, tu as toute la Serie A en bonus. Et si tu t'engages sur 12 mois DAZN seul, c'est 9,99 €/mois - difficile de faire mieux pour tout un championnat. Notre [guide complet des abonnements foot](/blog/abonnement-foot-2026-quelle-chaine-choisir) compare toutes les offres en détail.
 
 Si tu suis vraiment la Serie A, ça devient vite rentable. Si tu regardes seulement les grosses affiches... ça se discute. C'est typiquement le genre d'abonnement que tu prends pour un Napoli-Juve et que tu gardes finalement pour un Atalanta-Fiorentina un dimanche soir.
 
