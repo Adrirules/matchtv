@@ -3,7 +3,7 @@
   Locals :
     - variant      (:standard | :urgent | :compact)  default: :standard
     - match        (objet Match optionnel, pour l'urgence temporelle)
-    - page_context (string GA4 : 'match', 'channel', 'competition', 'blog') default: 'site'
+    - page_context (string GA4 : 'match', 'channel', 'competition', 'blog', 'standing') default: 'site'
     - cta_index    (0..2 pour A/B CTA) default: 0
     - subtitle     (string optionnel pour surcharger le texte sous le titre)
 %>
@@ -12,7 +12,7 @@
 <% page_context = local_assigns.fetch(:page_context, "site") %>
 <% cta_index    = local_assigns.fetch(:cta_index, 0) %>
 <% match        = local_assigns.fetch(:match, nil) %>
-<% ctas = ["Regarder en direct sur DAZN", "Voir ce match sur DAZN", "Accéder à DAZN"] %>
+<% ctas = ["Regarder en direct sur DAZN", "Voir ce match sur DAZN", "S'abonner à DAZN"] %>
 <% cta_text  = ctas[cta_index % 3] %>
 <% ga_push   = "dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn',affiliate_page:'#{page_context}',affiliate_cta:#{cta_index % 3}})" %>
 
@@ -23,7 +23,6 @@
       onclick: ga_push do %>
     <%= cta_text %> →
   <% end %>
-  <span style="font-size: 11px; color: #94a3b8; margin-left: 4px;">(<%= link_to "lien affilié", nous_soutenir_path, style: "color: #94a3b8; text-decoration: underline;" %>)</span>
 
 <% else %>
   <%# Calcul urgence si match fourni %>
@@ -40,25 +39,24 @@
   <%# Texte sous le titre %>
   <% card_subtitle = local_assigns[:subtitle].presence ||
     (urgent_label ? "Ce match est diffusé en direct sur DAZN. Abonnez-vous en 2 minutes." :
-                    "Serie A, Eredivisie, Bundesliga et Ligue 1 - regardez le foot en direct sur DAZN.") %>
+                    "Serie A, Eredivisie et Ligue 1 - regardez le foot en direct sur DAZN.") %>
 
-  <div style="background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px 20px; margin: 22px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+  <div style="background: white; border: 1px solid #bfdbfe; border-radius: 10px; padding: 18px 20px; margin: 22px 0; box-shadow: 0 2px 8px rgba(59,130,246,0.07);">
     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
       <span style="font-size: 16px; font-weight: 900; letter-spacing: -0.5px; color: #fff; background: #010e1b; border-radius: 4px; padding: 2px 9px;">DAZN</span>
       <% if urgent_label %>
         <span style="background: #fef2f2; color: #ef4444; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.04em;"><%= urgent_label %></span>
       <% end %>
     </div>
-    <p style="margin: 0 0 14px; font-size: 14px; color: #475569; line-height: 1.5;"><%= card_subtitle %></p>
-    <%= link_to dazn_url, target: "_blank", rel: "nofollow sponsored noopener",
-        onclick: ga_push,
-        style: "display: inline-block; background: #010e1b; color: white; font-size: 14px; font-weight: 700; padding: 11px 20px; border-radius: 6px; text-decoration: none; transition: background 0.15s;",
-        onmouseover: "this.style.background='#1e293b'",
-        onmouseout:  "this.style.background='#010e1b'" do %>
-      <%= cta_text %> →
-    <% end %>
-    <p style="margin: 9px 0 0; font-size: 11px; color: #94a3b8;">
-      <%= link_to "Lien affilié - pourquoi ce lien ?", nous_soutenir_path, style: "color: #94a3b8; text-decoration: underline;" %>
-    </p>
+    <p style="margin: 0 0 16px; font-size: 14px; color: #475569; line-height: 1.5;"><%= card_subtitle %></p>
+    <div style="text-align: center;">
+      <%= link_to dazn_url, target: "_blank", rel: "nofollow sponsored noopener",
+          onclick: ga_push,
+          style: "display: inline-block; background: #3b82f6; color: white; font-size: 14px; font-weight: 700; padding: 11px 24px; border-radius: 6px; text-decoration: none; transition: background 0.15s;",
+          onmouseover: "this.style.background='#2563eb'",
+          onmouseout:  "this.style.background='#3b82f6'" do %>
+        <%= cta_text %> →
+      <% end %>
+    </div>
   </div>
 <% end %>

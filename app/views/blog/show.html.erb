@@ -82,6 +82,15 @@
     </nav>
   <% end %>
 
+  <%# Card affilié DAZN avant le contenu si l'article mentionne DAZN %>
+  <% if @article_html&.include?('DAZN') %>
+    <%= render 'shared/dazn_card',
+        variant: :standard,
+        page_context: 'blog',
+        cta_index: 0,
+        subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez tous les matchs sur DAZN." %>
+  <% end %>
+
   <%# Corps de l'article %>
   <div class="blog-content">
     <%= @article_html %>
@@ -168,14 +177,6 @@
         </div>
       <% end %>
     </div>
-  <% end %>
-
-  <%# Card affilié DAZN si l'article mentionne DAZN %>
-  <% if @article_html&.include?('DAZN') %>
-    <%= render 'shared/dazn_card',
-        variant: :standard,
-        page_context: 'blog',
-        cta_index: (@article[:slug]&.sum.to_i % 3) %>
   <% end %>
 
   <%# Bio auteur %>

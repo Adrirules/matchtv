@@ -49,6 +49,15 @@
     <% end %>
   <% end %>
 
+  <%# Card affilié DAZN sous le classement %>
+  <% if @matches.any? { |m| m.tv_channels&.include?('DAZN') } %>
+    <%= render 'shared/dazn_card',
+        variant: :standard,
+        page_context: 'competition',
+        cta_index: Zlib.crc32(@competition_name) % 3,
+        subtitle: "#{@competition_name} est diffusée en direct sur DAZN. Abonnez-vous pour voir tous les matchs." %>
+  <% end %>
+
   <%# Phases finales / bracket %>
   <%= render 'competitions/knockout_bracket', knockout_rounds: @knockout_rounds %>
 
@@ -75,15 +84,6 @@
   <% end %>
 
   <%= render 'shared/ad_unit', slot_id: '2773465276' %>
-
-  <%# Card affilié DAZN si cette compétition est diffusée sur DAZN %>
-  <% if @matches.any? { |m| m.tv_channels&.include?('DAZN') } %>
-    <%= render 'shared/dazn_card',
-        variant: :standard,
-        page_context: 'competition',
-        cta_index: Zlib.crc32(@competition_name) % 3,
-        subtitle: "#{@competition_name} est diffusée en direct sur DAZN. Abonnez-vous pour voir tous les matchs." %>
-  <% end %>
 
   <%# Liste des matchs %>
   <section>

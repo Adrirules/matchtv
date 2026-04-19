@@ -172,6 +172,17 @@
 
   <%= render 'shared/ad_unit', slot_id: '1499436694' %>
 
+  <%# Card affilié DAZN pour les ligues diffusées sur DAZN %>
+  <% dazn_standing_slugs = %w[serie-a eredivisie] %>
+  <% if dazn_standing_slugs.include?(params[:competition_id]) %>
+    <% league_label = params[:competition_id] == 'serie-a' ? 'Serie A' : 'Eredivisie' %>
+    <%= render 'shared/dazn_card',
+        variant: :standard,
+        page_context: 'standing',
+        cta_index: Zlib.crc32(params[:competition_id]) % 3,
+        subtitle: "Regardez tous les matchs de #{league_label} en direct sur DAZN. Serie A et Eredivisie inclus dès 16,99 €/mois." %>
+  <% end %>
+
   <% if @editorial_html.present? %>
     <div style="background: white; border-radius: 12px; padding: 18px; margin: 20px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.8;">
       <% @editorial_html.split("\n").reject(&:blank?).each do |para| %>
