@@ -76,6 +76,8 @@ Chercher un **match foot gratuit ce soir**, c'est devenu un sport de haut niveau
 | Équipe de France | [TF1](/chaines/tf1) / [M6](/chaines/m6) | **Gratuit** |
 | Coupe de France | France TV | **Gratuit** |
 
+<!-- DAZN_CARD -->
+
 ---
 
 ## FAQ : les questions que tout le monde se pose
@@ -101,3 +103,5 @@ Savoir quel **match de foot passe ce soir à la télé** ne devrait pas être au
 Mon conseil final : crée-toi un dossier "Foot" sur ton smartphone avec le lien vers [Coup d'Envoi TV](https://www.coupdenvoi.tv) en favori. Ca t'évitera de rater le prochain triplé de ton attaquant préféré parce que tu cherchais la chaîne.
 
 **Bon match !**
+
+<!-- DAZN_CARD -->
