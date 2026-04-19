@@ -121,6 +121,18 @@
     <% end %>
   </div>
 
+  <%# ---- Card affilié DAZN (matchs à venir sur DAZN uniquement) ---- %>
+  <% if !is_finished && !is_live && @match.tv_channels&.include?('DAZN') %>
+    <% mins_left = ((@match.start_time - Time.current) / 60).to_i rescue 999 %>
+    <% dazn_variant = (mins_left >= 0 && mins_left < 180) ? :urgent : :standard %>
+    <%= render 'shared/dazn_card',
+        variant: dazn_variant,
+        match: @match,
+        page_context: 'match',
+        cta_index: @match.id % 3,
+        subtitle: "Ce match est diffusé sur DAZN. Abonnez-vous pour le regarder en direct." %>
+  <% end %>
+
   <%# ---- Timeline des événements ---- %>
   <% if @events&.any? %>
     <section id="match-timeline" style="margin: 25px 0; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">

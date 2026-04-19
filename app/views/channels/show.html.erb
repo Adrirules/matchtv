@@ -70,7 +70,16 @@
     </section>
   <% end %>
 
-  <%# 2. Prochains matchs %>
+  <%# 2. Card affilié DAZN (page DAZN uniquement) %>
+  <% if @channel[:slug] == 'dazn' %>
+    <%= render 'shared/dazn_card',
+        variant: :standard,
+        page_context: 'channel-dazn',
+        cta_index: 0,
+        subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez tous les matchs DAZN en direct et en replay." %>
+  <% end %>
+
+  <%# 3. Prochains matchs %>
   <% if @matches.any? %>
     <section style="margin-bottom: 36px;">
       <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 16px;">Prochains matchs sur <%= @channel[:name] %></h2>

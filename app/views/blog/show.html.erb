@@ -170,6 +170,14 @@
     </div>
   <% end %>
 
+  <%# Card affilié DAZN si l'article mentionne DAZN %>
+  <% if @article_html&.include?('DAZN') %>
+    <%= render 'shared/dazn_card',
+        variant: :standard,
+        page_context: 'blog',
+        cta_index: (@article[:slug]&.sum.to_i % 3) %>
+  <% end %>
+
   <%# Bio auteur %>
   <div style="margin-top: 48px; padding: 20px; background: #f8f9fa; border-left: 3px solid #010e1b; border-radius: 4px;">
     <%= link_to "Adrien", blog_auteur_path, style: "font-size: 14px; font-weight: 700; margin: 0 0 6px; color: #010e1b; text-decoration: none; display: block;" %>

@@ -1,0 +1,65 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+
+<div style="max-width: 720px; margin: 0 auto; padding: 0 16px 60px;">
+
+  <nav style="font-size: 12px; color: #999; margin-bottom: 24px;">
+    <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+    <span>Nous soutenir</span>
+  </nav>
+
+  <h1 style="font-size: 26px; font-weight: 800; color: #010e1b; margin: 0 0 8px;">Nous soutenir</h1>
+  <p style="font-size: 14px; color: #64748b; margin: 0 0 36px;">Coup d'Envoi TV est un site indépendant, sans paywall, sans abonnement.</p>
+
+  <section style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px; margin-bottom: 24px;">
+    <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 14px;">Ce que ça coûte de faire tourner ce site</h2>
+    <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 14px;">
+      Coup d'Envoi TV consomme des données en temps réel pour t'afficher les scores, les horaires et les chaînes de diffusion. Derrière, il y a des coûts concrets chaque mois :
+    </p>
+    <ul style="font-size: 15px; color: #444; line-height: 1.8; padding-left: 20px; margin: 0 0 14px;">
+      <li>L'API Football qui alimente le programme TV et les résultats (abonnement mensuel)</li>
+      <li>Le serveur Heroku qui fait tourner le site 24h/24</li>
+      <li>L'API Groq pour générer les résumés et avant-matchs</li>
+    </ul>
+    <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0;">
+      Le site ne fait pas de pub agressive, pas de pop-ups, pas de paywalls. L'objectif c'est que ça reste simple et rapide. Mais pour que ça continue à exister, il faut bien rentrer dans les frais quelque part.
+    </p>
+  </section>
+
+  <section style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px; margin-bottom: 24px;">
+    <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 14px;">Les liens affiliés - ce que c'est, ce que c'est pas</h2>
+    <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 14px;">
+      Sur Coup d'Envoi TV, tu verras parfois des liens vers des plateformes comme <strong>DAZN</strong>. Ces liens sont des liens affiliés.
+    </p>
+    <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 14px;">
+      Concrètement : si tu cliques sur un de ces liens et que tu souscris un abonnement, on touche une petite commission. <strong>Pour toi, le prix ne change pas d'un centime</strong> - tu paies exactement le même tarif que si tu allais directement sur le site.
+    </p>
+    <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 14px;">
+      Ce que ça n'est pas : on ne recommande pas une plateforme parce qu'elle nous paie le mieux. On recommande ce qu'on recommanderait à un copain. DAZN avec Ligue 1+ à 16,99 €/mois c'est objectivement un bon deal si tu veux la Ligue 1 + l'Europe - avec ou sans lien affilié.
+    </p>
+    <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0;">
+      Les liens affiliés sont toujours signalés avec la mention <em>"lien affilié"</em> à proximité du bouton. Pas de surprise, pas de cache-cache.
+    </p>
+  </section>
+
+  <section style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px; margin-bottom: 24px;">
+    <h2 style="font-size: 18px; font-weight: 700; color: #010e1b; margin: 0 0 14px;">Partenaires actuels</h2>
+    <div style="display: flex; align-items: center; gap: 14px; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+      <span style="font-size: 18px; font-weight: 900; color: #fff; background: #010e1b; border-radius: 4px; padding: 3px 10px; flex-shrink: 0;">DAZN</span>
+      <div>
+        <p style="font-size: 14px; font-weight: 600; color: #010e1b; margin: 0 0 4px;">DAZN - streaming foot</p>
+        <p style="font-size: 13px; color: #64748b; margin: 0;">Serie A, Eredivisie, Bundesliga et Ligue 1 inclus. A partir de 16,99 €/mois.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #f8f9fa; border-radius: 12px; padding: 24px; border-left: 3px solid #010e1b;">
+    <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 10px;">
+      Si tu utilises un de ces liens, merci. Ca aide vraiment - chaque commission couvre quelques heures de serveur ou quelques centaines d'appels API. Ca permet au site d'exister et de s'améliorer.
+    </p>
+    <p style="font-size: 14px; color: #64748b; margin: 0;">
+      - Adrien, fondateur de Coup d'Envoi TV
+    </p>
+  </section>
+
+</div>

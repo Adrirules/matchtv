@@ -44,7 +44,8 @@ Rails.application.routes.draw do
   get "a-propos", to: "pages#about", as: :a_propos
   get "mentions-legales", to: "pages#legal", as: :mentions_legales
   get "politique-de-confidentialite", to: "pages#privacy", as: :politique_confidentialite
-  get "archives", to: "pages#archives", as: :archives
+  get "archives",        to: "pages#archives",  as: :archives
+  get "nous-soutenir",   to: "pages#soutenir",  as: :nous_soutenir
 
   # 7. MATCHS (EN DERNIER)
   # On le met en dernier pour qu'il ne "vole" pas les URLs des autres pages

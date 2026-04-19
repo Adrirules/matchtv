@@ -14,6 +14,12 @@ class PagesController < ApplicationController
   def privacy
   end
 
+  def soutenir
+    @page_title = "Nous soutenir - Coup d'Envoi TV"
+    @page_desc  = "Coup d'Envoi TV est un site indépendant. Découvrez comment nous soutenir et comprendre comment fonctionnent nos liens affiliés."
+    expires_in 24.hours, public: true
+  end
+
   def archives
     # Matchs terminés groupés par jour, triés du plus récent au plus ancien
     days_counts = Match.where(status: %w[FT AET PEN])
