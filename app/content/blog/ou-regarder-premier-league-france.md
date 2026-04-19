@@ -98,6 +98,16 @@ C'est un football qui se vit autant qu'il se regarde. Et c'est peut-être ça le
 
 ---
 
+## La Premier League vue de France : une histoire de joueurs
+
+Il y a un truc particulier dans le rapport des Français à la Premier League. On la suit depuis longtemps, mais on la suit différemment des autres championnats. On la suit à travers nos joueurs.
+
+Thierry Henry à Arsenal, c'est la raison pour laquelle une génération entière de Français a commencé à regarder la PL. Pas les droits TV, pas le marketing de la ligue. Un mec de la banlieue parisienne qui est devenu la meilleure version de lui-même sous la direction d'un coach alsacien dans un club de nord de Londres. Ce n'était pas de l'exportation de talent. C'était une romance. Vieira, Pires, Anelka, Petit - Arsenal à cette époque avait une âme française et une intensité anglaise. C'est cette combinaison qui nous a accrochés.
+
+Aujourd'hui c'est différent. Les joueurs français sont partout dans la ligue, pas concentrés dans un seul club. Ce qui fait qu'on a toujours une raison de regarder n'importe quel match. Saliba à Arsenal, Mbappé absent mais suivi de près, les Français en Premier League c'est devenu une institution dans l'institution.
+
+---
+
 ## Les affiches à ne pas rater cette saison
 
 Même si tu regardes peu, il y a des matchs qui s'imposent.

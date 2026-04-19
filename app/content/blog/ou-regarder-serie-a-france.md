@@ -119,6 +119,16 @@ Pour suivre le [classement Serie A 2025-2026](/classements/serie-a) en temps ré
 
 ---
 
+## La nuit où Naples a pleuré de joie
+
+Il y a une chose que tu ne comprends pas vraiment tant que tu ne l'as pas vue : ce que le Scudetto 2023 a représenté pour Naples.
+
+33 ans. C'est le temps qu'il avait fallu attendre entre le dernier titre de l'ère Maradona et cette nuit de mai 2023. Les images qui ont circulé ce soir-là - les scooters qui bloquent les rues, les feux d'artifice depuis chaque balcon, les gens qui pleurent dans les bras d'inconnus - c'était autre chose qu'une célébration sportive. C'était une ville entière qui se permettait enfin quelque chose qu'elle attendait depuis trop longtemps.
+
+Ce qui m'a frappé, c'est que des joueurs comme Osimhen ou Kvaratskhelia - arrivés depuis deux ans maximum - étaient déjà portés comme des dieux. En Italie, le temps est différent. On te juge sur ce que tu fais en ce moment, pas sur ce que tu promets. Et ces deux-là avaient tenu leur promesse. La Serie A a cette capacité à créer des mythes en une seule saison. C'est pour ça qu'on la regarde.
+
+---
+
 ## FAQ - Serie A en France
 
 ### La Serie A est-elle diffusée en clair en France ?

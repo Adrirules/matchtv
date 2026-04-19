@@ -89,6 +89,16 @@ Pour suivre le [classement Liga 2025-2026](/classements/la-liga) en temps réel,
 
 ---
 
+## Ce qu'on a perdu sans le savoir
+
+Pendant quinze ans, regarder la Liga c'était regarder Messi. Pas seulement Messi - mais Messi comme étalon. Chaque week-end, la question n'était pas "est-ce qu'il va marquer" mais "comment". Le dribble, la passe, la frappe enroulée depuis l'entrée de la surface - tu regardais un homme réinventer les limites du possible à un rythme de championnat hebdomadaire.
+
+Ce que j'ai réalisé seulement après son départ, c'est qu'on regardait sans vraiment réaliser qu'on était en train de voir quelque chose d'irremplaçable. Le présent est toujours trop évident pour être compris. On l'a compris quand c'était fini. La Liga sans Messi est toujours un bon championnat. Mais elle a une absence que tu sens dans les moments où tu attends quelque chose que personne d'autre ne peut donner.
+
+C'est peut-être pour ça qu'on regarde encore le Barça avec autant d'attention. Pas par nostalgie exactement. Plutôt par curiosité : est-ce que quelqu'un, un jour, va redonner à ce championnat ce sentiment-là ?
+
+---
+
 ## Les affiches à ne pas rater cette saison
 
 Bien sûr, il y a les évidences.
