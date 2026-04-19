@@ -42,7 +42,7 @@ Et la chaîne Ligue 1+ combien ça coûte ? Voici les tarifs :
 Pour ceux qui n'ont plus la jeunesse et qui font attention à leur portefeuille le Pass Mobile fonctionne très bien en faisant une copie d'écran sur sa TV, ou en castant sur sa télé et sinon avec un bon vieux câble HDMI depuis son ordinateur.
 Et pour les plus malins, ceux qui veulent voir la ligue 1 pas cher, le pass Ligue 1 fonctionne pour 2 écrans en simultanés et peut se payer à deux avec un ami, à bon entendeur.
 
-Mais ce n'est pas tout, c'est là que ça se corse, l'abonnement DAZN vous donne aussi accès à la chaîne Ligue 1+ et vous propose un pack couplé DAZN + Ligue 1+ à 9,99 € par mois pour les 3 premiers mois puis 16,99 € par mois, ce qui inclut la Serie A, l'Eredivisie, la Jupiler Pro League, la Betclic Élite et des contenus comme le MMA ou encore la boxe.
+Mais ce n'est pas tout, c'est là que ça se corse, l'abonnement DAZN vous donne aussi accès à la chaîne Ligue 1+ et vous propose un pack couplé DAZN + Ligue 1+ à 16,99 € par mois avec engagement 12 mois, ce qui inclut la Serie A, l'Eredivisie, la Jupiler Pro League, la Betclic Élite et des contenus comme le MMA ou encore la boxe.
 
 En résumé, si vous voulez voir uniquement la ligue 1, le plus facile est de prendre un abonnement sur le site ligue1plus.fr. En revanche, si vous voulez voir d'autres compétitions européennes c'est la chaîne DAZN qui sera le meilleur compromis et qui vous permettra de voir plus que du football pour 16,99 € par mois. DAZN devient vite le meilleur rapport qualité/prix. On vous explique ça juste en dessous.
 
