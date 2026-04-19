@@ -72,6 +72,8 @@ Ce qui est intéressant avec DAZN c'est que vous avez accès à la chaîne Ligue
 
 Mais attention, même avec DAZN on ne couvre pas toutes les compétitions. Voici ce que DAZN ne diffuse pas : la [Champions League](/competitions/champions-league), la [Premier League](/competitions/premier-league) ou la Liga. Pour avoir accès à ces championnats, il faudra regarder du côté de Canal+ et de beIN Sports. On vous détaille tout ça plus bas.
 
+<!-- DAZN_CARD -->
+
 ## Premier League, Ligue 2, Copa... ce que beIN Sports diffuse en 2026
 
 beIN Sports c'est LA chaîne de sport la plus complète du marché français si vous aimez les championnats étrangers. Et contrairement à ce qu'on pourrait croire, c'est aussi l'une des moins chères.
@@ -189,3 +191,5 @@ Franchement, pour 15 € par mois chez beIN Sports ou 14,99 € sur Ligue 1+, le
 Voilà, on espère que vous n'avez pas trop mal à la tête, on vous a évité des heures de comparaisons et maintenant vous avez toutes les cartes en main. Le foot en 2026 c'est fragmenté, c'est vrai on doit l'accepter mais avec le bon abonnement au bon prix, vous ne raterez plus aucun match.
 
 Et pour savoir ce soir précisément quel match est sur quelle chaîne, c'est sur [le programme TV de Coup d'Envoi TV](/) que ça se passe.
+
+<!-- DAZN_CARD -->

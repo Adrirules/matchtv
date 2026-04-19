@@ -91,9 +91,22 @@
         subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez tous les matchs sur DAZN." %>
   <% end %>
 
-  <%# Corps de l'article %>
+  <%# Corps de l'article — les marqueurs <!-- DAZN_CARD --> sont remplacés par le partial %>
   <div class="blog-content">
-    <%= @article_html %>
+    <% if @article_html&.include?('<!-- DAZN_CARD -->') %>
+      <% @article_html.split('<!-- DAZN_CARD -->').each_with_index do |chunk, i| %>
+        <%= chunk.html_safe %>
+        <% if i < @article_html.split('<!-- DAZN_CARD -->').length - 1 %>
+          <%= render 'shared/dazn_card',
+              variant: :standard,
+              page_context: 'blog-inline',
+              cta_index: i,
+              subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez le foot en direct sur DAZN." %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= @article_html %>
+    <% end %>
   </div>
 
   <%# Prochains derbies (dynamique) %>
