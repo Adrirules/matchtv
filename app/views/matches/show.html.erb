@@ -241,6 +241,22 @@
     <% end %>
   <% end %>
 
+  <%# Boutons de partage %>
+  <%
+    home = team_display_name(@match.home_team)
+    away = team_display_name(@match.away_team)
+    if is_finished && has_score
+      share_match_title = "#{home} #{@match.home_score}-#{@match.away_score} #{away} — Résultat #{@match.competition}"
+    else
+      heure = @match.start_time.strftime("%Hh%M")
+      share_match_title = "#{home} - #{away} #{date_label} à #{heure}"
+      share_match_title += " sur #{@match.tv_channels.split(',').first.strip}" if @match.tv_channels.present?
+    end
+  %>
+  <%= render 'shared/share_buttons',
+      share_url:   "https://www.coupdenvoi.tv/matchs/#{@match.slug}",
+      share_title: share_match_title %>
+
   <%= render 'shared/json_ld', match: @match %>
 
   <%# BreadcrumbList schema %>

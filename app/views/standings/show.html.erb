@@ -279,6 +279,11 @@
     <%= render 'shared/faq_accordion', items: faq_items, schema: true %>
   </div>
 
+  <%# Boutons de partage %>
+  <%= render 'shared/share_buttons',
+      share_url:   "https://www.coupdenvoi.tv/classements/#{params[:competition_id]}",
+      share_title: "Classement #{@league_name || @league_info[:name]} 2025-2026" %>
+
   <%# Lien vers autres classements %>
   <div style="margin-top: 8px;">
     <h2 style="font-size: 14px; font-weight: 700; color: #010e1b; margin-bottom: 10px;">Autres classements</h2>
