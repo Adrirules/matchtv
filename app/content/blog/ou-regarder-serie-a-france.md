@@ -62,9 +62,10 @@ Soyons honnêtes, c'est le point qui fait hésiter.
 
 | Formule | Prix | Ce que ça inclut |
 |---------|------|-----------------|
-| DAZN avec engagement 12 mois | 9,99 €/mois | Serie A + sports |
+| DAZN avec engagement 12 mois | 9,99 €/mois | Serie A + sports (sans Ligue 1) |
 | DAZN sans engagement | 14,99 €/mois | Idem, sans contrainte |
 | DAZN + Ligue 1+ avec engagement | 16,99 €/mois | Serie A + Ligue 1 + sports |
+| DAZN + Ligue 1+ sans engagement | 21,99 €/mois | Idem, résiliable à tout moment |
 | Via Canal+ Sport | à partir de 34,99 €/mois | Serie A + Champions League |
 
 *Les tarifs peuvent varier selon les offres en cours - vérifiez directement sur [DAZN](/chaines/dazn).*
