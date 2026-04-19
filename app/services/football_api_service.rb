@@ -86,7 +86,7 @@ class FootballApiService
     when 78 # Bundesliga
       "beIN Sports"
     when 135 # Serie A
-      "beIN Sports"
+      "DAZN"
     when 141 # Coupe du Roi
       "beIN Sports"
     when 2 # Champions League
