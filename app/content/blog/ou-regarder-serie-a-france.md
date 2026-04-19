@@ -5,7 +5,7 @@ slug: ou-regarder-serie-a-france
 published_at: 2026-04-24
 published_time: "10h47"
 author: Adrien
-image: https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1593&auto=format&fit=crop
+image: https://images.unsplash.com/photo-1629368858587-7ebd70d20946?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "Pendant une bonne partie de 2024-2025, la Serie A était introuvable en France. C'est réglé : DAZN diffuse tous les matchs en 2025-2026. Chaîne, prix, et pourquoi Napoli-Juve vaut l'abonnement."
 ---
