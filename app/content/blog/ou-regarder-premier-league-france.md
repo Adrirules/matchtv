@@ -5,9 +5,10 @@ slug: ou-regarder-premier-league-france
 published_at: 2026-04-27
 published_time: "09h23"
 author: Adrien
-image: https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+image: https://images.unsplash.com/photo-1665413813191-3143ec934960?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "En France, la Premier League passe exclusivement sur Canal+ jusqu'en 2028. Anfield, le Boxing Day, les 380 matchs - voilà ce qu'il faut savoir avant de s'abonner."
+dazn_card: false
 ---
 
 # Où regarder la Premier League en France en 2025-2026 ?
@@ -43,6 +44,8 @@ En France, la [Premier League](/competitions/premier-league) est diffusée exclu
 Concrètement, ça veut dire les 380 matchs de la saison, une diffusion sur Canal+, Canal+ Foot et Canal+ Live, et un accès en streaming via myCanal.
 
 Pas de DAZN. Pas de beIN Sports. Pas d'alternative légale. Si tu veux regarder la Premier League en France, tu passes par [Canal+](/chaines/canal-plus). Point.
+
+Si en revanche tu cherches où regarder la Serie A ou l'Eredivisie, c'est [DAZN](/blog/ou-regarder-serie-a-france) qu'il te faut — autre championnat, autre logique.
 
 ---
 

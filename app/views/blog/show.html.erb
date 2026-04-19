@@ -82,8 +82,8 @@
     </nav>
   <% end %>
 
-  <%# Card affilié DAZN avant le contenu si l'article mentionne DAZN %>
-  <% if @article_html&.include?('DAZN') %>
+  <%# Card affilié DAZN avant le contenu si l'article mentionne DAZN et que dazn_card n'est pas désactivé %>
+  <% if @article[:dazn_card] != false && @article_html&.include?('DAZN') %>
     <%= render 'shared/dazn_card',
         variant: :standard,
         page_context: 'blog',

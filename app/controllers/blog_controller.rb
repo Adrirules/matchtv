@@ -94,7 +94,8 @@ class BlogController < ApplicationController
       derby_pairs:       meta['derby_pairs'],
       match_pairs_title: meta['match_pairs_title'],
       match_groups:      meta['match_groups'],
-      reading_time:      reading_time
+      reading_time:      reading_time,
+      dazn_card:         meta.key?('dazn_card') ? meta['dazn_card'] : true
     }
     result[:body] = body_text if with_body
     result
