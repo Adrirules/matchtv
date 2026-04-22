@@ -21,6 +21,7 @@ class FootballApiService
     { id: 94,  name: "Liga Portugal",      country: "Portugal",        has_standings: true  },
     { id: 141, name: "Coupe du Roi",        country: "Espagne",         has_standings: false },
     { id: 137, name: "Coppa Italia",        country: "Italie",          has_standings: false },
+    { id: 81,  name: "DFB Pokal",           country: "Allemagne",       has_standings: false },
     { id: 40,  name: "Championship",        country: "Angleterre",      has_standings: true  },
     { id: 144, name: "Jupiler Pro League",  country: "Belgique",        has_standings: true  },
     { id: 253, name: "Major League Soccer", country: "USA",             has_standings: true  },
@@ -50,6 +51,7 @@ class FootballApiService
     64  => "D1 Féminine",
     141 => "Coupe du Roi",
     137 => "Coppa Italia",
+    81  => "DFB Pokal",
     40  => "Championship",
     144 => "Jupiler Pro League",
     66  => "Coupe de France",
@@ -96,6 +98,8 @@ class FootballApiService
     when 141 # Coupe du Roi
       "beIN Sports"
     when 137 # Coppa Italia
+      "beIN Sports"
+    when 81 # DFB Pokal
       "beIN Sports"
     when 40 # Championship
       "beIN Sports"
