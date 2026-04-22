@@ -1,5 +1,6 @@
 class ShareReportMailer < ApplicationMailer
   REPORT_TO = "coupdenvoi.tv@gmail.com"
+  MONTHS_FR = %w[janvier février mars avril mai juin juillet août septembre octobre novembre décembre].freeze
 
   def weekly_report
     @week_start  = 7.days.ago.beginning_of_day
@@ -16,6 +17,8 @@ class ShareReportMailer < ApplicationMailer
     @trends = build_trends(@top_week, prev_top)
 
     @generated_at = Time.current.strftime("%d/%m/%Y à %Hh%M")
+    @month_fr = MONTHS_FR[Date.today.month - 1]
+    @year     = Date.today.year
 
     mail(
       to:      REPORT_TO,
@@ -28,26 +31,31 @@ class ShareReportMailer < ApplicationMailer
   def top_pages(since:, before: nil, limit: 10)
     scope = ShareClick.where(created_at: since..)
     scope = scope.where(created_at: ..before) if before
-    scope.group(:page_url, :platform)
-         .order("count_all desc")
-         .limit(limit * 3)
-         .count
-         .each_with_object(Hash.new(0)) { |((url, platform), n), h| h[url] += n }
-         .sort_by { |_, n| -n }
-         .first(limit)
+
+    counts = scope.group(:page_url, :platform).count
+    # counts = { ["url", "whatsapp"] => 5, ["url", "x"] => 3, ... }
+
+    by_url = counts.each_with_object({}) do |((url, platform), n), h|
+      h[url] ||= { whatsapp: 0, x: 0 }
+      h[url][platform.to_sym] = (h[url][platform.to_sym] || 0) + n
+    end
+
+    by_url.map { |url, p|
+      { url: url, whatsapp: p[:whatsapp], x: p[:x], total: p[:whatsapp] + p[:x] }
+    }.sort_by { |r| -r[:total] }.first(limit)
   end
 
   def build_trends(current, previous)
-    prev_rank = previous.each_with_index.to_h { |(url, _), i| [url, i + 1] }
-    current.each_with_index.map do |(url, count), i|
+    prev_rank = previous.each_with_index.to_h { |row, i| [row[:url], i + 1] }
+    current.each_with_index.map do |row, i|
       rank_now  = i + 1
-      rank_prev = prev_rank[url]
-      trend = if rank_prev.nil?        then "🆕"
-              elsif rank_now < rank_prev then "↑"
-              elsif rank_now > rank_prev then "↓"
-              else                           "="
-              end
-      { url: url, count: count, trend: trend }
+      rank_prev = prev_rank[row[:url]]
+      trend = if rank_prev.nil?         then "🆕"
+               elsif rank_now < rank_prev then "↑"
+               elsif rank_now > rank_prev then "↓"
+               else                           "="
+               end
+      row.merge(trend: trend)
     end
   end
 end

@@ -26,22 +26,31 @@
         <%# Section : cette semaine avec trends %>
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:36px;">
           <tr>
-            <td colspan="3" style="padding-bottom:12px; border-bottom:2px solid #010e1b;">
+            <td colspan="5" style="padding-bottom:12px; border-bottom:2px solid #010e1b;">
               <p style="margin:0; font-size:16px; font-weight:700; color:#010e1b;">Cette semaine</p>
               <p style="margin:2px 0 0; font-size:12px; color:#64748b;">du <%= 7.days.ago.strftime('%d/%m') %> au <%= Date.today.strftime('%d/%m') %> — vs semaine précédente</p>
             </td>
           </tr>
-          <% if @top_week.empty? %>
-            <tr><td colspan="3" style="padding:16px 0; color:#94a3b8; font-size:14px;">Aucun partage cette semaine.</td></tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:6px 8px 6px 0; width:24px;"></td>
+            <td style="padding:6px 8px; font-size:11px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Page</td>
+            <td style="padding:6px 4px; font-size:11px; font-weight:600; color:#25d366; text-align:right; white-space:nowrap;">WA</td>
+            <td style="padding:6px 4px; font-size:11px; font-weight:600; color:#1da1f2; text-align:right; white-space:nowrap;">X</td>
+            <td style="padding:6px 0 6px 8px; font-size:11px; font-weight:600; color:#64748b; text-align:right; white-space:nowrap;">Total</td>
+          </tr>
+          <% if @trends.empty? %>
+            <tr><td colspan="5" style="padding:16px 0; color:#94a3b8; font-size:14px;">Aucun partage cette semaine.</td></tr>
           <% else %>
             <% @trends.each_with_index do |row, i| %>
               <tr style="border-bottom:1px solid #f1f5f9;">
                 <td style="padding:10px 8px 10px 0; width:24px; font-size:13px; font-weight:700; color:#94a3b8;"><%= i + 1 %></td>
                 <td style="padding:10px 8px; font-size:13px; color:#0f172a; word-break:break-all;">
-                  <a href="https://www.coupdenvoi.tv<%= row[:url] %>" style="color:#1a73e8; text-decoration:none;"><%= row[:url].truncate(60) %></a>
+                  <a href="https://www.coupdenvoi.tv<%= row[:url] %>" style="color:#1a73e8; text-decoration:none;"><%= row[:url].truncate(55) %></a>
                 </td>
+                <td style="padding:10px 4px; text-align:right; font-size:13px; color:#25d366; font-weight:600; white-space:nowrap;"><%= row[:whatsapp] > 0 ? row[:whatsapp] : '-' %></td>
+                <td style="padding:10px 4px; text-align:right; font-size:13px; color:#1da1f2; font-weight:600; white-space:nowrap;"><%= row[:x] > 0 ? row[:x] : '-' %></td>
                 <td style="padding:10px 0 10px 8px; text-align:right; white-space:nowrap;">
-                  <span style="font-size:14px; font-weight:700; color:#0f172a;"><%= row[:count] %></span>
+                  <span style="font-size:14px; font-weight:700; color:#0f172a;"><%= row[:total] %></span>
                   <span style="font-size:14px; margin-left:6px; color:<%= row[:trend] == '↑' || row[:trend] == '🆕' ? '#16a34a' : row[:trend] == '↓' ? '#dc2626' : '#64748b' %>;">
                     <%= row[:trend] %>
                   </span>
@@ -54,21 +63,30 @@
         <%# Section : ce mois %>
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:36px;">
           <tr>
-            <td colspan="3" style="padding-bottom:12px; border-bottom:2px solid #e2e8f0;">
+            <td colspan="5" style="padding-bottom:12px; border-bottom:2px solid #e2e8f0;">
               <p style="margin:0; font-size:16px; font-weight:700; color:#010e1b;">Ce mois-ci</p>
-              <p style="margin:2px 0 0; font-size:12px; color:#64748b;">depuis le 1er <%= Date.today.strftime('%B %Y') %></p>
+              <p style="margin:2px 0 0; font-size:12px; color:#64748b;">depuis le 1er <%= @month_fr %> <%= @year %></p>
             </td>
           </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:6px 8px 6px 0; width:24px;"></td>
+            <td style="padding:6px 8px; font-size:11px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Page</td>
+            <td style="padding:6px 4px; font-size:11px; font-weight:600; color:#25d366; text-align:right; white-space:nowrap;">WA</td>
+            <td style="padding:6px 4px; font-size:11px; font-weight:600; color:#1da1f2; text-align:right; white-space:nowrap;">X</td>
+            <td style="padding:6px 0 6px 8px; font-size:11px; font-weight:600; color:#64748b; text-align:right; white-space:nowrap;">Total</td>
+          </tr>
           <% if @top_month.empty? %>
-            <tr><td colspan="3" style="padding:16px 0; color:#94a3b8; font-size:14px;">Aucun partage ce mois.</td></tr>
+            <tr><td colspan="5" style="padding:16px 0; color:#94a3b8; font-size:14px;">Aucun partage ce mois.</td></tr>
           <% else %>
-            <% @top_month.each_with_index do |(url, count), i| %>
+            <% @top_month.each_with_index do |row, i| %>
               <tr style="border-bottom:1px solid #f1f5f9;">
                 <td style="padding:10px 8px 10px 0; width:24px; font-size:13px; font-weight:700; color:#94a3b8;"><%= i + 1 %></td>
                 <td style="padding:10px 8px; font-size:13px; color:#0f172a; word-break:break-all;">
-                  <a href="https://www.coupdenvoi.tv<%= url %>" style="color:#1a73e8; text-decoration:none;"><%= url.truncate(60) %></a>
+                  <a href="https://www.coupdenvoi.tv<%= row[:url] %>" style="color:#1a73e8; text-decoration:none;"><%= row[:url].truncate(55) %></a>
                 </td>
-                <td style="padding:10px 0 10px 8px; text-align:right; font-size:14px; font-weight:700; color:#0f172a;"><%= count %></td>
+                <td style="padding:10px 4px; text-align:right; font-size:13px; color:#25d366; font-weight:600; white-space:nowrap;"><%= row[:whatsapp] > 0 ? row[:whatsapp] : '-' %></td>
+                <td style="padding:10px 4px; text-align:right; font-size:13px; color:#1da1f2; font-weight:600; white-space:nowrap;"><%= row[:x] > 0 ? row[:x] : '-' %></td>
+                <td style="padding:10px 0 10px 8px; text-align:right; font-size:14px; font-weight:700; color:#0f172a; white-space:nowrap;"><%= row[:total] %></td>
               </tr>
             <% end %>
           <% end %>
@@ -77,20 +95,29 @@
         <%# Section : cette année %>
         <table width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td colspan="3" style="padding-bottom:12px; border-bottom:2px solid #e2e8f0;">
-              <p style="margin:0; font-size:16px; font-weight:700; color:#010e1b;">Depuis le 1er janvier <%= Date.today.year %></p>
+            <td colspan="5" style="padding-bottom:12px; border-bottom:2px solid #e2e8f0;">
+              <p style="margin:0; font-size:16px; font-weight:700; color:#010e1b;">Depuis le 1er janvier <%= @year %></p>
             </td>
           </tr>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:6px 8px 6px 0; width:24px;"></td>
+            <td style="padding:6px 8px; font-size:11px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Page</td>
+            <td style="padding:6px 4px; font-size:11px; font-weight:600; color:#25d366; text-align:right; white-space:nowrap;">WA</td>
+            <td style="padding:6px 4px; font-size:11px; font-weight:600; color:#1da1f2; text-align:right; white-space:nowrap;">X</td>
+            <td style="padding:6px 0 6px 8px; font-size:11px; font-weight:600; color:#64748b; text-align:right; white-space:nowrap;">Total</td>
+          </tr>
           <% if @top_year.empty? %>
-            <tr><td colspan="3" style="padding:16px 0; color:#94a3b8; font-size:14px;">Aucun partage cette année.</td></tr>
+            <tr><td colspan="5" style="padding:16px 0; color:#94a3b8; font-size:14px;">Aucun partage cette année.</td></tr>
           <% else %>
-            <% @top_year.each_with_index do |(url, count), i| %>
+            <% @top_year.each_with_index do |row, i| %>
               <tr style="border-bottom:1px solid #f1f5f9;">
                 <td style="padding:10px 8px 10px 0; width:24px; font-size:13px; font-weight:700; color:#94a3b8;"><%= i + 1 %></td>
                 <td style="padding:10px 8px; font-size:13px; color:#0f172a; word-break:break-all;">
-                  <a href="https://www.coupdenvoi.tv<%= url %>" style="color:#1a73e8; text-decoration:none;"><%= url.truncate(60) %></a>
+                  <a href="https://www.coupdenvoi.tv<%= row[:url] %>" style="color:#1a73e8; text-decoration:none;"><%= row[:url].truncate(55) %></a>
                 </td>
-                <td style="padding:10px 0 10px 8px; text-align:right; font-size:14px; font-weight:700; color:#0f172a;"><%= count %></td>
+                <td style="padding:10px 4px; text-align:right; font-size:13px; color:#25d366; font-weight:600; white-space:nowrap;"><%= row[:whatsapp] > 0 ? row[:whatsapp] : '-' %></td>
+                <td style="padding:10px 4px; text-align:right; font-size:13px; color:#1da1f2; font-weight:600; white-space:nowrap;"><%= row[:x] > 0 ? row[:x] : '-' %></td>
+                <td style="padding:10px 0 10px 8px; text-align:right; font-size:14px; font-weight:700; color:#0f172a; white-space:nowrap;"><%= row[:total] %></td>
               </tr>
             <% end %>
           <% end %>
