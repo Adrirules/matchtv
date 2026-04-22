@@ -2,7 +2,7 @@ namespace :rounds do
   desc "Backfill round data for knockout competitions via API"
   task backfill: :environment do
     # Compétitions dont on veut les rounds (knockout ou phases finales)
-    knockout_league_ids = [2, 3, 848, 66, 141, 1]
+    knockout_league_ids = [2, 3, 848, 66, 137, 141, 1]
 
     api = FootballApiService.new
     total_updated = 0
