@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "Coup d'Envoi TV <#{ENV.fetch('GMAIL_USER', 'coupdenvoi@gmail.com')}>"
   layout "mailer"
 end
