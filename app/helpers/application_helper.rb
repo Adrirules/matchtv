@@ -398,7 +398,7 @@ module ApplicationHelper
     "haiti"                => "grenadiers",
     "iraq"                 => "irak",
     "australia"            => "australie socceroos",
-    "austria"              => "autriche",
+    "austria"              => "autriche wunderteam",
     "uzbekistan"           => "ouzbekistan",
     "tunisia"              => "tunisie aigles",
     "algeria"              => "algerie fennecs",
@@ -409,7 +409,6 @@ module ApplicationHelper
     "romania"              => "roumanie",
     "hungary"              => "hongrie",
     "denmark"              => "danemark",
-    "austria"              => "autriche wunderteam",
   }.freeze
 
   def team_search_aliases(slug)
