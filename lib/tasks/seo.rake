@@ -27,42 +27,111 @@ namespace :seo do
       label          = "#{current_start.strftime('%d/%m')} au #{current_end.strftime('%d/%m/%Y')}"
     end
 
-    current  = gsc.top_pages(start_date: current_start,  end_date: current_end,  limit: 25)
-    previous = gsc.top_pages(start_date: previous_start, end_date: previous_end, limit: 25)
+    # Période N-52 (même fenêtre l'an dernier — saisonnalité)
+    year_ago_start = current_start - 365
+    year_ago_end   = current_end   - 365
+
+    current          = gsc.top_pages(start_date: current_start,  end_date: current_end,   limit: 50)
+    previous         = gsc.top_pages(start_date: previous_start, end_date: previous_end,  limit: 50)
+    year_ago         = gsc.top_pages(start_date: year_ago_start, end_date: year_ago_end,  limit: 50)
     summary_current  = gsc.summary(start_date: current_start,  end_date: current_end)
     summary_previous = gsc.summary(start_date: previous_start, end_date: previous_end)
+    summary_year_ago = gsc.summary(start_date: year_ago_start,  end_date: year_ago_end)
 
-    # Contexte football depuis la DB
-    active_competitions = Match.where(start_time: Date.today..(Date.today + 30))
-                               .distinct.pluck(:competition).compact.uniq.first(10)
-    recent_competitions = Match.where(start_time: (Date.today - 14)..Date.today)
-                               .distinct.pluck(:competition).compact.uniq.first(10)
+    # Requêtes top 200 (impressions > 50 OU clics > 0)
+    top_queries      = gsc.top_queries(start_date: current_start, end_date: current_end, limit: 200)
 
-    # Delta position page par page
-    prev_map = previous.index_by { |r| r[:page] }
+    # Requêtes x pages (cannibalisation)
+    queries_by_page  = gsc.queries_by_page(start_date: current_start, end_date: current_end, limit: 200)
+
+    # Cannibalisation : plusieurs pages sur la même requête
+    cannibalization = queries_by_page
+      .group_by { |r| r[:query] }
+      .select   { |_, rows| rows.size > 1 && rows.sum { |r| r[:impressions] } > 50 }
+      .map do |q, rows|
+        { query: q, pages: rows.map { |r| { page: r[:page], type: r[:type], impressions: r[:impressions], position: r[:position] } } }
+      end
+      .sort_by  { |r| -r[:pages].sum { |p| p[:impressions] } }
+      .first(20)
+
+    # Delta WoW et N-52 par page
+    prev_map     = previous.index_by { |r| r[:page] }
+    year_ago_map = year_ago.index_by  { |r| r[:page] }
     pages_with_delta = current.map do |r|
       prev = prev_map[r[:page]]
+      ya   = year_ago_map[r[:page]]
       r.merge(
-        prev_position: prev&.dig(:position),
-        delta_pos:     prev ? (r[:position] - prev[:position]).round(1) : nil,
-        is_new:        prev.nil?
+        prev_position:    prev&.dig(:position),
+        delta_pos_wow:    prev ? (r[:position] - prev[:position]).round(1) : nil,
+        delta_pos_yoy:    ya   ? (r[:position] - ya[:position]).round(1)   : nil,
+        impressions_yoy:  ya&.dig(:impressions),
+        is_new:           prev.nil?
       )
     end
 
-    output = {
-      period:         period,
-      label:          label,
-      generated_at:   Date.today.strftime("%d/%m/%Y"),
-      summary: {
-        current:  summary_current,
-        previous: summary_previous
-      },
-      pages:          pages_with_delta,
-      football_context: {
-        active_competitions:  active_competitions,
-        recent_competitions:  recent_competitions,
-        today:                Date.today.strftime("%d/%m/%Y")
+    # Segmentation par type de page
+    by_type = pages_with_delta.group_by { |r| r[:type] }.transform_values do |pages|
+      {
+        count:       pages.size,
+        impressions: pages.sum { |p| p[:impressions] },
+        clicks:      pages.sum { |p| p[:clicks] },
+        avg_ctr:     pages.any? ? (pages.sum { |p| p[:ctr] } / pages.size).round(1) : 0,
+        avg_pos:     pages.any? ? (pages.sum { |p| p[:position] } / pages.size).round(1) : 0
       }
+    end
+
+    # Contexte football depuis la DB
+    today = Date.today
+    active_competitions  = Match.where(start_time: today..(today + 30)).distinct.pluck(:competition).compact.uniq.first(12)
+    ending_soon          = Match.where(start_time: today..(today + 14)).distinct.pluck(:competition).compact.uniq.first(8)
+    recent_competitions  = Match.where(start_time: (today - 14)..today).distinct.pluck(:competition).compact.uniq.first(10)
+    next_big_matches     = Match.where(start_time: today..(today + 7))
+                                .where("competition IN (?)", %w[Champions\ League Ligue\ 1 Premier\ League La\ Liga Bundesliga Serie\ A])
+                                .order(:start_time).limit(10)
+                                .pluck(:home_team, :away_team, :competition, :start_time)
+                                .map { |h, a, c, t| "#{h} vs #{a} (#{c}) le #{t.strftime('%d/%m')}" }
+
+    # Pages existantes (anti-hallucination maillage interne)
+    existing_pages = {
+      competitions: FootballApiService::COMPETITIONS_META.map { |c| c[:name] },
+      blog_articles: Dir[Rails.root.join("app/content/blog/*.md")].map { |f| File.basename(f, ".md") }.sort,
+      chaines: %w[canal-plus bein-sports dazn amazon-prime-video rmc-sport france-tv tf1 m6],
+      top_teams: Match.where(start_time: (today - 90)..)
+                      .flat_map { |m| [m.home_team, m.away_team] }
+                      .compact.tally.sort_by { |_, n| -n }.first(30).map(&:first)
+    }
+
+    # Agenda droits TV (dates clés hardcodées + saisonnalité)
+    tv_rights_calendar = [
+      { event: "Reprise Ligue 1 2026-2027",          date: "2026-08-15", canal: "DAZN + beIN Sports",    note: "Fort pic de recherche 3 semaines avant" },
+      { event: "Champions League phase de groupes",   date: "2026-09-15", canal: "Canal+",                note: "Pics sur pages LDC + équipes européennes" },
+      { event: "Coupe du Monde 2026 — phase groupes", date: "2026-06-11", canal: "TF1 + beIN + Canal+",   note: "Compétition majeure en cours — forte saisonnalité" },
+      { event: "Coupe du Monde 2026 — finale",        date: "2026-07-19", canal: "TF1",                   note: "Pic maximal — anticiper contenu résumés/stats" },
+      { event: "Euro Espoirs 2025",                   date: "2025-06-11", canal: "L'Equipe / France TV",  note: "Audience modérée mais public jeune" },
+    ].select { |e| Date.parse(e[:date]) >= today - 7 rescue false }
+
+    output = {
+      period:       period,
+      label:        label,
+      generated_at: today.strftime("%d/%m/%Y"),
+      summary: {
+        current:   summary_current,
+        previous:  summary_previous,
+        year_ago:  summary_year_ago
+      },
+      pages:             pages_with_delta,
+      by_type:           by_type,
+      top_queries:       top_queries,
+      cannibalization:   cannibalization,
+      football_context: {
+        today:                today.strftime("%d/%m/%Y"),
+        active_competitions:  active_competitions,
+        ending_soon:          ending_soon,
+        recent_competitions:  recent_competitions,
+        next_big_matches:     next_big_matches,
+        tv_rights_calendar:   tv_rights_calendar
+      },
+      existing_pages: existing_pages
     }
 
     puts JSON.pretty_generate(output)
