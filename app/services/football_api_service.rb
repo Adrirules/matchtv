@@ -95,7 +95,7 @@ class FootballApiService
       "Canal+ / beIN Sports"
     when 848 # Conference League
       "Canal+"
-    when 193 # D1 Féminine
+    when 64 # D1 Féminine
       "Canal+ Foot"
     when 66 # Coupe de France
       "France TV / beIN Sports"

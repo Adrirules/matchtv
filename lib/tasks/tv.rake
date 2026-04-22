@@ -30,8 +30,8 @@ namespace :tv do
     puts "🔍 #{lignes.count} matchs trouvés sur Maxifoot"
 
     db_matches.each do |m|
-      home_clean = m.home_team.downcase.gsub(/1\.\s|fc\s|rb\s|vfl\s|as\s|og[sc]\s|sc\s/, "").strip
-      away_clean = m.away_team.downcase.gsub(/1\.\s|fc\s|rb\s|vfl\s|as\s|og[sc]\s|sc\s/, "").strip
+      home_clean = m.home_team.downcase.gsub(/\s+w$/, "").gsub(/1\.\s|fc\s|rb\s|vfl\s|as\s|og[sc]\s|sc\s/, "").strip
+      away_clean = m.away_team.downcase.gsub(/\s+w$/, "").gsub(/1\.\s|fc\s|rb\s|vfl\s|as\s|og[sc]\s|sc\s/, "").strip
       home_root = home_clean[0..6]
       away_root = away_clean[0..6]
 
@@ -88,6 +88,21 @@ namespace :tv do
       end
     end
 
-    puts "✨ Terminé ! #{updated_count} chaînes mises à jour."
+    puts "✨ #{updated_count} chaînes mises à jour via Maxifoot."
+
+    # Fallback : pour les matchs encore "À confirmer", appliquer guess_tv_channel par compétition
+    svc = FootballApiService.new
+    fallback_count = 0
+    db_matches.where(tv_channels: ['À confirmer', nil, '']).each do |m|
+      meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == m.competition }
+      next unless meta
+      guessed = svc.guess_tv_channel(meta[:id], m.start_time)
+      next if guessed == 'À confirmer'
+      m.update(tv_channels: guessed)
+      puts "🔧 #{m.home_team} vs #{m.away_team} → #{guessed} (fallback #{m.competition})"
+      fallback_count += 1
+    end
+    puts "🔧 #{fallback_count} chaînes ajoutées par fallback compétition."
+    puts "✨ Terminé !"
   end
 end
