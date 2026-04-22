@@ -141,8 +141,12 @@ namespace :seo do
   # seo:send_weekly  — appelé par la Routine avec CLAUDE_ANALYSIS
   # seo:send_monthly — idem
   # ---------------------------------------------------------------
-  desc "Envoie le rapport SEO hebdo (CLAUDE_ANALYSIS=... optionnel)"
+  desc "Envoie le rapport SEO hebdo (mercredi uniquement, CLAUDE_ANALYSIS=... optionnel)"
   task send_weekly: :environment do
+    unless Date.today.wednesday?
+      puts "⏭️  Pas mercredi (#{Date.today.strftime('%A')}) — envoi ignoré"
+      next
+    end
     gsc = GscService.new
 
     wday          = Date.today.wday == 0 ? 7 : Date.today.wday
@@ -173,8 +177,12 @@ namespace :seo do
     raise
   end
 
-  desc "Envoie le rapport SEO mensuel (CLAUDE_ANALYSIS=... optionnel)"
+  desc "Envoie le rapport SEO mensuel (4ème jour du mois uniquement, CLAUDE_ANALYSIS=... optionnel)"
   task send_monthly: :environment do
+    unless Date.today.day == 4
+      puts "⏭️  Pas le 4 du mois (aujourd'hui : #{Date.today.day}) — envoi ignoré"
+      next
+    end
     gsc = GscService.new
 
     current_start  = Date.today.prev_month.beginning_of_month
