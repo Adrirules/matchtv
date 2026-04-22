@@ -7,7 +7,7 @@ class FootballApiService
     { id: 2,   name: "Champions League",   country: "Europe",          has_standings: true  },
     { id: 39,  name: "Premier League",     country: "Angleterre",      has_standings: true  },
     { id: 62,  name: "Ligue 2",            country: "France",          has_standings: true  },
-    { id: 529, name: "Coupe de France",    country: "France",          has_standings: false },
+    { id: 66,  name: "Coupe de France",    country: "France",          has_standings: false },
     { id: 3,   name: "Europa League",      country: "Europe",          has_standings: true  },
     { id: 140, name: "La Liga",            country: "Espagne",         has_standings: true  },
     { id: 78,  name: "Bundesliga",         country: "Allemagne",       has_standings: true  },
@@ -46,7 +46,7 @@ class FootballApiService
     848 => "Conference League",
     64  => "D1 Féminine",
     141 => "Coupe du Roi",
-    529 => "Coupe de France",
+    66  => "Coupe de France",
     88  => "Eredivisie",
     94  => "Liga Portugal",
     203 => "Süper Lig",
@@ -97,7 +97,7 @@ class FootballApiService
       "Canal+"
     when 193 # D1 Féminine
       "Canal+ Foot"
-    when 529 # Coupe de France
+    when 66 # Coupe de France
       "France TV / beIN Sports"
     when 88 # Eredivisie
       "DAZN"
