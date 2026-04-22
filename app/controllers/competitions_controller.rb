@@ -58,7 +58,7 @@ class CompetitionsController < ApplicationController
                     .limit(50)
 
     # Phases finales / bracket pour les compétitions à élimination directe
-    knockout_league_ids = [2, 3, 848, 66, 141, 1]
+    knockout_league_ids = [2, 3, 848, 66, 137, 141, 1]
     if meta && knockout_league_ids.include?(meta[:id])
       knockout_rounds = Match.where("competition ILIKE ?", "%#{@competition_name}%")
                              .where.not(round: [nil, ''])

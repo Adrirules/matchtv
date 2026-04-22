@@ -19,8 +19,11 @@ class FootballApiService
     { id: 64,  name: "D1 Féminine",        country: "France",          has_standings: true  },
     { id: 88,  name: "Eredivisie",         country: "Pays-Bas",        has_standings: true  },
     { id: 94,  name: "Liga Portugal",      country: "Portugal",        has_standings: true  },
-    { id: 141, name: "Coupe du Roi",       country: "Espagne",         has_standings: false },
-    { id: 253, name: "Major League Soccer",country: "USA",             has_standings: true  },
+    { id: 141, name: "Coupe du Roi",        country: "Espagne",         has_standings: false },
+    { id: 137, name: "Coppa Italia",        country: "Italie",          has_standings: false },
+    { id: 40,  name: "Championship",        country: "Angleterre",      has_standings: true  },
+    { id: 144, name: "Jupiler Pro League",  country: "Belgique",        has_standings: true  },
+    { id: 253, name: "Major League Soccer", country: "USA",             has_standings: true  },
     { id: 5,   name: "Qualif. Mondial 2026", country: "Europe",        has_standings: false, archived: true },
     { id: 4,   name: "Euro / Nations League", country: "Europe",       has_standings: false, archived: true },
     { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false, archived: true },
@@ -46,6 +49,9 @@ class FootballApiService
     848 => "Conference League",
     64  => "D1 Féminine",
     141 => "Coupe du Roi",
+    137 => "Coppa Italia",
+    40  => "Championship",
+    144 => "Jupiler Pro League",
     66  => "Coupe de France",
     88  => "Eredivisie",
     94  => "Liga Portugal",
@@ -88,6 +94,12 @@ class FootballApiService
     when 135 # Serie A
       "DAZN"
     when 141 # Coupe du Roi
+      "beIN Sports"
+    when 137 # Coppa Italia
+      "beIN Sports"
+    when 40 # Championship
+      "beIN Sports"
+    when 144 # Jupiler Pro League
       "beIN Sports"
     when 2 # Champions League
       "Canal+"
