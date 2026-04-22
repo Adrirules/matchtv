@@ -1,5 +1,6 @@
 <% share_url   = local_assigns.fetch(:share_url, request.original_url) %>
 <% share_title = local_assigns.fetch(:share_title, "") %>
+<% share_path  = URI.parse(share_url).path rescue share_url %>
 <% wa_text     = ERB::Util.url_encode("#{share_title} #{share_url}") %>
 <% x_text      = ERB::Util.url_encode(share_title.truncate(200)) %>
 <% x_url       = ERB::Util.url_encode(share_url) %>
@@ -11,6 +12,7 @@
   <a href="https://wa.me/?text=<%= wa_text %>"
      target="_blank"
      rel="noopener noreferrer"
+     onclick="trackShare('whatsapp', '<%= j share_path %>')"
      style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #25D366; color: #fff; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: background 0.15s;"
      onmouseover="this.style.background='#1ebe5d'"
      onmouseout="this.style.background='#25D366'">
@@ -24,6 +26,7 @@
   <a href="https://x.com/intent/tweet?text=<%= x_text %>&url=<%= x_url %>"
      target="_blank"
      rel="noopener noreferrer"
+     onclick="trackShare('x', '<%= j share_path %>')"
      style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #000; color: #fff; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: background 0.15s;"
      onmouseover="this.style.background='#333'"
      onmouseout="this.style.background='#000'">
@@ -33,3 +36,18 @@
     X
   </a>
 </div>
+
+<script>
+function trackShare(platform, pageUrl) {
+  var csrf = document.querySelector('meta[name="csrf-token"]');
+  fetch('/share-click', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrf ? csrf.content : ''
+    },
+    body: JSON.stringify({ platform: platform, page_url: pageUrl }),
+    keepalive: true
+  }).catch(function() {});
+}
+</script>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "days#show"
+  post '/share-click', to: 'share_clicks#create'
   # PRIORITÉ N°1 : Le sitemap (format XML forcé)
   get "sitemap.xml", to: "sitemaps#index", defaults: { format: "xml" }
   # 2. Les jours

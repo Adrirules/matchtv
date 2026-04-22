@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_04_17_094351) do
+ActiveRecord::Schema[7.0].define(version: 2026_04_22_093758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,15 @@ ActiveRecord::Schema[7.0].define(version: 2026_04_17_094351) do
     t.index ["api_id"], name: "index_players_on_api_id", unique: true
     t.index ["slug"], name: "index_players_on_slug", unique: true
     t.index ["team_api_id"], name: "index_players_on_team_api_id"
+  end
+
+  create_table "share_clicks", force: :cascade do |t|
+    t.string "platform", null: false
+    t.string "page_url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_share_clicks_on_created_at"
+    t.index ["page_url", "platform"], name: "index_share_clicks_on_page_url_and_platform"
   end
 
   create_table "standings", force: :cascade do |t|
