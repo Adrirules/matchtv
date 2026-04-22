@@ -61,7 +61,7 @@
 
     <%# Scrollable wrapper %>
     <div id="<%= bracket_id %>"
-         style="overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; scroll-snap-type: x mandatory;"
+         style="overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px;"
          onscroll="updateBracketArrows('<%= bracket_id %>')">
       <div style="display: flex; gap: 16px; min-width: max-content; align-items: flex-start;">
 
@@ -83,7 +83,7 @@
             is_two_legs = ties_hash.values.any? { |legs| legs.size > 1 }
           %>
 
-          <div style="width: 260px; flex-shrink: 0; scroll-snap-align: start;">
+          <div style="width: 260px; flex-shrink: 0;">
             <%# Titre du round %>
             <div style="font-size: 13px; font-weight: 600; color: #64748b; text-align: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
               <%= label %>
