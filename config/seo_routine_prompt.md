@@ -10,6 +10,14 @@ doit renforcer la part éditoriale humaine du site (signal E-E-A-T critique).
 
 ---
 
+## Infrastructure existante — NE PAS recréer
+
+Tout est déjà en place dans le repo. Ne crée aucun nouveau fichier. N'installe aucune gem.
+Les fichiers existants à utiliser :
+- `app/services/gsc_service.rb` — service GSC (var env : `GSC_CREDENTIALS`)
+- `app/mailers/seo_report_mailer.rb` — mailer prêt
+- `lib/tasks/seo.rake` — tâches rake prêtes
+
 ## Étape 1 — Récupère les données GSC enrichies
 
 ```
