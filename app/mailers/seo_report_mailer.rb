@@ -1,5 +1,5 @@
 class SeoReportMailer < ApplicationMailer
-  REPORT_TO  = "adrien.zafiropoulos@gmail.com".freeze
+  REPORT_TO  = "coupdenvoi.tv@gmail.com".freeze
   GROQ_URL   = "https://api.groq.com/openai/v1/chat/completions".freeze
   GROQ_MODEL = "llama-3.3-70b-versatile".freeze
 
