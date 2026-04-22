@@ -1,9 +1,17 @@
 class BlogController < ApplicationController
   BLOG_PATH = Rails.root.join('app', 'content', 'blog')
 
+  PER_PAGE = 10
+
   def index
-    @articles = all_articles
-    @page_title = "Blog football — Guides et analyses | Coup d'Envoi TV"
+    all = all_articles
+    @total_pages   = [(all.length.to_f / PER_PAGE).ceil, 1].max
+    @current_page  = [[params[:page].to_i, 1].max, @total_pages].min
+    @articles      = all.slice((@current_page - 1) * PER_PAGE, PER_PAGE) || []
+
+    @page_title = @current_page > 1 \
+      ? "Blog football — Page #{@current_page} | Coup d'Envoi TV" \
+      : "Blog football — Guides et analyses | Coup d'Envoi TV"
     @page_desc  = "Guides pratiques, comparatifs d'abonnements et analyses football rédigés par Adrien pour ne rater aucun match en 2026."
     expires_in 1.hour, private: true
   end
