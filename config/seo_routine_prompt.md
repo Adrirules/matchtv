@@ -13,7 +13,7 @@ doit renforcer la part éditoriale humaine du site (signal E-E-A-T critique).
 ## Étape 1 — Récupère les données GSC
 
 ```bash
-curl "https://www.coupdenvoi.tv/api/seo/fetch-data?period=weekly&token=ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10"
+curl "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/fetch-data?period=weekly&token=ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10"
 ```
 
 Le JSON retourné contient :
@@ -84,7 +84,7 @@ Niveau éditorial :
 ## Étape 3 — Envoie le rapport
 
 ```bash
-curl -X POST "https://www.coupdenvoi.tv/api/seo/send-report" \
+curl -X POST "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/send-report" \
   -H "Content-Type: application/json" \
   -H "X-SEO-Token: ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10" \
   -d "{\"period\": \"weekly\", \"analysis\": \"[TON RAPPORT COMPLET ICI]\"}"
