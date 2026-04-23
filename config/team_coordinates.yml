@@ -1,0 +1,123 @@
+# Coordonnées des stades (lat/lon) par nom d'équipe API-Football
+# Utilisé par WeatherService pour enrichir les previews Groq
+
+# --- France ---
+"Paris Saint-Germain":     { lat: 48.8414, lon: 2.2530,  city: "Paris" }
+"Olympique de Marseille":  { lat: 43.2696, lon: 5.3959,  city: "Marseille" }
+"Olympique Lyonnais":      { lat: 45.7653, lon: 4.9822,  city: "Décines" }
+"AS Monaco":               { lat: 43.7272, lon: 7.4155,  city: "Monaco" }
+"LOSC Lille":              { lat: 50.6120, lon: 3.1302,  city: "Lille" }
+"RC Lens":                 { lat: 50.4328, lon: 2.8148,  city: "Lens" }
+"OGC Nice":                { lat: 43.7054, lon: 7.1926,  city: "Nice" }
+"Stade Rennais":           { lat: 48.1073, lon: -1.7122, city: "Rennes" }
+"Stade Brestois 29":       { lat: 48.4028, lon: -4.4786, city: "Brest" }
+"RC Strasbourg":           { lat: 48.5600, lon: 7.7527,  city: "Strasbourg" }
+"Toulouse FC":             { lat: 43.5833, lon: 1.4343,  city: "Toulouse" }
+"FC Nantes":               { lat: 47.2556, lon: -1.5256, city: "Nantes" }
+"Montpellier HSC":         { lat: 43.6224, lon: 3.8128,  city: "Montpellier" }
+"Stade de Reims":          { lat: 49.2453, lon: 4.0167,  city: "Reims" }
+"Havre AC":                { lat: 49.4938, lon: 0.1360,  city: "Le Havre" }
+"Clermont Foot":           { lat: 45.7772, lon: 3.0870,  city: "Clermont-Ferrand" }
+"Dijon FCO":               { lat: 47.3231, lon: 5.0415,  city: "Dijon" }
+"FC Sochaux":              { lat: 47.5207, lon: 6.7889,  city: "Sochaux" }
+"SM Caen":                 { lat: 49.1704, lon: -0.3610, city: "Caen" }
+"Paris FC":                { lat: 48.8271, lon: 2.3601,  city: "Paris" }
+
+# --- Premier League ---
+"Arsenal":                 { lat: 51.5549, lon: -0.1084, city: "Londres" }
+"Chelsea":                 { lat: 51.4816, lon: -0.1909, city: "Londres" }
+"Manchester City":         { lat: 53.4831, lon: -2.2004, city: "Manchester" }
+"Manchester United":       { lat: 53.4631, lon: -2.2913, city: "Manchester" }
+"Liverpool":               { lat: 53.4308, lon: -2.9608, city: "Liverpool" }
+"Tottenham Hotspur":       { lat: 51.6042, lon: -0.0665, city: "Londres" }
+"Aston Villa":             { lat: 52.5090, lon: -1.8847, city: "Birmingham" }
+"Newcastle United":        { lat: 54.9756, lon: -1.6217, city: "Newcastle" }
+"West Ham United":         { lat: 51.5386, lon: 0.0165,  city: "Londres" }
+"Brighton":                { lat: 50.8618, lon: -0.0837, city: "Brighton" }
+"Fulham":                  { lat: 51.4749, lon: -0.2217, city: "Londres" }
+"Brentford":               { lat: 51.4882, lon: -0.2886, city: "Londres" }
+"Wolves":                  { lat: 52.5901, lon: -2.1302, city: "Wolverhampton" }
+"Crystal Palace":          { lat: 51.3983, lon: -0.0855, city: "Londres" }
+"Everton":                 { lat: 53.4388, lon: -2.9662, city: "Liverpool" }
+"Leicester City":          { lat: 52.6204, lon: -1.1421, city: "Leicester" }
+
+# --- La Liga ---
+"Real Madrid":             { lat: 40.4531, lon: -3.6883, city: "Madrid" }
+"Barcelona":               { lat: 41.3809, lon: 2.1228,  city: "Barcelone" }
+"FC Barcelona":            { lat: 41.3809, lon: 2.1228,  city: "Barcelone" }
+"Atletico Madrid":         { lat: 40.4361, lon: -3.5995, city: "Madrid" }
+"Sevilla":                 { lat: 37.3838, lon: -5.9706, city: "Séville" }
+"Real Betis":              { lat: 37.3561, lon: -5.9814, city: "Séville" }
+"Villarreal":              { lat: 39.9440, lon: -0.1036, city: "Villarreal" }
+"Athletic Club":           { lat: 43.2641, lon: -2.9493, city: "Bilbao" }
+"Real Sociedad":           { lat: 43.3015, lon: -1.9738, city: "San Sebastian" }
+"Valencia":                { lat: 39.4749, lon: -0.3584, city: "Valence" }
+"Osasuna":                 { lat: 42.7969, lon: -1.6367, city: "Pampelune" }
+
+# --- Bundesliga ---
+"Bayern Munich":           { lat: 48.2188, lon: 11.6248, city: "Munich" }
+"Borussia Dortmund":       { lat: 51.4926, lon: 7.4518,  city: "Dortmund" }
+"Bayer Leverkusen":        { lat: 51.0381, lon: 7.0022,  city: "Leverkusen" }
+"RB Leipzig":              { lat: 51.3457, lon: 12.3481, city: "Leipzig" }
+"Eintracht Frankfurt":     { lat: 50.0687, lon: 8.6454,  city: "Francfort" }
+"VfB Stuttgart":           { lat: 48.7924, lon: 9.2319,  city: "Stuttgart" }
+"Borussia Monchengladbach":{ lat: 51.1741, lon: 6.3855,  city: "Mönchengladbach" }
+"Wolfsburg":               { lat: 52.4322, lon: 10.8038, city: "Wolfsburg" }
+"Freiburg":                { lat: 47.9897, lon: 7.8995,  city: "Fribourg" }
+
+# --- Serie A ---
+"Inter":                   { lat: 45.4781, lon: 9.1240,  city: "Milan" }
+"AC Milan":                { lat: 45.4781, lon: 9.1240,  city: "Milan" }
+"Juventus":                { lat: 45.1096, lon: 7.6413,  city: "Turin" }
+"Napoli":                  { lat: 40.8279, lon: 14.1932, city: "Naples" }
+"AS Roma":                 { lat: 41.9338, lon: 12.4547, city: "Rome" }
+"Lazio":                   { lat: 41.9338, lon: 12.4547, city: "Rome" }
+"Atalanta":                { lat: 45.7090, lon: 9.6779,  city: "Bergame" }
+"Fiorentina":              { lat: 43.7801, lon: 11.2828, city: "Florence" }
+"Bologna":                 { lat: 44.4927, lon: 11.3131, city: "Bologne" }
+"Torino":                  { lat: 45.0423, lon: 7.6507,  city: "Turin" }
+
+# --- Liga Portugal ---
+"FC Porto":                { lat: 41.1611, lon: -8.5837, city: "Porto" }
+"SL Benfica":              { lat: 38.7527, lon: -9.1844, city: "Lisbonne" }
+"Benfica":                 { lat: 38.7527, lon: -9.1844, city: "Lisbonne" }
+"Sporting CP":             { lat: 38.7613, lon: -9.1604, city: "Lisbonne" }
+"Braga":                   { lat: 41.5663, lon: -8.3891, city: "Braga" }
+"Vitoria SC":              { lat: 41.4418, lon: -8.2973, city: "Guimaraes" }
+
+# --- Eredivisie ---
+"Ajax":                    { lat: 52.3143, lon: 4.9419,  city: "Amsterdam" }
+"PSV Eindhoven":           { lat: 51.4416, lon: 5.4674,  city: "Eindhoven" }
+"Feyenoord":               { lat: 51.8934, lon: 4.5229,  city: "Rotterdam" }
+"AZ Alkmaar":              { lat: 52.6135, lon: 4.7497,  city: "Alkmaar" }
+"Twente":                  { lat: 52.2292, lon: 6.8371,  city: "Enschede" }
+
+# --- Süper Lig ---
+"Galatasaray":             { lat: 41.1065, lon: 29.0329, city: "Istanbul" }
+"Fenerbahce":              { lat: 40.9983, lon: 29.0360, city: "Istanbul" }
+"Besiktas":                { lat: 41.0444, lon: 29.0107, city: "Istanbul" }
+"Trabzonspor":             { lat: 41.0055, lon: 39.7331, city: "Trabzon" }
+
+# --- Saudi Pro League ---
+"Al Hilal":                { lat: 24.7136, lon: 46.6753, city: "Riyad" }
+"Al-Hilal":                { lat: 24.7136, lon: 46.6753, city: "Riyad" }
+"Al Nassr":                { lat: 24.7136, lon: 46.6753, city: "Riyad" }
+"Al-Nassr":                { lat: 24.7136, lon: 46.6753, city: "Riyad" }
+"Al Ittihad":              { lat: 21.4858, lon: 39.1925, city: "Djeddah" }
+"Al Ahli":                 { lat: 21.4858, lon: 39.1925, city: "Djeddah" }
+
+# --- MLS ---
+"Inter Miami":             { lat: 25.9579, lon: -80.2390, city: "Fort Lauderdale" }
+"LA Galaxy":               { lat: 33.8640, lon: -118.2611, city: "Los Angeles" }
+"LAFC":                    { lat: 34.0131, lon: -118.2855, city: "Los Angeles" }
+"Seattle Sounders":        { lat: 47.5952, lon: -122.3316, city: "Seattle" }
+"Portland Timbers":        { lat: 45.5212, lon: -122.6916, city: "Portland" }
+"Atlanta United":          { lat: 33.7553, lon: -84.4006, city: "Atlanta" }
+"New York City FC":        { lat: 40.8296, lon: -73.9262, city: "New York" }
+"New York Red Bulls":      { lat: 40.7369, lon: -74.1503, city: "New York" }
+"CF Montreal":             { lat: 45.5633, lon: -73.5506, city: "Montreal" }
+"Toronto FC":              { lat: 43.6334, lon: -79.4179, city: "Toronto" }
+
+# --- D1 Féminine (mêmes villes que clubs masculins associés) ---
+"Olympique Lyonnais F":    { lat: 45.7653, lon: 4.9822,  city: "Décines" }
+"Paris Saint-Germain F":   { lat: 48.8414, lon: 2.2530,  city: "Paris" }

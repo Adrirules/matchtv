@@ -85,20 +85,24 @@ class MatchSummaryService
   end
 
   def self.build_preview_prompt(match)
-    date_fr = match.start_time.strftime("%d/%m/%Y à %Hh%M")
+    date_fr   = match.start_time.strftime("%d/%m/%Y à %Hh%M")
     diffusion = match.tv_channels.presence || "non diffusé en France"
+    weather   = WeatherService.for_match(match)
+
+    weather_line = weather ? "\nMétéo : #{weather}" : ""
 
     <<~PROMPT
       Écris une présentation avant-match de football en français, en 3 à 4 phrases, naturelle et informative.
       Pas de titre, pas de liste, pas de mise en forme. Commence directement par une phrase d'accroche sur l'affiche.
       Parle de l'enjeu de la rencontre dans la compétition, du contexte général des deux équipes cette saison.
       Mentionne où regarder le match (#{diffusion}) de façon naturelle dans le texte.
+      Si les conditions météo sont défavorables (pluie, vent fort, froid), mentionne-les naturellement en une demi-phrase.
       N'invente pas de statistiques précises ou de résultats récents que tu ne connais pas avec certitude.
 
       Match : #{match.home_team} vs #{match.away_team}
       Compétition : #{match.competition}
       Date : #{date_fr}
-      Diffusion : #{diffusion}
+      Diffusion : #{diffusion}#{weather_line}
     PROMPT
   end
 end
