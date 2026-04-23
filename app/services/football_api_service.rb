@@ -137,7 +137,7 @@ class FootballApiService
   end
 
   def import_historical_fixtures(league_id:, season: 2025, from_date:, to_date:)
-    response = client.get('/fixtures', {
+    response = tracked_get('/fixtures', {
       league:  league_id,
       season:  season,
       from:    from_date.strftime('%Y-%m-%d'),
@@ -182,7 +182,7 @@ class FootballApiService
 
   def import_upcoming_fixtures(league_id: 61, season: 2025)
     # On récupère les matchs sur une fenêtre de 30 jours
-    response = client.get('/fixtures', {
+    response = tracked_get('/fixtures', {
       league: league_id,
       season: season,
       from: Date.today.strftime('%Y-%m-%d'),
@@ -239,7 +239,7 @@ class FootballApiService
   # --- DIAGNOSTIC & STANDINGS ---
 
   def test_connection
-    response = client.get('/leagues', { country: 'France', name: 'Ligue 1' })
+    response = tracked_get('/leagues', { country: 'France', name: 'Ligue 1' })
     response.success? ? JSON.parse(response.body) : { error: response.status }
   end
 
@@ -266,13 +266,13 @@ class FootballApiService
   end
 
   def fetch_fixture_events(fixture_id)
-    response = client.get('/fixtures/events', { fixture: fixture_id })
+    response = tracked_get('/fixtures/events', { fixture: fixture_id })
     return [] unless response.success?
     JSON.parse(response.body)['response'] || []
   end
 
   def fetch_fixture_result(api_id)
-    response = client.get('/fixtures', { id: api_id })
+    response = tracked_get('/fixtures', { id: api_id })
     return unless response.success?
     data  = JSON.parse(response.body)['response']&.first
     match = Match.find_by(api_id: api_id)
@@ -283,7 +283,7 @@ class FootballApiService
 
   def fetch_squad(team_api_id)
     Rails.cache.fetch("squad_#{team_api_id}", expires_in: 24.hours) do
-      response = client.get('/players/squads', { team: team_api_id })
+      response = tracked_get('/players/squads', { team: team_api_id })
       return [] unless response.success?
       JSON.parse(response.body).dig('response', 0, 'players') || []
     end
@@ -291,15 +291,15 @@ class FootballApiService
 
   def fetch_player_stats(player_api_id, season: 2025)
     Rails.cache.fetch("player_stats_#{player_api_id}_#{season}", expires_in: 6.hours) do
-      response = client.get('/players', { id: player_api_id, season: season })
+      response = tracked_get('/players', { id: player_api_id, season: season })
       return nil unless response.success?
       JSON.parse(response.body).dig('response', 0)
     end
   end
 
   def fetch_team_stats(team_api_id, league_id, season: 2025)
-    Rails.cache.fetch("team_stats_#{team_api_id}_#{league_id}_#{season}", expires_in: 6.hours) do
-      response = client.get('/teams/statistics', { team: team_api_id, league: league_id, season: season })
+    Rails.cache.fetch("team_stats_#{team_api_id}_#{league_id}_#{season}", expires_in: 24.hours) do
+      response = tracked_get('/teams/statistics', { team: team_api_id, league: league_id, season: season })
       return nil unless response.success?
       result = JSON.parse(response.body)['response']
       result.is_a?(Hash) ? result : nil
@@ -307,23 +307,39 @@ class FootballApiService
   end
 
   def fetch_recent_results(team_api_id, count: 5)
-    Rails.cache.fetch("team_recent_#{team_api_id}_#{count}", expires_in: 1.hour) do
-      response = client.get('/fixtures', { team: team_api_id, last: count, status: 'FT-AET-PEN' })
-      return [] unless response.success?
-      JSON.parse(response.body)['response'] || []
+    # DB-first : les matchs terminés sont déjà importés via sync:all_leagues
+    # Zéro appel API, données identiques, fraîcheur garantie par le sync horaire
+    matches = Match.where(
+      "(home_team_api_id = :id OR away_team_api_id = :id)", id: team_api_id
+    ).where(status: Match::FINISHED_STATUSES)
+     .order(start_time: :desc)
+     .limit(count)
+
+    return [] if matches.empty?
+
+    # On retourne la même structure qu'attendue par la vue (format API-Football)
+    matches.map do |m|
+      {
+        "fixture" => { "id" => m.api_id, "date" => m.start_time.iso8601 },
+        "teams"   => {
+          "home" => { "id" => m.home_team_api_id, "name" => m.home_team },
+          "away" => { "id" => m.away_team_api_id, "name" => m.away_team }
+        },
+        "goals" => { "home" => m.home_score, "away" => m.away_score }
+      }
     end
   end
 
   def get_standings(league_id, season: 2025)
     Rails.cache.fetch("standings_league_#{league_id}", expires_in: 2.hours) do
-      response = client.get('/standings', { league: league_id, season: season })
+      response = tracked_get('/standings', { league: league_id, season: season })
       response.success? ? JSON.parse(response.body)['response'] : []
     end
   end
 
   def fetch_top_scorers(league_id, season: 2025)
     Rails.cache.fetch("top_scorers_#{league_id}_#{season}", expires_in: 6.hours) do
-      response = client.get('/players/topscorers', { league: league_id, season: season })
+      response = tracked_get('/players/topscorers', { league: league_id, season: season })
       return [] unless response.success?
       JSON.parse(response.body)['response'] || []
     end
@@ -331,7 +347,7 @@ class FootballApiService
 
   def fetch_coach(team_api_id)
     Rails.cache.fetch("coach_#{team_api_id}", expires_in: 7.days) do
-      response = client.get('/coachs', { team: team_api_id })
+      response = tracked_get('/coachs', { team: team_api_id })
       return nil unless response.success?
       JSON.parse(response.body)['response']&.first
     end
@@ -339,7 +355,7 @@ class FootballApiService
 
   def fetch_head_to_head(home_id, away_id, count: 5)
     Rails.cache.fetch("h2h_#{home_id}_#{away_id}", expires_in: 7.days) do
-      response = client.get('/fixtures/headtohead', { h2h: "#{home_id}-#{away_id}", last: count })
+      response = tracked_get('/fixtures/headtohead', { h2h: "#{home_id}-#{away_id}", last: count })
       return [] unless response.success?
       JSON.parse(response.body)['response'] || []
     end
@@ -347,7 +363,7 @@ class FootballApiService
 
   def fetch_injuries(fixture_id)
     Rails.cache.fetch("injuries_#{fixture_id}", expires_in: 6.hours) do
-      response = client.get('/injuries', { fixture: fixture_id })
+      response = tracked_get('/injuries', { fixture: fixture_id })
       return [] unless response.success?
       JSON.parse(response.body)['response'] || []
     end
@@ -356,7 +372,7 @@ class FootballApiService
   private
 
   def get_fixtures(params)
-    response = client.get('/fixtures', params)
+    response = tracked_get('/fixtures', params)
     return [] unless response.success?
     JSON.parse(response.body)['response'] || []
   end
@@ -373,11 +389,42 @@ class FootballApiService
     )
   end
 
+  # Wrapper tracké — utiliser à la place de client.get partout
+  def tracked_get(path, params = {})
+    self.class.track_call(path)
+    client.get(path, params)
+  end
+
   def client
     @client ||= Faraday.new(url: BASE_URL) do |config|
       config.headers['x-apisports-key'] = @api_key
       config.headers['Content-Type'] = 'application/json'
       config.adapter Faraday.default_adapter
     end
+  end
+
+  # Incrémente un compteur par endpoint et par jour (non bloquant)
+  # Consultable via : rails runner "puts FootballApiService.daily_usage"
+  def self.track_call(endpoint)
+    segment = endpoint.to_s.split("/").reject(&:blank?).first || "other"
+    key = "api_calls_#{Date.today}_#{segment}"
+    Rails.cache.increment(key, 1, expires_in: 72.hours)
+  rescue
+    nil
+  end
+
+  def self.daily_usage(date = Date.today)
+    endpoints = %w[fixtures standings teams players injuries coachs]
+    total = 0
+    lines = endpoints.map do |ep|
+      count = Rails.cache.read("api_calls_#{date}_#{ep}").to_i
+      total += count
+      "  #{ep.ljust(12)} #{count}"
+    end
+    other = Rails.cache.read("api_calls_#{date}_other").to_i
+    total += other
+    lines << "  #{'other'.ljust(12)} #{other}"
+    lines << "  #{'TOTAL'.ljust(12)} #{total}"
+    lines.join("\n")
   end
 end
