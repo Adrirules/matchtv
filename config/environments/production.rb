@@ -54,6 +54,8 @@ Rails.application.configure do
 
   # --- URLS & DOMAINE (Essentiel pour le Sitemap dynamique) ---
   config.hosts << "coup-denvoi-a511cf759844.herokuapp.com"
+  config.hosts << "coupdenvoi.tv"
+  config.hosts << "www.coupdenvoi.tv"
   config.action_controller.default_url_options = { host: "www.coupdenvoi.tv", protocol: "https" }
   config.action_mailer.default_url_options = { host: "www.coupdenvoi.tv", protocol: "https" }
   config.action_mailer.delivery_method = :smtp
