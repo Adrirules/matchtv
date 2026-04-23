@@ -101,10 +101,11 @@ class SeoApiController < ApplicationController
   end
 
   # POST /api/seo/send-report
-  # Body JSON : { period: "weekly"|"monthly", analysis: "..." }
+  # Body JSON : { period: "weekly"|"monthly", analysis: "...", actions: [...] }
   def send_report
     period   = params[:period].presence&.strip == "monthly" ? "monthly" : "weekly"
     analysis = params[:analysis].to_s.strip
+    actions  = Array(params[:actions]).map { |a| a.permit(:title, :page, :priority).to_h rescue a.to_h }
     return render json: { error: "analysis manquant" }, status: :bad_request if analysis.blank?
 
     gsc = GscService.new
@@ -148,7 +149,7 @@ class SeoApiController < ApplicationController
     end
 
     # Sauvegarde en DB pour l'historique
-    save_report(period, label_for(period), current_start, summary_current, current, analysis)
+    save_report(period, label_for(period), current_start, summary_current, current, analysis, actions)
 
     render json: { ok: true, sent_to: SeoReportMailer::REPORT_TO }
   rescue => e
@@ -190,7 +191,7 @@ class SeoApiController < ApplicationController
     end
   end
 
-  def save_report(period, label, report_date, summary, pages, analysis)
+  def save_report(period, label, report_date, summary, pages, analysis, actions = [])
     SeoReport.upsert(
       {
         period:       period,
@@ -199,7 +200,7 @@ class SeoApiController < ApplicationController
         summary_data: summary.to_json,
         top_pages:    pages.first(25).to_json,
         analysis:     analysis,
-        actions:      [].to_json,
+        actions:      actions.to_json,
         created_at:   Time.current,
         updated_at:   Time.current
       },

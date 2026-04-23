@@ -93,13 +93,29 @@ Niveau éditorial :
 
 ---
 
-## Étape 3 — Envoie le rapport
+## Étape 3 — Extrais les actions
+
+Avant d'envoyer, liste les actions concrètes issues de ton analyse (max 5).
+Chaque action a : un titre court, la page concernée, une priorité (haute/moyenne).
+
+Exemple :
+```json
+[
+  {"title": "Corriger title CTR faible", "page": "/competitions/europa-league", "priority": "haute"},
+  {"title": "Créer article Conference League TV", "page": "/blog/conference-league-chaine-tv", "priority": "moyenne"}
+]
+```
+
+Si l'historique (étape 1b) contient des actions ouvertes des semaines précédentes,
+signale dans l'analyse celles qui n'ont pas encore été traitées.
+
+## Étape 4 — Envoie le rapport avec les actions
 
 ```bash
 curl -X POST "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/send-report" \
   -H "Content-Type: application/json" \
   -H "X-SEO-Token: ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10" \
-  -d "{\"period\": \"weekly\", \"analysis\": \"[TON RAPPORT COMPLET ICI]\"}"
+  -d "{\"period\": \"weekly\", \"analysis\": \"[TON RAPPORT COMPLET ICI]\", \"actions\": [TABLEAU JSON DES ACTIONS]}"
 ```
 
 ---
