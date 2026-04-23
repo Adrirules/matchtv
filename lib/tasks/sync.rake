@@ -25,8 +25,19 @@ namespace :sync do
 
       print "🔄 Importation de : #{name.ljust(20)} "
       begin
+        before = Time.current
         api.import_upcoming_fixtures(league_id: id)
-        puts "✅ OK"
+        # Soumet les nouvelles pages match à Google immédiatement
+        new_slugs = Match.where("created_at >= ?", before - 5.seconds)
+                         .where(start_time: Time.current..7.days.from_now)
+                         .pluck(:slug).compact
+        if new_slugs.any?
+          svc = IndexingService.new
+          svc.submit_batch(new_slugs.map { |s| "https://www.coupdenvoi.tv/matches/#{s}" })
+          puts "✅ OK (+#{new_slugs.size} indexés)"
+        else
+          puts "✅ OK"
+        end
       rescue => e
         puts "❌ ERREUR : #{e.message}"
       end
