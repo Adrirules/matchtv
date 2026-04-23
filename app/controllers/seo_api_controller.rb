@@ -147,12 +147,67 @@ class SeoApiController < ApplicationController
       ).deliver_now
     end
 
+    # Sauvegarde en DB pour l'historique
+    save_report(period, label_for(period), current_start, summary_current, current, analysis)
+
     render json: { ok: true, sent_to: SeoReportMailer::REPORT_TO }
   rescue => e
     render json: { error: e.message }, status: :internal_server_error
   end
 
+  # GET /api/seo/history?weeks=N&period=weekly|monthly
+  def history
+    period = params[:period].presence&.strip == "monthly" ? "monthly" : "weekly"
+    n      = params[:weeks].present? ? [[params[:weeks].to_i, 1].max, 26].min : 8
+
+    reports = SeoReport.where(period: period).recent(n).map do |r|
+      {
+        label:       r.label,
+        report_date: r.report_date.strftime("%d/%m/%Y"),
+        summary:     r.summary_data,
+        top_pages:   r.top_pages&.first(10),
+        actions:     r.actions
+      }
+    end
+
+    render json: { period: period, count: reports.size, reports: reports }
+  rescue => e
+    render json: { error: e.message }, status: :internal_server_error
+  end
+
   private
+
+  def label_for(period)
+    if period == "monthly"
+      current_start = Date.today.prev_month.beginning_of_month
+      months_fr = %w[janvier février mars avril mai juin juillet août septembre octobre novembre décembre]
+      "#{months_fr[current_start.month - 1]} #{current_start.year}"
+    else
+      wday          = Date.today.wday == 0 ? 7 : Date.today.wday
+      current_start = Date.today - wday + 1 - 7
+      current_end   = current_start + 6
+      "#{current_start.strftime('%d/%m')} au #{current_end.strftime('%d/%m/%Y')}"
+    end
+  end
+
+  def save_report(period, label, report_date, summary, pages, analysis)
+    SeoReport.upsert(
+      {
+        period:       period,
+        label:        label,
+        report_date:  report_date,
+        summary_data: summary.to_json,
+        top_pages:    pages.first(25).to_json,
+        analysis:     analysis,
+        actions:      [].to_json,
+        created_at:   Time.current,
+        updated_at:   Time.current
+      },
+      unique_by: %i[period report_date]
+    )
+  rescue => e
+    Rails.logger.warn("SeoReport save failed: #{e.message}")
+  end
 
   def authenticate!
     token = params[:token] || request.headers["X-SEO-Token"]

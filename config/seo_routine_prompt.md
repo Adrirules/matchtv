@@ -16,6 +16,18 @@ doit renforcer la part éditoriale humaine du site (signal E-E-A-T critique).
 curl "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/fetch-data?period=weekly&token=ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10"
 ```
 
+## Étape 1b — Charge l'historique (4 dernières semaines)
+
+```bash
+curl "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/history?weeks=4&period=weekly&token=ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10"
+```
+
+Le JSON retourné contient les 4 semaines précédentes (label, summary, top_pages, actions ouvertes).
+Utilise-le pour :
+- Détecter les tendances multi-semaines ("3ème semaine consécutive en baisse sur X")
+- Identifier les actions recommandées mais non traitées la semaine précédente
+- Distinguer saisonnalité vs tendance structurelle sur 4 semaines
+
 Le JSON retourné contient :
 - summary : clics/impressions/CTR/position pour la semaine courante, N-1 et N-52
 - pages : top 50 pages avec type (match/competition/equipe/blog/chaine/classement...)

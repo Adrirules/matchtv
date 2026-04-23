@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_04_22_093758) do
+ActiveRecord::Schema[7.0].define(version: 2026_04_23_080000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,19 @@ ActiveRecord::Schema[7.0].define(version: 2026_04_22_093758) do
     t.index ["api_id"], name: "index_players_on_api_id", unique: true
     t.index ["slug"], name: "index_players_on_slug", unique: true
     t.index ["team_api_id"], name: "index_players_on_team_api_id"
+  end
+
+  create_table "seo_reports", force: :cascade do |t|
+    t.string "period", null: false
+    t.string "label", null: false
+    t.date "report_date", null: false
+    t.jsonb "summary_data", default: {}
+    t.jsonb "top_pages", default: []
+    t.text "analysis"
+    t.jsonb "actions", default: []
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["period", "report_date"], name: "index_seo_reports_on_period_and_report_date", unique: true
   end
 
   create_table "share_clicks", force: :cascade do |t|

@@ -47,42 +47,42 @@ module SeoHelper
       meta_title(template[:title] % { h: ht, a: at, score: score, comp: comp })
       meta_description(template[:desc] % { h: ht, a: at, score: score, comp: comp, winner: winner_phrase })
     else
-      time    = match.start_time.strftime("%Hh%M")
-      channel = match.tv_channels.to_s
-      date    = match.start_time.strftime("%-d/%m")
-      comp    = match.competition.to_s
+      time        = match.start_time.strftime("%Hh%M")
+      channel_str = match.tv_channels.to_s.presence || "une chaîne partenaire"
+      date        = match.start_time.strftime("%-d/%m")
+      comp        = match.competition.to_s
 
       upcoming_templates = [
         {
-          title: "%{match} : Chaîne TV, Heure et Direct | Coup d'Envoi TV",
-          desc:  "%{match} à %{time} sur %{channel}. Sur quelle chaîne et comment regarder ce match en streaming légal ?"
+          title: "%{match} - %{comp} : sur quelle chaîne et à quelle heure ? | Coup d'Envoi TV",
+          desc:  "%{match} (%{comp}) à %{time} sur %{channel}. Heure de coup d'envoi et accès streaming confirmés."
         },
         {
-          title: "%{match} : sur quelle chaîne voir le match ? | Coup d'Envoi TV",
-          desc:  "Diffusion de %{match} le %{date} à %{time} sur %{channel}. Heure de coup d'envoi et accès streaming confirmés."
+          title: "%{match} : sur quelle chaîne voir ce match de %{comp} ? | Coup d'Envoi TV",
+          desc:  "Diffusion de %{match} (%{comp}) le %{date} à %{time} sur %{channel}. Guide pour regarder en direct ou en streaming."
         },
         {
-          title: "%{match} - Heure, chaîne TV et streaming | Coup d'Envoi TV",
-          desc:  "Coup d'envoi à %{time} sur %{channel} pour %{match}. Retrouvez toutes les infos pour suivre ce match en direct."
+          title: "Comment regarder %{match} (%{comp}) ? Chaîne TV et streaming | Coup d'Envoi TV",
+          desc:  "Coup d'envoi à %{time} sur %{channel} pour %{match}. Toutes les infos pour suivre ce match de %{comp} en direct."
         },
         {
-          title: "Où voir %{match} ? Chaîne et heure | Coup d'Envoi TV",
-          desc:  "%{match} : rendez-vous à %{time} sur %{channel}. Guide complet pour regarder ce match en direct ou en streaming."
+          title: "Où voir %{match} en %{comp} ? Chaîne et heure | Coup d'Envoi TV",
+          desc:  "%{match} (%{comp}) : rendez-vous à %{time} sur %{channel}. Guide complet pour regarder ce match en direct ou en streaming."
         },
         {
-          title: "%{match} en direct : chaîne TV et coup d'envoi | Coup d'Envoi TV",
-          desc:  "Ce match de %{comp} débute à %{time} sur %{channel}. Retrouvez l'heure exacte et comment y accéder en streaming."
+          title: "%{match} - %{comp} : sur quelle chaîne en direct ? | Coup d'Envoi TV",
+          desc:  "Ce match de %{comp} est à suivre à %{time} sur %{channel}. Retrouvez l'heure exacte et les options de streaming légal."
         },
         {
-          title: "%{match} : programme TV et streaming | Coup d'Envoi TV",
-          desc:  "%{match} est à suivre à %{time} sur %{channel}. Abonnement et streaming légal disponibles sur l'application officielle."
+          title: "%{match} - %{comp} : programme TV et streaming | Coup d'Envoi TV",
+          desc:  "%{match} est à suivre à %{time} sur %{channel} (%{comp}). Heure de coup d'envoi et abonnement streaming disponibles."
         }
       ]
 
       template = upcoming_templates[match.id % upcoming_templates.size]
-      meta_title(template[:title] % { match: match_name })
+      meta_title(template[:title] % { match: match_name, comp: comp })
       meta_description(template[:desc] % {
-        match: match_name, time: time, channel: channel, comp: comp, date: date
+        match: match_name, time: time, channel: channel_str, comp: comp, date: date
       })
     end
   end

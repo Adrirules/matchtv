@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # API SEO — utilisé par la Routine Claude
   get  '/api/seo/fetch-data',  to: 'seo_api#fetch_data'
   post '/api/seo/send-report', to: 'seo_api#send_report'
+  get  '/api/seo/history',     to: 'seo_api#history'
   # PRIORITÉ N°1 : Le sitemap (format XML forcé)
   get "sitemap.xml", to: "sitemaps#index", defaults: { format: "xml" }
   # 2. Les jours
