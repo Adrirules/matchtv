@@ -23,6 +23,13 @@ class BlogController < ApplicationController
     expires_in 1.hour, private: true
   end
 
+  def feed
+    @articles = all_articles.first(20)
+    @site_url = 'https://www.coupdenvoi.tv'
+    render template: 'blog/feed', formats: [:xml], layout: false,
+           content_type: 'application/rss+xml; charset=utf-8'
+  end
+
   def show
     @article = load_article(params[:slug])
     render "errors/not_found", status: :not_found and return unless @article
