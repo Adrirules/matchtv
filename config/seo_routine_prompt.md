@@ -32,11 +32,17 @@ Le JSON retourné contient :
 - summary : clics/impressions/CTR/position pour la semaine courante, N-1 et N-52
 - pages : top 50 pages avec type (match/competition/equipe/blog/chaine/classement...)
   et delta WoW + YoY sur les positions
-- by_type : agrégats par type de page
+- by_type : agrégats GSC par type de page
 - top_queries : top 200 requêtes (filtrées : imp > 50 OU clics > 0)
 - cannibalization : requêtes avec plusieurs pages en concurrence
 - football_context : compétitions actives/se terminant/à venir, matchs importants
 - existing_pages : liste exhaustive des pages existantes (pour le maillage interne)
+- ga4 :
+  - summary / summary_previous : sessions, users, bounce_rate, avg_duration, pages_per_session + WoW
+  - by_section : agrégats par section (match/blog/equipe/competition...) avec top 5 pages chacune
+  - traffic_sources : Organic/Direct/Social/Referral avec delta_pct_wow sur les sessions
+  - top_pages : top 50 pages GA4 (sessions + engagement)
+  - gsc_ga4_cross : croisement sur 30 pages (impressions GSC + sessions GA4 + bounce + durée)
 
 ---
 
@@ -54,13 +60,36 @@ Action #1 cette semaine : [une phrase concrète]
 - Delta WoW ET delta YoY — distinguer tendance structurelle vs saisonnalité foot
 - Exemple : "Trafic -15% WoW mais +40% vs N-52 : c'est la fin de LDC, pas une perte de positions."
 
-### 2. ANOMALIES (signale uniquement si détectées)
-- CTR < 2% en position 1-5 → title/meta défaillant
+### 2. SOURCES DE TRAFIC (ga4.traffic_sources)
+- Lister les 4-5 principales sources avec sessions + delta WoW
+- Alerte si une source baisse > 20% WoW : identifier la cause probable
+- Signal positif si une source monte > 30% : comprendre pourquoi et capitaliser
+- Si Social = 0 ou très faible : opportunité à signaler
+
+### 3. ANOMALIES (signale uniquement si détectées)
+- CTR GSC < 2% en position 1-5 → title/meta défaillant
 - Chute position > 3 places sur page à > 200 impressions → alerte contenu
 - Cannibalisation (voir champ cannibalization) → merger ou différencier
 - Requête > 500 imp sans page dédiée existante → gap de contenu
+- Bounce rate > 80% sur une section → contenu insuffisant ou maillage manquant
+- Avg duration < 30s sur pages blog → contenu trop court ou mal structuré
 
-### 3. TOP 3 OPPORTUNITÉS
+### 4. CROISEMENT GSC×GA4 — Signaux revenus (gsc_ga4_cross)
+Pour chaque signal détecté, mentionner la page et l'action recommandée :
+
+**Signal pub AdSense :**
+- Page avec sessions > 100/semaine + avg_duration > 60s + pas encore de pub → recommander ajout pub
+- Page avec bounce > 85% + pub active → recommander retrait pub ou enrichissement contenu d'abord
+
+**Signal affiliation (à activer à 5 000 visites/mois) :**
+- Page blog avec avg_duration > 90s + intent transactionnel (chaînes TV, abonnements) → CTA affiliation prioritaire
+- Page équipe/compétition avec sessions élevées → préparer emplacement CTA
+
+**Signal contenu à enrichir :**
+- Page avec impressions GSC élevées + sessions GA4 faibles → CTR à améliorer (title/meta)
+- Page avec sessions élevées + bounce > 75% → contenu à enrichir, maillage interne à ajouter
+
+### 5. TOP 3 OPPORTUNITÉS
 Pour chaque :
 ```
 Page : [url]
@@ -70,10 +99,10 @@ Action : [description précise]
 Priorité : [haute/moyenne]
 ```
 
-### 4. TOP 3 MENACES
+### 6. TOP 3 MENACES
 Pages en recul structurel, contenu qui vieillit, risques de cannibalisation.
 
-### 5. IDÉES CONTENU (1-2 max)
+### 7. IDÉES CONTENU (1-2 max)
 Pour chaque idée :
 ```
 Titre H1 suggéré : [titre exact]

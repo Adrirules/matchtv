@@ -6,6 +6,7 @@ class SeoApiController < ApplicationController
   def fetch_data
     period = params[:period].presence&.strip == "monthly" ? "monthly" : "weekly"
     gsc    = GscService.new
+    ga4    = Ga4Service.new
 
     if period == "monthly"
       current_start  = Date.today.prev_month.beginning_of_month
@@ -84,6 +85,47 @@ class SeoApiController < ApplicationController
                       .tally.sort_by { |_, n| -n }.first(30).map(&:first)
     }
 
+    # --- GA4 ---
+    ga4_pages_current  = ga4.top_pages(start_date: current_start,  end_date: current_end,  limit: 50)
+    ga4_pages_previous = ga4.top_pages(start_date: previous_start, end_date: previous_end, limit: 50)
+    ga4_summary        = ga4.summary(start_date: current_start, end_date: current_end)
+    ga4_summary_prev   = ga4.summary(start_date: previous_start, end_date: previous_end)
+    ga4_sources        = ga4.traffic_sources(start_date: current_start, end_date: current_end)
+    ga4_sources_prev   = ga4.traffic_sources(start_date: previous_start, end_date: previous_end)
+    ga4_by_section     = ga4.by_section(ga4_pages_current)
+
+    # Delta WoW sources
+    prev_sources_map = ga4_sources_prev.index_by { |s| s[:channel] }
+    ga4_sources_with_delta = ga4_sources.map do |s|
+      prev = prev_sources_map[s[:channel]]
+      s.merge(
+        sessions_prev:      prev&.dig(:sessions),
+        delta_sessions_wow: prev ? s[:sessions] - prev[:sessions] : nil,
+        delta_pct_wow:      (prev && prev[:sessions] > 0) ? (((s[:sessions].to_f / prev[:sessions]) - 1) * 100).round(1) : nil
+      )
+    end
+
+    # Croisement GSC×GA4 par page (pour la Routine)
+    ga4_map = ga4_pages_current.index_by { |p| p[:page] }
+    gsc_ga4_cross = pages_with_delta.first(30).map do |gsc_page|
+      ga4_page = ga4_map[gsc_page[:page]]
+      {
+        page:         gsc_page[:page],
+        type:         gsc_page[:type],
+        # GSC
+        impressions:  gsc_page[:impressions],
+        clicks:       gsc_page[:clicks],
+        ctr:          gsc_page[:ctr],
+        position:     gsc_page[:position],
+        # GA4
+        sessions:     ga4_page&.dig(:sessions),
+        bounce_rate:  ga4_page&.dig(:bounce_rate),
+        avg_duration: ga4_page&.dig(:avg_duration),
+        # Signaux dérivés
+        ctr_gap:      ga4_page && gsc_page[:impressions] > 100 ? "#{((ga4_page[:sessions].to_f / gsc_page[:impressions]) * 100).round(1)}% conversion imp→session" : nil
+      }
+    end
+
     render json: {
       period: period, label: label, generated_at: today.strftime("%d/%m/%Y"),
       summary: { current: summary_current, previous: summary_previous, year_ago: summary_year_ago },
@@ -94,7 +136,15 @@ class SeoApiController < ApplicationController
         active_competitions: active_competitions, ending_soon: ending_soon,
         recent_competitions: recent_competitions, next_big_matches: next_big_matches
       },
-      existing_pages: existing_pages
+      existing_pages: existing_pages,
+      ga4: {
+        summary:          ga4_summary,
+        summary_previous: ga4_summary_prev,
+        by_section:       ga4_by_section,
+        traffic_sources:  ga4_sources_with_delta,
+        top_pages:        ga4_pages_current,
+        gsc_ga4_cross:    gsc_ga4_cross
+      }
     }
   rescue => e
     render json: { error: e.message }, status: :internal_server_error
