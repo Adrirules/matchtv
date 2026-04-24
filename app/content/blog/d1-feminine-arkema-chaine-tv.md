@@ -10,6 +10,47 @@ image_credit: "Photo : Unsplash / Jannes Glas"
 excerpt: "Canal+ Foot pour les affiches premium, YouTube pour le reste : le guide complet pour ne plus rater un match de l'Arkema Première Ligue 2025-2026."
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "D1 Féminine Arkema : sur quelle chaîne regarder les matchs ?",
+  "datePublished": "2026-04-21",
+  "dateModified": "2026-04-21",
+  "author": { "@type": "Person", "name": "Adrien" },
+  "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Est-ce que la D1 féminine est diffusée en clair ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Partiellement. Les gros matchs sont sur Canal+ (payant), mais la majorité des rencontres est accessible gratuitement via la chaîne YouTube officielle de l'Arkema Première Ligue." }
+    },
+    {
+      "@type": "Question",
+      "name": "Où regarder les play-offs de la D1 féminine ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les phases finales sont diffusées en intégralité sur les chaînes du groupe Canal+, souvent avec une affiche en clair sur Canal+ classique." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle chaîne diffuse l'équipe de France féminine ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les matchs des Bleues sont sur M6 et France Télévisions — des droits distincts de l'Arkema Première Ligue, valables jusqu'en 2027." }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi certains matchs de D1 féminine n'ont pas de commentateurs ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sur YouTube, il arrive que les matchs soient diffusés en flux brut (juste l'image et le son d'ambiance). Canal+ propose toujours un commentaire complet." }
+    }
+  ]
+}
+</script>
+
 # Où regarder la D1 Féminine Arkema à la télévision ? Guide complet
 
 Trouver un match de foot féminin à la TV en France ressemble parfois à une enquête de police. Entre les changements de noms de la compétition et les droits TV qui jonglent d'un groupe à l'autre, on finit souvent par rater le coup d'envoi. Perso, l'an dernier, j'ai mis 20 minutes à comprendre que le choc entre le PSG et l'OL était relégué sur un canal obscur alors que je le cherchais sur la chaîne principale. Résultat : j'ai vu le premier but... sur Twitter. Frustrant.
