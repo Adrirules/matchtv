@@ -10,8 +10,10 @@ class DaysController < ApplicationController
         today
       end
 
-    # Sécurité : jamais dans le passé
-    @date = today if @date < today
+    # Sécurité : jamais dans le passé — redirect 301 pour éviter les conflits de canonical
+    if @date < today
+      redirect_to day_path(date: today), status: :moved_permanently and return
+    end
 
     # Fenêtre fixe de 7 jours
     @days = (0..6).map { |i| today + i.days }

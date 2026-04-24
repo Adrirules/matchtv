@@ -7,14 +7,20 @@ class SitemapsController < ApplicationController
                     .where.not(slug: [nil, ""])
                     .order(start_time: :desc).limit(1000)
 
-    # 2. Les Équipes (uniques)
-    @teams = (Match.distinct.pluck(:home_team) + Match.distinct.pluck(:away_team)).uniq.compact
+    # 2. Les Équipes (uniques — seulement les équipes avec matchs récents ou à venir)
+    @teams = (
+      Match.where("start_time > ?", 90.days.ago).distinct.pluck(:home_team) +
+      Match.where("start_time > ?", 90.days.ago).distinct.pluck(:away_team)
+    ).uniq.compact
 
-    # 3. Les Compétitions (Ligues)
-    @competitions = Match.distinct.pluck(:competition).compact
+    # 3. Les Compétitions (Ligues — seulement celles avec matchs récents)
+    @competitions = Match.where("start_time > ?", 90.days.ago).distinct.pluck(:competition).compact
 
-    # 4. Les Joueurs
-    @players = Player.select(:slug, :updated_at).all
+    # 4. Les Joueurs (seulement ceux avec un slug valide et une équipe active récemment)
+    active_teams = @teams
+    @players = Player.where(team: active_teams)
+                     .where.not(slug: [nil, ""])
+                     .select(:slug, :updated_at)
 
     # 5. Les Classements (slugs officiels uniquement)
     @standing_slugs = StandingsController::LEAGUES.map { |l| l[:slug] }
