@@ -62,6 +62,29 @@ Rails.application.routes.draw do
     end
   end
 
+  # Redirections 301 — anciennes URLs /ligue/* indexées par Google
+  get '/ligues',                        to: redirect('/competitions')
+  get '/ligue/ligue-1',                 to: redirect('/competitions/ligue-1')
+  get '/ligue/ligue-2',                 to: redirect('/competitions/ligue-2')
+  get '/ligue/national',                to: redirect('/competitions/national')
+  get '/ligue/champions-league',        to: redirect('/competitions/champions-league')
+  get '/ligue/uefa-champions-league',   to: redirect('/competitions/champions-league')
+  get '/ligue/premier-league',          to: redirect('/competitions/premier-league')
+  get '/ligue/la-liga',                 to: redirect('/competitions/la-liga')
+  get '/ligue/bundesliga',              to: redirect('/competitions/bundesliga')
+  get '/ligue/serie-a',                 to: redirect('/competitions/serie-a')
+  get '/ligue/europa-league',           to: redirect('/competitions/europa-league')
+  get '/ligue/uefa-europa-league',      to: redirect('/competitions/europa-league')
+  get '/ligue/conference-league',       to: redirect('/competitions/conference-league')
+  get '/ligue/super-lig',               to: redirect('/competitions/super-lig')
+  get '/ligue/liga-portugal',           to: redirect('/competitions/liga-portugal')
+  get '/ligue/saudi-pro-league',        to: redirect('/competitions/saudi-pro-league')
+  get '/ligue/eredivisie',              to: redirect('/competitions/eredivisie')
+  get '/ligue/coupe-du-roi',            to: redirect('/competitions/coupe-du-roi')
+  get '/ligue/segunda-division',        to: redirect('/competitions')
+  get '/ligue/:slug',                   to: redirect('/competitions')
+  get '/search',                        to: redirect('/')
+
   # Erreurs (en tout dernier)
   match "/404", to: "errors#not_found", via: :all
   match "*path", to: "errors#not_found", via: :all

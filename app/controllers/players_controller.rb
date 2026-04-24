@@ -21,7 +21,8 @@ class PlayersController < ApplicationController
         base_player = Player.find_by(slug: base_slug)
         redirect_to joueur_path(base_player.slug), status: :moved_permanently and return if base_player
       end
-      render "errors/not_found", status: :not_found and return
+      # Slug introuvable — redirige vers l'index joueurs plutôt qu'un 404 (meilleur signal SEO)
+      redirect_to players_path, status: :moved_permanently and return
     end
 
     # Valeurs par défaut — évite les nil dans les vues et la description SEO
