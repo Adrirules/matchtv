@@ -145,3 +145,5 @@ curl -X POST "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/send-editor
 - Toujours au moins 1 article lié au calendrier foot des 30 prochains jours
 - Dates de publication : 1 article/jour, partir du lendemain du dernier article publié
 - Aucun tiret long (—) dans les titres ou le contenu généré → tiret simple (-)
+- Aucun emoji dans les briefs ni dans le contenu généré (pas de 👉, ✅, 🔥, etc.)
+- Ton humain, E-E-A-T obligatoire : chaque article doit inclure au moins une micro-anecdote personnelle, une nuance ("ça ne marche pas toujours quand...") et un conseil concret actionnable — le lecteur doit sentir qu'un passionné a écrit, pas un générateur de texte
