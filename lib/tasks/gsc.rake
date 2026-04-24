@@ -51,10 +51,10 @@ namespace :gsc do
         subject "🚨 #{count} nouvelles 404 sur coupdenvoi.tv — action requise"
         body    body
       end
-      mail.delivery_method :smtp, address: ENV['SMTP_ADDRESS'] || 'smtp.gmail.com',
+      mail.delivery_method :smtp, address: 'smtp.gmail.com',
                                    port: 587,
-                                   user_name: ENV['SMTP_USERNAME'],
-                                   password: ENV['SMTP_PASSWORD'],
+                                   user_name: ENV['GMAIL_USER'],
+                                   password: ENV['GMAIL_APP_PASSWORD'],
                                    authentication: :plain,
                                    enable_starttls_auto: true
       mail.deliver!
