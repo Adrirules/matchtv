@@ -403,28 +403,15 @@ class FootballApiService
     end
   end
 
-  # Incrémente un compteur par endpoint et par jour (non bloquant)
+  # Incrémente un compteur par endpoint et par jour — stocké en DB (survit aux restarts)
   # Consultable via : rails runner "puts FootballApiService.daily_usage"
   def self.track_call(endpoint)
-    segment = endpoint.to_s.split("/").reject(&:blank?).first || "other"
-    key = "api_calls_#{Date.today}_#{segment}"
-    Rails.cache.increment(key, 1, expires_in: 72.hours)
+    ApiCallLog.track(endpoint)
   rescue
     nil
   end
 
   def self.daily_usage(date = Date.today)
-    endpoints = %w[fixtures standings teams players injuries coachs]
-    total = 0
-    lines = endpoints.map do |ep|
-      count = Rails.cache.read("api_calls_#{date}_#{ep}").to_i
-      total += count
-      "  #{ep.ljust(12)} #{count}"
-    end
-    other = Rails.cache.read("api_calls_#{date}_other").to_i
-    total += other
-    lines << "  #{'other'.ljust(12)} #{other}"
-    lines << "  #{'TOTAL'.ljust(12)} #{total}"
-    lines.join("\n")
+    ApiCallLog.usage(date)
   end
 end
