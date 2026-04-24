@@ -213,6 +213,32 @@ class SeoApiController < ApplicationController
     render json: { error: e.message }, status: :internal_server_error
   end
 
+  # POST /api/seo/send-editorial
+  # Body JSON : { plan: "..." }
+  def send_editorial
+    plan = params[:plan].to_s.strip
+    return render json: { error: "plan manquant" }, status: :bad_request if plan.blank?
+
+    mail = Mail.new do
+      from    'coupdenvoi@gmail.com'
+      to      'coupdenvoi@gmail.com'
+      subject "📅 Plan éditorial coupdenvoi.tv — #{Date.today.strftime('%d/%m/%Y')}"
+      body    "Plan éditorial généré le #{Date.today.strftime('%d/%m/%Y')}\n\n#{plan}"
+    end
+    mail.delivery_method :smtp,
+      address:              'smtp.gmail.com',
+      port:                 587,
+      user_name:            ENV['GMAIL_USER'],
+      password:             ENV['GMAIL_APP_PASSWORD'],
+      authentication:       :plain,
+      enable_starttls_auto: true
+    mail.deliver!
+
+    render json: { ok: true, sent_to: 'coupdenvoi@gmail.com' }
+  rescue => e
+    render json: { error: e.message }, status: :internal_server_error
+  end
+
   # GET /api/seo/history?weeks=N&period=weekly|monthly
   def history
     period = params[:period].presence&.strip == "monthly" ? "monthly" : "weekly"
