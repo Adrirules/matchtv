@@ -126,6 +126,12 @@ class SeoApiController < ApplicationController
       }
     end
 
+    # Crawl errors — nouvelles 404 des 7 derniers jours pour la Routine
+    crawl_errors_week = CrawlError.where("first_seen >= ?", 7.days.ago)
+                                   .order(count: :desc)
+                                   .limit(50)
+                                   .map { |e| { url: e.url, count: e.count, first_seen: e.first_seen } }
+
     render json: {
       period: period, label: label, generated_at: today.strftime("%d/%m/%Y"),
       summary: { current: summary_current, previous: summary_previous, year_ago: summary_year_ago },
@@ -137,6 +143,7 @@ class SeoApiController < ApplicationController
         recent_competitions: recent_competitions, next_big_matches: next_big_matches
       },
       existing_pages: existing_pages,
+      crawl_errors: crawl_errors_week,
       ga4: {
         summary:          ga4_summary,
         summary_previous: ga4_summary_prev,

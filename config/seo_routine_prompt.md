@@ -16,7 +16,27 @@ doit renforcer la part éditoriale humaine du site (signal E-E-A-T critique).
 curl "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/fetch-data?period=weekly&token=ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10"
 ```
 
-## Étape 1b — Charge l'historique (4 dernières semaines)
+## Étape 1b — Vérifie les nouvelles 404 de la semaine
+
+```bash
+curl "https://www.coupdenvoi.tv/api/seo/fetch-data?period=weekly&token=ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10"
+```
+
+Le JSON contient un champ `crawl_errors` avec les nouvelles URLs en 404 des 7 derniers jours.
+
+Pour chaque groupe de nouvelles 404 :
+1. **Classifier le pattern** : joueur ? équipe ? ancienne URL ? compétition ?
+2. **Évaluer l'impact** : combien de hits ? depuis quand ?
+3. **Proposer le fix** : redirect 301 dans `config/routes.rb` ou correction controller
+4. **Implémenter directement** si le pattern est clair (< 10 URLs du même type)
+5. **Signaler à Adrien** si le pattern est inconnu ou > 20 URLs nouvelles
+
+Seuils d'alerte :
+- 0-5 nouvelles URLs → normal, noter en bas de rapport
+- 6-20 nouvelles URLs → signaler dans section ANOMALIES
+- > 20 nouvelles URLs → alerte en haut du rapport, action prioritaire
+
+## Étape 1c — Charge l'historique (4 dernières semaines)
 
 ```bash
 curl "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/history?weeks=4&period=weekly&token=ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10"
