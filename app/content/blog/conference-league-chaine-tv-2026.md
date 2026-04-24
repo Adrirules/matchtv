@@ -52,6 +52,8 @@ dazn_card: false
 }
 </script>
 
+# Conference League 2025-2026 : sur quelle chaîne voir les matchs en France ?
+
 Bon, on va pas se mentir, la Conference League c'est la compétition qu'on charrie volontiers. "La C4", "la coupe des losers", j'en passe et des meilleures. Sauf que cette saison j'ai une bonne raison de la regarder, et elle s'appelle Strasbourg. Et puis quand on me sort que "c'est nul", j'ai toujours ma petite anecdote en réserve - j'y reviens plus bas.
 
 > **Réponse rapide -** La Conference League 2025-2026 est diffusée en France par **[Canal+](/chaines/canal-plus)** (via le Pass Coupes d'Europe). Les demi-finales se jouent les <time datetime="2026-04-30">30 avril</time> et <time datetime="2026-05-07">7 mai 2026</time>, avec Rayo Vallecano-Strasbourg côté français. La finale, c'est le <time datetime="2026-05-27">mercredi 27 mai 2026</time> à la Red Bull Arena de Leipzig.
@@ -62,7 +64,7 @@ La réponse tient en un mot : **[Canal+](/chaines/canal-plus)**. Depuis la saiso
 
 Concrètement, pour voir les matchs, il faut un abonnement Canal+ avec le Pass Coupes d'Europe. Selon ta formule, il est soit inclus, soit en option. Pense à vérifier avant de râler devant ta télé le soir du match - je parle d'expérience.
 
-Et côté gratuit ? Rien. Aucun match de Conference League n'est diffusé en clair cette saison, pas même la finale. C'est un protected event en France uniquement pour la finale de Ligue des Champions (qui, elle, est reprise par M6). Pour la Conference, faut passer par la caisse.
+Et côté gratuit ? Rien. Aucun match de Conference League n'est diffusé en clair cette saison, pas même la finale. C'est un protected event en France uniquement pour la finale de Ligue des Champions (qui, elle, est reprise par [M6](/chaines/m6)). Pour la Conference, faut passer par la caisse.
 
 [Plus de détails sur Canal+ et ses offres foot →](/chaines/canal-plus)
 

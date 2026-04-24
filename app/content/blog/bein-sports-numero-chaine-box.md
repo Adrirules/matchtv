@@ -10,7 +10,7 @@ image_credit: "Photo : Unsplash"
 excerpt: "Orange, SFR, Bouygues, Free : tous les numéros de chaînes beIN Sports par opérateur, plus les pièges classiques à éviter pour ne pas rater le coup d'envoi."
 ---
 
-## beIN Sports : quel numéro de chaîne sur ta box internet ?
+# beIN Sports : quel numéro de chaîne sur ta box internet ?
 
 Tu cherches le numéro de chaîne **beIN Sports** sur ta box et tu n'as pas envie de zapper pendant 10 minutes. Normal. Entre les canaux qui changent, les chaînes secondaires et les interfaces pas toujours claires, on peut vite tourner en rond.
 
