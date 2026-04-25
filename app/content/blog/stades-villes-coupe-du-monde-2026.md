@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.pexels.com/photos/13144052/pexels-photo-13144052.jpeg
 image_credit: "Photo : Unsplash"
 excerpt: "16 stades, 3 pays, 4000 kilomètres d'est en ouest. De l'Azteca de Mexico au MetLife de New York, le guide complet des enceintes de la Coupe du Monde 2026."
+tags: ["coupe-du-monde"]
 ---
 
 # Coupe du Monde 2026 : les 16 stades, villes et infos clés à connaître

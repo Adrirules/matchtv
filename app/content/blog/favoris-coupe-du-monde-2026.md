@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1731870881782-1948058d9ce1?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "France, Argentine, Brésil, Angleterre, Allemagne : cinq équipes, une liste qui tourne en boucle depuis que les groupes sont tombés. Notre podium avant le coup d'envoi."
+tags: ["coupe-du-monde"]
 match_pairs_title: "Les prochains matchs des 5 favoris"
 derby_pairs:
   - ["France", "Senegal"]

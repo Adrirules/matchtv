@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1535506197904-e5c09c0e5619?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash / Jannes Glas"
 excerpt: "Canal+ Foot pour les affiches premium, YouTube pour le reste : le guide complet pour ne plus rater un match de l'Arkema Première Ligue 2025-2026."
+tags: ["d1-feminine\", \"canal-plus"]
 ---
 
 <script type="application/ld+json">

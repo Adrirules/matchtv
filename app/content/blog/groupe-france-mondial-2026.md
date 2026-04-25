@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.pexels.com/photos/34201725/pexels-photo-34201725.jpeg
 image_credit: "Photo : Unsplash"
 excerpt: "Le 5 décembre 2025, la France a tiré le Groupe I : Sénégal, Norvège, Irak. Pas une promenade de santé. Analyse complète des trois adversaires, du calendrier et du parcours potentiel jusqu'à la finale."
+tags: ["coupe-du-monde"]
 match_pairs_title: "Les matchs du Groupe I"
 derby_pairs:
   - ["France", "Senegal"]
