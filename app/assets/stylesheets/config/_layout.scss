@@ -1,23 +1,41 @@
+:root {
+  // Palette — Theme B "Editorial Light"
+  --color-bg:         oklch(96% 0.006 255);
+  --color-surface:    #ffffff;
+  --color-border:     oklch(88% 0.012 255);
+  --color-accent:     oklch(40% 0.2 255);
+  --color-accent-dim: oklch(40% 0.2 255 / 0.1);
+  --color-text:       oklch(14% 0.02 255);
+  --color-muted:      oklch(52% 0.02 255);
+  --color-header:     oklch(20% 0.08 255);
+  --color-live:       oklch(50% 0.22 25);
+
+  // Typographie
+  --font-heading: 'Barlow Condensed', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
-  /* Empêche le scroll horizontal causé par le hack du calendrier 100vw */
   overflow-x: hidden;
-}
-
-@media (min-width: 1024px) {
-  main.container {
-    max-width: 1024px !important;
-  }
 }
 
 body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: #f7f8fa;
+  background: var(--color-bg);
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+@media (min-width: 1024px) {
+  main.container {
+    max-width: 1024px !important;
+  }
 }
 
 .page-wrapper {

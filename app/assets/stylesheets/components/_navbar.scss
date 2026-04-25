@@ -1,48 +1,46 @@
 /* ====== MATCH CARD ====== */
 .match-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  border: 1px solid #f0f0f0;
-  transition: box-shadow 0.15s;
+  background: var(--color-surface);
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  transition: border-color 0.15s, box-shadow 0.15s;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  &--live {
+    border-left: 3px solid var(--color-live);
   }
 }
 
 /* ====== LIVE SCORE BADGES ====== */
 .match-status {
-  display: inline-block;
-  padding: 2px 7px;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
   border-radius: 4px;
   font-weight: 700;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 10px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.03em;
 
   &.live {
-    background: #d9534f;
+    background: var(--color-live);
     color: white;
-    animation: pulse 1.5s ease-in-out infinite;
   }
 
   &.finished {
-    background: #e9ecef;
-    color: #666;
-  }
-
-  &.upcoming {
-    background: #f4f4f4;
-    color: #444;
+    background: oklch(92% 0.005 255);
+    color: var(--color-muted);
   }
 }
 
-@keyframes pulse {
+@keyframes livepulse {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.6; }
+  50%       { opacity: 0.7; }
 }
 
 /* ====== NAVBAR HAUTE ====== */
@@ -62,8 +60,10 @@
 }
 
 .top-nav-logo {
+  font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 18px;
+  font-size: 20px;
+  letter-spacing: -0.01em;
 }
 
 .top-nav-links {

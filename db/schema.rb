@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_04_24_082211) do
+ActiveRecord::Schema[7.0].define(version: 2026_04_24_095615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_call_logs", force: :cascade do |t|
+    t.date "date", null: false
+    t.string "endpoint", null: false
+    t.integer "count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date", "endpoint"], name: "index_api_call_logs_on_date_and_endpoint", unique: true
+  end
 
   create_table "coaches", force: :cascade do |t|
     t.integer "team_api_id", null: false

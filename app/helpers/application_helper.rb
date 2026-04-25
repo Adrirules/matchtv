@@ -465,4 +465,65 @@ module ApplicationHelper
     else l(date, format: "%d %B %Y")
     end
   end
+
+  # ── Badges chaînes colorés — design system v2 ───────────────────────────────
+  CHANNEL_BADGE_COLORS = {
+    'Canal+'          => { bg: '#B80020', text: '#fff' },
+    'Canal+ Foot'     => { bg: '#B80020', text: '#fff' },
+    'Canal+ Live 1'   => { bg: '#B80020', text: '#fff' },
+    'Canal+ Live 2'   => { bg: '#B80020', text: '#fff' },
+    'Canal+ Live 3'   => { bg: '#B80020', text: '#fff' },
+    'Canal+ Live 4'   => { bg: '#B80020', text: '#fff' },
+    'Canal+ Sport'    => { bg: '#B80020', text: '#fff' },
+    'beIN Sports'     => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 1'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 2'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 3'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 4'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 5'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 7'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 10'  => { bg: '#00843D', text: '#fff' },
+    'DAZN'            => { bg: '#111111', text: '#F4E100', border: '1px solid #F4E100' },
+    'Amazon Prime'    => { bg: '#00A8E0', text: '#fff' },
+    'TF1'             => { bg: '#003B8E', text: '#fff' },
+    'M6'              => { bg: '#FF7A00', text: '#fff' },
+    'France TV'       => { bg: '#1A3A6E', text: '#fff' },
+    'France 2'        => { bg: '#1A3A6E', text: '#fff' },
+    'France 3'        => { bg: '#1A3A6E', text: '#fff' },
+    'RMC Sport'       => { bg: '#E5001E', text: '#fff' },
+    'RMC Sport 1'     => { bg: '#E5001E', text: '#fff' },
+    'Apple TV+'       => { bg: '#1c1c1e', text: '#fff' },
+  }.freeze
+
+  CHANNEL_BADGE_LABELS = {
+    'Canal+ Foot'    => 'C+ Foot',
+    'Canal+ Live 1'  => 'C+ Live 1',
+    'Canal+ Live 2'  => 'C+ Live 2',
+    'Canal+ Live 3'  => 'C+ Live 3',
+    'Canal+ Live 4'  => 'C+ Live 4',
+    'Canal+ Sport'   => 'C+ Sport',
+    'beIN Sports 1'  => 'beIN 1',
+    'beIN Sports 2'  => 'beIN 2',
+    'beIN Sports 3'  => 'beIN 3',
+    'beIN Sports 4'  => 'beIN 4',
+    'beIN Sports 5'  => 'beIN 5',
+    'beIN Sports 7'  => 'beIN 7',
+    'beIN Sports 10' => 'beIN 10',
+    'Amazon Prime'   => 'Prime',
+    'France TV'      => 'FranceTV',
+  }.freeze
+
+  def channel_badge(channel_name, small: false)
+    return ''.html_safe if channel_name.blank?
+    channel  = channel_name.to_s.split(',').first.strip
+    col      = CHANNEL_BADGE_COLORS[channel] || { bg: '#6b7280', text: '#fff' }
+    label    = CHANNEL_BADGE_LABELS[channel] || channel
+    padding  = small ? '2px 5px' : '3px 8px'
+    fs       = small ? '9px' : '11px'
+    style    = "display:inline-flex;align-items:center;background:#{col[:bg]};color:#{col[:text]};"
+    style   += "border:#{col[:border]};" if col[:border]
+    style   += "border-radius:4px;padding:#{padding};font-size:#{fs};font-weight:700;"
+    style   += "font-family:'DM Sans',sans-serif;letter-spacing:0.02em;white-space:nowrap;line-height:1.4;"
+    content_tag(:span, label, style: style)
+  end
 end
