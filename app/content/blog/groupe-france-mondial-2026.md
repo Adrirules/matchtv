@@ -26,6 +26,8 @@ Avant de rentrer dans le détail, il faut parler de l'éléphant dans la pièce.
 
 Le format d'abord, pour ceux qui découvrent. Pour la première fois de l'histoire, 48 équipes participent à la Coupe du Monde, réparties en douze groupes de quatre. Les deux premiers de chaque groupe plus les huit meilleurs troisièmes sont qualifiés pour les seizièmes de finale. Finir dans les deux premiers du groupe I, c'est quasi certain de continuer. Finir troisième avec un bon bilan, ça peut aussi passer. Finir quatrième, c'est rentrer à la maison et expliquer pendant quatre ans ce qui s'est passé.
 
+[[groupe:I]]
+
 ## France contre Sénégal : le mauvais souvenir de 2002
 
 Premier match, le 16 juin à New York au MetLife Stadium. 21h heure française. Et ce n'est pas un hasard si ce match ouvre le groupe : c'est l'affiche la plus relevée sur le papier.
