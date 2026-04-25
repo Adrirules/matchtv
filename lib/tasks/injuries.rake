@@ -7,12 +7,12 @@ namespace :injuries do
     end
 
     matches = Match.where(status: "NS")
-                   .where(start_time: Time.current..(Time.current + 7.days))
+                   .where(start_time: Time.current..(Time.current + 3.days))
                    .where.not(api_id: nil)
                    .order(:start_time)
 
     if matches.empty?
-      puts "✅ Aucun match à venir dans les 7 prochains jours."
+      puts "✅ Aucun match à venir dans les 3 prochains jours."
       next
     end
 

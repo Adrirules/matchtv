@@ -20,8 +20,14 @@ namespace :players do
     team_ids.each_with_index do |(team_api_id, team_name, team_logo), i|
       print "  [#{i+1}/#{team_ids.count}] #{team_name.ljust(25)} "
 
-      # Skip si l'effectif a déjà été importé dans les 7 derniers jours
-      if Player.where(team_api_id: team_api_id).where('updated_at > ?', 7.days.ago).exists?
+      # Arrêt si le budget API est dépassé (vérifié équipe par équipe)
+      unless FootballApiService.within_budget?(:low)
+        puts "\n⛔ Budget API atteint — arrêt à #{i+1}/#{team_ids.count} équipes"
+        break
+      end
+
+      # Skip si l'effectif a déjà été importé dans les 14 derniers jours
+      if Player.where(team_api_id: team_api_id).where('updated_at > ?', 14.days.ago).exists?
         puts "⏭️  (à jour)"
         next
       end

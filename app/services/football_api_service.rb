@@ -421,9 +421,9 @@ class FootballApiService
   # Appel seuil réduit de 1000 si des matchs ont lieu dans les 8 prochaines heures
   QUOTA_THRESHOLDS = {
     critical: 7500, # toujours autorisé
-    high:     6000,
-    medium:   5000,
-    low:      4000
+    high:     5500,
+    medium:   4500,
+    low:      2500
   }.freeze
 
   def self.within_budget?(priority = :low)
