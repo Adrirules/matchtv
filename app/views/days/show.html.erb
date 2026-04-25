@@ -116,12 +116,36 @@
 <% end %>
 
 <% if @matches.any? %>
-  <% @matches.each_with_index do |match, index| %>
-    <% if index == 4 %>
+  <%
+    known_order   = FootballApiService::COMPETITIONS_META.map { |c| c[:name] }
+    grouped       = @matches.group_by(&:competition)
+    sorted_groups = grouped.sort_by { |comp, _| known_order.index(comp) || 999 }
+    match_index   = 0
+  %>
+  <% sorted_groups.each_with_index do |(competition, matches), group_index| %>
+    <% if group_index == 2 %>
       <%= render 'shared/ad_unit', slot_id: '2773465276' %>
     <% end %>
-    <%= render 'shared/match_card', match: match, priority: index < 2 %>
-    <%= render 'shared/json_ld', match: match %>
+
+    <%# Header compétition %>
+    <% comp_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == competition } %>
+    <div style="display:flex;align-items:center;gap:10px;margin:20px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--color-accent);">
+      <% if comp_meta %>
+        <img src="<%= FootballApiService.league_logo(comp_meta[:id]) %>" alt="<%= competition %>"
+             width="20" height="20" loading="lazy" style="width:20px;height:20px;object-fit:contain;">
+      <% end %>
+      <span style="font-size:14px;font-weight:800;color:var(--color-text);text-transform:uppercase;letter-spacing:0.04em;font-family:'Barlow Condensed',sans-serif;"><%= competition %></span>
+      <% if comp_meta&.dig(:has_standings) %>
+        <%= link_to standing_path(competition.parameterize),
+            style: "font-size:10px;font-weight:700;color:var(--color-accent);background:var(--color-accent-dim);padding:2px 7px;border-radius:5px;text-decoration:none;margin-left:auto;" do %>Classement<% end %>
+      <% end %>
+    </div>
+
+    <% matches.each do |match| %>
+      <%= render 'shared/match_card', match: match, priority: match_index < 2 %>
+      <%= render 'shared/json_ld', match: match %>
+      <% match_index += 1 %>
+    <% end %>
   <% end %>
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun match prévu ce jour-là.</p>
