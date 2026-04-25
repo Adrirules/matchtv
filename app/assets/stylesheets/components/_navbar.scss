@@ -163,24 +163,6 @@
   font-size: 18px;
 }
 
-/* ====== CALENDRIER STICKY ====== */
-.sticky-calendar {
-  position: sticky;
-  top: 0;
-  background: white;
-  z-index: 900;
-  border-bottom: 1px solid #eaeaea;
-
-  /* Force le calendrier à sortir des marges du container parent */
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-
-  /* Optionnel : centre le contenu interne si tes jours flottent trop */
-  display: flex;
-  justify-content: center;
-}
-
 /* pour éviter que la navbar cache le contenu */
 main {
   padding-bottom: 70px;
