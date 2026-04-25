@@ -130,6 +130,11 @@
     <% end %>
   </div>
 
+  <%# Tags + Vous aimerez aussi %>
+  <%= render 'blog/related_articles',
+      tags: @article[:tags],
+      related_articles: @related_articles %>
+
   <%# Prochains derbies (dynamique) %>
   <% if @derby_matches.any? %>
     <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid #e2e8f0;">

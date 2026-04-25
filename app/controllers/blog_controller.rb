@@ -66,6 +66,8 @@ class BlogController < ApplicationController
       end
     end
 
+    @related_articles = related_articles_for(@article)
+
     expires_in 1.hour, private: true
   end
 
@@ -111,10 +113,40 @@ class BlogController < ApplicationController
       match_groups:      meta['match_groups'],
       reading_time:      reading_time,
       dazn_card:         meta.key?('dazn_card') ? meta['dazn_card'] : true,
-      canal_plus_card:   meta.key?('canal_plus_card') ? meta['canal_plus_card'] : true
+      canal_plus_card:   meta.key?('canal_plus_card') ? meta['canal_plus_card'] : true,
+      tags:              Array(meta['tags']).map(&:to_s).reject(&:blank?)
     }
     result[:body] = body_text if with_body
     result
+  end
+
+  def related_articles_for(article)
+    others = all_articles.reject { |a| a[:slug] == article[:slug] }
+    selected = []
+
+    # Slot 1 — même tag, random
+    if article[:tags].any?
+      same_tag = others.select { |a| (a[:tags] & article[:tags]).any? }
+      slot1 = same_tag.sample
+      selected << slot1 if slot1
+    end
+
+    # Slot 2 — article affilié random (dazn_card ou canal_plus_card actif)
+    affiliate = (others - selected).select { |a| a[:dazn_card] != false || a[:canal_plus_card] != false }
+    slot2 = affiliate.sample
+    selected << slot2 if slot2
+
+    # Slot 3 — random global
+    slot3 = (others - selected).sample
+    selected << slot3 if slot3
+
+    # Fallback : compléter avec les plus récents si pas assez
+    if selected.length < 3
+      recent = (others - selected).first(3 - selected.length)
+      selected += recent
+    end
+
+    selected.first(3)
   end
 
   def render_markdown_with_toc(text)
