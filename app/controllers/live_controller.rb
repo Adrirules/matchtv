@@ -8,9 +8,6 @@ class LiveController < ApplicationController
     grouped = @live_matches.group_by(&:competition)
     @sorted_groups = grouped.sort_by { |comp, _| known_order.index(comp) || 999 }
 
-    content_for :title, "Matchs en direct maintenant - Scores live | Coup d'Envoi TV"
-    content_for :meta_description, "Tous les matchs de football en cours en ce moment. Scores en direct, minutes de jeu et chaînes de diffusion."
-
     # Pas d'indexation Google pour cette page dynamique (contenu qui change toutes les minutes)
     @noindex = true
 

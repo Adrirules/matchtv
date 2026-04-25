@@ -1,3 +1,6 @@
+<% content_for :title, "Matchs en direct maintenant - Scores live | Coup d'Envoi TV" %>
+<% content_for :meta_description, "Tous les matchs de football en cours en ce moment. Scores en direct, minutes de jeu et chaînes de diffusion." %>
+
 <%# Refresh auto toutes les 60s pendant un match en direct %>
 <% if @live_matches.any? %>
   <meta http-equiv="refresh" content="60">
