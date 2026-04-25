@@ -120,11 +120,19 @@ class CompetitionsController < ApplicationController
     @editorial_html = editorial.present?
 
     # Classement depuis la DB (0 appel API)
+    @is_world_cup = meta && meta[:id] == 1
     if @has_standings && meta
       standing = Standing.for_league(meta[:id])
-      @standings_rows = standing&.data&.dig(0, "league", "standings", 0) || []
+      if @is_world_cup
+        # CDM : 12 tableaux de groupes
+        @all_groups = standing&.data&.dig(0, "league", "standings") || []
+        @standings_rows = @all_groups.first || []
+      else
+        @standings_rows = standing&.data&.dig(0, "league", "standings", 0) || []
+      end
     else
       @standings_rows = []
+      @all_groups = []
     end
 
     # Chaînes qui diffusent cette compétition

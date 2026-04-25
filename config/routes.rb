@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   # 5. Compétitions
   get "competitions", to: "competitions#index", as: :competitions
+  # Coupe du Monde 2026 — routes spécifiques AVANT la route générique
+  get "competitions/coupe-du-monde-2026/buteurs",       to: "world_cup#top_scorers", as: :world_cup_top_scorers
+  get "competitions/coupe-du-monde-2026/groupe-:letter", to: "world_cup#group",       as: :world_cup_group, constraints: { letter: /[a-l]/ }
   get "competitions/:slug", to: "competitions#show", as: :competition
 
   # 5. Classements
