@@ -20,28 +20,6 @@
 
 <div style="padding: 0 10px;">
 
-  <%# Texte éditorial (toujours visible — SEO) %>
-  <% if @description.present? %>
-    <section style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-      <% @description.split(/\n+/).reject(&:blank?).each do |para| %>
-        <% if @editorial_html && para =~ /\A\s*<h[23]/ %>
-          <%= para.html_safe %>
-        <% elsif @editorial_html %>
-          <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;"><%= para.html_safe %></p>
-        <% else %>
-          <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;"><%= para %></p>
-        <% end %>
-      <% end %>
-    </section>
-  <% else %>
-    <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-      <p style="font-size: 15px; color: #444; line-height: 1.7; margin: 0;">
-        Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
-        Programme TV complet avec horaires et chaînes de diffusion pour toute la saison 2025-2026.
-      </p>
-    </div>
-  <% end %>
-
   <%# ========== SOUS-NAV ONGLETS ========== %>
   <div id="comp-tabs-nav" style="display: flex; border-bottom: 2px solid #e2e8f0; margin-bottom: 20px; gap: 0;">
     <button class="comp-tab" data-panel="programme"
@@ -293,6 +271,28 @@
   </script>
 
 </div>
+
+<%# Texte éditorial — juste avant la FAQ (SEO + E-E-A-T) %>
+<% if @description.present? %>
+  <section style="background: white; border-radius: 12px; padding: 20px; margin: 0 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+    <% @description.split(/\n+/).reject(&:blank?).each do |para| %>
+      <% if @editorial_html && para =~ /\A\s*<h[23]/ %>
+        <%= para.html_safe %>
+      <% elsif @editorial_html %>
+        <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;"><%= para.html_safe %></p>
+      <% else %>
+        <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 14px;"><%= para %></p>
+      <% end %>
+    <% end %>
+  </section>
+<% else %>
+  <div style="background: white; border-radius: 12px; padding: 16px; margin: 0 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+    <p style="font-size: 15px; color: #444; line-height: 1.7; margin: 0;">
+      Retrouvez tous les matchs de la <strong><%= @competition_name %></strong> diffusés à la télévision française.
+      Programme TV complet avec horaires et chaînes de diffusion pour toute la saison 2025-2026.
+    </p>
+  </div>
+<% end %>
 
 <%# FAQ compétition — 21 sets, 1 unique par compétition %>
 <%
