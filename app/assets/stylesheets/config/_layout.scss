@@ -1,6 +1,7 @@
 :root {
   // Palette — Theme B "Editorial Light"
   --color-bg:         #EFF2F6;
+  --bs-body-bg:       #EFF2F6; // Override Bootstrap (qui écrase sinon notre background)
   --color-surface:    #ffffff;
   --color-border:     oklch(88% 0.012 255);
   --color-accent:     oklch(40% 0.2 255);
