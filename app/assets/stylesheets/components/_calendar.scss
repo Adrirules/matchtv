@@ -5,8 +5,7 @@
   top: 0;
   left: 50% !important;
   margin-left: -50vw !important;
-  background: #1e2d4a; /* fallback hex */
-  background: var(--color-header);
+  background-color: #1e2d4a !important;
   z-index: 1000;
 }
 
