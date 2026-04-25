@@ -2,7 +2,7 @@
 
   <%# Bloc 1 : Programme TV par compétition %>
   <div class="sidebar-block">
-    <p class="sidebar-block-title">Programme TV</p>
+    <p class="sidebar-block-title">Programme TV des compétitions</p>
     <ul class="sidebar-block-list">
       <% FootballApiService::COMPETITIONS_META.reject { |c| c[:archived] }.each do |comp| %>
         <li>
@@ -16,7 +16,7 @@
 
   <%# Bloc 2 : Résultats par compétition %>
   <div class="sidebar-block">
-    <p class="sidebar-block-title">Résultats</p>
+    <p class="sidebar-block-title">Résultats des compétitions</p>
     <ul class="sidebar-block-list">
       <% FootballApiService::COMPETITIONS_META.reject { |c| c[:archived] }.each do |comp| %>
         <li>
