@@ -1,0 +1,46 @@
+<%#
+  Partial : carte affilié Canal+
+  Activation : heroku config:set CANAL_PLUS_AFFILIATE_URL="https://..."
+  Locals :
+    - variant      (:standard | :compact)  default: :standard
+    - page_context (string GA4 : 'match', 'channel', 'competition', 'blog') default: 'site'
+    - cta_index    (0..2 pour A/B CTA) default: 0
+    - subtitle     (string optionnel pour surcharger le texte sous le titre)
+%>
+<% canal_url = ENV.fetch("CANAL_PLUS_AFFILIATE_URL", nil) %>
+<% return unless canal_url.present? %>
+
+<% variant      = local_assigns.fetch(:variant, :standard) %>
+<% page_context = local_assigns.fetch(:page_context, "site") %>
+<% cta_index    = local_assigns.fetch(:cta_index, 0) %>
+<% ctas = ["S'abonner à Canal+", "Voir ce match sur Canal+", "Essayer Canal+ gratuitement"] %>
+<% cta_text = ctas[cta_index % 3] %>
+<% ga_push = "dataLayer.push({event:'affiliate_click',affiliate_partner:'canal_plus',affiliate_page:'#{page_context}',affiliate_cta:#{cta_index % 3}})" %>
+
+<% if variant == :compact %>
+  <%= link_to canal_url, target: "_blank", rel: "nofollow sponsored noopener",
+      style: "color: #3b82f6; font-weight: 600; text-decoration: none;",
+      onclick: ga_push do %>
+    <%= cta_text %> →
+  <% end %>
+
+<% else %>
+  <% card_subtitle = local_assigns[:subtitle].presence ||
+    "Champions League, Europa League, Conference League et Ligue 1 - regardez le foot en direct sur Canal+." %>
+
+  <div style="background: white; border: 1px solid #d1d5db; border-radius: 10px; padding: 18px 20px; margin: 22px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <span style="font-size: 15px; font-weight: 900; letter-spacing: -0.3px; color: #fff; background: #000; border-radius: 4px; padding: 2px 10px;">CANAL+</span>
+    </div>
+    <p style="margin: 0 0 16px; font-size: 14px; color: #475569; line-height: 1.5;"><%= card_subtitle %></p>
+    <div style="text-align: center;">
+      <%= link_to canal_url, target: "_blank", rel: "nofollow sponsored noopener",
+          onclick: ga_push,
+          style: "display: inline-block; background: #000; color: white; font-size: 14px; font-weight: 700; padding: 11px 24px; border-radius: 6px; text-decoration: none; transition: background 0.15s;",
+          onmouseover: "this.style.background='#1f2937'",
+          onmouseout:  "this.style.background='#000'" do %>
+        <%= cta_text %> →
+      <% end %>
+    </div>
+  </div>
+<% end %>

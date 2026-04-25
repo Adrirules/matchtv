@@ -92,9 +92,29 @@
         subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez tous les matchs sur DAZN." %>
   <% end %>
 
-  <%# Corps de l'article — les marqueurs <!-- DAZN_CARD --> sont remplacés par le partial %>
+  <%# Card affilié Canal+ avant le contenu si l'article mentionne Canal+ et que canal_plus_card n'est pas désactivé %>
+  <% if @article[:canal_plus_card] != false && @article_html&.include?('Canal+') %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        page_context: 'blog',
+        cta_index: 0,
+        subtitle: "Champions League, Europa League et Ligue 1 - regardez le foot en direct sur Canal+." %>
+  <% end %>
+
+  <%# Corps de l'article — les marqueurs <!-- DAZN_CARD --> et <!-- CANAL_PLUS_CARD --> sont remplacés par les partials %>
   <div class="blog-content">
-    <% if @article_html&.include?('<!-- DAZN_CARD -->') %>
+    <% if @article_html&.include?('<!-- CANAL_PLUS_CARD -->') %>
+      <% @article_html.split('<!-- CANAL_PLUS_CARD -->').each_with_index do |chunk, i| %>
+        <%= chunk.html_safe %>
+        <% if i < @article_html.split('<!-- CANAL_PLUS_CARD -->').length - 1 %>
+          <%= render 'shared/canal_plus_card',
+              variant: :standard,
+              page_context: 'blog-inline',
+              cta_index: i,
+              subtitle: "Champions League, Europa League et Ligue 1 - regardez le foot en direct sur Canal+." %>
+        <% end %>
+      <% end %>
+    <% elsif @article_html&.include?('<!-- DAZN_CARD -->') %>
       <% @article_html.split('<!-- DAZN_CARD -->').each_with_index do |chunk, i| %>
         <%= chunk.html_safe %>
         <% if i < @article_html.split('<!-- DAZN_CARD -->').length - 1 %>
