@@ -45,8 +45,8 @@
 
 /* ====== NAVBAR HAUTE ====== */
 .top-nav {
-  padding: 12px 16px;
-  border-bottom: 1px solid #eaeaea;
+  padding: 10px 16px;
+  background: var(--color-header);
   font-weight: 700;
   font-size: 18px;
   display: flex;
@@ -54,7 +54,7 @@
   justify-content: space-between;
 
   a {
-    color: inherit;
+    color: white;
     text-decoration: none;
   }
 }
@@ -64,28 +64,33 @@
   font-weight: 800;
   font-size: 20px;
   letter-spacing: -0.01em;
+  color: white;
 }
 
 .top-nav-links {
-  display: none; // caché sur mobile
+  display: none;
 }
 
 .top-nav-item {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: #333;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 8px;
-  transition: background 0.15s;
+  transition: color 0.15s, background 0.15s;
 
-  &:hover { background: #f4f4f4; }
+  &:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
   &.active {
-    color: #333;
+    color: white;
     font-weight: 700;
-    border-bottom: 2px solid #0f172a;
+    border-bottom: 2px solid var(--color-accent);
     border-radius: 0;
-    padding-bottom: 4px;
+    padding-bottom: 3px;
   }
 
   span { margin-right: 4px; }
@@ -95,14 +100,18 @@
 .top-nav-blog-mobile {
   font-size: 13px;
   font-weight: 700;
-  color: #333;
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 8px;
-  border: 1px solid #eaeaea;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
 
-  &.active { border-color: #0f172a; }
+  &.active {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -113,7 +122,7 @@
   }
 
   .top-nav-blog-mobile {
-    display: none; // caché sur desktop, le lien est dans top-nav-links
+    display: none;
   }
 }
 

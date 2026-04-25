@@ -1,54 +1,63 @@
-/* 1. Le fond blanc qui prend toute la largeur */
+/* 1. Fond dark navy pleine largeur */
 .calendar-full-width-bg {
   width: 100vw !important;
   position: sticky;
   top: 0;
   left: 50% !important;
   margin-left: -50vw !important;
-  background: #ffffff;
-  border-bottom: 1px solid #eaeaea;
+  background: var(--color-header);
   z-index: 1000;
 }
 
-/* 2. L'alignement horizontal des jours */
+/* 2. Ligne des jours */
 .sticky-calendar {
   display: flex !important;
-  /* Force l'alignement horizontal */
   flex-direction: row !important;
-  justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding: 8px 0;
+  padding: 8px 12px 10px;
+  gap: 5px;
 }
 
-/* 3. Les pastilles de jours */
+/* 3. Pastilles de jours */
 .day-pill {
   flex: 1;
   text-align: center;
   text-decoration: none;
-  color: #333;
+  color: rgba(255, 255, 255, 0.6);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 2px solid transparent;
+  padding: 5px 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
 
   &.active {
-    border-bottom: 2px solid #000;
-    color: #000;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
 
-    .day-number {
-      font-weight: 800;
-    }
+    .day-label { opacity: 1; }
+    .day-number { opacity: 1; }
   }
 }
 
 .day-label {
-  font-size: 11px;
-  text-transform: capitalize;
-  margin-bottom: 2px;
+  font-size: 9px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+  margin-bottom: 1px;
 }
 
 .day-number {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 800;
+  font-family: 'Barlow Condensed', sans-serif;
+  line-height: 1.15;
+  opacity: 0.65;
 }
