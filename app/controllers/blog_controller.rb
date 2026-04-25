@@ -67,6 +67,7 @@ class BlogController < ApplicationController
     @page_title  = @article[:title]
     @page_desc   = @article[:meta_description]
     @article_html, @toc = render_markdown_with_toc(@article[:body])
+    @article_html = inject_cdm_groups(@article_html) if @article_html.include?('[[groupe:')
 
     @derby_matches = []
     if @article[:derby_pairs].present?
@@ -178,6 +179,74 @@ class BlogController < ApplicationController
     end
 
     selected.first(3)
+  end
+
+  def inject_cdm_groups(html)
+    cdm_groups = YAML.load_file(Rails.root.join('config', 'cdm_2026_groups.yml'))
+    standing    = Standing.for_league(1)
+    all_groups  = standing&.data&.dig(0, "league", "standings") || []
+
+    result = html.gsub(/\[\[groupe:([A-La-l])\]\]/) do
+      letter     = $1.upcase
+      group_data = cdm_groups[letter]
+      next '' unless group_data
+
+      group_index = letter.ord - 'A'.ord
+      rows        = all_groups[group_index] || []
+      tournament_started = Date.today >= Date.new(2026, 6, 11)
+
+      out = <<~HTML
+        <div style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; margin: 20px 0;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+            <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b;">#{group_data["label"]}</span>
+            <a href='/competitions/coupe-du-monde-2026/groupe-#{letter.downcase}' style='font-size: 11px; color: var(--color-accent); font-weight: 700; text-decoration: none;'>Voir le groupe →</a>
+          </div>
+      HTML
+
+      if rows.any?
+        out += <<~HTML
+          <div style="display: flex; align-items: center; padding: 6px 12px; background: #f8fafc; border-bottom: 1px solid #f1f5f9;">
+            <span style="width: 20px; font-size: 10px; font-weight: 700; color: #94a3b8;">#</span>
+            <span style="flex: 1; font-size: 10px; font-weight: 700; color: #94a3b8; margin-left: 30px;">Équipe</span>
+            <span style="width: 22px; font-size: 10px; font-weight: 700; color: #94a3b8; text-align: center;">J</span>
+            <span style="width: 22px; font-size: 10px; font-weight: 700; color: #94a3b8; text-align: center;">G</span>
+            <span style="width: 22px; font-size: 10px; font-weight: 700; color: #94a3b8; text-align: center;">N</span>
+            <span style="width: 22px; font-size: 10px; font-weight: 700; color: #94a3b8; text-align: center;">P</span>
+            <span style="width: 30px; font-size: 10px; font-weight: 700; color: #94a3b8; text-align: center;">Pts</span>
+          </div>
+        HTML
+        rows.each_with_index do |rank, idx|
+          border_left = idx < 2 ? 'border-left: 3px solid var(--color-accent);' : 'border-left: 3px solid transparent;'
+          border_bottom = idx < rows.size - 1 ? 'border-bottom: 1px solid #f1f5f9;' : ''
+          logo = rank.dig('team', 'logo').to_s
+          name = rank.dig('team', 'name').to_s
+          out += <<~HTML
+            <div style="display: flex; align-items: center; padding: 8px 12px; #{border_bottom} #{border_left}">
+              <span style="width: 20px; font-size: 11px; font-weight: 700; color: #94a3b8;">#{rank["rank"]}</span>
+              <img src='#{logo}' alt='#{name}' width='22' height='22' loading='lazy' style='width: 22px; height: 22px; object-fit: contain; margin-right: 8px; flex-shrink: 0;'>
+              <span style="flex: 1; font-size: 13px; font-weight: 600; color: #010e1b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">#{ApplicationController.helpers.team_display_name(name)}</span>
+              <span style="width: 22px; font-size: 12px; color: #64748b; text-align: center;">#{rank.dig('all', 'played')}</span>
+              <span style="width: 22px; font-size: 12px; color: #64748b; text-align: center;">#{rank.dig('all', 'win')}</span>
+              <span style="width: 22px; font-size: 12px; color: #64748b; text-align: center;">#{rank.dig('all', 'draw')}</span>
+              <span style="width: 22px; font-size: 12px; color: #64748b; text-align: center;">#{rank.dig('all', 'lose')}</span>
+              <span style="width: 30px; font-size: 13px; font-weight: 900; color: #010e1b; text-align: center;">#{rank["points"]}</span>
+            </div>
+          HTML
+        end
+      else
+        group_data["teams_fr"].each_with_index do |team, idx|
+          border_bottom = idx < group_data["teams_fr"].size - 1 ? 'border-bottom: 1px solid #f1f5f9;' : ''
+          out += "<div style='padding: 9px 14px; font-size: 13px; font-weight: 600; color: #010e1b; #{border_bottom}'>#{team}</div>\n"
+        end
+        unless tournament_started
+          out += "<div style='padding: 8px 14px; font-size: 11px; color: #94a3b8; text-align: center; border-top: 1px solid #f1f5f9;'>Classement live dès le 11 juin 2026</div>\n"
+        end
+      end
+
+      out += "</div>"
+      out
+    end
+    result.html_safe
   end
 
   def render_markdown_with_toc(text)
