@@ -220,8 +220,8 @@ class SeoApiController < ApplicationController
     return render json: { error: "plan manquant" }, status: :bad_request if plan.blank?
 
     mail = Mail.new do
-      from    'coupdenvoi@gmail.com'
-      to      'coupdenvoi@gmail.com'
+      from    'coupdenvoi.tv@gmail.com'
+      to      'coupdenvoi.tv@gmail.com'
       subject "📅 Plan éditorial coupdenvoi.tv — #{Date.today.strftime('%d/%m/%Y')}"
       body    "Plan éditorial généré le #{Date.today.strftime('%d/%m/%Y')}\n\n#{plan}"
     end
@@ -234,7 +234,7 @@ class SeoApiController < ApplicationController
       enable_starttls_auto: true
     mail.deliver!
 
-    render json: { ok: true, sent_to: 'coupdenvoi@gmail.com' }
+    render json: { ok: true, sent_to: 'coupdenvoi.tv@gmail.com' }
   rescue => e
     render json: { error: e.message }, status: :internal_server_error
   end

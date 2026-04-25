@@ -134,8 +134,8 @@ namespace :editorial do
     BODY
 
     mail = Mail.new do
-      from    'coupdenvoi@gmail.com'
-      to      'coupdenvoi@gmail.com'
+      from    'coupdenvoi.tv@gmail.com'
+      to      'coupdenvoi.tv@gmail.com'
       subject "📅 Plan éditorial blog — #{today.strftime('%d/%m/%Y')}"
       body    body
     end

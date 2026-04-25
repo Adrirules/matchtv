@@ -46,8 +46,8 @@ namespace :gsc do
     # Envoi via sendgrid/smtp configuré dans ActionMailer
     begin
       mail = Mail.new do
-        from    'coupdenvoi@gmail.com'
-        to      'coupdenvoi@gmail.com'
+        from    'coupdenvoi.tv@gmail.com'
+        to      'coupdenvoi.tv@gmail.com'
         subject "🚨 #{count} nouvelles 404 sur coupdenvoi.tv — action requise"
         body    body
       end
@@ -60,7 +60,7 @@ namespace :gsc do
       mail.deliver!
 
       new_errors.update_all(alert_sent: true)
-      puts "  ✅ Email d'alerte envoyé à coupdenvoi@gmail.com"
+      puts "  ✅ Email d'alerte envoyé à coupdenvoi.tv@gmail.com"
     rescue => e
       puts "  ❌ Échec envoi email : #{e.message}"
       Rails.logger.error("[gsc:check_errors] Email failed: #{e.message}")
