@@ -55,6 +55,8 @@
 <% end %>
 
 <%# --- CONTENU --- %>
+<div class="with-sidebar">
+<div><%# colonne principale %>
 <h1 style="font-size: 20px; font-weight: 700; margin: 20px 0 15px;">
   Programme TV foot <%= date_label %>
 </h1>
@@ -208,3 +210,6 @@
     <%= render 'shared/faq_accordion', items: home_faq, schema: true %>
   </section>
 <% end %>
+</div><%# fin colonne principale %>
+<%= render 'shared/sidebar' %>
+</div><%# fin with-sidebar %>

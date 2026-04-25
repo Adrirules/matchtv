@@ -17,7 +17,9 @@
   <% end %>
 <% end %>
 
-<%# --- HEADER --- %>
+<%# --- CONTENU --- %>
+<div class="with-sidebar">
+<div><%# colonne principale %>
 <h1 style="font-size: 20px; font-weight: 700; margin: 20px 0 10px;">
   Résultats foot <%= date_label %>
 </h1>
@@ -123,3 +125,6 @@
   <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
   <%= render 'shared/faq_accordion', items: results_faq, schema: true %>
 </div>
+</div><%# fin colonne principale %>
+<%= render 'shared/sidebar' %>
+</div><%# fin with-sidebar %>
