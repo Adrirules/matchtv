@@ -214,6 +214,23 @@
     </div>
   <% end %>
 
+  <%# Tags %>
+  <% if @article[:tags]&.any? %>
+    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0; margin-bottom: 8px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+        <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">Thèmes :</span>
+        <% @article[:tags].each do |tag| %>
+          <%= link_to blog_tag_path(tag),
+              style: "display: inline-block; background: #f1f5f9; color: #475569; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.01em; text-decoration: none; transition: all 0.15s;",
+              onmouseover: "this.style.background='#e2e8f0'; this.style.color='#1e293b'",
+              onmouseout:  "this.style.background='#f1f5f9'; this.style.color='#475569'" do %>
+            <%= BlogController::TAG_LABELS[tag] || tag.gsub('-', ' ').split.map(&:capitalize).join(' ') %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <%# Boutons de partage %>
   <%= render 'shared/share_buttons',
       share_url:   "https://www.coupdenvoi.tv/blog/#{@article[:slug]}",
@@ -234,7 +251,6 @@
 
 <%# Tags + Vous aimerez aussi — pleine largeur hors de la card %>
 <%= render 'blog/related_articles',
-    tags: @article[:tags],
     related_articles: @related_articles %>
 
 
