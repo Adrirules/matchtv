@@ -1,6 +1,7 @@
 <% content_for :title, @page_title %>
 <% content_for :meta_description, @page_desc %>
 <% content_for :og_image, @article[:image] if @article[:image].present? %>
+<% content_for :container_class, 'container--wide' %>
 
 <% content_for :json_ld do %>
 <script type="application/ld+json">
@@ -130,11 +131,6 @@
     <% end %>
   </div>
 
-  <%# Tags + Vous aimerez aussi %>
-  <%= render 'blog/related_articles',
-      tags: @article[:tags],
-      related_articles: @related_articles %>
-
   <%# Prochains derbies (dynamique) %>
   <% if @derby_matches.any? %>
     <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid #e2e8f0;">
@@ -235,4 +231,10 @@
   </div>
 
 </article>
+
+<%# Tags + Vous aimerez aussi — pleine largeur hors de la card %>
+<%= render 'blog/related_articles',
+    tags: @article[:tags],
+    related_articles: @related_articles %>
+
 </div>

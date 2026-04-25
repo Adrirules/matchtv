@@ -4,6 +4,7 @@ slug: canal-plus-numero-chaine-box
 meta_description: "Numéro de chaîne Canal+ sur Orange, SFR, Bouygues et Free : le tableau complet pour trouver le match en 5 secondes. Canal+, Canal+ Foot, Canal+ Sport."
 excerpt: "Canal+ est au canal 4 chez tous les opérateurs - mais Canal+ Foot, Canal+ Sport et Canal+ Sport 360 changent selon ta box. Le guide pour ne jamais zapper dans le vide."
 published_at: 2026-04-26
+tags: ["canal-plus", "chaines-tv", "abonnement"]
 published_time: "10h17"
 author: Adrien
 image: https://images.unsplash.com/photo-1646861039459-fd9e3aabf3fb?q=80&w=1452&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D

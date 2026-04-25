@@ -93,7 +93,7 @@
       </div>
     <% end %>
 
-    <main class="container">
+    <main class="container<%= " #{content_for(:container_class)}" if content_for?(:container_class) %>">
       <%= yield %>
     </main>
 

@@ -11,6 +11,9 @@ body {
   main.container {
     max-width: 680px !important;
   }
+  main.container.container--wide {
+    max-width: 1140px !important;
+  }
 }
 
 body {
