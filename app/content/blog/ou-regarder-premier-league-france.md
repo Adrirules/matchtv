@@ -8,7 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1665413813191-3143ec934960?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "En France, la Premier League passe exclusivement sur Canal+ jusqu'en 2028. Anfield, le Boxing Day, les 380 matchs - voilà ce qu'il faut savoir avant de s'abonner."
-tags: ["premier-league\", \"canal-plus\", \"droits-tv"]
+tags: [premier-league, canal-plus, droits-tv]
 dazn_card: false
 ---
 

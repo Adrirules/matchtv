@@ -8,7 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1675848758961-e25a8d08e374?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash / Red Bull Arena Leipzig"
 excerpt: "Strasbourg en demi, finale à Leipzig le 27 mai : la Conference League 2025-2026 se regarde sur Canal+. Voici tout ce qu'il faut savoir pour ne pas rater un match."
-tags: ["conference-league\", \"canal-plus\", \"droits-tv"]
+tags: [conference-league, canal-plus, droits-tv]
 dazn_card: false
 ---
 
