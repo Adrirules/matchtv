@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get "resultats", to: "results#show", as: :resultats
   get "resultats/:date", to: "results#show", as: :resultat_date
 
+  # En direct
+  get "direct", to: "live#index", as: :direct
+
   # 3. Équipes
   # Redirection automatique de l'ancien vers le nouveau (SEO 301)
   get '/equipe/:team_slug', to: redirect('/equipes/%{team_slug}')
