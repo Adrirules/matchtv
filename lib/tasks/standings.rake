@@ -1,6 +1,11 @@
 namespace :standings do
   desc "Synchronise les classements de toutes les ligues en DB (job daily)"
   task sync: :environment do
+    unless FootballApiService.within_budget?(:medium)
+      puts "⛔ standings:sync ignoré — quota API proche du seuil (priorité moyenne)"
+      next
+    end
+
     api     = FootballApiService.new
     leagues = FootballApiService::COMPETITIONS_META.select { |c| c[:has_standings] }
 

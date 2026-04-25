@@ -1,6 +1,11 @@
 namespace :coaches do
   desc "Sync coaches for teams active in the last 30 days or with upcoming matches"
   task sync: :environment do
+    unless FootballApiService.within_budget?(:low)
+      puts "⛔ coaches:sync ignoré — quota API proche du seuil (priorité basse)"
+      next
+    end
+
     api = FootballApiService.new
 
     team_ids = Match.where(

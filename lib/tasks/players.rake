@@ -1,6 +1,11 @@
 namespace :players do
   desc "Importe les effectifs de toutes les équipes connues"
   task import: :environment do
+    unless FootballApiService.within_budget?(:low)
+      puts "⛔ players:import ignoré — quota API proche du seuil (priorité basse)"
+      next
+    end
+
     api = FootballApiService.new
 
     # Récupère tous les team_api_ids uniques depuis les matchs

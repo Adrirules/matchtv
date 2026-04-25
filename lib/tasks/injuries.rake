@@ -1,6 +1,11 @@
 namespace :injuries do
   desc "Pré-fetch les blessures pour les matchs des 7 prochains jours (chauffe le cache)"
   task prefetch: :environment do
+    unless FootballApiService.within_budget?(:high)
+      puts "⛔ injuries:prefetch ignoré — quota API proche du seuil (priorité haute)"
+      next
+    end
+
     matches = Match.where(status: "NS")
                    .where(start_time: Time.current..(Time.current + 7.days))
                    .where.not(api_id: nil)

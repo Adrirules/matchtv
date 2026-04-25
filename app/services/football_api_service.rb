@@ -414,4 +414,38 @@ class FootballApiService
   def self.daily_usage(date = Date.today)
     ApiCallLog.usage(date)
   end
+
+  # --- Garde-fou quota ---
+  # Quota journalier API-Football : 7500 appels
+  # Priorités : :low (coaches, players) / :medium (standings) / :high (injuries, summaries) / :critical (live, sync)
+  # Appel seuil réduit de 1000 si des matchs ont lieu dans les 8 prochaines heures
+  QUOTA_THRESHOLDS = {
+    critical: 7500, # toujours autorisé
+    high:     6000,
+    medium:   5000,
+    low:      4000
+  }.freeze
+
+  def self.within_budget?(priority = :low)
+    return true if priority == :critical
+    threshold = QUOTA_THRESHOLDS.fetch(priority, 4000)
+    threshold -= 1000 if match_hours?
+    daily_total < threshold
+  rescue => e
+    Rails.logger.warn("[FootballApiService] within_budget? failed: #{e.message}")
+    true # fail open pour ne pas bloquer en cas d'erreur DB
+  end
+
+  def self.daily_total(date = Date.today)
+    ApiCallLog.where(date: date).sum(:count)
+  rescue
+    0
+  end
+
+  # Retourne true si des matchs NS sont prévus dans les 8 prochaines heures
+  def self.match_hours?
+    Match.where(start_time: Time.current..(Time.current + 8.hours), status: 'NS').exists?
+  rescue
+    false
+  end
 end
