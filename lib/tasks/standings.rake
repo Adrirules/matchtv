@@ -21,7 +21,8 @@ namespace :standings do
         next
       end
 
-      standing = Standing.find_or_initialize_by(league_id: league[:id], season: 2025)
+      season = FootballApiService::LEAGUE_SEASONS[league[:id]]
+      standing = Standing.find_or_initialize_by(league_id: league[:id], season: season)
       standing.data      = data
       standing.synced_at = Time.current
       standing.save!

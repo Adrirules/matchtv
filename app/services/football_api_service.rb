@@ -28,8 +28,11 @@ class FootballApiService
     { id: 5,   name: "Qualif. Mondial 2026", country: "Europe",        has_standings: false, archived: true },
     { id: 4,   name: "Euro / Nations League", country: "Europe",       has_standings: false, archived: true },
     { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false, archived: true },
-    { id: 1,   name: "Coupe du Monde 2026", country: "Monde",          has_standings: false },
+    { id: 1,   name: "Coupe du Monde 2026", country: "Monde",          has_standings: true },
   ].freeze
+
+  # Saison active par ligue — CDM 2026 utilise season 2026, tout le reste 2025
+  LEAGUE_SEASONS = Hash.new(2025).merge(1 => 2026).freeze
 
   # Helper : logo officiel depuis l'API Sports CDN
   def self.league_logo(id)
@@ -180,7 +183,8 @@ class FootballApiService
     "#{fixtures.count} matchs importés pour #{SUPPORTED_LEAGUES[league_id]}"
   end
 
-  def import_upcoming_fixtures(league_id: 61, season: 2025)
+  def import_upcoming_fixtures(league_id: 61, season: nil)
+    season ||= LEAGUE_SEASONS[league_id]
     # On récupère les matchs sur une fenêtre de 30 jours
     response = tracked_get('/fixtures', {
       league: league_id,
@@ -191,9 +195,9 @@ class FootballApiService
 
     fixtures = JSON.parse(response.body)['response'] || []
 
-    # Sécurité : Si 2025 ne renvoie rien, on peut tenter 2024 (pour les ligues décalées)
-    if fixtures.empty? && season == 2025
-      return import_upcoming_fixtures(league_id: league_id, season: 2024)
+    # Sécurité : Si la saison courante ne renvoie rien, on tente la saison précédente
+    if fixtures.empty? && season > 2024
+      return import_upcoming_fixtures(league_id: league_id, season: season - 1)
     end
 
     return "Aucun match trouvé pour la ligue #{league_id}" if fixtures.empty?

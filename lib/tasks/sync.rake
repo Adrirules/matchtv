@@ -48,6 +48,35 @@ namespace :sync do
     puts "✨ TOUT EST À JOUR : Tes matchs sont prêts pour Google !"
   end
 
+  desc "Import tous les matchs Coupe du Monde 2026 (11 juin → 19 juillet) — à lancer une seule fois"
+  task cdm_2026: :environment do
+    api = FootballApiService.new
+    puts "🌍 Import Coupe du Monde 2026 (league=1, season=2026)"
+    puts "   Fenêtre : 11 juin 2026 → 19 juillet 2026"
+    puts "--------------------------------------------------"
+
+    result = api.import_historical_fixtures(
+      league_id: 1,
+      season:    2026,
+      from_date: Date.new(2026, 6, 11),
+      to_date:   Date.new(2026, 7, 19)
+    )
+    puts "✅ #{result}"
+
+    # Soumission Google Indexing pour les nouvelles pages matchs
+    new_slugs = Match.where(competition: "Coupe du Monde 2026")
+                     .where("created_at >= ?", 10.seconds.ago)
+                     .pluck(:slug).compact
+    if new_slugs.any?
+      svc = IndexingService.new
+      svc.submit_batch(new_slugs.map { |s| "https://www.coupdenvoi.tv/matches/#{s}" })
+      puts "📡 #{new_slugs.size} URLs soumises à Google Indexing"
+    end
+
+    puts "--------------------------------------------------"
+    puts "✨ CDM 2026 prête — #{Match.where(competition: 'Coupe du Monde 2026').count} matchs en base"
+  end
+
   desc "Import historique saison 2025-2026 (juillet 2025 → hier) — à lancer une seule fois"
   task historical: :environment do
     api       = FootballApiService.new
