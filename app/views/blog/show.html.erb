@@ -35,6 +35,8 @@
 <% end %>
 
 <div class="blog-wrapper">
+<div class="with-sidebar">
+<div><%# colonne principale %>
 <article class="blog-card">
 
   <%# Fil d'Ariane %>
@@ -236,5 +238,9 @@
 <%= render 'blog/related_articles',
     tags: @article[:tags],
     related_articles: @related_articles %>
+
+</div><%# fin colonne principale %>
+<%= render 'shared/sidebar' %>
+</div><%# fin with-sidebar %>
 
 </div>

@@ -1,0 +1,45 @@
+<aside class="page-sidebar">
+
+  <%# Bloc 1 : Programme TV par compétition %>
+  <div class="sidebar-block">
+    <p class="sidebar-block-title">Programme TV</p>
+    <ul class="sidebar-block-list">
+      <% FootballApiService::COMPETITIONS_META.reject { |c| c[:archived] }.each do |comp| %>
+        <li>
+          <%= link_to competition_path(comp[:name].parameterize), title: "Programme #{comp[:name]}" do %>
+            <%= comp[:name] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%# Bloc 2 : Résultats par compétition %>
+  <div class="sidebar-block">
+    <p class="sidebar-block-title">Résultats</p>
+    <ul class="sidebar-block-list">
+      <% FootballApiService::COMPETITIONS_META.reject { |c| c[:archived] }.each do |comp| %>
+        <li>
+          <%= link_to competition_path(comp[:name].parameterize), title: "Résultats #{comp[:name]}" do %>
+            <%= comp[:name] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%# Bloc 3 : Chaînes TV %>
+  <div class="sidebar-block">
+    <p class="sidebar-block-title">Chaînes TV</p>
+    <ul class="sidebar-block-list">
+      <% ChannelsController::CHANNELS_META.each do |ch| %>
+        <li>
+          <%= link_to channel_path(ch[:slug]), title: "Matchs sur #{ch[:name]}" do %>
+            <%= ch[:name] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</aside>
