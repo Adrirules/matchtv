@@ -24,5 +24,8 @@ class DaysController < ApplicationController
     # Pas de filtre sur l'heure : on affiche tous les matchs du jour (y compris terminés)
 
     @matches = scope.order(:start_time)
+
+    # Nombre de matchs en direct (pour le badge du bouton)
+    @live_count = Match.where(status: %w[1H HT 2H ET BT P]).count
   end
 end
