@@ -93,6 +93,10 @@
       </div>
     <% end %>
 
+    <% if content_for?(:hero) %>
+      <%= yield :hero %>
+    <% end %>
+
     <main class="container<%= " #{content_for(:container_class)}" if content_for?(:container_class) %>">
       <%= yield %>
     </main>

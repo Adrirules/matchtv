@@ -12,114 +12,110 @@
   %>
   <%# ---- 2. SEO : Envoi des données au Layout ---- %>
   <% generate_match_seo(@match) %>
-  <%# ---- 3. Navigation ---- %>
-  <nav style="margin: 15px 0;">
-    <p style="font-size: 13px; color: #777;">
-      <%= link_to "← Programme TV foot #{date_label}", day_path(@match.start_time.to_date), style: "color: #777; text-decoration: none;" %>
-    </p>
-  </nav>
+  <%#
+    ---- 3. Calculs live/fini (utilisés dans le hero ET plus bas)
+  -%>
+  <%
+    live_statuses     = %w[1H HT 2H ET BT P]
+    finished_statuses = %w[FT AET PEN]
+    is_live     = live_statuses.include?(@match.status)
+    is_finished = finished_statuses.include?(@match.status)
+    has_score   = @match.home_score.present? && @match.away_score.present?
+  %>
 
-  <%# ---- 4. Le Bloc Match "Premium" ---- %>
-  <div class="match-detail-wrapper" style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 35px 15px; text-align: center; margin-bottom: 25px; border: 1px solid #f0f0f0;">
-
-    <div style="margin-bottom: 30px;">
-      <%# MODIFICATION : Nom de la compétition cliquable %>
-      <%= link_to competition_path(@match.competition.parameterize), style: "text-decoration: none;" do %>
-        <h1 style="font-size: 15px; font-weight: 800; text-transform: uppercase; color: #007bff; letter-spacing: 1px; margin: 0;">
-          <%= @match.competition %>
-        </h1>
-      <% end %>
-      <span style="font-size: 12px; color: #999; font-weight: 500;">Saison 2025/2026</span>
-    </div>
-
-    <%
-      live_statuses     = %w[1H HT 2H ET BT P]
-      finished_statuses = %w[FT AET PEN]
-      is_live     = live_statuses.include?(@match.status)
-      is_finished = finished_statuses.include?(@match.status)
-      has_score   = @match.home_score.present? && @match.away_score.present?
-    %>
-
-    <div data-controller="live-score"
-         data-live-score-url-value="<%= live_score_match_path(@match.slug) %>"
-         data-live-score-status-value="<%= @match.status %>"
-         data-home-team="<%= @match.home_team %>"
-         style="display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto 40px;">
-
-      <%# Equipe Domicile %>
-      <div style="flex: 1; text-align: center;">
-        <%= link_to team_path(@match.home_team.parameterize), style: "text-decoration: none; color: inherit;" do %>
-          <div style="width: 80px; height: 80px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
+  <%# ---- 4. Hero dark navy (rendu dans le layout via yield :hero) ---- %>
+  <% content_for :hero do %>
+    <div style="background: var(--color-header); padding: 14px 16px 24px;">
+      <%# Retour programme %>
+      <div style="margin-bottom: 12px;">
+        <%= link_to day_path(@match.start_time.to_date),
+            style: "color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; font-weight: 600; font-family: var(--font-body);" do %>
+          ← Programme
+        <% end %>
+      </div>
+      <%# Compétition + saison %>
+      <div style="text-align: center; margin-bottom: 18px;">
+        <%= link_to competition_path(@match.competition.parameterize), style: "text-decoration: none;" do %>
+          <span style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.45); font-family: var(--font-body); letter-spacing: 0.03em;">
+            <%= @match.competition %> · Saison 2025-2026
+          </span>
+        <% end %>
+      </div>
+      <%# Équipes + score (live-score controller) %>
+      <div data-controller="live-score"
+           data-live-score-url-value="<%= live_score_match_path(@match.slug) %>"
+           data-live-score-status-value="<%= @match.status %>"
+           data-home-team="<%= @match.home_team %>"
+           style="display: flex; justify-content: space-around; align-items: center; max-width: 500px; margin: 0 auto;">
+        <%# Domicile %>
+        <div style="flex: 1; text-align: center;">
+          <%= link_to team_path(@match.home_team.parameterize), style: "text-decoration: none;" do %>
             <img src="<%= @match.home_team_logo %>"
-                alt="Logo <%= team_display_name(@match.home_team) %>"
-                width="80" height="80"
-                loading="eager"
-                style="max-width: 100%; height: auto; object-fit: contain;">
-          </div>
-          <div style="font-weight: 800; font-size: 18px; color: #010e1b; line-height: 1.2;"><%= team_display_name(@match.home_team) %></div>
-        <% end %>
-      </div>
-
-      <%# Centre : Score ou Heure %>
-      <div style="flex: 0.8; text-align: center; padding: 0 10px;">
-        <% if is_live || (is_finished && has_score) %>
-          <%# Statut (minute ou FT) %>
-          <div data-live-score-target="status"
-               class="match-status <%= is_live ? 'live' : 'finished' %>">
-            <% if @match.status == "HT" %>Mi-temps
-            <% elsif is_finished %>Terminé
-            <% else %><%= @match.elapsed %>′
-            <% end %>
-          </div>
-          <%# Score %>
-          <div data-live-score-target="score"
-               style="font-size: 42px; font-weight: 900; color: #222; line-height: 1; margin: 6px 0;">
-            <%= @match.home_score %> - <%= @match.away_score %>
-          </div>
-        <% else %>
-          <%# Match pas encore commencé %>
-          <div style="font-size: 13px; color: #999; font-weight: 700; margin-bottom: 5px; text-transform: uppercase;">Coup d'envoi</div>
-          <div style="font-size: 42px; font-weight: 900; color: #222; line-height: 1;">
-            <%= @match.start_time.strftime("%Hh%M") %>
-          </div>
-          <div style="font-size: 12px; color: #666; margin-top: 8px; font-weight: 600;"><%= l(@match.start_time, format: "%d/%m") %></div>
-        <% end %>
-      </div>
-
-      <%# Equipe Extérieur %>
-      <div style="flex: 1; text-align: center;">
-        <%= link_to team_path(@match.away_team.parameterize), style: "text-decoration: none; color: inherit;" do %>
-          <div style="width: 80px; height: 80px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
-            <img src="<%= @match.away_team_logo %>"
-                alt="Logo <%= team_display_name(@match.away_team) %>"
-                width="80" height="80"
-                loading="eager"
-                style="max-width: 100%; height: auto; object-fit: contain;">
-          </div>
-          <div style="font-weight: 800; font-size: 18px; color: #010e1b; line-height: 1.2;"><%= team_display_name(@match.away_team) %></div>
-        <% end %>
-      </div>
-    </div>
-
-    <%# Badge Diffuseur — chaînes cliquables vers /chaines/:slug %>
-    <% if @match.tv_channels.present? %>
-      <div style="background: #f8f9fa; border-radius: 12px; padding: 14px 24px; display: inline-block; border: 1px solid #eee; text-align: center;">
-        <div style="font-size: 11px; color: #777; font-weight: 600; text-transform: uppercase; margin-bottom: 10px;">Diffusion TV</div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-          <% @match.tv_channels.split(",").map(&:strip).each do |ch_name| %>
-            <% slug = channel_slug_for(ch_name) %>
-            <% if slug %>
-              <%= link_to channel_path(slug), style: "text-decoration: none;" do %>
-                <span style="display: inline-block; background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 14px; font-weight: 700; font-size: 15px; color: #010e1b; transition: all 0.15s;" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6'" onmouseout="this.style.borderColor='#e2e8f0';this.style.color='#010e1b'"><%= ch_name %></span>
+                 alt="<%= team_display_name(@match.home_team) %>"
+                 width="64" height="64" loading="eager"
+                 style="width: 64px; height: 64px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));">
+            <div style="font-size: 14px; font-weight: 800; color: white; margin-top: 8px; font-family: var(--font-heading); letter-spacing: 0.02em; line-height: 1.2;">
+              <%= team_display_name(@match.home_team) %>
+            </div>
+          <% end %>
+        </div>
+        <%# Centre : score ou heure %>
+        <div style="flex: 0 0 auto; text-align: center; padding: 0 10px; min-width: 90px;">
+          <% if is_live || (is_finished && has_score) %>
+            <div data-live-score-target="score"
+                 style="font-size: 52px; font-weight: 800; color: white; line-height: 1; font-family: var(--font-heading);">
+              <%= @match.home_score %> - <%= @match.away_score %>
+            </div>
+            <div data-live-score-target="status" style="margin-top: 8px;">
+              <% if is_live %>
+                <span style="display: inline-flex; align-items: center; gap: 5px; background: var(--color-live); color: white; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 4px; font-family: var(--font-body);">
+                  <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
+                  <% if @match.status == 'HT' %>Mi-temps<% else %><%= @match.elapsed %>′<% end %>
+                </span>
+              <% else %>
+                <span style="font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.45); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.05em;">Terminé</span>
               <% end %>
-            <% else %>
-              <span style="display: inline-block; background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 14px; font-weight: 700; font-size: 15px; color: #010e1b;"><%= ch_name %></span>
-            <% end %>
+            </div>
+          <% else %>
+            <div style="font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.45); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Coup d'envoi</div>
+            <div style="font-size: 52px; font-weight: 800; color: white; line-height: 1; font-family: var(--font-heading);">
+              <%= @match.start_time.strftime("%Hh%M") %>
+            </div>
+            <div style="font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 5px; font-family: var(--font-body); font-weight: 600;">
+              <%= l(@match.start_time, format: "%d/%m") %>
+            </div>
+          <% end %>
+          <%# Badges chaînes %>
+          <% if @match.tv_channels.present? %>
+            <div style="margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;">
+              <% @match.tv_channels.split(',').map(&:strip).first(2).each do |ch_name| %>
+                <% slug = channel_slug_for(ch_name) %>
+                <% if slug %>
+                  <%= link_to channel_path(slug), style: 'text-decoration: none;' do %>
+                    <%= channel_badge(ch_name) %>
+                  <% end %>
+                <% else %>
+                  <%= channel_badge(ch_name) %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <%# Extérieur %>
+        <div style="flex: 1; text-align: center;">
+          <%= link_to team_path(@match.away_team.parameterize), style: "text-decoration: none;" do %>
+            <img src="<%= @match.away_team_logo %>"
+                 alt="<%= team_display_name(@match.away_team) %>"
+                 width="64" height="64" loading="eager"
+                 style="width: 64px; height: 64px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));">
+            <div style="font-size: 14px; font-weight: 800; color: white; margin-top: 8px; font-family: var(--font-heading); letter-spacing: 0.02em; line-height: 1.2;">
+              <%= team_display_name(@match.away_team) %>
+            </div>
           <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <%# ---- Card affilié DAZN (matchs à venir ou en direct sur DAZN) ---- %>
   <% if !is_finished && @match.tv_channels&.include?('DAZN') %>
