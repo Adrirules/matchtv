@@ -37,10 +37,10 @@ namespace :editorial do
       gsc           = GscService.new
       start_date    = today - 28
       top_queries   = gsc.top_queries(start_date: start_date, end_date: today - 1, limit: 200)
-      blog_keywords = existing_slugs.join(" ")
+      blog_words = existing_slugs.flat_map { |s| s.split("-") }.to_set
       top_queries
         .select { |q| q[:impressions].to_i > 80 }
-        .reject { |q| blog_keywords.include?(q[:query].split.first.to_s.downcase) }
+        .reject { |q| blog_words.include?(q[:query].split.first.to_s.downcase) }
         .sort_by { |q| -q[:impressions].to_i }
         .first(20)
         .map { |q| "#{q[:query]} (#{q[:impressions]} imp, pos #{q[:position]})" }
@@ -148,7 +148,7 @@ namespace :editorial do
       enable_starttls_auto: true
     mail.deliver!
 
-    puts "✅ Plan éditorial envoyé à coupdenvoi@gmail.com"
+    puts "✅ Plan éditorial envoyé à coupdenvoi.tv@gmail.com"
   rescue => e
     puts "❌ Erreur : #{e.message}"
     Rails.logger.error("[editorial:plan] #{e.message}")
