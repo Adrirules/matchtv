@@ -1,6 +1,27 @@
 class BlogController < ApplicationController
   BLOG_PATH = Rails.root.join('app', 'content', 'blog')
 
+  TAG_LABELS = {
+    "canal-plus"        => "Canal+",
+    "bein-sports"       => "beIN Sports",
+    "dazn"              => "DAZN",
+    "droits-tv"         => "Droits TV",
+    "champions-league"  => "Champions League",
+    "europa-league"     => "Europa League",
+    "conference-league" => "Conference League",
+    "ligue-1"           => "Ligue 1",
+    "premier-league"    => "Premier League",
+    "liga"              => "La Liga",
+    "bundesliga"        => "Bundesliga",
+    "serie-a"           => "Serie A",
+    "coupe-du-monde"    => "Coupe du Monde",
+    "abonnement"        => "Abonnement",
+    "streaming"         => "Streaming",
+    "chaines-tv"        => "Chaînes TV",
+    "d1-feminine"       => "D1 Féminine",
+    "ligue-2"           => "Ligue 2"
+  }.freeze
+
   PER_PAGE = 10
 
   def index
@@ -20,6 +41,16 @@ class BlogController < ApplicationController
     @articles = all_articles
     @page_title = "Adrien - Auteur football | Coup d'Envoi TV"
     @page_desc  = "Adrien, passionné de foot et fondateur de Coup d'Envoi TV. Guides pratiques, analyses, programmes TV et droits diffusion du football français et européen."
+    expires_in 1.hour, private: true
+  end
+
+  def tag
+    @tag      = params[:tag].to_s.downcase.strip
+    @articles = all_articles.select { |a| a[:tags].include?(@tag) }
+    render "errors/not_found", status: :not_found and return if @articles.empty?
+    tag_label = TAG_LABELS[@tag] || @tag.gsub('-', ' ').split.map(&:capitalize).join(' ')
+    @page_title = "Articles #{tag_label} — Blog | Coup d'Envoi TV"
+    @page_desc  = "Tous les articles sur #{tag_label} : guides pratiques, droits TV et analyses rédigés par Adrien."
     expires_in 1.hour, private: true
   end
 

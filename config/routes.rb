@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get 'blog', to: 'blog#index', as: :blog
   get 'blog.rss', to: 'blog#feed', as: :blog_feed
   get 'blog/auteur/adrien', to: 'blog#auteur', as: :blog_auteur
+  get 'blog/tag/:tag', to: 'blog#tag', as: :blog_tag
   get 'blog/:slug', to: 'blog#show', as: :blog_article
 
   # 7. Chaînes TV

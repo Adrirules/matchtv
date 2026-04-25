@@ -1,0 +1,55 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+<% content_for :noindex_tag do %><meta name="robots" content="noindex, follow"><% end %>
+
+<% tag_label = BlogController::TAG_LABELS[@tag] || @tag.gsub('-', ' ').split.map(&:capitalize).join(' ') %>
+
+<div class="blog-wrapper">
+  <nav style="font-size: 13px; color: #94a3b8; margin-bottom: 20px;">
+    <%= link_to "Blog", blog_path, style: "color: #3b82f6; text-decoration: none;" %> &rsaquo; <%= tag_label %>
+  </nav>
+
+  <h1 style="font-size: 26px; font-weight: 800; margin: 0 0 6px;"><%= tag_label %></h1>
+  <p style="color: #666; font-size: 15px; margin-bottom: 28px;"><%= @articles.size %> article<%= 's' if @articles.size > 1 %> sur ce sujet.</p>
+
+  <% @articles.each do |article| %>
+    <article class="blog-card" style="margin-bottom: 20px; padding: 0; overflow: hidden;">
+      <% if article[:image].present? %>
+        <div style="position: relative;">
+          <%= link_to blog_article_path(article[:slug]) do %>
+            <img src="<%= article[:image] %>" alt="<%= article[:title]&.gsub(" | Coup d'Envoi TV", '') %>" loading="lazy" width="800" height="200" style="width:100%;height:200px;object-fit:cover;display:block;">
+          <% end %>
+        </div>
+      <% end %>
+      <div style="padding: 20px 24px 24px;">
+        <time datetime="<%= article[:published_at] %>" style="font-size: 12px; color: #999; display: block; margin-bottom: 6px;">
+          <%= date_fr(article[:published_at]) %>
+        </time>
+        <h2 style="font-size: 20px; font-weight: 700; margin: 0 0 10px;">
+          <%= link_to article[:title]&.gsub(" | Coup d'Envoi TV", ''), blog_article_path(article[:slug]),
+              style: "color: #010e1b; text-decoration: none;" %>
+        </h2>
+        <% if article[:excerpt].present? %>
+          <p style="color: #555; font-size: 15px; line-height: 1.6; margin: 0 0 14px;"><%= article[:excerpt] %></p>
+        <% end %>
+        <% if article[:tags].any? %>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;">
+            <% article[:tags].each do |t| %>
+              <%= link_to blog_tag_path(t),
+                  style: "display: inline-block; background: #f1f5f9; color: #475569; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; text-decoration: none;" do %>
+                <%= BlogController::TAG_LABELS[t] || t.gsub('-', ' ').capitalize %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+        <%= link_to "Lire l'article →", blog_article_path(article[:slug]),
+            style: "display: inline-block; margin-top: 14px; font-size: 14px; font-weight: 600; color: #3b82f6; text-decoration: none;" %>
+      </div>
+    </article>
+  <% end %>
+
+  <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0;">
+    <%= link_to "← Tous les articles", blog_path,
+        style: "font-size: 14px; font-weight: 600; color: #3b82f6; text-decoration: none;" %>
+  </div>
+</div>
