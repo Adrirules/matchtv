@@ -6,7 +6,7 @@ A:
 B:
   label: "Groupe B"
   teams_fr: ["Canada", "Bosnie-Herzégovine", "Qatar", "Suisse"]
-  teams_api: ["Canada", "Bosnia", "Qatar", "Switzerland"]
+  teams_api: ["Canada", "Bosnia & Herzegovina", "Qatar", "Switzerland"]
 
 C:
   label: "Groupe C"
@@ -16,7 +16,7 @@ C:
 D:
   label: "Groupe D"
   teams_fr: ["États-Unis", "Paraguay", "Australie", "Turquie"]
-  teams_api: ["United States", "Paraguay", "Australia", "Turkey"]
+  teams_api: ["USA", "Paraguay", "Australia", "Türkiye"]
 
 E:
   label: "Groupe E"
@@ -36,7 +36,7 @@ G:
 H:
   label: "Groupe H"
   teams_fr: ["Espagne", "Uruguay", "Arabie Saoudite", "Cap-Vert"]
-  teams_api: ["Spain", "Uruguay", "Saudi Arabia", "Cape Verde"]
+  teams_api: ["Spain", "Uruguay", "Saudi Arabia", "Cape Verde Islands"]
 
 I:
   label: "Groupe I"
@@ -51,7 +51,7 @@ J:
 K:
   label: "Groupe K"
   teams_fr: ["Portugal", "RD Congo", "Ouzbékistan", "Colombie"]
-  teams_api: ["Portugal", "DR Congo", "Uzbekistan", "Colombia"]
+  teams_api: ["Portugal", "Congo DR", "Uzbekistan", "Colombia"]
 
 L:
   label: "Groupe L"
