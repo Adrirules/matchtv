@@ -63,6 +63,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # Redirections 301 — ancien pluriel français /matchs/ → /matches/
+  get '/matchs/:slug', to: redirect('/matches/%{slug}')
+
   # Redirections 301 — anciennes URLs /ligue/* indexées par Google
   get '/ligues',                        to: redirect('/competitions')
   get '/ligue/ligue-1',                 to: redirect('/competitions/ligue-1')

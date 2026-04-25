@@ -1,5 +1,5 @@
 class ShareReportMailer < ApplicationMailer
-  REPORT_TO = "coupdenvoi.tv@gmail.com"
+  REPORT_TO = "coupdenvoi@gmail.com"
   MONTHS_FR = %w[janvier février mars avril mai juin juillet août septembre octobre novembre décembre].freeze
 
   def weekly_report
