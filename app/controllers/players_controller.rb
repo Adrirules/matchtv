@@ -31,7 +31,10 @@ class PlayersController < ApplicationController
     @stats = nil; @info = nil; @league = nil; @is_friendly = false
 
     api = FootballApiService.new
-    data = api.fetch_player_stats(@player.api_id)
+    # Si le cache est froid (après restart Heroku), on ne fait pas l'appel API
+    # pour éviter 7000 appels au crawl matinal — on affiche les données DB seules
+    cached = Rails.cache.read("player_stats_#{@player.api_id}_2025")
+    data = cached || (FootballApiService.within_budget?(:high) ? api.fetch_player_stats(@player.api_id) : nil)
 
     if data
       @stats    = data['statistics']&.first

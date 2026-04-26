@@ -61,12 +61,21 @@ class MatchesController < ApplicationController
   private
 
   def fetch_events(match)
+    # Matchs terminés depuis plus de 24h : on retourne le cache s'il existe, sinon []
+    # (pas d'appel API — les events ne changent plus et le cache file_store est vidé au restart)
+    if match.finished? && match.start_time < 24.hours.ago
+      return Rails.cache.read("events_#{match.api_id}") || []
+    end
     Rails.cache.fetch("events_#{match.api_id}", expires_in: match.cache_duration) do
       FootballApiService.new.fetch_fixture_events(match.api_id)
     end
   end
 
   def fetch_head_to_head(match)
+    # Même logique : h2h stable pour les matchs anciens, pas d'appel API si cache froid
+    if match.finished? && match.start_time < 24.hours.ago
+      return Rails.cache.read("h2h_#{match.home_team_api_id}_#{match.away_team_api_id}") || []
+    end
     Rails.cache.fetch("h2h_#{match.home_team_api_id}_#{match.away_team_api_id}", expires_in: 7.days) do
       FootballApiService.new.fetch_head_to_head(match.home_team_api_id, match.away_team_api_id)
     end
