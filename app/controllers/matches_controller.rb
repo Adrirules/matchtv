@@ -83,6 +83,10 @@ class MatchesController < ApplicationController
 
   def fetch_injuries(match)
     ttl = match.finished? ? 30.days : 6.hours
+    # Matchs terminés depuis plus de 24h : cache-first, pas d'appel API si cache froid
+    if match.finished? && match.start_time < 24.hours.ago
+      return Rails.cache.read("injuries_#{match.api_id}") || []
+    end
     Rails.cache.fetch("injuries_#{match.api_id}", expires_in: ttl) do
       FootballApiService.new.fetch_injuries(match.api_id)
     end

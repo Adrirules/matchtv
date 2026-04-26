@@ -91,7 +91,11 @@ class TeamsController < ApplicationController
       @primary_league_name = most_common_competition
 
       if primary_league_id
-        @stats   = api.fetch_team_stats(@team_api_id, primary_league_id)
+        # Cache-first : pas d'appel API si cache froid après restart (évite la vague matinale)
+        stats_key = "team_stats_#{@team_api_id}_#{primary_league_id}_2025"
+        @stats = Rails.cache.read(stats_key) ||
+                 (FootballApiService.within_budget?(:high) ? api.fetch_team_stats(@team_api_id, primary_league_id) : nil)
+
         standing_record = Standing.for_league(primary_league_id)
         standings_data = standing_record&.data.presence || api.get_standings(primary_league_id)
         @standing = standings_data
@@ -104,9 +108,9 @@ class TeamsController < ApplicationController
       @coach = if coach_record
         coach_record.as_api_hash
       else
-        Rails.cache.fetch("coach_#{@team_api_id}", expires_in: 24.hours) do
-          api.fetch_coach(@team_api_id)
-        end
+        # Cache-first : DB → cache chaud → API si budget dispo
+        Rails.cache.read("coach_#{@team_api_id}") ||
+          (FootballApiService.within_budget?(:high) ? Rails.cache.fetch("coach_#{@team_api_id}", expires_in: 24.hours) { api.fetch_coach(@team_api_id) } : nil)
       end
     end
 
