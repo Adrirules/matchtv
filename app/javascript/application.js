@@ -35,6 +35,75 @@ window.addEventListener('appinstalled', () => {
   }
 });
 
+// Pull-to-refresh pour la PWA iPhone (mode standalone uniquement)
+(function () {
+  if (!window.navigator.standalone) return;
+
+  const THRESHOLD = 75; // px à tirer avant de déclencher le reload
+  let startY = 0;
+  let pulling = false;
+
+  // Indicateur visuel
+  const ptr = document.createElement('div');
+  ptr.id = 'ptr-indicator';
+  ptr.innerHTML = '<div class="ptr-spinner"></div>';
+  ptr.style.cssText = [
+    'position:fixed', 'top:0', 'left:0', 'right:0',
+    'display:flex', 'justify-content:center', 'align-items:center',
+    'height:56px', 'background:#f8fafc',
+    'transform:translateY(-56px)',
+    'transition:transform 0.2s ease',
+    'z-index:9999', 'pointer-events:none'
+  ].join(';');
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #ptr-indicator .ptr-spinner {
+      width: 24px; height: 24px;
+      border: 3px solid #e2e8f0;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: ptr-spin 0.7s linear infinite;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    #ptr-indicator.ptr-ready .ptr-spinner { opacity: 1; }
+    @keyframes ptr-spin { to { transform: rotate(360deg); } }
+  `;
+  document.head.appendChild(style);
+  document.addEventListener('DOMContentLoaded', () => document.body.prepend(ptr));
+
+  document.addEventListener('touchstart', (e) => {
+    if (window.scrollY === 0) {
+      startY = e.touches[0].clientY;
+      pulling = true;
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!pulling) return;
+    const diff = e.touches[0].clientY - startY;
+    if (diff > 0) {
+      const pull = Math.min(diff * 0.5, THRESHOLD);
+      ptr.style.transform = `translateY(${pull - 56}px)`;
+      ptr.classList.toggle('ptr-ready', diff > THRESHOLD);
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if (!pulling) return;
+    pulling = false;
+    const diff = e.changedTouches[0].clientY - startY;
+    if (diff > THRESHOLD) {
+      ptr.style.transform = 'translateY(0)';
+      setTimeout(() => window.location.reload(), 200);
+    } else {
+      ptr.style.transform = 'translateY(-56px)';
+      ptr.classList.remove('ptr-ready');
+    }
+  }, { passive: true });
+})();
+
 document.addEventListener('turbo:load', () => {
   const appleBtn = document.getElementById('pwa-apple');
   const androidBtn = document.getElementById('pwa-android');
