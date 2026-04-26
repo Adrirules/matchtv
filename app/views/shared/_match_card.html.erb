@@ -1,6 +1,6 @@
 <% priority = local_assigns.fetch(:priority, false) %>
 <%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block; margin-bottom: 8px;" do %>
-<% cache [match, match.updated_at, priority, 'v2design1'] do %>
+<% cache [match, match.updated_at, priority, 'v2design2'] do %>
 <div class="match-card<%= ' match-card--live' if match.live? %>">
 
   <%# Ligne 1 : Domicile — Score/Heure — Extérieur %>
@@ -38,7 +38,10 @@
   <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
     <div style="display:flex;align-items:center;gap:6px;">
       <% if match.live? %>
-        <span class="match-status live"><%= match.status == "HT" ? "MT" : "#{match.elapsed}′" %></span>
+        <span style="display:inline-flex;align-items:center;gap:4px;background:#ef4444;color:white;font-size:10px;font-weight:700;padding:3px 7px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase;">
+          <span style="width:5px;height:5px;background:white;border-radius:50%;animation:livepulse 1.2s ease-in-out infinite;flex-shrink:0;display:inline-block;"></span>
+          EN DIRECT<% if match.status == "HT" %> · MT<% elsif match.elapsed.present? %> · <%= match.elapsed %>′<% end %>
+        </span>
       <% end %>
       <%= channel_badge(match.tv_channels, small: true) %>
     </div>
