@@ -72,7 +72,12 @@ window.addEventListener('appinstalled', () => {
     @keyframes ptr-spin { to { transform: rotate(360deg); } }
   `;
   document.head.appendChild(style);
-  document.addEventListener('DOMContentLoaded', () => document.body.prepend(ptr));
+  // DOMContentLoaded déjà passé avec importmap — on insère directement ou on attend turbo:load
+  if (document.body) {
+    document.body.prepend(ptr);
+  } else {
+    document.addEventListener('turbo:load', () => document.body.prepend(ptr), { once: true });
+  }
 
   document.addEventListener('touchstart', (e) => {
     if (window.scrollY === 0) {
