@@ -38,6 +38,7 @@ window.addEventListener('appinstalled', () => {
 // Pull-to-refresh pour la PWA iPhone (mode standalone uniquement)
 (function () {
   if (!window.navigator.standalone) return;
+  if (typeof gtag === 'function') gtag('event', 'pwa_session', { event_category: 'PWA' });
 
   const THRESHOLD = 75; // px à tirer avant de déclencher le reload
   let startY = 0;
