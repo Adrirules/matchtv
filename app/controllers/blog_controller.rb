@@ -68,6 +68,7 @@ class BlogController < ApplicationController
     @page_desc   = @article[:meta_description]
     @article_html, @toc = render_markdown_with_toc(@article[:body])
     @article_html = inject_cdm_groups(@article_html) if @article_html.include?('[[groupe:')
+    @article_html = inject_dazn_card(@article_html)  if @article_html.include?('DAZN_CARD')
 
     @derby_matches = []
     if @article[:derby_pairs].present?
@@ -247,6 +248,21 @@ class BlogController < ApplicationController
       out
     end
     result.html_safe
+  end
+
+  DAZN_AFFILIATE_URL = 'https://dazn.prf.hn/click/camref:1100l5JbRk'.freeze
+
+  def inject_dazn_card(html)
+    card = <<~HTML
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px 24px;margin:28px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <div>
+          <strong style="font-size:15px;color:#0f172a;">S'abonner à DAZN</strong>
+          <p style="margin:4px 0 0;color:#64748b;font-size:13px;">Serie A, Liga, Bundesliga et Ligue 1+ à partir de 9,99 €/mois</p>
+        </div>
+        <a href="#{DAZN_AFFILIATE_URL}" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:6px;background:#0f172a;color:white;padding:10px 18px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;">Voir l'offre DAZN →</a>
+      </div>
+    HTML
+    html.gsub(/<!--\s*DAZN_CARD\s*-->/, card).html_safe
   end
 
   def render_markdown_with_toc(text)
