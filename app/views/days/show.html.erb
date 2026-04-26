@@ -61,12 +61,10 @@
   <h1 style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #010e1b; margin: 0;">
     Programme TV foot <%= date_label %>
   </h1>
-  <%= link_to direct_path, style: "display: inline-flex; align-items: center; gap: 5px; background: var(--color-live); color: white; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-decoration: none; white-space: nowrap; flex-shrink: 0;" do %>
-    <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
-    <% if @live_count > 0 %>
+  <% if @live_count > 0 %>
+    <%= link_to direct_path, style: "display: inline-flex; align-items: center; gap: 5px; background: var(--color-live); color: white; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-decoration: none; white-space: nowrap; flex-shrink: 0;" do %>
+      <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
       <%= @live_count %> en direct
-    <% else %>
-      En direct
     <% end %>
   <% end %>
 </div>
