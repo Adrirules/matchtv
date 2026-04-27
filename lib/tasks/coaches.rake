@@ -14,13 +14,13 @@ namespace :coaches do
     ).pluck(:home_team_api_id, :away_team_api_id)
      .flatten.compact.uniq
 
-    # Skip teams synced within the last 7 days — coaches don't change daily
-    recent_ids     = Coach.where("updated_at >= ?", 7.days.ago).pluck(:team_api_id).to_set
+    # Skip teams synced within the last 30 days — coaches change ~once per season
+    recent_ids     = Coach.where("updated_at >= ?", 30.days.ago).pluck(:team_api_id).to_set
     original_count = team_ids.size
     team_ids       = team_ids.reject { |id| recent_ids.include?(id) }
     skipped        = original_count - team_ids.size
 
-    puts "Syncing coaches for #{team_ids.size} active teams (skipped #{skipped} synced < 7 days)..."
+    puts "Syncing coaches for #{team_ids.size} active teams (skipped #{skipped} synced < 30 days)..."
     synced = 0
     errors = 0
 
