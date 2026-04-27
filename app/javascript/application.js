@@ -40,72 +40,88 @@ window.addEventListener('appinstalled', () => {
   if (!window.navigator.standalone) return;
   if (typeof gtag === 'function') gtag('event', 'pwa_session', { event_category: 'PWA' });
 
-  const THRESHOLD = 75; // px à tirer avant de déclencher le reload
+  const THRESHOLD = 70;
   let startY = 0;
+  let currentY = 0;
   let pulling = false;
+  let refreshing = false;
 
-  // Indicateur visuel
-  const ptr = document.createElement('div');
-  ptr.id = 'ptr-indicator';
-  ptr.innerHTML = '<div class="ptr-spinner"></div>';
-  ptr.style.cssText = [
-    'position:fixed', 'top:0', 'left:0', 'right:0',
-    'display:flex', 'justify-content:center', 'align-items:center',
-    'height:56px', 'background:#f8fafc',
-    'transform:translateY(-56px)',
-    'transition:transform 0.2s ease',
-    'z-index:9999', 'pointer-events:none'
-  ].join(';');
-
+  // Spinner style iOS natif (rayons qui s'estompent)
   const style = document.createElement('style');
   style.textContent = `
-    #ptr-indicator .ptr-spinner {
-      width: 24px; height: 24px;
-      border: 3px solid #e2e8f0;
-      border-top-color: #3b82f6;
-      border-radius: 50%;
-      animation: ptr-spin 0.7s linear infinite;
-      opacity: 0;
-      transition: opacity 0.2s;
+    #ptr-wrap {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: center; align-items: flex-end;
+      height: 60px; z-index: 9999; pointer-events: none;
+      transform: translateY(-60px);
+      transition: transform 0.22s ease;
     }
-    #ptr-indicator.ptr-ready .ptr-spinner { opacity: 1; }
-    @keyframes ptr-spin { to { transform: rotate(360deg); } }
+    #ptr-wrap.ptr-visible { transform: translateY(0); }
+    #ptr-spinner {
+      width: 28px; height: 28px;
+      position: relative; margin-bottom: 14px;
+    }
+    #ptr-spinner span {
+      position: absolute; left: 50%; top: 50%;
+      width: 2.5px; height: 7px;
+      background: #8e8e93;
+      border-radius: 2px;
+      transform-origin: center -4px;
+      opacity: 0;
+    }
+    #ptr-spinner.ptr-spin span { animation: ptr-fade 1s linear infinite; }
+    @keyframes ptr-fade { 0%,100%{opacity:.15} 0%{opacity:1} }
   `;
   document.head.appendChild(style);
-  // DOMContentLoaded déjà passé avec importmap — on insère directement ou on attend turbo:load
-  if (document.body) {
-    document.body.prepend(ptr);
-  } else {
-    document.addEventListener('turbo:load', () => document.body.prepend(ptr), { once: true });
+
+  // Créer le spinner avec 12 rayons (style iOS)
+  const wrap = document.createElement('div');
+  wrap.id = 'ptr-wrap';
+  const spinner = document.createElement('div');
+  spinner.id = 'ptr-spinner';
+  for (let i = 0; i < 12; i++) {
+    const s = document.createElement('span');
+    s.style.transform = `rotate(${i * 30}deg) translateY(-50%)`;
+    s.style.animationDelay = `${-(12 - i) / 12}s`;
+    spinner.appendChild(s);
+  }
+  wrap.appendChild(spinner);
+  document.body.prepend(wrap);
+
+  function getScrollTop() {
+    return window.scrollY || document.documentElement.scrollTop || 0;
   }
 
   document.addEventListener('touchstart', (e) => {
-    if (window.scrollY === 0) {
+    if (refreshing) return;
+    if (getScrollTop() === 0) {
       startY = e.touches[0].clientY;
       pulling = true;
     }
   }, { passive: true });
 
   document.addEventListener('touchmove', (e) => {
-    if (!pulling) return;
-    const diff = e.touches[0].clientY - startY;
-    if (diff > 0) {
-      const pull = Math.min(diff * 0.5, THRESHOLD);
-      ptr.style.transform = `translateY(${pull - 56}px)`;
-      ptr.classList.toggle('ptr-ready', diff > THRESHOLD);
+    if (!pulling || refreshing) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    if (diff > 10) {
+      wrap.classList.add('ptr-visible');
+      if (diff > THRESHOLD) spinner.classList.add('ptr-spin');
+      else spinner.classList.remove('ptr-spin');
     }
   }, { passive: true });
 
-  document.addEventListener('touchend', (e) => {
-    if (!pulling) return;
+  document.addEventListener('touchend', () => {
+    if (!pulling || refreshing) return;
     pulling = false;
-    const diff = e.changedTouches[0].clientY - startY;
+    const diff = currentY - startY;
     if (diff > THRESHOLD) {
-      ptr.style.transform = 'translateY(0)';
-      setTimeout(() => window.location.reload(), 200);
+      refreshing = true;
+      spinner.classList.add('ptr-spin');
+      setTimeout(() => window.location.reload(), 300);
     } else {
-      ptr.style.transform = 'translateY(-56px)';
-      ptr.classList.remove('ptr-ready');
+      wrap.classList.remove('ptr-visible');
+      spinner.classList.remove('ptr-spin');
     }
   }, { passive: true });
 })();
