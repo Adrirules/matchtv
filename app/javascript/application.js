@@ -37,7 +37,9 @@ window.addEventListener('appinstalled', () => {
 
 // Pull-to-refresh pour la PWA iPhone (mode standalone uniquement)
 (function () {
-  if (!window.navigator.standalone) return;
+  const isStandalone = window.navigator.standalone ||
+                       window.matchMedia('(display-mode: standalone)').matches;
+  if (!isStandalone) return;
   if (typeof gtag === 'function') gtag('event', 'pwa_session', { event_category: 'PWA' });
 
   const THRESHOLD = 70;
@@ -45,48 +47,63 @@ window.addEventListener('appinstalled', () => {
   let currentY = 0;
   let pulling = false;
   let refreshing = false;
+  let hapticDone = false;
 
-  // Spinner style iOS natif (rayons qui s'estompent)
-  const style = document.createElement('style');
-  style.textContent = `
-    #ptr-wrap {
-      position: fixed; top: 0; left: 0; right: 0;
-      display: flex; justify-content: center; align-items: flex-end;
-      height: 60px; z-index: 9999; pointer-events: none;
-      transform: translateY(-60px);
-      transition: transform 0.22s ease;
-    }
-    #ptr-wrap.ptr-visible { transform: translateY(0); }
-    #ptr-spinner {
-      width: 28px; height: 28px;
-      position: relative; margin-bottom: 14px;
-    }
-    #ptr-spinner span {
-      position: absolute; left: 50%; top: 50%;
-      width: 2.5px; height: 7px;
-      background: #8e8e93;
-      border-radius: 2px;
-      transform-origin: center -4px;
-      opacity: 0;
-    }
-    #ptr-spinner.ptr-spin span { animation: ptr-fade 1s linear infinite; }
-    @keyframes ptr-fade { 0%,100%{opacity:.15} 0%{opacity:1} }
-  `;
-  document.head.appendChild(style);
-
-  // Créer le spinner avec 12 rayons (style iOS)
-  const wrap = document.createElement('div');
-  wrap.id = 'ptr-wrap';
-  const spinner = document.createElement('div');
-  spinner.id = 'ptr-spinner';
-  for (let i = 0; i < 12; i++) {
-    const s = document.createElement('span');
-    s.style.transform = `rotate(${i * 30}deg) translateY(-50%)`;
-    s.style.animationDelay = `${-(12 - i) / 12}s`;
-    spinner.appendChild(s);
+  // Styles — injectés une seule fois
+  if (!document.getElementById('ptr-style')) {
+    const style = document.createElement('style');
+    style.id = 'ptr-style';
+    style.textContent = `
+      #ptr-wrap {
+        position: fixed; top: 0; left: 0; right: 0;
+        display: flex; justify-content: center; align-items: flex-end;
+        height: 64px; z-index: 9999; pointer-events: none;
+        transform: translateY(-64px);
+        transition: transform 0.22s ease;
+      }
+      #ptr-wrap.ptr-visible { transform: translateY(0); }
+      #ptr-spinner {
+        width: 28px; height: 28px;
+        position: relative; margin-bottom: 16px;
+      }
+      #ptr-spinner span {
+        position: absolute; left: 12.25px; top: 0;
+        width: 3px; height: 8px;
+        background: #8e8e93; border-radius: 2px;
+        transform-origin: 1.5px 14px;
+        opacity: 0.15;
+      }
+      #ptr-spinner.ptr-spin span { animation: ptr-fade 1s linear infinite; }
+      @keyframes ptr-fade { from { opacity: 1; } to { opacity: 0.15; } }
+    `;
+    document.head.appendChild(style);
   }
-  wrap.appendChild(spinner);
-  document.body.prepend(wrap);
+
+  function buildWrap() {
+    const wrap = document.createElement('div');
+    wrap.id = 'ptr-wrap';
+    const spinner = document.createElement('div');
+    spinner.id = 'ptr-spinner';
+    for (let i = 0; i < 12; i++) {
+      const s = document.createElement('span');
+      s.style.transform = `rotate(${i * 30}deg)`;
+      s.style.animationDelay = `${-((12 - i) / 12).toFixed(2)}s`;
+      spinner.appendChild(s);
+    }
+    wrap.appendChild(spinner);
+    return wrap;
+  }
+
+  function ensureWrap() {
+    if (!document.getElementById('ptr-wrap')) {
+      document.body.prepend(buildWrap());
+    }
+    return document.getElementById('ptr-wrap');
+  }
+
+  // Réinjection après chaque navigation Turbo (Turbo remplace le body)
+  document.addEventListener('turbo:load', ensureWrap);
+  ensureWrap();
 
   function getScrollTop() {
     return window.scrollY || document.documentElement.scrollTop || 0;
@@ -96,7 +113,9 @@ window.addEventListener('appinstalled', () => {
     if (refreshing) return;
     if (getScrollTop() === 0) {
       startY = e.touches[0].clientY;
+      currentY = startY;
       pulling = true;
+      hapticDone = false;
     }
   }, { passive: true });
 
@@ -104,10 +123,22 @@ window.addEventListener('appinstalled', () => {
     if (!pulling || refreshing) return;
     currentY = e.touches[0].clientY;
     const diff = currentY - startY;
+    const wrap = document.getElementById('ptr-wrap');
+    const spinner = document.getElementById('ptr-spinner');
+    if (!wrap || !spinner) return;
     if (diff > 10) {
       wrap.classList.add('ptr-visible');
-      if (diff > THRESHOLD) spinner.classList.add('ptr-spin');
-      else spinner.classList.remove('ptr-spin');
+      if (diff > THRESHOLD) {
+        spinner.classList.add('ptr-spin');
+        // Haptique au sweet spot — une seule fois
+        if (!hapticDone) {
+          hapticDone = true;
+          if (navigator.vibrate) navigator.vibrate(10);
+        }
+      } else {
+        spinner.classList.remove('ptr-spin');
+        hapticDone = false;
+      }
     }
   }, { passive: true });
 
@@ -115,13 +146,15 @@ window.addEventListener('appinstalled', () => {
     if (!pulling || refreshing) return;
     pulling = false;
     const diff = currentY - startY;
+    const wrap = document.getElementById('ptr-wrap');
+    const spinner = document.getElementById('ptr-spinner');
     if (diff > THRESHOLD) {
       refreshing = true;
-      spinner.classList.add('ptr-spin');
+      if (spinner) spinner.classList.add('ptr-spin');
       setTimeout(() => window.location.reload(), 300);
     } else {
-      wrap.classList.remove('ptr-visible');
-      spinner.classList.remove('ptr-spin');
+      if (wrap) wrap.classList.remove('ptr-visible');
+      if (spinner) spinner.classList.remove('ptr-spin');
     }
   }, { passive: true });
 })();
