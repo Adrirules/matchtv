@@ -18,7 +18,7 @@ class SitemapsController < ApplicationController
 
     # 4. Les Joueurs (seulement ceux avec un slug valide et une équipe active récemment)
     active_teams = @teams
-    @players = Player.where(team: active_teams)
+    @players = Player.where(team_name: active_teams)
                      .where.not(slug: [nil, ""])
                      .select(:slug, :updated_at)
 
