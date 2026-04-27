@@ -68,9 +68,9 @@
             </div>
             <div data-live-score-target="status" style="margin-top: 8px;">
               <% if is_live %>
-                <span style="display: inline-flex; align-items: center; gap: 5px; background: var(--color-live); color: white; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 4px; font-family: var(--font-body);">
-                  <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
-                  <% if @match.status == 'HT' %>Mi-temps<% else %><%= @match.elapsed %>′<% end %>
+                <span style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body);">
+                  <span style="width: 8px; height: 8px; background: var(--color-live); border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block; flex-shrink: 0;"></span>
+                  <span style="font-size: 12px; font-weight: 700; color: white;"><% if @match.status == 'HT' %>Mi-temps<% else %><%= @match.elapsed %>′<% end %></span>
                 </span>
               <% else %>
                 <span style="font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.45); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.05em;">Terminé</span>
