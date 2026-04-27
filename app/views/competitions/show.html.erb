@@ -1,5 +1,6 @@
 <% content_for :title, @page_title %>
 <% content_for :meta_description, @page_desc %>
+<% stats_leagues = StatistiquesController::LEAGUES.map { |l| l[:slug] } %>
 
 <%# Fil d'Ariane %>
 <nav style="padding: 10px 15px; font-size: 12px; color: #999;">
@@ -40,6 +41,12 @@
               style="flex: 1; background: none; border: none; padding: 10px 0; font-size: 14px; font-weight: 600; color: #94a3b8; border-bottom: 2px solid transparent; margin-bottom: -2px; cursor: pointer; font-family: var(--font-body);">
         Classement
       </button>
+      <% if stats_leagues.include?(@competition_slug) %>
+        <button class="comp-tab" data-panel="buteurs"
+                style="flex: 1; background: none; border: none; padding: 10px 0; font-size: 14px; font-weight: 600; color: #94a3b8; border-bottom: 2px solid transparent; margin-bottom: -2px; cursor: pointer; font-family: var(--font-body);">
+          Buteurs
+        </button>
+      <% end %>
     <% end %>
     <% if @comp_channel_slugs.any? %>
       <button class="comp-tab" data-panel="chaines"
@@ -152,6 +159,30 @@
         <%= link_to world_cup_top_scorers_path,
             style: "display: inline-flex; align-items: center; gap: 6px; background: var(--color-accent); color: white; font-size: 14px; font-weight: 700; padding: 10px 20px; border-radius: 8px; text-decoration: none;" do %>
           Voir le classement des buteurs →
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# ========== PANEL : BUTEURS/PASSEURS (ligues standards) ========== %>
+  <% if !@is_world_cup && stats_leagues.include?(@competition_slug) %>
+    <div id="comp-panel-buteurs" class="comp-panel" style="display: none;">
+      <div style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
+        <%= link_to top_scorers_league_path(@competition_slug),
+            style: "display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; text-decoration: none; color: inherit; border-bottom: 1px solid #f1f5f9;" do %>
+          <div>
+            <div style="font-size: 14px; font-weight: 700; color: #010e1b;">Meilleurs buteurs</div>
+            <div style="font-size: 12px; color: #64748b; margin-top: 2px;">Classement buts saison 2025-2026</div>
+          </div>
+          <span style="font-size: 18px; color: #94a3b8;">→</span>
+        <% end %>
+        <%= link_to top_assists_league_path(@competition_slug),
+            style: "display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; text-decoration: none; color: inherit;" do %>
+          <div>
+            <div style="font-size: 14px; font-weight: 700; color: #010e1b;">Meilleurs passeurs</div>
+            <div style="font-size: 12px; color: #64748b; margin-top: 2px;">Classement passes décisives 2025-2026</div>
+          </div>
+          <span style="font-size: 18px; color: #94a3b8;">→</span>
         <% end %>
       </div>
     </div>
