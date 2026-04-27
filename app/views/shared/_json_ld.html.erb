@@ -33,6 +33,15 @@
       "logo": match.away_team_logo,
       "url": "https://www.coupdenvoi.tv/equipes/#{match.away_team&.parameterize}"
     },
+    "url": "https://www.coupdenvoi.tv/matches/#{match.matchup&.slug || match.id}",
+    "location": {
+      "@type": "Place",
+      "name": match.competition || "Stade"
+    },
+    "performer": [
+      { "@type": "SportsTeam", "name": home },
+      { "@type": "SportsTeam", "name": away }
+    ],
     "organizer": {
       "@type": "Organization",
       "name": match.competition || "Fédération de Football"
