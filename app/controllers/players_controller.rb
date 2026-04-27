@@ -1,4 +1,10 @@
 class PlayersController < ApplicationController
+  PLAYER_BIOS = begin
+    YAML.safe_load_file(Rails.root.join('config', 'player_bios.yml')) || {}
+  rescue
+    {}
+  end
+
   # Ligues "friendlies" de l'API — pas de valeur éditoriale, on les masque
   FRIENDLY_LEAGUES = %w[
     Friendlies\ Clubs Club\ Friendlies Friendlies\ International
@@ -98,6 +104,9 @@ class PlayersController < ApplicationController
       "Profil de #{@full_name}, #{pos_str}#{team_str} pour la saison 2025-2026. " \
       "Statistiques et programme TV des prochains matchs."
     end
+
+    # Bio éditoriale si disponible (top joueurs)
+    @player_bio = PLAYER_BIOS[@player.api_id]&.dig('bio')
 
     # noindex si contenu trop mince :
     # - 0 stats + aucun match à venir

@@ -43,6 +43,10 @@ Rails.application.routes.draw do
   get "classements/:competition_id/buteurs", to: "standings#top_scorers", as: :top_scorers
   get "classements/:competition_id", to: "standings#show", as: :standing
 
+  # 5b. Statistiques — top buteurs / top passeurs
+  get "statistiques/meilleurs-buteurs/:slug", to: "statistiques#top_scorers", as: :top_scorers_league
+  get "statistiques/meilleurs-passeurs/:slug", to: "statistiques#top_assists", as: :top_assists_league
+
   # 6. Blog éditorial
   get 'blog', to: 'blog#index', as: :blog
   get 'blog.rss', to: 'blog#feed', as: :blog_feed

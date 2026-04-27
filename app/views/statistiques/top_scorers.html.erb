@@ -1,0 +1,131 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+
+<% season = FootballApiService::LEAGUE_SEASONS[@league[:id]] %>
+
+<script type="application/ld+json">
+<%= {
+  "@context" => "https://schema.org",
+  "@type" => "ItemList",
+  "name" => "Meilleurs buteurs #{@league[:name]} #{season}-#{season + 1}",
+  "description" => @page_desc,
+  "url" => request.original_url,
+  "itemListElement" => @players.first(10).map.with_index(1) do |entry, i|
+    name = entry.dig('player', 'name') || ''
+    {
+      "@type" => "ListItem",
+      "position" => i,
+      "name" => name,
+      "url" => "https://www.coupdenvoi.tv/joueurs/#{name.parameterize}"
+    }
+  end
+}.to_json.html_safe %>
+</script>
+
+<div style="max-width: 700px; margin: 0 auto; padding: 0 12px 40px;">
+
+  <%# Breadcrumb %>
+  <nav style="padding: 10px 0 16px; font-size: 12px; color: #999;">
+    <%= link_to "Accueil", root_path, style: "color: #999; text-decoration: none;" %> ›
+    <%= link_to @league[:name], competition_path(@league[:slug]), style: "color: #999; text-decoration: none;" %> ›
+    Meilleurs buteurs
+  </nav>
+
+  <h1 style="font-size: 22px; font-weight: 800; color: #010e1b; margin: 0 0 6px;">
+    Meilleurs buteurs <%= @league[:name] %>
+  </h1>
+  <p style="font-size: 14px; color: #64748b; margin: 0 0 24px;">
+    Saison <%= season %>-<%= season + 1 %> · Mis à jour en temps réel
+  </p>
+
+  <%# Liens top passeurs %>
+  <div style="margin-bottom: 20px;">
+    <%= link_to top_assists_league_path(@league[:slug]),
+        style: "font-size: 13px; color: var(--color-accent); font-weight: 600; text-decoration: none;" do %>
+      Voir les meilleurs passeurs <%= @league[:name] %> →
+    <% end %>
+  </div>
+
+  <% if @players.empty? %>
+    <div style="background: #f8fafc; border-radius: 10px; padding: 24px; text-align: center; color: #64748b; font-size: 14px;">
+      Données non disponibles pour le moment. Réessaie dans quelques minutes.
+    </div>
+  <% else %>
+    <div style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0;">
+
+      <%# En-tête %>
+      <div style="display: flex; align-items: center; padding: 10px 14px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">
+        <span style="width: 32px;">#</span>
+        <span style="flex: 1;">Joueur</span>
+        <span style="width: 44px; text-align: center;">Buts</span>
+        <span style="width: 44px; text-align: center;">Passe</span>
+        <span style="width: 44px; text-align: center;">MJ</span>
+        <span style="width: 44px; text-align: center;">Min</span>
+      </div>
+
+      <% @players.each_with_index do |entry, i| %>
+        <% player     = entry['player'] %>
+        <% stats      = entry['statistics']&.first %>
+        <% goals      = stats&.dig('goals', 'total').to_i %>
+        <% assists    = stats&.dig('goals', 'assists').to_i %>
+        <% games      = stats&.dig('games', 'appearences').to_i %>
+        <% minutes    = stats&.dig('games', 'minutes').to_i %>
+        <% team_name  = stats&.dig('team', 'name') %>
+        <% team_logo  = stats&.dig('team', 'logo') %>
+        <% photo      = player['photo'] %>
+        <% pslug      = player['name']&.parameterize %>
+        <% border_b   = i < @players.size - 1 ? 'border-bottom: 1px solid #f1f5f9;' : '' %>
+
+        <%= link_to player_path(pslug), style: "display: flex; align-items: center; padding: 10px 14px; text-decoration: none; color: inherit; #{border_b} transition: background 0.1s;" do %>
+          <%# Rang %>
+          <span style="width: 32px; font-size: 12px; font-weight: 700; color: <%= i < 3 ? '#f59e0b' : '#94a3b8' %>;">
+            <%= i + 1 %>
+          </span>
+
+          <%# Photo + Nom + Club %>
+          <div style="flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0;">
+            <% if photo.present? %>
+              <img src="<%= photo %>" alt="<%= player['name'] %>" width="32" height="32"
+                   loading="lazy" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+            <% else %>
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: #f1f5f9; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;">⚽</div>
+            <% end %>
+            <div style="min-width: 0;">
+              <div style="font-size: 13px; font-weight: 700; color: #010e1b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                <%= team_display_name(player['name']) %>
+              </div>
+              <div style="display: flex; align-items: center; gap: 5px; margin-top: 2px;">
+                <% if team_logo.present? %>
+                  <img src="<%= team_logo %>" alt="<%= team_name %>" width="14" height="14"
+                       loading="lazy" style="width: 14px; height: 14px; object-fit: contain;">
+                <% end %>
+                <span style="font-size: 11px; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= team_display_name(team_name) %></span>
+              </div>
+            </div>
+          </div>
+
+          <%# Stats %>
+          <span style="width: 44px; text-align: center; font-size: 15px; font-weight: 800; color: #010e1b;"><%= goals %></span>
+          <span style="width: 44px; text-align: center; font-size: 13px; color: #64748b;"><%= assists %></span>
+          <span style="width: 44px; text-align: center; font-size: 13px; color: #64748b;"><%= games %></span>
+          <span style="width: 44px; text-align: center; font-size: 12px; color: #94a3b8;"><%= minutes %>′</span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%# Intro éditoriale %>
+    <div style="background: white; border-radius: 12px; padding: 16px 18px; margin-top: 20px; border: 1px solid #e2e8f0;">
+      <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin: 0 0 10px;">
+        La course au titre de meilleur buteur en <%= @league[:name] %>
+      </h2>
+      <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0 0 8px;">
+        Ce classement des meilleurs buteurs de <%= @league[:name] %> pour la saison <%= season %>-<%= season + 1 %> est mis à jour après chaque journée. Il prend en compte uniquement les buts marqués en championnat, hors coupes et compétitions européennes.
+      </p>
+      <p style="font-size: 14px; color: #444; line-height: 1.75; margin: 0;">
+        Pour suivre les matchs en direct et savoir sur quelle chaîne voir la <%= @league[:name] %>, consulte la
+        <%= link_to "page compétition #{@league[:name]}", competition_path(@league[:slug]), style: "color: var(--color-accent); font-weight: 600;" %> et le
+        <%= link_to "classement #{@league[:name]}", standing_path(@league[:slug]), style: "color: var(--color-accent); font-weight: 600;" %>.
+      </p>
+    </div>
+  <% end %>
+</div>
