@@ -16,6 +16,8 @@ class TeamsController < ApplicationController
     end
 
     vote_counts = TeamVote.group(:team_slug).count
+    ip_hash     = Digest::SHA256.hexdigest("#{request.remote_ip}-cdtv")[0..15]
+    @voted_slugs = TeamVote.where(ip_hash: ip_hash).pluck(:team_slug).to_set
 
     @teams = logos_by_team.keys.compact.map do |name|
       slug = name.parameterize
