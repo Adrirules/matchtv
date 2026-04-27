@@ -108,7 +108,7 @@ class BlogController < ApplicationController
 
   def all_articles
     Dir.glob(BLOG_PATH.join('*.md')).filter_map { |f| parse_file(f) }
-       .select { |a| a[:published_at] && a[:published_at] <= Date.today }
+       .select { |a| a[:published_at] && article_published?(a) }
        .sort_by { |a| a[:published_at] }.reverse
   end
 
@@ -116,8 +116,23 @@ class BlogController < ApplicationController
     file = BLOG_PATH.join("#{slug}.md")
     return nil unless File.exist?(file)
     article = parse_file(file, with_body: true)
-    return nil if article && article[:published_at] && article[:published_at] > Date.today
+    return nil unless article
+    return nil unless article_published?(article)
     article
+  end
+
+  # Combine published_at (date) + published_time ("09h23") pour comparer à Time.current
+  def article_published?(article)
+    return false unless article[:published_at]
+    pub_date = article[:published_at]
+    pub_time = article[:published_time].to_s
+    if pub_time.match?(/\A\d{1,2}h\d{2}\z/)
+      h, m = pub_time.split('h').map(&:to_i)
+      pub_datetime = Time.zone.local(pub_date.year, pub_date.month, pub_date.day, h, m)
+    else
+      pub_datetime = pub_date.to_time
+    end
+    Time.current >= pub_datetime
   end
 
   def parse_file(path, with_body: false)
