@@ -171,3 +171,9 @@ curl -X POST "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/send-report
 - Ne jamais inventer de pages — utiliser UNIQUEMENT existing_pages pour le maillage
 - Pages "match" : pertinentes 7 jours avant le match max — penser evergreen sinon
 - Si cannibalisation : toujours enrichir l'existant avant de créer du nouveau
+
+## Pages sous surveillance (à suivre semaine après semaine)
+
+| Page | Signal | Seuil d'action |
+|------|--------|----------------|
+| /blog/top-5-derbies-france-football | Chute de 8,5 places le 28/04 (pos 7,5 → 16). Ne pas enrichir immédiatement. | Si la position baisse encore ou ne remonte pas sous les 10 dans 2 semaines → enrichir l'article (500+ mots, maj exemples saison 2025-2026) |
