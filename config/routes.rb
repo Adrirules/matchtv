@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/api/seo/send-report', to: 'seo_api#send_report'
   # PRIORITÉ N°1 : Le sitemap (format XML forcé)
   get "sitemap.xml", to: "sitemaps#index", defaults: { format: "xml" }
+  get "sitemap_index.xml", to: redirect("/sitemap.xml", status: 301)
+  get "sitemaps.xml",      to: redirect("/sitemap.xml", status: 301)
   # 2. Les jours
   get "days/:date", to: "days#show", as: :day
 
@@ -53,6 +55,8 @@ Rails.application.routes.draw do
   get "nous-soutenir",   to: "pages#soutenir",  as: :nous_soutenir
 
   # 7. MATCHS (EN DERNIER)
+  # Redirection 301 de l'ancien pluriel français (/matchs/) vers l'actuel (/matches/)
+  get "/matchs/*path", to: redirect("/matches/%{path}", status: 301)
   # On le met en dernier pour qu'il ne "vole" pas les URLs des autres pages
   resources :matches, only: [:show], param: :slug do
     member do
