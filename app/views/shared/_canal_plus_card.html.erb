@@ -7,14 +7,13 @@
     - cta_index    (0..2 pour A/B CTA) default: 0
     - subtitle     (string optionnel pour surcharger le texte sous le titre)
 %>
-<% canal_url = ENV.fetch("CANAL_PLUS_AFFILIATE_URL", nil) %>
-<% return unless canal_url.present? %>
+<% canal_url = local_assigns.fetch(:url, "https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1561") %>
 
 <% variant      = local_assigns.fetch(:variant, :standard) %>
 <% page_context = local_assigns.fetch(:page_context, "site") %>
 <% cta_index    = local_assigns.fetch(:cta_index, 0) %>
 <% ctas = ["S'abonner à Canal+", "Voir ce match sur Canal+", "Essayer Canal+ gratuitement"] %>
-<% cta_text = ctas[cta_index % 3] %>
+<% cta_text = local_assigns[:cta_label].presence || ctas[cta_index % 3] %>
 <% ga_push = "dataLayer.push({event:'affiliate_click',affiliate_partner:'canal_plus',affiliate_page:'#{page_context}',affiliate_cta:#{cta_index % 3}})" %>
 
 <% if variant == :compact %>

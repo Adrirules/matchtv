@@ -117,6 +117,15 @@
     </div>
   <% end %>
 
+  <%# ---- Card affiliée Canal+ (matchs à venir ou en direct sur Canal+) ---- %>
+  <% if !is_finished && @match.tv_channels&.any? { |c| c.to_s.start_with?('Canal') } %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        page_context: 'match',
+        cta_index: @match.id % 3,
+        subtitle: is_live ? "Ce match est en direct sur Canal+ maintenant." : "Ce match est diffusé sur Canal+. Abonnez-vous pour le regarder en direct." %>
+  <% end %>
+
   <%# ---- Card affilié DAZN (matchs à venir ou en direct sur DAZN) ---- %>
   <% if !is_finished && @match.tv_channels&.include?('DAZN') %>
     <% mins_left = ((@match.start_time - Time.current) / 60).to_i rescue 999 %>

@@ -70,7 +70,14 @@
     </section>
   <% end %>
 
-  <%# 2. Card affilié DAZN (page DAZN uniquement) %>
+  <%# 2. Cards affiliées (Canal+ ou DAZN selon la chaîne) %>
+  <% if @channel[:slug] == 'canal-plus' %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        page_context: 'channel-canal-plus',
+        cta_index: 0,
+        subtitle: "Champions League, Premier League, Ligue 1 et toutes les Coupes d'Europe - regardez tous les matchs Canal+ en direct et en replay." %>
+  <% end %>
   <% if @channel[:slug] == 'dazn' %>
     <%= render 'shared/dazn_card',
         variant: :standard,
