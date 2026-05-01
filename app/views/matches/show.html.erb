@@ -117,6 +117,8 @@
     </div>
   <% end %>
 
+  <div style="max-width: 970px; margin: 0 auto;">
+
   <%# ---- Card affiliée Canal+ (matchs à venir ou en direct sur Canal+) ---- %>
   <% if !is_finished && @match.tv_channels.to_s.include?('Canal') %>
     <%= render 'shared/canal_plus_card',
@@ -335,6 +337,8 @@
     ]
   }
   </script>
+
+  </div><%# fin max-width 970px %>
 
 <% else %>
   <div style="text-align: center; padding: 60px 20px;">
