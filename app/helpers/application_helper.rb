@@ -468,13 +468,13 @@ module ApplicationHelper
 
   # ── Badges chaînes colorés — design system v2 ───────────────────────────────
   CHANNEL_BADGE_COLORS = {
-    'Canal+'          => { bg: '#B80020', text: '#fff' },
-    'Canal+ Foot'     => { bg: '#B80020', text: '#fff' },
-    'Canal+ Live 1'   => { bg: '#B80020', text: '#fff' },
-    'Canal+ Live 2'   => { bg: '#B80020', text: '#fff' },
-    'Canal+ Live 3'   => { bg: '#B80020', text: '#fff' },
-    'Canal+ Live 4'   => { bg: '#B80020', text: '#fff' },
-    'Canal+ Sport'    => { bg: '#B80020', text: '#fff' },
+    'Canal+'          => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Foot'     => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Live 1'   => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Live 2'   => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Live 3'   => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Live 4'   => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Sport'    => { bg: '#dc314e', text: '#fff' },
     'beIN Sports'     => { bg: '#00843D', text: '#fff' },
     'beIN Sports 1'   => { bg: '#00843D', text: '#fff' },
     'beIN Sports 2'   => { bg: '#00843D', text: '#fff' },
