@@ -111,7 +111,7 @@ Mais attention, ce serait trop facile, il y a une petite subtilité. Canal+ prop
 
 Notre avis honnête : si vous êtes fan de Champions League et que vous voulez tout voir, Canal+ Sport est incontournable. La première année à 29,99 € par mois avec beIN Sports inclus c'est un très bon deal, vous avez la C1 en intégralité, la Liga, la Bundesliga, la [Premier League](/competitions/premier-league) et la Ligue 2 dans un seul abonnement.
 
-La bonne nouvelle pour les moins de 26 ans : Canal+ Sport est accessible à 22,99 € par mois, ce qui change vraiment la donne.
+La bonne nouvelle pour les moins de 26 ans : Canal+ Sport est accessible à 19,99 € par mois, ce qui change vraiment la donne.
 
 ## Foot gratuit en 2026 : TF1, M6, ce qui change avec le Mondial
 
