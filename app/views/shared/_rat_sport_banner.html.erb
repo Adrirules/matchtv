@@ -1,0 +1,49 @@
+<%#
+  Partial : bannière IAB RAT SPORT 0426 (Kwanko — Canal+ Sport avec beIN, 19,99€/mois)
+  Locals :
+    - page_context (string GA4) default: 'site'
+  Desktop (≥768px) : 300x250
+  Mobile (<768px)  : 320x50
+  Masqué si @noindex = true
+%>
+<% return if @noindex %>
+<% page_context = local_assigns.fetch(:page_context, 'site') %>
+
+<%# Desktop 300x250 %>
+<div class="kwanko-rat-sq" style="display:none; justify-content: center; margin: 20px 0;"
+     data-kwanko-track="<%= page_context %>-rat">
+  <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD2677"
+          width="300" height="250" scrolling="no" frameborder="0"
+          style="display:block; border:0;"></iframe>
+</div>
+
+<%# Mobile 320x50 %>
+<div class="kwanko-rat-mobile" style="display:none; justify-content: center; margin: 16px 0;"
+     data-kwanko-track="<%= page_context %>-rat-mobile">
+  <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26725"
+          width="320" height="50" scrolling="no" frameborder="0"
+          style="display:block; border:0;"></iframe>
+</div>
+
+<style>
+  @media (min-width: 768px) { .kwanko-rat-sq     { display: flex !important; } }
+  @media (max-width: 767px) { .kwanko-rat-mobile { display: flex !important; } }
+</style>
+<script>
+(function() {
+  document.querySelectorAll('[data-kwanko-track$="-rat"],[data-kwanko-track$="-rat-mobile"]').forEach(function(el) {
+    var iframe = el.querySelector('iframe');
+    if (!iframe) return;
+    var ctx = el.dataset.kwankoTrack;
+    var over = false;
+    iframe.addEventListener('mouseenter', function() { over = true; });
+    iframe.addEventListener('mouseleave', function() { over = false; });
+    window.addEventListener('blur', function() {
+      if (over) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'rat_sport_0426', affiliate_page: ctx, affiliate_format: 'kwanko_display' });
+      }
+    });
+  });
+})();
+</script>

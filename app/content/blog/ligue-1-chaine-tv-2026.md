@@ -100,6 +100,8 @@ Les autres distributeurs de Ligue 1+ : **Prime Video**, **Orange**, **Bouygues T
 
 À noter : **[Canal+](/chaines/canal-plus) ne distribue pas Ligue 1+**. Le diffuseur historique du foot français est resté en dehors de l'accord.
 
+<!-- DAZN_BANNER -->
+
 ## Le match du dimanche soir sur beIN Sports
 
 Le 9ème match de chaque journée, généralement programmé en soirée, reste sur **[beIN Sports](/chaines/bein-sports)**. C'est une particularité importante : si tu veux **vraiment** voir tous les matchs de Ligue 1, il te faut les deux abonnements.

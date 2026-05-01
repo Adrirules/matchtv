@@ -113,6 +113,8 @@ Notre avis honnête : si vous êtes fan de Champions League et que vous voulez t
 
 La bonne nouvelle pour les moins de 26 ans : Canal+ Sport est accessible à 19,99 € par mois, ce qui change vraiment la donne.
 
+<!-- RAT_SPORT_BANNER -->
+
 ## Foot gratuit en 2026 : TF1, M6, ce qui change avec le Mondial
 
 Vous avez dit « gratuit », salut à tous mes rats et bonne nouvelle pour ceux qui ne veulent pas débourser un seul centime (on vous voit) : il y a encore du foot gratuit en France en 2026. Mais il y a une grosse surprise cette année, et elle concerne [TF1](/chaines/tf1).

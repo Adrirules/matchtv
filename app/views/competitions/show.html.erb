@@ -259,13 +259,14 @@
         <% end %>
       </div>
 
-      <%# Cards affiliées (Canal+, DAZN) %>
+      <%# Cards affiliées (Canal+, DAZN) + bannières IAB %>
       <% if @comp_channel_slugs.include?("canal-plus") %>
         <%= render 'shared/canal_plus_card',
             variant: :standard,
             page_context: 'competition',
             cta_index: Zlib.crc32(@competition_name.to_s) % 3,
             subtitle: "#{@competition_name} est diffusée sur Canal+. Abonnez-vous pour voir tous les matchs en direct." %>
+        <%= render 'shared/kwanko_sport_banner', page_context: "competition-#{@competition_slug}" %>
       <% end %>
       <% if @comp_channel_slugs.include?("dazn") %>
         <%= render 'shared/dazn_card',
@@ -273,6 +274,11 @@
             page_context: 'competition',
             cta_index: Zlib.crc32(@competition_name.to_s) % 3,
             subtitle: "#{@competition_name} est diffusée en direct sur DAZN. Abonnez-vous pour voir tous les matchs." %>
+        <%= render 'shared/dazn_banner', page_context: "competition-#{@competition_slug}" %>
+      <% end %>
+      <%# Bannière RAT SPORT pour compétitions beIN (Liga, Bundesliga, Ligue 2...) %>
+      <% if @comp_channel_slugs.include?("bein-sports") && !@comp_channel_slugs.include?("canal-plus") %>
+        <%= render 'shared/rat_sport_banner', page_context: "competition-#{@competition_slug}" %>
       <% end %>
     </div>
   <% end %>

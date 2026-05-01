@@ -102,6 +102,8 @@ Concrètement, ton abonnement te donne accès à :
 
 Les prix peuvent varier selon les promotions en cours et l'engagement (12 ou 24 mois). Sans engagement, compte 5 à 10 € de plus par mois.
 
+<!-- CANAL_BANNER -->
+
 ## Quel match sur quelle chaîne : tableau récapitulatif
 
 | Compétition / Phase | Diffuseur | Accès |

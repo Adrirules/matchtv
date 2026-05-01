@@ -96,6 +96,8 @@ Ton abonnement te donne accès à :
 
 À noter que Canal+ produit ses propres habillages et commentaires. C'est pas du flux UEFA brut, c'est une vraie production.
 
+<!-- CANAL_BANNER -->
+
 ## Faut-il les deux abonnements (Canal+ et beIN) pour suivre l'Europa League ?
 
 Non. **Canal+ suffit largement pour la C3**. C'est même la chaîne qui a tout pour les Coupes d'Europe.

@@ -102,33 +102,17 @@
         subtitle: "Champions League, Europa League et Ligue 1 - regardez le foot en direct sur Canal+." %>
   <% end %>
 
-  <%# Corps de l'article — les marqueurs <!-- DAZN_CARD --> et <!-- CANAL_PLUS_CARD --> sont remplacés par les partials %>
+  <%# Corps de l'article — les marqueurs inline sont remplacés par les partials correspondants %>
   <div class="blog-content">
-    <% if @article_html&.include?('<!-- CANAL_PLUS_CARD -->') %>
-      <% @article_html.split('<!-- CANAL_PLUS_CARD -->').each_with_index do |chunk, i| %>
-        <%= chunk.html_safe %>
-        <% if i < @article_html.split('<!-- CANAL_PLUS_CARD -->').length - 1 %>
-          <%= render 'shared/canal_plus_card',
-              variant: :standard,
-              page_context: 'blog-inline',
-              cta_index: i,
-              subtitle: "Champions League, Europa League et Ligue 1 - regardez le foot en direct sur Canal+." %>
-        <% end %>
-      <% end %>
-    <% elsif @article_html&.include?('<!-- DAZN_CARD -->') %>
-      <% @article_html.split('<!-- DAZN_CARD -->').each_with_index do |chunk, i| %>
-        <%= chunk.html_safe %>
-        <% if i < @article_html.split('<!-- DAZN_CARD -->').length - 1 %>
-          <%= render 'shared/dazn_card',
-              variant: :standard,
-              page_context: 'blog-inline',
-              cta_index: i,
-              subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez le foot en direct sur DAZN." %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <%= @article_html %>
-    <% end %>
+    <%
+      processed = @article_html.to_s.dup
+      processed.gsub!('<!-- CANAL_PLUS_CARD -->',   render('shared/canal_plus_card',  variant: :standard, page_context: 'blog-inline', cta_index: 0, subtitle: "Champions League, Europa League et Ligue 1 - regardez le foot en direct sur Canal+."))
+      processed.gsub!('<!-- DAZN_CARD -->',          render('shared/dazn_card',        variant: :standard, page_context: 'blog-inline', cta_index: 0, subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez le foot en direct sur DAZN."))
+      processed.gsub!('<!-- CANAL_BANNER -->',       render('shared/kwanko_sport_banner', page_context: 'blog-canal'))
+      processed.gsub!('<!-- DAZN_BANNER -->',        render('shared/dazn_banner',      page_context: 'blog-dazn'))
+      processed.gsub!('<!-- RAT_SPORT_BANNER -->',   render('shared/rat_sport_banner', page_context: 'blog-rat'))
+    %>
+    <%= processed.html_safe %>
   </div>
 
   <%# Prochains derbies (dynamique) %>

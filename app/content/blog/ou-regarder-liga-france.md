@@ -70,6 +70,8 @@ Mais pour le direct, il faut passer par [beIN Sports](/chaines/bein-sports). Pou
 
 ---
 
+<!-- RAT_SPORT_BANNER -->
+
 ## La Liga au-delà du Clasico : pourquoi le milieu de tableau est passionnant
 
 C'est là que la Liga devient vraiment intéressante.

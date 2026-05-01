@@ -40,6 +40,8 @@ Pour tout savoir sur les tarifs et ce que [beIN Sports](/chaines/bein-sports) di
 
 ---
 
+<!-- RAT_SPORT_BANNER -->
+
 ## beIN Sports sur Orange (Livebox)
 
 Le beIN Sports canal Orange principal est le **45**.

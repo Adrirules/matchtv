@@ -157,29 +157,63 @@
       <% match_index += 1 %>
     <% end %>
 
-    <%# 728x90 desktop + mobile rotatif (300x250 / 320x100 / 300x600) après la ligue si position planifiée %>
+    <%# Pub contextuelle après la ligue si position planifiée : DAZN si ligue DAZN, Canal+ sinon %>
     <% if ad_728_positions.include?(group_index) %>
-      <div style="display:none; margin: 16px 0;" class="kwanko-728" data-kwanko-track="days-main">
-        <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26513"
-                width="728" height="90" scrolling="no" frameborder="0"
-                style="display:block; border:0;"></iframe>
-      </div>
-      <% mobile_fmt = group_index % 3 %>
-      <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day" data-kwanko-track="days-mobile-<%= group_index %>">
-        <% if mobile_fmt == 0 %>
-          <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D9"
-                  width="300" height="600" scrolling="no" frameborder="0"
+      <% is_dazn_comp = ['Ligue 1', 'Serie A', 'Eredivisie', 'Bundesliga', 'Jupiler Pro League'].include?(competition) %>
+      <% if is_dazn_comp %>
+        <%# Desktop 728x90 DAZN %>
+        <div style="display:none; margin: 16px 0; justify-content: center;" class="kwanko-728" data-kwanko-track="days-dazn-728">
+          <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193929" rel="sponsored"
+             onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'days-728',affiliate_format:'dazn_728x90'});">
+            <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193929"
+                 width="728" height="90" border="0" loading="lazy" alt="DAZN">
+          </a>
+          <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193929" defer></script>
+        </div>
+        <%# Mobile DAZN rotation %>
+        <% mobile_fmt = group_index % 2 %>
+        <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day">
+          <% if mobile_fmt == 0 %>
+            <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193923" rel="sponsored"
+               onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'days-mobile',affiliate_format:'dazn_300x250'});">
+              <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193923"
+                   width="300" height="250" border="0" loading="lazy" alt="DAZN">
+            </a>
+            <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193923" defer></script>
+          <% else %>
+            <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193924" rel="sponsored"
+               onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'days-mobile',affiliate_format:'dazn_300x50'});">
+              <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193924"
+                   width="300" height="50" border="0" loading="lazy" alt="DAZN">
+            </a>
+            <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193924" defer></script>
+          <% end %>
+        </div>
+      <% else %>
+        <%# Desktop 728x90 Canal+ %>
+        <div style="display:none; margin: 16px 0;" class="kwanko-728" data-kwanko-track="days-main">
+          <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26513"
+                  width="728" height="90" scrolling="no" frameborder="0"
                   style="display:block; border:0;"></iframe>
-        <% elsif mobile_fmt == 1 %>
-          <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
-                  width="320" height="100" scrolling="no" frameborder="0"
-                  style="display:block; border:0;"></iframe>
-        <% else %>
-          <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
-                  width="300" height="250" scrolling="no" frameborder="0"
-                  style="display:block; border:0;"></iframe>
-        <% end %>
-      </div>
+        </div>
+        <%# Mobile Canal+ rotation %>
+        <% mobile_fmt = group_index % 3 %>
+        <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day" data-kwanko-track="days-mobile-<%= group_index %>">
+          <% if mobile_fmt == 0 %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D9"
+                    width="300" height="600" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% elsif mobile_fmt == 1 %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+                    width="320" height="100" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% else %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+                    width="300" height="250" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 <% else %>

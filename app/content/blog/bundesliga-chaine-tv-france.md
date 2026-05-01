@@ -120,6 +120,8 @@ Petit conseil : si tu regardes via la box de ton opérateur (Orange, Free, Bouyg
 
 ---
 
+<!-- DAZN_BANNER -->
+
 ## Les matchs à ne pas rater cette saison
 
 La Bundesliga 2025-2026, c'est un Bayern Munich qui domine encore, mais avec des outsiders qui mordent. Voici ce qu'il faut caler dans ton agenda.

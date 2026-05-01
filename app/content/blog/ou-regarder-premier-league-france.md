@@ -66,6 +66,8 @@ Oui, ce n'est pas donné. Mais tu n'achètes pas que la Premier League : Ligue d
 
 ---
 
+<!-- CANAL_BANNER -->
+
 ## Peut-on regarder la Premier League gratuitement ?
 
 Soyons directs : non.

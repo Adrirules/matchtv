@@ -82,6 +82,8 @@ T'as 5 minutes avant le coup d'envoi, la télécommande dans une main, le café 
 
 Bonne nouvelle : Canal+ en tant que telle, la chaîne historique, c'est **4 partout**. Une des rares constantes du paysage télé français. Mais dès qu'on rentre dans le bouquet sport (Foot, Sport 360), chacun fait sa popote. Détaillons.
 
+<!-- CANAL_BANNER -->
+
 ## Canal+ sur Orange (Livebox)
 
 Chez Orange, **Canal+ est au canal 4**, Canal+ Cinéma au 40, Canal+ Sport au 44. Pour les deux chaînes foot du groupe, c'est **39 pour Canal+ Foot** et **38 pour Canal+ Sport 360**.

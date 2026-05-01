@@ -94,6 +94,8 @@ Mais pour le direct, il faut passer par [DAZN](/chaines/dazn).
 
 ---
 
+<!-- DAZN_BANNER -->
+
 ## Naples, Milan, la Juve : les affiches Serie A à ne pas rater
 
 C'est là que ça devient intéressant. Parce que s'abonner, c'est une chose. Mais encore faut-il savoir pourquoi.
