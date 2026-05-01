@@ -118,7 +118,7 @@
   <% end %>
 
   <%# ---- Card affiliée Canal+ (matchs à venir ou en direct sur Canal+) ---- %>
-  <% if !is_finished && @match.tv_channels&.any? { |c| c.to_s.start_with?('Canal') } %>
+  <% if !is_finished && @match.tv_channels.to_s.include?('Canal') %>
     <%= render 'shared/canal_plus_card',
         variant: :standard,
         page_context: 'match',
