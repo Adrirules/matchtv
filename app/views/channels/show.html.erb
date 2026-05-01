@@ -85,6 +85,14 @@
         cta_index: 0,
         subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez tous les matchs DAZN en direct et en replay." %>
   <% end %>
+  <% if @channel[:slug] == 'bein-sports' %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        url: "https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1571",
+        page_context: 'channel-bein',
+        cta_label: "Voir l'offre Canal+ Sport avec beIN →",
+        subtitle: "beIN Sports est inclus dans Canal+ Sport à 19,99€/mois sans engagement. Liga, Bundesliga, Ligue 2 et NBA - tout y est." %>
+  <% end %>
 
   <%# 3. Prochains matchs %>
   <% if @matches.any? %>

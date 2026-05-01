@@ -1,0 +1,38 @@
+<%#
+  Partial : bannière affiliée Canal+ OAE Spécial Sport (Kwanko)
+  Locals :
+    - page_context (string GA4) default: 'site'
+  Desktop (>768px) : 300x250
+  Mobile (<768px)  : 320x100
+  Masqué si @noindex = true
+%>
+<% return if @noindex %>
+<% page_context = local_assigns.fetch(:page_context, 'site') %>
+<% ga_push = "dataLayer.push({event:'affiliate_click',affiliate_partner:'canal_plus_banner',affiliate_page:'#{page_context}',affiliate_format:'kwanko_display'})" %>
+
+<%# Desktop : 300x250 %>
+<div class="kwanko-desktop" style="display:none; justify-content: flex-end; margin: 20px 0;">
+  <a href="https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1561"
+     target="_blank" rel="nofollow sponsored noopener"
+     onclick="<%= ga_push %>">
+    <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+            width="300" height="250" scrolling="no" frameborder="0"
+            style="display:block; border:0;"></iframe>
+  </a>
+</div>
+
+<%# Mobile : 320x100 %>
+<div class="kwanko-mobile" style="display:none; justify-content: center; margin: 16px 0;">
+  <a href="https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1561"
+     target="_blank" rel="nofollow sponsored noopener"
+     onclick="<%= ga_push %>">
+    <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+            width="320" height="100" scrolling="no" frameborder="0"
+            style="display:block; border:0;"></iframe>
+  </a>
+</div>
+
+<style>
+  @media (min-width: 768px) { .kwanko-desktop { display: flex !important; } }
+  @media (max-width: 767px) { .kwanko-mobile  { display: flex !important; } }
+</style>

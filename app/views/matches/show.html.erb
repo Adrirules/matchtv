@@ -126,6 +126,16 @@
         subtitle: is_live ? "Ce match est en direct sur Canal+ maintenant." : "Ce match est diffusé sur Canal+. Abonnez-vous pour le regarder en direct." %>
   <% end %>
 
+  <%# ---- Card affiliée Canal+ pour matchs beIN (beIN inclus dans Canal+ Sport) ---- %>
+  <% if !is_finished && @match.tv_channels.to_s.include?('beIN') %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        url: "https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1571",
+        page_context: 'match-bein',
+        cta_index: 1,
+        subtitle: "Ce match est sur beIN Sports - inclus dans l'offre Canal+ Sport à 19,99€/mois sans engagement." %>
+  <% end %>
+
   <%# ---- Card affilié DAZN (matchs à venir ou en direct sur DAZN) ---- %>
   <% if !is_finished && @match.tv_channels&.include?('DAZN') %>
     <% mins_left = ((@match.start_time - Time.current) / 60).to_i rescue 999 %>
@@ -183,6 +193,8 @@
       <p style="font-size: 16px; color: #333; margin-bottom: 15px;"><%= para.html_safe %></p>
     <% end %>
   </section>
+
+  <%= render 'shared/kwanko_sport_banner', page_context: 'match' %>
 
   <%# FAQ accordion %>
   <section style="margin: 0 0 40px;">
