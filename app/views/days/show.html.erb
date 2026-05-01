@@ -4,7 +4,10 @@
   is_future  = @date > Date.today
   is_past    = @date < Date.today
   count      = @matches.size
-  comps      = @matches.map(&:competition).compact.uniq.first(4)
+  # Priorité aux compétitions françaises et européennes dans le title/desc
+  comp_priority = %w[Ligue\ 1 Champions\ League Premier\ League La\ Liga Bundesliga Serie\ A Ligue\ 2 Europa\ League Conference\ League Coupe\ de\ France D1\ Féminine Eredivisie Liga\ Portugal Süper\ Lig]
+  raw_comps  = @matches.map(&:competition).compact.uniq
+  comps      = raw_comps.sort_by { |c| comp_priority.index(c) || 99 }.first(4)
   comps_str  = comps.any? ? comps.to_sentence(words_connector: ', ', two_words_connector: ' et ', last_word_connector: ' et ') : nil
 %>
 
