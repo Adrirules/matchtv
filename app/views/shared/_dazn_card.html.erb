@@ -51,7 +51,9 @@
     <p style="margin: 0 0 14px; font-size: 13px; color: rgba(0,0,0,0.7); line-height: 1.55; font-family: 'DM Sans', sans-serif;"><%= card_subtitle %></p>
     <%= link_to dazn_url, target: "_blank", rel: "nofollow sponsored noopener",
         onclick: ga_push,
-        style: "display: block; width: 100%; background: #111; color: #F4E100; font-size: 13px; font-weight: 700; padding: 11px 0; border-radius: 8px; text-decoration: none; text-align: center; font-family: 'DM Sans', sans-serif; box-sizing: border-box;" do %>
+        onmouseover: "this.style.opacity='0.82'",
+        onmouseout: "this.style.opacity='1'",
+        style: "display: block; width: 100%; background: #111; color: #F4E100; font-size: 13px; font-weight: 700; padding: 11px 0; border-radius: 8px; text-decoration: none; text-align: center; font-family: 'DM Sans', sans-serif; box-sizing: border-box; transition: opacity 0.15s;" do %>
       <%= cta_text %> →
     <% end %>
     <p style="margin: 8px 0 0; font-size: 9px; color: rgba(0,0,0,0.45); text-align: center; font-family: 'DM Sans', sans-serif;">Lien affilié · commission perçue sur souscription</p>
