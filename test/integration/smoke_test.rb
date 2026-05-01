@@ -107,10 +107,17 @@ class SmokeTest < ActionDispatch::IntegrationTest
   end
 
   # --- MATCHS ---
-  test "match a venir responds 200" do
+  test "match a venir sur Canal+ responds 200" do
+    # tv_channels = "Canal+ Foot" — couvre le bug .any? sur String
     slug = matches(:upcoming).slug
     get match_url(slug)
-    assert_response :success, "Une page match à venir retourne une erreur — vérifier matches/show.html.erb"
+    assert_response :success, "Page match Canal+ retourne 500 — vérifier tv_channels.include? dans matches/show.html.erb"
+  end
+
+  test "match a venir sur DAZN responds 200" do
+    slug = matches(:upcoming_dazn).slug
+    get match_url(slug)
+    assert_response :success, "Page match DAZN retourne une erreur — vérifier matches/show.html.erb"
   end
 
   test "match termine responds 200" do
