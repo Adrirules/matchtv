@@ -227,8 +227,56 @@
     </script>
   <% end %>
 
-  <%# 320x100 mobile (300x250 desktop désactivé si billboard actif) %>
-  <%= render 'shared/kwanko_sport_banner', page_context: 'match', mobile_only: show_billboard %>
+  <%# Desktop 300x250 — uniquement si pas de billboard (autres matchs) %>
+  <% unless show_billboard %>
+    <div class="kwanko-match-sq" style="display:none; justify-content: flex-end; margin: 20px 0;" data-kwanko-track="match-sq">
+      <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+              width="300" height="250" scrolling="no" frameborder="0"
+              style="display:block; border:0;"></iframe>
+    </div>
+  <% end %>
+
+  <%# Mobile — rotation 300x250 / 320x100 / 300x600 selon match.id %>
+  <% mobile_fmt = @match.id % 3 %>
+  <div class="kwanko-match-mobile" style="display:none; justify-content: center; margin: 16px 0;" data-kwanko-track="match-mobile">
+    <% if mobile_fmt == 0 %>
+      <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+              width="300" height="250" scrolling="no" frameborder="0"
+              style="display:block; border:0;"></iframe>
+    <% elsif mobile_fmt == 1 %>
+      <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+              width="320" height="100" scrolling="no" frameborder="0"
+              style="display:block; border:0;"></iframe>
+    <% else %>
+      <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D9"
+              width="300" height="600" scrolling="no" frameborder="0"
+              style="display:block; border:0;"></iframe>
+    <% end %>
+  </div>
+  <style>
+    @media (min-width: 768px) { .kwanko-match-sq     { display: flex !important; } }
+    @media (max-width: 767px) { .kwanko-match-mobile { display: flex !important; } }
+  </style>
+  <script>
+  (function() {
+    ['[data-kwanko-track="match-sq"]', '[data-kwanko-track="match-mobile"]'].forEach(function(sel) {
+      var el = document.querySelector(sel);
+      if (!el) return;
+      var iframe = el.querySelector('iframe');
+      if (!iframe) return;
+      var ctx = el.dataset.kwankoTrack;
+      var over = false;
+      iframe.addEventListener('mouseenter', function() { over = true; });
+      iframe.addEventListener('mouseleave', function() { over = false; });
+      window.addEventListener('blur', function() {
+        if (over) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: ctx, affiliate_format: 'kwanko_display' });
+        }
+      });
+    });
+  })();
+  </script>
 
   <%# FAQ accordion %>
   <section style="margin: 0 0 40px;">

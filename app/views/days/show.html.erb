@@ -157,17 +157,30 @@
       <% match_index += 1 %>
     <% end %>
 
-    <%# 728x90 après la ligue si position planifiée %>
+    <%# 728x90 desktop + mobile (300x250 ou 320x100) après la ligue si position planifiée %>
     <% if ad_728_positions.include?(group_index) %>
       <div style="display:none; margin: 16px 0;" class="kwanko-728" data-kwanko-track="days-main">
         <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26513"
                 width="728" height="90" scrolling="no" frameborder="0"
                 style="display:block; border:0;"></iframe>
       </div>
+      <% if @date.day.even? %>
+        <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day" data-kwanko-track="days-mobile">
+          <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+                  width="300" height="250" scrolling="no" frameborder="0"
+                  style="display:block; border:0;"></iframe>
+        </div>
+      <% else %>
+        <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day" data-kwanko-track="days-mobile">
+          <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+                  width="320" height="100" scrolling="no" frameborder="0"
+                  style="display:block; border:0;"></iframe>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 
-  <%# Fallback : positions non atteintes faute de ligues → 1 seul 728x90 en bas %>
+  <%# Fallback : positions non atteintes faute de ligues → 1 seul 728x90 + mobile en bas %>
   <% missed_positions = ad_728_positions.select { |p| p >= sorted_groups.size } %>
   <% if missed_positions.any? %>
     <div style="display:none; margin: 20px 0;" class="kwanko-728" data-kwanko-track="days-main-bottom">
@@ -175,6 +188,19 @@
               width="728" height="90" scrolling="no" frameborder="0"
               style="display:block; border:0;"></iframe>
     </div>
+    <% if @date.day.even? %>
+      <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day" data-kwanko-track="days-mobile-bottom">
+        <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+                width="300" height="250" scrolling="no" frameborder="0"
+                style="display:block; border:0;"></iframe>
+      </div>
+    <% else %>
+      <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day" data-kwanko-track="days-mobile-bottom">
+        <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+                width="320" height="100" scrolling="no" frameborder="0"
+                style="display:block; border:0;"></iframe>
+      </div>
+    <% end %>
   <% end %>
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun match prévu ce jour-là.</p>
@@ -264,7 +290,8 @@
   </section>
 <% end %>
 <style>
-  @media (min-width: 1024px) { .kwanko-728 { display: block !important; } }
+  @media (min-width: 1024px) { .kwanko-728      { display: block !important; } }
+  @media (max-width: 1023px) { .kwanko-mobile-day { display: flex !important; } }
 </style>
 <script>
 (function() {

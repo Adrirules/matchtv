@@ -69,25 +69,33 @@
             style="display:block; border:0;"></iframe>
   </div>
   <style>
-    @media (min-width: 1024px) { .kwanko-billboard { display: block !important; } }
+    @media (min-width: 1024px) { .kwanko-billboard       { display: block !important; } }
+    @media (max-width: 1023px) { .kwanko-channel-mobile  { display: flex !important;  } }
   </style>
+  <%# Mobile 320x100 — remplace le billboard sur petits écrans %>
+  <div class="kwanko-channel-mobile" style="display:none; justify-content: center; margin: 0 0 20px;"
+       data-kwanko-track="channel-<%= @channel[:slug] %>-mobile">
+    <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+            width="320" height="100" scrolling="no" frameborder="0"
+            style="display:block; border:0;"></iframe>
+  </div>
   <script>
   (function() {
-    var el = document.querySelector('[data-kwanko-track^="channel-"]');
-    if (!el) return;
-    var iframe = el.querySelector('iframe');
-    var ctx = el.dataset.kwankoTrack;
-    var over = false;
-    if (iframe) {
+    document.querySelectorAll('[data-kwanko-track^="channel-"]').forEach(function(el) {
+      var iframe = el.querySelector('iframe');
+      if (!iframe) return;
+      var ctx = el.dataset.kwankoTrack;
+      var fmt = ctx.endsWith('-mobile') ? 'kwanko_display' : 'kwanko_billboard';
+      var over = false;
       iframe.addEventListener('mouseenter', function() { over = true; });
       iframe.addEventListener('mouseleave', function() { over = false; });
       window.addEventListener('blur', function() {
         if (over) {
           window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: ctx, affiliate_format: 'kwanko_billboard' });
+          window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: ctx, affiliate_format: fmt });
         }
       });
-    }
+    });
   })();
   </script>
 
