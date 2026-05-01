@@ -194,7 +194,39 @@
     <% end %>
   </section>
 
-  <%= render 'shared/kwanko_sport_banner', page_context: 'match' %>
+  <%# Billboard 970x250 desktop — Canal+, Apple TV, beIN Sports %>
+  <% tv_str = @match.tv_channels.to_s %>
+  <% show_billboard = tv_str.include?('Canal') || tv_str.include?('Apple') || tv_str.include?('beIN') %>
+  <% if show_billboard %>
+    <div class="kwanko-billboard" style="display:none; overflow-x: auto; margin: 20px 0;"
+         data-kwanko-track="match-billboard">
+      <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26515"
+              width="970" height="250" scrolling="no" frameborder="0"
+              style="display:block; border:0;"></iframe>
+    </div>
+    <style>@media (min-width: 1024px) { .kwanko-billboard { display: block !important; } }</style>
+    <script>
+    (function() {
+      var el = document.querySelector('[data-kwanko-track="match-billboard"]');
+      if (!el) return;
+      var iframe = el.querySelector('iframe');
+      var over = false;
+      if (iframe) {
+        iframe.addEventListener('mouseenter', function() { over = true; });
+        iframe.addEventListener('mouseleave', function() { over = false; });
+        window.addEventListener('blur', function() {
+          if (over) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: 'match-billboard', affiliate_format: 'kwanko_billboard' });
+          }
+        });
+      }
+    })();
+    </script>
+  <% end %>
+
+  <%# 320x100 mobile (300x250 desktop désactivé si billboard actif) %>
+  <%= render 'shared/kwanko_sport_banner', page_context: 'match', mobile_only: show_billboard %>
 
   <%# FAQ accordion %>
   <section style="margin: 0 0 40px;">

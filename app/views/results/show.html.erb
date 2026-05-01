@@ -46,12 +46,10 @@
     known_order = FootballApiService::COMPETITIONS_META.map { |c| c[:name] }
     grouped = @matches.group_by(&:competition)
     sorted_groups = grouped.sort_by { |comp, _| known_order.index(comp) || 999 }
+    ad_728_positions = @date.day.even? ? [1, 4, 8] : [2, 6, 10]
   %>
 
   <% sorted_groups.each_with_index do |(competition, matches), group_index| %>
-    <% if group_index == 2 %>
-      <%= render 'shared/ad_unit', slot_id: '2773465276' %>
-    <% end %>
 
     <%# Header compétition %>
     <% comp_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == competition } %>
@@ -102,11 +100,49 @@
         </div>
       <% end %>
     <% end %>
+
+    <%# 728x90 après la ligue si position planifiée %>
+    <% if ad_728_positions.include?(group_index) %>
+      <div style="display:none; margin: 16px 0;" class="kwanko-728-res" data-kwanko-track="results-main">
+        <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26513"
+                width="728" height="90" scrolling="no" frameborder="0"
+                style="display:block; border:0;"></iframe>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Fallback : positions non atteintes → 1 seul 728x90 en bas %>
+  <% if ad_728_positions.any? { |p| p >= sorted_groups.size } %>
+    <div style="display:none; margin: 20px 0;" class="kwanko-728-res" data-kwanko-track="results-main-bottom">
+      <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26513"
+              width="728" height="90" scrolling="no" frameborder="0"
+              style="display:block; border:0;"></iframe>
+    </div>
   <% end %>
 
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun résultat disponible pour ce jour.</p>
 <% end %>
+
+<style>@media (min-width: 1024px) { .kwanko-728-res { display: block !important; } }</style>
+<script>
+(function() {
+  document.querySelectorAll('[data-kwanko-track]').forEach(function(el) {
+    var iframe = el.tagName === 'IFRAME' ? el : el.querySelector('iframe');
+    if (!iframe) return;
+    var ctx = el.dataset.kwankoTrack;
+    var over = false;
+    iframe.addEventListener('mouseenter', function() { over = true; });
+    iframe.addEventListener('mouseleave', function() { over = false; });
+    window.addEventListener('blur', function() {
+      if (over) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: ctx, affiliate_format: 'kwanko_display' });
+      }
+    });
+  });
+})();
+</script>
 
 <%# FAQ résultats %>
 <%
