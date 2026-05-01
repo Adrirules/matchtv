@@ -49,7 +49,7 @@
   .channel-editorial strong { font-weight: 700; color: #010e1b; }
 </style>
 
-<div style="max-width: 860px; margin: 0 auto; padding: 0 16px;">
+<div style="max-width: 900px; margin: 0 auto; padding: 0 16px;">
 
   <%# Fil d'Ariane %>
   <nav style="font-size: 12px; color: #999; margin-bottom: 20px;">
@@ -59,7 +59,37 @@
   </nav>
 
   <h1 style="font-size: 24px; font-weight: 800; color: #010e1b; margin: 0 0 6px;"><%= @channel[:name] %> - programme foot 2025-2026</h1>
-  <p style="font-size: 14px; color: #64748b; margin: 0 0 28px;"><%= @channel[:tagline] %></p>
+  <p style="font-size: 14px; color: #64748b; margin: 0 0 20px;"><%= @channel[:tagline] %></p>
+
+  <%# Billboard 970x250 — desktop uniquement, au-dessus de l'éditorial %>
+  <div class="kwanko-billboard" style="display:none; margin: 0 0 28px; overflow-x: auto;"
+       data-kwanko-track="channel-<%= @channel[:slug] %>">
+    <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26515"
+            width="970" height="250" scrolling="no" frameborder="0"
+            style="display:block; border:0;"></iframe>
+  </div>
+  <style>
+    @media (min-width: 1024px) { .kwanko-billboard { display: block !important; } }
+  </style>
+  <script>
+  (function() {
+    var el = document.querySelector('[data-kwanko-track^="channel-"]');
+    if (!el) return;
+    var iframe = el.querySelector('iframe');
+    var ctx = el.dataset.kwankoTrack;
+    var over = false;
+    if (iframe) {
+      iframe.addEventListener('mouseenter', function() { over = true; });
+      iframe.addEventListener('mouseleave', function() { over = false; });
+      window.addEventListener('blur', function() {
+        if (over) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: ctx, affiliate_format: 'kwanko_billboard' });
+        }
+      });
+    }
+  })();
+  </script>
 
   <%# 1. Contenu éditorial EN PREMIER — contexte avant les données %>
   <% if @editorial.present? %>

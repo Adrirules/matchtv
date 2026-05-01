@@ -32,6 +32,16 @@
   border-radius: 8px;
   margin-bottom: 16px;
   overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Bloc pub sidebar — sans border ni padding, iframe flush */
+.sidebar-ad {
+  margin-bottom: 16px;
+  width: 300px;
+  line-height: 0;
+  iframe { display: block; border: 0; }
 }
 
 .sidebar-block-title {
