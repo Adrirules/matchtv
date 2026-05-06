@@ -108,7 +108,7 @@ Bon, soyons clairs sur les limites. **Les décisions subjectives, elles le reste
 
 **La VAR ne garantit pas la perfection.** Lors de la Coupe du Monde 2018, la **FIFA** a communiqué que 99,3% des décisions arbitrales étaient correctes après corrections VAR - contre 95% avant elle. C'est significatif. Mais le 0,7% restant continue de faire les manchettes, parce qu'une erreur en finale pèse plus lourd que mille décisions anonymes correctes. Et quand 7 rediffusions pointent dans des directions différentes, on se retrouve dans un épisode de Kaamelott : l'arbitre regarde l'écran, hoche la tête, et conclut - c'est pas faux.
 
-**Le hors-jeu automatique (SAOT), c'est autre chose.** En [Ligue des Champions](/blog/champions-league-chaine-tv-france), la détection du hors-jeu utilise des capteurs dans le ballon et un tracking précis des joueurs - une technologie distincte de la VAR classique. En [Ligue 1](/competitions/ligue-1), on fonctionne avec un système de détection optique moins avancé. Même compétition, même problème, deux niveaux de technologie.
+**Le hors-jeu automatique (SAOT), c'est autre chose.** En [Ligue des Champions](/blog/champions-league-chaine-tv-france) (diffusée sur [Canal+](/chaines/canal-plus) en France), la détection du hors-jeu utilise des capteurs dans le ballon et un tracking précis des joueurs - une technologie distincte de la VAR classique. En [Ligue 1](/competitions/ligue-1), on fonctionne avec un système de détection optique moins avancé. Même compétition, même problème, deux niveaux de technologie.
 
 ---
 
