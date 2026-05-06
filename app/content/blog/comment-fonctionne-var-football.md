@@ -5,7 +5,7 @@ slug: "comment-fonctionne-var-football"
 primary_keyword: "comment fonctionne la var au football"
 secondary_keywords: ["VAR football explication", "assistance vidéo arbitrage football", "VAR Ligue 1", "comment marche la VAR", "règles VAR foot"]
 content_type: "guide"
-published_at: "2026-05-06"
+published_at: 2026-05-06
 published_time: "10h47"
 author: Adrien
 image: "https://images.unsplash.com/photo-1649001863283-0ce7ca4e8754?q=80&w=1740&auto=format&fit=crop"

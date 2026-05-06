@@ -5,7 +5,7 @@ slug: "comment-regarder-coupe-monde-2026-france"
 primary_keyword: "comment regarder la coupe du monde 2026 en france"
 secondary_keywords: ["coupe du monde 2026 chaîne tv", "mondial 2026 streaming", "bein sports coupe du monde 2026", "m6 coupe du monde 2026", "regarder mondial 2026 gratuitement"]
 content_type: "guide"
-published_at: "2026-05-08"
+published_at: 2026-05-08
 published_time: "09h34"
 author: Adrien
 image: "https://images.pexels.com/photos/4777979/pexels-photo-4777979.jpeg"

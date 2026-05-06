@@ -4,7 +4,7 @@ meta_description: "Top 3 de Ligue 1 : qualification directe. 4e : barrages en ju
 slug: "qualification-ligue-des-champions-comment"
 primary_keyword: "comment se qualifier en ligue des champions"
 content_type: "guide"
-published_at: "2026-05-07"
+published_at: 2026-05-07
 published_time: "11h17"
 author: Adrien
 image: "https://images.unsplash.com/photo-1568495262088-4289581907ca?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
