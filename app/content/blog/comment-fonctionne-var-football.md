@@ -20,8 +20,8 @@ internal_links_targets: ["/competitions/ligue-1", "/blog/champions-league-chaine
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Comment fonctionne la VAR au football ?",
-  "datePublished": "2026-05-21",
-  "dateModified": "2026-05-21",
+  "datePublished": "2026-05-06",
+  "dateModified": "2026-05-06",
   "author": { "@type": "Person", "name": "Adrien" },
   "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
 }
