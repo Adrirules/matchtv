@@ -101,7 +101,20 @@ class BlogController < ApplicationController
 
     @related_articles = related_articles_for(@article)
 
-    expires_in 1.hour, private: true
+    # Programme dynamique d'un club (articles type "match psg ce soir chaîne")
+    if @article[:club_schedule].is_a?(Hash)
+      search = @article[:club_schedule]['search'].to_s.strip
+      if search.present?
+        @club_matches = Match.where(
+          "home_team ILIKE :q OR away_team ILIKE :q", q: "%#{search}%"
+        ).where("start_time >= ?", Time.current - 2.hours)
+         .where.not(status: Match::FINISHED_STATUSES)
+         .order(:start_time)
+      end
+    end
+
+    ttl = @article[:club_schedule].present? ? 15.minutes : 1.hour
+    expires_in ttl, private: true
   end
 
   private
@@ -162,7 +175,8 @@ class BlogController < ApplicationController
       reading_time:      reading_time,
       dazn_card:         meta.key?('dazn_card') ? meta['dazn_card'] : true,
       canal_plus_card:   meta.key?('canal_plus_card') ? meta['canal_plus_card'] : true,
-      tags:              Array(meta['tags']).map(&:to_s).reject(&:blank?)
+      tags:              Array(meta['tags']).map(&:to_s).reject(&:blank?),
+      club_schedule:     meta['club_schedule']
     }
     result[:body] = body_text if with_body
     result
