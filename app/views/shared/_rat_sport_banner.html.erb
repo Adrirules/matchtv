@@ -1,33 +1,33 @@
 <%#
-  Partial : bannière IAB RAT SPORT 0426 (Kwanko — Canal+ Sport avec beIN, 19,99€/mois)
+  Partial : bannière IAB RAT SPORT / OAE SPÉCIAL SPORT (Kwanko — Canal+ Sport avec beIN, 19,99€/mois)
   Locals :
     - page_context (string GA4) default: 'site'
-  Desktop (≥768px) : 300x250
-  Mobile (<768px)  : 320x50
+  Desktop (≥768px) : 728x90 leaderboard
+  Mobile (<768px)  : 300x250 carré
   Masqué si @noindex = true
 %>
 <% return if @noindex %>
 <% page_context = local_assigns.fetch(:page_context, 'site') %>
 
-<%# Desktop 300x250 %>
-<div class="kwanko-rat-sq" style="display:none; justify-content: center; margin: 20px 0;"
+<%# Desktop 728x90 — OAE Spécial Sport %>
+<div class="kwanko-rat-lb" style="display:none; justify-content: center; margin: 20px 0; overflow-x: auto;"
      data-kwanko-track="<%= page_context %>-rat">
-  <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD2677"
+  <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26513"
+          width="728" height="90" scrolling="no" frameborder="0"
+          style="display:block; border:0;"></iframe>
+</div>
+
+<%# Mobile 300x250 carré %>
+<div class="kwanko-rat-sq-mobile" style="display:none; justify-content: center; margin: 16px 0;"
+     data-kwanko-track="<%= page_context %>-rat-mobile">
+  <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
           width="300" height="250" scrolling="no" frameborder="0"
           style="display:block; border:0;"></iframe>
 </div>
 
-<%# Mobile 320x50 %>
-<div class="kwanko-rat-mobile" style="display:none; justify-content: center; margin: 16px 0;"
-     data-kwanko-track="<%= page_context %>-rat-mobile">
-  <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26725"
-          width="320" height="50" scrolling="no" frameborder="0"
-          style="display:block; border:0;"></iframe>
-</div>
-
 <style>
-  @media (min-width: 768px) { .kwanko-rat-sq     { display: flex !important; } }
-  @media (max-width: 767px) { .kwanko-rat-mobile { display: flex !important; } }
+  @media (min-width: 768px) { .kwanko-rat-lb        { display: flex !important; } }
+  @media (max-width: 767px) { .kwanko-rat-sq-mobile { display: flex !important; } }
 </style>
 <script>
 (function() {

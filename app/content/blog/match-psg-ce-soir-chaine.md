@@ -109,7 +109,7 @@ Les matchs de [Ligue 1](/competitions/ligue-1) sont diffusés sur [DAZN](/chaine
 
 Prix : à partir de **9,99 €/mois** avec engagement (moins de 26 ans) jusqu'à **19,99 €/mois** sans engagement. Si tu es déjà abonné via ta box, vérifie si Ligue 1+ est inclus - certains forfaits FAI l'intègrent.
 
-<!-- DAZN_BANNER -->
+<!-- DAZN_CARD -->
 
 ### Ligue des Champions : Canal+
 
@@ -117,7 +117,7 @@ Les matchs de [Ligue des Champions](/competitions/champions-league) du PSG passe
 
 Si tu n'as qu'un abonnement à choisir pour suivre le PSG en intégralité, Canal+ reste la valeur sûre : Ligue des Champions, Trophée des Champions et une partie de la Ligue 1 en prime.
 
-<!-- CANAL_BANNER -->
+<!-- CANAL_PLUS_CARD -->
 
 ### Coupe de France : France TV et beIN Sports
 
