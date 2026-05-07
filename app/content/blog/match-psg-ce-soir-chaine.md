@@ -5,7 +5,7 @@ slug: "match-psg-ce-soir-chaine"
 primary_keyword: "match psg ce soir chaîne"
 secondary_keywords: ["prochain match psg diffusion", "psg ce soir quelle chaine", "match paris saint germain tv"]
 content_type: "guide"
-published_at: 2026-05-12
+published_at: 2026-05-07
 published_time: "09h17"
 author: Adrien
 image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop"
