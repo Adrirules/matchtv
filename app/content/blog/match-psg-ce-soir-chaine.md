@@ -8,7 +8,7 @@ content_type: "guide"
 published_at: 2026-05-07
 published_time: "09h17"
 author: Adrien
-image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop"
+image: "https://images.unsplash.com/photo-1753188558508-288762d742a6?q=80&w=1200&auto=format&fit=crop"
 image_credit: "Photo : Unsplash"
 excerpt: "Prochain match du PSG ce soir : l'heure, la chaîne TV et tout ce qu'il faut savoir pour ne pas le rater. Programme mis à jour en temps réel."
 tags: ["ligue-1", "champions-league", "canal-plus", "dazn"]
