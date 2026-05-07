@@ -20,7 +20,68 @@ dazn_card: false
 canal_plus_card: false
 ---
 
-La question revient avant chaque match : le PSG passe sur quelle chaîne ce soir ? La réponse dépend de la compétition. Ligue 1, Ligue des Champions, Coupe de France - chaque tournoi a ses droits TV et ses abonnements. Voilà le récapitulatif, avec le programme à jour juste en dessous.
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Match du PSG ce soir : quelle chaîne et quel horaire ?",
+  "datePublished": "2026-05-07",
+  "dateModified": "2026-05-07",
+  "author": { "@type": "Person", "name": "Adrien" },
+  "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Sur quelle chaîne est le match du PSG ce soir ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En Ligue 1, les matchs du PSG sont sur DAZN ou Ligue 1+. En Ligue des Champions, c'est Canal+ pour la majorité des affiches. Consultez le programme en haut de cet article pour la chaîne exacte du match du soir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment voir le PSG gratuitement ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les matchs de Coupe de France du PSG sont souvent diffusés en clair sur France TV jusqu'en demi-finale. La finale est systématiquement sur France 2. Les matchs de Ligue 1 et de Ligue des Champions nécessitent un abonnement DAZN ou Canal+."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DAZN ou Canal+ pour voir le PSG ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DAZN pour la Ligue 1 uniquement. Canal+ pour la Ligue des Champions. Pour tout voir, le pack Canal+ avec beIN Sports inclus offre la couverture la plus complète."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "À quelle heure joue le PSG en général ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les matchs de Ligue 1 du PSG ont lieu le plus souvent à 21h (vendredi ou dimanche soir) ou 17h (dimanche après-midi). Les matchs de Ligue des Champions se disputent le mardi ou mercredi à 21h en heure française."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le PSG joue-t-il ce soir ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le programme mis à jour en temps réel en haut de cet article indique les prochains matchs du PSG. Si aucun match n'est affiché, le PSG ne joue pas dans les prochains jours selon notre base de données."
+      }
+    }
+  ]
+}
+</script>
+
+La question revient avant chaque match : le PSG passe sur quelle chaîne ce soir ? La réponse dépend de la compétition. Ligue 1, Ligue des Champions, Coupe de France - chaque tournoi a ses droits TV. Voilà le récapitulatif, avec le programme à jour juste en dessous.
 
 > **Réponse rapide**
 > - **Ligue 1** : **DAZN** et **Ligue 1+** (sur les box FAI)
@@ -35,21 +96,32 @@ La question revient avant chaque match : le PSG passe sur quelle chaîne ce soir
 
 ## Sur quelle chaîne voir les matchs du PSG ?
 
+| Compétition | Chaîne principale | Accès |
+|---|---|---|
+| **Ligue 1** | DAZN / Ligue 1+ | Abonnement DAZN ou box FAI |
+| **Ligue des Champions** | Canal+ | Abonnement Canal+ |
+| **Coupe de France** | France TV / beIN Sports | Gratuit (France TV) ou beIN |
+| **Trophée des Champions** | Canal+ | Abonnement Canal+ |
+
 ### Ligue 1 : DAZN et Ligue 1+
 
-Depuis la saison 2024-2025, les matchs de **Ligue 1** sont diffusés sur [DAZN](/chaines/dazn) - qui détient l'essentiel des droits - et sur **Ligue 1+**, la chaîne dédiée disponible chez la plupart des opérateurs FAI (Bouygues, SFR, Orange, Free). Les abonnés DAZN voient tous les matchs du PSG, quelle que soit l'heure ou le jour.
+Les matchs de [Ligue 1](/competitions/ligue-1) sont diffusés sur [DAZN](/chaines/dazn) - qui détient l'essentiel des droits - et sur **Ligue 1+**, disponible chez la plupart des opérateurs FAI. Les abonnés DAZN voient tous les matchs du PSG, quelle que soit l'heure ou le jour.
 
 Prix : à partir de **9,99 €/mois** avec engagement (moins de 26 ans) jusqu'à **19,99 €/mois** sans engagement. Si tu es déjà abonné via ta box, vérifie si Ligue 1+ est inclus - certains forfaits FAI l'intègrent.
 
+<!-- DAZN_BANNER -->
+
 ### Ligue des Champions : Canal+
 
-Les matchs de **Ligue des Champions** du PSG passent sur [Canal+](/chaines/canal-plus), qui détient les droits exclusifs jusqu'en 2031. Pour les affiches premium - quarts, demies, finale - Canal+ diffuse systématiquement. **beIN Sports** peut récupérer certains matchs de poule selon le tirage.
+Les matchs de [Ligue des Champions](/competitions/champions-league) du PSG passent sur [Canal+](/chaines/canal-plus), qui détient les droits exclusifs jusqu'en 2031. Pour les affiches premium - quarts, demies, finale - Canal+ diffuse systématiquement. [beIN Sports](/chaines/bein-sports) peut récupérer certains matchs de poule selon le tirage.
 
 Si tu n'as qu'un abonnement à choisir pour suivre le PSG en intégralité, Canal+ reste la valeur sûre : Ligue des Champions, Trophée des Champions et une partie de la Ligue 1 en prime.
 
+<!-- CANAL_BANNER -->
+
 ### Coupe de France : France TV et beIN Sports
 
-Bonne nouvelle : les matchs de Coupe de France du PSG sont souvent diffusés en clair sur **France 3** ou **France TV Sport** jusqu'aux demi-finales. La finale est systématiquement en clair sur France 2. Pour les tours intermédiaires, **beIN Sports** complète la couverture.
+Bonne nouvelle : les matchs de Coupe de France du PSG sont souvent diffusés en clair sur **France 3** ou **France TV Sport** jusqu'aux demi-finales. La finale est systématiquement en clair sur France 2. Pour les tours intermédiaires, [beIN Sports](/chaines/bein-sports) complète la couverture.
 
 ## Comment regarder le PSG sans tout payer ?
 
@@ -60,6 +132,8 @@ Le vrai truc, c'est de combiner intelligemment :
 - **Canal+ + beIN (pack Canal+)** → couverture totale, tous les matchs PSG toutes compétitions
 
 Si tu veux tout voir sans te ruiner, l'option **Canal+ avec beIN Sports inclus** (en pack) reste la plus complète. J'ai fait [un comparatif détaillé des abonnements foot 2026](/blog/abonnement-foot-2026-quelle-chaine-choisir) si tu veux peser le pour et le contre avant de sortir la carte.
+
+<!-- RAT_SPORT_BANNER -->
 
 ---
 
