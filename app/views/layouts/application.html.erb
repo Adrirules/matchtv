@@ -107,5 +107,16 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T49VLVWX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <script>
+    document.querySelectorAll('a[href]').forEach(function(a) {
+      try {
+        var url = new URL(a.getAttribute('href'), window.location.href);
+        if (url.hostname !== window.location.hostname) {
+          a.setAttribute('target', '_blank');
+          if (!a.rel.includes('noopener')) a.rel = (a.rel ? a.rel + ' ' : '') + 'noopener';
+        }
+      } catch(e) {}
+    });
+    </script>
   </body>
 </html>
