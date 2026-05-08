@@ -63,4 +63,48 @@
     }
   }.to_json.html_safe %>
 </script>
+<%# BroadcastEvent — uniquement pour les matchs à venir/en direct avec une chaîne identifiable %>
+<% if !match.finished? && match.tv_channels.present? %>
+<%
+  ch_main = match.tv_channels.split(',').first&.strip
+  broadcast_url = if match.tv_channels.include?('DAZN')
+    'https://www.dazn.com'
+  elsif match.tv_channels.include?('Canal')
+    'https://www.canalplus.com'
+  elsif match.tv_channels.include?('beIN')
+    'https://www.beinsports.com'
+  elsif match.tv_channels.include?('RMC')
+    'https://rmcsport.bfmtv.com'
+  else
+    "https://www.coupdenvoi.tv/chaines/#{ch_main&.parameterize}"
+  end
+%>
+<script type="application/ld+json">
+<%= {
+  "@context": "https://schema.org",
+  "@type": "BroadcastEvent",
+  "name": "#{home} vs #{away} en direct",
+  "isLiveBroadcast": true,
+  "startDate": match.start_time.iso8601,
+  "endDate": (match.start_time + 115.minutes).iso8601,
+  "videoFormat": "HD",
+  "broadcastDisplayName": ch_main,
+  "broadcastOfEvent": {
+    "@type": "SportsEvent",
+    "name": "#{home} - #{away}",
+    "startDate": match.start_time.iso8601,
+    "url": "https://www.coupdenvoi.tv/matches/#{match.matchup&.slug || match.id}"
+  },
+  "publishedOn": {
+    "@type": "BroadcastService",
+    "name": ch_main,
+    "url": broadcast_url,
+    "broadcastAffiliateOf": {
+      "@type": "Organization",
+      "name": ch_main
+    }
+  }
+}.to_json.html_safe %>
+</script>
+<% end %>
 <% end %>

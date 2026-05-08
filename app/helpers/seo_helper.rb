@@ -45,45 +45,50 @@ module SeoHelper
 
       template = result_templates[match.id % result_templates.size]
       meta_title(template[:title] % { h: ht, a: at, score: score, comp: comp })
-      meta_description(template[:desc] % { h: ht, a: at, score: score, comp: comp, winner: winner_phrase })
+
+      # Priorité : résumé Groq (unique + factuel) > template statique
+      desc = if match.summary.present?
+        match.summary.gsub(/<[^>]+>/, '').strip.truncate(155, separator: ' ')
+      else
+        template[:desc] % { h: ht, a: at, score: score, comp: comp, winner: winner_phrase }
+      end
+      meta_description(desc)
+
     else
       time        = match.start_time.strftime("%Hh%M")
       channel_str = match.tv_channels.to_s.presence || "une chaîne partenaire"
       date        = match.start_time.strftime("%-d/%m")
       comp        = match.competition.to_s
 
-      upcoming_templates = [
-        {
-          title: "%{match} - %{comp} : sur quelle chaîne et à quelle heure ? | Coup d'Envoi TV",
-          desc:  "%{match} (%{comp}) à %{time} sur %{channel}. Heure de coup d'envoi et accès streaming confirmés."
-        },
-        {
-          title: "%{match} : sur quelle chaîne voir ce match de %{comp} ? | Coup d'Envoi TV",
-          desc:  "Diffusion de %{match} (%{comp}) le %{date} à %{time} sur %{channel}. Guide pour regarder en direct ou en streaming."
-        },
-        {
-          title: "Comment regarder %{match} (%{comp}) ? Chaîne TV et streaming | Coup d'Envoi TV",
-          desc:  "Coup d'envoi à %{time} sur %{channel} pour %{match}. Toutes les infos pour suivre ce match de %{comp} en direct."
-        },
-        {
-          title: "Où voir %{match} en %{comp} ? Chaîne et heure | Coup d'Envoi TV",
-          desc:  "%{match} (%{comp}) : rendez-vous à %{time} sur %{channel}. Guide complet pour regarder ce match en direct ou en streaming."
-        },
-        {
-          title: "%{match} - %{comp} : sur quelle chaîne en direct ? | Coup d'Envoi TV",
-          desc:  "Ce match de %{comp} est à suivre à %{time} sur %{channel}. Retrouvez l'heure exacte et les options de streaming légal."
-        },
-        {
-          title: "%{match} - %{comp} : programme TV et streaming | Coup d'Envoi TV",
-          desc:  "%{match} est à suivre à %{time} sur %{channel} (%{comp}). Heure de coup d'envoi et abonnement streaming disponibles."
-        }
+      upcoming_titles = [
+        "%{match} - %{comp} : sur quelle chaîne et à quelle heure ? | Coup d'Envoi TV",
+        "%{match} : sur quelle chaîne voir ce match de %{comp} ? | Coup d'Envoi TV",
+        "Comment regarder %{match} (%{comp}) ? Chaîne TV et streaming | Coup d'Envoi TV",
+        "Où voir %{match} en %{comp} ? Chaîne et heure | Coup d'Envoi TV",
+        "%{match} - %{comp} : sur quelle chaîne en direct ? | Coup d'Envoi TV",
+        "%{match} - %{comp} : programme TV et streaming | Coup d'Envoi TV"
       ]
 
-      template = upcoming_templates[match.id % upcoming_templates.size]
-      meta_title(template[:title] % { match: match_name, comp: comp })
-      meta_description(template[:desc] % {
-        match: match_name, time: time, channel: channel_str, comp: comp, date: date
-      })
+      # Fallback descriptions — utilisées seulement si pas de preview Groq
+      fallback_descs = [
+        "%{match} (%{comp}) à %{time} sur %{channel}. Heure de coup d'envoi et accès streaming confirmés.",
+        "Diffusion de %{match} (%{comp}) le %{date} à %{time} sur %{channel}. Guide pour regarder en direct ou en streaming.",
+        "Coup d'envoi à %{time} sur %{channel} pour %{match}. Toutes les infos pour suivre ce match de %{comp} en direct.",
+        "%{match} (%{comp}) : rendez-vous à %{time} sur %{channel}. Guide complet pour regarder ce match en direct ou en streaming.",
+        "Ce match de %{comp} est à suivre à %{time} sur %{channel}. Retrouvez l'heure exacte et les options de streaming légal.",
+        "%{match} est à suivre à %{time} sur %{channel} (%{comp}). Heure de coup d'envoi et abonnement streaming disponibles."
+      ]
+
+      idx = match.id % upcoming_titles.size
+      meta_title(upcoming_titles[idx] % { match: match_name, comp: comp })
+
+      # Priorité : preview Groq (unique + données réelles) > template statique
+      desc = if match.preview.present?
+        match.preview.gsub(/<[^>]+>/, '').strip.truncate(155, separator: ' ')
+      else
+        fallback_descs[idx] % { match: match_name, time: time, channel: channel_str, comp: comp, date: date }
+      end
+      meta_description(desc)
     end
   end
 
@@ -464,6 +469,150 @@ module SeoHelper
         ]
       ]
       upcoming_sets[match.id % upcoming_sets.size]
+    end
+  end
+
+  # ─────────────────────────────────────────────────────────────────────
+  # BLOC DIFFUSION — 6 structures HTML différentes (match.id % 6)
+  # Mixe texte / listes / key-value / Q&R pour briser les patterns DOM
+  # CTA affilié inline quand la chaîne est identifiable
+  # ─────────────────────────────────────────────────────────────────────
+  def match_diffusion_block(match)
+    h    = team_display_name(match.home_team)
+    a    = team_display_name(match.away_team)
+    ch   = match.tv_channels.to_s
+    hr   = match.start_time.strftime("%Hh%M")
+    cp   = match.competition.to_s
+    ch1  = ch.split(',').first&.strip || ch   # chaîne principale
+    tmpl = match.id % 6
+
+    # CTA inline selon la chaîne — seulement pour les matchs à venir/en direct
+    cta = if !match.finished?
+      if ch.include?('DAZN')
+        '<a href="https://dazn.prf.hn/click/camref:1100l5JbRk" rel="noopener sponsored" ' \
+        'style="color:#0f172a;font-weight:700;text-decoration:underline;">Voir l\'offre DAZN (à partir de 9,99€/mois) →</a>'
+      elsif ch.include?('beIN')
+        '<a href="https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1571" rel="noopener sponsored" ' \
+        'style="color:#0f172a;font-weight:700;text-decoration:underline;">beIN Sports inclus dans Canal+ Sport (19,99€/mois) →</a>'
+      elsif ch.include?('Canal')
+        '<a href="https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1561" rel="noopener sponsored" ' \
+        'style="color:#0f172a;font-weight:700;text-decoration:underline;">Voir l\'offre Canal+ →</a>'
+      end
+    end
+
+    case tmpl
+
+    # ── 0 : Deux paragraphes texte + lien CTA ──────────────────────────
+    when 0
+      out = <<~HTML
+        <p style="font-size:16px;color:#333;margin-bottom:14px;line-height:1.7;">
+          Pour suivre <strong>#{h} - #{a}</strong> en direct, rendez-vous sur <strong>#{ch1}</strong>
+          à <strong>#{hr}</strong> pour cette affiche de <strong>#{cp}</strong>.
+          En streaming, l'application officielle de <strong>#{ch1}</strong> est accessible depuis
+          smartphone, tablette ou Smart TV avec un abonnement actif.
+        </p>
+        <p style="font-size:16px;color:#333;margin-bottom:14px;line-height:1.7;">
+          Le replay est disponible sur les plateformes <strong>#{ch1}</strong> après le coup de sifflet final,
+          pour les abonnés qui ne peuvent pas suivre le match en direct.
+        </p>
+      HTML
+      out += "<p style=\"margin-top:10px;\">#{cta}</p>" if cta
+      out
+
+    # ── 1 : Un paragraphe + liste appareils ───────────────────────────
+    when 1
+      out = <<~HTML
+        <p style="font-size:16px;color:#333;margin-bottom:12px;line-height:1.7;">
+          <strong>#{h}</strong> affronte <strong>#{a}</strong> à <strong>#{hr}</strong>
+          sur <strong>#{ch1}</strong> dans le cadre de la <strong>#{cp}</strong>.
+          Voici comment regarder selon votre situation :
+        </p>
+        <ul style="font-size:15px;color:#333;line-height:1.8;padding-left:20px;margin-bottom:14px;">
+          <li><strong>Télévision :</strong> chaîne <strong>#{ch1}</strong> sur votre box ou Smart TV</li>
+          <li><strong>Mobile :</strong> application <strong>#{ch1}</strong> sur iOS et Android</li>
+          <li><strong>Ordinateur :</strong> espace abonné sur le site officiel de <strong>#{ch1}</strong></li>
+          <li><strong>Hors domicile :</strong> streaming HD disponible avec votre abonnement</li>
+        </ul>
+      HTML
+      out += "<p style=\"margin-top:2px;\">#{cta}</p>" if cta
+      out
+
+    # ── 2 : Format key-value (style fiche technique) ──────────────────
+    when 2
+      out = <<~HTML
+        <dl style="font-size:15px;color:#333;line-height:1.9;margin:0 0 14px;">
+          <div style="display:flex;gap:12px;border-bottom:1px solid #f1f5f9;padding:6px 0;">
+            <dt style="font-weight:700;min-width:130px;color:#475569;">Match</dt>
+            <dd style="margin:0;"><strong>#{h}</strong> vs <strong>#{a}</strong></dd>
+          </div>
+          <div style="display:flex;gap:12px;border-bottom:1px solid #f1f5f9;padding:6px 0;">
+            <dt style="font-weight:700;min-width:130px;color:#475569;">Compétition</dt>
+            <dd style="margin:0;">#{cp}</dd>
+          </div>
+          <div style="display:flex;gap:12px;border-bottom:1px solid #f1f5f9;padding:6px 0;">
+            <dt style="font-weight:700;min-width:130px;color:#475569;">Diffusion TV</dt>
+            <dd style="margin:0;"><strong>#{ch1}</strong> à <strong>#{hr}</strong></dd>
+          </div>
+          <div style="display:flex;gap:12px;border-bottom:1px solid #f1f5f9;padding:6px 0;">
+            <dt style="font-weight:700;min-width:130px;color:#475569;">Streaming</dt>
+            <dd style="margin:0;">Application <strong>#{ch1}</strong> — abonnement requis#{cta ? " — #{cta}" : ""}</dd>
+          </div>
+        </dl>
+      HTML
+      out
+
+    # ── 3 : Questions / réponses (deux paires) ────────────────────────
+    when 3
+      out = <<~HTML
+        <p style="font-size:16px;color:#333;margin-bottom:12px;line-height:1.7;">
+          <strong>Où regarder #{h} vs #{a} ?</strong>
+          Ce match de <strong>#{cp}</strong> est diffusé à <strong>#{hr}</strong>
+          sur <strong>#{ch1}</strong>, en clair pour les abonnés via box TV, Smart TV ou application mobile.
+        </p>
+        <p style="font-size:16px;color:#333;margin-bottom:14px;line-height:1.7;">
+          <strong>Comment accéder au streaming légal ?</strong>
+          Connectez-vous à votre espace abonné <strong>#{ch1}</strong> — sur navigateur ou application —
+          avant le coup d'envoi de <strong>#{hr}</strong>. La qualité HD est incluse selon votre formule.
+        </p>
+      HTML
+      out += "<p style=\"margin-top:2px;\">#{cta}</p>" if cta
+      out
+
+    # ── 4 : Liste complète sans paragraphe introductif ────────────────
+    when 4
+      items = [
+        "<strong>Chaîne TV :</strong> <strong>#{ch1}</strong> — coup d'envoi à <strong>#{hr}</strong>",
+        "<strong>Streaming :</strong> application <strong>#{ch1}</strong> (iOS, Android, Smart TV, Chromecast)",
+        "<strong>Replay :</strong> disponible sur #{ch1} après le match pour les abonnés",
+        "<strong>Compétition :</strong> #{cp} — saison 2025-2026"
+      ]
+      items << "<strong>Abonnement :</strong> #{cta}" if cta
+
+      out = "<ul style=\"font-size:15px;color:#333;line-height:1.9;padding-left:20px;margin:0 0 14px;\">\n"
+      items.each { |item| out += "  <li>#{item}</li>\n" }
+      out += "</ul>\n"
+      out
+
+    # ── 5 : Un seul paragraphe dense + CTA en évidence ────────────────
+    when 5
+      out = <<~HTML
+        <p style="font-size:16px;color:#333;margin-bottom:14px;line-height:1.7;">
+          Le coup d'envoi de <strong>#{h} - #{a}</strong> est fixé à <strong>#{hr}</strong>.
+          Pour suivre ce match de <strong>#{cp}</strong> en direct, branchez-vous sur
+          <strong>#{ch1}</strong> — accessible sur votre téléviseur via box ou antenne,
+          et en streaming depuis l'application officielle sur mobile, tablette et ordinateur.
+          Un abonnement <strong>#{ch1}</strong> en cours de validité est requis pour le streaming.
+        </p>
+      HTML
+      if cta
+        out += <<~HTML
+          <p style="font-size:15px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:12px 16px;margin-top:4px;">
+            #{cta}
+          </p>
+        HTML
+      end
+      out
+
     end
   end
 end
