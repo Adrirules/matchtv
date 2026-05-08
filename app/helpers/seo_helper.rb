@@ -489,13 +489,13 @@ module SeoHelper
     # CTA inline selon la chaîne — seulement pour les matchs à venir/en direct
     cta = if !match.finished?
       if ch.include?('DAZN')
-        '<a href="https://dazn.prf.hn/click/camref:1100l5JbRk" rel="noopener sponsored" ' \
+        '<a href="https://dazn.prf.hn/click/camref:1100l5JbRk" target="_blank" rel="noopener sponsored" ' \
         'style="color:#0f172a;font-weight:700;text-decoration:underline;">Voir l\'offre DAZN (à partir de 9,99€/mois) →</a>'
       elsif ch.include?('beIN')
-        '<a href="https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1571" rel="noopener sponsored" ' \
+        '<a href="https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1571" target="_blank" rel="noopener sponsored" ' \
         'style="color:#0f172a;font-weight:700;text-decoration:underline;">beIN Sports inclus dans Canal+ Sport (19,99€/mois) →</a>'
       elsif ch.include?('Canal')
-        '<a href="https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1561" rel="noopener sponsored" ' \
+        '<a href="https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1561" target="_blank" rel="noopener sponsored" ' \
         'style="color:#0f172a;font-weight:700;text-decoration:underline;">Voir l\'offre Canal+ →</a>'
       end
     end
