@@ -216,140 +216,178 @@ class MatchSummaryService
   def self.preview_template(tmpl, home, away, comp, date_fr, diffusion, ctx, meteo)
     notable = notable_channel?(diffusion)
     ban     = banned_line
+    no_data = ctx.strip.empty? ? "Note : données de classement/forme non disponibles pour cette compétition. Reste sur l'enjeu général et la diffusion." : ""
 
     case tmpl
 
-    # ── 0 : Angle classement et enjeu — phrases courtes et percutantes ──
+    # ── 0 : Angle classement — 3 phrases courtes (max 18 mots chacune) ──
     when 0
       <<~P.strip
-        Rédige un avant-match de football en français. Exactement 3 phrases. Pas de titre, pas de liste.
+        Tu es rédacteur football. Rédige un avant-match en français. Exactement 3 phrases. Pas de titre.
+        Règle absolue de longueur : chaque phrase doit contenir entre 6 et 16 mots — pas plus, pas moins.
         Commence par l'enjeu au classement (Europe, maintien, titre). Cite les positions exactes si disponibles.
-        Phrases courtes et percutantes — aucune ne dépasse 18 mots.
-        #{notable ? "Intègre '#{diffusion}' naturellement dans une des phrases." : ""}
+        #{notable ? "Intègre '#{diffusion}' dans l'une des phrases." : ""}
         #{meteo.present? ? meteo : ""}
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données, ne copie pas les équipes) :
+        "Lens (6e) reçoit Nantes (14e) à Bollaert ce soir. Les Sang et Or veulent verrouiller la 6e place. Tout se joue sur DAZN à 21h."
 
         Match : #{home} vs #{away} | #{comp} | #{date_fr}
         #{ctx}
       P
 
-    # ── 1 : Angle forme et momentum — longueur variable, 4 phrases ──
+    # ── 1 : Angle momentum — 4 phrases, longueur délibérément variable ──
     when 1
       <<~P.strip
-        Rédige un avant-match de football en français. 4 phrases. Pas de titre.
-        Commence sur la dynamique de l'une des équipes (série, rebond, momentum). Appuie-toi sur la forme récente.
-        Varie la longueur des phrases : une très courte (< 8 mots), une longue (> 22 mots), deux moyennes.
+        Tu es rédacteur football. Rédige un avant-match en français. Exactement 4 phrases. Pas de titre.
+        Commence sur la dynamique récente de l'une des équipes (série, rebond après défaite, momentum).
+        Contrainte de longueur : 1 phrase très courte (4-7 mots), 1 phrase longue (25-35 mots), 2 phrases moyennes.
         #{notable ? "Mentionne #{diffusion}." : ""}
         #{meteo.present? ? meteo : ""}
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Monaco enchaîne. Après trois victoires consécutives, les hommes d'Hütter débarquent à Lyon avec l'ambition de consolider leur troisième place, à seulement deux points du podium cette saison. Lyon, sans victoire depuis quatre matchs, cherche à relancer une saison devenue compliquée. Le choc est sur DAZN."
 
         Match : #{home} vs #{away} | #{comp} | #{date_fr}
         #{ctx}
       P
 
-    # ── 2 : Angle H2H et historique — 3 phrases, commence par l'histoire entre les clubs ──
+    # ── 2 : Angle H2H — commence par le dernier face-à-face ──
     when 2
       <<~P.strip
-        Rédige un avant-match de football en français. 3 phrases. Style chronique.
-        Commence par ce que le dernier face-à-face entre ces deux équipes nous apprend (score, contexte, enjeu).
-        Puis l'enjeu du match d'aujourd'hui. #{notable ? "Intègre #{diffusion}." : ""}
-        Ne commence pas par '#{home}' ni '#{away}'.
+        Tu es rédacteur football. Rédige un avant-match en français. Exactement 3 phrases. Pas de titre.
+        Commence par ce que le dernier H2H entre ces équipes révèle. Ne commence pas par '#{home}' ni '#{away}'.
+        Puis l'enjeu du match d'aujourd'hui. #{notable ? "Intègre #{diffusion} en dernière phrase." : ""}
         #{meteo.present? ? meteo : ""}
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Leur 0-0 à l'aller, le 15 octobre, avait laissé les deux équipes sur leur faim. Cette fois, Lens (6e) a plus à prouver : trois victoires de suite, et l'Europe semble à portée. Nantes (14e) doit décrocher un succès en déplacement pour sortir de sa spirale — match sur DAZN."
 
         Match : #{home} vs #{away} | #{comp} | #{date_fr}
         #{ctx}
       P
 
-    # ── 3 : Angle météo/terrain — la météo est le fil conducteur si notable ──
+    # ── 3 : Angle tactique/météo — 3 phrases, une très courte ──
     when 3
       if meteo.present?
         <<~P.strip
-          Rédige un avant-match de football en français. 3 phrases. Commence directement sur l'affiche.
-          La météo est l'élément central de cet avant-match : #{meteo}
-          Deuxième phrase = l'enjeu sportif. Troisième phrase = #{notable ? "diffusion #{diffusion}" : "contexte au classement"}.
-          Inclure obligatoirement une phrase de moins de 10 mots et une de plus de 20 mots.
+          Tu es rédacteur football. Rédige un avant-match en français. Exactement 3 phrases. Pas de titre.
+          #{meteo}
+          Structure : phrase 1 = impact terrain/météo sur le jeu (8-12 mots max). Phrase 2 = enjeu sportif. Phrase 3 = diffusion ou classement.
           #{ban}
+          #{no_data}
+
+          EXEMPLE DE SORTIE par temps de pluie (adapte aux vraies données) :
+          "Le terrain de Bollaert sera lourd ce soir. Dans ces conditions, le jeu direct et les duels physiques prendront le dessus sur les combinaisons — avantage pour Lens, qui affiche 3 victoires sur ses 5 derniers matchs. Nantes (14e) devra s'adapter à cette pelouse difficile pour espérer un résultat sur DAZN."
 
           Match : #{home} vs #{away} | #{comp} | #{date_fr}
           #{ctx}
         P
       else
         <<~P.strip
-          Rédige un avant-match de football en français. 3 phrases. Angle tactique.
-          Quelle équipe est avantagée par le contexte (domicile, classement, forme) ? Argumente.
-          #{notable ? "Mentionne #{diffusion}." : ""}
-          Commence par une phrase interrogative ou affirmative forte (pas un nom d'équipe).
+          Tu es rédacteur football. Rédige un avant-match en français. Exactement 3 phrases. Pas de titre.
+          Angle tactique : quelle équipe est avantagée par le contexte (domicile, classement, forme) ?
+          Ne commence ni par '#{home}' ni par '#{away}'. #{notable ? "Inclus #{diffusion}." : ""}
+          Contrainte : une phrase interrogative ou affirmative forte, deux phrases d'analyse.
           #{ban}
+          #{no_data}
+
+          EXEMPLE DE SORTIE (adapte aux vraies données) :
+          "Qui repart avec les trois points ce soir ? Lens (6e, 3V sur 5) part favori à domicile, mais Nantes reste une équipe difficile à battre quand elle joue bas et compact. Les fans trancheront sur DAZN à 21h."
 
           Match : #{home} vs #{away} | #{comp} | #{date_fr}
           #{ctx}
         P
       end
 
-    # ── 4 : Angle avantage domicile/extérieur — 3-4 phrases ──
+    # ── 4 : Angle domicile/extérieur — 3-4 phrases ──
     when 4
       <<~P.strip
-        Rédige un avant-match de football en français. 3 à 4 phrases. Pas de liste.
-        Mets en avant l'avantage ou le défi de jouer à domicile vs à l'extérieur comme facteur clé.
+        Tu es rédacteur football. Rédige un avant-match en français. 3 à 4 phrases. Pas de liste.
+        Mets en avant l'avantage de jouer à domicile ou le défi de l'extérieur comme facteur clé.
         Appuie-toi sur la forme récente si disponible. #{notable ? "Inclus #{diffusion}." : ""}
         #{meteo.present? ? meteo : ""}
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Jouer à Bollaert reste un avantage réel pour Lens, invaincu à domicile sur ses 4 derniers matchs. Nantes, qui n'a pris qu'un point sur ses 5 derniers déplacements, aborde cette rencontre en position délicate. Lens (6e) table sur cet élan pour verrouiller la 6e place. Sur DAZN à 21h."
 
         Match : #{home} (domicile) vs #{away} (extérieur) | #{comp} | #{date_fr}
         #{ctx}
       P
 
-    # ── 5 : Angle chiffres bruts — 2 phrases denses, 2 données numériques minimum ──
+    # ── 5 : Angle chiffres — exactement 2 phrases denses ──
     when 5
       <<~P.strip
-        Rédige un avant-match de football en français. Exactement 2 phrases. Dense en données.
-        Règle absolue : intégrer au moins 2 chiffres précis (classement, résultats récents, écart de points, score H2H).
-        Style télégraphique. #{notable ? "Mentionne #{diffusion}." : ""}
+        Tu es rédacteur football. Rédige un avant-match en français. Exactement 2 phrases. Pas de titre.
+        Règle absolue : chaque phrase doit contenir au moins 2 chiffres précis (classement, forme, écart de points, score H2H).
+        Style télégraphique, dense. #{notable ? "Mentionne #{diffusion}." : ""}
         #{meteo.present? ? meteo : ""}
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Lens (6e, 51 pts) reçoit Nantes (14e, 34 pts) : 17 points d'écart au classement, après un 0-0 au match aller. Bilan des 5 derniers matchs : 3V 1N 1D pour Lens contre 0V 2N 3D pour Nantes — les Sang et Or s'avancent sur DAZN avec un avantage clair."
 
         Match : #{home} vs #{away} | #{comp} | #{date_fr}
         #{ctx}
       P
 
-    # ── 6 : Angle radio — 2 phrases sèches, style antenne ──
+    # ── 6 : Style radio — exactement 2 phrases sèches ──
     when 6
       <<~P.strip
-        Rédige un avant-match style flash radio : 2 phrases exactement.
-        Phrase 1 = l'enjeu en moins de 15 mots. Phrase 2 = où regarder et un élément de contexte.
-        #{meteo.present? ? "Glisse en fin de phrase 2 l'impact terrain (une demi-phrase max) : #{meteo}" : ""}
-        Ne commence pas par '#{home}' ni '#{away}'.
+        Tu es speaker radio. Rédige un flash avant-match en français. Exactement 2 phrases. Pas de titre.
+        Phrase 1 : l'enjeu en 8 à 14 mots maximum. Phrase 2 : diffusion + un élément de contexte chiffré.
+        Ne commence ni par '#{home}' ni par '#{away}'.
+        #{meteo.present? ? "En fin de phrase 2, glisse l'impact terrain en 5 mots max : #{meteo}" : ""}
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Lens-Nantes, 6e contre 14e, pour l'Europe ou le maintien. Sur DAZN à 21h, avec un terrain rendu glissant par la pluie qui favorise le jeu direct des Sang et Or."
 
         Match : #{home} vs #{away} | #{comp} | #{date_fr}
         Diffusion : #{diffusion}
         #{ctx}
       P
 
-    # ── 7 : Angle enjeu saison — 4 phrases, analyse contextuelle ──
+    # ── 7 : Angle saison — 4 phrases, alternance courte/longue ──
     when 7
       <<~P.strip
-        Rédige un avant-match de football en français. 4 phrases. Style analyse hebdomadaire.
-        Explique ce que ce match représente dans la saison de chaque équipe (course au titre, maintien, qualification, prestige).
-        Classement et forme si disponibles. #{notable ? "Mentionne #{diffusion}." : ""}
+        Tu es rédacteur football. Rédige un avant-match en français. Exactement 4 phrases. Pas de titre.
+        Explique ce que ce match représente dans la saison de chaque équipe (titre, Europe, maintien, prestige).
+        Contrainte de structure : phrases 1 et 3 courtes (6-14 mots), phrases 2 et 4 longues (20-32 mots).
+        #{notable ? "Mentionne #{diffusion}." : ""}
         #{meteo.present? ? meteo : ""}
-        Phrases de longueur variée — alterne court et long.
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "La course à l'Europe s'accélère. Lens (6e) accueille Nantes (14e) avec l'ambition de s'accrocher à une place qualificative, après trois victoires consécutives qui ont relancé leur saison en seconde partie de championnat. Nantes cherche mieux. Les Canaris, à 12 points de toute ambition européenne, veulent au moins confirmer leur maintien avant la trêve — sur DAZN à 21h."
 
         Match : #{home} vs #{away} | #{comp} | #{date_fr}
         #{ctx}
       P
 
-    # ── 8 : Angle surprise — quelle équipe peut créer l'upset ? ──
+    # ── 8 : Angle surprise — quelle équipe peut faire l'upset ? ──
     when 8
       <<~P.strip
-        Rédige un avant-match de football en français. 3 phrases.
-        Commence par la question implicite : quelle équipe peut créer la surprise ?
-        Identifie l'équipe favorite et celle susceptible de renverser la tendance. Appuie-toi sur la forme.
-        #{notable ? "Mentionne #{diffusion}." : ""}
+        Tu es rédacteur football. Rédige un avant-match en français. Exactement 3 phrases. Pas de titre.
+        Commence par identifier l'équipe favorite, puis celle susceptible de créer la surprise.
+        Appuie-toi sur la forme récente. #{notable ? "Intègre #{diffusion}." : ""}
         #{meteo.present? ? meteo : ""}
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Lens (6e) part favori à domicile avec 3 victoires sur les 5 derniers matchs. Pourtant, Nantes a arraché un 0-0 à l'aller et reste difficile à manoeuvrer quand il défend bas et repart en contre. L'upset est possible — et ça se passe sur DAZN."
 
         Match : #{home} vs #{away} | #{comp} | #{date_fr}
         #{ctx}
@@ -358,12 +396,16 @@ class MatchSummaryService
     # ── 9 : Angle contexte large — ne commence pas par un nom d'équipe ──
     when 9
       <<~P.strip
-        Rédige un avant-match de football en français. 3 à 4 phrases.
-        N'commence pas par '#{home}' ni '#{away}' ni 'Ce soir' ni 'Le match'.
-        Ouvre sur le contexte de la #{comp} cette saison, puis centre sur l'enjeu précis de cette affiche.
-        #{notable ? "Intègre #{diffusion} naturellement." : ""}
+        Tu es rédacteur football. Rédige un avant-match en français. Exactement 3 phrases. Pas de titre.
+        Règle : la première phrase ne doit pas commencer par '#{home}', '#{away}', 'Ce soir', ni 'Le match'.
+        Ouvre sur le contexte de la #{comp} cette saison, puis l'enjeu précis de cette affiche.
+        #{notable ? "Intègre #{diffusion} en dernière phrase." : ""}
         #{meteo.present? ? meteo : ""}
         #{ban}
+        #{no_data}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "La Ligue 1 entre dans sa dernière ligne droite, et chaque point compte double. À Bollaert, Lens (6e) et Nantes (14e) jouent des enjeux opposés ce vendredi : les Sang et Or visent l'Europe, les Canaris consolident leur maintien. Sur DAZN à 21h."
 
         Match : #{home} vs #{away} | #{comp} | #{date_fr}
         #{ctx}
@@ -403,112 +445,129 @@ class MatchSummaryService
 
     case tmpl
 
-    # ── 0 : Factuel direct — dépêche AFP, 2 phrases courtes ──
+    # ── 0 : Dépêche AFP — 2 phrases, commence par le résultat ──
     when 0
       <<~P.strip
-        Résume ce match de football en 2 phrases courtes. Style dépêche AFP.
-        Commence par le score et le vainqueur. Deuxième phrase = ce que ce résultat signifie dans la compétition.
+        Tu es rédacteur football. Résume ce match en 2 phrases. Style dépêche AFP. Pas de titre.
+        Phrase 1 = score et vainqueur (max 14 mots). Phrase 2 = conséquence au classement ou en compétition.
         #{notable ? "Mentionne #{diffusion} si c'est une grande affiche." : ""}
         Aucune exagération, aucune invention.
         #{ban}
 
+        EXEMPLE DE SORTIE (adapte aux vraies données, ne copie pas Lens/Nantes) :
+        "Lens s'impose 2-0 face à Nantes et remonte à la 5e place de Ligue 1. Cette victoire repousse les Canaris à 6 points de la zone de maintien — vu sur DAZN."
+
         Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
         Résultat : #{winner_text}
       P
 
-    # ── 1 : Angle tournant — 2-3 phrases, ne commence pas par le score ──
+    # ── 1 : Angle tournant — ne commence pas par le score, longueur variée ──
     when 1
-      context = if big_win
-        "Victoire nette (#{gap} buts d'écart) : domination logique ou coup de théâtre ?"
-      elsif draw
-        "Match nul : qui s'en sort le mieux selon le contexte au classement ?"
-      else
-        "Victoire courte (1 but d'écart) : résultat serré, explique pourquoi c'est important."
-      end
+      context = big_win ? "Victoire nette (#{gap} buts) : domination logique ou coup de théâtre ?" :
+                draw     ? "Match nul : qui s'en sort mieux selon le classement ?" :
+                           "Victoire d'un but : résultat serré, explique l'enjeu."
       <<~P.strip
-        Résume ce match en 2 à 3 phrases. #{context}
-        Ne commence pas par le score brut. Commence par le contexte ou l'enjeu.
-        Varie la longueur des phrases : une courte (< 10 mots) et une longue (> 20 mots).
+        Tu es rédacteur football. Résume ce match en 2 à 3 phrases. Pas de titre. #{context}
+        Ne commence pas par le score brut. Commence par le contexte ou ce que le résultat révèle.
+        Contrainte : une phrase courte (6-12 mots) et une phrase longue (22-30 mots).
         #{notable ? "Intègre #{diffusion}." : ""}
         #{ban}
 
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Nantes ne gagne plus. Lens a profité de la fragilité défensive des Canaris pour s'imposer 2-0, consolidant ainsi sa place dans le top 6 à trois journées de la fin. Vu sur DAZN."
+
         Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
         Résultat : #{winner_text}
       P
 
-    # ── 2 : 2 phrases sèches, commence différemment ──
+    # ── 2 : 2 phrases sèches — conséquences d'abord ──
     when 2
       <<~P.strip
-        Résume ce match en exactement 2 phrases. Directement les faits.
-        Phrase 1 = résultat et ce qu'il change au classement ou en compétition.
-        Phrase 2 = un détail marquant (ampleur du score, équipe dominante, ou diffusion si notable).
-        INTERDIT de commencer par 'Ce match' ou le prénom d'un joueur inventé.
+        Tu es rédacteur football. Résume ce match en exactement 2 phrases. Pas de titre.
+        Phrase 1 = ce que ce résultat change dans la #{comp} (max 16 mots). Phrase 2 = score et détail marquant.
+        Ne commence pas par 'Ce match'.
         #{ban}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Lens s'accroche à la 6e place de Ligue 1 avec cette victoire. Les Sang et Or ont dominé Nantes 2-0 dans un match maîtrisé — diffusé sur DAZN."
 
         Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
         Résultat : #{winner_text}
       P
 
-    # ── 3 : Angle signification — commence par les conséquences, pas le score ──
+    # ── 3 : Conséquence d'abord, score ensuite ──
     when 3
       <<~P.strip
-        Résume ce match en 2 à 3 phrases. Commence par ce que ce résultat change dans la #{comp}.
-        Puis donne le score. #{notable ? "Mentionne #{diffusion}." : ""}
-        Aucun superlatif. Style magazine sportif sobre.
+        Tu es rédacteur football. Résume ce match en 2 à 3 phrases. Pas de titre.
+        Commence par ce que ce résultat change dans la #{comp}. Donne le score seulement en 2e ou 3e phrase.
+        #{notable ? "Mentionne #{diffusion}." : ""} Aucun superlatif.
         #{ban}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Lens consolide sa 6e place et garde une longueur d'avance sur ses concurrents pour l'Europe. Les Sang et Or ont écrasé Nantes 2-0 sur DAZN, avec une domination totale dès la première mi-temps."
 
         Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
         Résultat : #{winner_text}
       P
 
-    # ── 4 : Angle équipe battue ou tenue en échec ──
+    # ── 4 : Angle perdant ou match nul — 2 phrases ──
     when 4
-      loser_context = draw ?
-        "Match nul : analyse qui s'en sort mieux selon la position au classement." :
-        "Que retient l'équipe battue ? Était-ce prévisible ou surprenant ?"
+      loser_angle = draw ? "Analyse qui s'en sort le mieux selon le contexte au classement." :
+                           "Que retient l'équipe battue ?"
       <<~P.strip
-        Résume ce match en 2 phrases. #{loser_context}
-        Factuel, pas dramatique. Ne commence pas par 'Malgré' ni 'Hélas'.
+        Tu es rédacteur football. Résume ce match en 2 phrases. Pas de titre. #{loser_angle}
+        Factuel. Ne commence pas par 'Malgré'.
         #{ban}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Nantes repart de Bollaert avec rien, battu 2-0 dans une soirée difficile pour les Canaris. Ce résultat laisse Nantes à 6 points du bas de tableau, sans victoire en déplacement depuis 8 matchs."
 
         Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
         Résultat : #{winner_text}
       P
 
-    # ── 5 : Style radio — 2 phrases, oral et direct ──
+    # ── 5 : Style radio — 2 phrases orales ──
     when 5
       <<~P.strip
-        Résume ce match style commentaire radio en 2 phrases exactes.
-        Phrase 1 = ce qui s'est passé (< 15 mots). Phrase 2 = pourquoi c'est important.
+        Tu es speaker radio. Résume ce match en exactement 2 phrases. Pas de titre.
+        Phrase 1 = ce qui s'est passé (8-13 mots). Phrase 2 = pourquoi c'est important.
         Ne commence pas par '#{home}' ni '#{away}'.
         #{ban}
 
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Victoire 2-0 de Lens sur Nantes ce vendredi. Les Sang et Or restent dans la course à l'Europe, à un point du top 5 — résultat à retrouver sur DAZN."
+
         Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
         Résultat : #{winner_text}
       P
 
-    # ── 6 : Angle chiffre mis en avant ──
+    # ── 6 : Chiffres en avant ──
     when 6
       <<~P.strip
-        Résume ce match en 2 à 3 phrases. Mets en avant au moins un chiffre au-delà du score.
-        #{big_win ? "Insiste sur l'ampleur : #{gap} buts d'écart." : "Cherche un chiffre contextuel (numéro de journée si connu, série de matchs, etc.)."}
-        Style synthétique. #{notable ? "Mentionne #{diffusion}." : ""}
+        Tu es rédacteur football. Résume ce match en 2 à 3 phrases. Pas de titre.
+        Intègre obligatoirement au moins 2 chiffres au-delà du score (classement, écart de points, série).
+        #{big_win ? "Insiste sur l'ampleur : #{gap} buts d'écart." : ""}
+        #{notable ? "Mentionne #{diffusion}." : ""}
         #{ban}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "Lens s'impose 2-0 et remonte à la 6e place, à 4 points de l'Europe directe. Nantes reste 14e avec seulement 2 victoires sur ses 10 derniers matchs — vu sur DAZN."
 
         Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
         Résultat : #{winner_text}
       P
 
-    # ── 7 : Commence par le contexte de la compétition, score en deuxième phrase ──
+    # ── 7 : 3 phrases structurées (contexte → score → suite), chacune 8-18 mots ──
     when 7
       <<~P.strip
-        Résume ce match en 3 phrases courtes. Structure imposée :
-        1. Contexte de la #{comp} au moment de ce match.
-        2. Le résultat brut.
-        3. Ce que ça implique pour la suite.
-        #{notable ? "Glisse #{diffusion} dans l'une des 3 phrases." : ""}
-        0 invention de joueurs ou de statistiques non fournies.
+        Tu es rédacteur football. Résume ce match en exactement 3 phrases. Pas de titre.
+        Structure : phrase 1 = contexte de la #{comp}, phrase 2 = résultat brut, phrase 3 = implication pour la suite.
+        Chaque phrase entre 8 et 18 mots.
+        #{notable ? "Glisse #{diffusion} dans l'une des phrases." : ""}
         #{ban}
+
+        EXEMPLE DE SORTIE (adapte aux vraies données) :
+        "La lutte pour l'Europe en Ligue 1 reste ouverte. Lens s'impose 2-0 face à Nantes dans un match maîtrisé à Bollaert. Les Sang et Or s'installent 6e — le duel pour le dernier billet européen continue."
 
         Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
         Résultat : #{winner_text}
