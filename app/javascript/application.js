@@ -49,12 +49,17 @@ window.addEventListener('appinstalled', () => {
   let refreshing = false;
   let hapticDone = false;
 
-  // Suivi fiable du scroll — window.scrollY est peu fiable en iOS standalone
+  // Suivi fiable du scroll — écoute sur window (plus fiable que document sur iOS standalone)
   let scrollTop = 0;
   let isScrolling = false;
   let scrollTimer = null;
-  document.addEventListener('scroll', () => {
-    scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+  function readScrollTop() {
+    return window.pageYOffset || window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  }
+
+  window.addEventListener('scroll', () => {
+    scrollTop = readScrollTop();
     isScrolling = true;
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(() => { isScrolling = false; }, 200);
@@ -115,7 +120,9 @@ window.addEventListener('appinstalled', () => {
 
   document.addEventListener('touchstart', (e) => {
     if (refreshing || isScrolling) return;
-    if (scrollTop === 0) {
+    // Double vérification : variable suivie + lecture synchrone au moment du toucher
+    const atTop = scrollTop === 0 && readScrollTop() === 0;
+    if (atTop) {
       startY = e.touches[0].clientY;
       currentY = startY;
       pulling = true;
