@@ -116,6 +116,8 @@ window.addEventListener('appinstalled', () => {
       currentY = startY;
       pulling = true;
       hapticDone = false;
+    } else {
+      pulling = false;
     }
   }, { passive: true });
 
@@ -141,6 +143,15 @@ window.addEventListener('appinstalled', () => {
       }
     }
   }, { passive: true });
+
+  document.addEventListener('touchcancel', () => {
+    pulling = false;
+    hapticDone = false;
+    const wrap = document.getElementById('ptr-wrap');
+    const spinner = document.getElementById('ptr-spinner');
+    if (wrap) wrap.classList.remove('ptr-visible');
+    if (spinner) spinner.classList.remove('ptr-spin');
+  });
 
   document.addEventListener('touchend', () => {
     if (!pulling || refreshing) return;
