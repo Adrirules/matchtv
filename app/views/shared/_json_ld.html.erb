@@ -8,6 +8,14 @@
   else
     "Sur quelle chaîne voir #{home} vs #{away} ? Le #{match.start_time.strftime('%d/%m')}#{match.tv_channels.present? ? ' sur ' + match.tv_channels : ''} pour la #{match.competition}."
   end
+
+  competition_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == match.competition }
+  country_name = competition_meta&.dig(:country) || "France"
+  location_json = if match.venue_name.present?
+    { "@type": "Place", "name": match.venue_name, "address": { "@type": "PostalAddress", "addressLocality": match.venue_city.presence || "", "addressCountry": country_name } }
+  else
+    { "@type": "Place", "name": country_name, "address": { "@type": "PostalAddress", "addressCountry": country_name } }
+  end
 %>
 <script type="application/ld+json">
   <%= {
@@ -34,15 +42,7 @@
       "url": "https://www.coupdenvoi.tv/equipes/#{match.away_team&.parameterize}"
     },
     "url": "https://www.coupdenvoi.tv/matches/#{match.matchup&.slug || match.id}",
-    "location": {
-      "@type": "Place",
-      "name": match.venue_name.presence || match.competition || "Stade",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": match.venue_city.presence || "",
-        "addressCountry": FootballApiService::COMPETITIONS_META.find { |c| c[:name] == match.competition }&.dig(:country) || "France"
-      }
-    },
+    "location": location_json,
     "performer": [
       { "@type": "SportsTeam", "name": home },
       { "@type": "SportsTeam", "name": away }
