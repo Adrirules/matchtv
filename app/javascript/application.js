@@ -125,6 +125,16 @@ window.addEventListener('appinstalled', () => {
     }
   }, { passive: true });
 
+  function resetPage() {
+    document.body.style.transition = 'transform 0.25s ease';
+    document.body.style.transform = 'translateY(0)';
+    setTimeout(() => { document.body.style.transform = ''; document.body.style.transition = ''; }, 260);
+    const wrap = document.getElementById('ptr-wrap');
+    const spinner = document.getElementById('ptr-spinner');
+    if (wrap) wrap.classList.remove('ptr-visible');
+    if (spinner) spinner.classList.remove('ptr-spin');
+  }
+
   document.addEventListener('touchmove', (e) => {
     if (!pulling || refreshing) return;
     currentY = e.touches[0].clientY;
@@ -133,6 +143,10 @@ window.addEventListener('appinstalled', () => {
     const spinner = document.getElementById('ptr-spinner');
     if (!wrap || !spinner) return;
     if (diff > 10) {
+      // Page suit le doigt avec résistance (facteur 0.45, plafonné à 90px)
+      const translate = Math.min(diff * 0.45, 90);
+      document.body.style.transition = 'none';
+      document.body.style.transform = `translateY(${translate}px)`;
       wrap.classList.add('ptr-visible');
       if (diff > THRESHOLD) {
         spinner.classList.add('ptr-spin');
@@ -145,6 +159,7 @@ window.addEventListener('appinstalled', () => {
         hapticDone = false;
       }
     } else {
+      document.body.style.transform = '';
       wrap.classList.remove('ptr-visible');
       spinner.classList.remove('ptr-spin');
     }
@@ -153,25 +168,23 @@ window.addEventListener('appinstalled', () => {
   document.addEventListener('touchcancel', () => {
     pulling = false;
     hapticDone = false;
-    const wrap = document.getElementById('ptr-wrap');
-    const spinner = document.getElementById('ptr-spinner');
-    if (wrap) wrap.classList.remove('ptr-visible');
-    if (spinner) spinner.classList.remove('ptr-spin');
+    resetPage();
   });
 
   document.addEventListener('touchend', () => {
     if (!pulling || refreshing) return;
     pulling = false;
     const diff = currentY - startY;
-    const wrap = document.getElementById('ptr-wrap');
-    const spinner = document.getElementById('ptr-spinner');
     if (diff > THRESHOLD) {
       refreshing = true;
+      const spinner = document.getElementById('ptr-spinner');
       if (spinner) spinner.classList.add('ptr-spin');
-      setTimeout(() => window.location.reload(), 300);
+      // Garde la page tirée puis recharge
+      document.body.style.transition = 'transform 0.2s ease';
+      document.body.style.transform = 'translateY(60px)';
+      setTimeout(() => window.location.reload(), 350);
     } else {
-      if (wrap) wrap.classList.remove('ptr-visible');
-      if (spinner) spinner.classList.remove('ptr-spin');
+      resetPage();
     }
   }, { passive: true });
 })();
