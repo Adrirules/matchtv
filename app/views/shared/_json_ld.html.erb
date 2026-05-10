@@ -10,11 +10,16 @@
   end
 
   competition_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == match.competition }
-  country_name = competition_meta&.dig(:country) || "France"
+  country_name = competition_meta&.dig(:country)
   location_json = if match.venue_name.present?
-    { "@type": "Place", "name": match.venue_name, "address": { "@type": "PostalAddress", "addressLocality": match.venue_city.presence || "", "addressCountry": country_name } }
-  else
+    addr = { "@type": "PostalAddress" }
+    addr["addressLocality"] = match.venue_city if match.venue_city.present?
+    addr["addressCountry"] = country_name if country_name.present?
+    { "@type": "Place", "name": match.venue_name, "address": addr }
+  elsif country_name.present?
     { "@type": "Place", "name": country_name, "address": { "@type": "PostalAddress", "addressCountry": country_name } }
+  else
+    { "@type": "Place", "name": match.home_team || "Stade" }
   end
 %>
 <script type="application/ld+json">
