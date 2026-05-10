@@ -7,6 +7,7 @@ published_time: "10h23"
 author: Adrien
 image: "https://images.unsplash.com/photo-1752681304950-cc5bc78064f5?q=80&w=928&auto=format&fit=crop"
 image_credit: "Photo : Unsplash"
+tags: ["culture-foot", "science-du-foot"]
 excerpt: "Tous les joueurs font ça, personne n'explique pourquoi. Rincer et cracher l'eau plutôt que l'avaler, c'est pas de la coquetterie - c'est de la science."
 ---
 

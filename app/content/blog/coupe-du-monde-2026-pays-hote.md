@@ -10,6 +10,7 @@ published_time: "10h23"
 author: Adrien
 image: "https://images.unsplash.com/photo-1732851627452-79d3279b2962?q=80&w=1200&auto=format&fit=crop"
 image_credit: "Photo : Unsplash"
+tags: ["coupe-du-monde", "mondial-2026"]
 excerpt: "Qui organise la Coupe du Monde 2026 et qui l'a organisée depuis 1930 ? La liste complète par édition, les pays qui ont fait le doublé - et ce qui attend pour 2030 et 2034."
 ---
 

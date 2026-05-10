@@ -9,6 +9,7 @@ published_time: "11h17"
 author: Adrien
 image: "https://images.unsplash.com/photo-1568495262088-4289581907ca?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 image_credit: "Photo : Unsplash"
+tags: ["champions-league", "regles-foot"]
 excerpt: "Top 3 de Ligue 1 : direct en LDC. 4e : barrages en juillet. Et le coefficient UEFA peut tout changer d'une saison à l'autre. Le guide complet."
 ---
 

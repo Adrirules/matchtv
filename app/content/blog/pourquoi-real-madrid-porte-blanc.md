@@ -7,6 +7,7 @@ published_time: "11h14"
 author: Adrien
 image: "https://images.unsplash.com/photo-1635710064268-69aa5d9355c1?q=80&w=1740&auto=format&fit=crop"
 image_credit: "Photo : Unsplash"
+tags: ["histoire", "culture-foot"]
 excerpt: "Un club anglais amateur fondé en 1882, deux frères espagnols et une admiration sincère. Voilà l'origine du blanc immaculé que le Real Madrid porte depuis 1902."
 ---
 

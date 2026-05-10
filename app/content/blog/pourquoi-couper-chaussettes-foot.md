@@ -7,6 +7,7 @@ published_time: "09h47"
 author: Adrien
 image: "https://images.unsplash.com/photo-1689785280879-98b0fb52084d?q=80&w=1740&auto=format&fit=crop"
 image_credit: "Photo : Unsplash"
+tags: ["culture-foot", "science-du-foot"]
 excerpt: "Tu as forcément remarqué ces joueurs pros avec les chaussettes découpées aux mollets. Il y a une vraie raison derrière - et c'est plus malin qu'il n'y paraît."
 ---
 

@@ -10,6 +10,7 @@ published_time: "10h47"
 author: Adrien
 image: "https://images.unsplash.com/photo-1649001863283-0ce7ca4e8754?q=80&w=1740&auto=format&fit=crop"
 image_credit: "Photo : Unsplash / nygi"
+tags: ["regles-foot", "arbitrage", "technologie"]
 excerpt: "La VAR n'intervient que dans 4 situations précises. Voici comment elle fonctionne, ce qu'elle ne peut pas faire, et pourquoi le débat est loin d'être clos."
 competitor_urls_analyzed: ["https://anecsport.com/fonctionnement-var-football/", "https://www.formationsfootball.fr/blog/var", "https://www.gool-sport.com/2026/02/le-var-en-football-fonctionnement.html"]
 internal_links_targets: ["/competitions/ligue-1", "/blog/champions-league-chaine-tv-france", "/classements/ligue-1", "/blog/abonnement-foot-2026-quelle-chaine-choisir"]
