@@ -42,7 +42,27 @@
     <link rel="dns-prefetch" href="https://media.api-sports.io">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%# CSS critique inline — évite le render-blocking de Bootstrap/FA %>
+    <style>
+:root{--color-bg:#EFF2F6;--bs-body-bg:#EFF2F6;--color-surface:#fff;--color-border:oklch(88% .012 255);--color-accent:oklch(40% .2 255);--color-accent-dim:oklch(40% .2 255/.1);--color-text:oklch(14% .02 255);--color-muted:oklch(52% .02 255);--color-header:oklch(20% .08 255);--color-live:oklch(50% .22 25);--font-heading:'Barlow Condensed',sans-serif;--font-body:'DM Sans',sans-serif}
+html,body{height:100%;margin:0;padding:0;overflow-x:hidden;overscroll-behavior-y:none}
+body{display:flex;flex-direction:column;width:100%;background:var(--color-bg);font-family:var(--font-body);color:var(--color-text)}
+.top-nav{padding:10px 16px;background:var(--color-header);font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:space-between}
+.top-nav a{color:#fff;text-decoration:none}
+.top-nav-logo{font-family:var(--font-heading);font-weight:800;font-size:20px;letter-spacing:-.01em;color:#fff}
+.top-nav-blog-mobile{font-size:13px;font-weight:700;color:rgba(255,255,255,.75);text-decoration:none;padding:5px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.2);white-space:nowrap}
+.bottom-nav{position:fixed;bottom:0;left:0;width:100%;background:#fff;border-top:1px solid #eaeaea;display:flex;justify-content:space-around;padding:10px 0;z-index:1000}
+main{padding-bottom:70px}
+.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+.blog-wrapper{max-width:1100px;margin:0 auto;padding:30px 15px}
+.blog-card{background:#fff;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.07);padding:36px 48px;max-width:900px;margin:0 auto}
+@media(max-width:768px){.blog-card{padding:24px 20px}}
+@media(max-width:600px){.blog-wrapper{padding:20px 12px}.blog-card{padding:22px 18px}}
+@media(min-width:1024px){.bottom-nav{display:none}main{padding-bottom:0}.top-nav-blog-mobile{display:none}.top-nav-links{display:flex;align-items:center;gap:4px}}
+    </style>
+    <%# application.css en async (non render-blocking) — noscript fallback %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: "print", onload: "this.media='all'" %>
+    <noscript><%= stylesheet_link_tag "application" %></noscript>
     <%= javascript_importmap_tags %>
 
     <%# Configuration PWA & Mobile 2026 %>
