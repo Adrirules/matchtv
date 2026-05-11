@@ -4,6 +4,9 @@
 <% content_for :container_class, 'container--wide' %>
 
 <% content_for :json_ld do %>
+<% if @article[:image].present? %>
+<link rel="preload" as="image" href="<%= optimized_image_url(@article[:image], width: 800, height: 450) %>" fetchpriority="high">
+<% end %>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -65,7 +68,7 @@
   <%# Hero image + crédit %>
   <% if @article[:image].present? %>
     <div style="margin-bottom: 28px;">
-      <img src="<%= @article[:image] %>" alt="<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '') %>" width="800" height="450" style="width: 100%; height: auto; border-radius: 6px; display: block;" loading="lazy">
+      <img src="<%= optimized_image_url(@article[:image], width: 800, height: 450) %>" alt="<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '') %>" width="800" height="450" style="width: 100%; height: auto; border-radius: 6px; display: block;" loading="eager" fetchpriority="high">
       <% if @article[:image_credit].present? %>
         <p style="font-size: 12px; color: #94a3b8; margin: 6px 0 0; text-align: right;"><%= @article[:image_credit] %></p>
       <% end %>

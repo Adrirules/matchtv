@@ -452,6 +452,20 @@ module ApplicationHelper
   end
 
   # Date en français : 29 mars 2026
+  # Optimise les URLs d'images pour réduire le poids (Pexels & Unsplash)
+  def optimized_image_url(url, width: 800, height: 200)
+    return url if url.blank?
+    if url.include?('images.pexels.com')
+      base = url.split('?').first
+      "#{base}?auto=compress&cs=tinysrgb&w=#{width}&h=#{height}&fit=crop&dpr=1"
+    elsif url.include?('images.unsplash.com')
+      sep = url.include?('?') ? '&' : '?'
+      "#{url}#{sep}w=#{width}&h=#{height}&q=80&auto=format&fit=crop"
+    else
+      url
+    end
+  end
+
   def date_fr(date)
     return '' unless date
     "#{date.day} #{MONTHS_FR[date.month - 1]} #{date.year}"
