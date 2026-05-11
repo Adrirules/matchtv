@@ -8,7 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1531823540573-d5e8fc4a5485?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "TF1 absent pour la première fois depuis 1978, M6 avec 54 matchs en clair, beIN Sports avec les 104 - voilà tout ce qu'il faut savoir pour ne rater aucun match du Mondial 2026."
-tags: [coupe-du-monde, droits-tv]
+tags: ["coupe-du-monde", "droits-tv"]
 ---
 
 # Sur quelle chaîne voir la Coupe du Monde 2026 en France ?

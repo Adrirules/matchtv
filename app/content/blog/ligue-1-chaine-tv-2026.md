@@ -8,7 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1642171729073-303524bbfb31?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "Ligue 1+ et beIN Sports se partagent les droits TV de la Ligue 1. Voici comment ne rater aucun match cette saison."
-tags: [ligue-1, canal-plus, droits-tv]
+tags: ["ligue-1", "canal-plus", "droits-tv"]
 ---
 
 <script type="application/ld+json">

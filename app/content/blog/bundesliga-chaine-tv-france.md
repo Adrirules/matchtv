@@ -8,7 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1634467599303-d123a536e7fe?q=80&w=1710&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "DAZN détient l'exclusivité de la Bundesliga en France. Voici comment ne rater aucun match du championnat allemand cette saison."
-tags: [bundesliga, dazn, droits-tv]
+tags: ["bundesliga", "dazn", "droits-tv"]
 dazn_card: false
 ---
 

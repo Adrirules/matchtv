@@ -11,7 +11,7 @@ author: Adrien
 image: "https://images.unsplash.com/photo-1616529151853-a98a5510d588?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 image_credit: "Photo : Unsplash"
 excerpt: "16 villes, 3 pays, 9 heures d'écart entre Los Angeles et New York. Le tableau complet des villes hôtes, des matchs clés et des horaires depuis la France."
-tags: ["coupe-du-monde", "villes-hotes", "mondial-2026"]
+tags: ["coupe-du-monde"]
 ---
 
 <script type="application/ld+json">

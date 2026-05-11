@@ -8,7 +8,7 @@ author: Adrien
 image: https://images.pexels.com/photos/34625036/pexels-photo-34625036.jpeg
 image_credit: "Photo : Pexels"
 excerpt: "Canal+ détient l'intégralité des droits de la Ligue des Champions en France. Voici comment ne rater aucun match cette saison."
-tags: [champions-league, canal-plus]
+tags: ["champions-league", "canal-plus"]
 ---
 
 <script type="application/ld+json">

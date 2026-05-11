@@ -8,7 +8,7 @@ author: Adrien
 image: https://images.pexels.com/photos/35781789/pexels-photo-35781789.jpeg
 image_credit: "Photo : Pexels"
 excerpt: "Canal+ détient l'intégralité des droits de la Ligue Europa en France. Voici comment ne rien rater des soirées du jeudi."
-tags: [europa-league, canal-plus]
+tags: ["europa-league", "canal-plus"]
 ---
 
 <script type="application/ld+json">
