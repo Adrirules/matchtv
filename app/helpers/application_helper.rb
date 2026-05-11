@@ -459,8 +459,8 @@ module ApplicationHelper
       base = url.split('?').first
       "#{base}?auto=compress&cs=tinysrgb&w=#{width}&h=#{height}&fit=crop&dpr=1"
     elsif url.include?('images.unsplash.com')
-      sep = url.include?('?') ? '&' : '?'
-      "#{url}#{sep}w=#{width}&h=#{height}&q=80&auto=format&fit=crop"
+      base = url.split('?').first
+      "#{base}?w=#{width}&h=#{height}&q=80&auto=format&fit=crop"
     else
       url
     end
