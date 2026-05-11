@@ -16,11 +16,9 @@ class SitemapsController < ApplicationController
     # 3. Les Compétitions (Ligues — seulement celles avec matchs récents)
     @competitions = Match.where("start_time > ?", 90.days.ago).distinct.pluck(:competition).compact
 
-    # 4. Les Joueurs (seulement ceux avec un slug valide et une équipe active récemment)
-    active_teams = @teams
-    @players = Player.where(team_name: active_teams)
-                     .where.not(slug: [nil, ""])
-                     .select(:slug, :updated_at)
+    # 4. Les Joueurs — retirés du sitemap (volume ~11 000 URLs → cannibalise le crawl budget)
+    # Les pages joueurs ont leur propre noindex conditionnel dans PlayersController.
+    @players = []
 
     # 5. Les Classements (slugs officiels uniquement)
     @standing_slugs = StandingsController::LEAGUES.map { |l| l[:slug] }

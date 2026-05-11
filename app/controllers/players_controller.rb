@@ -108,11 +108,19 @@ class PlayersController < ApplicationController
     # Bio éditoriale si disponible (top joueurs)
     @player_bio = PLAYER_BIOS[@player.api_id]&.dig('bio')
 
-    # noindex si contenu trop mince :
+    # noindex si contenu trop mince ou équipe inactive :
+    # - équipe sans match dans les 30 derniers jours (saison terminée / club hors périmètre)
     # - 0 stats + aucun match à venir
     # - stats amicaux seulement + aucun match à venir
-    # - moins de 10 matchs joués + aucun match à venir + pas de bio (contenu trop mince pour AdSense)
-    @noindex = (@games.to_i == 0 && @upcoming_matches.empty?) ||
+    # - moins de 10 matchs joués + aucun match à venir + pas de bio
+    team_recently_active = @player.team_api_id.present? &&
+      Match.where(
+        "(home_team_api_id = ? OR away_team_api_id = ?) AND start_time > ?",
+        @player.team_api_id, @player.team_api_id, 30.days.ago
+      ).exists?
+
+    @noindex = !team_recently_active ||
+               (@games.to_i == 0 && @upcoming_matches.empty?) ||
                (@is_friendly && @upcoming_matches.empty?) ||
                (@games.to_i < 10 && @upcoming_matches.empty? && @player_bio.blank?)
 

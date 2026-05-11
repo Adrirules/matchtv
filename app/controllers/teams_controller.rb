@@ -124,6 +124,10 @@ class TeamsController < ApplicationController
     @page_title = "#{@team_name} 2025-2026 — Stats, résultats et programme TV | Coup d'Envoi TV"
     @page_desc  = "Retrouvez tous les matchs de #{@team_name} à la télé : horaires, chaînes (Canal+, beIN, DAZN, France TV), résultats et statistiques de la saison 2025-2026."
 
+    # noindex : équipe sans match à venir ET sans contenu éditorial
+    # (évite d'indexer les centaines d'équipes inactives hors périmètre)
+    @noindex = @matches.empty? && @team_editorial.blank?
+
     expires_in 10.minutes, public: true
   end
 
