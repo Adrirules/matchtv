@@ -1,13 +1,14 @@
 ---
-title: "Champions League à la TV : sur quelle chaîne voir les matchs en France ? | Coup d'Envoi TV"
-meta_description: "La Champions League 2025-2026 est diffusée exclusivement sur Canal+ en France. Programme, prix de l'abonnement et comment voir chaque match en direct."
+title: "Finale Champions League 2026 : sur quelle chaîne TV ? Date et heure | Coup d'Envoi TV"
+meta_description: "La finale de la Champions League 2026 est le 31 mai à Munich, en direct sur Canal+. Heure, chaîne TV, streaming myCanal : tout pour ne pas la rater."
 slug: champions-league-chaine-tv-france
 published_at: 2026-05-02
 published_time: "09h17"
+updated_at: "14 mai 2026"
 author: Adrien
 image: https://images.pexels.com/photos/34625036/pexels-photo-34625036.jpeg
 image_credit: "Photo : Pexels"
-excerpt: "Canal+ détient l'intégralité des droits de la Ligue des Champions en France. Voici comment ne rater aucun match cette saison."
+excerpt: "La finale de la Ligue des Champions 2026 se joue le 31 mai à Munich, sur Canal+. Canal+ diffuse aussi toutes les phases éliminatoires - voici comment voir le match."
 tags: ["champions-league", "canal-plus"]
 ---
 
@@ -17,7 +18,7 @@ tags: ["champions-league", "canal-plus"]
   "@type": "Article",
   "headline": "Champions League à la TV : sur quelle chaîne voir les matchs en France ?",
   "datePublished": "2026-05-02",
-  "dateModified": "2026-05-02",
+  "dateModified": "2026-05-14",
   "author": { "@type": "Person", "name": "Adrien" },
   "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
 }
@@ -41,7 +42,7 @@ tags: ["champions-league", "canal-plus"]
     {
       "@type": "Question",
       "name": "Comment voir la finale de la Champions League 2026 ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "La finale, qui se joue le 30 mai 2026 à Budapest, est diffusée sur Canal+. Tu peux la regarder via la TV, via myCanal sur ordinateur, smartphone, tablette ou TV connectée, à condition d'avoir un abonnement Canal+ ou un bouquet incluant Canal+ Sport." }
+      "acceptedAnswer": { "@type": "Answer", "text": "La finale se joue le 31 mai 2026 à l'Allianz Arena de Munich. Elle est diffusée sur Canal+ en France. Tu peux la regarder via la TV (canal 4 sur les box), via myCanal sur ordinateur, smartphone, tablette ou TV connectée, à condition d'avoir un abonnement Canal+ ou un bouquet incluant Canal+ Sport." }
     },
     {
       "@type": "Question",
@@ -75,6 +76,20 @@ La **Ligue des Champions de l'UEFA** est diffusée **exclusivement sur [Canal+](
 Canal+ détient également les droits de la **[Ligue Europa](/competitions/europa-league)** et de la **[Conference League](/competitions/conference-league)**, soit l'intégralité des Coupes d'Europe masculines.
 
 Pour voir la LDC, il faut donc un abonnement Canal+ (ou un bouquet incluant Canal+ Sport). Compte à partir de **24,99 €/mois** pour la formule la plus simple incluant la LDC.
+
+## Finale Champions League 2026 : date, heure et chaîne TV
+
+La finale de la Ligue des Champions 2026 se joue le **31 mai 2026** à **l'Allianz Arena de Munich** (Allemagne). Coup d'envoi prévu à **21h00** (heure française).
+
+Elle est diffusée **en exclusivité sur [Canal+](/chaines/canal-plus)** en France. Aucune chaîne gratuite n'a les droits - ni TF1, ni M6, ni France 2.
+
+**Comment voir la finale LDC le 31 mai ?**
+
+- **À la TV** : Canal+ (canal 4 sur les box Orange, SFR, Free, Bouygues)
+- **En streaming** : myCanal sur ordinateur, smartphone, tablette, TV connectée
+- **Condition** : avoir un abonnement Canal+ actif (à partir de 24,99 €/mois)
+
+Si tu n'es pas encore abonné et que tu veux juste la finale, Canal+ propose parfois des offres sans engagement - vérifie les promos du moment sur leur site avant le 31 mai.
 
 ## Canal+ et la Ligue des Champions : ce que l'abonnement inclut
 
@@ -119,7 +134,7 @@ C'est simple : pour le foot européen masculin, **tout passe par Canal+**. Pour 
 
 ## Demi-finales et finale 2026 : où les voir
 
-La finale de la **[Champions League](/competitions/champions-league) 2026** se tient le **30 mai 2026 à la Puskás Aréna de Budapest**. Comme tous les matchs de la compétition, elle sera **diffusée sur Canal+** en France.
+La finale de la **[Champions League](/competitions/champions-league) 2026** se tient le **31 mai 2026 à l'Allianz Arena de Munich**. Coup d'envoi à 21h00. Comme tous les matchs de la compétition, elle est **diffusée sur Canal+** en France.
 
 Petite note historique : la finale n'est plus diffusée en clair depuis longtemps en France. À l'époque, TF1 puis M6 chopaient certaines finales en simultané avec Canal+, mais depuis l'appel d'offres 2024-2027, Canal+ a sécurisé l'exclusivité totale, finale comprise.
 
@@ -167,7 +182,7 @@ La Ligue des Champions est diffusée **exclusivement sur Canal+** en France pour
 Oui, absolument tous. Canal+ détient l'intégralité des droits depuis la saison 2024-2025 et jusqu'en 2031. Aucun autre diffuseur français n'a de match en direct.
 
 **Comment voir la finale de la Champions League 2026 ?**
-La finale, qui se joue le 30 mai 2026 à Budapest, est **diffusée sur Canal+**. Via la TV (canal 4 sur les box), via myCanal sur ordinateur, smartphone, tablette ou TV connectée.
+La finale se joue le **31 mai 2026 à l'Allianz Arena de Munich** (21h00). Elle est **diffusée sur Canal+** en France - via la TV (canal 4 sur les box) ou via myCanal sur ordinateur, smartphone, tablette ou TV connectée.
 
 **Peut-on voir la LDC sans Canal+ ?**
 Pas en direct. Les seules alternatives légales sont les **résumés** sur YouTube UEFA, les **highlights** sur L'Équipe TV, et le **commentaire radio** sur RMC ou France Bleu.

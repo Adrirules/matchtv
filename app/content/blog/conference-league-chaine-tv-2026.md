@@ -1,9 +1,10 @@
 ---
-title: "Conference League 2025-2026 : sur quelle chaîne voir les matchs en France ? | Coup d'Envoi TV"
-meta_description: "Demi-finales, finale à Leipzig, Strasbourg en lice : où regarder la Conference League 2025-2026 en France, sur Canal+ (Pass Coupes d'Europe). Calendrier et horaires."
+title: "Finale Conference League 2026 : date, heure et chaîne TV | Coup d'Envoi TV"
+meta_description: "La finale de la Conference League 2026 se joue le 27 mai à Leipzig sur Canal+. Heure, chaîne TV, streaming myCanal : tout pour ne pas rater le match."
 slug: conference-league-chaine-tv-2026
 published_at: 2026-04-25
 published_time: "09h43"
+updated_at: "14 mai 2026"
 author: Adrien
 image: https://images.unsplash.com/photo-1675848758961-e25a8d08e374?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash / Red Bull Arena Leipzig"
@@ -18,7 +19,7 @@ dazn_card: false
   "@type": "Article",
   "headline": "Conference League 2025-2026 : sur quelle chaîne voir les matchs en France ?",
   "datePublished": "2026-04-25",
-  "dateModified": "2026-04-25",
+  "dateModified": "2026-05-14",
   "author": { "@type": "Person", "name": "Adrien" },
   "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
 }
@@ -58,6 +59,20 @@ dazn_card: false
 Bon, on va pas se mentir, la Conference League c'est la compétition qu'on charrie volontiers. "La C4", "la coupe des losers", j'en passe et des meilleures. Sauf que cette saison j'ai une bonne raison de la regarder, et elle s'appelle Strasbourg. Et puis quand on me sort que "c'est nul", j'ai toujours ma petite anecdote en réserve - j'y reviens plus bas.
 
 > **Réponse rapide -** La Conference League 2025-2026 est diffusée en France par **[Canal+](/chaines/canal-plus)** (via le Pass Coupes d'Europe). Les demi-finales se jouent les <time datetime="2026-04-30">30 avril</time> et <time datetime="2026-05-07">7 mai 2026</time>, avec Rayo Vallecano-Strasbourg côté français. La finale, c'est le <time datetime="2026-05-27">mercredi 27 mai 2026</time> à la Red Bull Arena de Leipzig.
+
+## Finale Conference League 2026 : date, heure et chaîne TV
+
+La finale se joue le **mercredi 27 mai 2026** à la **Red Bull Arena de Leipzig** (Allemagne). Coup d'envoi à **21h00** (heure française).
+
+Diffuseur : **[Canal+](/chaines/canal-plus)** en exclusivité. Aucune chaîne gratuite n'a les droits, la finale comprise.
+
+**Comment regarder la finale le 27 mai ?**
+
+- **À la TV** : Canal+ (canal 4 sur les box Orange, SFR, Free, Bouygues)
+- **En streaming** : myCanal sur ordinateur, smartphone, tablette, TV connectée
+- **En replay** : disponible sur myCanal après le match pour les abonnés
+
+Si tu n'as pas encore Canal+, la formule de base à 24,99 €/mois inclut les trois Coupes d'Europe. Vérifie les offres ponctuelles sans engagement si tu veux juste la finale.
 
 ## Quelle chaîne diffuse la Conference League en France ?
 

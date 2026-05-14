@@ -24,17 +24,13 @@
     when 1
       "#{comps2} le #{date_label} : sur quelle chaîne en direct ? | Coup d'Envoi TV"
     else
-      if comps.size >= 3
-        "#{count} matchs le #{date_label} - #{comps.first(2).join(', ')} et plus : programme TV | Coup d'Envoi TV"
-      else
-        "#{count} match#{'s' if count > 1} de foot le #{date_label} - #{comps_str} : programme TV | Coup d'Envoi TV"
-      end
+      "Programme foot TV du #{date_label} : #{count} match#{'s' if count > 1} en direct - #{comps.first(2).join(', ')} | Coup d'Envoi TV"
     end
   else
     case title_variant
     when 0 then "Foot #{date_label} : quels matchs à la TV ce soir ? Programme complet | Coup d'Envoi TV"
     when 1 then "Foot #{date_label} : programme TV, chaînes et horaires | Coup d'Envoi TV"
-    else        "Programme TV foot #{date_label} - Matchs et chaînes | Coup d'Envoi TV"
+    else        "Programme foot TV du #{date_label} : tous les matchs en direct | Coup d'Envoi TV"
     end
   end
 

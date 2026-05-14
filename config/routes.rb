@@ -77,6 +77,10 @@ Rails.application.routes.draw do
   # Redirections 301 — ancien pluriel français /matchs/ → /matches/
   get '/matchs/:slug', to: redirect('/matches/%{slug}')
 
+  # Redirections 301 — URLs datées indexées par Google → slugs canoniques
+  get '/matches/2026-05-09-orleans-fleury-91',           to: redirect('/matches/orleans-fleury-91')
+  get '/matches/2026-05-09-clermont-foot-guingamp',      to: redirect('/matches/clermont-foot-guingamp')
+
   # Redirections 301 — anciennes URLs /ligue/* indexées par Google
   get '/ligues',                        to: redirect('/competitions')
   get '/ligue/ligue-1',                 to: redirect('/competitions/ligue-1')
