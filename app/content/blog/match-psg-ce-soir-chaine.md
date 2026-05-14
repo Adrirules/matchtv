@@ -107,7 +107,7 @@ La question revient avant chaque match : le PSG passe sur quelle chaîne ce soir
 
 Les matchs de [Ligue 1](/competitions/ligue-1) sont diffusés sur [DAZN](/chaines/dazn) - qui détient l'essentiel des droits - et sur **Ligue 1+**, disponible chez la plupart des opérateurs FAI. Les abonnés DAZN voient tous les matchs du PSG, quelle que soit l'heure ou le jour.
 
-Prix : à partir de **9,99 €/mois** avec engagement (moins de 26 ans) jusqu'à **19,99 €/mois** sans engagement. Si tu es déjà abonné via ta box, vérifie si Ligue 1+ est inclus - certains forfaits FAI l'intègrent.
+Prix : **9,99 €/mois** les 3 premiers mois avec engagement, puis **16,99 €/mois** - ou **19,99 €/mois** sans engagement. Si tu es déjà abonné via ta box, vérifie si Ligue 1+ est inclus - certains forfaits FAI l'intègrent.
 
 <!-- DAZN_CARD -->
 

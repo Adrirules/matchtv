@@ -106,7 +106,7 @@ Je le vis à chaque fois. La semaine commence, le calendrier de l'OM s'affiche s
 
 Les matchs de [Ligue 1](/competitions/ligue-1) sont diffusés sur [DAZN](/chaines/dazn), qui détient la majorité des droits de diffusion du championnat. Les abonnés accèdent à tous les matchs de l'OM en Ligue 1, peu importe le créneau. L'autre option : **Ligue 1+**, le canal FAI disponible chez Orange, SFR, Free et Bouygues - certains forfaits l'incluent d'office.
 
-Prix DAZN : à partir de **9,99 €/mois** avec engagement (moins de 26 ans) jusqu'à **19,99 €/mois** sans engagement. Si tu as déjà une box internet, vérifie d'abord si Ligue 1+ est dans ton forfait - tu pourrais éviter un abo supplémentaire.
+Prix DAZN : **9,99 €/mois** les 3 premiers mois avec engagement, puis **16,99 €/mois** - ou **19,99 €/mois** sans engagement. Si tu as déjà une box internet, vérifie d'abord si Ligue 1+ est dans ton forfait - tu pourrais éviter un abo supplémentaire.
 
 <!-- DAZN_CARD -->
 
