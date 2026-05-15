@@ -29,7 +29,7 @@ class DaysController < ApplicationController
     @live_count = Match.where(status: %w[1H HT 2H ET BT P]).count
 
     # 3 derniers articles blog (home uniquement)
-    @recent_articles = load_recent_blog_articles(3) if @date == today
+    @recent_articles = load_recent_blog_articles(4) if @date == today
   end
 
   private

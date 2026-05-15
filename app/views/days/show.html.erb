@@ -322,12 +322,9 @@
 })();
 </script>
 <% if @recent_articles&.any? %>
-  <section style="margin-top: 40px; padding-top: 32px; border-top: 1px solid #e2e8f0;">
-    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px;">
-      <h2 style="font-size: 20px; font-weight: 700; margin: 0;">Blog : derniers articles</h2>
-      <%= link_to "Voir tous les articles →", blog_path, style: "font-size: 14px; color: #1a73e8; text-decoration: none; font-weight: 500;" %>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
+  <section style="margin-top: 40px; padding-top: 32px; padding-bottom: 48px; border-top: 1px solid #e2e8f0;">
+    <h2 style="font-size: 20px; font-weight: 700; margin: 0 0 20px;">Blog : derniers articles</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
       <% @recent_articles.each do |article| %>
         <article style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; background: #fff;">
           <% if article[:image].present? %>
@@ -351,6 +348,12 @@
           </div>
         </article>
       <% end %>
+    </div>
+    <div style="text-align: center; margin-top: 24px;">
+      <%= link_to "Voir tous les articles", blog_path,
+          style: "display: inline-block; padding: 10px 28px; background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.15s;",
+          onmouseover: "this.style.borderColor='#94a3b8';this.style.background='#f8fafc'",
+          onmouseout:  "this.style.borderColor='#cbd5e1';this.style.background='#fff'" %>
     </div>
   </section>
 <% end %>
