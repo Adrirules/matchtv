@@ -25,11 +25,17 @@ Disallow: /players/
 Disallow: /matches/
 Disallow: /equipes/
 Disallow: /classements/
+Disallow: /days/
+Disallow: /resultats
+Disallow: /direct
 
 User-agent: AdsBot-Google
 Disallow: /players/
 Disallow: /matches/
 Disallow: /equipes/
 Disallow: /classements/
+Disallow: /days/
+Disallow: /resultats
+Disallow: /direct
 
 Sitemap: https://www.coupdenvoi.tv/sitemap.xml
