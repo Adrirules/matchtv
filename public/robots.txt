@@ -19,4 +19,17 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+# AdSense crawlers : accès restreint aux pages éditoriales uniquement
+User-agent: Mediapartners-Google
+Disallow: /players/
+Disallow: /matches/
+Disallow: /equipes/
+Disallow: /classements/
+
+User-agent: AdsBot-Google
+Disallow: /players/
+Disallow: /matches/
+Disallow: /equipes/
+Disallow: /classements/
+
 Sitemap: https://www.coupdenvoi.tv/sitemap.xml

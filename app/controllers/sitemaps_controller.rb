@@ -31,7 +31,7 @@ class SitemapsController < ApplicationController
       content = File.read(path)
       frontmatter = content.match(/\A---\n(.*?)\n---/m)&.[](1)
       next unless frontmatter
-      slug         = frontmatter.match(/^slug:\s*(.+)/)&.[](1)&.strip
+      slug         = frontmatter.match(/^slug:\s*(.+)/)&.[](1)&.strip&.gsub(/\A["']|["']\z/, '')
       published_at = frontmatter.match(/^published_at:\s*(.+)/)&.[](1)&.strip
       next unless slug && published_at
       date = Date.parse(published_at) rescue nil
