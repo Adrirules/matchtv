@@ -321,6 +321,40 @@
   });
 })();
 </script>
+<% if @recent_articles&.any? %>
+  <section style="margin-top: 40px; padding-top: 32px; border-top: 1px solid #e2e8f0;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px;">
+      <h2 style="font-size: 20px; font-weight: 700; margin: 0;">Blog : derniers articles</h2>
+      <%= link_to "Voir tous les articles →", blog_path, style: "font-size: 14px; color: #1a73e8; text-decoration: none; font-weight: 500;" %>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
+      <% @recent_articles.each do |article| %>
+        <article style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; background: #fff;">
+          <% if article[:image].present? %>
+            <%= link_to blog_article_path(article[:slug]) do %>
+              <img src="<%= optimized_image_url(article[:image], width: 400, height: 120) %>"
+                   alt="<%= article[:title]&.gsub(' | Coup d\'Envoi TV', '') %>"
+                   loading="lazy" width="400" height="120"
+                   style="width:100%;height:120px;object-fit:cover;display:block;">
+            <% end %>
+          <% end %>
+          <div style="padding: 14px 16px 16px;">
+            <p style="margin: 0 0 8px;">
+              <%= link_to article[:title]&.gsub(' | Coup d\'Envoi TV', ''), blog_article_path(article[:slug]),
+                  style: "font-size: 15px; font-weight: 600; color: #010e1b; text-decoration: none; line-height: 1.4;" %>
+            </p>
+            <% if article[:excerpt].present? %>
+              <p style="font-size: 13px; color: #666; margin: 0 0 10px; line-height: 1.5;"><%= truncate(article[:excerpt], length: 90) %></p>
+            <% end %>
+            <%= link_to "Lire →", blog_article_path(article[:slug]),
+                style: "font-size: 13px; font-weight: 600; color: #1a73e8; text-decoration: none;" %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </section>
+<% end %>
+
 </div><%# fin colonne principale %>
 <%= render 'shared/sidebar' %>
 </div><%# fin with-sidebar %>

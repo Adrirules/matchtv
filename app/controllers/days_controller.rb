@@ -27,5 +27,27 @@ class DaysController < ApplicationController
 
     # Nombre de matchs en direct (pour le badge du bouton)
     @live_count = Match.where(status: %w[1H HT 2H ET BT P]).count
+
+    # 3 derniers articles blog (home uniquement)
+    @recent_articles = load_recent_blog_articles(3) if @date == today
+  end
+
+  private
+
+  def load_recent_blog_articles(limit)
+    blog_path = Rails.root.join("app/content/blog")
+    Dir.glob("#{blog_path}/*.md").filter_map do |path|
+      raw = File.read(path)
+      next unless raw.start_with?('---')
+      parts = raw.split('---', 3)
+      next if parts.length < 3
+      meta = YAML.safe_load(parts[1], permitted_classes: [Date]) rescue {}
+      next unless meta['published_at'] && meta['slug']
+      pub_date = meta['published_at'].is_a?(Date) ? meta['published_at'] : Date.parse(meta['published_at'].to_s)
+      next if pub_date > Date.today
+      { slug: meta['slug'], title: meta['title'], excerpt: meta['excerpt'], image: meta['image'], published_at: pub_date }
+    end.sort_by { |a| a[:published_at] }.reverse.first(limit)
+  rescue
+    []
   end
 end
