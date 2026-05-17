@@ -2,69 +2,69 @@
 
 <%
   count      = @matches.size
-  # Priorité aux compétitions françaises et européennes dans le title/desc
   comp_priority = %w[Ligue\ 1 Champions\ League Premier\ League La\ Liga Bundesliga Serie\ A Ligue\ 2 Europa\ League Conference\ League Coupe\ de\ France D1\ Féminine Eredivisie Liga\ Portugal Süper\ Lig]
   raw_comps  = @matches.map(&:competition).compact.uniq
   comps      = raw_comps.sort_by { |c| comp_priority.index(c) || 99 }.first(4)
   comps_str  = comps.any? ? comps.to_sentence(words_connector: ', ', two_words_connector: ' et ', last_word_connector: ' et ') : nil
+
+  # date_label_seo : "17 mars" si < 2 mois, "17 mars 2026" sinon — compact pour les titles
+  date_label_seo = if (@date - Date.today).abs < 60
+    l(@date, format: "%e %B").strip
+  else
+    l(@date, format: "%e %B %Y").strip
+  end
 %>
 
-<%# --- SEO --- %>
+<%# --- SEO titles & meta descriptions --- %>
 <%
-  # 3 variations par jour de la semaine — évite le duplicate content entre dates adjacentes
-  title_variant = @date.wday % 3
+  tv = @date.wday % 3
+  comps2 = comps.first(2).join(" et ") if comps.any?
 
   if @is_past
-    seo_title = case title_variant
-      when 0 then "Résultats foot du #{date_label} : tous les scores et résumés | Coup d'Envoi TV"
-      when 1 then "Matchs du #{date_label} : résultats, scores et chaînes | Coup d'Envoi TV"
-      else        "Foot #{date_label} : tous les résultats et résumés | Coup d'Envoi TV"
+    seo_title = case tv
+      when 0 then "Résultats foot du #{date_label_seo} : tous les scores et résumés | Coup d'Envoi TV"
+      when 1 then "Matchs du #{date_label_seo} : résultats, scores et chaînes | Coup d'Envoi TV"
+      else        "Foot #{date_label_seo} : tous les résultats et résumés | Coup d'Envoi TV"
       end
-    seo_desc = if count > 0 && comps.any?
-      "Retrouvez tous les résultats des matchs de foot du #{date_label} : #{count} score#{'s' if count > 1}, résumés et chaînes de diffusion. #{comps_str}."
-    else
-      "Résultats des matchs de foot du #{date_label}. Scores finaux, résumés et chaînes de diffusion sur Coup d'Envoi TV."
-    end
+    seo_desc = "Résultats foot du #{date_label_seo} : #{count} match#{'s' if count > 1} joué#{'s' if count > 1}, scores complets et chaînes de diffusion."
   elsif @is_today
-    seo_title = if count > 0 && comps.any?
-      comps2 = comps.first(2).join(" et ")
-      case title_variant
-      when 0 then "Foot #{date_label} : quels matchs à la TV ? #{comps2} au programme | Coup d'Envoi TV"
-      when 1 then "#{comps2} le #{date_label} : sur quelle chaîne en direct ? | Coup d'Envoi TV"
-      else        "Programme foot TV du #{date_label} : #{count} match#{'s' if count > 1} en direct - #{comps.first(2).join(', ')} | Coup d'Envoi TV"
+    seo_title = case tv
+      when 0 then "Foot ce soir #{date_label_seo} : programme TV et chaînes en direct | Coup d'Envoi TV"
+      when 1
+        if comps2
+          "Match foot ce soir : programme TV du #{date_label_seo} avec #{comps2} | Coup d'Envoi TV"
+        else
+          "Match foot ce soir : programme TV du #{date_label_seo} | Coup d'Envoi TV"
+        end
+      else "Programme foot #{date_label_seo} : tous les matchs ce soir à la TV | Coup d'Envoi TV"
       end
-    else
-      case title_variant
-      when 0 then "Foot #{date_label} : quels matchs à la TV ce soir ? Programme complet | Coup d'Envoi TV"
-      when 1 then "Foot #{date_label} : programme TV, chaînes et horaires | Coup d'Envoi TV"
-      else        "Programme foot TV du #{date_label} : tous les matchs en direct | Coup d'Envoi TV"
-      end
-    end
-    seo_desc = if count > 0 && comps.any?
-      "Tous les matchs de foot ce soir #{date_label} : #{count} rencontre#{'s' if count > 1} en direct. #{comps_str}. Horaires et chaînes TV sur Coup d'Envoi TV."
-    else
-      "Programme TV foot du #{date_label}. Retrouvez les horaires et chaînes de diffusion des matchs de football en France."
-    end
+    seo_desc = "Tous les matchs de foot ce soir #{date_label_seo} : #{count} rencontre#{'s' if count > 1} en direct. Horaires et chaînes TV en France."
   else # @is_future
-    seo_title = if count > 0 && comps.any?
-      comps2 = comps.first(2).join(" et ")
-      case title_variant
-      when 0 then "Foot #{date_label} : quels matchs à la TV ? #{comps2} au programme | Coup d'Envoi TV"
-      when 1 then "#{comps2} le #{date_label} : sur quelle chaîne en direct ? | Coup d'Envoi TV"
-      else        "Programme foot TV du #{date_label} : #{count} match#{'s' if count > 1} en direct - #{comps.first(2).join(', ')} | Coup d'Envoi TV"
+    seo_title = case tv
+      when 0 then "Match foot #{date_label_seo} : programme TV, chaînes et horaires | Coup d'Envoi TV"
+      when 1
+        if comps2
+          "Foot #{date_label_seo} : sur quelle chaîne ? #{comps2} au programme | Coup d'Envoi TV"
+        else
+          "Foot #{date_label_seo} : sur quelle chaîne ? Programme complet | Coup d'Envoi TV"
+        end
+      else
+        if count > 0 && comps.any?
+          "Programme foot TV du #{date_label_seo} : #{count} match#{'s' if count > 1} en direct - #{comps.first(2).join(', ')} | Coup d'Envoi TV"
+        else
+          "Programme foot TV du #{date_label_seo} : tous les matchs en direct | Coup d'Envoi TV"
+        end
       end
-    else
-      case title_variant
-      when 0 then "Foot #{date_label} : quels matchs à la TV ? Programme complet | Coup d'Envoi TV"
-      when 1 then "Foot #{date_label} : programme TV, chaînes et horaires | Coup d'Envoi TV"
-      else        "Programme foot TV du #{date_label} : tous les matchs en direct | Coup d'Envoi TV"
-      end
-    end
     seo_desc = if count > 0 && comps.any?
-      "#{count} match#{'s' if count > 1} de football le #{date_label} : #{comps_str}. Horaires et chaînes TV en France sur Coup d'Envoi TV."
+      "Programme TV foot du #{date_label_seo} : #{count} match#{'s' if count > 1} avec #{comps_str}. Horaires et chaînes en France."
     else
-      "Programme TV foot du #{date_label}. Retrouvez les horaires et chaînes de diffusion des matchs de football en France."
+      "Programme TV foot du #{date_label_seo}. Horaires et chaînes de diffusion des matchs de football en France."
     end
+  end
+
+  # Garde-fou : si le title dépasse 65 car, retire le suffixe
+  if seo_title.length > 65
+    seo_title = seo_title.sub(" | Coup d'Envoi TV", "")
   end
 %>
 <% content_for :title, seo_title %>
