@@ -451,6 +451,42 @@ module ApplicationHelper
     CHANNEL_SLUG_MAP[channel_name.downcase.strip]
   end
 
+  # Liens blog contextuels pour une page match
+  # Retourne un Array de { path:, label: } triés par pertinence
+  def match_blog_links(match)
+    links = []
+    comp = match.competition.to_s
+    teams = [match.home_team.to_s, match.away_team.to_s]
+
+    # Liens par compétition
+    comp_map = {
+      "Ligue 1"            => [{ path: "/blog/ligue-1-chaine-tv-2026", label: "Ligue 1 à la TV : sur quelle chaîne ?" },
+                                { path: "/chaines/canal-plus", label: "Tout savoir sur Canal+" }],
+      "Champions League"   => [{ path: "/blog/champions-league-chaine-tv-france", label: "Champions League : quelle chaîne TV ?" },
+                                { path: "/chaines/canal-plus", label: "Tout savoir sur Canal+" }],
+      "Premier League"     => [{ path: "/blog/ou-regarder-premier-league-france", label: "Où regarder la Premier League en France ?" }],
+      "Serie A"            => [{ path: "/blog/ou-regarder-serie-a-france", label: "Où regarder la Serie A en France ?" }],
+      "La Liga"            => [{ path: "/blog/ou-regarder-liga-france", label: "Où regarder la Liga en France ?" }],
+      "Bundesliga"         => [{ path: "/blog/bundesliga-chaine-tv-france", label: "Bundesliga à la TV en France" }],
+      "Europa League"      => [{ path: "/blog/europa-league-chaine-tv-france", label: "Europa League : Canal+ ou beIN Sports ?" }],
+      "Conference League"  => [{ path: "/blog/conference-league-chaine-tv-2026", label: "Conference League : date et chaîne TV" }],
+    }
+    links.concat(comp_map[comp]) if comp_map[comp]
+
+    # Liens par équipe
+    if teams.any? { |t| t.include?("Paris Saint Germain") || t.include?("Paris Saint-Germain") }
+      links << { path: "/blog/match-psg-ce-soir-chaine", label: "Match du PSG : chaîne et horaire" }
+    end
+    if teams.any? { |t| t.include?("Marseille") }
+      links << { path: "/blog/prochain-match-om-diffusion", label: "Prochain match de l'OM : chaîne et horaire" }
+    end
+
+    # Lien universel (toujours présent)
+    links << { path: "/blog/abonnement-foot-2026-quelle-chaine-choisir", label: "Le guide complet des abonnements foot 2026" }
+
+    links.uniq { |l| l[:path] }
+  end
+
   # Date en français : 29 mars 2026
   # Optimise les URLs d'images pour réduire le poids (Pexels & Unsplash)
   def optimized_image_url(url, width: 800, height: 200)
