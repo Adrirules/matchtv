@@ -74,6 +74,9 @@ namespace :players do
     end
 
     puts "\n🎉 #{total_players} joueurs importés au total !"
+
+    # Enchaîne sur les équipes nationales CdM 2026 (TTL 7j, même job scheduler)
+    Rake::Task['players:import_national_teams'].invoke
   end
 
   desc "Importe les effectifs des équipes nationales qualifiées pour la CdM 2026 (FORCE=1 pour bypasser le TTL)"
