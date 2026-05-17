@@ -82,9 +82,8 @@ namespace :gsc do
     # Seuil basé uniquement sur les vraies erreurs
     real_count = real_errors.size
 
-    # Email si spike de vraies 404 OU si c'est le premier run du jour (pour recap quotidien)
-    should_alert = real_count >= CrawlError::ALERT_THRESHOLD ||
-                   (all_count >= CrawlError::ALERT_THRESHOLD && bot_probes.any?)
+    # Email uniquement si spike de vraies 404 (bots exclus)
+    should_alert = real_count >= CrawlError::ALERT_THRESHOLD
 
     unless should_alert
       puts "  ℹ️  #{real_count} vraies 404 — sous le seuil (#{CrawlError::ALERT_THRESHOLD}), pas d'email"
