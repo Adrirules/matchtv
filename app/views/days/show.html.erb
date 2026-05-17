@@ -1,8 +1,6 @@
 <% date_label = format_date_label(@date) %>
 
 <%
-  is_future  = @date > Date.today
-  is_past    = @date < Date.today
   count      = @matches.size
   # Priorité aux compétitions françaises et européennes dans le title/desc
   comp_priority = %w[Ligue\ 1 Champions\ League Premier\ League La\ Liga Bundesliga Serie\ A Ligue\ 2 Europa\ League Conference\ League Coupe\ de\ France D1\ Féminine Eredivisie Liga\ Portugal Süper\ Lig]
@@ -16,28 +14,57 @@
   # 3 variations par jour de la semaine — évite le duplicate content entre dates adjacentes
   title_variant = @date.wday % 3
 
-  seo_title = if count > 0 && comps.any?
-    comps2 = comps.first(2).join(" et ")
-    case title_variant
-    when 0
-      "Foot #{date_label} : quels matchs à la TV ? #{comps2} au programme | Coup d'Envoi TV"
-    when 1
-      "#{comps2} le #{date_label} : sur quelle chaîne en direct ? | Coup d'Envoi TV"
+  if @is_past
+    seo_title = case title_variant
+      when 0 then "Résultats foot du #{date_label} : tous les scores et résumés | Coup d'Envoi TV"
+      when 1 then "Matchs du #{date_label} : résultats, scores et chaînes | Coup d'Envoi TV"
+      else        "Foot #{date_label} : tous les résultats et résumés | Coup d'Envoi TV"
+      end
+    seo_desc = if count > 0 && comps.any?
+      "Retrouvez tous les résultats des matchs de foot du #{date_label} : #{count} score#{'s' if count > 1}, résumés et chaînes de diffusion. #{comps_str}."
     else
-      "Programme foot TV du #{date_label} : #{count} match#{'s' if count > 1} en direct - #{comps.first(2).join(', ')} | Coup d'Envoi TV"
+      "Résultats des matchs de foot du #{date_label}. Scores finaux, résumés et chaînes de diffusion sur Coup d'Envoi TV."
     end
-  else
-    case title_variant
-    when 0 then "Foot #{date_label} : quels matchs à la TV ce soir ? Programme complet | Coup d'Envoi TV"
-    when 1 then "Foot #{date_label} : programme TV, chaînes et horaires | Coup d'Envoi TV"
-    else        "Programme foot TV du #{date_label} : tous les matchs en direct | Coup d'Envoi TV"
+  elsif @is_today
+    seo_title = if count > 0 && comps.any?
+      comps2 = comps.first(2).join(" et ")
+      case title_variant
+      when 0 then "Foot #{date_label} : quels matchs à la TV ? #{comps2} au programme | Coup d'Envoi TV"
+      when 1 then "#{comps2} le #{date_label} : sur quelle chaîne en direct ? | Coup d'Envoi TV"
+      else        "Programme foot TV du #{date_label} : #{count} match#{'s' if count > 1} en direct - #{comps.first(2).join(', ')} | Coup d'Envoi TV"
+      end
+    else
+      case title_variant
+      when 0 then "Foot #{date_label} : quels matchs à la TV ce soir ? Programme complet | Coup d'Envoi TV"
+      when 1 then "Foot #{date_label} : programme TV, chaînes et horaires | Coup d'Envoi TV"
+      else        "Programme foot TV du #{date_label} : tous les matchs en direct | Coup d'Envoi TV"
+      end
     end
-  end
-
-  seo_desc = if count > 0 && comps.any?
-    "#{count} match#{'s' if count > 1} de football le #{date_label} : #{comps_str}. Horaires et chaînes TV en France sur Coup d'Envoi TV."
-  else
-    "Programme TV foot du #{date_label}. Retrouvez les horaires et chaînes de diffusion des matchs de football en France."
+    seo_desc = if count > 0 && comps.any?
+      "Tous les matchs de foot ce soir #{date_label} : #{count} rencontre#{'s' if count > 1} en direct. #{comps_str}. Horaires et chaînes TV sur Coup d'Envoi TV."
+    else
+      "Programme TV foot du #{date_label}. Retrouvez les horaires et chaînes de diffusion des matchs de football en France."
+    end
+  else # @is_future
+    seo_title = if count > 0 && comps.any?
+      comps2 = comps.first(2).join(" et ")
+      case title_variant
+      when 0 then "Foot #{date_label} : quels matchs à la TV ? #{comps2} au programme | Coup d'Envoi TV"
+      when 1 then "#{comps2} le #{date_label} : sur quelle chaîne en direct ? | Coup d'Envoi TV"
+      else        "Programme foot TV du #{date_label} : #{count} match#{'s' if count > 1} en direct - #{comps.first(2).join(', ')} | Coup d'Envoi TV"
+      end
+    else
+      case title_variant
+      when 0 then "Foot #{date_label} : quels matchs à la TV ? Programme complet | Coup d'Envoi TV"
+      when 1 then "Foot #{date_label} : programme TV, chaînes et horaires | Coup d'Envoi TV"
+      else        "Programme foot TV du #{date_label} : tous les matchs en direct | Coup d'Envoi TV"
+      end
+    end
+    seo_desc = if count > 0 && comps.any?
+      "#{count} match#{'s' if count > 1} de football le #{date_label} : #{comps_str}. Horaires et chaînes TV en France sur Coup d'Envoi TV."
+    else
+      "Programme TV foot du #{date_label}. Retrouvez les horaires et chaînes de diffusion des matchs de football en France."
+    end
   end
 %>
 <% content_for :title, seo_title %>
@@ -58,9 +85,9 @@
 <div><%# colonne principale %>
 <%
   date_full = l(@date, format: :full)
-  h1_text = if @date == Date.today
+  h1_text = if @is_today
     "Foot ce soir : programme TV du #{date_full}"
-  elsif is_future
+  elsif @is_future
     "Programme foot du #{date_full} : chaînes et horaires"
   else
     "Matchs du #{date_full} : résultats et chaînes"
@@ -78,7 +105,7 @@
   </div>
 </div>
 
-<% if @date == Date.today %>
+<% if @is_today %>
   <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
     <p style="margin: 0 0 10px;">
       <strong>Coup d'Envoi TV</strong> est votre guide du programme TV football en France.
@@ -98,7 +125,7 @@
     </p>
   </div>
 
-<% elsif is_future && count > 0 %>
+<% elsif @is_future && count > 0 %>
   <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
     <p style="margin: 0 0 8px;">
       <strong><%= count %> match<%= count > 1 ? 's' : '' %></strong>
@@ -112,21 +139,37 @@
     </p>
   </div>
 
-<% elsif is_past && count > 0 %>
+<% elsif @is_past && count > 0 %>
+  <%
+    finished_count = @matches.count { |m| %w[FT AET PEN].include?(m.status) }
+  %>
   <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
     <p style="margin: 0 0 8px;">
-      Le <strong><%= l(@date, format: :long) %></strong>, <strong><%= count %> match<%= count > 1 ? 's' : '' %></strong>
-      <%= count > 1 ? 'étaient diffusés' : 'était diffusé' %> à la télévision.
-      <% if comps_str %> Les compétitions au programme : <strong><%= comps_str %></strong>.<% end %>
+      Voici tous les matchs de foot qui se sont joués le <strong><%= l(@date, format: :full) %></strong>.
+      Découvrez les résultats, les scores finaux et les chaînes qui ont diffusé chaque rencontre.
+      <strong><%= count %> match<%= count > 1 ? 's' : '' %></strong>
+      <%= count > 1 ? 'étaient' : 'était' %> au programme<% if comps_str %>, dont <strong><%= comps_str %></strong><% end %>.
     </p>
     <p style="margin: 0;">
-      Pour chaque match terminé, le score final et un résumé sont disponibles sur la page de la rencontre.
-      Retrouvez toute l'actualité dans les <%= link_to "résultats récents", resultats_path, style: "color: #007bff;" %>.
+      <% if finished_count > 0 %>
+        <%= finished_count %> rencontre<%= finished_count > 1 ? 's terminées' : ' terminée' %> - cliquez sur chaque match pour le score détaillé et le résumé.
+      <% end %>
+      Retrouvez aussi les <%= link_to "résultats récents", resultats_path, style: "color: #007bff;" %>,
+      les <%= link_to "classements", standings_path, style: "color: #007bff;" %> et
+      le <%= link_to "programme du jour", root_path, style: "color: #007bff;" %>.
+    </p>
+  </div>
+<% elsif @is_past && count == 0 %>
+  <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
+    <p style="margin: 0;">
+      Aucun match n'était programmé le <strong><%= l(@date, format: :full) %></strong>.
+      Consultez le <%= link_to "programme du jour", root_path, style: "color: #007bff;" %>
+      ou les <%= link_to "résultats récents", resultats_path, style: "color: #007bff;" %>.
     </p>
   </div>
 <% end %>
 
-<% if @date == Date.today && @matches.any?(&:live?) %>
+<% if @is_today && @matches.any?(&:live?) %>
   <script>
     setTimeout(function() { location.reload(); }, 60000);
   </script>
@@ -226,7 +269,7 @@
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun match prévu ce jour-là.</p>
 <% end %>
 
-<% if @date == Date.today %>
+<% if @is_today %>
   <%# --- NOS COMPÉTITIONS --- %>
   <section style="margin-top: 32px;">
     <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 12px;">Toutes nos compétitions</h2>

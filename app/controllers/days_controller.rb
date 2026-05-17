@@ -10,26 +10,27 @@ class DaysController < ApplicationController
         today
       end
 
-    # Sécurité : jamais dans le passé — redirect 301 pour éviter les conflits de canonical
-    if @date < today
+    # Fenêtre indexable : 3 mois en arrière, 7 jours en avant
+    if @date < today - 3.months || @date > today + 7.days
       redirect_to day_path(date: today), status: :moved_permanently and return
     end
 
-    # Fenêtre fixe de 7 jours
+    # Variables d'état temporel
+    @is_past   = @date < today
+    @is_today  = @date == today
+    @is_future = @date > today
+
+    # Calendrier : 7 jours à partir d'aujourd'hui (navigation rapide)
     @days = (0..6).map { |i| today + i.days }
 
     # Matchs pour le jour sélectionné
-    scope = Match.where(start_time: @date.all_day)
-
-    # Pas de filtre sur l'heure : on affiche tous les matchs du jour (y compris terminés)
-
-    @matches = scope.order(:start_time)
+    @matches = Match.where(start_time: @date.all_day).order(:start_time)
 
     # Nombre de matchs en direct (pour le badge du bouton)
     @live_count = Match.where(status: %w[1H HT 2H ET BT P]).count
 
     # 3 derniers articles blog (home uniquement)
-    @recent_articles = load_recent_blog_articles(4) if @date == today
+    @recent_articles = load_recent_blog_articles(4) if @is_today
   end
 
   private

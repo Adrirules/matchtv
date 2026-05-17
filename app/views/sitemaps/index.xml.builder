@@ -47,6 +47,15 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     end
   end
 
+  # JOURS (programme TV par date)
+  @day_dates.each do |date|
+    xml.url do
+      xml.loc day_url(date: date)
+      xml.changefreq date >= Date.today ? "hourly" : "never"
+      xml.priority date == Date.today ? 0.9 : 0.5
+    end
+  end
+
   # BLOG
   xml.url { xml.loc blog_url; xml.changefreq "weekly"; xml.priority 0.6 }
   @blog_articles.each do |article|

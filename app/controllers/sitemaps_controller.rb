@@ -26,7 +26,14 @@ class SitemapsController < ApplicationController
     # 6. Les Chaînes TV
     @channel_slugs = ChannelsController::CHANNELS_META.map { |c| c[:slug] }
 
-    # 7. Les Articles de blog (publiés uniquement)
+    # 7. Les pages /days/ (aujourd'hui + 7 jours futur + 3 mois passé)
+    @day_dates = Match.where("start_time > ?", 3.months.ago)
+                      .where("start_time < ?", 7.days.from_now.end_of_day)
+                      .distinct
+                      .pluck(Arel.sql("DATE(start_time)"))
+                      .sort
+
+    # 8. Les Articles de blog (publiés uniquement)
     @blog_articles = Dir.glob(Rails.root.join("app/content/blog/*.md")).map do |path|
       content = File.read(path)
       frontmatter = content.match(/\A---\n(.*?)\n---/m)&.[](1)
