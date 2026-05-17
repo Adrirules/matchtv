@@ -1,6 +1,7 @@
 namespace :gsc do
   # Patterns de scans bots/sécurité — jamais de vraies pages utilisateur
   BOT_PROBE_PATTERNS = [
+    # Credentials & config
     /^\/\.env/i,
     /\/\.env/i,
     /^\/\.aws/i,
@@ -11,20 +12,28 @@ namespace :gsc do
     /^\/asset-manifest\.json/i,
     /^\/env\.(js|json)$/i,
     /^\/__env/i,
-    /^\/graphql/i,
-    /^\/backend\//i,
-    /^\/public\//i,
-    /^\/api\/(v\d+\/)?(settings|config|env|v\d+\/env)/i,
-    /^\/assets\/.*\.map$/i,    # source maps — jamais servis en prod
-    /^\/wp-/i,                 # scans WordPress
+    /sftp[^\/]*\.json/i,       # sftp-config.json, .vscode/sftp.json
+    /^\/\.vscode\//i,
+    # PHP — tout fichier .php sur un site Rails = scan bot
+    /\.php$/i,
+    /^\/cgi-bin\//i,
+    # WordPress & CMS scans
+    /^\/wp-/i,
     /^\/wp\.php/i,
     /^\/xmlrpc\.php/i,
     /^\/admin\.php/i,
     /^\/phpmyadmin/i,
+    # Infrastructure & outils
+    /^\/graphql/i,
+    /^\/backend\//i,
+    /^\/public\//i,
+    /^\/api\/(v\d+\/)?(settings|config|env|v\d+\/env)/i,
+    /^\/assets\/.*\.map$/i,
     /^\/\.git/i,
     /^\/\.htaccess/i,
     /^\/vendor\//i,
     /^\/autodiscover/i,
+    /^\/\.well-known/i,        # ACME / security.txt — pas une page Rails
   ].freeze
 
   def bot_probe?(url)
