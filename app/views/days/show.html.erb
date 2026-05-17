@@ -56,16 +56,26 @@
 <%# --- CONTENU --- %>
 <div class="with-sidebar">
 <div><%# colonne principale %>
-<div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 14px; margin: 8px 0 16px;">
-  <h1 style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #010e1b; margin: 0;">
-    Programme TV foot <%= date_label %>
-  </h1>
-  <% if @live_count > 0 %>
-    <%= link_to direct_path, style: "display: inline-flex; align-items: center; gap: 5px; background: var(--color-live); color: white; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-decoration: none; white-space: nowrap; flex-shrink: 0;" do %>
-      <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
-      <%= @live_count %> en direct
+<%
+  date_full = l(@date, format: :full)
+  h1_text = if @date == Date.today
+    "Foot ce soir : programme TV du #{date_full}"
+  elsif is_future
+    "Programme foot du #{date_full} : chaînes et horaires"
+  else
+    "Matchs du #{date_full} : résultats et chaînes"
+  end
+%>
+<div style="margin: 8px 0 16px;">
+  <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+    <h1 style="font-size: 24px; font-weight: 800; color: #010e1b; margin: 0; line-height: 1.3; font-family: var(--font-heading);"><%= h1_text %></h1>
+    <% if @live_count > 0 %>
+      <%= link_to direct_path, style: "display: inline-flex; align-items: center; gap: 5px; background: var(--color-live); color: white; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-decoration: none; white-space: nowrap; flex-shrink: 0;" do %>
+        <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
+        <%= @live_count %> en direct
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
 <% if @date == Date.today %>
