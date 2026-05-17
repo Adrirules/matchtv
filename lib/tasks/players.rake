@@ -81,13 +81,14 @@ namespace :players do
 
   desc "Importe les effectifs des équipes nationales qualifiées pour la CdM 2026 (FORCE=1 pour bypasser le TTL)"
   task import_national_teams: :environment do
-    unless FootballApiService.within_budget?(:low)
-      puts "⛔ players:import_national_teams ignoré — quota API proche du seuil"
+    force = ENV['FORCE'] == '1'
+
+    unless force || FootballApiService.within_budget?(:low)
+      puts "⛔ players:import_national_teams ignoré — quota API proche du seuil (FORCE=1 pour forcer)"
       next
     end
 
-    api   = FootballApiService.new
-    force = ENV['FORCE'] == '1'
+    api = FootballApiService.new
 
     # Toutes les équipes nationales via les matchs CdM 2026
     team_ids = (
