@@ -119,6 +119,29 @@
 
   <div style="max-width: 970px; margin: 0 auto;">
 
+  <%# ---- H1 sémantique (invisible visuellement, le hero fait office de titre visuel) ---- %>
+  <%
+    h1_home = team_display_name(@match.home_team)
+    h1_away = team_display_name(@match.away_team)
+    if is_finished && has_score
+      h1_texts = [
+        "#{h1_home} #{@match.home_score}-#{@match.away_score} #{h1_away} : résultat et résumé",
+        "Résultat #{h1_home} – #{h1_away} : #{@match.home_score}-#{@match.away_score}",
+        "#{h1_home} – #{h1_away} : score final #{@match.home_score}-#{@match.away_score}",
+      ]
+      h1_text = h1_texts[@match.id % h1_texts.size]
+    else
+      h1_texts = [
+        "#{h1_home} – #{h1_away} : sur quelle chaîne ?",
+        "Où regarder #{h1_home} – #{h1_away}",
+        "#{h1_home} – #{h1_away} : programme TV",
+        "#{h1_home} contre #{h1_away} : chaîne et streaming",
+      ]
+      h1_text = h1_texts[@match.id % h1_texts.size]
+    end
+  %>
+  <h1 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 12px 0 16px; line-height: 1.4;"><%= h1_text %></h1>
+
   <%# ---- Card affiliée Canal+ (matchs à venir ou en direct sur Canal+) ---- %>
   <% if !is_finished && @match.tv_channels.to_s.include?('Canal') %>
     <%= render 'shared/canal_plus_card',
