@@ -28,17 +28,8 @@
       end
     seo_desc = "Résultats foot du #{date_label_seo} : #{count} match#{'s' if count > 1} joué#{'s' if count > 1}, scores complets et chaînes de diffusion."
   elsif @is_today
-    seo_title = case tv
-      when 0 then "Foot ce soir #{date_label_seo} : programme TV et chaînes en direct | Coup d'Envoi TV"
-      when 1
-        if comps2
-          "Match foot ce soir : programme TV du #{date_label_seo} avec #{comps2} | Coup d'Envoi TV"
-        else
-          "Match foot ce soir : programme TV du #{date_label_seo} | Coup d'Envoi TV"
-        end
-      else "Programme foot #{date_label_seo} : tous les matchs ce soir à la TV | Coup d'Envoi TV"
-      end
-    seo_desc = "Tous les matchs de foot ce soir #{date_label_seo} : #{count} rencontre#{'s' if count > 1} en direct. Horaires et chaînes TV en France."
+    seo_title = "Programme TV foot aujourd'hui : matchs et chaînes en direct | Coup d'Envoi TV"
+    seo_desc = "Tous les matchs de foot aujourd'hui : #{count} rencontre#{'s' if count > 1} en direct. Horaires et chaînes TV en France."
   else # @is_future
     seo_title = case tv
       when 0 then "Match foot #{date_label_seo} : programme TV, chaînes et horaires | Coup d'Envoi TV"
