@@ -39,7 +39,7 @@ class CompetitionsController < ApplicationController
     253 => %w[amazon-prime],
     307 => %w[canal-plus],
     203 => %w[bein-sports],
-    1   => %w[m6 tf1 france-tv],
+    1   => %w[m6 bein-sports],
   }.freeze
 
   def index

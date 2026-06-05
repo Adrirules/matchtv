@@ -3,6 +3,7 @@ class FootballApiService
 
   # Source de vérité unique — ordre par popularité en France
   COMPETITIONS_META = [
+    { id: 1,   name: "Coupe du Monde 2026", country: "Monde",          has_standings: true },
     { id: 61,  name: "Ligue 1",            country: "France",          has_standings: true  },
     { id: 2,   name: "Champions League",   country: "Europe",          has_standings: true  },
     { id: 39,  name: "Premier League",     country: "Angleterre",      has_standings: true  },
@@ -28,7 +29,6 @@ class FootballApiService
     { id: 5,   name: "Qualif. Mondial 2026", country: "Europe",        has_standings: false, archived: true },
     { id: 4,   name: "Euro / Nations League", country: "Europe",       has_standings: false, archived: true },
     { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false, archived: true },
-    { id: 1,   name: "Coupe du Monde 2026", country: "Monde",          has_standings: true },
   ].freeze
 
   # Saison active par ligue — CDM 2026 utilise season 2026, tout le reste 2025
@@ -133,7 +133,7 @@ class FootballApiService
     when 9 # Copa America
       "beIN Sports"
     when 1 # Coupe du Monde 2026
-      "TF1 / M6"
+      "M6 / beIN Sports"
     else
       "À confirmer"
     end
