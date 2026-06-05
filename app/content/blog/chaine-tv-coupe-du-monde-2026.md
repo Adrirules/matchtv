@@ -62,7 +62,7 @@ Les matchs des Bleus en phase de groupes sont déjà confirmés :
 
 Donc si tu veux juste suivre les Bleus et les grands rendez-vous : **M6 suffit, et c'est gratuit.**
 
-Et pour le replay ? M6+ propose une fonctionnalité de rattrapage, utile pour les matchs tardifs. [Molotov](https://www.molotov.tv/) est aussi une bonne option pour les matchs M6 : l'appli permet de regarder en direct, en replay et même d'enregistrer les rencontres pour les revoir plus tard. Mais dans les deux cas, l'accès est limité dans le temps - ne comptez pas revoir le quart de finale trois semaines après.
+Et pour le replay ? M6+ propose une fonctionnalité de rattrapage, utile pour les matchs tardifs. [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) est aussi une bonne option pour les matchs M6 : l'appli permet de regarder en direct, en replay et même d'enregistrer les rencontres pour les revoir plus tard. Mais dans les deux cas, l'accès est limité dans le temps - ne comptez pas revoir le quart de finale trois semaines après.
 
 ---
 
@@ -134,7 +134,7 @@ Oui, dans certaines offres. beIN Sports est intégré aux bouquets **Canal+ Spor
 
 ### Où voir les matchs de la Coupe du Monde en streaming gratuit ?
 
-Légalement : **M6+** ou **[Molotov](https://www.molotov.tv/)** pour les 54 matchs en clair. Les deux sont gratuits et accessibles sur ordinateur, mobile et télévision connectée - Molotov offre en plus l'enregistrement des matchs. Pour les 104 matchs, l'application **[beIN Sports](/chaines/bein-sports)** (sur abonnement) est la seule option légale complète.
+Légalement : **M6+** ou **[Molotov](https://molotov.pxf.io/c/7376919/1379964/16522)** pour les 54 matchs en clair. Les deux sont gratuits et accessibles sur ordinateur, mobile et télévision connectée - Molotov offre en plus l'enregistrement des matchs. Pour les 104 matchs, l'application **[beIN Sports](/chaines/bein-sports)** (sur abonnement) est la seule option légale complète.
 
 ### À quelle heure se jouent les matchs en France ?
 
