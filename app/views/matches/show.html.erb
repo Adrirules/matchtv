@@ -142,6 +142,15 @@
   %>
   <h1 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 12px 0 16px; line-height: 1.4;"><%= h1_text %></h1>
 
+  <%# ---- Card affiliée Molotov (matchs M6 — CdM 2026 live, replay, enregistrement) ---- %>
+  <% if !is_finished && @match.tv_channels.to_s.include?('M6') %>
+    <%= render 'shared/molotov_card',
+        variant: :standard,
+        page_context: 'match',
+        cta_index: @match.id % 3,
+        subtitle: is_live ? "Ce match est en direct sur M6 et sur Molotov - regardez-le maintenant en live." : "Ce match sera diffusé sur M6. Regardez-le en direct, en replay ou enregistrez-le sur Molotov." %>
+  <% end %>
+
   <%# ---- Card affiliée Canal+ (matchs à venir ou en direct sur Canal+) ---- %>
   <% if !is_finished && @match.tv_channels.to_s.include?('Canal') %>
     <%= render 'shared/canal_plus_card',

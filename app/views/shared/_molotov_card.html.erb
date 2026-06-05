@@ -1,0 +1,44 @@
+<%#
+  Partial : carte affilié Molotov TV
+  Usage : matchs CdM 2026 diffusés sur M6 (live, replay, enregistrement)
+  Locals :
+    - variant      (:standard | :compact)  default: :standard
+    - page_context (string GA4 : 'match', 'competition', 'blog') default: 'site'
+    - cta_index    (0..2 pour A/B CTA) default: 0
+    - subtitle     (string optionnel pour surcharger le texte sous le titre)
+%>
+<% molotov_url = local_assigns.fetch(:url, "https://www.molotov.tv/") %>
+
+<% variant      = local_assigns.fetch(:variant, :standard) %>
+<% page_context = local_assigns.fetch(:page_context, "site") %>
+<% cta_index    = local_assigns.fetch(:cta_index, 0) %>
+<% ctas = ["Regarder sur Molotov", "Voir ce match sur Molotov", "Essayer Molotov gratuitement"] %>
+<% cta_text = local_assigns[:cta_label].presence || ctas[cta_index % 3] %>
+<% ga_push = "dataLayer.push({event:'affiliate_click',affiliate_partner:'molotov',affiliate_page:'#{page_context}',affiliate_cta:#{cta_index % 3}})" %>
+
+<% if variant == :compact %>
+  <%= link_to molotov_url, target: "_blank", rel: "nofollow sponsored noopener",
+      style: "color: #000; font-weight: 600; text-decoration: none;",
+      onclick: ga_push do %>
+    <%= cta_text %> →
+  <% end %>
+
+<% else %>
+  <% card_subtitle = local_assigns[:subtitle].presence ||
+    "Regardez les matchs M6 en direct, en replay ou enregistrez-les sur Molotov." %>
+
+  <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px 18px; margin: 22px 0;">
+    <div style="margin-bottom: 10px;">
+      <span style="font-size: 13px; font-weight: 900; letter-spacing: 0.04em; color: #000; background: #FFCF20; border-radius: 4px; padding: 3px 10px; font-family: 'DM Sans', sans-serif;">MOLOTOV</span>
+    </div>
+    <p style="margin: 0 0 14px; font-size: 13px; color: var(--color-muted); line-height: 1.55; font-family: 'DM Sans', sans-serif;"><%= card_subtitle %></p>
+    <%= link_to molotov_url, target: "_blank", rel: "nofollow sponsored noopener",
+        onclick: ga_push,
+        onmouseover: "this.style.opacity='0.82'",
+        onmouseout: "this.style.opacity='1'",
+        style: "display: block; width: 100%; background: #000; color: #FFCF20; font-size: 13px; font-weight: 700; padding: 11px 0; border-radius: 8px; text-decoration: none; text-align: center; font-family: 'DM Sans', sans-serif; box-sizing: border-box; transition: opacity 0.15s;" do %>
+      <%= cta_text %> →
+    <% end %>
+    <p style="margin: 8px 0 0; font-size: 9px; color: var(--color-muted); text-align: center; font-family: 'DM Sans', sans-serif; opacity: 0.6;">Lien affilié · commission perçue sur souscription</p>
+  </div>
+<% end %>

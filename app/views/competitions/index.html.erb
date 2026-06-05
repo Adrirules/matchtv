@@ -9,8 +9,8 @@
   <%
     meta_list = FootballApiService::COMPETITIONS_META
     active_names = @competitions.map { |c| c[:name] }
-    country_order = ["France", "Europe"] +
-      (meta_list.map { |c| c[:country] }.uniq - ["France", "Europe"])
+    country_order = ["Monde", "France", "Europe"] +
+      (meta_list.map { |c| c[:country] }.uniq - ["Monde", "France", "Europe"])
     flag = CompetitionsController::COUNTRY_FLAGS
   %>
 
