@@ -200,7 +200,7 @@ Oui, via **M6+** pour les 54 matchs en clair. La plateforme est accessible sur o
 
 ### Où voir les matchs de la Coupe du Monde 2026 en replay ?
 
-M6+ propose le replay des matchs en clair, avec une disponibilité limitée dans le temps. [beIN Sports](/chaines/bein-sports) propose un replay complet de l'intégralité des 104 matchs via son application, avec accès multi-écrans.
+M6+ propose le replay des matchs en clair, avec une disponibilité limitée dans le temps. [Molotov](https://www.molotov.tv/) est une alternative pratique pour les matchs M6 : live, replay et enregistrement des rencontres sur tous vos écrans. [beIN Sports](/chaines/bein-sports) propose un replay complet de l'intégralité des 104 matchs via son application, avec accès multi-écrans.
 
 ### Quand se joue la finale de la Coupe du Monde 2026 ?
 

@@ -123,6 +123,13 @@
         cta_index: 0,
         subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez tous les matchs DAZN en direct et en replay." %>
   <% end %>
+  <% if @channel[:slug] == 'm6' %>
+    <%= render 'shared/molotov_card',
+        variant: :standard,
+        page_context: 'channel-m6',
+        cta_index: 0,
+        subtitle: "Tous les matchs M6 de la Coupe du Monde 2026 en direct, en replay ou en enregistrement sur Molotov." %>
+  <% end %>
   <% if @channel[:slug] == 'bein-sports' %>
     <%= render 'shared/canal_plus_card',
         variant: :standard,

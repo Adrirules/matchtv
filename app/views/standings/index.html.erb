@@ -8,8 +8,8 @@
 
   <%
     flag = CompetitionsController::COUNTRY_FLAGS
-    country_order = ["France", "Europe"] +
-      (@leagues.map { |l| l[:country] }.uniq - ["France", "Europe"])
+    country_order = ["Monde", "France", "Europe"] +
+      (@leagues.map { |l| l[:country] }.uniq - ["Monde", "France", "Europe"])
   %>
 
   <% country_order.each do |country| %>

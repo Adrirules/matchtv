@@ -64,7 +64,7 @@
     <%= render 'shared/ad_unit', slot_id: '2773465276' %>
 
     <% if @matches.any? %>
-      <% @matches.each do |match| %>
+      <% @matches.each_with_index do |match, match_idx| %>
         <% identifier = match.slug.present? ? match.slug : match.id %>
         <%= link_to match_path(identifier), style: "text-decoration: none; color: inherit; display: block; margin-bottom: 8px;" do %>
           <div style="background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px;">
@@ -95,6 +95,14 @@
               </div>
             </div>
           </div>
+        <% end %>
+        <%# Card Molotov après le 3e match (CdM 2026 uniquement) %>
+        <% if @is_world_cup && match_idx == 2 %>
+          <%= render 'shared/molotov_card',
+              variant: :standard,
+              page_context: 'competition-cdm',
+              cta_index: 1,
+              subtitle: "Tous les matchs M6 de la Coupe du Monde 2026 en direct, en replay ou en enregistrement sur Molotov." %>
         <% end %>
       <% end %>
     <% else %>
@@ -146,6 +154,14 @@
             <% end %>
           </div>
         </div>
+        <%# Card Molotov après le groupe C %>
+        <% if group_index == 2 %>
+          <%= render 'shared/molotov_card',
+              variant: :standard,
+              page_context: 'competition-cdm-groupes',
+              cta_index: 0,
+              subtitle: "Suivez la Coupe du Monde 2026 en direct sur M6 et Molotov - live, replay et enregistrement." %>
+        <% end %>
       <% end %>
     </div>
 
@@ -258,6 +274,24 @@
           <% end %>
         <% end %>
       </div>
+
+      <%# Card Molotov pour CdM 2026 (matchs M6) %>
+      <% if @is_world_cup && @comp_channel_slugs.include?("m6") %>
+        <%= render 'shared/molotov_card',
+            variant: :standard,
+            page_context: 'competition-cdm-chaines',
+            cta_index: 2,
+            subtitle: "Tous les matchs M6 de la Coupe du Monde 2026 en direct, en replay ou en enregistrement sur Molotov." %>
+      <% end %>
+      <%# Card Canal+ beIN pour CdM (beIN inclus dans Canal+ Sport) %>
+      <% if @is_world_cup && @comp_channel_slugs.include?("bein-sports") %>
+        <%= render 'shared/canal_plus_card',
+            variant: :standard,
+            url: "https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1571",
+            page_context: 'competition-cdm-bein',
+            cta_index: 1,
+            subtitle: "La Coupe du Monde 2026 est aussi sur beIN Sports - inclus dans l'offre Canal+ Sport à 19,99€/mois sans engagement." %>
+      <% end %>
 
       <%# Cards affiliées (Canal+, DAZN) + bannières IAB %>
       <% if @comp_channel_slugs.include?("canal-plus") %>

@@ -109,7 +109,7 @@ Tu n'as pas besoin d'une box TV ni d'un décodeur satellite. Trois options fonct
 
 - **M6+ (gratuit)** : l'application M6, disponible sur smartphone, tablette, PC et smart TV. Tous les matchs M6/W9 en direct et en replay. Inscription gratuite.
 - **beIN Sports Connect (payant)** : le service streaming de beIN Sports, sans décodeur. Fonctionne sur PC, smartphone, tablette, Chromecast et Apple TV. Même tarif que l'abonnement classique.
-- **Molotov TV (gratuit pour M6/W9)** : l'appli française qui regroupe les chaînes TNT. M6 et W9 incluses sans surcoût. Pratique si tu veux tout centraliser dans une seule interface.
+- **[Molotov](https://www.molotov.tv/) (gratuit pour M6/W9)** : l'appli française qui regroupe les chaînes TNT. M6 et W9 incluses sans surcoût, avec en bonus la possibilité d'enregistrer les matchs et de les revoir en replay. Pratique si tu veux tout centraliser dans une seule interface.
 
 ---
 
@@ -152,7 +152,7 @@ Non. TF1 ne diffuse aucun match - une première en plus de 45 ans. Ce sont M6 et
 
 ## Conclusion
 
-Pour les Bleus et les grands matchs, M6 suffit - gratuit, sans abonnement, accessible sur n'importe quel écran via M6+. Pour voir tout le tournoi, beIN Sports à 15€/mois sans engagement est la bonne option : prends en juin, coupe en août.
+Pour les Bleus et les grands matchs, M6 suffit - gratuit, sans abonnement, accessible sur n'importe quel écran via M6+ ou [Molotov](https://www.molotov.tv/) (qui permet en plus d'enregistrer les matchs pour les revoir). Pour voir tout le tournoi, beIN Sports à 15€/mois sans engagement est la bonne option : prends en juin, coupe en août.
 
 Le seul vrai défi de cette édition, c'est les horaires. Prévois-les à l'avance. Et si tu veux comprendre comment on en est arrivé à ce système M6 + beIN Sports (et pourquoi TF1 a disparu), tout est expliqué dans notre [guide complet sur les chaînes de la Coupe du Monde 2026](/blog/chaine-tv-coupe-du-monde-2026).
 

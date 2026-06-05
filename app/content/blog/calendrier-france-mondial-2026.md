@@ -77,7 +77,7 @@ La côte Est des États-Unis est à 6 heures de décalage avec la France en ét�
 
 En phase à élimination directe, les horaires peuvent varier selon les stades et les fuseaux. Si la France va en demi-finale à Dallas, les matchs dans le centre des États-Unis sont à 7 heures de décalage, ce qui change légèrement les calculs.
 
-Les matchs de la [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) sont diffusés sur M6 en clair et sur beIN Sports. M6 diffuse les 54 matchs les plus attendus, dont tous ceux de l'équipe de France.
+Les matchs de la [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) sont diffusés sur M6 en clair et sur beIN Sports. M6 diffuse les 54 matchs les plus attendus, dont tous ceux de l'équipe de France. Si vous n'avez pas la TNT sous la main, [Molotov](https://www.molotov.tv/) permet de regarder M6 en streaming gratuit avec en plus la possibilité d'enregistrer les matchs des Bleus.
 
 ---
 
