@@ -55,8 +55,10 @@
         <% photo     = player['photo'] %>
         <% pslug     = player['name']&.parameterize %>
         <% border_b  = i < @players.size - 1 ? 'border-bottom: 1px solid #f1f5f9;' : '' %>
+        <% player_db = Player.find_by(slug: pslug) %>
+        <% linkable  = player_db && player_linkable?(player_db) %>
 
-        <%= link_to player_path(pslug), style: "display: flex; align-items: center; padding: 10px 14px; text-decoration: none; color: inherit; #{border_b}" do %>
+        <% row_content = capture do %>
           <span style="width: 32px; font-size: 12px; font-weight: 700; color: <%= i < 3 ? '#f59e0b' : '#94a3b8' %>;"><%= i + 1 %></span>
           <div style="flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0;">
             <% if photo.present? %>
@@ -80,6 +82,11 @@
           <span style="width: 44px; text-align: center; font-size: 13px; color: #64748b;"><%= goals %></span>
           <span style="width: 44px; text-align: center; font-size: 13px; color: #64748b;"><%= games %></span>
           <span style="width: 44px; text-align: center; font-size: 12px; color: #94a3b8;"><%= minutes %>′</span>
+        <% end %>
+        <% if linkable %>
+          <%= link_to row_content, player_path(pslug), style: "display: flex; align-items: center; padding: 10px 14px; text-decoration: none; color: inherit; #{border_b}" %>
+        <% else %>
+          <div style="display: flex; align-items: center; padding: 10px 14px; #{border_b}"><%= row_content %></div>
         <% end %>
       <% end %>
     </div>

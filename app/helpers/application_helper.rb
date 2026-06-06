@@ -636,4 +636,21 @@ module ApplicationHelper
     style   += "font-family:'DM Sans',sans-serif;letter-spacing:0.02em;white-space:nowrap;line-height:1.4;"
     content_tag(:span, label, style: style)
   end
+
+  # --- Orphelinage joueurs thin ---
+
+  def hide_thin_player_links?
+    ENV.fetch('HIDE_THIN_PLAYER_LINKS', 'true') == 'true'
+  end
+
+  # Décide si un joueur mérite un lien interne.
+  # player : objet Player (DB). Si nil, pas de lien.
+  # Quand le toggle est off ou le joueur indexable → lien.
+  # Sinon → texte brut (le bloc est rendu sans <a>).
+  def player_linkable?(player)
+    return true unless hide_thin_player_links?
+    return false if player.nil?
+
+    player.team_active?
+  end
 end

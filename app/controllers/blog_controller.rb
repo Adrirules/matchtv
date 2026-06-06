@@ -51,6 +51,7 @@ class BlogController < ApplicationController
     tag_label = TAG_LABELS[@tag] || @tag.gsub('-', ' ').split.map(&:capitalize).join(' ')
     @page_title = "Articles #{tag_label} — Blog | Coup d'Envoi TV"
     @page_desc  = "Tous les articles sur #{tag_label} : guides pratiques, droits TV et analyses rédigés par Adrien."
+    @noindex = true
     expires_in 1.hour, private: true
   end
 

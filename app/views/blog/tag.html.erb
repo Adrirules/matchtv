@@ -1,8 +1,6 @@
 <% content_for :title, @page_title %>
 <% content_for :container_class, 'container--wide' %>
 <% content_for :meta_description, @page_desc %>
-<% content_for :noindex_tag do %><meta name="robots" content="noindex, follow"><% end %>
-
 <% tag_label = BlogController::TAG_LABELS[@tag] || @tag.gsub('-', ' ').split.map(&:capitalize).join(' ') %>
 
 <div class="blog-wrapper">

@@ -78,7 +78,9 @@
         <% player = entry["player"] %>
         <% stats = entry.dig("statistics", 0) %>
         <% player_slug = player["name"]&.parameterize %>
-        <%= link_to player_path(player_slug), style: "display: flex; align-items: center; gap: 12px; padding: 10px 14px; text-decoration: none; color: inherit; border-bottom: 1px solid #f1f5f9;" do %>
+        <% player_db = Player.find_by(slug: player_slug) %>
+        <% linkable = player_db && player_linkable?(player_db) %>
+        <% row_content = capture do %>
           <span style="width: 28px; font-size: 13px; font-weight: 800; color: #94a3b8; text-align: center;"><%= i + 1 %></span>
           <img src="<%= player["photo"] %>" alt="<%= player["name"] %>"
                width="30" height="30" loading="lazy"
@@ -97,6 +99,11 @@
           <span style="width: 36px; font-size: 13px; font-weight: 600; color: #64748b; text-align: center;">
             <%= stats&.dig("goals", "assists") || 0 %>
           </span>
+        <% end %>
+        <% if linkable %>
+          <%= link_to row_content, player_path(player_slug), style: "display: flex; align-items: center; gap: 12px; padding: 10px 14px; text-decoration: none; color: inherit; border-bottom: 1px solid #f1f5f9;" %>
+        <% else %>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #f1f5f9;"><%= row_content %></div>
         <% end %>
       <% end %>
     </div>
