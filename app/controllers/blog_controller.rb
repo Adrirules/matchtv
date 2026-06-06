@@ -101,6 +101,19 @@ class BlogController < ApplicationController
 
     @related_articles = related_articles_for(@article)
 
+    # Card match (articles type "France - Sénégal : chaîne TV...")
+    @blog_match = nil
+    if @article[:match_card].is_a?(Hash)
+      home = @article[:match_card]['home'].to_s.strip
+      away = @article[:match_card]['away'].to_s.strip
+      if home.present? && away.present?
+        @blog_match = Match.where(
+          "(home_team ILIKE :h AND away_team ILIKE :a) OR (home_team ILIKE :a AND away_team ILIKE :h)",
+          h: "%#{home}%", a: "%#{away}%"
+        ).order(:start_time).last
+      end
+    end
+
     # Programme dynamique d'un club (articles type "match psg ce soir chaîne")
     if @article[:club_schedule].is_a?(Hash)
       search = @article[:club_schedule]['search'].to_s.strip
@@ -176,7 +189,8 @@ class BlogController < ApplicationController
       dazn_card:         meta.key?('dazn_card') ? meta['dazn_card'] : true,
       canal_plus_card:   meta.key?('canal_plus_card') ? meta['canal_plus_card'] : true,
       tags:              Array(meta['tags']).map(&:to_s).reject(&:blank?),
-      club_schedule:     meta['club_schedule']
+      club_schedule:     meta['club_schedule'],
+      match_card:        meta['match_card']
     }
     result[:body] = body_text if with_body
     result

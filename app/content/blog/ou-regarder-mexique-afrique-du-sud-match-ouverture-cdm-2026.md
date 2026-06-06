@@ -9,6 +9,9 @@ image: https://images.unsplash.com/photo-1430232324554-8f4aebd06683?q=80&w=2064&
 image_credit: "Photo : Unsplash"
 excerpt: "Le Mondial 2026 commence le 11 juin avec Mexique - Afrique du Sud au Stade Aztèque. Voici où le voir en direct, en replay, et ce qu'il faut savoir sur cette affiche."
 tags: ["coupe-du-monde", "chaines-tv"]
+match_card:
+  home: "Mexico"
+  away: "South Africa"
 ---
 
 <script type="application/ld+json">
@@ -57,6 +60,8 @@ tags: ["coupe-du-monde", "chaines-tv"]
 ## Réponse rapide
 
 > **Mexique - Afrique du Sud** se joue le **mercredi 11 juin 2026 à 21h** (heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (gratuit, avec replay et enregistrement).
+
+<!-- MATCH_CARD -->
 
 ## Toutes les infos du match
 

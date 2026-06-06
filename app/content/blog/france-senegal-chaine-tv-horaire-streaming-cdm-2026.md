@@ -9,6 +9,9 @@ image: https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2070&
 image_credit: "Photo : Unsplash / Jannes Glas"
 excerpt: "France - Sénégal ouvre le Mondial des Bleus le 16 juin à 21h. Chaîne TV, streaming, compositions et tout le contexte d'un match chargé d'histoire."
 tags: ["coupe-du-monde", "chaines-tv", "equipe-de-france"]
+match_card:
+  home: "France"
+  away: "Senegal"
 ---
 
 <script type="application/ld+json">
@@ -57,6 +60,8 @@ Bon. On va se le dire. C'est LE match qu'on attend tous depuis le tirage au sort
 ## Réponse rapide
 
 > **France - Sénégal** se joue le **mardi 16 juin 2026 à 21h** (heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (gratuit, avec replay et enregistrement).
+
+<!-- MATCH_CARD -->
 
 ## Toutes les infos du match
 

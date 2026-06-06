@@ -9,6 +9,9 @@ image: https://images.unsplash.com/photo-1596209949429-9b6068df436b?q=80&w=1548&
 image_credit: "Photo : Unsplash"
 excerpt: "Argentine - Algérie, c'est le premier match des Fennecs au Mondial 2026. Le 17 juin à 3h du matin, en direct sur beIN Sports. Chaîne, streaming et tout le contexte."
 tags: ["coupe-du-monde", "chaines-tv"]
+match_card:
+  home: "Argentina"
+  away: "Algeria"
 ---
 
 <script type="application/ld+json">
@@ -57,6 +60,8 @@ tags: ["coupe-du-monde", "chaines-tv"]
 ## Réponse rapide
 
 > **Argentine - Algérie** se joue dans la **nuit du mardi 16 au mercredi 17 juin 2026 à 3h00 du matin** (heure française). Le match est diffusé en direct sur **[beIN Sports](/chaines/bein-sports) 1** (abonnement). Ce match n'est pas sur M6. En streaming : beIN Sports Connect.
+
+<!-- MATCH_CARD -->
 
 ## Toutes les infos du match
 

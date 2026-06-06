@@ -9,6 +9,9 @@ image: https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?q=80&w=2066&
 image_credit: "Photo : Unsplash / Feo con Ganas"
 excerpt: "Brésil - Maroc ouvre le Mondial des Lions de l'Atlas le 13 juin à minuit heure française. Chaîne TV, streaming, compositions et tout le contexte de ce choc du groupe C."
 tags: ["coupe-du-monde", "chaines-tv"]
+match_card:
+  home: "Brazil"
+  away: "Morocco"
 ---
 
 <script type="application/ld+json">
@@ -57,6 +60,8 @@ Bon, on va pas tourner autour du pot. Brésil - Maroc en match d'ouverture du gr
 ## Réponse rapide
 
 > **Brésil - Maroc** se joue dans la **nuit du samedi 13 au dimanche 14 juin 2026 à minuit** (00h00, heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (gratuit, avec replay et enregistrement).
+
+<!-- MATCH_CARD -->
 
 ## Toutes les infos du match
 

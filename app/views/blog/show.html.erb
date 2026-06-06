@@ -127,6 +127,11 @@
       processed.gsub!('<!-- MOLOTOV_CARD -->',         render('shared/molotov_card',     variant: :standard, page_context: 'blog-inline-molotov', cta_index: 0, subtitle: "Coupe du Monde 2026 sur M6 - regardez les matchs en direct, en replay ou enregistrez-les sur Molotov."))
       processed.gsub!('<!-- DAZN_BANNER -->',        render('shared/dazn_banner',      page_context: 'blog-dazn'))
       processed.gsub!('<!-- RAT_SPORT_BANNER -->',   render('shared/rat_sport_banner', page_context: 'blog-rat'))
+      if @blog_match
+        processed.gsub!('<!-- MATCH_CARD -->', render('blog/blog_match_card', match: @blog_match))
+      else
+        processed.gsub!('<!-- MATCH_CARD -->', '')
+      end
     %>
     <%= processed.html_safe %>
   </div>
