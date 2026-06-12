@@ -10,7 +10,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
+  "@type": "<%= (@article[:cdm_tonight] || @article[:france_next_match]) ? 'Article' : 'BlogPosting' %>",
   "headline": "<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '')&.gsub('"', '\"') %>",
   "datePublished": "<%= @article[:published_at]&.to_date&.iso8601 %>",
   "dateModified": "<%= (@article[:cdm_tonight] || @article[:france_next_match]) ? Date.today.iso8601 : @article[:published_at]&.to_date&.iso8601 %>",
