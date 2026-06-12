@@ -1,0 +1,139 @@
+<%#
+  Partial : prochain match de la France CdM 2026 (dynamique - 5 cas)
+  Locals :
+    - france_match      : le prochain match France (Match ou nil)
+    - france_live        : true si match en cours
+    - france_today       : true si match aujourd'hui (pas encore commencé)
+    - france_eliminated  : true si France éliminée (flag manuel)
+    - tournament_over    : true si Mondial terminé
+    - days_until         : nombre de jours avant le match (ou nil)
+    - france_past_matches : matchs France déjà joués (pour récap parcours)
+%>
+<% france_match       = local_assigns.fetch(:france_match, nil) %>
+<% france_live        = local_assigns.fetch(:france_live, false) %>
+<% france_today       = local_assigns.fetch(:france_today, false) %>
+<% france_eliminated  = local_assigns.fetch(:france_eliminated, false) %>
+<% tournament_over    = local_assigns.fetch(:tournament_over, false) %>
+<% days_until         = local_assigns.fetch(:days_until, nil) %>
+<% france_past_matches = local_assigns.fetch(:france_past_matches, []) %>
+
+<div style="margin: 28px 0; border-radius: 12px; overflow: hidden; background: #fff; border: 1px solid #e2e8f0;">
+
+  <% if tournament_over %>
+    <%# CAS 5 — Mondial terminé %>
+    <div style="padding: 10px 16px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+      <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b;">Coupe du Monde 2026</span>
+    </div>
+    <div style="padding: 24px 20px; text-align: center;">
+      <p style="font-size: 16px; font-weight: 700; color: #010e1b; margin: 0 0 8px;">La Coupe du Monde 2026 est terminée</p>
+      <p style="font-size: 14px; color: #64748b; margin: 0; line-height: 1.6;">
+        Retrouve le parcours complet des Bleus et tous les résultats sur la
+        <a href="/competitions/coupe-du-monde-2026" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">page Coupe du Monde 2026</a>.
+      </p>
+    </div>
+
+  <% elsif france_eliminated %>
+    <%# CAS 4 — France éliminée %>
+    <div style="padding: 10px 16px; background: #fef2f2; border-bottom: 1px solid #fecaca;">
+      <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #dc2626;">Eliminée</span>
+    </div>
+    <div style="padding: 24px 20px;">
+      <p style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 8px;">L'équipe de France a été éliminée de la Coupe du Monde 2026.</p>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 16px; line-height: 1.6;">
+        La compétition continue sans les Bleus.
+        <a href="/blog/match-coupe-du-monde-ce-soir" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">Quels matchs ce soir ?</a>
+      </p>
+      <% if france_past_matches.any? %>
+        <p style="font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 8px;">Parcours des Bleus</p>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <% france_past_matches.each do |m| %>
+            <%= render 'shared/match_card', match: m, priority: false %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+  <% elsif france_live && france_match %>
+    <%# CAS 3 — Match en cours %>
+    <div style="padding: 10px 16px; background: #fef2f2; border-bottom: 1px solid #fecaca; display: flex; align-items: center; gap: 8px;">
+      <span style="display: inline-block; width: 8px; height: 8px; background: #dc2626; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite;"></span>
+      <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #dc2626;">En direct</span>
+    </div>
+    <div style="padding: 16px 20px;">
+      <p style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 12px;">
+        La France joue en ce moment !
+      </p>
+      <div style="padding: 0 0 8px;">
+        <%= render 'shared/match_card', match: france_match, priority: true %>
+      </div>
+      <% if france_match.tv_channels.to_s.downcase.include?('m6') %>
+        <p style="font-size: 12px; color: #64748b; margin: 8px 0 0;">
+          En direct sur M6 et en streaming sur <a href="https://molotov.pxf.io/c/7376919/3924296/16522" target="_blank" rel="nofollow sponsored noopener" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">Molotov</a> (gratuit).
+        </p>
+      <% end %>
+    </div>
+
+  <% elsif france_today && france_match %>
+    <%# CAS 1 — La France joue aujourd'hui %>
+    <div style="padding: 10px 16px; background: #eff6ff; border-bottom: 1px solid #bfdbfe; display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #2563eb;">C'est aujourd'hui !</span>
+      <span style="font-size: 11px; color: #64748b;">
+        Coup d'envoi à <%= france_match.start_time.in_time_zone('Europe/Paris').strftime('%Hh%M') %>
+      </span>
+    </div>
+    <div style="padding: 12px 8px 8px;">
+      <%= render 'shared/match_card', match: france_match, priority: true %>
+    </div>
+    <div style="padding: 0 16px 14px;">
+      <p style="font-size: 13px; color: #64748b; margin: 0; line-height: 1.6;">
+        <strong><%= team_display_name(france_match.home_team) %> - <%= team_display_name(france_match.away_team) %></strong>
+        ce soir à <%= france_match.start_time.in_time_zone('Europe/Paris').strftime('%Hh%M') %> sur
+        <strong><%= france_match.tv_channels.to_s.split(',').first&.strip %></strong>.
+        <% if france_match.tv_channels.to_s.downcase.include?('m6') %>
+          Gratuit en streaming sur <a href="https://molotov.pxf.io/c/7376919/3924296/16522" target="_blank" rel="nofollow sponsored noopener" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">Molotov</a>.
+        <% end %>
+      </p>
+    </div>
+
+  <% elsif france_match %>
+    <%# CAS 2 — Prochain match dans les prochains jours %>
+    <div style="padding: 10px 16px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b;">Prochain match</span>
+      <% if days_until && days_until > 0 %>
+        <span style="font-size: 11px; color: #94a3b8;">Dans <%= days_until %> jour<%= days_until > 1 ? 's' : '' %></span>
+      <% end %>
+    </div>
+    <div style="padding: 16px 20px 8px;">
+      <p style="font-size: 14px; color: #010e1b; margin: 0 0 12px; line-height: 1.6;">
+        Le prochain match de l'équipe de France, c'est
+        <strong><%= team_display_name(france_match.home_team) %> - <%= team_display_name(france_match.away_team) %></strong>,
+        le <strong><%= I18n.l(france_match.start_time.in_time_zone('Europe/Paris').to_date, format: '%A %d %B').downcase rescue france_match.start_time.strftime('%d/%m') %></strong>
+        à <strong><%= france_match.start_time.in_time_zone('Europe/Paris').strftime('%Hh%M') %></strong>.
+      </p>
+    </div>
+    <div style="padding: 0 8px 8px;">
+      <%= render 'shared/match_card', match: france_match, priority: true %>
+    </div>
+    <div style="padding: 0 16px 14px;">
+      <p style="font-size: 12px; color: #64748b; margin: 0;">
+        Sur <strong><%= france_match.tv_channels.to_s.split(',').first&.strip %></strong>
+        <% if france_match.tv_channels.to_s.downcase.include?('m6') %>
+          (gratuit) - aussi en streaming sur <a href="https://molotov.pxf.io/c/7376919/3924296/16522" target="_blank" rel="nofollow sponsored noopener" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">Molotov</a>.
+        <% end %>
+      </p>
+    </div>
+
+  <% else %>
+    <%# Avant le tournoi ou aucun match trouvé %>
+    <div style="padding: 10px 16px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+      <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b;">Prochain match</span>
+    </div>
+    <div style="padding: 24px 20px; text-align: center;">
+      <p style="font-size: 14px; color: #64748b; margin: 0;">
+        Premier match des Bleus le 16 juin 2026 contre le Sénégal.
+        <a href="/blog/france-senegal-chaine-tv-horaire-streaming-cdm-2026" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">Tout savoir sur France - Sénégal</a>.
+      </p>
+    </div>
+  <% end %>
+
+</div>

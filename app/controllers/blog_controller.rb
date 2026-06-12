@@ -163,7 +163,34 @@ class BlogController < ApplicationController
       @cdm_upcoming_by_date = upcoming.group_by { |m| m.start_time.in_time_zone('Europe/Paris').to_date }
     end
 
-    ttl = if @article[:cdm_tonight] then 30.minutes
+    # Prochain match France CdM 2026 (articles type "prochain match France")
+    if @article[:france_next_match]
+      now_paris = Time.current.in_time_zone('Europe/Paris')
+      today_zone = now_paris.to_date
+      france_scope = Match.where(competition: "Coupe du Monde 2026")
+                          .where("home_team ILIKE '%France%' OR away_team ILIKE '%France%'")
+
+      @france_tournament_over = today_zone > Date.new(2026, 7, 19)
+      @france_eliminated = ENV['FRANCE_ELIMINATED'] == 'true'
+
+      # Matchs passés (pour le récap parcours)
+      @france_past_matches = france_scope.where(status: Match::FINISHED_STATUSES)
+                                         .order(:start_time)
+
+      # Prochain match (non terminé)
+      @france_match = france_scope.where.not(status: Match::FINISHED_STATUSES)
+                                  .order(:start_time)
+                                  .first
+
+      if @france_match
+        match_date = @france_match.start_time.in_time_zone('Europe/Paris').to_date
+        @france_today = match_date == today_zone
+        @france_live  = @france_match.live?
+        @france_days_until = (match_date - today_zone).to_i
+      end
+    end
+
+    ttl = if @article[:france_next_match] || @article[:cdm_tonight] then 30.minutes
           elsif @article[:club_schedule].present? then 15.minutes
           else 1.hour
           end
@@ -231,7 +258,8 @@ class BlogController < ApplicationController
       tags:              Array(meta['tags']).map(&:to_s).reject(&:blank?),
       club_schedule:     meta['club_schedule'],
       match_card:        meta['match_card'],
-      cdm_tonight:       meta['cdm_tonight']
+      cdm_tonight:       meta['cdm_tonight'],
+      france_next_match: meta['france_next_match']
     }
     result[:body] = body_text if with_body
     result
