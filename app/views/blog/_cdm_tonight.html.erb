@@ -1,0 +1,83 @@
+<%#
+  Partial : matchs CdM 2026 du jour (dynamique)
+  Locals :
+    - today_matches  : matchs du jour (ou [])
+    - next_matches   : prochains matchs si rien aujourd'hui (ou [])
+    - next_match_date : date du prochain jour avec matchs (ou nil)
+    - tournament_over : true si Mondial terminé
+%>
+<% today_matches  = local_assigns.fetch(:today_matches, []) %>
+<% next_matches   = local_assigns.fetch(:next_matches, []) %>
+<% next_match_date = local_assigns.fetch(:next_match_date, nil) %>
+<% tournament_over = local_assigns.fetch(:tournament_over, false) %>
+
+<div style="margin: 28px 0; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #fff;">
+
+  <div style="padding: 10px 16px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between;">
+    <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b;">
+      <% if tournament_over %>
+        Coupe du Monde 2026
+      <% elsif today_matches.any? %>
+        Matchs du jour
+      <% else %>
+        Prochains matchs
+      <% end %>
+    </span>
+    <span style="font-size: 11px; color: #94a3b8;">
+      <% if tournament_over %>
+        Terminée
+      <% elsif today_matches.any? %>
+        <%= I18n.l(Date.today, format: '%A %d %B').capitalize rescue Date.today.strftime('%d/%m/%Y') %>
+      <% elsif next_match_date %>
+        <%= I18n.l(next_match_date, format: '%A %d %B').capitalize rescue next_match_date.strftime('%d/%m/%Y') %>
+      <% end %>
+    </span>
+  </div>
+
+  <% if tournament_over %>
+    <div style="padding: 24px 20px; text-align: center;">
+      <p style="font-size: 16px; font-weight: 700; color: #010e1b; margin: 0 0 6px;">La Coupe du Monde 2026 est terminée</p>
+      <p style="font-size: 14px; color: #64748b; margin: 0; line-height: 1.6;">
+        Retrouve tous les résultats, le classement final des buteurs et les stats sur la
+        <a href="/competitions/coupe-du-monde-2026" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">page Coupe du Monde 2026</a>.
+        Rendez-vous en 2030 !
+      </p>
+    </div>
+
+  <% elsif today_matches.any? %>
+    <div style="padding: 8px;">
+      <% today_matches.each do |match| %>
+        <%= render 'shared/match_card', match: match, priority: true %>
+      <% end %>
+    </div>
+    <% m6_today = today_matches.any? { |m| m.tv_channels.to_s.downcase.include?('m6') } %>
+    <% if m6_today %>
+      <div style="padding: 0 16px 12px;">
+        <p style="font-size: 12px; color: #64748b; margin: 0;">
+          Match sur M6 - disponible gratuitement sur <a href="https://molotov.pxf.io/c/7376919/3924296/16522" target="_blank" rel="nofollow sponsored noopener" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">Molotov</a> en direct et en replay.
+        </p>
+      </div>
+    <% end %>
+
+  <% elsif next_matches.any? %>
+    <div style="padding: 16px 20px 8px;">
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 12px;">
+        Pas de match de Coupe du Monde aujourd'hui. Prochains matchs :
+      </p>
+    </div>
+    <div style="padding: 0 8px 8px;">
+      <% next_matches.each do |match| %>
+        <%= render 'shared/match_card', match: match, priority: false %>
+      <% end %>
+    </div>
+
+  <% else %>
+    <div style="padding: 24px 20px; text-align: center;">
+      <p style="font-size: 14px; color: #64748b; margin: 0;">
+        Le programme des matchs sera disponible dès le 11 juin 2026.
+        En attendant, découvre les <a href="/blog/groupes-coupe-du-monde-2026" style="color: var(--color-accent); font-weight: 600; text-decoration: none;">groupes du Mondial 2026</a>.
+      </p>
+    </div>
+  <% end %>
+
+</div>

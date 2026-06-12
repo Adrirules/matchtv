@@ -13,7 +13,7 @@
   "@type": "BlogPosting",
   "headline": "<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '')&.gsub('"', '\"') %>",
   "datePublished": "<%= @article[:published_at]&.to_date&.iso8601 %>",
-  "dateModified": "<%= @article[:published_at]&.to_date&.iso8601 %>",
+  "dateModified": "<%= @article[:cdm_tonight] ? Date.today.iso8601 : @article[:published_at]&.to_date&.iso8601 %>",
   "url": "https://www.coupdenvoi.tv/blog/<%= @article[:slug] %>",
   "author": {
     "@type": "Person",
@@ -131,6 +131,16 @@
         processed.gsub!('<!-- MATCH_CARD -->', render('blog/blog_match_card', match: @blog_match))
       else
         processed.gsub!('<!-- MATCH_CARD -->', '')
+      end
+      if @article[:cdm_tonight]
+        processed.gsub!('<!-- CDM_TONIGHT -->', render('blog/cdm_tonight',
+          today_matches:  @cdm_today_matches || [],
+          next_matches:   @cdm_next_matches || [],
+          next_match_date: @cdm_next_match_date,
+          tournament_over: @cdm_tournament_over || false))
+        processed.gsub!('<!-- CDM_NEXT_DAYS -->', render('blog/cdm_next_days',
+          upcoming_by_date: @cdm_upcoming_by_date || {},
+          tournament_over:  @cdm_tournament_over || false))
       end
     %>
     <%= processed.html_safe %>

@@ -127,7 +127,46 @@ class BlogController < ApplicationController
       end
     end
 
-    ttl = @article[:club_schedule].present? ? 15.minutes : 1.hour
+    # Matchs CdM 2026 dynamiques (articles type "match ce soir")
+    if @article[:cdm_tonight]
+      today_zone = Time.current.in_time_zone('Europe/Paris').to_date
+      today_start = today_zone.beginning_of_day
+      today_end   = today_zone.end_of_day
+
+      @cdm_today_matches = Match.where(competition: "Coupe du Monde 2026")
+                                .where(start_time: today_start..today_end)
+                                .order(:start_time)
+
+      @cdm_tournament_over = today_zone > Date.new(2026, 7, 19)
+
+      if @cdm_today_matches.empty? && !@cdm_tournament_over
+        next_match = Match.where(competition: "Coupe du Monde 2026")
+                         .where("start_time > ?", today_end)
+                         .where.not(status: Match::FINISHED_STATUSES)
+                         .order(:start_time)
+                         .first
+        if next_match
+          @cdm_next_match_date = next_match.start_time.in_time_zone('Europe/Paris').to_date
+          next_day_end = @cdm_next_match_date.end_of_day
+          @cdm_next_matches = Match.where(competition: "Coupe du Monde 2026")
+                                   .where(start_time: @cdm_next_match_date.beginning_of_day..next_day_end)
+                                   .order(:start_time)
+        end
+      end
+
+      # Prochains jours (4 jours après aujourd'hui, excluant les matchs déjà montrés)
+      upcoming_start = (today_zone + 1.day).beginning_of_day
+      upcoming_end   = (today_zone + 5.days).end_of_day
+      upcoming = Match.where(competition: "Coupe du Monde 2026")
+                      .where(start_time: upcoming_start..upcoming_end)
+                      .order(:start_time)
+      @cdm_upcoming_by_date = upcoming.group_by { |m| m.start_time.in_time_zone('Europe/Paris').to_date }
+    end
+
+    ttl = if @article[:cdm_tonight] then 30.minutes
+          elsif @article[:club_schedule].present? then 15.minutes
+          else 1.hour
+          end
     expires_in ttl, private: true
   end
 
@@ -191,7 +230,8 @@ class BlogController < ApplicationController
       canal_plus_card:   meta.key?('canal_plus_card') ? meta['canal_plus_card'] : true,
       tags:              Array(meta['tags']).map(&:to_s).reject(&:blank?),
       club_schedule:     meta['club_schedule'],
-      match_card:        meta['match_card']
+      match_card:        meta['match_card'],
+      cdm_tonight:       meta['cdm_tonight']
     }
     result[:body] = body_text if with_body
     result
