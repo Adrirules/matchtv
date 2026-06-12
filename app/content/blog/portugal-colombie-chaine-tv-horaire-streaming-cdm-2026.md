@@ -59,7 +59,7 @@ Dernier match du groupe K. Portugal contre Colombie, sous les projecteurs de Mia
 
 ## Réponse rapide
 
-> **Portugal - Colombie** se joue dans la **nuit du samedi 27 au dimanche 28 juin 2026 à 1h30 du matin** (heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **[beIN Sports](/chaines/bein-sports) 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (gratuit, avec replay et enregistrement).
+> **Portugal - Colombie** se joue dans la **nuit du samedi 27 au dimanche 28 juin 2026 à 1h30 du matin** (heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **[beIN Sports](/chaines/bein-sports) 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (gratuit, avec replay et enregistrement).
 
 <!-- MATCH_CARD -->
 
@@ -72,14 +72,14 @@ Dernier match du groupe K. Portugal contre Colombie, sous les projecteurs de Mia
 | **Stade** | Hard Rock Stadium, Miami Gardens (Floride) |
 | **Capacité** | Environ 65 000 places |
 | **Chaîne TV** | M6 (gratuit) et beIN Sports 1 |
-| **Streaming** | M6+, [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522), beIN Sports Connect |
+| **Streaming** | M6+, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522), beIN Sports Connect |
 | **Compétition** | [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) - Groupe K, 3e journée |
 
 ## Sur quelle chaîne voir Portugal - Colombie
 
 Bonne nouvelle : tu n'as pas besoin de payer pour voir ce match.
 
-**[M6](/chaines/m6) - gratuit, en clair.** M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce Portugal - Colombie. C'est le dernier match du groupe K, celui qui décide qui passe et qui rentre à la maison. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) - et sur Molotov tu peux enregistrer le match si tu ne tiens pas jusqu'à 1h30 un samedi soir. Ce qui est parfaitement compréhensible.
+**[M6](/chaines/m6) - gratuit, en clair.** M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce Portugal - Colombie. C'est le dernier match du groupe K, celui qui décide qui passe et qui rentre à la maison. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - et sur Molotov tu peux enregistrer le match si tu ne tiens pas jusqu'à 1h30 un samedi soir. Ce qui est parfaitement compréhensible.
 
 **[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement. Avantage beIN : pas de pub, commentaires dédiés, avant-match complet - et tu peux aussi voir le match simultané RD Congo - Ouzbékistan à la même heure, qui pourrait avoir un impact direct sur le classement du groupe.
 
@@ -90,7 +90,7 @@ Bonne nouvelle : tu n'as pas besoin de payer pour voir ce match.
 Match à 1h30 du matin un samedi soir, le genre d'horaire qui sépare les vrais fans des gens raisonnables. Dans tous les cas, voici les options :
 
 - **M6+** (gratuit) : le direct de M6 sur ton téléphone, ta tablette ou ton ordi. Replay disponible après le match.
-- **[Molotov](https://molotov.pxf.io/c/7376919/1379964/16522)** (gratuit) : live, replay ET enregistrement. Tu programmes l'enregistrement avant de sortir le samedi soir et tu regardes le match dimanche matin. C'est l'option la plus maline.
+- **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** (gratuit) : live, replay ET enregistrement. Tu programmes l'enregistrement avant de sortir le samedi soir et tu regardes le match dimanche matin. C'est l'option la plus maline.
 - **beIN Sports Connect** (abonnement) : si tu es abonné beIN, le match est dispo en streaming + replay complet.
 
 ## Ce qu'il faut savoir sur le Portugal
@@ -132,7 +132,7 @@ Pour le [classement en direct du groupe K](/classements/coupe-du-monde-2026) et 
 
 ### Sur quelle chaîne est diffusé Portugal - Colombie ?
 
-Le match est sur **M6** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports) 1** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) permettent de suivre le match gratuitement sur tous les écrans.
+Le match est sur **M6** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports) 1** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permettent de suivre le match gratuitement sur tous les écrans.
 
 ### À quelle heure se joue Portugal - Colombie ?
 
@@ -144,7 +144,7 @@ Au **Hard Rock Stadium** de Miami Gardens, en Floride. C'est aussi le stade qui 
 
 ### Portugal - Colombie est-il gratuit à la télé ?
 
-Oui. M6 diffuse le match en clair, sans abonnement. Si tu n'es pas sûr de tenir jusqu'à 1h30 du matin, [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) te permet d'enregistrer le match et de le regarder dimanche matin.
+Oui. M6 diffuse le match en clair, sans abonnement. Si tu n'es pas sûr de tenir jusqu'à 1h30 du matin, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) te permet d'enregistrer le match et de le regarder dimanche matin.
 
 ### Le Portugal et la Colombie se sont-ils déjà affrontés en Coupe du Monde ?
 
@@ -152,8 +152,8 @@ Non, jamais. C'est leur toute première confrontation dans un Mondial. Leur dern
 
 ### Peut-on voir le replay du match ?
 
-Oui. Le replay sera disponible sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (qui permet aussi d'enregistrer le match en avance). Sur [beIN Sports](/chaines/bein-sports), le replay est accessible via beIN Sports Connect.
+Oui. Le replay sera disponible sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (qui permet aussi d'enregistrer le match en avance). Sur [beIN Sports](/chaines/bein-sports), le replay est accessible via beIN Sports Connect.
 
 ---
 
-1h30 du matin, dimanche 28 juin, M6. Programme ton enregistrement sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) si tu sors le samedi soir, et prépare le café. Parce que Ronaldo dans ce qui est peut-être son dernier match de poules en Coupe du Monde, face à une Colombie de James Rodríguez qui a l'habitude de s'allumer dans ces moments-là - c'est le genre de soirée où tu regrettes de ne pas avoir mis ton réveil.
+1h30 du matin, dimanche 28 juin, M6. Programme ton enregistrement sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) si tu sors le samedi soir, et prépare le café. Parce que Ronaldo dans ce qui est peut-être son dernier match de poules en Coupe du Monde, face à une Colombie de James Rodríguez qui a l'habitude de s'allumer dans ces moments-là - c'est le genre de soirée où tu regrettes de ne pas avoir mis ton réveil.

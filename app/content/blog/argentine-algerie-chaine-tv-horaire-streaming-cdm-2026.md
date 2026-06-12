@@ -83,7 +83,7 @@ Soyons clairs tout de suite : **ce match n'est pas sur M6**. Pas de solution gra
 
 Le truc c'est que les trois matchs de l'Algérie se jouent tous à des horaires tardifs (3h, 5h). L'avantage de beIN Sports Connect, c'est que le replay est dispo juste après le match. Tu peux te coucher et tout regarder au réveil.
 
-Pour les matchs de la France et du Maroc qui passent sur M6, [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) reste la meilleure option gratuite (live + replay + enregistrement). Mais pour l'Algérie, c'est beIN ou rien.
+Pour les matchs de la France et du Maroc qui passent sur M6, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) reste la meilleure option gratuite (live + replay + enregistrement). Mais pour l'Algérie, c'est beIN ou rien.
 
 ## Streaming et replay
 

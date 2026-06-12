@@ -59,7 +59,7 @@ match_card:
 
 ## Réponse rapide
 
-> **Mexique - Afrique du Sud** se joue le **mercredi 11 juin 2026 à 21h** (heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (gratuit, avec replay et enregistrement).
+> **Mexique - Afrique du Sud** se joue le **mercredi 11 juin 2026 à 21h** (heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (gratuit, avec replay et enregistrement).
 
 <!-- MATCH_CARD -->
 
@@ -72,7 +72,7 @@ match_card:
 | **Stade** | Estadio Azteca, Mexico |
 | **Capacité** | Environ 87 000 places |
 | **Chaîne TV** | M6 (gratuit) et beIN Sports 1 |
-| **Streaming** | M6+, [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522), beIN Sports Connect |
+| **Streaming** | M6+, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522), beIN Sports Connect |
 | **Commentateurs M6** | Xavier Domergue et Benoît Cheyrou |
 | **Compétition** | [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) - Groupe A, 1re journée |
 
@@ -80,7 +80,7 @@ match_card:
 
 Deux options.
 
-**M6 - gratuit, en clair.** C'est la solution la plus simple. Tu allumes ta télé, tu mets M6, c'est parti. M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce match d'ouverture. Le flux est aussi disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) - pratique si tu n'as pas la TNT ou si tu veux enregistrer le match pour le revoir.
+**M6 - gratuit, en clair.** C'est la solution la plus simple. Tu allumes ta télé, tu mets M6, c'est parti. M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce match d'ouverture. Le flux est aussi disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - pratique si tu n'as pas la TNT ou si tu veux enregistrer le match pour le revoir.
 
 **[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN Sports diffuse l'intégralité des 104 matchs du Mondial. Si tu es déjà abonné, c'est l'option confort : pas de pub, commentaires dédiés, avant-match complet. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement.
 
@@ -131,7 +131,7 @@ Pour le [classement en direct du groupe A](/classements/coupe-du-monde-2026) et 
 
 ### Sur quelle chaîne est diffusé Mexique - Afrique du Sud ?
 
-Le match est sur **M6** en clair (gratuit) et sur **beIN Sports 1** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) permettent de suivre le match gratuitement sur tous les écrans.
+Le match est sur **M6** en clair (gratuit) et sur **beIN Sports 1** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permettent de suivre le match gratuitement sur tous les écrans.
 
 ### À quelle heure commence le match d'ouverture du Mondial 2026 ?
 
@@ -139,11 +139,11 @@ Coup d'envoi à **21h00 heure française** le mercredi 11 juin 2026. En heure lo
 
 ### Faut-il un abonnement pour voir le match d'ouverture ?
 
-Non. M6 diffuse le match gratuitement, en clair sur la TNT. Si tu n'as pas la TNT, l'appli M6+ ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) te permettent de le voir en streaming sans payer.
+Non. M6 diffuse le match gratuitement, en clair sur la TNT. Si tu n'as pas la TNT, l'appli M6+ ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) te permettent de le voir en streaming sans payer.
 
 ### Peut-on voir le replay du match ?
 
-Oui. Le replay sera disponible sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (qui permet aussi d'enregistrer le match en avance). Sur [beIN Sports](/chaines/bein-sports), le replay est accessible via l'appli beIN Sports Connect.
+Oui. Le replay sera disponible sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (qui permet aussi d'enregistrer le match en avance). Sur [beIN Sports](/chaines/bein-sports), le replay est accessible via l'appli beIN Sports Connect.
 
 ### Où se joue le match ?
 

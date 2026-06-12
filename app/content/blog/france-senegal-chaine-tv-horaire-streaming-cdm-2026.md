@@ -59,7 +59,7 @@ Bon. On va se le dire. C'est LE match qu'on attend tous depuis le tirage au sort
 
 ## Réponse rapide
 
-> **France - Sénégal** se joue le **mardi 16 juin 2026 à 21h** (heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (gratuit, avec replay et enregistrement).
+> **France - Sénégal** se joue le **mardi 16 juin 2026 à 21h** (heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (gratuit, avec replay et enregistrement).
 
 <!-- MATCH_CARD -->
 
@@ -72,14 +72,14 @@ Bon. On va se le dire. C'est LE match qu'on attend tous depuis le tirage au sort
 | **Stade** | MetLife Stadium, East Rutherford (New Jersey) |
 | **Capacité** | Plus de 82 000 places |
 | **Chaîne TV** | M6 (gratuit) et beIN Sports 1 |
-| **Streaming** | M6+, [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522), beIN Sports Connect |
+| **Streaming** | M6+, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522), beIN Sports Connect |
 | **Compétition** | [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) - Groupe I, 1re journée |
 
 ## Sur quelle chaîne voir France - Sénégal
 
 Deux options, et la première ne coûte rien.
 
-**[M6](/chaines/m6) - gratuit, en clair.** Tous les matchs de l'équipe de France sont sur M6. Tu allumes, tu regardes, c'est aussi simple que ça. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) - et sur Molotov tu peux même enregistrer le match pour le revoir après. Pratique si tu travailles ou si tu es dans les transports à 21h.
+**[M6](/chaines/m6) - gratuit, en clair.** Tous les matchs de l'équipe de France sont sur M6. Tu allumes, tu regardes, c'est aussi simple que ça. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - et sur Molotov tu peux même enregistrer le match pour le revoir après. Pratique si tu travailles ou si tu es dans les transports à 21h.
 
 **[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse les 104 matchs du Mondial, dont celui-ci. Pas de pub, avant-match complet, commentaires dédiés. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement.
 
@@ -92,7 +92,7 @@ Le truc c'est que pour un France - Sénégal gratuit sur M6, l'abonnement n'est 
 Pas devant ta télé à 21h ? Pas de panique.
 
 - **M6+** (gratuit) : le direct de M6 sur ton téléphone, ta tablette ou ton ordi. Replay disponible après le match.
-- **[Molotov](https://molotov.pxf.io/c/7376919/1379964/16522)** (gratuit) : live, replay ET enregistrement. Tu peux programmer l'enregistrement du match à l'avance et le regarder quand tu veux. C'est l'option la plus complète pour les matchs en clair.
+- **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** (gratuit) : live, replay ET enregistrement. Tu peux programmer l'enregistrement du match à l'avance et le regarder quand tu veux. C'est l'option la plus complète pour les matchs en clair.
 - **beIN Sports Connect** (abonnement) : si tu es abonné beIN, le match est dispo en streaming + replay complet.
 
 ## Ce qu'il faut savoir sur la France
@@ -134,7 +134,7 @@ Pour le [classement en direct du groupe I](/classements/coupe-du-monde-2026) et 
 
 ### Sur quelle chaîne est diffusé France - Sénégal ?
 
-Le match est sur **M6** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports) 1** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) permettent de suivre le match gratuitement sur tous les écrans.
+Le match est sur **M6** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports) 1** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permettent de suivre le match gratuitement sur tous les écrans.
 
 ### À quelle heure se joue France - Sénégal ?
 
@@ -146,7 +146,7 @@ Au **MetLife Stadium** d'East Rutherford, dans le New Jersey, à quelques kilom�
 
 ### France - Sénégal est-il gratuit à la télé ?
 
-Oui. M6 diffuse le match en clair, sans abonnement. Si tu n'as pas la TNT, l'appli M6+ ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) te permettent de le voir en streaming sans payer.
+Oui. M6 diffuse le match en clair, sans abonnement. Si tu n'as pas la TNT, l'appli M6+ ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) te permettent de le voir en streaming sans payer.
 
 ### Quel est l'historique entre la France et le Sénégal ?
 
@@ -154,7 +154,7 @@ Une seule confrontation en Coupe du Monde : le 31 mai 2002, le Sénégal bat la 
 
 ### Peut-on voir le replay du match ?
 
-Oui. Le replay sera disponible sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (qui permet aussi d'enregistrer le match en avance). Sur [beIN Sports](/chaines/bein-sports), le replay est accessible via beIN Sports Connect.
+Oui. Le replay sera disponible sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (qui permet aussi d'enregistrer le match en avance). Sur [beIN Sports](/chaines/bein-sports), le replay est accessible via beIN Sports Connect.
 
 ---
 

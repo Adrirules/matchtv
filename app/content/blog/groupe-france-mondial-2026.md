@@ -63,7 +63,7 @@ On a un réservoir de joueurs qui dégoûte le reste de l'Europe. On a la cultur
 
 La liste de Deschamps sera annoncée le 13 mai. Le départ pour les États-Unis le 9 juin. Les matchs débutent le 16 juin.
 
-Tous les matchs des Bleus sont sur [M6](/chaines/m6), en clair. Et si vous êtes en déplacement ou sans TNT, [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) permet de suivre M6 en streaming gratuit et d'enregistrer les rencontres.
+Tous les matchs des Bleus sont sur [M6](/chaines/m6), en clair. Et si vous êtes en déplacement ou sans TNT, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de suivre M6 en streaming gratuit et d'enregistrer les rencontres.
 
 Allez les Bleus.
 

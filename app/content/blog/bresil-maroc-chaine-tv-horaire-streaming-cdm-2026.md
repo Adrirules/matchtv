@@ -59,7 +59,7 @@ Bon, on va pas tourner autour du pot. Brésil - Maroc en match d'ouverture du gr
 
 ## Réponse rapide
 
-> **Brésil - Maroc** se joue dans la **nuit du samedi 13 au dimanche 14 juin 2026 à minuit** (00h00, heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (gratuit, avec replay et enregistrement).
+> **Brésil - Maroc** se joue dans la **nuit du samedi 13 au dimanche 14 juin 2026 à minuit** (00h00, heure française). Le match est diffusé en direct sur **M6** (gratuit) et sur **beIN Sports 1**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (gratuit, avec replay et enregistrement).
 
 <!-- MATCH_CARD -->
 
@@ -72,14 +72,14 @@ Bon, on va pas tourner autour du pot. Brésil - Maroc en match d'ouverture du gr
 | **Stade** | MetLife Stadium, East Rutherford (New Jersey) |
 | **Capacité** | Plus de 82 000 places |
 | **Chaîne TV** | M6 (gratuit) et beIN Sports 1 |
-| **Streaming** | M6+, [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522), beIN Sports Connect |
+| **Streaming** | M6+, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522), beIN Sports Connect |
 | **Compétition** | [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) - Groupe C, 1re journée |
 
 ## Sur quelle chaîne voir Brésil - Maroc
 
 Deux options, et la première ne coûte rien.
 
-**[M6](/chaines/m6) - gratuit, en clair.** M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce Brésil - Maroc. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) - et sur Molotov tu peux enregistrer le match pour le revoir dimanche matin au petit-déjeuner. Parce que oui, minuit un samedi soir, tout le monde ne sera pas devant sa télé.
+**[M6](/chaines/m6) - gratuit, en clair.** M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce Brésil - Maroc. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - et sur Molotov tu peux enregistrer le match pour le revoir dimanche matin au petit-déjeuner. Parce que oui, minuit un samedi soir, tout le monde ne sera pas devant sa télé.
 
 **[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. Pas de pub, commentaires dédiés, avant-match complet. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement - et ça te donne accès à tous les matchs du Maroc, même ceux qui ne passent pas sur M6.
 
@@ -92,7 +92,7 @@ Le vrai sujet c'est que si tu veux suivre le parcours complet des Lions de l'Atl
 Match à minuit, c'est pas le créneau le plus confortable. Heureusement, plusieurs options pour le voir ou le revoir :
 
 - **M6+** (gratuit) : le direct de M6 sur ton téléphone, ta tablette ou ton ordi. Replay disponible après le match.
-- **[Molotov](https://molotov.pxf.io/c/7376919/1379964/16522)** (gratuit) : live, replay ET enregistrement. Tu programmes l'enregistrement avant d'aller te coucher et tu regardes le match dimanche matin. C'est l'option la plus maline pour un match à minuit.
+- **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** (gratuit) : live, replay ET enregistrement. Tu programmes l'enregistrement avant d'aller te coucher et tu regardes le match dimanche matin. C'est l'option la plus maline pour un match à minuit.
 - **beIN Sports Connect** (abonnement) : si tu es abonné beIN, le match est dispo en streaming + replay complet.
 
 ## Ce qu'il faut savoir sur le Brésil
@@ -132,7 +132,7 @@ Pour le [classement en direct du groupe C](/classements/coupe-du-monde-2026) et 
 
 ### Sur quelle chaîne est diffusé Brésil - Maroc ?
 
-Le match est sur **M6** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports) 1** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) permettent de suivre le match gratuitement sur tous les écrans.
+Le match est sur **M6** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports) 1** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permettent de suivre le match gratuitement sur tous les écrans.
 
 ### À quelle heure se joue Brésil - Maroc ?
 
@@ -144,7 +144,7 @@ Au **MetLife Stadium** d'East Rutherford, dans le New Jersey, à quelques kilom�
 
 ### Brésil - Maroc est-il gratuit à la télé ?
 
-Oui. M6 diffuse le match en clair, sans abonnement. Si tu n'es pas devant ta télé à minuit, [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) te permet d'enregistrer le match et de le regarder le lendemain.
+Oui. M6 diffuse le match en clair, sans abonnement. Si tu n'es pas devant ta télé à minuit, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) te permet d'enregistrer le match et de le regarder le lendemain.
 
 ### Le Maroc a-t-il déjà battu le Brésil ?
 
@@ -152,8 +152,8 @@ Oui, une fois : en amical à Tanger en mars 2023, victoire 2-1. En Coupe du Mond
 
 ### Peut-on voir le replay du match ?
 
-Oui. Le replay sera disponible sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) (qui permet aussi d'enregistrer le match en avance). Sur [beIN Sports](/chaines/bein-sports), le replay est accessible via beIN Sports Connect.
+Oui. Le replay sera disponible sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (qui permet aussi d'enregistrer le match en avance). Sur [beIN Sports](/chaines/bein-sports), le replay est accessible via beIN Sports Connect.
 
 ---
 
-Minuit, samedi 13 juin, M6. Programme ton enregistrement sur [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) si tu n'es pas sûr de tenir, et prépare le café pour dimanche matin. Ce Brésil - Maroc, ça vaut le coup de veiller.
+Minuit, samedi 13 juin, M6. Programme ton enregistrement sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) si tu n'es pas sûr de tenir, et prépare le café pour dimanche matin. Ce Brésil - Maroc, ça vaut le coup de veiller.
