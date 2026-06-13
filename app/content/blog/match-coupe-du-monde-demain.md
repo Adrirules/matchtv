@@ -5,8 +5,8 @@ slug: match-coupe-du-monde-demain
 published_at: 2026-06-14
 published_time: "07h52"
 author: Adrien
-image: https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1200&h=630&auto=format&fit=crop
-image_credit: "Photo : Unsplash / Jannes Glas"
+image: https://images.unsplash.com/photo-1670409693465-5c8fe03c6054?q=80&w=1200&h=630&auto=format&fit=crop
+image_credit: "Photo : Unsplash"
 excerpt: "Quel match de Coupe du Monde demain ? Programme, chaînes et horaires du lendemain pour anticiper votre soirée. Mis à jour chaque jour."
 tags:
   - coupe-du-monde
