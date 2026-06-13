@@ -5,8 +5,8 @@ slug: match-coupe-du-monde-demain
 published_at: 2026-06-14
 published_time: "07h52"
 author: Adrien
-image: https://images.unsplash.com/photo-1670409693465-5c8fe03c6054?q=80&w=1200&h=630&auto=format&fit=crop
-image_credit: "Photo : Unsplash"
+image: https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1200&h=630&auto=format&fit=crop
+image_credit: "Photo : Unsplash / Jannes Glas"
 excerpt: "Quel match de Coupe du Monde demain ? Programme, chaînes et horaires du lendemain pour anticiper votre soirée. Mis à jour chaque jour."
 tags:
   - coupe-du-monde
@@ -30,7 +30,7 @@ La Coupe du Monde 2026 se joue aux États-Unis, au Mexique et au Canada. Résult
 
 Savoir la veille ce qui se joue demain, ça permet de :
 - **Mettre un réveil** si un gros match se joue à 2h du matin (côte Ouest : Los Angeles, San Francisco, Seattle)
-- **Programmer un enregistrement sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** avant d'aller dormir - tu retrouves le match au réveil, sans spoiler
+- **Programmer un enregistrement avec un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** avant d'aller dormir - tu retrouves le match au réveil, sans spoiler
 - **S'organiser entre potes** pour les grosses affiches en soirée - un apéro devant France - Sénégal, ça se prépare la veille
 - **Poser une RTT** si une demi-finale ou un quart de finale tombe en milieu de semaine
 
@@ -42,7 +42,7 @@ J'ai vu trop de gens rater des matchs parce qu'ils ne savaient pas qu'il y en av
 
 Deux diffuseurs en France pour le Mondial 2026 :
 
-- **[M6](/chaines/m6)** diffuse **54 matchs en clair** (gratuit) - dont tous les matchs de la France, les quarts, les demi-finales et la finale. Disponible aussi en streaming sur **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (gratuit, avec replay et enregistrement).
+- **[M6](/chaines/m6)** diffuse **54 matchs en clair** (gratuit) - dont tous les matchs de la France, les quarts, les demi-finales et la finale. Disponible aussi en streaming sur **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour le direct gratuit. Avec un abonnement Molotov, tu débloques l'enregistrement et le replay confort.
 - **[beIN Sports](/chaines/bein-sports)** diffuse **l'intégralité des 104 matchs**, dont une cinquantaine en exclusivité. Abonnement ~15 €/mois, ou via [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois (beIN inclus).
 
 | Diffuseur | Matchs | Accès |
@@ -64,7 +64,7 @@ C'est le point clé de cette page. Les coups d'envoi en heure française varient
 
 Les matchs joués à New York ou Philadelphie sont les plus confortables pour nous (coups d'envoi entre 21h et 23h heure française). Les matchs de la côte Ouest ou du Mexique peuvent aller jusqu'à 3h-4h du matin.
 
-C'est pour ça qu'il faut vérifier la veille : si le gros match est à 2h du mat', mieux vaut l'enregistrer sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) et le regarder au petit-déjeuner plutôt que de se ruiner la nuit pour un match de poules.
+C'est pour ça qu'il faut vérifier la veille : si le gros match est à 2h du mat', mieux vaut l'enregistrer via un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) et le regarder au petit-déjeuner plutôt que de se ruiner la nuit pour un match de poules.
 
 Pour le [calendrier complet de la Coupe du Monde](/blog/programme-tv-coupe-du-monde-2026), j'ai fait un guide dédié avec tous les matchs et toutes les chaînes.
 
@@ -80,11 +80,11 @@ Consulte le bloc "Programme de demain" en haut de cette page. Il est mis à jour
 
 ### Comment ne pas rater un match en pleine nuit ?
 
-Programme un enregistrement sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) la veille au soir. Les matchs M6 sont enregistrables gratuitement. Tu peux aussi utiliser M6+ pour le replay le lendemain matin.
+Avec un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522), programme l'enregistrement la veille au soir et regarde le match au réveil. Tu peux aussi utiliser M6+ pour le replay le lendemain matin (le direct M6 sur Molotov est gratuit).
 
 ### Quels matchs du Mondial sont gratuits ?
 
-Les 54 matchs diffusés sur [M6](/chaines/m6) sont accessibles sans abonnement. Ca inclut tous les matchs de la France, les quarts de finale, les demi-finales et la finale. En streaming : M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (gratuit).
+Les 54 matchs diffusés sur [M6](/chaines/m6) sont accessibles sans abonnement. Ca inclut tous les matchs de la France, les quarts de finale, les demi-finales et la finale. En streaming : M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (direct gratuit).
 
 ### Où voir le programme complet du Mondial ?
 
@@ -116,7 +116,7 @@ Le [calendrier complet de la Coupe du Monde 2026](/blog/programme-tv-coupe-du-mo
       "name": "Comment ne pas rater un match de Coupe du Monde en pleine nuit ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Programmez un enregistrement sur Molotov la veille au soir. Les matchs M6 sont enregistrables gratuitement. M6+ propose aussi le replay le lendemain matin."
+        "text": "Avec un abonnement Molotov, programmez l'enregistrement la veille au soir et regardez le match au réveil. Le direct M6 sur Molotov est gratuit. M6+ propose aussi le replay le lendemain matin."
       }
     },
     {
@@ -124,7 +124,7 @@ Le [calendrier complet de la Coupe du Monde 2026](/blog/programme-tv-coupe-du-mo
       "name": "Quels matchs du Mondial 2026 sont gratuits ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Les 54 matchs diffusés sur M6 sont accessibles sans abonnement : tous les matchs de la France, les quarts de finale, les demi-finales et la finale. Streaming gratuit sur M6+ et Molotov."
+        "text": "Les 54 matchs diffusés sur M6 sont accessibles sans abonnement : tous les matchs de la France, les quarts de finale, les demi-finales et la finale. Direct gratuit en streaming sur M6+ et Molotov."
       }
     },
     {

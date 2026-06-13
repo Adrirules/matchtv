@@ -24,7 +24,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Sur quelle chaîne est diffusé Tunisie - Pays-Bas ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tunisie - Pays-Bas est diffusé sur M6 en clair (gratuit) et sur beIN Sports (abonnement). En streaming : M6+ (gratuit), Molotov (gratuit avec replay et enregistrement) ou beIN Sports Connect." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Tunisie - Pays-Bas est diffusé sur M6 en clair (gratuit) et sur beIN Sports (abonnement). En streaming : M6+ (gratuit), Molotov (live M6 gratuit ; abonnement Molotov pour enregistrement et replay) ou beIN Sports Connect." }
     },
     {
       "@type": "Question",
@@ -39,7 +39,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Tunisie - Pays-Bas est-il gratuit à la télé ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Oui. M6 diffuse le match en clair, sans abonnement. L'appli M6+ et Molotov permettent aussi de le voir gratuitement en streaming." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui. M6 diffuse le match en clair, sans abonnement. L'appli M6+ et Molotov permettent de suivre le direct gratuitement en streaming." }
     },
     {
       "@type": "Question",
@@ -49,7 +49,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Peut-on voir le replay de Tunisie - Pays-Bas ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Oui. Le replay sera disponible sur M6+ et sur Molotov. Sur beIN Sports, le replay est accessible via beIN Sports Connect. Vu l'horaire tardif (01h du matin), le replay le lendemain matin est la meilleure option pour la plupart des gens." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui. Le replay sera disponible sur M6+. Sur Molotov, un abonnement permet d'enregistrer le match et de le revoir en replay confort. Sur beIN Sports, le replay est accessible via beIN Sports Connect. Vu l'horaire tardif (01h du matin), l'enregistrement la veille est la meilleure option." }
     }
   ]
 }
@@ -61,7 +61,7 @@ canal_plus_card: false
 
 ## Réponse rapide
 
-> **Tunisie - Pays-Bas** se joue dans la **nuit du jeudi 25 au vendredi 26 juin 2026 à 01h00** (heure française). Le match est diffusé en direct sur **[M6](/chaines/m6)** (gratuit) et sur **[beIN Sports](/chaines/bein-sports)**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (gratuit, avec replay et enregistrement - programme-le la veille au soir).
+> **Tunisie - Pays-Bas** se joue dans la **nuit du jeudi 25 au vendredi 26 juin 2026 à 01h00** (heure française). Le match est diffusé en direct sur **[M6](/chaines/m6)** (gratuit) et sur **[beIN Sports](/chaines/bein-sports)**. En streaming : M6+ (gratuit) ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour le direct gratuit. Avec un abonnement Molotov, tu peux enregistrer le match et le revoir au réveil - programme-le la veille au soir.
 
 <!-- MATCH_CARD -->
 
@@ -81,11 +81,11 @@ canal_plus_card: false
 
 Bonne nouvelle : le match est gratuit.
 
-**[M6](/chaines/m6) - gratuit, en clair.** M6 fait partie des 54 matchs du Mondial qu'elle diffuse sans abonnement, et celui-ci en fait partie. Tu allumes (enfin, si tu es encore éveillé à 1h du mat'), et tu regardes. Le flux est aussi disponible sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Et c'est là que Molotov prend tout son sens : tu programmes l'enregistrement avant d'aller dormir, et tu retrouves le match au réveil. Aucun spoiler, le plaisir intact.
+**[M6](/chaines/m6) - gratuit, en clair.** M6 fait partie des 54 matchs du Mondial qu'elle diffuse sans abonnement, et celui-ci en fait partie. Tu allumes (enfin, si tu es encore éveillé à 1h du mat'), et tu regardes. Le flux est aussi disponible sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Et c'est là qu'un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) prend tout son sens : tu programmes l'enregistrement avant d'aller dormir, et tu retrouves le match au réveil. Aucun spoiler, le plaisir intact.
 
 **[beIN Sports](/chaines/bein-sports) - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. Si tu es abonné, tu auras l'avant-match complet et les commentaires dédiés. L'abonnement beIN est aussi inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois.
 
-Pour un match à cette heure-là, honnêtement, l'enregistrement sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) est la solution la plus raisonnable. À moins que tu sois un couche-tard ou que la communauté tunisienne te tienne éveillé (et ça, c'est très possible).
+Pour un match à cette heure-là, honnêtement, un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour enregistrer le match est la solution la plus raisonnable. À moins que tu sois un couche-tard ou que la communauté tunisienne te tienne éveillé (et ça, c'est très possible).
 
 <!-- MOLOTOV_CARD -->
 
@@ -94,7 +94,7 @@ Pour un match à cette heure-là, honnêtement, l'enregistrement sur [Molotov](h
 Match à 1h du matin = le replay est probablement plus important que le direct pour ce coup-ci.
 
 - **M6+** (gratuit) : direct + replay le lendemain matin. Tu te lèves, tu lances le match avec ton café.
-- **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** (gratuit) : direct, replay ET enregistrement programmable. Tu programmes l'enregistrement le jeudi soir avant de te coucher. Le vendredi matin, le match t'attend, prêt à lancer. C'est de loin l'option la plus confortable pour un match en pleine nuit.
+- **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** : le direct M6 est gratuit. Avec un abonnement Molotov, tu programmes l'enregistrement le jeudi soir avant de te coucher. Le vendredi matin, le match t'attend, prêt à lancer. C'est de loin l'option la plus confortable pour un match en pleine nuit.
 - **beIN Sports Connect** (abonnement) : streaming + replay complet. Utile si tu veux aussi voir les matchs que M6 ne diffuse pas.
 
 ## Ce qu'il faut savoir sur la Tunisie
@@ -136,7 +136,7 @@ Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), 
 
 ### Sur quelle chaîne est diffusé Tunisie - Pays-Bas ?
 
-Le match est sur **[M6](/chaines/m6)** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports)** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permettent de suivre le match gratuitement. [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) est une autre option.
+Le match est sur **[M6](/chaines/m6)** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports)** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permettent de suivre le direct gratuitement. Avec un abonnement Molotov, tu peux aussi enregistrer et revoir le match. [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) est une autre option.
 
 ### À quelle heure se joue Tunisie - Pays-Bas ?
 
@@ -148,11 +148,11 @@ Coup d'envoi dans la **nuit du jeudi 25 au vendredi 26 juin 2026 à 01h00** heur
 
 ### Tunisie - Pays-Bas est-il gratuit à la télé ?
 
-Oui. [M6](/chaines/m6) diffuse ce match en clair, sans abonnement. Si tu n'as pas la TNT, M6+ ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) te permettent de le voir gratuitement en streaming.
+Oui. [M6](/chaines/m6) diffuse ce match en clair, sans abonnement. Si tu n'as pas la TNT, M6+ ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) te permettent de suivre le direct gratuitement en streaming.
 
 ### Comment voir le replay si je ne suis pas debout à 1h du matin ?
 
-Programme l'enregistrement sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) avant de te coucher le jeudi soir. Le vendredi matin, le match t'attend. Le replay est aussi dispo sur M6+.
+Avec un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522), programme l'enregistrement avant de te coucher le jeudi soir. Le vendredi matin, le match t'attend. Le replay est aussi dispo sur M6+.
 
 ### La Tunisie et les Pays-Bas se sont-ils déjà affrontés en Coupe du Monde ?
 

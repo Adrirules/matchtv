@@ -43,7 +43,7 @@ Bonne nouvelle : **tous les matchs de l'équipe de France sont diffusés en clai
 **[beIN Sports](/chaines/bein-sports)** diffuse aussi les matchs de la France (ils ont l'intégralité des 104 matchs du tournoi). Si tu as déjà beIN, tu pourras switcher entre les commentateurs.
 
 Pour le streaming gratuit, deux options :
-- **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** - M6 en direct, en replay et en enregistrement. Mon option préférée si tu n'as pas de télé ou si tu regardes depuis ton téléphone.
+- **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** - le direct M6 est gratuit. Avec un abonnement Molotov, tu débloques l'enregistrement et le replay confort. Mon option préférée si tu n'as pas de télé ou si tu regardes depuis ton téléphone.
 - **M6+** - l'appli officielle de M6, disponible aussi en direct le soir du match.
 
 Pour ceux qui veulent voir tous les matchs de la Coupe du Monde (pas seulement la France), **[Canal+ Sport](/chaines/canal-plus)** à 19,99 €/mois inclut beIN Sports - c'est le combo le plus complet.
@@ -53,11 +53,11 @@ Pour ceux qui veulent voir tous les matchs de la Coupe du Monde (pas seulement l
 Le décalage horaire avec les États-Unis joue en notre faveur pour la plupart des matchs. Les coups d'envoi tombent en début de soirée ou en fin de soirée heure française - pas de réveil à 4h du matin comme pour certains matchs en Asie.
 
 Quelques réflexes :
-- **Enregistre les matchs sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** si tu risques de rentrer en retard - tu pourras reprendre depuis le début sans te faire spoiler.
+- **Enregistre les matchs via un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** si tu risques de rentrer en retard - tu pourras reprendre depuis le début sans te faire spoiler.
 - **Active les notifications** de l'appli Coup d'Envoi TV (si tu nous ajoutes en PWA) pour recevoir un rappel le jour du match.
 - **Vérifie cette page la veille** de chaque match pour avoir l'heure exacte confirmée - les horaires sont parfois ajustés par la FIFA quelques jours avant.
 
-Le match France - Irak à Philadelphie le lundi 22 juin est celui qui commence le plus tard (23h heure française). Si tu travailles le lendemain, prévois le coup - ou enregistre sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) et regarde au petit-déjeuner.
+Le match France - Irak à Philadelphie le lundi 22 juin est celui qui commence le plus tard (23h heure française). Si tu travailles le lendemain, prévois le coup - ou enregistre-le avec un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) et regarde au petit-déjeuner.
 
 ## FAQ
 
@@ -67,7 +67,7 @@ La France joue ses matchs de phase de groupes les 16, 22 et 26 juin 2026. Consul
 
 ### Sur quelle chaîne voir les matchs de l'équipe de France ?
 
-Tous les matchs des Bleus sont sur [M6](/chaines/m6) en clair (gratuit). [beIN Sports](/chaines/bein-sports) les diffuse aussi. En streaming, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) retransmet M6 gratuitement en direct et en replay.
+Tous les matchs des Bleus sont sur [M6](/chaines/m6) en clair (gratuit). [beIN Sports](/chaines/bein-sports) les diffuse aussi. En streaming, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) retransmet le direct M6 gratuitement. Avec un abonnement Molotov, tu peux aussi enregistrer et revoir les matchs.
 
 ### Les matchs de la France sont-ils gratuits ?
 
@@ -79,7 +79,7 @@ Les matchs se jouent aux États-Unis, mais les horaires restent confortables pou
 
 ### Comment regarder la France en streaming ?
 
-[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (gratuit, M6 en direct + replay + enregistrement) ou M6+ (replay et direct M6). Pour un abonnement complet avec tous les matchs du Mondial, [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois inclut beIN Sports.
+[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour le direct M6 gratuit, ou avec un abonnement Molotov pour l'enregistrement et le replay confort. M6+ propose aussi le direct et le replay. Pour tous les matchs du Mondial, [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois inclut beIN Sports.
 
 <script type="application/ld+json">
 {
@@ -99,7 +99,7 @@ Les matchs se jouent aux États-Unis, mais les horaires restent confortables pou
       "name": "Sur quelle chaîne voir les matchs de l'équipe de France ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Tous les matchs des Bleus sont sur M6 en clair (gratuit). beIN Sports les diffuse aussi. En streaming, Molotov retransmet M6 gratuitement en direct et en replay."
+        "text": "Tous les matchs des Bleus sont sur M6 en clair (gratuit). beIN Sports les diffuse aussi. En streaming, Molotov retransmet le direct M6 gratuitement. Un abonnement Molotov permet aussi d'enregistrer et de revoir les matchs."
       }
     },
     {
@@ -107,7 +107,7 @@ Les matchs se jouent aux États-Unis, mais les horaires restent confortables pou
       "name": "Les matchs de la France sont-ils gratuits ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui. M6 diffuse tous les matchs de l'équipe de France en clair sur la TNT. Ils sont aussi disponibles gratuitement en streaming sur M6+ et Molotov."
+        "text": "Oui. M6 diffuse tous les matchs de l'équipe de France en clair sur la TNT. Le direct est aussi disponible gratuitement en streaming sur M6+ et Molotov."
       }
     },
     {
@@ -123,7 +123,7 @@ Les matchs se jouent aux États-Unis, mais les horaires restent confortables pou
       "name": "Comment regarder la France en streaming ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Molotov (gratuit, M6 en direct + replay + enregistrement) ou M6+ (replay et direct M6). Pour tous les matchs du Mondial, Canal+ Sport à 19,99 €/mois inclut beIN Sports."
+        "text": "Molotov pour le direct M6 gratuit, ou avec un abonnement Molotov pour l'enregistrement et le replay confort. M6+ propose aussi le direct et le replay. Pour tous les matchs du Mondial, Canal+ Sport à 19,99 €/mois inclut beIN Sports."
       }
     }
   ]

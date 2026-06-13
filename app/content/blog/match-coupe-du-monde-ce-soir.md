@@ -29,7 +29,7 @@ En France, deux diffuseurs se partagent le Mondial 2026 :
 - **[M6](/chaines/m6)** diffuse **54 matchs en clair**, dont le match d'ouverture, tous les matchs de la France, les quarts de finale, les demi-finales et la finale. Pas besoin d'abonnement, c'est gratuit.
 - **[beIN Sports](/chaines/bein-sports)** diffuse **l'intégralité du tournoi (104 matchs)**, dont une cinquantaine en exclusivité. Il faut un abonnement beIN Sports (~15 €/mois), ou l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois qui inclut beIN.
 
-Pour le streaming, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de regarder M6 gratuitement en direct, en replay ou même d'enregistrer les matchs. Très pratique si tu es sur mobile ou si tu n'as pas de télé.
+Pour le streaming, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de regarder M6 gratuitement en direct. Et avec un abonnement Molotov, tu peux enregistrer les matchs et les revoir quand tu veux - parfait si tu risques de rater le coup d'envoi ou si le match est en pleine nuit.
 
 <!-- MOLOTOV_CARD -->
 
@@ -63,7 +63,7 @@ Le programme change chaque jour pendant le Mondial 2026 (du 11 juin au 19 juille
 
 ### Quelle chaîne diffuse les matchs de la Coupe du Monde 2026 ?
 
-[M6](/chaines/m6) diffuse 54 matchs en clair (France, quarts, demi-finales, finale). [beIN Sports](/chaines/bein-sports) diffuse l'intégralité des 104 matchs, dont une cinquantaine en exclusivité. En streaming, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) retransmet M6 gratuitement.
+[M6](/chaines/m6) diffuse 54 matchs en clair (France, quarts, demi-finales, finale). [beIN Sports](/chaines/bein-sports) diffuse l'intégralité des 104 matchs, dont une cinquantaine en exclusivité. En streaming, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) retransmet le direct M6 gratuitement. Abonnement Molotov pour l'enregistrement et le replay confort.
 
 ### Comment voir les matchs gratuitement ?
 
@@ -99,7 +99,7 @@ Sur [Coup d'Envoi TV](/competitions/coupe-du-monde-2026), les scores sont mis à
       "name": "Quelle chaîne diffuse les matchs de la Coupe du Monde 2026 ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "M6 diffuse 54 matchs en clair (France, quarts, demi-finales, finale). beIN Sports diffuse l'intégralité des 104 matchs, dont une cinquantaine en exclusivité. Molotov retransmet M6 gratuitement en streaming."
+        "text": "M6 diffuse 54 matchs en clair (France, quarts, demi-finales, finale). beIN Sports diffuse l'intégralité des 104 matchs, dont une cinquantaine en exclusivité. Molotov retransmet le direct M6 gratuitement. Un abonnement Molotov permet aussi d'enregistrer et de revoir les matchs."
       }
     },
     {

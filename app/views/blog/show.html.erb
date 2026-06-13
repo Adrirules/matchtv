@@ -93,7 +93,7 @@
         variant: :standard,
         page_context: 'blog-cdm',
         cta_index: 0,
-        subtitle: "Coupe du Monde 2026 sur M6 - regardez les matchs en direct, en replay ou enregistrez-les sur Molotov." %>
+        subtitle: "Coupe du Monde 2026 sur M6 - direct gratuit sur Molotov. Abonnement pour enregistrer et revoir les matchs." %>
   <% end %>
 
   <%# Card affilié DAZN avant le contenu si l'article mentionne DAZN et que dazn_card n'est pas désactivé %>
@@ -124,7 +124,7 @@
       if @club_matches
         processed.gsub!('<!-- CLUB_SCHEDULE -->', render('blog/club_schedule', matches: @club_matches, config: @article[:club_schedule]))
       end
-      processed.gsub!('<!-- MOLOTOV_CARD -->',         render('shared/molotov_card',     variant: :standard, page_context: 'blog-inline-molotov', cta_index: 0, subtitle: "Coupe du Monde 2026 sur M6 - regardez les matchs en direct, en replay ou enregistrez-les sur Molotov."))
+      processed.gsub!('<!-- MOLOTOV_CARD -->',         render('shared/molotov_card',     variant: :standard, page_context: 'blog-inline-molotov', cta_index: 0, subtitle: "Coupe du Monde 2026 sur M6 - direct gratuit sur Molotov. Abonnement pour enregistrer et revoir les matchs."))
       processed.gsub!('<!-- DAZN_BANNER -->',        render('shared/dazn_banner',      page_context: 'blog-dazn'))
       processed.gsub!('<!-- RAT_SPORT_BANNER -->',   render('shared/rat_sport_banner', page_context: 'blog-rat'))
       if @blog_match
