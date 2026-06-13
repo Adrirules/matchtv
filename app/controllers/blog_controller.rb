@@ -190,7 +190,41 @@ class BlogController < ApplicationController
       end
     end
 
-    ttl = if @article[:france_next_match] || @article[:cdm_tonight] then 30.minutes
+    # Matchs CdM 2026 de demain (articles type "match demain")
+    if @article[:cdm_tomorrow]
+      today_zone = Time.current.in_time_zone('Europe/Paris').to_date
+      tomorrow = today_zone + 1.day
+      @cdm_tomorrow_date = tomorrow
+
+      @cdm_tournament_over_tomorrow = today_zone > Date.new(2026, 7, 19)
+
+      @cdm_tomorrow_matches = Match.where(competition: "Coupe du Monde 2026")
+                                   .where(start_time: tomorrow.beginning_of_day..tomorrow.end_of_day)
+                                   .order(:start_time)
+
+      # Match "à ne pas rater" : France > round avancé > premier par heure
+      @cdm_tomorrow_highlight = @cdm_tomorrow_matches.detect { |m|
+        m.home_team =~ /france/i || m.away_team =~ /france/i
+      } || @cdm_tomorrow_matches.detect { |m|
+        m.round.to_s.downcase.match?(/final|semi|quarter/)
+      }
+
+      if @cdm_tomorrow_matches.empty? && !@cdm_tournament_over_tomorrow
+        next_match = Match.where(competition: "Coupe du Monde 2026")
+                         .where("start_time > ?", tomorrow.end_of_day)
+                         .where.not(status: Match::FINISHED_STATUSES)
+                         .order(:start_time)
+                         .first
+        if next_match
+          @cdm_tomorrow_next_date = next_match.start_time.in_time_zone('Europe/Paris').to_date
+          @cdm_tomorrow_next_matches = Match.where(competition: "Coupe du Monde 2026")
+                                            .where(start_time: @cdm_tomorrow_next_date.beginning_of_day..@cdm_tomorrow_next_date.end_of_day)
+                                            .order(:start_time)
+        end
+      end
+    end
+
+    ttl = if @article[:france_next_match] || @article[:cdm_tonight] || @article[:cdm_tomorrow] then 30.minutes
           elsif @article[:club_schedule].present? then 15.minutes
           else 1.hour
           end
@@ -259,7 +293,8 @@ class BlogController < ApplicationController
       club_schedule:     meta['club_schedule'],
       match_card:        meta['match_card'],
       cdm_tonight:       meta['cdm_tonight'],
-      france_next_match: meta['france_next_match']
+      france_next_match: meta['france_next_match'],
+      cdm_tomorrow:      meta['cdm_tomorrow']
     }
     result[:body] = body_text if with_body
     result
