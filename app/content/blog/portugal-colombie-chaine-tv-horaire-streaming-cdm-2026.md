@@ -99,7 +99,7 @@ Le Portugal version 2026, c'est toujours le Portugal de **Roberto Martínez**. L
 
 Et puis il y a **Cristiano Ronaldo**. À 41 ans, c'est son **6ème Mondial** - un record partagé avec Lionel Messi. Le capitaine joue toujours à Al-Nassr en Arabie Saoudite, mais les chiffres sont toujours là : plus de 130 buts en sélection, meilleur buteur de l'histoire du football international. Ce sera son dernier tour de piste mondial, et il le sait.
 
-Autour de lui, la qualité est partout : **Bruno Fernandes** (Manchester United) au milieu, **Bernardo Silva** (Manchester City) en créateur, **Vitinha** et **João Neves** (PSG) dans l'entrejeu, **Rafael Leão** (AC Milan) et **Francisco Conceição** sur les ailes, **Gonçalo Ramos** en pointe. Le Portugal a le luxe d'avoir deux onze titulaires qui pourraient jouer les quarts dans n'importe quel tournoi.
+Autour de lui, la qualité est partout : **Bruno Fernandes** (Manchester United) au milieu, **Bernardo Silva** (Manchester City) en créateur, **Vitinha** et **João Neves** (PSG) dans l'entrejeu, **Rafael Leão** (AC Milan) et **Francisco Conceição** sur les ailes, **Gonçalo Ramos** en pointe. Le Portugal a le luxe d'avoir deux onze titulaires qui pourraient jouer les quarts dans n'importe quel tournoi - on a d'ailleurs placé [le Portugal parmi les favoris](/blog/favoris-coupe-du-monde-2026) de ce Mondial.
 
 ## Ce qu'il faut savoir sur la Colombie
 
@@ -124,9 +124,11 @@ Le Portugal et la Colombie sont dans le même groupe que la **RD Congo** et l'**
 | 28 juin | **Colombie - Portugal** | 01h30 | Miami |
 | 28 juin | RD Congo - Ouzbékistan | 01h30 | Atlanta |
 
-Le Portugal et la Colombie sont les deux favoris du groupe, mais rien n'est joué avant cette dernière journée. Avec le format à 48 équipes, les deux premiers sont qualifiés pour les 16es de finale et les meilleurs troisièmes aussi. Un nul pourrait suffire aux deux - mais ça dépendra des résultats des deux premières journées.
+Le Portugal et la Colombie sont les deux favoris du groupe, mais rien n'est joué avant cette dernière journée. Avec le format à 48 équipes, les deux premiers sont qualifiés pour les 16es de finale et les meilleurs troisièmes aussi. Un nul pourrait suffire aux deux - mais ça dépendra des résultats des deux premières journées. Pour voir [tous les groupes du Mondial](/blog/groupes-coupe-du-monde-2026) d'un seul coup d'oeil, c'est par ici.
 
 Pour le [classement en direct du groupe K](/classements/coupe-du-monde-2026) et tous les résultats, c'est sur Coup d'Envoi TV.
+
+Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), j'ai fait un guide dédié avec tous les matchs et toutes les chaînes.
 
 ## FAQ
 

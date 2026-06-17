@@ -88,7 +88,7 @@ Les 54 matchs diffusés sur [M6](/chaines/m6) sont accessibles sans abonnement. 
 
 ### Où voir le programme complet du Mondial ?
 
-Le [calendrier complet de la Coupe du Monde 2026](/blog/programme-tv-coupe-du-monde-2026) liste tous les matchs avec dates, horaires et chaînes. Pour les résultats en direct et le classement des groupes : [page Coupe du Monde 2026](/competitions/coupe-du-monde-2026).
+Le [calendrier complet de la Coupe du Monde 2026](/blog/programme-tv-coupe-du-monde-2026) liste tous les matchs avec dates, horaires et chaînes. Pour savoir [sur quelle chaîne voir le Mondial](/blog/chaine-tv-coupe-du-monde-2026), on a un guide dédié. Et pour les résultats en direct et le classement des groupes : [page Coupe du Monde 2026](/competitions/coupe-du-monde-2026).
 
 <script type="application/ld+json">
 {

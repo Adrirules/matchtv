@@ -207,4 +207,6 @@ En attendant, rendez-vous samedi à 15h30 pour n'importe quelle affiche de la jo
 - [Classement Bundesliga en direct](/classements/bundesliga)
 - [Où regarder la Premier League en France ?](/blog/ou-regarder-premier-league-france)
 - [Où regarder la Serie A en France ?](/blog/ou-regarder-serie-a-france)
+- [Où regarder la Liga en France ?](/blog/ou-regarder-liga-france)
+- [Comparatif Canal+, DAZN et beIN Sports 2026](/blog/canal-plus-dazn-bein-comparatif-2026)
 - [Guide complet des abonnements foot 2026](/blog/abonnement-foot-2026-quelle-chaine-choisir)

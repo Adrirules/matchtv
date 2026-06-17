@@ -11,6 +11,7 @@ image_credit: "Photo : Unsplash / Red Bull Arena Leipzig"
 excerpt: "Strasbourg en demi, finale à Leipzig le 27 mai : la Conference League 2025-2026 se regarde sur Canal+. Voici tout ce qu'il faut savoir pour ne pas rater un match."
 tags: ["conference-league", "canal-plus", "droits-tv"]
 dazn_card: false
+canal_plus_card: true
 ---
 
 <script type="application/ld+json">
@@ -113,6 +114,8 @@ Les options si tu veux pas t'engager sur 12 mois :
 Attention aux sites de streaming louches - au-delà de la question légale, tu vas passer 20 minutes à fermer des pop-ups avant de tomber sur une image qui rame. Pas fou.
 
 [Si tu hésites entre plusieurs abos foot, j'ai fait le point ici →](/blog/abonnement-foot-2026-quelle-chaine-choisir)
+
+Pour les autres coupes d'Europe : [Champions League sur quelle chaîne ?](/blog/champions-league-chaine-tv-france) et [Europa League sur quelle chaîne ?](/blog/europa-league-chaine-tv-france).
 
 D'ailleurs, petite parenthèse sincère sur les abonnements. Je sais pas toi, mais moi je me retrouve régulièrement à tenir ce dialogue intérieur : "bon 15 € par mois c'est quoi au fond, une pinte de moins dans un bar à Paris". Ou mieux encore : "ça va je fume pas, les fumeurs se paient bien un paquet à 12 balles, je peux bien me faire un abo foot". Résultat, j'ai Canal+, beIN Sports (je l'ai pris "juste un mois" il y a je sais plus combien de temps, je le vois débiter tous les mois en me disant que je vais couper, je coupe jamais) et DAZN. À un moment tu empiles, et chaque nouvelle ligue qui arrive en bonus dans un pack devient une excuse pour prendre le pack. Bref.
 

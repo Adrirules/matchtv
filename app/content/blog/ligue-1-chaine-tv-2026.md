@@ -9,6 +9,8 @@ image: https://images.unsplash.com/photo-1642171729073-303524bbfb31?q=80&w=1740&
 image_credit: "Photo : Unsplash"
 excerpt: "Ligue 1+ et beIN Sports se partagent les droits TV de la Ligue 1. Voici comment ne rater aucun match cette saison."
 tags: ["ligue-1", "canal-plus", "droits-tv"]
+dazn_card: false
+canal_plus_card: false
 ---
 
 <script type="application/ld+json">
@@ -193,4 +195,5 @@ En attendant, on peut toujours regretter Téléfoot.
 - [Classement Ligue 1 en direct](/classements/ligue-1)
 - [Tout savoir sur DAZN](/chaines/dazn)
 - [Tout savoir sur beIN Sports](/chaines/bein-sports)
+- [Comparatif Canal+, DAZN et beIN Sports 2026](/blog/canal-plus-dazn-bein-comparatif-2026)
 - [Guide complet des abonnements foot 2026](/blog/abonnement-foot-2026-quelle-chaine-choisir)

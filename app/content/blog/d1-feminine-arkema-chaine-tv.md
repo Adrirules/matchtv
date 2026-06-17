@@ -9,6 +9,8 @@ image: https://images.unsplash.com/photo-1535506197904-e5c09c0e5619?q=80&w=1740&
 image_credit: "Photo : Unsplash / Jannes Glas"
 excerpt: "Canal+ Foot pour les affiches premium, YouTube pour le reste : le guide complet pour ne plus rater un match de l'Arkema Première Ligue 2025-2026."
 tags: ["d1-feminine", "canal-plus"]
+canal_plus_card: true
+dazn_card: false
 ---
 
 <script type="application/ld+json">
@@ -132,4 +134,4 @@ Savoir où regarder l'Arkema Première Ligue est le premier pas pour soutenir le
 
 Mon astuce de fan : enregistrez le programme de [Coup d'Envoi TV](/) dans vos favoris. Ça vous évitera de chercher pendant 15 minutes pendant que le match a déjà commencé.
 
-Et si vous hésitez encore sur votre abonnement Canal+, notre [comparatif des abonnements foot 2026](/blog/abonnement-foot-2026-quelle-chaine-choisir) fait le point sur tous les tarifs.
+Et si vous hésitez encore sur votre abonnement Canal+, notre [comparatif des abonnements foot 2026](/blog/abonnement-foot-2026-quelle-chaine-choisir) fait le point sur tous les tarifs. Voir aussi notre [comparatif Canal+, DAZN et beIN Sports](/blog/canal-plus-dazn-bein-comparatif-2026) et notre guide [Champions League sur quelle chaîne](/blog/champions-league-chaine-tv-france).

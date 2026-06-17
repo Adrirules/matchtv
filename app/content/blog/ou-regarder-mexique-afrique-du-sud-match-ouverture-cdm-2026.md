@@ -92,11 +92,11 @@ Le truc c'est que pour un match d'ouverture gratuit sur M6, l'abonnement n'est p
 
 Le match se joue dans un stade qui a vu passer Pelé, Maradona et Zidane. L'Estadio Azteca a accueilli deux finales de Coupe du Monde (1970 et 1986) et c'est ici que Maradona a marqué le but du siècle face à l'Angleterre - et la Main de Dieu 4 minutes plus tôt, parce qu'on n'a jamais fait dans la demi-mesure dans ce stade. Peu d'enceintes dans le monde peuvent aligner ce CV.
 
-Pour le Mondial 2026, le stade a été rénové de fond en comble - nouvelle pelouse hybride, sièges remplacés, écrans géants, vestiaires neufs. Le tout pour environ 110 millions d'euros. La réouverture a eu lieu le 28 mars dernier avec un Mexique-Portugal (0-0).
+Pour le Mondial 2026, le stade a été rénové de fond en comble - nouvelle pelouse hybride, sièges remplacés, écrans géants, vestiaires neufs. Le tout pour environ 110 millions d'euros. La réouverture a eu lieu le 28 mars dernier avec un Mexique-Portugal (0-0). L'Aztèque fait partie [des 16 stades du Mondial](/blog/stades-villes-coupe-du-monde-2026) - et c'est probablement le plus mythique de tous.
 
 ## Ce qu'il faut savoir sur le Mexique
 
-Le Mexique est pays hôte (avec les États-Unis et le Canada), donc qualifié automatiquement et tête de série du groupe A. Sauf que "pays hôte" n'est pas synonyme de "favori". Le Mexique n'a jamais dépassé les quarts de finale en Coupe du Monde - et ça fait depuis 1986 qu'il n'y est plus arrivé.
+Le Mexique est [pays hôte](/blog/coupe-du-monde-2026-pays-hote) (avec les États-Unis et le Canada), donc qualifié automatiquement et tête de série du groupe A. Sauf que "pays hôte" n'est pas synonyme de "favori". Le Mexique n'a jamais dépassé les quarts de finale en Coupe du Monde - et ça fait depuis 1986 qu'il n'y est plus arrivé.
 
 Le sélectionneur **Javier Aguirre** en est à sa troisième aventure sur le banc de la sélection. L'homme d'expérience a ramené une Gold Cup en 2009, puis une deuxième l'an dernier. Le capitaine **Edson Álvarez** (Fenerbahçe) mène le groupe, avec **Raúl Jiménez** (Fulham) en pointe et **Santiago Giménez** en alternative. Surprise de la liste : l'absence de **Hirving Lozano**, écarté pour des tensions avec son club.
 
@@ -123,9 +123,11 @@ Le Mexique et l'Afrique du Sud sont dans le même groupe que la **Corée du Sud*
 | 25 juin | Afrique du Sud - Corée du Sud | 03h00 | Monterrey |
 | 25 juin | Tchéquie - Mexique | 03h00 | Mexico |
 
-Le Mexique part favori mais le groupe est ouvert. Avec le nouveau format à 48 équipes, les deux premiers sont qualifiés directement pour les 16es de finale, et les meilleurs troisièmes aussi. Tout se joue sur trois matchs.
+Le Mexique part favori mais le groupe est ouvert. Avec le nouveau format à 48 équipes, les deux premiers sont qualifiés directement pour les 16es de finale, et les meilleurs troisièmes aussi. Tout se joue sur trois matchs. Pour voir [tous les groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026) et comparer les poules, c'est par ici.
 
 Pour le [classement en direct du groupe A](/classements/coupe-du-monde-2026) et tous les résultats, c'est sur Coup d'Envoi TV.
+
+Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), j'ai fait un guide dédié avec tous les matchs et toutes les chaînes.
 
 ## FAQ
 

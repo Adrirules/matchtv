@@ -154,7 +154,7 @@ Non. TF1 ne diffuse aucun match - une première en plus de 45 ans. Ce sont M6 et
 
 Pour les Bleus et les grands matchs, M6 suffit - gratuit, sans abonnement, accessible sur n'importe quel écran via M6+ ou [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) (qui permet en plus d'enregistrer les matchs pour les revoir). Pour voir tout le tournoi, beIN Sports à 15€/mois sans engagement est la bonne option : prends en juin, coupe en août.
 
-Le seul vrai défi de cette édition, c'est les horaires. Prévois-les à l'avance. Et si tu veux comprendre comment on en est arrivé à ce système M6 + beIN Sports (et pourquoi TF1 a disparu), tout est expliqué dans notre [guide complet sur les chaînes de la Coupe du Monde 2026](/blog/chaine-tv-coupe-du-monde-2026).
+Le seul vrai défi de cette édition, c'est les horaires. Prévois-les à l'avance. Et si tu veux comprendre comment on en est arrivé à ce système M6 + beIN Sports (et pourquoi TF1 a disparu), tout est expliqué dans notre [guide complet sur les chaînes de la Coupe du Monde 2026](/blog/chaine-tv-coupe-du-monde-2026). Pour comparer les offres Canal+, DAZN et beIN Sports en détail, c'est dans notre [comparatif 2026](/blog/canal-plus-dazn-bein-comparatif-2026).
 
 <!--
 SUGGESTIONS DE VISUELS LIBRES DE DROIT :

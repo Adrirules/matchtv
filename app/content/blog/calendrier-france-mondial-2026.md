@@ -39,7 +39,7 @@ On commence directement dans la cathédrale. Le MetLife Stadium, c'est le stade 
 
 Mais au-delà du foot américain, ce stade a accueilli des concerts de Bruce Springsteen, de Beyoncé, de Taylor Swift. Il a aussi été le théâtre de la finale du Mondial des Clubs l'été dernier entre le [PSG](/equipes/paris-saint-germain) et Chelsea en juillet 2025, ce qui fait que les Bleus ont regardé leur club jouer dans cette enceinte avant d'y fouler eux-mêmes la pelouse. Un petit avantage psychologique qu'on ne va pas bouder.
 
-21h heure française, c'est parfait. Vous rentrez du travail, vous commandez des pizzas, vous appelez les copains. Aucune excuse pour rater ça. Pour tout ce qu'il faut savoir sur ce match et les adversaires du Groupe I, on a fait [l'analyse complète du groupe de la France](/blog/groupe-france-mondial-2026).
+21h heure française, c'est parfait. Vous rentrez du travail, vous commandez des pizzas, vous appelez les copains. Aucune excuse pour rater ça. On a dédié un article complet à [France - Sénégal : chaîne TV, horaire et streaming](/blog/france-senegal-chaine-tv-horaire-streaming-cdm-2026) pour ne rien manquer. Pour tout ce qu'il faut savoir sur les adversaires du Groupe I, on a fait [l'analyse complète du groupe de la France](/blog/groupe-france-mondial-2026).
 
 ## Match 2 : France - Irak, lundi 22 juin 2026, 23h heure française
 
@@ -77,7 +77,7 @@ La côte Est des États-Unis est à 6 heures de décalage avec la France en ét�
 
 En phase à élimination directe, les horaires peuvent varier selon les stades et les fuseaux. Si la France va en demi-finale à Dallas, les matchs dans le centre des États-Unis sont à 7 heures de décalage, ce qui change légèrement les calculs.
 
-Les matchs de la [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) sont diffusés sur M6 en clair et sur beIN Sports. M6 diffuse les 54 matchs les plus attendus, dont tous ceux de l'équipe de France. Si vous n'avez pas la TNT sous la main, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de regarder M6 en streaming gratuit avec en plus la possibilité d'enregistrer les matchs des Bleus.
+Les matchs de la [Coupe du Monde 2026](/competitions/coupe-du-monde-2026) sont diffusés sur M6 en clair et sur beIN Sports. M6 diffuse les 54 matchs les plus attendus, dont tous ceux de l'équipe de France. Retrouvez [le programme TV complet du Mondial](/blog/programme-tv-coupe-du-monde-2026) avec tous les horaires et toutes les chaînes. Si vous n'avez pas la TNT sous la main, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de regarder M6 en streaming gratuit avec en plus la possibilité d'enregistrer les matchs des Bleus.
 
 ---
 

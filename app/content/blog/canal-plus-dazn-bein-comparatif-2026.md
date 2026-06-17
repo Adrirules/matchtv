@@ -12,6 +12,8 @@ image: "https://images.pexels.com/photos/4777979/pexels-photo-4777979.jpeg?q=80&
 image_credit: "Photo : Pexels"
 excerpt: "Canal+, DAZN ou beIN Sports - ou Ligue1+ ? Le comparatif honnête : qui diffuse quoi en 2026, à quel prix, et quel est le bon choix selon ce que tu regardes vraiment."
 tags: ["canal-plus", "dazn", "bein-sports", "ligue-1", "champions-league", "ligue1-plus"]
+dazn_card: false
+canal_plus_card: false
 ---
 
 <script type="application/ld+json">
@@ -182,6 +184,10 @@ Voilà comment payer le minimum pour voir ce que tu veux réellement.
 
 [Guide complet des abonnements foot 2026 →](/blog/abonnement-foot-2026-quelle-chaine-choisir)
 [Sur quelle chaîne voir la Ligue des Champions →](/blog/champions-league-chaine-tv-france)
+[Où regarder la Premier League →](/blog/ou-regarder-premier-league-france)
+[Où regarder la Liga →](/blog/ou-regarder-liga-france)
+[Où regarder la Serie A →](/blog/ou-regarder-serie-a-france)
+[Ligue 1 : quelle chaîne en 2026 →](/blog/ligue-1-chaine-tv-2026)
 
 ---
 

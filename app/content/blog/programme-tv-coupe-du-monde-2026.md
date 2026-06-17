@@ -135,7 +135,7 @@ C'est la question numéro un. Voilà les trois rendez-vous de la phase de groupe
 
 Deux matchs en prime time, un à 23h - le décalage horaire avec la côte Est américaine reste gérable. On a connu pire (bonjour le Qatar et ses matchs à 16h un mardi).
 
-Pour tout le détail sur le parcours potentiel des Bleus, consultez notre [analyse du groupe I de la France](/blog/groupe-france-mondial-2026) et le [calendrier complet des matchs de l'équipe de France](/blog/calendrier-france-mondial-2026).
+Pour tout le détail sur le parcours potentiel des Bleus, consultez notre [analyse du groupe I de la France](/blog/groupe-france-mondial-2026) et le [calendrier complet des matchs de l'équipe de France](/blog/calendrier-france-mondial-2026). Et si vous hésitez encore sur la meilleure façon de tout suivre, notre [guide pratique pour regarder le Mondial 2026](/blog/comment-regarder-coupe-monde-2026-france) fait le tour de la question.
 
 ---
 

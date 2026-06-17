@@ -59,6 +59,8 @@ Quelques réflexes :
 
 Le match France - Irak à Philadelphie le lundi 22 juin est celui qui commence le plus tard (23h heure française). Si tu travailles le lendemain, prévois le coup - ou enregistre-le avec un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) et regarde au petit-déjeuner.
 
+Pour le [calendrier complet des Bleus au Mondial](/blog/calendrier-france-mondial-2026), l'analyse du [groupe de la France](/blog/groupe-france-mondial-2026) et le [programme TV de toute la compétition](/blog/programme-tv-coupe-du-monde-2026), tout est sur le blog.
+
 ## FAQ
 
 ### Quand joue la France au Mondial 2026 ?

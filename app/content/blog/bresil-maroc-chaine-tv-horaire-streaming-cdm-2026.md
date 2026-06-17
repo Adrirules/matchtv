@@ -109,7 +109,7 @@ Les Lions de l'Atlas débarquent avec un nouveau sélectionneur. **Mohamed Ouahb
 
 L'ossature reste solide : **Achraf Hakimi** (PSG) en défense, **Yassine Bounou** dans les buts, **Noussair Mazraoui** sur le côté, **Brahim Díaz** et **Azzedine Ounahi** au milieu. La surprise de la liste : **Ayyoub Bouaddi** (Lille), première convocation en sélection A pour le jeune milieu de terrain.
 
-Et le Maroc contre le Brésil, ça rappelle deux choses. La gifle de 1998 en Coupe du Monde (3-0 pour le Brésil en phase de groupes). Et la revanche de mars 2023 à Tanger (victoire 2-1 du Maroc en amical). Depuis la demi-finale historique au Qatar en 2022, le Maroc ne craint plus personne. Et avec plus d'un million de Marocains en France qui vont se lever à minuit pour ce match, les audiences M6 pourraient surprendre.
+Et le Maroc contre le Brésil, ça rappelle deux choses. La gifle de 1998 en Coupe du Monde (3-0 pour le Brésil en phase de groupes). Et la revanche de mars 2023 à Tanger (victoire 2-1 du Maroc en amical). Depuis la demi-finale historique au Qatar en 2022, le Maroc ne craint plus personne - d'ailleurs, dans [notre analyse des favoris](/blog/favoris-coupe-du-monde-2026), les Lions de l'Atlas font partie des outsiders sérieux. Et avec plus d'un million de Marocains en France qui vont se lever à minuit pour ce match, les audiences M6 pourraient surprendre.
 
 ## Le groupe C au complet
 
@@ -124,9 +124,11 @@ Le Brésil et le Maroc sont dans le même groupe que l'**Écosse** et **Haïti**
 | 25 juin | Écosse - Brésil | 00h00 | Miami |
 | 25 juin | Maroc - Haïti | 00h00 | Atlanta |
 
-Le Brésil est favori sur le papier, mais le Maroc est le vrai outsider du groupe. L'Écosse sera dangereuse et Haïti disputera sa première Coupe du Monde. Avec le format à 48 équipes, les deux premiers sont qualifiés pour les 16es de finale et les meilleurs troisièmes aussi.
+Le Brésil est favori sur le papier, mais le Maroc est le vrai outsider du groupe. L'Écosse sera dangereuse et Haïti disputera sa première Coupe du Monde. Avec le format à 48 équipes, les deux premiers sont qualifiés pour les 16es de finale et les meilleurs troisièmes aussi. Pour voir [tous les groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026) et comparer les poules, c'est par ici.
 
 Pour le [classement en direct du groupe C](/classements/coupe-du-monde-2026) et tous les résultats, c'est sur Coup d'Envoi TV.
+
+Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), j'ai fait un guide dédié avec tous les matchs et toutes les chaînes.
 
 ## FAQ
 

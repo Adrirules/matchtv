@@ -98,7 +98,7 @@ Les champions du monde en titre. **Lionel Scaloni** dirige une équipe qui a pre
 
 **Lionel Messi** sera là. À 39 ans, c'est son **6ème Mondial** - un record partagé avec Cristiano Ronaldo. Probablement le dernier. Autour de lui, le noyau dur du titre 2022 est toujours en place : **Emiliano Martínez** dans les buts, **Rodrigo De Paul** et **Enzo Fernández** au milieu, **Julián Álvarez** en attaque. L'Argentine pourrait quasiment aligner le même onze que la finale 2022 contre la France, à l'exception d'Ángel Di María qui a pris sa retraite internationale.
 
-Le Brésil n'a plus gagné depuis 2002, l'Allemagne galère, l'Italie n'est même pas là. L'Argentine est la grande favorite de ce Mondial 2026.
+Le Brésil n'a plus gagné depuis 2002, l'Allemagne galère, l'Italie n'est même pas là. L'Argentine est la grande favorite de ce Mondial 2026 - on en parle en détail dans [nos favoris pour le titre](/blog/favoris-coupe-du-monde-2026).
 
 ## Ce qu'il faut savoir sur l'Algérie
 
@@ -121,9 +121,11 @@ L'Argentine et l'Algérie sont dans le même groupe que l'**Autriche** et la **J
 | 28 juin | Algérie - Autriche | 04h00 | Kansas City |
 | 28 juin | Jordanie - Argentine | 04h00 | Arlington (Dallas) |
 
-L'Argentine est largement favorite, mais le groupe est piégeux. Avec le format à 48 équipes, les deux premiers sont qualifiés et les meilleurs troisièmes aussi. L'Algérie vise au minimum la deuxième place - et un bon résultat contre l'Argentine d'entrée changerait tout.
+L'Argentine est largement favorite, mais le groupe est piégeux. Avec le format à 48 équipes, les deux premiers sont qualifiés et les meilleurs troisièmes aussi. L'Algérie vise au minimum la deuxième place - et un bon résultat contre l'Argentine d'entrée changerait tout. Pour voir [les 12 groupes du Mondial](/blog/groupes-coupe-du-monde-2026) et comparer les poules, c'est par là.
 
 Pour le [classement en direct du groupe J](/classements/coupe-du-monde-2026) et tous les résultats, c'est sur Coup d'Envoi TV.
+
+Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), j'ai fait un guide dédié avec tous les matchs et toutes les chaînes.
 
 ## FAQ
 

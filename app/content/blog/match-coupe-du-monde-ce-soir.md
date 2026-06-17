@@ -71,7 +71,7 @@ Les 54 matchs diffusés sur M6 sont accessibles sans abonnement : sur la TNT, vi
 
 ### Quels matchs sont sur M6 ?
 
-Tous les matchs de l'équipe de France (phase de groupes + matchs à élimination directe), le match d'ouverture Mexique - Afrique du Sud, les quarts de finale, les deux demi-finales et la finale du 19 juillet. Les détails sont sur la [page Coupe du Monde 2026](/competitions/coupe-du-monde-2026).
+Tous les matchs de l'équipe de France (phase de groupes + matchs à élimination directe), le match d'ouverture Mexique - Afrique du Sud, les quarts de finale, les deux demi-finales et la finale du 19 juillet. Les détails sont sur la [page Coupe du Monde 2026](/competitions/coupe-du-monde-2026). Pour la liste complète, consultez notre guide [sur quelle chaîne voir le Mondial](/blog/chaine-tv-coupe-du-monde-2026).
 
 ### À quelle heure sont les matchs ?
 

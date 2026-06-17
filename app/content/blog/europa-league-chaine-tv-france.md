@@ -9,6 +9,8 @@ image: https://images.pexels.com/photos/35781789/pexels-photo-35781789.jpeg
 image_credit: "Photo : Pexels"
 excerpt: "Canal+ détient l'intégralité des droits de la Ligue Europa en France. Voici comment ne rien rater des soirées du jeudi."
 tags: ["europa-league", "canal-plus"]
+canal_plus_card: true
+dazn_card: false
 ---
 
 <script type="application/ld+json">
@@ -164,4 +166,7 @@ En attendant, rendez-vous jeudi soir pour les matchs. Le mardi-mercredi c'est LD
 - [Tout savoir sur beIN Sports](/chaines/bein-sports)
 - [Programme complet de l'Europa League](/competitions/europa-league)
 - [Classement Europa League](/classements/europa-league)
+- [Champions League : sur quelle chaîne en 2026 ?](/blog/champions-league-chaine-tv-france)
+- [Conference League : sur quelle chaîne en 2026 ?](/blog/conference-league-chaine-tv-2026)
+- [Comparatif Canal+, DAZN et beIN Sports 2026](/blog/canal-plus-dazn-bein-comparatif-2026)
 - [Guide des abonnements foot 2026](/blog/abonnement-foot-2026-quelle-chaine-choisir)

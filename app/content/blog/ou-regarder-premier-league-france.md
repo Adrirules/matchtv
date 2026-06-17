@@ -10,6 +10,7 @@ image_credit: "Photo : Unsplash"
 excerpt: "En France, la Premier League passe exclusivement sur Canal+ jusqu'en 2028. Anfield, le Boxing Day, les 380 matchs - voilà ce qu'il faut savoir avant de s'abonner."
 tags: ["premier-league", "canal-plus", "droits-tv"]
 dazn_card: false
+canal_plus_card: true
 ---
 
 # Où regarder la Premier League en France en 2025-2026 ?
@@ -167,7 +168,7 @@ Et maintenant, au moins, tu sais où regarder. [Canal+](/chaines/canal-plus), à
 
 ---
 
-*Programme et résultats de la [Premier League 2025-2026](/competitions/premier-league) mis à jour en temps réel sur Coup d'Envoi TV. [Classement Premier League](/classements/premier-league) disponible après chaque journée.*
+*Programme et résultats de la [Premier League 2025-2026](/competitions/premier-league) mis à jour en temps réel sur Coup d'Envoi TV. [Classement Premier League](/classements/premier-league) disponible après chaque journée. Voir aussi : [où regarder la Liga](/blog/ou-regarder-liga-france), [où regarder la Serie A](/blog/ou-regarder-serie-a-france), [Champions League sur quelle chaîne](/blog/champions-league-chaine-tv-france).*
 
 <script type="application/ld+json">
 {

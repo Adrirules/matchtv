@@ -124,6 +124,8 @@ Un dernier chiffre qui fait réfléchir. Chelsea a remporté le **Mondial des Cl
 Un tournoi de clubs de 32 équipes rapporte plus au vainqueur que la Coupe du Monde. La FIFA a beau présenter le Mondial 2026 comme un record historique, elle a mis encore plus d'argent sur la table pour les clubs riches que pour les sélections nationales. C'est un choix politique autant qu'économique - et c'est le genre de fait qu'on a tendance à oublier quand on regarde la finale entre deux nations.
 
 [Tout sur la Coupe du Monde 2026 →](/competitions/coupe-du-monde-2026)
+[Les favoris pour le titre →](/blog/favoris-coupe-du-monde-2026)
+[Le groupe de la France au Mondial →](/blog/groupe-france-mondial-2026)
 [Les stades et villes hôtes de la CdM 2026 →](/blog/coupe-du-monde-2026-villes)
 [Format à 48 équipes : comment ça marche →](/blog/coupe-du-monde-2026-format-48-equipes)
 

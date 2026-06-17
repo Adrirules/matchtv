@@ -166,6 +166,8 @@ Le changement de 2026, c'est donc uniquement l'ajout de cette couche de comparai
 Un autre point à noter : le règlement FIFA précise que **l'affectation des 8 meilleurs 3e dans le tableau final est prédéterminée** selon les groupes d'origine. Ce n'est pas un tirage au sort après coup - le bracket est construit à l'avance selon quels groupes envoient leurs 3e. Ça évite les accusations de manipulation et ça permet aux équipes de savoir à l'avance contre qui elles joueraient en cas de qualification comme 3e.
 
 [Le programme complet de la Coupe du Monde 2026 →](/blog/programme-tv-coupe-du-monde-2026)
+[Le format à 48 équipes expliqué →](/blog/coupe-du-monde-2026-format-48-equipes)
+[Les 12 groupes du Mondial 2026 →](/blog/groupes-coupe-du-monde-2026)
 [Suivre les groupes en direct →](/competitions/coupe-du-monde-2026)
 
 ## Un exemple concret pour fixer les idées

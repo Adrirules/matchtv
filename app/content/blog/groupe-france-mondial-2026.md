@@ -59,11 +59,11 @@ France contre Argentine en finale de Coupe du Monde à New York. La revanche de 
 
 Ce groupe est honnête pour une équipe de la qualité de la France. Pas aussi facile que certains l'espéraient, pas aussi difficile que certains l'ont présenté. Le Sénégal est un vrai test d'entrée, la Norvège un adversaire sérieux, et l'Irak est le match qu'il ne faut pas rater. Opta donne à la France 14,1% de chances de remporter le titre, deuxième favori derrière l'Espagne. Pour moi, c'est largement sous-estimé.
 
-On a un réservoir de joueurs qui dégoûte le reste de l'Europe. On a la culture du tournoi. On a Mbappé.
+On a un réservoir de joueurs qui dégoûte le reste de l'Europe. On a la culture du tournoi. On a Mbappé. Pour aller plus loin, consultez [le calendrier détaillé des Bleus](/blog/calendrier-france-mondial-2026) et [notre analyse des favoris](/blog/favoris-coupe-du-monde-2026) du tournoi.
 
 La liste de Deschamps sera annoncée le 13 mai. Le départ pour les États-Unis le 9 juin. Les matchs débutent le 16 juin.
 
-Tous les matchs des Bleus sont sur [M6](/chaines/m6), en clair. Et si vous êtes en déplacement ou sans TNT, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de suivre M6 en streaming gratuit et d'enregistrer les rencontres.
+Tous les matchs des Bleus sont sur [M6](/chaines/m6), en clair. Et si vous êtes en déplacement ou sans TNT, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de suivre M6 en streaming gratuit et d'enregistrer les rencontres. Pour tout savoir sur les options de diffusion, notre [guide pour regarder la Coupe du Monde en France](/blog/comment-regarder-coupe-monde-2026-france) détaille chaque solution.
 
 Allez les Bleus.
 

@@ -148,7 +148,7 @@ Et maintenant, tu sais où regarder. [beIN Sports](/chaines/bein-sports), à par
 
 ---
 
-*Programme et résultats de la [Liga 2025-2026](/competitions/la-liga) mis à jour en temps réel sur Coup d'Envoi TV. [Classement Liga](/classements/la-liga) disponible après chaque journée.*
+*Programme et résultats de la [Liga 2025-2026](/competitions/la-liga) mis à jour en temps réel sur Coup d'Envoi TV. [Classement Liga](/classements/la-liga) disponible après chaque journée. Voir aussi : [où regarder la Premier League](/blog/ou-regarder-premier-league-france), [où regarder la Serie A](/blog/ou-regarder-serie-a-france), [Bundesliga sur quelle chaîne](/blog/bundesliga-chaine-tv-france).*
 
 <script type="application/ld+json">
 {

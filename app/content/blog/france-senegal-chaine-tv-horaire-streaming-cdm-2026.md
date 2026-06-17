@@ -126,9 +126,11 @@ La France et le Sénégal sont dans le même groupe que la **Norvège** (Haaland
 | 26 juin | Norvège - France | 21h00 | Boston |
 | 26 juin | Sénégal - Irak | 21h00 | Toronto |
 
-Avec le format à 48 équipes, les deux premiers du groupe sont qualifiés pour les 16es de finale, et les meilleurs troisièmes aussi. La France est favorite, mais le Sénégal est champion d'Afrique et la Norvège a Haaland. C'est pas un groupe de vacances.
+Avec le format à 48 équipes, les deux premiers du groupe sont qualifiés pour les 16es de finale, et les meilleurs troisièmes aussi. La France est favorite, mais le Sénégal est champion d'Afrique et la Norvège a Haaland. C'est pas un groupe de vacances. Pour [l'analyse complète du groupe de la France](/blog/groupe-france-mondial-2026) et la composition détaillée du groupe I, j'ai fait un article dédié. Et si tu veux voir [les 12 groupes du Mondial](/blog/groupes-coupe-du-monde-2026) d'un coup d'oeil, c'est par là.
 
 Pour le [classement en direct du groupe I](/classements/coupe-du-monde-2026) et tous les résultats, c'est sur Coup d'Envoi TV.
+
+Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), j'ai fait un guide dédié avec tous les matchs et toutes les chaînes.
 
 ## FAQ
 

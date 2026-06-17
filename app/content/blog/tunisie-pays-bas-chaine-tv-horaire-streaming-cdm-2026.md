@@ -128,9 +128,11 @@ La Tunisie et les Pays-Bas sont dans le même groupe que le **Japon** et la **Su
 
 Comme pour chaque dernier match de poules, les deux rencontres de la 3e journée se jouent en simultané (01h00 heure française). Ce Tunisie - Pays-Bas pourrait être un match décisif pour la qualification : selon les résultats des deux premiers matchs, la Tunisie pourrait avoir besoin d'un exploit pour sortir du groupe, ou les Pays-Bas pourraient jouer leur première place.
 
-C'est le format à 48 équipes : les deux premiers sont qualifiés pour les 16es de finale, plus les meilleurs troisièmes. Pour le [classement en direct du groupe F](/classements/coupe-du-monde-2026) et tous les résultats, c'est sur Coup d'Envoi TV.
+C'est le format à 48 équipes : les deux premiers sont qualifiés pour les 16es de finale, plus les meilleurs troisièmes. Pour voir [les 12 groupes du Mondial](/blog/groupes-coupe-du-monde-2026) et comparer les poules, c'est par là.
 
-Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), j'ai fait un guide dédié avec tous les matchs et toutes les chaînes.
+Pour le [classement en direct du groupe F](/classements/coupe-du-monde-2026) et tous les résultats, c'est sur Coup d'Envoi TV.
+
+Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), j'ai fait un guide dédié avec tous les matchs et toutes les chaînes. Et pour savoir [sur quelle chaîne voir la Coupe du Monde 2026](/blog/chaine-tv-coupe-du-monde-2026), c'est par ici.
 
 ## FAQ
 

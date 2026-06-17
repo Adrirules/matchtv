@@ -156,7 +156,7 @@ Bonne Coupe du Monde.
 
 *Toutes les informations de diffusion ont été vérifiées en avril 2026. Les droits TV et les programmes sont susceptibles d'évoluer - consultez les sites officiels de [M6](/chaines/m6) et [beIN Sports](/chaines/bein-sports) pour les mises à jour.*
 
-*Retrouvez le [programme TV complet de la Coupe du Monde 2026](/competitions/coupe-du-monde-2026), notre [analyse du groupe de la France](/blog/groupe-france-mondial-2026), le [calendrier des matchs des Bleus](/blog/calendrier-france-mondial-2026) et tous les [articles du blog Coup d'Envoi TV](/blog).*
+*Retrouvez le [programme TV complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), le [guide pour regarder la CdM 2026 en France](/blog/comment-regarder-coupe-monde-2026-france), notre [analyse du groupe de la France](/blog/groupe-france-mondial-2026), le [calendrier des matchs des Bleus](/blog/calendrier-france-mondial-2026) et tous les [articles du blog Coup d'Envoi TV](/blog).*
 
 <script type="application/ld+json">
 {
