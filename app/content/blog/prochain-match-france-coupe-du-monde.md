@@ -29,7 +29,7 @@ Les Bleus sont dans le **[Groupe I](/competitions/coupe-du-monde-2026/groupe-i)*
 | Date | Match | Heure FR | Chaîne | Stade |
 |------|-------|----------|--------|-------|
 | Mardi 16 juin | [France - Sénégal](/blog/france-senegal-chaine-tv-horaire-streaming-cdm-2026) | 21h00 | [M6](/chaines/m6) | MetLife Stadium, East Rutherford |
-| Lundi 22 juin | France - Irak | 23h00 | [M6](/chaines/m6) | Lincoln Financial Field, Philadelphie |
+| Lundi 22 juin | [France - Irak](/blog/france-irak-chaine-tv-horaire-streaming-cdm-2026) | 23h00 | [M6](/chaines/m6) | Lincoln Financial Field, Philadelphie |
 | Vendredi 26 juin | Norvège - France | 21h00 | [M6](/chaines/m6) | Gillette Stadium, Foxborough |
 
 Les matchs à élimination directe seront ajoutés ici au fur et à mesure de la qualification des Bleus.
