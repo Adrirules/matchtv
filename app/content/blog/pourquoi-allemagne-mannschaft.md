@@ -2,7 +2,7 @@
 title: "Pourquoi l'Allemagne s'appelle la Mannschaft ? | Coup d'Envoi TV"
 meta_description: "Que signifie 'die Mannschaft' et pourquoi l'Allemagne porte ce surnom ? La réponse cache un paradoxe : les Allemands l'ont eux-mêmes abandonné en 2022."
 slug: pourquoi-allemagne-mannschaft
-published_at: 2026-06-23
+published_at: 2026-06-24
 published_time: "09h07"
 author: Adrien
 image: https://images.unsplash.com/photo-1781194541387-2b148ef6869e?q=80&w=1200&h=630&auto=format&fit=crop
@@ -18,8 +18,8 @@ canal_plus_card: false
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Pourquoi l'Allemagne s'appelle la Mannschaft ?",
-  "datePublished": "2026-06-23",
-  "dateModified": "2026-06-23",
+  "datePublished": "2026-06-24",
+  "dateModified": "2026-06-24",
   "author": { "@type": "Person", "name": "Adrien" },
   "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
 }

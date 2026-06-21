@@ -2,7 +2,7 @@
 title: "Pourquoi l'Italie joue en bleu et s'appelle la Squadra Azzurra ? | Coup d'Envoi TV"
 meta_description: "Le drapeau italien est vert, blanc et rouge. Alors pourquoi la Squadra Azzurra joue-t-elle en bleu ? La réponse remonte aux rois de Savoie."
 slug: pourquoi-italie-squadra-azzurra
-published_at: 2026-06-24
+published_at: 2026-06-25
 published_time: "10h34"
 author: Adrien
 image: https://images.unsplash.com/photo-1556958540-2378bacb6f59?q=80&w=1200&h=630&auto=format&fit=crop
@@ -18,8 +18,8 @@ canal_plus_card: false
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Pourquoi l'Italie joue en bleu et s'appelle la Squadra Azzurra ?",
-  "datePublished": "2026-06-24",
-  "dateModified": "2026-06-24",
+  "datePublished": "2026-06-25",
+  "dateModified": "2026-06-25",
   "author": { "@type": "Person", "name": "Adrien" },
   "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
 }

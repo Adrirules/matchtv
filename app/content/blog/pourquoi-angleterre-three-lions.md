@@ -2,7 +2,7 @@
 title: "Pourquoi l'Angleterre s'appelle les Three Lions ? | Coup d'Envoi TV"
 meta_description: "Trois lions sur le maillot anglais, et 830 ans d'histoire derrière. L'origine du blason de l'Angleterre, de Richard Cœur de Lion à aujourd'hui."
 slug: pourquoi-angleterre-three-lions
-published_at: 2026-06-25
+published_at: 2026-06-26
 published_time: "11h17"
 author: Adrien
 image: https://images.unsplash.com/photo-1780587109939-faae46139552?q=80&w=1200&h=630&auto=format&fit=crop
@@ -18,8 +18,8 @@ canal_plus_card: false
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Pourquoi l'Angleterre s'appelle les Three Lions ?",
-  "datePublished": "2026-06-25",
-  "dateModified": "2026-06-25",
+  "datePublished": "2026-06-26",
+  "dateModified": "2026-06-26",
   "author": { "@type": "Person", "name": "Adrien" },
   "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
 }

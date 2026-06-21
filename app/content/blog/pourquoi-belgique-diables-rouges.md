@@ -2,7 +2,7 @@
 title: "Pourquoi l'équipe de Belgique s'appelle les Diables Rouges ? | Coup d'Envoi TV"
 meta_description: "L'histoire du surnom des Diables Rouges remonte à 1906, un journaliste et un pilote de course à barbe rousse. Récit d'une des plus belles origines du football."
 slug: pourquoi-belgique-diables-rouges
-published_at: 2026-06-22
+published_at: 2026-06-23
 published_time: "08h52"
 author: Adrien
 image: https://images.unsplash.com/photo-1627303807166-f682e14afc45?q=80&w=1200&h=630&auto=format&fit=crop
@@ -18,8 +18,8 @@ canal_plus_card: false
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Pourquoi l'équipe de Belgique s'appelle les Diables Rouges ?",
-  "datePublished": "2026-06-22",
-  "dateModified": "2026-06-22",
+  "datePublished": "2026-06-23",
+  "dateModified": "2026-06-23",
   "author": { "@type": "Person", "name": "Adrien" },
   "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
 }
