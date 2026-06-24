@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.pexels.com/photos/34201725/pexels-photo-34201725.jpeg
 image_credit: "Photo : Unsplash"
 excerpt: "Le 5 décembre 2025, la France a tiré le Groupe I : Sénégal, Norvège, Irak. Pas une promenade de santé. Analyse complète des trois adversaires, du calendrier et du parcours potentiel jusqu'à la finale."
+tags: ["coupe-du-monde"]
 match_pairs_title: "Les matchs du Groupe I"
 derby_pairs:
   - ["France", "Senegal"]
@@ -25,6 +26,8 @@ Le 5 décembre 2025 au Kennedy Center de Washington, la France a appris son sort
 Avant de rentrer dans le détail, il faut parler de l'éléphant dans la pièce. Ce Mondial 2026, c'est le dernier de Didier Deschamps sur le banc des Bleus. L'homme qui nous a offert la deuxième étoile en 2018, qui nous a menés en finale en 2022, qui a construit en silence l'une des générations les plus talentueuses de l'histoire du football français. On est derrière Dédé jusqu'au bout, et on le sera avec fierté et reconnaissance jusqu'au coup de sifflet final de son dernier match. Mais je ne vais pas mentir : j'ai hâte de voir Zidane aux manettes. Zizou sélectionneur de l'équipe de France, avec Mbappé comme capitaine. C'est presque trop beau pour être vrai. Presque. Parce que Zidane qui accepte ce poste après des années de refus, c'est courageux. C'est s'exposer, c'est prendre le risque de ternir une légende absolue si ça se passe mal. Il le sait. Et il a dit oui quand même. Pour ça, on lui fait confiance. Mais d'abord, on gagne ce Mondial avec Dédé. Dans l'ordre.
 
 Le format d'abord, pour ceux qui découvrent. Pour la première fois de l'histoire, 48 équipes participent à la Coupe du Monde, réparties en douze groupes de quatre. Les deux premiers de chaque groupe plus les huit meilleurs troisièmes sont qualifiés pour les seizièmes de finale. Finir dans les deux premiers du groupe I, c'est quasi certain de continuer. Finir troisième avec un bon bilan, ça peut aussi passer. Finir quatrième, c'est rentrer à la maison et expliquer pendant quatre ans ce qui s'est passé.
+
+[[groupe:I]]
 
 ## France contre Sénégal : le mauvais souvenir de 2002
 
@@ -56,9 +59,11 @@ France contre Argentine en finale de Coupe du Monde à New York. La revanche de 
 
 Ce groupe est honnête pour une équipe de la qualité de la France. Pas aussi facile que certains l'espéraient, pas aussi difficile que certains l'ont présenté. Le Sénégal est un vrai test d'entrée, la Norvège un adversaire sérieux, et l'Irak est le match qu'il ne faut pas rater. Opta donne à la France 14,1% de chances de remporter le titre, deuxième favori derrière l'Espagne. Pour moi, c'est largement sous-estimé.
 
-On a un réservoir de joueurs qui dégoûte le reste de l'Europe. On a la culture du tournoi. On a Mbappé.
+On a un réservoir de joueurs qui dégoûte le reste de l'Europe. On a la culture du tournoi. On a Mbappé. Pour aller plus loin, consultez [le calendrier détaillé des Bleus](/blog/calendrier-france-mondial-2026) et [notre analyse des favoris](/blog/favoris-coupe-du-monde-2026) du tournoi.
 
 La liste de Deschamps sera annoncée le 13 mai. Le départ pour les États-Unis le 9 juin. Les matchs débutent le 16 juin.
+
+Tous les matchs des Bleus sont sur [M6](/chaines/m6), en clair. Et si vous êtes en déplacement ou sans TNT, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de suivre M6 en streaming gratuit et d'enregistrer les rencontres. Pour tout savoir sur les options de diffusion, notre [guide pour regarder la Coupe du Monde en France](/blog/comment-regarder-coupe-monde-2026-france) détaille chaque solution.
 
 Allez les Bleus.
 

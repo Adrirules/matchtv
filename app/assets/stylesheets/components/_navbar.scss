@@ -1,54 +1,52 @@
 /* ====== MATCH CARD ====== */
 .match-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  border: 1px solid #f0f0f0;
-  transition: box-shadow 0.15s;
+  background: var(--color-surface);
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  transition: border-color 0.15s, box-shadow 0.15s;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  &--live {
+    border-left: 3px solid var(--color-live);
   }
 }
 
 /* ====== LIVE SCORE BADGES ====== */
 .match-status {
-  display: inline-block;
-  padding: 2px 7px;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
   border-radius: 4px;
   font-weight: 700;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 10px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.03em;
 
   &.live {
-    background: #d9534f;
+    background: var(--color-live);
     color: white;
-    animation: pulse 1.5s ease-in-out infinite;
   }
 
   &.finished {
-    background: #e9ecef;
-    color: #666;
-  }
-
-  &.upcoming {
-    background: #f4f4f4;
-    color: #444;
+    background: oklch(92% 0.005 255);
+    color: var(--color-muted);
   }
 }
 
-@keyframes pulse {
+@keyframes livepulse {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.6; }
+  50%       { opacity: 0.7; }
 }
 
 /* ====== NAVBAR HAUTE ====== */
 .top-nav {
-  padding: 12px 16px;
-  border-bottom: 1px solid #eaeaea;
+  padding: 10px 16px;
+  background: var(--color-header);
   font-weight: 700;
   font-size: 18px;
   display: flex;
@@ -56,36 +54,43 @@
   justify-content: space-between;
 
   a {
-    color: inherit;
+    color: white;
     text-decoration: none;
   }
 }
 
 .top-nav-logo {
+  font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 18px;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: white;
 }
 
 .top-nav-links {
-  display: none; // caché sur mobile
+  display: none;
 }
 
 .top-nav-item {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: #333;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 8px;
-  transition: background 0.15s;
+  transition: color 0.15s, background 0.15s;
 
-  &:hover { background: #f4f4f4; }
+  &:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
   &.active {
-    color: #333;
+    color: white;
     font-weight: 700;
-    border-bottom: 2px solid #0f172a;
+    border-bottom: 2px solid var(--color-accent);
     border-radius: 0;
-    padding-bottom: 4px;
+    padding-bottom: 3px;
   }
 
   span { margin-right: 4px; }
@@ -95,14 +100,18 @@
 .top-nav-blog-mobile {
   font-size: 13px;
   font-weight: 700;
-  color: #333;
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 8px;
-  border: 1px solid #eaeaea;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
 
-  &.active { border-color: #0f172a; }
+  &.active {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -113,7 +122,7 @@
   }
 
   .top-nav-blog-mobile {
-    display: none; // caché sur desktop, le lien est dans top-nav-links
+    display: none;
   }
 }
 
@@ -143,33 +152,15 @@
   text-decoration: none;
   border-bottom: 2px solid transparent;
   &.active {
-    color: #333;
+    color: var(--color-accent);
     font-weight: 700;
-    border-bottom: 2px solid #0f172a;
+    border-bottom: 2px solid var(--color-accent);
   }
 }
 
 .nav-item span {
   display: block;
   font-size: 18px;
-}
-
-/* ====== CALENDRIER STICKY ====== */
-.sticky-calendar {
-  position: sticky;
-  top: 0;
-  background: white;
-  z-index: 900;
-  border-bottom: 1px solid #eaeaea;
-
-  /* Force le calendrier à sortir des marges du container parent */
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-
-  /* Optionnel : centre le contenu interne si tes jours flottent trop */
-  display: flex;
-  justify-content: center;
 }
 
 /* pour éviter que la navbar cache le contenu */

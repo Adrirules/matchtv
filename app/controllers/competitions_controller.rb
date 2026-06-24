@@ -1,5 +1,47 @@
 class CompetitionsController < ApplicationController
 
+  COUNTRY_FLAGS = {
+    "France"          => "🇫🇷",
+    "Europe"          => "🏆",
+    "Angleterre"      => "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "Espagne"         => "🇪🇸",
+    "Allemagne"       => "🇩🇪",
+    "Italie"          => "🇮🇹",
+    "Portugal"        => "🇵🇹",
+    "Pays-Bas"        => "🇳🇱",
+    "Belgique"        => "🇧🇪",
+    "Turquie"         => "🇹🇷",
+    "Arabie Saoudite" => "🇸🇦",
+    "USA"             => "🇺🇸",
+    "Monde"           => "🌍",
+  }.freeze
+
+  COMPETITION_CHANNELS = {
+    61  => %w[dazn bein-sports],
+    62  => %w[bein-sports],
+    63  => %w[canal-plus],
+    39  => %w[canal-plus],
+    140 => %w[bein-sports],
+    78  => %w[bein-sports],
+    135 => %w[dazn],
+    141 => %w[bein-sports],
+    137 => %w[bein-sports],
+    81  => %w[bein-sports],
+    40  => %w[bein-sports],
+    144 => %w[bein-sports],
+    2   => %w[canal-plus],
+    3   => %w[canal-plus bein-sports],
+    848 => %w[canal-plus],
+    64  => %w[canal-plus],
+    66  => %w[france-tv bein-sports],
+    88  => %w[dazn],
+    94  => %w[canal-plus],
+    253 => %w[amazon-prime],
+    307 => %w[canal-plus],
+    203 => %w[bein-sports],
+    1   => %w[m6 bein-sports],
+  }.freeze
+
   def index
     db_competitions = Match.distinct.pluck(:competition).compact
 
@@ -76,6 +118,25 @@ class CompetitionsController < ApplicationController
     editorial = competition_editorial(@competition_name)
     @description  = editorial || competition_description(@competition_name)
     @editorial_html = editorial.present?
+
+    # Classement depuis la DB (0 appel API)
+    @is_world_cup = meta && meta[:id] == 1
+    if @has_standings && meta
+      standing = Standing.for_league(meta[:id])
+      if @is_world_cup
+        # CDM : 12 tableaux de groupes
+        @all_groups = standing&.data&.dig(0, "league", "standings") || []
+        @standings_rows = @all_groups.first || []
+      else
+        @standings_rows = standing&.data&.dig(0, "league", "standings", 0) || []
+      end
+    else
+      @standings_rows = []
+      @all_groups = []
+    end
+
+    # Chaînes qui diffusent cette compétition
+    @comp_channel_slugs = meta ? (COMPETITION_CHANNELS[meta[:id]] || []) : []
 
     # noindex si page vide : pas de texte éditorial humain + aucun match à venir
     @noindex = !@editorial_html && @matches.empty?

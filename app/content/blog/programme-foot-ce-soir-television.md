@@ -8,9 +8,10 @@ author: Adrien
 image: https://images.unsplash.com/photo-1678483789123-e8a73f82addb?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "Zapper entre Canal+, beIN et DAZN pendant 15 min pour trouver son match... on est tous passés par là. Voici la méthode pour ne plus jamais rater un coup d'envoi."
+tags: ["chaines-tv", "droits-tv"]
 ---
 
-## Comment savoir quel match de foot passe ce soir à la télé ?
+# Comment savoir quel match de foot passe ce soir à la télé ?
 
 Si tu as déjà passé 10 minutes à zapper entre **Canal+**, **beIN** et **DAZN** sans trouver ton match… t'es pas seul. Perso, ça m'est encore arrivé dimanche dernier : je cherchais un choc de Serie A pour finir le week-end, et il était "planqué" sur un canal secondaire beIN que je n'avais pas l'habitude de consulter. 15 minutes de perdues, une bière tiède et le premier but raté.
 

@@ -3,6 +3,7 @@ class FootballApiService
 
   # Source de vérité unique — ordre par popularité en France
   COMPETITIONS_META = [
+    { id: 1,   name: "Coupe du Monde 2026", country: "Monde",          has_standings: true },
     { id: 61,  name: "Ligue 1",            country: "France",          has_standings: true  },
     { id: 2,   name: "Champions League",   country: "Europe",          has_standings: true  },
     { id: 39,  name: "Premier League",     country: "Angleterre",      has_standings: true  },
@@ -28,8 +29,10 @@ class FootballApiService
     { id: 5,   name: "Qualif. Mondial 2026", country: "Europe",        has_standings: false, archived: true },
     { id: 4,   name: "Euro / Nations League", country: "Europe",       has_standings: false, archived: true },
     { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false, archived: true },
-    { id: 1,   name: "Coupe du Monde 2026", country: "Monde",          has_standings: false },
   ].freeze
+
+  # Saison active par ligue — CDM 2026 utilise season 2026, tout le reste 2025
+  LEAGUE_SEASONS = Hash.new(2025).merge(1 => 2026).freeze
 
   # Helper : logo officiel depuis l'API Sports CDN
   def self.league_logo(id)
@@ -130,7 +133,7 @@ class FootballApiService
     when 9 # Copa America
       "beIN Sports"
     when 1 # Coupe du Monde 2026
-      "TF1 / M6"
+      "M6 / beIN Sports"
     else
       "À confirmer"
     end
@@ -170,7 +173,9 @@ class FootballApiService
         tv_channels:       guess_tv_channel(league_id, match_date_time),
         api_id:            data['fixture']['id'],
         slug:              match_slug,
-        round:             data['league']['round']
+        round:             data['league']['round'],
+        venue_name:        data.dig('fixture', 'venue', 'name'),
+        venue_city:        data.dig('fixture', 'venue', 'city')
       )
 
       # Mise à jour score + statut pour les matchs terminés
@@ -180,7 +185,8 @@ class FootballApiService
     "#{fixtures.count} matchs importés pour #{SUPPORTED_LEAGUES[league_id]}"
   end
 
-  def import_upcoming_fixtures(league_id: 61, season: 2025)
+  def import_upcoming_fixtures(league_id: 61, season: nil)
+    season ||= LEAGUE_SEASONS[league_id]
     # On récupère les matchs sur une fenêtre de 30 jours
     response = tracked_get('/fixtures', {
       league: league_id,
@@ -191,9 +197,9 @@ class FootballApiService
 
     fixtures = JSON.parse(response.body)['response'] || []
 
-    # Sécurité : Si 2025 ne renvoie rien, on peut tenter 2024 (pour les ligues décalées)
-    if fixtures.empty? && season == 2025
-      return import_upcoming_fixtures(league_id: league_id, season: 2024)
+    # Sécurité : Si la saison courante ne renvoie rien, on tente la saison précédente
+    if fixtures.empty? && season > 2024
+      return import_upcoming_fixtures(league_id: league_id, season: season - 1)
     end
 
     return "Aucun match trouvé pour la ligue #{league_id}" if fixtures.empty?
@@ -230,7 +236,9 @@ class FootballApiService
         tv_channels: precise_tv,
         api_id: data['fixture']['id'],
         slug: match_slug,
-        round: data['league']['round']
+        round: data['league']['round'],
+        venue_name: data.dig('fixture', 'venue', 'name'),
+        venue_city: data.dig('fixture', 'venue', 'city')
       )
     end
     "Import terminé : #{fixtures.count} matchs pour #{SUPPORTED_LEAGUES[league_id]}"
@@ -403,28 +411,49 @@ class FootballApiService
     end
   end
 
-  # Incrémente un compteur par endpoint et par jour (non bloquant)
+  # Incrémente un compteur par endpoint et par jour — stocké en DB (survit aux restarts)
   # Consultable via : rails runner "puts FootballApiService.daily_usage"
   def self.track_call(endpoint)
-    segment = endpoint.to_s.split("/").reject(&:blank?).first || "other"
-    key = "api_calls_#{Date.today}_#{segment}"
-    Rails.cache.increment(key, 1, expires_in: 72.hours)
+    ApiCallLog.track(endpoint)
   rescue
     nil
   end
 
   def self.daily_usage(date = Date.today)
-    endpoints = %w[fixtures standings teams players injuries coachs]
-    total = 0
-    lines = endpoints.map do |ep|
-      count = Rails.cache.read("api_calls_#{date}_#{ep}").to_i
-      total += count
-      "  #{ep.ljust(12)} #{count}"
-    end
-    other = Rails.cache.read("api_calls_#{date}_other").to_i
-    total += other
-    lines << "  #{'other'.ljust(12)} #{other}"
-    lines << "  #{'TOTAL'.ljust(12)} #{total}"
-    lines.join("\n")
+    ApiCallLog.usage(date)
+  end
+
+  # --- Garde-fou quota ---
+  # Quota journalier API-Football : 7500 appels
+  # Priorités : :low (coaches, players) / :medium (standings) / :high (injuries, summaries) / :critical (live, sync)
+  # Appel seuil réduit de 1000 si des matchs ont lieu dans les 8 prochaines heures
+  QUOTA_THRESHOLDS = {
+    critical: 7500, # toujours autorisé
+    high:     5500,
+    medium:   4500,
+    low:      2500
+  }.freeze
+
+  def self.within_budget?(priority = :low)
+    return true if priority == :critical
+    threshold = QUOTA_THRESHOLDS.fetch(priority, 4000)
+    threshold -= 1000 if match_hours?
+    daily_total < threshold
+  rescue => e
+    Rails.logger.warn("[FootballApiService] within_budget? failed: #{e.message}")
+    true # fail open pour ne pas bloquer en cas d'erreur DB
+  end
+
+  def self.daily_total(date = Date.today)
+    ApiCallLog.where(date: date).sum(:count)
+  rescue
+    0
+  end
+
+  # Retourne true si des matchs NS sont prévus dans les 8 prochaines heures
+  def self.match_hours?
+    Match.where(start_time: Time.current..(Time.current + 8.hours), status: 'NS').exists?
+  rescue
+    false
   end
 end

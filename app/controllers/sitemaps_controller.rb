@@ -16,11 +16,9 @@ class SitemapsController < ApplicationController
     # 3. Les Compétitions (Ligues — seulement celles avec matchs récents)
     @competitions = Match.where("start_time > ?", 90.days.ago).distinct.pluck(:competition).compact
 
-    # 4. Les Joueurs (seulement ceux avec un slug valide et une équipe active récemment)
-    active_teams = @teams
-    @players = Player.where(team: active_teams)
-                     .where.not(slug: [nil, ""])
-                     .select(:slug, :updated_at)
+    # 4. Les Joueurs — retirés du sitemap (volume ~11 000 URLs → cannibalise le crawl budget)
+    # Les pages joueurs ont leur propre noindex conditionnel dans PlayersController.
+    @players = []
 
     # 5. Les Classements (slugs officiels uniquement)
     @standing_slugs = StandingsController::LEAGUES.map { |l| l[:slug] }
@@ -28,12 +26,19 @@ class SitemapsController < ApplicationController
     # 6. Les Chaînes TV
     @channel_slugs = ChannelsController::CHANNELS_META.map { |c| c[:slug] }
 
-    # 7. Les Articles de blog (publiés uniquement)
+    # 7. Les pages /days/ (aujourd'hui + 7 jours futur + 3 mois passé)
+    @day_dates = Match.where("start_time > ?", 3.months.ago)
+                      .where("start_time < ?", 7.days.from_now.end_of_day)
+                      .distinct
+                      .pluck(Arel.sql("DATE(start_time)"))
+                      .sort
+
+    # 8. Les Articles de blog (publiés uniquement)
     @blog_articles = Dir.glob(Rails.root.join("app/content/blog/*.md")).map do |path|
       content = File.read(path)
       frontmatter = content.match(/\A---\n(.*?)\n---/m)&.[](1)
       next unless frontmatter
-      slug         = frontmatter.match(/^slug:\s*(.+)/)&.[](1)&.strip
+      slug         = frontmatter.match(/^slug:\s*(.+)/)&.[](1)&.strip&.gsub(/\A["']|["']\z/, '')
       published_at = frontmatter.match(/^published_at:\s*(.+)/)&.[](1)&.strip
       next unless slug && published_at
       date = Date.parse(published_at) rescue nil

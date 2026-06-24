@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1769348193442-6d3b1655266d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "Tout le monde pense au Clasico. Mais la vraie Liga, celle qui te tient sur une saison, elle est ailleurs. Et en France, elle passe sur beIN Sports."
+tags: ["liga", "bein-sports", "droits-tv"]
 dazn_card: false
 ---
 
@@ -68,6 +69,8 @@ Aucun match de Liga n'est diffusé en clair en France. Les alternatives gratuite
 Mais pour le direct, il faut passer par [beIN Sports](/chaines/bein-sports). Pour ne rien rater du calendrier - horaires, chaînes, prochaines affiches - le [programme Liga sur Coup d'Envoi TV](/competitions/la-liga) recense tous les matchs en un coup d'oeil.
 
 ---
+
+<!-- RAT_SPORT_BANNER -->
 
 ## La Liga au-delà du Clasico : pourquoi le milieu de tableau est passionnant
 
@@ -145,7 +148,7 @@ Et maintenant, tu sais où regarder. [beIN Sports](/chaines/bein-sports), à par
 
 ---
 
-*Programme et résultats de la [Liga 2025-2026](/competitions/la-liga) mis à jour en temps réel sur Coup d'Envoi TV. [Classement Liga](/classements/la-liga) disponible après chaque journée.*
+*Programme et résultats de la [Liga 2025-2026](/competitions/la-liga) mis à jour en temps réel sur Coup d'Envoi TV. [Classement Liga](/classements/la-liga) disponible après chaque journée. Voir aussi : [où regarder la Premier League](/blog/ou-regarder-premier-league-france), [où regarder la Serie A](/blog/ou-regarder-serie-a-france), [Bundesliga sur quelle chaîne](/blog/bundesliga-chaine-tv-france).*
 
 <script type="application/ld+json">
 {

@@ -1,6 +1,11 @@
 namespace :coaches do
   desc "Sync coaches for teams active in the last 30 days or with upcoming matches"
   task sync: :environment do
+    unless FootballApiService.within_budget?(:low)
+      puts "⛔ coaches:sync ignoré — quota API proche du seuil (priorité basse)"
+      next
+    end
+
     api = FootballApiService.new
 
     team_ids = Match.where(
@@ -9,7 +14,13 @@ namespace :coaches do
     ).pluck(:home_team_api_id, :away_team_api_id)
      .flatten.compact.uniq
 
-    puts "Syncing coaches for #{team_ids.size} active teams..."
+    # Skip teams synced within the last 30 days — coaches change ~once per season
+    recent_ids     = Coach.where("updated_at >= ?", 30.days.ago).pluck(:team_api_id).to_set
+    original_count = team_ids.size
+    team_ids       = team_ids.reject { |id| recent_ids.include?(id) }
+    skipped        = original_count - team_ids.size
+
+    puts "Syncing coaches for #{team_ids.size} active teams (skipped #{skipped} synced < 30 days)..."
     synced = 0
     errors = 0
 

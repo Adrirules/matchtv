@@ -18,11 +18,8 @@ curl "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/fetch-data?period=w
 
 ## Étape 1b — Vérifie les nouvelles 404 de la semaine
 
-```bash
-curl "https://www.coupdenvoi.tv/api/seo/fetch-data?period=weekly&token=ae40ee3515b609740a9866973891f84bd3031b59dab071df6f9b78645b5b6c10"
-```
-
-Le JSON contient un champ `crawl_errors` avec les nouvelles URLs en 404 des 7 derniers jours.
+Le champ `crawl_errors` est déjà inclus dans la réponse de l'Étape 1 — pas besoin d'un deuxième appel.
+Lis directement `data.crawl_errors` depuis le JSON récupéré à l'Étape 1.
 
 Pour chaque groupe de nouvelles 404 :
 1. **Classifier le pattern** : joueur ? équipe ? ancienne URL ? compétition ?
@@ -155,7 +152,7 @@ Exemple :
 ]
 ```
 
-Si l'historique (étape 1b) contient des actions ouvertes des semaines précédentes,
+Si l'historique (étape 1c) contient des actions ouvertes des semaines précédentes,
 signale dans l'analyse celles qui n'ont pas encore été traitées.
 
 ## Étape 4 — Envoie le rapport avec les actions
@@ -174,3 +171,9 @@ curl -X POST "https://coup-denvoi-a511cf759844.herokuapp.com/api/seo/send-report
 - Ne jamais inventer de pages — utiliser UNIQUEMENT existing_pages pour le maillage
 - Pages "match" : pertinentes 7 jours avant le match max — penser evergreen sinon
 - Si cannibalisation : toujours enrichir l'existant avant de créer du nouveau
+
+## Pages sous surveillance (à suivre semaine après semaine)
+
+| Page | Signal | Seuil d'action |
+|------|--------|----------------|
+| /blog/top-5-derbies-france-football | Chute de 8,5 places le 28/04 (pos 7,5 → 16). Ne pas enrichir immédiatement. | Si la position baisse encore ou ne remonte pas sous les 10 dans 2 semaines → enrichir l'article (500+ mots, maj exemples saison 2025-2026) |

@@ -115,7 +115,7 @@
           </div>
         <% end %>
         <button
-          class="vote-pill"
+          class="vote-pill<%= ' voted' if @voted_slugs.include?(team[:slug]) %>"
           id="vote-btn-<%= team[:slug] %>"
           data-slug="<%= team[:slug] %>"
           data-url="<%= vote_team_path(team[:slug]) %>"
@@ -245,17 +245,13 @@
         }
       });
 
-      // Restaurer votes
-      document.querySelectorAll('.vote-pill').forEach(function(btn) {
-        if (localStorage.getItem('voted_' + btn.dataset.slug)) btn.classList.add('voted');
-      });
+      // État initial chargé depuis le serveur (classe voted rendue en ERB)
     })();
 
     function handleVote(e, btn) {
       e.preventDefault();
       e.stopPropagation();
-      var slug     = btn.dataset.slug;
-      var wasVoted = btn.classList.contains('voted');
+      var slug = btn.dataset.slug;
       btn.disabled = true;
 
       fetch(btn.dataset.url, {
@@ -267,12 +263,9 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(data) {
-        // N'update l'UI que si le résultat correspond à l'intention
-        if (!wasVoted && data.status === 'ok') {
-          localStorage.setItem('voted_' + slug, '1');
+        if (data.status === 'ok') {
           btn.classList.add('voted');
-        } else if (wasVoted && data.status === 'removed') {
-          localStorage.removeItem('voted_' + slug);
+        } else if (data.status === 'removed') {
           btn.classList.remove('voted');
         }
         var countEl = document.getElementById('vote-count-' + slug);

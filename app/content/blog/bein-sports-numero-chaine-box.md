@@ -8,9 +8,10 @@ author: Adrien
 image: https://images.unsplash.com/photo-1570730866446-0569a02dd356?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "Orange, SFR, Bouygues, Free : tous les numéros de chaînes beIN Sports par opérateur, plus les pièges classiques à éviter pour ne pas rater le coup d'envoi."
+tags: ["bein-sports", "chaines-tv"]
 ---
 
-## beIN Sports : quel numéro de chaîne sur ta box internet ?
+# beIN Sports : quel numéro de chaîne sur ta box internet ?
 
 Tu cherches le numéro de chaîne **beIN Sports** sur ta box et tu n'as pas envie de zapper pendant 10 minutes. Normal. Entre les canaux qui changent, les chaînes secondaires et les interfaces pas toujours claires, on peut vite tourner en rond.
 
@@ -38,6 +39,8 @@ Ce tableau suffit dans la majorité des situations. Si tu ne trouves pas ton mat
 Pour tout savoir sur les tarifs et ce que [beIN Sports](/chaines/bein-sports) diffuse en 2026, notre guide complet fait le point.
 
 ---
+
+<!-- RAT_SPORT_BANNER -->
 
 ## beIN Sports sur Orange (Livebox)
 

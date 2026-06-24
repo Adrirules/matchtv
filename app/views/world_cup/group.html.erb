@@ -1,0 +1,167 @@
+<% content_for :title, @page_title %>
+<% content_for :meta_description, @page_desc %>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": "<%= @group_data["label"] %> — Coupe du Monde 2026",
+  "startDate": "2026-06-11",
+  "endDate": "2026-07-19",
+  "sport": "Football",
+  "organizer": { "@type": "Organization", "name": "FIFA" }
+}
+</script>
+
+<div style="padding: 0 15px;">
+
+  <%# Breadcrumb %>
+  <div style="font-size: 12px; color: #94a3b8; margin: 8px 0 16px; display: flex; align-items: center; gap: 6px;">
+    <%= link_to "Compétitions", competitions_path, style: "color: #94a3b8; text-decoration: none;" %>
+    <span>›</span>
+    <%= link_to "Coupe du Monde 2026", competition_path("coupe-du-monde-2026"), style: "color: #94a3b8; text-decoration: none;" %>
+    <span>›</span>
+    <span style="color: #010e1b; font-weight: 600;"><%= @group_data["label"] %></span>
+  </div>
+
+  <%# Header %>
+  <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+    <img src="<%= FootballApiService.league_logo(1) %>" alt="Coupe du Monde 2026"
+         width="40" height="40" style="width: 40px; height: 40px; object-fit: contain;">
+    <div>
+      <h1 style="font-size: 20px; font-weight: 800; color: #010e1b; margin: 0; font-family: var(--font-heading);">
+        <%= @group_data["label"] %> — Coupe du Monde 2026
+      </h1>
+      <p style="font-size: 13px; color: #64748b; margin: 2px 0 0;">
+        <%= @group_data["teams_fr"].join(" · ") %>
+      </p>
+    </div>
+  </div>
+
+  <%# Navigation groupes %>
+  <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px;">
+    <% %w[A B C D E F G H I J K L].each do |l| %>
+      <%= link_to world_cup_group_path(letter: l.downcase),
+          style: "display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; #{l == @letter ? 'background: var(--color-accent); color: white;' : 'background: white; color: #64748b; border: 1px solid #e2e8f0;'}" do %>
+        <%= l %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%# Classement du groupe %>
+  <h2 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; margin: 0 0 8px;">
+    Classement
+  </h2>
+
+  <% if @standings_rows.any? %>
+    <div style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+      <div style="display: flex; align-items: center; padding: 8px 14px; border-bottom: 1px solid #f1f5f9; background: #f8fafc;">
+        <span style="width: 24px; font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">#</span>
+        <span style="flex: 1; font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-left: 36px;">Équipe</span>
+        <div style="display: flex; gap: 0; text-align: center;">
+          <span style="width: 28px; font-size: 10px; font-weight: 700; color: #94a3b8;">J</span>
+          <span style="width: 28px; font-size: 10px; font-weight: 700; color: #94a3b8;">G</span>
+          <span style="width: 28px; font-size: 10px; font-weight: 700; color: #94a3b8;">N</span>
+          <span style="width: 28px; font-size: 10px; font-weight: 700; color: #94a3b8;">P</span>
+          <span style="width: 36px; font-size: 10px; font-weight: 700; color: #94a3b8;">Pts</span>
+        </div>
+      </div>
+      <% @standings_rows.each_with_index do |rank, idx| %>
+        <div style="display: flex; align-items: center; padding: 9px 14px; <%= idx < @standings_rows.size - 1 ? 'border-bottom: 1px solid #f1f5f9;' : '' %> <%= idx < 2 ? 'border-left: 3px solid var(--color-accent);' : 'border-left: 3px solid transparent;' %>">
+          <span style="width: 24px; font-size: 12px; font-weight: 700; color: #94a3b8;"><%= rank["rank"] %></span>
+          <img src="<%= rank.dig("team", "logo") %>" alt="<%= rank.dig("team", "name") %>"
+               width="22" height="22" loading="lazy"
+               style="width: 22px; height: 22px; object-fit: contain; margin-right: 8px;">
+          <span style="flex: 1; font-size: 13px; font-weight: 600; color: #010e1b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            <%= team_display_name(rank.dig("team", "name")) %>
+          </span>
+          <div style="display: flex; gap: 0; text-align: center; font-size: 12px; color: #64748b;">
+            <span style="width: 28px;"><%= rank.dig("all", "played") %></span>
+            <span style="width: 28px;"><%= rank.dig("all", "win") %></span>
+            <span style="width: 28px;"><%= rank.dig("all", "draw") %></span>
+            <span style="width: 28px;"><%= rank.dig("all", "lose") %></span>
+            <span style="width: 36px; font-weight: 900; color: #010e1b;"><%= rank["points"] %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <p style="font-size: 11px; color: #94a3b8; margin: -14px 0 20px; text-align: right;">
+      Les 2 premiers se qualifient pour le tour suivant
+    </p>
+  <% else %>
+    <div style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 20px;">
+      <% if @tournament_started %>
+        <p style="font-size: 14px; color: #64748b; margin: 0; text-align: center;">Classement disponible dès le premier match joué.</p>
+      <% else %>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <% @group_data["teams_fr"].each do |team| %>
+            <div style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f1f5f9;">
+              <span style="font-size: 14px; font-weight: 600; color: #010e1b;"><%= team %></span>
+            </div>
+          <% end %>
+        </div>
+        <p style="font-size: 12px; color: #94a3b8; margin: 12px 0 0; text-align: center;">
+          Classement disponible à partir du 11 juin 2026
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%# Matchs du groupe %>
+  <h2 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; margin: 0 0 8px;">
+    Matchs
+  </h2>
+
+  <% if @matches.any? %>
+    <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+      <% @matches.each do |match| %>
+        <%= link_to match_path(match.slug || match.id), style: "display: block; text-decoration: none; color: inherit;" do %>
+          <div style="background: white; border-radius: 10px; padding: 12px 14px; border: 1px solid #e2e8f0;">
+            <div style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 6px;">
+              <%= match.start_time.strftime("%d %b %Y · %Hh%M") %> · <%= match.round %>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <div style="flex: 1; display: flex; align-items: center; gap: 8px; min-width: 0;">
+                <img src="<%= match.home_team_logo %>" alt="<%= team_display_name(match.home_team) %>"
+                     width="22" height="22" loading="lazy" style="width: 22px; height: 22px; object-fit: contain; flex-shrink: 0;">
+                <span style="font-size: 14px; font-weight: 700; color: #010e1b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  <%= team_display_name(match.home_team) %>
+                </span>
+              </div>
+              <div style="text-align: center; flex-shrink: 0; padding: 0 8px;">
+                <% if match.home_score.present? %>
+                  <span style="font-size: 18px; font-weight: 800; color: #010e1b; font-family: var(--font-heading);">
+                    <%= match.home_score %> - <%= match.away_score %>
+                  </span>
+                <% else %>
+                  <span style="font-size: 13px; font-weight: 700; color: #94a3b8;">vs</span>
+                <% end %>
+              </div>
+              <div style="flex: 1; display: flex; align-items: center; gap: 8px; justify-content: flex-end; min-width: 0;">
+                <span style="font-size: 14px; font-weight: 700; color: #010e1b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right;">
+                  <%= team_display_name(match.away_team) %>
+                </span>
+                <img src="<%= match.away_team_logo %>" alt="<%= team_display_name(match.away_team) %>"
+                     width="22" height="22" loading="lazy" style="width: 22px; height: 22px; object-fit: contain; flex-shrink: 0;">
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 20px; text-align: center;">
+      <p style="font-size: 14px; color: #64748b; margin: 0;">
+        Programme disponible à partir du 11 juin 2026.
+      </p>
+    </div>
+  <% end %>
+
+  <%# Liens vers les autres groupes %>
+  <div style="margin-top: 8px;">
+    <%= link_to competition_path("coupe-du-monde-2026"), style: "font-size: 13px; color: var(--color-accent); font-weight: 700; text-decoration: none;" do %>
+      ← Retour Coupe du Monde 2026
+    <% end %>
+  </div>
+
+</div>

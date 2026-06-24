@@ -41,22 +41,21 @@
     (urgent_label ? "Ce match est diffusé en direct sur DAZN. Abonnez-vous en 2 minutes." :
                     "Serie A, Eredivisie et Ligue 1 - regardez le foot en direct sur DAZN.") %>
 
-  <div style="background: white; border: 1px solid #bfdbfe; border-radius: 10px; padding: 18px 20px; margin: 22px 0; box-shadow: 0 2px 8px rgba(59,130,246,0.07);">
+  <div style="background: #F4E100; border-radius: 10px; padding: 16px 18px; margin: 22px 0;">
     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-      <span style="font-size: 16px; font-weight: 900; letter-spacing: -0.5px; color: #fff; background: #010e1b; border-radius: 4px; padding: 2px 9px;">DAZN</span>
+      <span style="font-size: 14px; font-weight: 900; letter-spacing: 0.04em; color: #F4E100; background: #111; border: 1px solid #F4E100; border-radius: 4px; padding: 2px 10px; font-family: 'DM Sans', sans-serif;">DAZN</span>
       <% if urgent_label %>
-        <span style="background: #fef2f2; color: #ef4444; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.04em;"><%= urgent_label %></span>
+        <span style="background: rgba(0,0,0,0.12); color: #111; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.04em; font-family: 'DM Sans', sans-serif;"><%= urgent_label %></span>
       <% end %>
     </div>
-    <p style="margin: 0 0 16px; font-size: 14px; color: #475569; line-height: 1.5;"><%= card_subtitle %></p>
-    <div style="text-align: center;">
-      <%= link_to dazn_url, target: "_blank", rel: "nofollow sponsored noopener",
-          onclick: ga_push,
-          style: "display: inline-block; background: #3b82f6; color: white; font-size: 14px; font-weight: 700; padding: 11px 24px; border-radius: 6px; text-decoration: none; transition: background 0.15s;",
-          onmouseover: "this.style.background='#2563eb'",
-          onmouseout:  "this.style.background='#3b82f6'" do %>
-        <%= cta_text %> →
-      <% end %>
-    </div>
+    <p style="margin: 0 0 14px; font-size: 13px; color: rgba(0,0,0,0.7); line-height: 1.55; font-family: 'DM Sans', sans-serif;"><%= card_subtitle %></p>
+    <%= link_to dazn_url, target: "_blank", rel: "nofollow sponsored noopener",
+        onclick: ga_push,
+        onmouseover: "this.style.opacity='0.82'",
+        onmouseout: "this.style.opacity='1'",
+        style: "display: block; width: 100%; background: #111; color: #F4E100; font-size: 13px; font-weight: 700; padding: 11px 0; border-radius: 8px; text-decoration: none; text-align: center; font-family: 'DM Sans', sans-serif; box-sizing: border-box; transition: opacity 0.15s;" do %>
+      <%= cta_text %> →
+    <% end %>
+    <p style="margin: 8px 0 0; font-size: 9px; color: rgba(0,0,0,0.45); text-align: center; font-family: 'DM Sans', sans-serif;">Lien affilié · commission perçue sur souscription</p>
   </div>
 <% end %>

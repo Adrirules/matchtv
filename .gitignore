@@ -48,3 +48,5 @@ CLAUDE.md
 
 # Ignore the generated sitemap (Heroku le génère tout seul)
 /public/sitemap.xml.gz
+.claude/
+editorial/

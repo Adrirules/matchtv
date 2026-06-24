@@ -1,44 +1,61 @@
 <% date_label = format_date_label(@date) %>
 
 <%
-  is_future  = @date > Date.today
-  is_past    = @date < Date.today
   count      = @matches.size
-  comps      = @matches.map(&:competition).compact.uniq.first(4)
+  comp_priority = %w[Ligue\ 1 Champions\ League Premier\ League La\ Liga Bundesliga Serie\ A Ligue\ 2 Europa\ League Conference\ League Coupe\ de\ France D1\ Féminine Eredivisie Liga\ Portugal Süper\ Lig]
+  raw_comps  = @matches.map(&:competition).compact.uniq
+  comps      = raw_comps.sort_by { |c| comp_priority.index(c) || 99 }.first(4)
   comps_str  = comps.any? ? comps.to_sentence(words_connector: ', ', two_words_connector: ' et ', last_word_connector: ' et ') : nil
+
+  # date_label_seo : "17 mars" si < 2 mois, "17 mars 2026" sinon — compact pour les titles
+  date_label_seo = if (@date - Date.today).abs < 60
+    l(@date, format: "%e %B").strip
+  else
+    l(@date, format: "%e %B %Y").strip
+  end
 %>
 
-<%# --- SEO --- %>
+<%# --- SEO titles & meta descriptions --- %>
 <%
-  # 3 variations par jour de la semaine — évite le duplicate content entre dates adjacentes
-  title_variant = @date.wday % 3
+  tv = @date.wday % 3
+  comps2 = comps.first(2).join(" et ") if comps.any?
 
-  seo_title = if count > 0 && comps.any?
-    comps2 = comps.first(2).join(" et ")
-    case title_variant
-    when 0
-      "Foot #{date_label} : quels matchs à la TV ? #{comps2} au programme | Coup d'Envoi TV"
-    when 1
-      "#{comps2} le #{date_label} : sur quelle chaîne en direct ? | Coup d'Envoi TV"
-    else
-      if comps.size >= 3
-        "#{count} matchs le #{date_label} - #{comps.first(2).join(', ')} et plus : programme TV | Coup d'Envoi TV"
-      else
-        "#{count} match#{'s' if count > 1} de foot le #{date_label} - #{comps_str} : programme TV | Coup d'Envoi TV"
+  if @is_past
+    seo_title = case tv
+      when 0 then "Résultats foot du #{date_label_seo} : tous les scores et résumés | Coup d'Envoi TV"
+      when 1 then "Matchs du #{date_label_seo} : résultats, scores et chaînes | Coup d'Envoi TV"
+      else        "Foot #{date_label_seo} : tous les résultats et résumés | Coup d'Envoi TV"
       end
-    end
-  else
-    case title_variant
-    when 0 then "Foot #{date_label} : quels matchs à la TV ce soir ? Programme complet | Coup d'Envoi TV"
-    when 1 then "Foot #{date_label} : programme TV, chaînes et horaires | Coup d'Envoi TV"
-    else        "Programme TV foot #{date_label} - Matchs et chaînes | Coup d'Envoi TV"
+    seo_desc = "Résultats foot du #{date_label_seo} : #{count} match#{'s' if count > 1} joué#{'s' if count > 1}, scores complets et chaînes de diffusion."
+  elsif @is_today
+    seo_title = "Programme TV foot aujourd'hui : matchs et chaînes en direct | Coup d'Envoi TV"
+    seo_desc = "Tous les matchs de foot aujourd'hui : #{count} rencontre#{'s' if count > 1} en direct. Horaires et chaînes TV en France."
+  else # @is_future
+    seo_title = case tv
+      when 0 then "Match foot #{date_label_seo} : programme TV, chaînes et horaires | Coup d'Envoi TV"
+      when 1
+        if comps2
+          "Foot #{date_label_seo} : sur quelle chaîne ? #{comps2} au programme | Coup d'Envoi TV"
+        else
+          "Foot #{date_label_seo} : sur quelle chaîne ? Programme complet | Coup d'Envoi TV"
+        end
+      else
+        if count > 0 && comps.any?
+          "Programme foot TV du #{date_label_seo} : #{count} match#{'s' if count > 1} en direct - #{comps.first(2).join(', ')} | Coup d'Envoi TV"
+        else
+          "Programme foot TV du #{date_label_seo} : tous les matchs en direct | Coup d'Envoi TV"
+        end
+      end
+    seo_desc = if count > 0 && comps.any?
+      "Programme TV foot du #{date_label_seo} : #{count} match#{'s' if count > 1} avec #{comps_str}. Horaires et chaînes en France."
+    else
+      "Programme TV foot du #{date_label_seo}. Horaires et chaînes de diffusion des matchs de football en France."
     end
   end
 
-  seo_desc = if count > 0 && comps.any?
-    "#{count} match#{'s' if count > 1} de football le #{date_label} : #{comps_str}. Horaires et chaînes TV en France sur Coup d'Envoi TV."
-  else
-    "Programme TV foot du #{date_label}. Retrouvez les horaires et chaînes de diffusion des matchs de football en France."
+  # Garde-fou : si le title dépasse 65 car, retire le suffixe
+  if seo_title.length > 65
+    seo_title = seo_title.sub(" | Coup d'Envoi TV", "")
   end
 %>
 <% content_for :title, seo_title %>
@@ -55,11 +72,31 @@
 <% end %>
 
 <%# --- CONTENU --- %>
-<h1 style="font-size: 20px; font-weight: 700; margin: 20px 0 15px;">
-  Programme TV foot <%= date_label %>
-</h1>
+<div class="with-sidebar">
+<div><%# colonne principale %>
+<%
+  date_full = l(@date, format: :full)
+  h1_text = if @is_today
+    "Foot ce soir : programme TV du #{date_full}"
+  elsif @is_future
+    "Programme foot du #{date_full} : chaînes et horaires"
+  else
+    "Matchs du #{date_full} : résultats et chaînes"
+  end
+%>
+<div style="margin: 8px 0 16px;">
+  <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+    <h1 style="font-size: 24px; font-weight: 800; color: #010e1b; margin: 0; line-height: 1.3; font-family: var(--font-heading);"><%= h1_text %></h1>
+    <% if @live_count > 0 %>
+      <%= link_to direct_path, style: "display: inline-flex; align-items: center; gap: 5px; background: var(--color-live); color: white; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-decoration: none; white-space: nowrap; flex-shrink: 0;" do %>
+        <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
+        <%= @live_count %> en direct
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
-<% if @date == Date.today %>
+<% if @is_today %>
   <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
     <p style="margin: 0 0 10px;">
       <strong>Coup d'Envoi TV</strong> est votre guide du programme TV football en France.
@@ -79,7 +116,7 @@
     </p>
   </div>
 
-<% elsif is_future && count > 0 %>
+<% elsif @is_future && count > 0 %>
   <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
     <p style="margin: 0 0 8px;">
       <strong><%= count %> match<%= count > 1 ? 's' : '' %></strong>
@@ -93,39 +130,137 @@
     </p>
   </div>
 
-<% elsif is_past && count > 0 %>
+<% elsif @is_past && count > 0 %>
+  <%
+    finished_count = @matches.count { |m| %w[FT AET PEN].include?(m.status) }
+  %>
   <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
     <p style="margin: 0 0 8px;">
-      Le <strong><%= l(@date, format: :long) %></strong>, <strong><%= count %> match<%= count > 1 ? 's' : '' %></strong>
-      <%= count > 1 ? 'étaient diffusés' : 'était diffusé' %> à la télévision.
-      <% if comps_str %> Les compétitions au programme : <strong><%= comps_str %></strong>.<% end %>
+      Voici tous les matchs de foot qui se sont joués le <strong><%= l(@date, format: :full) %></strong>.
+      Découvrez les résultats, les scores finaux et les chaînes qui ont diffusé chaque rencontre.
+      <strong><%= count %> match<%= count > 1 ? 's' : '' %></strong>
+      <%= count > 1 ? 'étaient' : 'était' %> au programme<% if comps_str %>, dont <strong><%= comps_str %></strong><% end %>.
     </p>
     <p style="margin: 0;">
-      Pour chaque match terminé, le score final et un résumé sont disponibles sur la page de la rencontre.
-      Retrouvez toute l'actualité dans les <%= link_to "résultats récents", resultats_path, style: "color: #007bff;" %>.
+      <% if finished_count > 0 %>
+        <%= finished_count %> rencontre<%= finished_count > 1 ? 's terminées' : ' terminée' %> - cliquez sur chaque match pour le score détaillé et le résumé.
+      <% end %>
+      Retrouvez aussi les <%= link_to "résultats récents", resultats_path, style: "color: #007bff;" %>,
+      les <%= link_to "classements", standings_path, style: "color: #007bff;" %> et
+      le <%= link_to "programme du jour", root_path, style: "color: #007bff;" %>.
+    </p>
+  </div>
+<% elsif @is_past && count == 0 %>
+  <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 14px; color: #444; line-height: 1.7;">
+    <p style="margin: 0;">
+      Aucun match n'était programmé le <strong><%= l(@date, format: :full) %></strong>.
+      Consultez le <%= link_to "programme du jour", root_path, style: "color: #007bff;" %>
+      ou les <%= link_to "résultats récents", resultats_path, style: "color: #007bff;" %>.
     </p>
   </div>
 <% end %>
 
-<% if @date == Date.today && @matches.any?(&:live?) %>
+<% if @is_today && @matches.any?(&:live?) %>
   <script>
     setTimeout(function() { location.reload(); }, 60000);
   </script>
 <% end %>
 
 <% if @matches.any? %>
-  <% @matches.each_with_index do |match, index| %>
-    <% if index == 4 %>
-      <%= render 'shared/ad_unit', slot_id: '2773465276' %>
+  <%
+    known_order   = FootballApiService::COMPETITIONS_META.map { |c| c[:name] }
+    grouped       = @matches.group_by(&:competition)
+    sorted_groups = grouped.sort_by { |comp, _| known_order.index(comp) || 999 }
+    match_index   = 0
+    # Positions 728x90 selon parité du jour (indices 0-based, insertion APRÈS la ligue à cet index)
+    ad_728_positions = @date.day.even? ? [1, 4, 8] : [2, 6, 10]
+  %>
+  <% sorted_groups.each_with_index do |(competition, matches), group_index| %>
+
+    <%# Header compétition %>
+    <% comp_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == competition } %>
+    <div style="display:flex;align-items:center;gap:10px;margin:20px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--color-accent);">
+      <% if comp_meta %>
+        <img src="<%= FootballApiService.league_logo(comp_meta[:id]) %>" alt="<%= competition %>"
+             width="20" height="20" loading="lazy" style="width:20px;height:20px;object-fit:contain;">
+      <% end %>
+      <span style="font-size:14px;font-weight:800;color:var(--color-text);text-transform:uppercase;letter-spacing:0.04em;font-family:'Barlow Condensed',sans-serif;"><%= competition %></span>
+      <% if comp_meta&.dig(:has_standings) %>
+        <%= link_to standing_path(competition.parameterize),
+            style: "font-size:10px;font-weight:700;color:var(--color-accent);background:var(--color-accent-dim);padding:2px 7px;border-radius:5px;text-decoration:none;margin-left:auto;" do %>Classement<% end %>
+      <% end %>
+    </div>
+
+    <% matches.each do |match| %>
+      <%= render 'shared/match_card', match: match, priority: match_index < 2 %>
+      <%= render 'shared/json_ld', match: match %>
+      <% match_index += 1 %>
     <% end %>
-    <%= render 'shared/match_card', match: match, priority: index < 2 %>
-    <%= render 'shared/json_ld', match: match %>
+
+    <%# Pub contextuelle après la ligue si position planifiée : DAZN si ligue DAZN, Canal+ sinon %>
+    <% if ad_728_positions.include?(group_index) %>
+      <% is_dazn_comp = ['Ligue 1', 'Serie A', 'Eredivisie', 'Bundesliga', 'Jupiler Pro League'].include?(competition) %>
+      <% if is_dazn_comp %>
+        <%# Desktop 728x90 DAZN %>
+        <div style="display:none; margin: 16px 0; justify-content: center;" class="kwanko-728" data-kwanko-track="days-dazn-728">
+          <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193929" rel="sponsored"
+             onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'days-728',affiliate_format:'dazn_728x90'});">
+            <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193929"
+                 width="728" height="90" border="0" loading="lazy" alt="DAZN">
+          </a>
+          <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193929" defer></script>
+        </div>
+        <%# Mobile DAZN rotation %>
+        <% mobile_fmt = group_index % 2 %>
+        <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day">
+          <% if mobile_fmt == 0 %>
+            <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193923" rel="sponsored"
+               onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'days-mobile',affiliate_format:'dazn_300x250'});">
+              <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193923"
+                   width="300" height="250" border="0" loading="lazy" alt="DAZN">
+            </a>
+            <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193923" defer></script>
+          <% else %>
+            <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193924" rel="sponsored"
+               onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'days-mobile',affiliate_format:'dazn_300x50'});">
+              <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193924"
+                   width="300" height="50" border="0" loading="lazy" alt="DAZN">
+            </a>
+            <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193924" defer></script>
+          <% end %>
+        </div>
+      <% else %>
+        <%# Desktop 728x90 Canal+ %>
+        <div style="display:none; margin: 16px 0;" class="kwanko-728" data-kwanko-track="days-main">
+          <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26513"
+                  width="728" height="90" scrolling="no" frameborder="0"
+                  style="display:block; border:0;"></iframe>
+        </div>
+        <%# Mobile Canal+ rotation %>
+        <% mobile_fmt = group_index % 3 %>
+        <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-day" data-kwanko-track="days-mobile-<%= group_index %>">
+          <% if mobile_fmt == 0 %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D9"
+                    width="300" height="600" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% elsif mobile_fmt == 1 %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+                    width="320" height="100" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% else %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+                    width="300" height="250" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun match prévu ce jour-là.</p>
 <% end %>
 
-<% if @date == Date.today %>
+<% if @is_today %>
   <%# --- NOS COMPÉTITIONS --- %>
   <section style="margin-top: 32px;">
     <h2 style="font-size: 15px; font-weight: 700; color: #010e1b; margin: 0 0 12px;">Toutes nos compétitions</h2>
@@ -208,3 +343,66 @@
     <%= render 'shared/faq_accordion', items: home_faq, schema: true %>
   </section>
 <% end %>
+<style>
+  @media (min-width: 1024px) { .kwanko-728      { display: block !important; } }
+  @media (max-width: 1023px) { .kwanko-mobile-day { display: flex !important; } }
+</style>
+<script>
+(function() {
+  document.querySelectorAll('[data-kwanko-track]').forEach(function(el) {
+    var iframe = el.tagName === 'IFRAME' ? el : el.querySelector('iframe');
+    if (!iframe) return;
+    var ctx = el.dataset.kwankoTrack;
+    var over = false;
+    iframe.addEventListener('mouseenter', function() { over = true; });
+    iframe.addEventListener('mouseleave', function() { over = false; });
+    window.addEventListener('blur', function() {
+      if (over) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: ctx, affiliate_format: 'kwanko_display' });
+      }
+    });
+  });
+})();
+</script>
+<% if @recent_articles&.any? %>
+  <section style="margin-top: 40px; padding-top: 32px; padding-bottom: 48px; border-top: 1px solid #e2e8f0;">
+    <h2 style="font-size: 20px; font-weight: 700; margin: 0 0 20px;">Blog : derniers articles</h2>
+    <style>.blog-grid { display: grid; grid-template-columns: 1fr; gap: 16px; } @media (min-width: 640px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }</style>
+    <div class="blog-grid">
+      <% @recent_articles.each do |article| %>
+        <article style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; background: #fff;">
+          <% if article[:image].present? %>
+            <%= link_to blog_article_path(article[:slug]) do %>
+              <img src="<%= optimized_image_url(article[:image], width: 400, height: 120) %>"
+                   alt="<%= article[:title]&.gsub(' | Coup d\'Envoi TV', '') %>"
+                   loading="lazy" width="400" height="120"
+                   style="width:100%;height:120px;object-fit:cover;display:block;">
+            <% end %>
+          <% end %>
+          <div style="padding: 14px 16px 16px;">
+            <p style="margin: 0 0 8px;">
+              <%= link_to article[:title]&.gsub(' | Coup d\'Envoi TV', ''), blog_article_path(article[:slug]),
+                  style: "font-size: 15px; font-weight: 600; color: #010e1b; text-decoration: none; line-height: 1.4;" %>
+            </p>
+            <% if article[:excerpt].present? %>
+              <p style="font-size: 13px; color: #666; margin: 0 0 10px; line-height: 1.5;"><%= truncate(article[:excerpt], length: 90) %></p>
+            <% end %>
+            <%= link_to "Lire →", blog_article_path(article[:slug]),
+                style: "font-size: 13px; font-weight: 600; color: #1a73e8; text-decoration: none;" %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+    <div style="text-align: center; margin-top: 24px;">
+      <%= link_to "Voir tous les articles", blog_path,
+          style: "display: inline-block; padding: 10px 28px; background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.15s;",
+          onmouseover: "this.style.borderColor='#94a3b8';this.style.background='#f8fafc'",
+          onmouseout:  "this.style.borderColor='#cbd5e1';this.style.background='#fff'" %>
+    </div>
+  </section>
+<% end %>
+
+</div><%# fin colonne principale %>
+<%= render 'shared/sidebar' %>
+</div><%# fin with-sidebar %>

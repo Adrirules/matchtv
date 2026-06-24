@@ -133,6 +133,18 @@
     </section>
   <% end %>
 
+  <%# Bio éditoriale (top joueurs uniquement) %>
+  <% if @player_bio.present? %>
+    <section style="background: white; border-radius: 12px; padding: 16px 18px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+      <h2 style="font-size: 15px; font-weight: 800; margin: 0 0 12px; color: #010e1b;">Qui est <%= @full_name %> ?</h2>
+      <div style="font-size: 14px; color: #444; line-height: 1.8;">
+        <% @player_bio.strip.split("\n\n").each do |para| %>
+          <p style="margin: 0 0 10px;"><%= para.strip %></p>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
   <%= render 'shared/ad_unit', slot_id: '2182108767' %>
 
   <%# Prochains matchs %>
