@@ -70,6 +70,7 @@ class BlogController < ApplicationController
     @article_html, @toc = render_markdown_with_toc(@article[:body])
     @article_html = inject_cdm_groups(@article_html) if @article_html.include?('[[groupe:')
     @article_html = inject_dazn_card(@article_html)  if @article_html.include?('DAZN_CARD')
+    @article_html = inject_m6_dynamic(@article_html) if @article_html.include?('M6_GROUP_TABLE') || @article_html.include?('M6_KNOCKOUT_TABLE') || @article_html.include?('__TODAY__')
 
     @derby_matches = []
     if @article[:derby_pairs].present?
@@ -410,6 +411,88 @@ class BlogController < ApplicationController
       </div>
     HTML
     html.gsub(/<!--\s*DAZN_CARD\s*-->/, card).html_safe
+  end
+
+  MOLOTOV_URL = 'https://molotov.pxf.io/c/7376919/3924296/16522'.freeze
+
+  def inject_m6_dynamic(html)
+    cdm = Match.where(competition: 'Coupe du Monde 2026', tv_channels: 'M6')
+
+    # Group stage table
+    if html.include?('M6_GROUP_TABLE')
+      group_matches = cdm.where("round ILIKE '%group%'").order(:start_time)
+      table = build_m6_table(group_matches)
+      html = html.gsub(/<!--\s*M6_GROUP_TABLE\s*-->/, table)
+    end
+
+    # Knockout table
+    if html.include?('M6_KNOCKOUT_TABLE')
+      knockout_matches = cdm.where("round NOT ILIKE '%group%'").order(:start_time)
+      if knockout_matches.any?
+        table = build_m6_table(knockout_matches, knockout: true)
+      else
+        table = '<p style="color:#64748b;font-style:italic;">Les matchs de phase finale seront affichés ici au fur et à mesure des qualifications.</p>'
+      end
+      html = html.gsub(/<!--\s*M6_KNOCKOUT_TABLE\s*-->/, table)
+    end
+
+    # dateModified auto-update
+    html = html.gsub('__TODAY__', Date.today.iso8601)
+
+    html.html_safe
+  end
+
+  def build_m6_table(matches, knockout: false)
+    h = ApplicationController.helpers
+    rows = matches.map do |m|
+      paris_time = m.start_time.in_time_zone('Europe/Paris')
+      date_str = I18n.l(paris_time, format: '%A %d %B', locale: :fr).sub(/^./, &:upcase)
+      hour_str = paris_time.strftime('%Hh%M')
+      home_fr = h.team_display_name(m.home_team)
+      away_fr = h.team_display_name(m.away_team)
+
+      # Score si terminé
+      score = if m.status.in?(Match::FINISHED_STATUSES) && m.home_score.present?
+                "#{m.home_score}-#{m.away_score}"
+              else
+                hour_str
+              end
+
+      # Round info pour knockout
+      round_label = knockout ? (m.round.to_s.presence || '') : ''
+
+      match_label = "#{home_fr} - #{away_fr}"
+      slug = m.slug.presence
+      match_cell = slug ? "<a href='/matchs/#{slug}' style='color:var(--color-accent);text-decoration:none;font-weight:600;'>#{match_label}</a>" : "<strong>#{match_label}</strong>"
+
+      night = paris_time.hour < 6
+      night_badge = night ? " <span style='display:inline-block;background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;margin-left:4px;'>NUIT</span>" : ""
+
+      "<tr>
+        <td style='padding:8px 10px;white-space:nowrap;font-size:13px;color:#64748b;border-bottom:1px solid #f1f5f9;'>#{date_str}</td>
+        <td style='padding:8px 10px;font-size:13px;border-bottom:1px solid #f1f5f9;'>#{match_cell}#{' <span style="font-size:11px;color:#94a3b8;">(' + round_label + ')</span>' if round_label.present?}</td>
+        <td style='padding:8px 10px;font-size:13px;font-weight:600;color:#0f172a;text-align:center;border-bottom:1px solid #f1f5f9;white-space:nowrap;'>#{score}#{night_badge}</td>
+      </tr>"
+    end.join("\n")
+
+    count = matches.count
+    <<~HTML
+      <div style="overflow-x:auto;margin:20px 0;">
+        <table style="width:100%;border-collapse:collapse;background:white;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+          <thead>
+            <tr style="background:#f8fafc;">
+              <th style="padding:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;text-align:left;border-bottom:1px solid #e2e8f0;">Date</th>
+              <th style="padding:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;text-align:left;border-bottom:1px solid #e2e8f0;">Match</th>
+              <th style="padding:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;text-align:center;border-bottom:1px solid #e2e8f0;">Heure / Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            #{rows}
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:#94a3b8;margin-top:6px;text-align:right;">#{count} matchs M6 — mis à jour le #{I18n.l(Date.today, format: '%d %B %Y', locale: :fr)}</p>
+      </div>
+    HTML
   end
 
   def render_markdown_with_toc(text)
