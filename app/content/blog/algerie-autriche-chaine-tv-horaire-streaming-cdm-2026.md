@@ -2,7 +2,7 @@
 title: "Algérie - Autriche : chaîne TV, horaire et streaming (CdM 2026) | Coup d'Envoi TV"
 meta_description: "Algérie - Autriche le dimanche 28 juin à 4h du matin sur beIN Sports 2 : où voir le match en direct ou en replay. Enjeu, contexte et FAQ."
 slug: algerie-autriche-chaine-tv-horaire-streaming-cdm-2026
-published_at: 2026-06-27
+published_at: 2026-06-25
 published_time: "09h38"
 author: Adrien
 image: https://images.unsplash.com/photo-1595412839900-f85e3a59928e?q=80&w=1200&h=630&auto=format&fit=crop
@@ -18,8 +18,8 @@ canal_plus_card: false
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Algérie - Autriche : chaîne TV, horaire et streaming (CdM 2026)",
-  "datePublished": "2026-06-27",
-  "dateModified": "2026-06-27",
+  "datePublished": "2026-06-25",
+  "dateModified": "2026-06-25",
   "author": { "@type": "Person", "name": "Adrien" },
   "publisher": { "@type": "Organization", "name": "Coup d'Envoi TV", "url": "https://www.coupdenvoi.tv" }
 }
