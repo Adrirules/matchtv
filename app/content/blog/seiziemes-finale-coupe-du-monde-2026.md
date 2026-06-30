@@ -3,7 +3,7 @@ title: "Seizièmes de finale de la Coupe du Monde 2026 : programme, chaînes et 
 meta_description: "Le programme complet des seizièmes de finale de la Coupe du Monde 2026 : les 16 matchs, dates, horaires, chaînes TV (M6 ou beIN) et résultats. Mis à jour en direct."
 slug: seiziemes-finale-coupe-du-monde-2026
 published_at: 2026-06-30
-published_time: "08h47"
+published_time: "08h00"
 author: Adrien
 image: https://images.pexels.com/photos/38164422/pexels-photo-38164422.jpeg
 image_credit: "Photo : Pexels"
