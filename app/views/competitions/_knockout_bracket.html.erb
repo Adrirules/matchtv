@@ -140,7 +140,19 @@
                     b_score     = leg1.finished? ? leg1.away_score.to_i : nil
                     a_qualifies = leg1.finished? && a_score.to_i > b_score.to_i
                     b_qualifies = leg1.finished? && b_score.to_i > a_score.to_i
+
+                    # TAB : le gagnant est celui qui a le plus de penalties
+                    if leg1.status == 'PEN' && leg1.home_penalty.present?
+                      a_qualifies = leg1.home_penalty > leg1.away_penalty
+                      b_qualifies = leg1.away_penalty > leg1.home_penalty
+                    end
+                    # AET sans TAB : score > score suffit (déjà géré ci-dessus)
                   end
+
+                  # Infos supplémentaires pour le footer
+                  is_pen = leg1.status == 'PEN'
+                  is_aet = leg1.status == 'AET'
+                  pen_label = is_pen && leg1.home_penalty.present? ? "TàB #{leg1.home_penalty}-#{leg1.away_penalty}" : nil
                 %>
 
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px;">
@@ -228,13 +240,29 @@
                       <% end %>
                     <% else %>
                       <% if leg1.finished? %>
-                        <%# Rien ou "Terminé" %>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                          <% if pen_label %>
+                            <span style="font-weight: 600; color: #475569;"><%= pen_label %></span>
+                          <% elsif is_aet %>
+                            <span style="font-weight: 600; color: #475569;">Prolong.</span>
+                          <% else %>
+                            <span></span>
+                          <% end %>
+                          <% if leg1.slug.present? %>
+                            <a href="/matchs/<%= leg1.slug %>" style="color: var(--color-accent, #3b82f6); font-weight: 600; text-decoration: none; font-size: 11px;">Voir →</a>
+                          <% end %>
+                        </div>
                       <% else %>
-                        <%
-                          day_name = leg1.start_time.strftime('%a')
-                          day_name_fr = day_fr[day_name] || day_name
-                        %>
-                        <%= day_name_fr %>. <%= leg1.start_time.strftime('%d/%m') %> · <%= leg1.start_time.strftime('%Hh%M') %>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                          <%
+                            day_name = leg1.start_time.strftime('%a')
+                            day_name_fr = day_fr[day_name] || day_name
+                          %>
+                          <span><%= day_name_fr %>. <%= leg1.start_time.strftime('%d/%m') %> · <%= leg1.start_time.strftime('%Hh%M') %></span>
+                          <% if leg1.slug.present? %>
+                            <a href="/matchs/<%= leg1.slug %>" style="color: var(--color-accent, #3b82f6); font-weight: 600; text-decoration: none; font-size: 11px;">Voir →</a>
+                          <% end %>
+                        </div>
                       <% end %>
                     <% end %>
                   </div>

@@ -388,13 +388,19 @@ class FootballApiService
   def update_match_from_data(data, match = nil)
     match ||= Match.find_by(api_id: data['fixture']['id'])
     return unless match
-    match.update_columns(
+    attrs = {
       status:     data['fixture']['status']['short'],
       elapsed:    data['fixture']['status']['elapsed'],
       home_score: data['goals']['home'],
       away_score: data['goals']['away'],
       updated_at: Time.current
-    )
+    }
+    # Stocker le score des tirs au but si disponible
+    if data.dig('score', 'penalty', 'home').present?
+      attrs[:home_penalty] = data['score']['penalty']['home']
+      attrs[:away_penalty] = data['score']['penalty']['away']
+    end
+    match.update_columns(attrs)
   end
 
   # Wrapper tracké — utiliser à la place de client.get partout

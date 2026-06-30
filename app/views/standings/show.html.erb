@@ -170,6 +170,11 @@
     <p style="text-align: center; color: #666; padding: 40px 0;">Classement non disponible pour le moment.</p>
   <% end %>
 
+  <%# Bracket phases finales (CdM 2026, Champions League, etc.) %>
+  <% if @knockout_rounds.present? %>
+    <%= render 'competitions/knockout_bracket', knockout_rounds: @knockout_rounds %>
+  <% end %>
+
   <%= render 'shared/ad_unit', slot_id: '1499436694' %>
 
   <%# Card Molotov pour le classement CdM 2026 %>
