@@ -16,6 +16,8 @@ class TeamsController < ApplicationController
     end
 
     vote_counts = TeamVote.group(:team_slug).count
+    ip_hash     = Digest::SHA256.hexdigest("#{request.remote_ip}-cdtv")[0..15]
+    @voted_slugs = TeamVote.where(ip_hash: ip_hash).pluck(:team_slug).to_set
 
     @teams = logos_by_team.keys.compact.map do |name|
       slug = name.parameterize
@@ -91,7 +93,11 @@ class TeamsController < ApplicationController
       @primary_league_name = most_common_competition
 
       if primary_league_id
-        @stats   = api.fetch_team_stats(@team_api_id, primary_league_id)
+        # Cache-first : pas d'appel API si cache froid après restart (évite la vague matinale)
+        stats_key = "team_stats_#{@team_api_id}_#{primary_league_id}_2025"
+        @stats = Rails.cache.read(stats_key) ||
+                 (FootballApiService.within_budget?(:high) ? api.fetch_team_stats(@team_api_id, primary_league_id) : nil)
+
         standing_record = Standing.for_league(primary_league_id)
         standings_data = standing_record&.data.presence || api.get_standings(primary_league_id)
         @standing = standings_data
@@ -104,9 +110,9 @@ class TeamsController < ApplicationController
       @coach = if coach_record
         coach_record.as_api_hash
       else
-        Rails.cache.fetch("coach_#{@team_api_id}", expires_in: 24.hours) do
-          api.fetch_coach(@team_api_id)
-        end
+        # Cache-first : DB → cache chaud → API si budget dispo
+        Rails.cache.read("coach_#{@team_api_id}") ||
+          (FootballApiService.within_budget?(:high) ? Rails.cache.fetch("coach_#{@team_api_id}", expires_in: 24.hours) { api.fetch_coach(@team_api_id) } : nil)
       end
     end
 
@@ -117,6 +123,10 @@ class TeamsController < ApplicationController
 
     @page_title = "#{@team_name} 2025-2026 — Stats, résultats et programme TV | Coup d'Envoi TV"
     @page_desc  = "Retrouvez tous les matchs de #{@team_name} à la télé : horaires, chaînes (Canal+, beIN, DAZN, France TV), résultats et statistiques de la saison 2025-2026."
+
+    # noindex : équipe sans match à venir ET sans contenu éditorial
+    # (évite d'indexer les centaines d'équipes inactives hors périmètre)
+    @noindex = @matches.empty? && @team_editorial.blank?
 
     expires_in 10.minutes, public: true
   end

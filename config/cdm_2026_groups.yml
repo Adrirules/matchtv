@@ -1,0 +1,59 @@
+A:
+  label: "Groupe A"
+  teams_fr: ["Mexique", "Corée du Sud", "Afrique du Sud", "Tchéquie"]
+  teams_api: ["Mexico", "South Korea", "South Africa", "Czech Republic"]
+
+B:
+  label: "Groupe B"
+  teams_fr: ["Canada", "Bosnie-Herzégovine", "Qatar", "Suisse"]
+  teams_api: ["Canada", "Bosnia & Herzegovina", "Qatar", "Switzerland"]
+
+C:
+  label: "Groupe C"
+  teams_fr: ["Brésil", "Maroc", "Haïti", "Écosse"]
+  teams_api: ["Brazil", "Morocco", "Haiti", "Scotland"]
+
+D:
+  label: "Groupe D"
+  teams_fr: ["États-Unis", "Paraguay", "Australie", "Turquie"]
+  teams_api: ["USA", "Paraguay", "Australia", "Türkiye"]
+
+E:
+  label: "Groupe E"
+  teams_fr: ["Allemagne", "Équateur", "Côte d'Ivoire", "Curaçao"]
+  teams_api: ["Germany", "Ecuador", "Ivory Coast", "Curacao"]
+
+F:
+  label: "Groupe F"
+  teams_fr: ["Pays-Bas", "Japon", "Tunisie", "Suède"]
+  teams_api: ["Netherlands", "Japan", "Tunisia", "Sweden"]
+
+G:
+  label: "Groupe G"
+  teams_fr: ["Belgique", "Iran", "Égypte", "Nouvelle-Zélande"]
+  teams_api: ["Belgium", "Iran", "Egypt", "New Zealand"]
+
+H:
+  label: "Groupe H"
+  teams_fr: ["Espagne", "Uruguay", "Arabie Saoudite", "Cap-Vert"]
+  teams_api: ["Spain", "Uruguay", "Saudi Arabia", "Cape Verde Islands"]
+
+I:
+  label: "Groupe I"
+  teams_fr: ["France", "Sénégal", "Norvège", "Irak"]
+  teams_api: ["France", "Senegal", "Norway", "Iraq"]
+
+J:
+  label: "Groupe J"
+  teams_fr: ["Argentine", "Autriche", "Algérie", "Jordanie"]
+  teams_api: ["Argentina", "Austria", "Algeria", "Jordan"]
+
+K:
+  label: "Groupe K"
+  teams_fr: ["Portugal", "RD Congo", "Ouzbékistan", "Colombie"]
+  teams_api: ["Portugal", "Congo DR", "Uzbekistan", "Colombia"]
+
+L:
+  label: "Groupe L"
+  teams_fr: ["Angleterre", "Croatie", "Ghana", "Panama"]
+  teams_api: ["England", "Croatia", "Ghana", "Panama"]

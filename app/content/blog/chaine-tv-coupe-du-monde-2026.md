@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1531823540573-d5e8fc4a5485?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "TF1 absent pour la première fois depuis 1978, M6 avec 54 matchs en clair, beIN Sports avec les 104 - voilà tout ce qu'il faut savoir pour ne rater aucun match du Mondial 2026."
+tags: ["coupe-du-monde", "droits-tv"]
 ---
 
 # Sur quelle chaîne voir la Coupe du Monde 2026 en France ?
@@ -61,7 +62,7 @@ Les matchs des Bleus en phase de groupes sont déjà confirmés :
 
 Donc si tu veux juste suivre les Bleus et les grands rendez-vous : **M6 suffit, et c'est gratuit.**
 
-Et pour le replay ? M6+ propose une fonctionnalité de rattrapage, utile pour les matchs tardifs. Mais l'accès est limité dans le temps - ne comptez pas revoir le quart de finale trois semaines après.
+Et pour le replay ? M6+ propose une fonctionnalité de rattrapage, utile pour les matchs tardifs. [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) est aussi une bonne option pour les matchs M6 : l'appli permet de regarder en direct, en replay et même d'enregistrer les rencontres pour les revoir plus tard. Mais dans les deux cas, l'accès est limité dans le temps - ne comptez pas revoir le quart de finale trois semaines après.
 
 ---
 
@@ -133,7 +134,7 @@ Oui, dans certaines offres. beIN Sports est intégré aux bouquets **Canal+ Spor
 
 ### Où voir les matchs de la Coupe du Monde en streaming gratuit ?
 
-Légalement : **M6+** pour les 54 matchs en clair. La plateforme est gratuite, accessible sur ordinateur, mobile et télévision connectée. Pour les 104 matchs, l'application **[beIN Sports](/chaines/bein-sports)** (sur abonnement) est la seule option légale complète.
+Légalement : **M6+** ou **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** pour les 54 matchs en clair. Les deux sont gratuits et accessibles sur ordinateur, mobile et télévision connectée - Molotov offre en plus l'enregistrement des matchs. Pour les 104 matchs, l'application **[beIN Sports](/chaines/bein-sports)** (sur abonnement) est la seule option légale complète.
 
 ### À quelle heure se jouent les matchs en France ?
 
@@ -155,7 +156,7 @@ Bonne Coupe du Monde.
 
 *Toutes les informations de diffusion ont été vérifiées en avril 2026. Les droits TV et les programmes sont susceptibles d'évoluer - consultez les sites officiels de [M6](/chaines/m6) et [beIN Sports](/chaines/bein-sports) pour les mises à jour.*
 
-*Retrouvez le [programme TV complet de la Coupe du Monde 2026](/competitions/coupe-du-monde-2026), notre [analyse du groupe de la France](/blog/groupe-france-mondial-2026), le [calendrier des matchs des Bleus](/blog/calendrier-france-mondial-2026) et tous les [articles du blog Coup d'Envoi TV](/blog).*
+*Retrouvez le [programme TV complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), le [guide pour regarder la CdM 2026 en France](/blog/comment-regarder-coupe-monde-2026-france), notre [analyse du groupe de la France](/blog/groupe-france-mondial-2026), le [calendrier des matchs des Bleus](/blog/calendrier-france-mondial-2026) et tous les [articles du blog Coup d'Envoi TV](/blog).*
 
 <script type="application/ld+json">
 {

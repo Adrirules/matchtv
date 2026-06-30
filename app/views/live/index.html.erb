@@ -1,0 +1,104 @@
+<% content_for :title, "Matchs en direct maintenant - Scores live | Coup d'Envoi TV" %>
+<% content_for :meta_description, "Tous les matchs de football en cours en ce moment. Scores en direct, minutes de jeu et chaînes de diffusion." %>
+
+<%# Refresh auto toutes les 60s pendant un match en direct %>
+<% if @live_matches.any? %>
+  <meta http-equiv="refresh" content="60">
+<% end %>
+
+<div class="with-sidebar">
+<div>
+
+<%# Header %>
+<div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 14px; margin: 8px 0 16px;">
+  <h1 style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #010e1b; margin: 0;">
+    Matchs en direct
+  </h1>
+  <% if @live_matches.any? %>
+    <span style="display: inline-flex; align-items: center; gap: 5px; background: var(--color-live); color: white; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; white-space: nowrap;">
+      <span style="width: 6px; height: 6px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
+      <%= @live_matches.size %> en direct
+    </span>
+  <% end %>
+</div>
+
+<% if @sorted_groups.any? %>
+  <% @sorted_groups.each do |competition, matches| %>
+    <%# Header compétition %>
+    <% comp_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == competition } %>
+    <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--color-accent);">
+      <% if comp_meta %>
+        <img src="<%= FootballApiService.league_logo(comp_meta[:id]) %>" alt="<%= competition %>"
+             width="18" height="18" loading="lazy"
+             style="width: 18px; height: 18px; object-fit: contain;">
+      <% end %>
+      <span style="font-size: 13px; font-weight: 800; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.04em; font-family: var(--font-heading);"><%= competition %></span>
+    </div>
+
+    <% matches.each do |match| %>
+      <%= link_to match_path(match.slug || match.id), style: "display: block; text-decoration: none; color: inherit; margin-bottom: 8px;" do %>
+        <div style="background: white; border-radius: 10px; padding: 12px 14px; border: 1px solid #e2e8f0; border-left: 3px solid var(--color-live);">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+            <%# Équipe domicile %>
+            <div style="flex: 1; display: flex; align-items: center; gap: 8px; min-width: 0;">
+              <img src="<%= match.home_team_logo %>" alt="<%= team_display_name(match.home_team) %>"
+                   width="22" height="22" loading="lazy"
+                   style="width: 22px; height: 22px; object-fit: contain; flex-shrink: 0;">
+              <span style="font-size: 14px; font-weight: 700; color: #010e1b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <%= team_display_name(match.home_team) %>
+              </span>
+            </div>
+            <%# Score + minute %>
+            <div style="text-align: center; flex-shrink: 0; padding: 0 8px;">
+              <div style="font-size: 20px; font-weight: 800; color: #010e1b; font-family: var(--font-heading); line-height: 1;">
+                <%= match.home_score %> - <%= match.away_score %>
+              </div>
+              <div style="margin-top: 3px;">
+                <span style="display: inline-flex; align-items: center; gap: 4px; background: var(--color-live); color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-family: var(--font-body);">
+                  <span style="width: 5px; height: 5px; background: white; border-radius: 50%; animation: livepulse 1.2s ease-in-out infinite; display: inline-block;"></span>
+                  <% if match.status == 'HT' %>Mi-temps
+                  <% else %><%= match.elapsed %>′
+                  <% end %>
+                </span>
+              </div>
+            </div>
+            <%# Équipe extérieure %>
+            <div style="flex: 1; display: flex; align-items: center; gap: 8px; justify-content: flex-end; min-width: 0;">
+              <span style="font-size: 14px; font-weight: 700; color: #010e1b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right;">
+                <%= team_display_name(match.away_team) %>
+              </span>
+              <img src="<%= match.away_team_logo %>" alt="<%= team_display_name(match.away_team) %>"
+                   width="22" height="22" loading="lazy"
+                   style="width: 22px; height: 22px; object-fit: contain; flex-shrink: 0;">
+            </div>
+          </div>
+          <%# Chaîne %>
+          <% if match.tv_channels.present? %>
+            <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f5f9;">
+              <%= channel_badge(match.tv_channels.split(',').first.strip, small: true) %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <%# État vide : aucun match en direct %>
+  <div style="text-align: center; padding: 48px 20px;">
+    <div style="font-size: 48px; margin-bottom: 16px;">📺</div>
+    <p style="font-size: 16px; font-weight: 700; color: #010e1b; margin: 0 0 8px;">Aucun match en direct pour l'instant</p>
+    <p style="font-size: 14px; color: #64748b; margin: 0 0 24px; line-height: 1.6;">
+      Les matchs en cours apparaissent ici automatiquement.<br>
+      Consultez le programme pour les prochains coups d'envoi.
+    </p>
+    <%= link_to root_path,
+        style: "display: inline-flex; align-items: center; gap: 6px; background: var(--color-accent); color: white; font-size: 14px; font-weight: 700; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-family: var(--font-body);" do %>
+      Voir le programme TV
+    <% end %>
+  </div>
+<% end %>
+
+</div>
+<%= render 'shared/sidebar' %>
+</div>

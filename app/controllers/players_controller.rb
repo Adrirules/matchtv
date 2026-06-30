@@ -1,4 +1,10 @@
 class PlayersController < ApplicationController
+  PLAYER_BIOS = begin
+    YAML.safe_load_file(Rails.root.join('config', 'player_bios.yml')) || {}
+  rescue
+    {}
+  end
+
   # Ligues "friendlies" de l'API — pas de valeur éditoriale, on les masque
   FRIENDLY_LEAGUES = %w[
     Friendlies\ Clubs Club\ Friendlies Friendlies\ International
@@ -31,7 +37,10 @@ class PlayersController < ApplicationController
     @stats = nil; @info = nil; @league = nil; @is_friendly = false
 
     api = FootballApiService.new
-    data = api.fetch_player_stats(@player.api_id)
+    # Si le cache est froid (après restart Heroku), on ne fait pas l'appel API
+    # pour éviter 7000 appels au crawl matinal — on affiche les données DB seules
+    cached = Rails.cache.read("player_stats_#{@player.api_id}_2025")
+    data = cached || (FootballApiService.within_budget?(:high) ? api.fetch_player_stats(@player.api_id) : nil)
 
     if data
       @stats    = data['statistics']&.first
@@ -96,13 +105,16 @@ class PlayersController < ApplicationController
       "Statistiques et programme TV des prochains matchs."
     end
 
-    # noindex si contenu trop mince :
-    # - 0 stats + aucun match à venir
-    # - stats amicaux seulement + aucun match à venir
-    # - moins de 5 matchs joués + aucun match à venir (page trop vide pour AdSense)
-    @noindex = (@games.to_i == 0 && @upcoming_matches.empty?) ||
-               (@is_friendly && @upcoming_matches.empty?) ||
-               (@games.to_i < 5 && @upcoming_matches.empty?)
+    # Bio éditoriale si disponible (top joueurs)
+    @player_bio = PLAYER_BIOS[@player.api_id]&.dig('bio')
+
+    # noindex piloté par Player#indexable? (source de vérité unique)
+    @noindex = !@player.indexable?(
+      games:        @games,
+      is_friendly:  @is_friendly,
+      has_upcoming: @upcoming_matches.any?,
+      has_bio:      @player_bio.present?
+    )
 
     expires_in 6.hours, public: true
   end

@@ -172,6 +172,26 @@
 
   <%= render 'shared/ad_unit', slot_id: '1499436694' %>
 
+  <%# Card Molotov pour le classement CdM 2026 %>
+  <% if params[:competition_id] == 'coupe-du-monde-2026' %>
+    <%= render 'shared/molotov_card',
+        variant: :standard,
+        page_context: 'standing-cdm',
+        cta_index: 0,
+        subtitle: "Tous les matchs M6 de la Coupe du Monde 2026 en direct, en replay ou en enregistrement sur Molotov." %>
+  <% end %>
+
+  <%# Card affiliée Canal+ pour les ligues diffusées sur Canal+ %>
+  <% canal_standing_slugs = %w[champions-league premier-league ligue-1 europa-league conference-league national coupe-du-monde-2026] %>
+  <% if canal_standing_slugs.include?(params[:competition_id]) %>
+    <% league_label = @competition_name.presence || params[:competition_id].humanize %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        page_context: 'standing',
+        cta_index: Zlib.crc32(params[:competition_id]) % 3,
+        subtitle: "#{league_label} est diffusée sur Canal+. Abonnez-vous pour voir tous les matchs en direct." %>
+  <% end %>
+
   <%# Card affilié DAZN pour les ligues diffusées sur DAZN %>
   <% dazn_standing_slugs = %w[serie-a eredivisie] %>
   <% if dazn_standing_slugs.include?(params[:competition_id]) %>

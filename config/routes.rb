@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   post '/share-click', to: 'share_clicks#create'
 
   # API SEO — utilisé par la Routine Claude
-  get  '/api/seo/fetch-data',  to: 'seo_api#fetch_data'
-  post '/api/seo/send-report', to: 'seo_api#send_report'
-  get  '/api/seo/history',     to: 'seo_api#history'
+  get  '/api/seo/fetch-data',      to: 'seo_api#fetch_data'
+  post '/api/seo/send-report',     to: 'seo_api#send_report'
+  post '/api/seo/send-editorial',  to: 'seo_api#send_editorial'
+  get  '/api/seo/history',         to: 'seo_api#history'
   # PRIORITÉ N°1 : Le sitemap (format XML forcé)
   get "sitemap.xml", to: "sitemaps#index", defaults: { format: "xml" }
   # 2. Les jours
@@ -14,6 +15,9 @@ Rails.application.routes.draw do
   # Résultats
   get "resultats", to: "results#show", as: :resultats
   get "resultats/:date", to: "results#show", as: :resultat_date
+
+  # En direct
+  get "direct", to: "live#index", as: :direct
 
   # 3. Équipes
   # Redirection automatique de l'ancien vers le nouveau (SEO 301)
@@ -28,6 +32,9 @@ Rails.application.routes.draw do
 
   # 5. Compétitions
   get "competitions", to: "competitions#index", as: :competitions
+  # Coupe du Monde 2026 — routes spécifiques AVANT la route générique
+  get "competitions/coupe-du-monde-2026/buteurs",       to: "world_cup#top_scorers", as: :world_cup_top_scorers
+  get "competitions/coupe-du-monde-2026/groupe-:letter", to: "world_cup#group",       as: :world_cup_group, constraints: { letter: /[a-l]/ }
   get "competitions/:slug", to: "competitions#show", as: :competition
 
   # 5. Classements
@@ -36,10 +43,15 @@ Rails.application.routes.draw do
   get "classements/:competition_id/buteurs", to: "standings#top_scorers", as: :top_scorers
   get "classements/:competition_id", to: "standings#show", as: :standing
 
+  # 5b. Statistiques — top buteurs / top passeurs
+  get "statistiques/meilleurs-buteurs/:slug", to: "statistiques#top_scorers", as: :top_scorers_league
+  get "statistiques/meilleurs-passeurs/:slug", to: "statistiques#top_assists", as: :top_assists_league
+
   # 6. Blog éditorial
   get 'blog', to: 'blog#index', as: :blog
   get 'blog.rss', to: 'blog#feed', as: :blog_feed
   get 'blog/auteur/adrien', to: 'blog#auteur', as: :blog_auteur
+  get 'blog/tag/:tag', to: 'blog#tag', as: :blog_tag
   get 'blog/:slug', to: 'blog#show', as: :blog_article
 
   # 7. Chaînes TV
@@ -61,6 +73,13 @@ Rails.application.routes.draw do
       get :live_score
     end
   end
+
+  # Redirections 301 — ancien pluriel français /matchs/ → /matches/
+  get '/matchs/:slug', to: redirect('/matches/%{slug}')
+
+  # Redirections 301 — URLs datées indexées par Google → slugs canoniques
+  get '/matches/2026-05-09-orleans-fleury-91',           to: redirect('/matches/orleans-fleury-91')
+  get '/matches/2026-05-09-clermont-foot-guingamp',      to: redirect('/matches/clermont-foot-guingamp')
 
   # Redirections 301 — anciennes URLs /ligue/* indexées par Google
   get '/ligues',                        to: redirect('/competitions')
@@ -86,6 +105,7 @@ Rails.application.routes.draw do
   get '/search',                        to: redirect('/')
 
   # Erreurs (en tout dernier)
-  match "/404", to: "errors#not_found", via: :all
-  match "*path", to: "errors#not_found", via: :all
+  match "/404", to: "errors#not_found",            via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
+  match "*path", to: "errors#not_found",            via: :all
 end

@@ -1,5 +1,5 @@
 class Ga4Service
-  PROPERTY_ID = "327137860".freeze
+  PROPERTY_ID = "523553536".freeze
   BASE_URL    = "https://analyticsdata.googleapis.com/v1beta/properties/#{PROPERTY_ID}".freeze
   SCOPE       = "https://www.googleapis.com/auth/analytics.readonly".freeze
 

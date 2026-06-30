@@ -1,5 +1,5 @@
 <header class="top-nav">
-  <%= link_to "Coup d'Envoi TV", root_path, class: "top-nav-logo" %>
+  <%= link_to root_path, class: "top-nav-logo" do %>Coup d'Envoi <span style="font-weight:300;opacity:0.65;">TV</span><% end %>
   <%= link_to blog_path, class: "top-nav-blog-mobile #{request.path.start_with?('/blog') ? 'active' : ''}" do %>
     ✍️ Blog
   <% end %>

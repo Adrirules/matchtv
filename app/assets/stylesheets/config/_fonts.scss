@@ -1,8 +1,11 @@
 // Google Fonts chargées via <link> dans le layout (plus performant que @import)
 
-// Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+$font-heading: 'Barlow Condensed', sans-serif;
+$font-body:    'DM Sans', sans-serif;
+
+// Legacy aliases
+$body-font:    $font-body;
+$headers-font: $font-heading;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

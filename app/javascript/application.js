@@ -35,6 +35,167 @@ window.addEventListener('appinstalled', () => {
   }
 });
 
+// Pull-to-refresh PWA (standalone uniquement)
+(function () {
+  const isStandalone = window.navigator.standalone ||
+                       window.matchMedia('(display-mode: standalone)').matches;
+  if (!isStandalone) return;
+  if (typeof gtag === 'function') gtag('event', 'pwa_session', { event_category: 'PWA' });
+
+  const THRESHOLD = 80;
+  let startY = 0;
+  let currentY = 0;
+  let pulling = false;
+  let refreshing = false;
+  let hapticDone = false;
+
+  // Suivi fiable du scroll — écoute sur window (plus fiable que document sur iOS standalone)
+  let scrollTop = 0;
+  let isScrolling = false;
+  let scrollTimer = null;
+
+  function readScrollTop() {
+    return window.pageYOffset || window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  }
+
+  window.addEventListener('scroll', () => {
+    scrollTop = readScrollTop();
+    isScrolling = true;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => { isScrolling = false; }, 200);
+  }, { passive: true });
+
+  // Styles
+  if (!document.getElementById('ptr-style')) {
+    const style = document.createElement('style');
+    style.id = 'ptr-style';
+    style.textContent = `
+      #ptr-wrap {
+        position: fixed; top: 0; left: 0; right: 0;
+        display: flex; justify-content: center; align-items: flex-end;
+        height: 64px; z-index: 9999; pointer-events: none;
+        transform: translateY(-64px);
+        transition: transform 0.22s ease;
+      }
+      #ptr-wrap.ptr-visible { transform: translateY(0); }
+      #ptr-spinner {
+        width: 28px; height: 28px;
+        position: relative; margin-bottom: 16px;
+      }
+      #ptr-spinner span {
+        position: absolute; left: 12.25px; top: 0;
+        width: 3px; height: 8px;
+        background: #8e8e93; border-radius: 2px;
+        transform-origin: 1.5px 14px;
+        opacity: 0.15;
+      }
+      #ptr-spinner.ptr-spin span { animation: ptr-fade 1s linear infinite; }
+      @keyframes ptr-fade { from { opacity: 1; } to { opacity: 0.15; } }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function buildWrap() {
+    const wrap = document.createElement('div');
+    wrap.id = 'ptr-wrap';
+    const spinner = document.createElement('div');
+    spinner.id = 'ptr-spinner';
+    for (let i = 0; i < 12; i++) {
+      const s = document.createElement('span');
+      s.style.transform = `rotate(${i * 30}deg)`;
+      s.style.animationDelay = `${-((12 - i) / 12).toFixed(2)}s`;
+      spinner.appendChild(s);
+    }
+    wrap.appendChild(spinner);
+    return wrap;
+  }
+
+  function ensureWrap() {
+    if (!document.getElementById('ptr-wrap')) document.body.prepend(buildWrap());
+    return document.getElementById('ptr-wrap');
+  }
+
+  document.addEventListener('turbo:load', ensureWrap);
+  ensureWrap();
+
+  document.addEventListener('touchstart', (e) => {
+    if (refreshing || isScrolling) return;
+    // Double vérification : variable suivie + lecture synchrone au moment du toucher
+    const atTop = scrollTop === 0 && readScrollTop() === 0;
+    if (atTop) {
+      startY = e.touches[0].clientY;
+      currentY = startY;
+      pulling = true;
+      hapticDone = false;
+    } else {
+      pulling = false;
+    }
+  }, { passive: true });
+
+  function resetPage() {
+    document.body.style.transition = 'transform 0.25s ease';
+    document.body.style.transform = 'translateY(0)';
+    setTimeout(() => { document.body.style.transform = ''; document.body.style.transition = ''; }, 260);
+    const wrap = document.getElementById('ptr-wrap');
+    const spinner = document.getElementById('ptr-spinner');
+    if (wrap) wrap.classList.remove('ptr-visible');
+    if (spinner) spinner.classList.remove('ptr-spin');
+  }
+
+  document.addEventListener('touchmove', (e) => {
+    if (!pulling || refreshing) return;
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+    const wrap = document.getElementById('ptr-wrap');
+    const spinner = document.getElementById('ptr-spinner');
+    if (!wrap || !spinner) return;
+    if (diff > 10) {
+      // Page suit le doigt avec résistance (facteur 0.45, plafonné à 90px)
+      const translate = Math.min(diff * 0.45, 90);
+      document.body.style.transition = 'none';
+      document.body.style.transform = `translateY(${translate}px)`;
+      wrap.classList.add('ptr-visible');
+      if (diff > THRESHOLD) {
+        spinner.classList.add('ptr-spin');
+        if (!hapticDone) {
+          hapticDone = true;
+          if (navigator.vibrate) navigator.vibrate(10);
+        }
+      } else {
+        spinner.classList.remove('ptr-spin');
+        hapticDone = false;
+      }
+    } else {
+      document.body.style.transform = '';
+      wrap.classList.remove('ptr-visible');
+      spinner.classList.remove('ptr-spin');
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchcancel', () => {
+    pulling = false;
+    hapticDone = false;
+    resetPage();
+  });
+
+  document.addEventListener('touchend', () => {
+    if (!pulling || refreshing) return;
+    pulling = false;
+    const diff = currentY - startY;
+    if (diff > THRESHOLD) {
+      refreshing = true;
+      const spinner = document.getElementById('ptr-spinner');
+      if (spinner) spinner.classList.add('ptr-spin');
+      // Garde la page tirée puis recharge
+      document.body.style.transition = 'transform 0.2s ease';
+      document.body.style.transform = 'translateY(60px)';
+      setTimeout(() => window.location.reload(), 350);
+    } else {
+      resetPage();
+    }
+  }, { passive: true });
+})();
+
 document.addEventListener('turbo:load', () => {
   const appleBtn = document.getElementById('pwa-apple');
   const androidBtn = document.getElementById('pwa-android');

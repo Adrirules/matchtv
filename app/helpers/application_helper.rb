@@ -451,7 +451,117 @@ module ApplicationHelper
     CHANNEL_SLUG_MAP[channel_name.downcase.strip]
   end
 
+  # Cards blog contextuelles pour une page match
+  # Retourne un Array de { path:, label:, image:, excerpt: }
+  BLOG_CARDS_META = {
+    "ligue-1-chaine-tv-2026" => {
+      label: "Ligue 1 à la TV : sur quelle chaîne ?",
+      image: "https://images.unsplash.com/photo-1642171729073-303524bbfb31",
+      excerpt: "Ligue 1+ et beIN Sports se partagent les droits TV de la Ligue 1."
+    },
+    "champions-league-chaine-tv-france" => {
+      label: "Champions League : quelle chaîne TV ?",
+      image: "https://images.pexels.com/photos/34625036/pexels-photo-34625036.jpeg",
+      excerpt: "Canal+ diffuse toute la Ligue des Champions en France."
+    },
+    "ou-regarder-premier-league-france" => {
+      label: "Où regarder la Premier League en France ?",
+      image: "https://images.unsplash.com/photo-1665413813191-3143ec934960",
+      excerpt: "La Premier League passe exclusivement sur Canal+ jusqu'en 2028."
+    },
+    "ou-regarder-serie-a-france" => {
+      label: "Où regarder la Serie A en France ?",
+      image: "https://images.unsplash.com/photo-1629368858587-7ebd70d20946",
+      excerpt: "DAZN diffuse tous les matchs de Serie A en 2025-2026."
+    },
+    "ou-regarder-liga-france" => {
+      label: "Où regarder la Liga en France ?",
+      image: "https://images.unsplash.com/photo-1769348193442-6d3b1655266d",
+      excerpt: "La Liga passe sur beIN Sports en France."
+    },
+    "bundesliga-chaine-tv-france" => {
+      label: "Bundesliga à la TV en France",
+      image: "https://images.unsplash.com/photo-1634467599303-d123a536e7fe",
+      excerpt: "DAZN détient l'exclusivité de la Bundesliga en France."
+    },
+    "europa-league-chaine-tv-france" => {
+      label: "Europa League : Canal+ ou beIN Sports ?",
+      image: "https://images.pexels.com/photos/35781789/pexels-photo-35781789.jpeg",
+      excerpt: "Canal+ détient l'intégralité des droits de la Ligue Europa."
+    },
+    "conference-league-chaine-tv-2026" => {
+      label: "Conference League : date et chaîne TV",
+      image: "https://images.unsplash.com/photo-1675848758961-e25a8d08e374",
+      excerpt: "La Conference League 2025-2026 se regarde sur Canal+."
+    },
+    "match-psg-ce-soir-chaine" => {
+      label: "Match du PSG : chaîne et horaire",
+      image: "https://images.unsplash.com/photo-1753188558508-288762d742a6",
+      excerpt: "Prochain match du PSG : l'heure et la chaîne TV."
+    },
+    "prochain-match-om-diffusion" => {
+      label: "Prochain match de l'OM : chaîne et horaire",
+      image: "https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg",
+      excerpt: "Prochain match de l'OM : l'heure et la chaîne TV."
+    },
+    "abonnement-foot-2026-quelle-chaine-choisir" => {
+      label: "Le guide complet des abonnements foot 2026",
+      image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20",
+      excerpt: "Canal+, DAZN, beIN Sports : on a tout comparé pour vous."
+    },
+  }.freeze
+
+  def match_blog_links(match)
+    slugs = []
+    comp = match.competition.to_s
+    teams = [match.home_team.to_s, match.away_team.to_s]
+
+    # Slugs par compétition
+    comp_map = {
+      "Ligue 1"           => %w[ligue-1-chaine-tv-2026],
+      "Champions League"  => %w[champions-league-chaine-tv-france],
+      "Premier League"    => %w[ou-regarder-premier-league-france],
+      "Serie A"           => %w[ou-regarder-serie-a-france],
+      "La Liga"           => %w[ou-regarder-liga-france],
+      "Bundesliga"        => %w[bundesliga-chaine-tv-france],
+      "Europa League"     => %w[europa-league-chaine-tv-france],
+      "Conference League" => %w[conference-league-chaine-tv-2026],
+    }
+    slugs.concat(comp_map[comp]) if comp_map[comp]
+
+    # Slugs par équipe
+    if teams.any? { |t| t.include?("Paris Saint Germain") || t.include?("Paris Saint-Germain") }
+      slugs << "match-psg-ce-soir-chaine"
+    end
+    if teams.any? { |t| t.include?("Marseille") }
+      slugs << "prochain-match-om-diffusion"
+    end
+
+    # Universel
+    slugs << "abonnement-foot-2026-quelle-chaine-choisir"
+
+    slugs.uniq.filter_map do |slug|
+      meta = BLOG_CARDS_META[slug]
+      next unless meta
+      { path: "/blog/#{slug}", label: meta[:label], image: meta[:image], excerpt: meta[:excerpt] }
+    end
+  end
+
   # Date en français : 29 mars 2026
+  # Optimise les URLs d'images pour réduire le poids (Pexels & Unsplash)
+  def optimized_image_url(url, width: 800, height: 200)
+    return url if url.blank?
+    if url.include?('images.pexels.com')
+      base = url.split('?').first
+      "#{base}?auto=compress&cs=tinysrgb&w=#{width}&h=#{height}&fit=crop&dpr=1"
+    elsif url.include?('images.unsplash.com')
+      base = url.split('?').first
+      "#{base}?w=#{width}&h=#{height}&q=80&auto=format&fit=crop"
+    else
+      url
+    end
+  end
+
   def date_fr(date)
     return '' unless date
     "#{date.day} #{MONTHS_FR[date.month - 1]} #{date.year}"
@@ -464,5 +574,83 @@ module ApplicationHelper
     elsif date == today - 1  then "hier"
     else l(date, format: "%d %B %Y")
     end
+  end
+
+  # ── Badges chaînes colorés — design system v2 ───────────────────────────────
+  CHANNEL_BADGE_COLORS = {
+    'Canal+'          => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Foot'     => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Live 1'   => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Live 2'   => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Live 3'   => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Live 4'   => { bg: '#dc314e', text: '#fff' },
+    'Canal+ Sport'    => { bg: '#dc314e', text: '#fff' },
+    'beIN Sports'     => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 1'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 2'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 3'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 4'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 5'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 7'   => { bg: '#00843D', text: '#fff' },
+    'beIN Sports 10'  => { bg: '#00843D', text: '#fff' },
+    'DAZN'            => { bg: '#111111', text: '#F4E100', border: '1px solid #F4E100' },
+    'Amazon Prime'    => { bg: '#00A8E0', text: '#fff' },
+    'TF1'             => { bg: '#003B8E', text: '#fff' },
+    'M6'              => { bg: '#FF7A00', text: '#fff' },
+    'France TV'       => { bg: '#1A3A6E', text: '#fff' },
+    'France 2'        => { bg: '#1A3A6E', text: '#fff' },
+    'France 3'        => { bg: '#1A3A6E', text: '#fff' },
+    'RMC Sport'       => { bg: '#E5001E', text: '#fff' },
+    'RMC Sport 1'     => { bg: '#E5001E', text: '#fff' },
+    'Apple TV+'       => { bg: '#1c1c1e', text: '#fff' },
+  }.freeze
+
+  CHANNEL_BADGE_LABELS = {
+    'Canal+ Foot'    => 'C+ Foot',
+    'Canal+ Live 1'  => 'C+ Live 1',
+    'Canal+ Live 2'  => 'C+ Live 2',
+    'Canal+ Live 3'  => 'C+ Live 3',
+    'Canal+ Live 4'  => 'C+ Live 4',
+    'Canal+ Sport'   => 'C+ Sport',
+    'beIN Sports 1'  => 'beIN 1',
+    'beIN Sports 2'  => 'beIN 2',
+    'beIN Sports 3'  => 'beIN 3',
+    'beIN Sports 4'  => 'beIN 4',
+    'beIN Sports 5'  => 'beIN 5',
+    'beIN Sports 7'  => 'beIN 7',
+    'beIN Sports 10' => 'beIN 10',
+    'Amazon Prime'   => 'Prime',
+    'France TV'      => 'FranceTV',
+  }.freeze
+
+  def channel_badge(channel_name, small: false)
+    return ''.html_safe if channel_name.blank?
+    channel  = channel_name.to_s.split(',').first.strip
+    col      = CHANNEL_BADGE_COLORS[channel] || { bg: '#6b7280', text: '#fff' }
+    label    = CHANNEL_BADGE_LABELS[channel] || channel
+    padding  = small ? '2px 5px' : '3px 8px'
+    fs       = small ? '9px' : '11px'
+    style    = "display:inline-flex;align-items:center;background:#{col[:bg]};color:#{col[:text]};"
+    style   += "border:#{col[:border]};" if col[:border]
+    style   += "border-radius:4px;padding:#{padding};font-size:#{fs};font-weight:700;"
+    style   += "font-family:'DM Sans',sans-serif;letter-spacing:0.02em;white-space:nowrap;line-height:1.4;"
+    content_tag(:span, label, style: style)
+  end
+
+  # --- Orphelinage joueurs thin ---
+
+  def hide_thin_player_links?
+    ENV.fetch('HIDE_THIN_PLAYER_LINKS', 'true') == 'true'
+  end
+
+  # Décide si un joueur mérite un lien interne.
+  # player : objet Player (DB). Si nil, pas de lien.
+  # Quand le toggle est off ou le joueur indexable → lien.
+  # Sinon → texte brut (le bloc est rendu sans <a>).
+  def player_linkable?(player)
+    return true unless hide_thin_player_links?
+    return false if player.nil?
+
+    player.team_active?
   end
 end

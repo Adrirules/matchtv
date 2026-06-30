@@ -3,11 +3,23 @@ upcoming:
   away_team: "Olympique de Marseille"
   competition: "Ligue 1"
   start_time: <%= 2.days.from_now.iso8601 %>
-  tv_channels: "DAZN"
+  tv_channels: "Canal+ Foot"
   slug: "paris-saint-germain-vs-olympique-de-marseille-ligue-1-<%= 2.days.from_now.strftime('%Y-%m-%d') %>"
   status: "NS"
   home_team_api_id: 85
   away_team_api_id: 81
+  matchup: one
+
+upcoming_dazn:
+  home_team: "Juventus"
+  away_team: "Inter Milan"
+  competition: "Serie A"
+  start_time: <%= 3.days.from_now.iso8601 %>
+  tv_channels: "DAZN"
+  slug: "juventus-vs-inter-milan-serie-a-<%= 3.days.from_now.strftime('%Y-%m-%d') %>"
+  status: "NS"
+  home_team_api_id: 496
+  away_team_api_id: 505
   matchup: one
 
 finished:
