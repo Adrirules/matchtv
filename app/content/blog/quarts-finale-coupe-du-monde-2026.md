@@ -5,7 +5,7 @@ slug: quarts-finale-coupe-du-monde-2026
 published_at: 2026-07-03
 published_time: "08h47"
 author: Adrien
-image: https://images.pexels.com/photos/38259394/pexels-photo-38259394.jpeg
+image: https://images.pexels.com/photos/14846793/pexels-photo-14846793.jpeg
 image_credit: "Photo : Pexels"
 excerpt: "Les 4 matchs des quarts de finale du Mondial 2026 : dates, horaires, chaînes TV et résultats. 3 sur M6, 1 seul sur beIN. Mis à jour en direct."
 tags: ["coupe-du-monde", "chaines-tv"]
@@ -33,7 +33,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Quand se jouent les quarts de finale de la Coupe du Monde 2026 ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Les quarts de finale se jouent du 9 au 12 juillet 2026. 4 matchs sur 4 jours, avec un coup d'envoi entre 21h et 03h heure française." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Les quarts de finale se jouent du 9 au 12 juillet 2026. 4 matchs sur 4 jours, avec un coup d'envoi entre 21h et 02h50 heure française." }
     },
     {
       "@type": "Question",
@@ -43,12 +43,12 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Quels quarts de finale sont gratuits sur M6 ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "3 quarts sur 4 sont sur M6 en clair. Le seul quart exclusivement sur beIN Sports est celui programmé en pleine nuit (dimanche 12 juillet, 03h00 heure française)." }
+      "acceptedAnswer": { "@type": "Answer", "text": "3 quarts sur 4 sont sur M6 en clair. Le seul quart exclusivement sur beIN Sports est celui programmé en pleine nuit (dimanche 12 juillet, 02h50 heure française)." }
     },
     {
       "@type": "Question",
       "name": "Quel quart de finale est sur beIN Sports ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Le quart 4, programmé le dimanche 12 juillet à 03h00 heure française, est exclusivement sur beIN Sports. Les 3 autres sont en clair sur M6." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Le quart 4, programmé le dimanche 12 juillet à 02h50 heure française, est exclusivement sur beIN Sports. Les 3 autres sont en clair sur M6." }
     },
     {
       "@type": "Question",
@@ -70,13 +70,13 @@ Huit équipes, quatre matchs, quatre billets pour les demi-finales. Les quarts d
 
 ## Réponse rapide
 
-> Les **quarts de finale** se jouent du **9 au 12 juillet 2026**. **3 matchs sont gratuits sur [M6](/chaines/m6)**, **1 seul est exclusivement sur [beIN Sports](/chaines/bein-sports)** (celui de nuit, dimanche 12 juillet à 03h00). Le tableau ci-dessous est mis à jour automatiquement.
+> Les **quarts de finale** se jouent du **9 au 12 juillet 2026**. **3 matchs sont gratuits sur [M6](/chaines/m6)**, **1 seul est exclusivement sur [beIN Sports](/chaines/bein-sports)** (celui de nuit, dimanche 12 juillet à 02h50). Le tableau ci-dessous est mis à jour automatiquement.
 
 ## Le match de la France
 
 <!-- FRANCE_QUART -->
 
-Si la France se qualifie, son quart de finale est obligatoirement sur une chaîne gratuite (loi française). Direct sur M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour le quart exclusif beIN (celui de 03h00) et les demi-finales, un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) couvre la fin du tournoi.
+Si la France se qualifie, son quart de finale est obligatoirement sur une chaîne gratuite (loi française). Direct sur M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour le quart exclusif beIN (celui de 02h50) et les demi-finales, un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) couvre la fin du tournoi.
 
 [Voir le prochain match de la France →](/blog/prochain-match-france-coupe-du-monde)
 
@@ -106,7 +106,7 @@ Le direct M6 sur Molotov est gratuit. L'enregistrement et le replay nécessitent
 
 ### Le quart sur beIN (abonnement)
 
-Le quart 4 (dimanche 12 juillet, 03h00) est exclusivement sur [beIN Sports](/chaines/bein-sports). C'est le seul quart payant, et il tombe en pleine nuit. Pour le voir en direct ou en différé :
+Le quart 4 (dimanche 12 juillet, 02h50) est exclusivement sur [beIN Sports](/chaines/bein-sports). C'est le seul quart payant, et il tombe en pleine nuit. Pour le voir en direct ou en différé :
 
 - **[beIN Sports](/chaines/bein-sports)** à 15 €/mois - ce quart + les demi-finales et la finale sur beIN
 - **[Canal+ Sport](/chaines/canal-plus)** à 19,99 €/mois, beIN inclus - tout le reste du tournoi
@@ -135,7 +135,7 @@ Comme depuis les seizièmes : un match, un résultat. Score nul à la fin des 90
 
 ### Quand se jouent les quarts de finale du Mondial 2026 ?
 
-Du **9 au 12 juillet 2026**. Un match par jour sur quatre jours, avec des coups d'envoi entre 21h00 et 03h00 heure française.
+Du **9 au 12 juillet 2026**. Un match par jour sur quatre jours, avec des coups d'envoi entre 21h00 et 02h50 heure française.
 
 ### Combien d'équipes jouent les quarts ?
 
@@ -143,11 +143,11 @@ Du **9 au 12 juillet 2026**. Un match par jour sur quatre jours, avec des coups 
 
 ### Quels quarts sont gratuits sur M6 ?
 
-**3 matchs sur 4** sont en clair sur [M6](/chaines/m6) : ceux du jeudi soir, vendredi soir et samedi soir. Le quatrième (dimanche 03h00) est exclusivement sur [beIN Sports](/chaines/bein-sports).
+**3 matchs sur 4** sont en clair sur [M6](/chaines/m6) : ceux du jeudi soir, vendredi soir et samedi soir. Le quatrième (dimanche 02h50) est exclusivement sur [beIN Sports](/chaines/bein-sports).
 
 ### Le quart de nuit est sur quelle chaîne ?
 
-Le quart 4 (dimanche 12 juillet, 03h00) est sur **[beIN Sports](/chaines/bein-sports)** exclusivement. Abonnement requis (15 €/mois, ou 19,99 €/mois via [Canal+ Sport](/chaines/canal-plus) avec beIN inclus).
+Le quart 4 (dimanche 12 juillet, 02h50) est sur **[beIN Sports](/chaines/bein-sports)** exclusivement. Abonnement requis (15 €/mois, ou 19,99 €/mois via [Canal+ Sport](/chaines/canal-plus) avec beIN inclus).
 
 ### Comment regarder les quarts en streaming ?
 
@@ -170,7 +170,7 @@ VÉRIFICATIONS FACTUELLES (sources consultées le 1er juillet 2026)
   - Q1 jeu 09/07 ~22h = M6
   - Q2 ven 10/07 ~21h = M6
   - Q3 sam 11/07 ~23h = M6
-  - Q4 dim 12/07 ~03h = beIN
+  - Q4 dim 12/07 ~02h50 = beIN
 - Demies + finale : toutes M6 — fichier référence mémoire
 - Molotov URL affilié : https://molotov.pxf.io/c/7376919/3924296/16522
 - Molotov : direct gratuit, enregistrement/replay = abonnement payant 6,99€
