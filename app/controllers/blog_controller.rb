@@ -72,6 +72,7 @@ class BlogController < ApplicationController
     @article_html = inject_dazn_card(@article_html)  if @article_html.include?('DAZN_CARD')
     @article_html = inject_m6_dynamic(@article_html) if @article_html.include?('M6_GROUP_TABLE') || @article_html.include?('M6_KNOCKOUT_TABLE') || @article_html.include?('__TODAY__')
     @article_html = inject_seiziemes_dynamic(@article_html) if @article_html.include?('SEIZIEMES_TABLE') || @article_html.include?('FRANCE_SEIZIEME')
+    @article_html = inject_huitiemes_dynamic(@article_html) if @article_html.include?('HUITIEMES_TABLE') || @article_html.include?('FRANCE_HUITIEME')
 
     @derby_matches = []
     if @article[:derby_pairs].present?
@@ -600,6 +601,115 @@ class BlogController < ApplicationController
         <p style="font-size:22px;font-weight:700;text-align:center;margin:0;">#{home_fr} - #{away_fr}</p>
         #{score_line}
         <p style="text-align:center;color:#cbd5e1;font-size:14px;margin:8px 0 0;">#{date_str} à #{hour_str} - #{venue}</p>
+        <p style="text-align:center;margin:12px 0 0;">#{slug_link}</p>
+      </div>
+    HTML
+  end
+
+  def inject_huitiemes_dynamic(html)
+    huitiemes = Match.where(competition: 'Coupe du Monde 2026')
+                     .where('round ILIKE ?', '%Round of 16%')
+                     .order(:start_time)
+
+    if html.include?('HUITIEMES_TABLE')
+      html = html.gsub(/<!--\s*HUITIEMES_TABLE\s*-->/, build_huitiemes_table(huitiemes))
+    end
+
+    if html.include?('FRANCE_HUITIEME')
+      france_match = huitiemes.find { |m| m.home_team =~ /france/i || m.away_team =~ /france/i }
+      html = html.gsub(/<!--\s*FRANCE_HUITIEME\s*-->/, build_france_huitieme(france_match))
+    end
+
+    html.html_safe
+  end
+
+  def build_huitiemes_table(matches)
+    h = ApplicationController.helpers
+    rows = matches.map do |m|
+      paris_time = m.start_time.in_time_zone('Europe/Paris')
+      date_str = I18n.l(paris_time, format: '%A %d %B', locale: :fr).sub(/^./, &:upcase)
+      hour_str = paris_time.strftime('%Hh%M')
+      home_fr = h.team_display_name(m.home_team)
+      away_fr = h.team_display_name(m.away_team)
+
+      score = if m.status == 'PEN' && m.home_score.present?
+                "#{m.home_score}-#{m.away_score} (tab)"
+              elsif m.status.in?(Match::FINISHED_STATUSES) && m.home_score.present?
+                "#{m.home_score}-#{m.away_score}"
+              else
+                hour_str
+              end
+
+      match_label = "#{home_fr} - #{away_fr}"
+      slug = m.slug.presence
+      match_cell = slug ? "<a href='/matchs/#{slug}' style='color:var(--color-accent);text-decoration:none;font-weight:600;'>#{match_label}</a>" : "<strong>#{match_label}</strong>"
+
+      channel = m.tv_channels.to_s
+      ch_badge = if channel == 'M6'
+                   "<span style='display:inline-block;background:#dbeafe;color:#1e40af;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;'>M6</span>"
+                 else
+                   "<span style='display:inline-block;background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;'>beIN</span>"
+                 end
+
+      night = paris_time.hour < 6
+      night_badge = night ? " <span style='display:inline-block;background:#fee2e2;color:#991b1b;font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;margin-left:2px;'>NUIT</span>" : ""
+
+      "<tr>
+        <td style='padding:8px 10px;white-space:nowrap;font-size:13px;color:#64748b;border-bottom:1px solid #f1f5f9;'>#{date_str}</td>
+        <td style='padding:8px 10px;font-size:13px;border-bottom:1px solid #f1f5f9;'>#{match_cell}</td>
+        <td style='padding:8px 10px;font-size:13px;font-weight:600;color:#0f172a;text-align:center;border-bottom:1px solid #f1f5f9;white-space:nowrap;'>#{score}#{night_badge}</td>
+        <td style='padding:8px 10px;text-align:center;border-bottom:1px solid #f1f5f9;'>#{ch_badge}</td>
+      </tr>"
+    end.join("\n")
+
+    played = matches.select { |m| m.status.in?(Match::FINISHED_STATUSES) || m.status == 'PEN' }.count
+    <<~HTML
+      <div style="overflow-x:auto;margin:20px 0;">
+        <table style="width:100%;border-collapse:collapse;background:white;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+          <thead>
+            <tr style="background:#f8fafc;">
+              <th style="padding:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;text-align:left;border-bottom:1px solid #e2e8f0;">Date</th>
+              <th style="padding:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;text-align:left;border-bottom:1px solid #e2e8f0;">Match</th>
+              <th style="padding:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;text-align:center;border-bottom:1px solid #e2e8f0;">Heure / Score</th>
+              <th style="padding:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;text-align:center;border-bottom:1px solid #e2e8f0;">Chaîne</th>
+            </tr>
+          </thead>
+          <tbody>
+            #{rows}
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:#94a3b8;margin-top:6px;text-align:right;">#{played}/8 matchs joués - mis à jour le #{I18n.l(Date.today, format: '%d %B %Y', locale: :fr)}</p>
+      </div>
+    HTML
+  end
+
+  def build_france_huitieme(match)
+    return '<p style="color:#64748b;font-style:italic;">Le huitième de finale de la France sera affiché ici dès que l\'adversaire sera connu.</p>' unless match
+
+    h = ApplicationController.helpers
+    paris_time = match.start_time.in_time_zone('Europe/Paris')
+    date_str = I18n.l(paris_time, format: '%A %d %B %Y', locale: :fr).sub(/^./, &:upcase)
+    hour_str = paris_time.strftime('%Hh%M')
+    home_fr = h.team_display_name(match.home_team)
+    away_fr = h.team_display_name(match.away_team)
+
+    score_line = if match.status == 'PEN' && match.home_score.present?
+                   "<p style='font-size:24px;font-weight:700;text-align:center;margin:10px 0;'>#{match.home_score} - #{match.away_score} (tab)</p>"
+                 elsif match.status.in?(Match::FINISHED_STATUSES) && match.home_score.present?
+                   "<p style='font-size:24px;font-weight:700;text-align:center;margin:10px 0;'>#{match.home_score} - #{match.away_score}</p>"
+                 else
+                   ""
+                 end
+
+    slug_link = match.slug.present? ? "<a href='/matchs/#{match.slug}' style='color:var(--color-accent);text-decoration:none;font-weight:600;'>Voir la page du match →</a>" : ""
+    venue = [match.venue_name, match.venue_city].compact.reject(&:blank?).join(', ')
+
+    <<~HTML
+      <div style="background:linear-gradient(135deg,#1e3a5f 0%,#0f172a 100%);border-radius:12px;padding:24px;margin:20px 0;color:white;">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#93c5fd;margin:0 0 12px;">Huitième de finale - #{match.tv_channels == 'M6' ? 'M6 (gratuit)' : 'beIN Sports'}</p>
+        <p style="font-size:22px;font-weight:700;text-align:center;margin:0;">#{home_fr} - #{away_fr}</p>
+        #{score_line}
+        <p style="text-align:center;color:#cbd5e1;font-size:14px;margin:8px 0 0;">#{date_str} à #{hour_str}#{venue.present? ? " - #{venue}" : ''}</p>
         <p style="text-align:center;margin:12px 0 0;">#{slug_link}</p>
       </div>
     HTML
