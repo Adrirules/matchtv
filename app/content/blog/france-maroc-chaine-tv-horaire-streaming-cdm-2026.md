@@ -3,7 +3,7 @@ title: "France - Maroc : chaîne TV, horaire et streaming (quart de finale, CdM 
 meta_description: "France - Maroc le jeudi 9 juillet à 22h : sur quelle chaîne voir le quart de finale sur M6 en clair. 2022, contexte, streaming et FAQ."
 slug: france-maroc-chaine-tv-horaire-streaming-cdm-2026
 published_at: 2026-07-08
-published_time: "09h47"
+published_time: "08h23"
 author: Adrien
 image: https://images.unsplash.com/photo-1557456275-5bfe3c02223f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
