@@ -3,7 +3,7 @@ title: "Espagne - Belgique : chaîne TV, horaire et streaming (quart de finale, 
 meta_description: "Espagne - Belgique le vendredi 10 juillet à 21h sur M6 en clair : quart de finale CdM 2026 à Los Angeles. Parcours, contexte, streaming et FAQ."
 slug: espagne-belgique-chaine-tv-horaire-streaming-cdm-2026
 published_at: 2026-07-09
-published_time: "10h34"
+published_time: "09h17"
 author: Adrien
 image: https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=774&auto=format&fit=crop
 image_credit: "Photo : Unsplash"
