@@ -426,6 +426,7 @@ class MatchSummaryService
     draw      = match.home_score == match.away_score
     big_win   = gap >= 3
     notable   = notable_channel?(diffusion)
+    round     = match.round.to_s
 
     winner_text = if match.home_score > match.away_score
       "#{match.home_team} s'impose #{score}"
@@ -437,11 +438,38 @@ class MatchSummaryService
 
     tmpl = match.id % 8
     summary_template(tmpl, match.home_team, match.away_team, match.competition,
-                     date_fr, score, diffusion, winner_text, big_win, draw, gap, notable)
+                     date_fr, score, diffusion, winner_text, big_win, draw, gap, notable, round)
   end
 
-  def self.summary_template(tmpl, home, away, comp, date_fr, score, diffusion, winner_text, big_win, draw, gap, notable)
+  # Instruction ajoutée quand le match est à élimination directe (pas de poules)
+  def self.knockout_instruction(round, home, away, winner_text, draw)
+    return "" if round.blank? || round.match?(/group/i)
+
+    round_fr = case round
+    when /Round of 32/i then "seizième de finale"
+    when /Round of 16/i then "huitième de finale"
+    when /Quarter/i then "quart de finale"
+    when /Semi/i then "demi-finale"
+    when /Final/i then "finale"
+    else round
+    end
+
+    loser = if !draw
+      winner_text.include?(home) ? away : home
+    end
+
+    instruction = "IMPORTANT : ce match est un #{round_fr} (match à élimination directe). "
+    if loser
+      instruction += "#{loser} est éliminé(e) de la compétition. Ne parle JAMAIS de classement, de groupe, de points ou de qualification — le perdant rentre chez lui."
+    else
+      instruction += "Match nul dans le temps réglementaire (prolongations/tirs au but). Ne parle JAMAIS de classement, de groupe ou de points."
+    end
+    instruction
+  end
+
+  def self.summary_template(tmpl, home, away, comp, date_fr, score, diffusion, winner_text, big_win, draw, gap, notable, round = "")
     ban = banned_line
+    ko = knockout_instruction(round, home, away, winner_text, draw)
 
     case tmpl
 
@@ -452,12 +480,13 @@ class MatchSummaryService
         Phrase 1 = score et vainqueur (max 14 mots). Phrase 2 = conséquence au classement ou en compétition.
         #{notable ? "Mentionne #{diffusion} si c'est une grande affiche." : ""}
         Aucune exagération, aucune invention.
+        #{ko}
         #{ban}
 
         EXEMPLE DE SORTIE (adapte aux vraies données, ne copie pas Lens/Nantes) :
         "Lens s'impose 2-0 face à Nantes et remonte à la 5e place de Ligue 1. Cette victoire repousse les Canaris à 6 points de la zone de maintien — vu sur DAZN."
 
-        Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
+        Match : #{home} #{score} #{away} | #{comp} | #{round.presence || 'Journée'} | #{date_fr}
         Résultat : #{winner_text}
       P
 
@@ -471,12 +500,13 @@ class MatchSummaryService
         Ne commence pas par le score brut. Commence par le contexte ou ce que le résultat révèle.
         Contrainte : une phrase courte (6-12 mots) et une phrase longue (22-30 mots).
         #{notable ? "Intègre #{diffusion}." : ""}
+        #{ko}
         #{ban}
 
         EXEMPLE DE SORTIE (adapte aux vraies données) :
         "Nantes ne gagne plus. Lens a profité de la fragilité défensive des Canaris pour s'imposer 2-0, consolidant ainsi sa place dans le top 6 à trois journées de la fin. Vu sur DAZN."
 
-        Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
+        Match : #{home} #{score} #{away} | #{comp} | #{round.presence || 'Journée'} | #{date_fr}
         Résultat : #{winner_text}
       P
 
@@ -486,12 +516,13 @@ class MatchSummaryService
         Tu es rédacteur football. Résume ce match en exactement 2 phrases. Pas de titre.
         Phrase 1 = ce que ce résultat change dans la #{comp} (max 16 mots). Phrase 2 = score et détail marquant.
         Ne commence pas par 'Ce match'.
+        #{ko}
         #{ban}
 
         EXEMPLE DE SORTIE (adapte aux vraies données) :
         "Lens s'accroche à la 6e place de Ligue 1 avec cette victoire. Les Sang et Or ont dominé Nantes 2-0 dans un match maîtrisé — diffusé sur DAZN."
 
-        Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
+        Match : #{home} #{score} #{away} | #{comp} | #{round.presence || 'Journée'} | #{date_fr}
         Résultat : #{winner_text}
       P
 
@@ -501,12 +532,13 @@ class MatchSummaryService
         Tu es rédacteur football. Résume ce match en 2 à 3 phrases. Pas de titre.
         Commence par ce que ce résultat change dans la #{comp}. Donne le score seulement en 2e ou 3e phrase.
         #{notable ? "Mentionne #{diffusion}." : ""} Aucun superlatif.
+        #{ko}
         #{ban}
 
         EXEMPLE DE SORTIE (adapte aux vraies données) :
         "Lens consolide sa 6e place et garde une longueur d'avance sur ses concurrents pour l'Europe. Les Sang et Or ont écrasé Nantes 2-0 sur DAZN, avec une domination totale dès la première mi-temps."
 
-        Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
+        Match : #{home} #{score} #{away} | #{comp} | #{round.presence || 'Journée'} | #{date_fr}
         Résultat : #{winner_text}
       P
 
@@ -517,12 +549,13 @@ class MatchSummaryService
       <<~P.strip
         Tu es rédacteur football. Résume ce match en 2 phrases. Pas de titre. #{loser_angle}
         Factuel. Ne commence pas par 'Malgré'.
+        #{ko}
         #{ban}
 
         EXEMPLE DE SORTIE (adapte aux vraies données) :
         "Nantes repart de Bollaert avec rien, battu 2-0 dans une soirée difficile pour les Canaris. Ce résultat laisse Nantes à 6 points du bas de tableau, sans victoire en déplacement depuis 8 matchs."
 
-        Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
+        Match : #{home} #{score} #{away} | #{comp} | #{round.presence || 'Journée'} | #{date_fr}
         Résultat : #{winner_text}
       P
 
@@ -532,12 +565,13 @@ class MatchSummaryService
         Tu es speaker radio. Résume ce match en exactement 2 phrases. Pas de titre.
         Phrase 1 = ce qui s'est passé (8-13 mots). Phrase 2 = pourquoi c'est important.
         Ne commence pas par '#{home}' ni '#{away}'.
+        #{ko}
         #{ban}
 
         EXEMPLE DE SORTIE (adapte aux vraies données) :
         "Victoire 2-0 de Lens sur Nantes ce vendredi. Les Sang et Or restent dans la course à l'Europe, à un point du top 5 — résultat à retrouver sur DAZN."
 
-        Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
+        Match : #{home} #{score} #{away} | #{comp} | #{round.presence || 'Journée'} | #{date_fr}
         Résultat : #{winner_text}
       P
 
@@ -548,12 +582,13 @@ class MatchSummaryService
         Intègre obligatoirement au moins 2 chiffres au-delà du score (classement, écart de points, série).
         #{big_win ? "Insiste sur l'ampleur : #{gap} buts d'écart." : ""}
         #{notable ? "Mentionne #{diffusion}." : ""}
+        #{ko}
         #{ban}
 
         EXEMPLE DE SORTIE (adapte aux vraies données) :
         "Lens s'impose 2-0 et remonte à la 6e place, à 4 points de l'Europe directe. Nantes reste 14e avec seulement 2 victoires sur ses 10 derniers matchs — vu sur DAZN."
 
-        Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
+        Match : #{home} #{score} #{away} | #{comp} | #{round.presence || 'Journée'} | #{date_fr}
         Résultat : #{winner_text}
       P
 
@@ -564,12 +599,13 @@ class MatchSummaryService
         Structure : phrase 1 = contexte de la #{comp}, phrase 2 = résultat brut, phrase 3 = implication pour la suite.
         Chaque phrase entre 8 et 18 mots.
         #{notable ? "Glisse #{diffusion} dans l'une des phrases." : ""}
+        #{ko}
         #{ban}
 
         EXEMPLE DE SORTIE (adapte aux vraies données) :
         "La lutte pour l'Europe en Ligue 1 reste ouverte. Lens s'impose 2-0 face à Nantes dans un match maîtrisé à Bollaert. Les Sang et Or s'installent 6e — le duel pour le dernier billet européen continue."
 
-        Match : #{home} #{score} #{away} | #{comp} | #{date_fr}
+        Match : #{home} #{score} #{away} | #{comp} | #{round.presence || 'Journée'} | #{date_fr}
         Résultat : #{winner_text}
       P
 
