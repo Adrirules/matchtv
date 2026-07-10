@@ -82,7 +82,7 @@ Deux options.
 
 **M6 - gratuit, en clair.** C'est la solution la plus simple. Tu allumes ta télé, tu mets M6, c'est parti. M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce match d'ouverture. Le flux est aussi disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - pratique si tu n'as pas la TNT ou si tu veux enregistrer le match pour le revoir.
 
-**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN Sports diffuse l'intégralité des 104 matchs du Mondial. Si tu es déjà abonné, c'est l'option confort : pas de pub, commentaires dédiés, avant-match complet. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement.
+**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN Sports diffuse l'intégralité des 104 matchs du Mondial. Si tu es déjà abonné, c'est l'option confort : pas de pub, commentaires dédiés, avant-match complet. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois.
 
 Le truc c'est que pour un match d'ouverture gratuit sur M6, l'abonnement n'est pas indispensable. Mais si tu veux suivre les 104 matchs du tournoi (y compris ceux qui ne passent pas sur M6), [beIN Sports](/chaines/bein-sports) est le seul moyen.
 

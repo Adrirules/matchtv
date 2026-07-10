@@ -87,7 +87,7 @@ Match gratuit, horaire civilisé. C'est le combo idéal.
 
 **[M6](/chaines/m6) - gratuit, en clair.** Le match est diffusé sur M6 en direct dès 19h00. L'appli **M6+** permet de le suivre gratuitement sur tous les écrans, et [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) permet aussi de suivre le direct de M6 gratuitement.
 
-**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. L'abonnement est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois. Avantage par rapport à M6 : pas de coupures pub et un avant-match plus complet.
+**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. L'abonnement est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois. Avantage par rapport à M6 : pas de coupures pub et un avant-match plus complet.
 
 <!-- MOLOTOV_CARD -->
 

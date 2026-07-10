@@ -115,7 +115,7 @@ Gratuit, celui-là. [M6](/chaines/m6) diffuse tous les matchs des Bleus pendant 
 
 **En streaming**, le direct M6 passe sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - gratuit dans les deux cas. Maintenant, 23h un lundi, si tu bosses le mardi matin, un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) te permet d'enregistrer le match et de le retrouver au réveil. Tu programmes avant de te coucher, tu évites les spoilers, et tu mates au petit-déj. C'est de loin l'option la plus raisonnable.
 
-**[beIN Sports](/chaines/bein-sports)** diffuse aussi le match si t'es abonné. L'offre [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois inclut beIN - c'est le combo pour ceux qui veulent voir les [104 matchs du Mondial](/blog/chaine-tv-coupe-du-monde-2026), pas seulement la France.
+**[beIN Sports](/chaines/bein-sports)** diffuse aussi le match si t'es abonné. L'offre [Canal+ Sport](/chaines/canal-plus) à 29,99 €/mois inclut beIN - c'est le combo pour ceux qui veulent voir les [104 matchs du Mondial](/blog/chaine-tv-coupe-du-monde-2026), pas seulement la France.
 
 <!-- MOLOTOV_CARD -->
 
@@ -149,7 +149,7 @@ Format 48 équipes : les deux premiers passent, plus les meilleurs troisièmes. 
 
 ### Sur quelle chaîne est diffusé France - Irak ?
 
-**[M6](/chaines/m6)** en clair (gratuit) et **[beIN Sports](/chaines/bein-sports)** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour le direct gratuit. Abonnement Molotov pour enregistrer et revoir le match. [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) est une autre option.
+**[M6](/chaines/m6)** en clair (gratuit) et **[beIN Sports](/chaines/bein-sports)** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour le direct gratuit. Abonnement Molotov pour enregistrer et revoir le match. [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) est une autre option.
 
 ### À quelle heure se joue France - Irak ?
 

@@ -53,7 +53,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Combien de buts a marqué Haaland dans ce Mondial ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Erling Haaland totalise 7 buts en 5 matchs à la Coupe du Monde 2026 : doublé vs Irak (J1), doublé vs Sénégal (J2), but décisif vs Côte d'Ivoire (seizième) et doublé vs Brésil (huitième). Il est co-meilleur buteur du tournoi." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Erling Haaland totalise 7 buts en 5 matchs à la Coupe du Monde 2026 : doublé vs Irak (J1), doublé vs Sénégal (J2), but décisif vs Côte d'Ivoire (seizième) et doublé vs Brésil (huitième). Il est deuxième meilleur buteur du tournoi, à un but de Messi (8)." }
     },
     {
       "@type": "Question",
@@ -138,7 +138,7 @@ Le problème ? C'est l'histoire. Soixante ans sans titre majeur. Deux finales d'
 
 On assume. On pense que la Norvège va battre l'Angleterre.
 
-Pas parce que c'est romantique (même si ça l'est). Parce que les faits s'accumulent. Haaland tourne à 7 buts en 5 matchs, co-meilleur buteur du tournoi. La Norvège a sorti la Côte d'Ivoire en prolongeant son effort, puis elle a fait tomber le Brésil - cinq fois champion du monde - en huitième. Ce n'est pas un coup de chance en deux matchs, c'est une équipe qui a trouvé sa mécanique.
+Pas parce que c'est romantique (même si ça l'est). Parce que les faits s'accumulent. Haaland tourne à 7 buts en 5 matchs, deuxième meilleur buteur du tournoi derrière Messi (8). La Norvège a sorti la Côte d'Ivoire en prolongeant son effort, puis elle a fait tomber le Brésil - cinq fois champion du monde - en huitième. Ce n'est pas un coup de chance en deux matchs, c'est une équipe qui a trouvé sa mécanique.
 
 L'Angleterre, elle, n'a pas encore convaincu dans un match à enjeu réel. Le 3-2 contre le Mexique en huitième était spectaculaire mais brouillon. Et il y a cette pression des 60 ans, celle que **Solbakken** est ravi de laisser aux Anglais (il l'a dit en conférence de presse). La Norvège joue son premier quart de finale de Coupe du Monde de l'histoire - elle n'avait même pas passé les poules en 1994 et 1998. La pression est à zéro. L'envie est à mille.
 
@@ -180,7 +180,7 @@ Au **Hard Rock Stadium** de Miami Gardens (Floride), stade des Dolphins en NFL. 
 Oui. M6 diffuse le match en clair sur la TNT. En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/1379964/16522) sont gratuits.
 
 ### Combien de buts Haaland a-t-il marqué dans ce Mondial ?
-**7 buts en 5 matchs** : doublé vs Irak (J1), doublé vs Sénégal (J2), but décisif vs Côte d'Ivoire (86e, seizième), doublé vs Brésil (huitième). Il est co-meilleur buteur du tournoi avec Messi et Mbappé.
+**7 buts en 5 matchs** : doublé vs Irak (J1), doublé vs Sénégal (J2), but décisif vs Côte d'Ivoire (86e, seizième), doublé vs Brésil (huitième). Il est deuxième meilleur buteur du tournoi, à un but de Messi (8).
 
 ### Qui sont les joueurs à suivre dans ce quart de finale ?
 Côté norvégien, **Haaland** (7 buts, Man City) et **Ødegaard** (capitaine, Arsenal). Côté anglais, **Kane** (capitaine, Bayern Munich, 3e Mondial) et **Bellingham** (Real Madrid, 23 ans).

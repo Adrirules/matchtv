@@ -76,7 +76,7 @@ Si tu cherches le premier tour à élimination directe du Mondial 2026, c'est le
 
 <!-- FRANCE_HUITIEME -->
 
-Les matchs de l'équipe de France en [Coupe du Monde](/competitions/coupe-du-monde-2026) sont obligatoirement diffusés en clair. Le direct est gratuit sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour ceux qui veulent suivre les 2 huitièmes exclusivement sur beIN, un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) couvre l'intégralité du tournoi.
+Les matchs de l'équipe de France en [Coupe du Monde](/competitions/coupe-du-monde-2026) sont obligatoirement diffusés en clair. Le direct est gratuit sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour ceux qui veulent suivre les 2 huitièmes exclusivement sur beIN, un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) couvre l'intégralité du tournoi.
 
 [Voir le prochain match de la France →](/blog/prochain-match-france-coupe-du-monde)
 
@@ -113,7 +113,7 @@ Un des matchs M6 tombe tard (le dernier huitième démarre à 22h00). Pour les c
 Les deux matchs programmés à 02h00 du matin sont exclusivement sur [beIN Sports](/chaines/bein-sports). Pour ne rien rater de ces huitièmes nocturnes :
 
 - **[beIN Sports](/chaines/bein-sports)** à 15 €/mois - tous les matchs du Mondial, y compris les 2 huitièmes exclusifs
-- **[Canal+ Sport](/chaines/canal-plus)** à 19,99 €/mois, beIN inclus - l'intégralité du Mondial + l'offre Canal+
+- **[Canal+ Sport](/chaines/canal-plus)** à 29,99 €/mois, beIN inclus - l'intégralité du Mondial + l'offre Canal+
 
 À ce stade, chaque match est une finale en soi. Les séries de tirs au but, les buts en prolongation - c'est en huitièmes que les souvenirs de Coupe du Monde se construisent. Même les affiches sur le papier les moins attendues peuvent produire des matchs historiques.
 
@@ -157,7 +157,7 @@ Du **4 au 7 juillet 2026**. Huit matchs répartis sur 4 jours, avec des créneau
 
 ### Comment regarder les huitièmes en streaming ?
 
-Pour les matchs M6 : direct gratuit sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour les matchs beIN : un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus).
+Pour les matchs M6 : direct gratuit sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour les matchs beIN : un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus).
 
 ### Y a-t-il des prolongations en huitièmes ?
 
@@ -165,7 +165,7 @@ Oui. Si le score est à égalité après 90 minutes, le match passe en prolongat
 
 ---
 
-Les huitièmes de finale, c'est là où le Mondial commence vraiment à brûler. Les seizièmes ont fait le tri, maintenant chaque match est un quitte ou double pour une place en quarts. Pour suivre l'intégralité des huitièmes et la suite du tournoi, le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026) est sur [Coup d'Envoi TV](/competitions/coupe-du-monde-2026). Et pour les 2 huitièmes nocturnes exclusivement sur beIN, un abonnement [beIN Sports](/chaines/bein-sports) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) couvre les 104 matchs du tournoi.
+Les huitièmes de finale, c'est là où le Mondial commence vraiment à brûler. Les seizièmes ont fait le tri, maintenant chaque match est un quitte ou double pour une place en quarts. Pour suivre l'intégralité des huitièmes et la suite du tournoi, le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026) est sur [Coup d'Envoi TV](/competitions/coupe-du-monde-2026). Et pour les 2 huitièmes nocturnes exclusivement sur beIN, un abonnement [beIN Sports](/chaines/bein-sports) ou [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) couvre les 104 matchs du tournoi.
 
 <!--
 VÉRIFICATIONS FACTUELLES (sources consultées le 1er juillet 2026)

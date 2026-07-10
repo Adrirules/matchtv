@@ -76,7 +76,7 @@ Premier tour à élimination directe, et la première grosse nouveauté de ce [M
 
 <!-- FRANCE_SEIZIEME -->
 
-Tous les matchs des Bleus en [Coupe du Monde](/competitions/coupe-du-monde-2026) sont obligatoirement diffusés en clair. Le direct est gratuit sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour suivre l'ensemble du tournoi - y compris les 7 seizièmes uniquement sur beIN - un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) couvre l'intégralité.
+Tous les matchs des Bleus en [Coupe du Monde](/competitions/coupe-du-monde-2026) sont obligatoirement diffusés en clair. Le direct est gratuit sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour suivre l'ensemble du tournoi - y compris les 7 seizièmes uniquement sur beIN - un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) couvre l'intégralité.
 
 [Voir le prochain match de la France →](/blog/prochain-match-france-coupe-du-monde)
 
@@ -118,7 +118,7 @@ Certains matchs M6 se jouent en pleine nuit (décalage horaire avec l'Amérique 
 Les matchs de nuit et les créneaux moins exposés sont exclusivement sur [beIN Sports](/chaines/bein-sports). Pour ne rien rater :
 
 - **[beIN Sports](/chaines/bein-sports)** à 15 €/mois - les 104 matchs du Mondial, y compris les 7 seizièmes exclusifs
-- **[Canal+ Sport](/chaines/canal-plus)** à 19,99 €/mois, beIN inclus - tout le Mondial + le reste de l'offre Canal+
+- **[Canal+ Sport](/chaines/canal-plus)** à 29,99 €/mois, beIN inclus - tout le Mondial + le reste de l'offre Canal+
 
 À ce stade du tournoi, chaque match peut réserver une surprise. Les prolongations et les tirs au but rendent chaque rencontre imprévisible - et les meilleures histoires ne sont pas toujours dans les matchs les plus attendus.
 
@@ -162,7 +162,7 @@ Parce que le [format 2026 accueille 48 équipes](/blog/coupe-du-monde-2026-forma
 
 ### Comment regarder les seizièmes en streaming ?
 
-Pour les matchs M6 : le direct est gratuit sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour les matchs beIN : il faut un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus).
+Pour les matchs M6 : le direct est gratuit sur M6+ et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour les matchs beIN : il faut un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus).
 
 ### Y a-t-il des prolongations en seizièmes ?
 
@@ -170,7 +170,7 @@ Oui. En cas d'égalité après 90 minutes, le match passe en prolongation (2 × 
 
 ---
 
-Le premier tour à élimination directe, c'est là où le Mondial prend une autre dimension. Les calculs sont finis, les excuses aussi - tu gagnes ou tu rentres. Pour ne rien rater des seizièmes et de la suite, le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026) est sur [Coup d'Envoi TV](/competitions/coupe-du-monde-2026). Et si tu veux couvrir les 7 seizièmes beIN + tout le reste du tournoi, un abonnement [beIN Sports](/chaines/bein-sports) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) te donne accès aux 104 matchs sans exception.
+Le premier tour à élimination directe, c'est là où le Mondial prend une autre dimension. Les calculs sont finis, les excuses aussi - tu gagnes ou tu rentres. Pour ne rien rater des seizièmes et de la suite, le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026) est sur [Coup d'Envoi TV](/competitions/coupe-du-monde-2026). Et si tu veux couvrir les 7 seizièmes beIN + tout le reste du tournoi, un abonnement [beIN Sports](/chaines/bein-sports) ou [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) te donne accès aux 104 matchs sans exception.
 
 <!--
 VÉRIFICATIONS FACTUELLES (sources consultées le 30 juin 2026)

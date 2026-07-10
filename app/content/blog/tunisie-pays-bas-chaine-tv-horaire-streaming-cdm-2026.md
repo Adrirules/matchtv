@@ -83,7 +83,7 @@ Bonne nouvelle : le match est gratuit.
 
 **[M6](/chaines/m6) - gratuit, en clair.** M6 fait partie des 54 matchs du Mondial qu'elle diffuse sans abonnement, et celui-ci en fait partie. Tu allumes (enfin, si tu es encore éveillé à 1h du mat'), et tu regardes. Le flux est aussi disponible sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Et c'est là qu'un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) prend tout son sens : tu programmes l'enregistrement avant d'aller dormir, et tu retrouves le match au réveil. Aucun spoiler, le plaisir intact.
 
-**[beIN Sports](/chaines/bein-sports) - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. Si tu es abonné, tu auras l'avant-match complet et les commentaires dédiés. L'abonnement beIN est aussi inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois.
+**[beIN Sports](/chaines/bein-sports) - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. Si tu es abonné, tu auras l'avant-match complet et les commentaires dédiés. L'abonnement beIN est aussi inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99 €/mois.
 
 Pour un match à cette heure-là, honnêtement, un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour enregistrer le match est la solution la plus raisonnable. À moins que tu sois un couche-tard ou que la communauté tunisienne te tienne éveillé (et ça, c'est très possible).
 
@@ -138,7 +138,7 @@ Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), 
 
 ### Sur quelle chaîne est diffusé Tunisie - Pays-Bas ?
 
-Le match est sur **[M6](/chaines/m6)** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports)** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permettent de suivre le direct gratuitement. Avec un abonnement Molotov, tu peux aussi enregistrer et revoir le match. [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) est une autre option.
+Le match est sur **[M6](/chaines/m6)** en clair (gratuit) et sur **[beIN Sports](/chaines/bein-sports)** (abonnement). En streaming, M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permettent de suivre le direct gratuitement. Avec un abonnement Molotov, tu peux aussi enregistrer et revoir le match. [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) est une autre option.
 
 ### À quelle heure se joue Tunisie - Pays-Bas ?
 

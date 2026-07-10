@@ -91,7 +91,7 @@ Coup d'envoi à 19h un samedi - c'est le créneau idéal pour un barbecue devant
 
 <!-- MOLOTOV_CARD -->
 
-Pour la suite du tournoi, les [quarts de finale](/blog/quarts-finale-coupe-du-monde-2026) se jouent du 9 au 12 juillet. Un quart est exclusivement sur [beIN Sports](/chaines/bein-sports) - un abonnement [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) couvre l'intégralité de la fin du Mondial.
+Pour la suite du tournoi, les [quarts de finale](/blog/quarts-finale-coupe-du-monde-2026) se jouent du 9 au 12 juillet. Un quart est exclusivement sur [beIN Sports](/chaines/bein-sports) - un abonnement [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) couvre l'intégralité de la fin du Mondial.
 
 ## Les Lions de l'Atlas : le retour
 

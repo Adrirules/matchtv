@@ -81,7 +81,7 @@ Deux options, et la première ne coûte rien.
 
 **[M6](/chaines/m6) - gratuit, en clair.** M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce Brésil - Maroc. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - et sur Molotov tu peux enregistrer le match pour le revoir dimanche matin au petit-déjeuner. Parce que oui, minuit un samedi soir, tout le monde ne sera pas devant sa télé.
 
-**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. Pas de pub, commentaires dédiés, avant-match complet. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement - et ça te donne accès à tous les matchs du Maroc, même ceux qui ne passent pas sur M6.
+**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. Pas de pub, commentaires dédiés, avant-match complet. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois - et ça te donne accès à tous les matchs du Maroc, même ceux qui ne passent pas sur M6.
 
 Le vrai sujet c'est que si tu veux suivre le parcours complet des Lions de l'Atlas (et pas juste les matchs en clair), [beIN Sports](/chaines/bein-sports) est le seul moyen.
 

@@ -127,7 +127,7 @@ Les matchs exacts sont ajoutés au fur et à mesure des qualifications. Ce qui e
 
 Pour ces matchs, deux options :
 - **[beIN Sports](/chaines/bein-sports)** directement (abonnement à 15 €/mois)
-- **[Canal+ Sport](/chaines/canal-plus)** à 19,99 €/mois, qui inclut beIN Sports - c'est l'option la plus complète si tu veux tout le Mondial sans exception
+- **[Canal+ Sport](/chaines/canal-plus)** à 29,99 €/mois, qui inclut beIN Sports - c'est l'option la plus complète si tu veux tout le Mondial sans exception
 
 ## Comment regarder les matchs M6 en direct et en replay
 
@@ -169,7 +169,7 @@ Le direct M6 sur Molotov est gratuit. L'enregistrement et le replay confort néc
 → M6 gratuit suffit. Complète avec un abonnement [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour l'enregistrement des matchs de nuit.
 
 **Tu veux tout voir, y compris les petits matchs ?**
-→ [beIN Sports](/chaines/bein-sports) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus). Les 104 matchs sans exception.
+→ [beIN Sports](/chaines/bein-sports) ou [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus). Les 104 matchs sans exception.
 
 **Tu as des origines marocaines, algériennes, tunisiennes, sénégalaises ?**
 → Vérifie match par match. Certains matchs de ces équipes sont sur M6 ([Brésil - Maroc](/blog/bresil-maroc-chaine-tv-horaire-streaming-cdm-2026), [Tunisie - Pays-Bas](/blog/tunisie-pays-bas-chaine-tv-horaire-streaming-cdm-2026)), d'autres sont beIN uniquement ([Argentine - Algérie](/blog/argentine-algerie-chaine-tv-horaire-streaming-cdm-2026), [Algérie - Autriche](/blog/algerie-autriche-chaine-tv-horaire-streaming-cdm-2026), Suède - Tunisie). Pour ne rien rater, [beIN Sports](/chaines/bein-sports) est la solution sûre.
@@ -198,7 +198,7 @@ Oui. Le décalage horaire avec l'Amérique du Nord fait que certains matchs M6 s
 
 ### Les 50 matchs restants sont sur quelle chaîne ?
 
-Sur **[beIN Sports](/chaines/bein-sports)** uniquement (abonnement requis). beIN diffuse l'intégralité des 104 matchs du Mondial. L'offre [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois inclut beIN et donne accès à tous les matchs sans exception.
+Sur **[beIN Sports](/chaines/bein-sports)** uniquement (abonnement requis). beIN diffuse l'intégralité des 104 matchs du Mondial. L'offre [Canal+ Sport](/chaines/canal-plus) à 29,99 €/mois inclut beIN et donne accès à tous les matchs sans exception.
 
 ---
 

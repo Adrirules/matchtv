@@ -81,7 +81,7 @@ Deux options, et la première ne coûte rien.
 
 **[M6](/chaines/m6) - gratuit, en clair.** Tous les matchs de l'équipe de France sont sur M6. Tu allumes, tu regardes, c'est aussi simple que ça. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - et sur Molotov tu peux même enregistrer le match pour le revoir après. Pratique si tu travailles ou si tu es dans les transports à 21h.
 
-**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse les 104 matchs du Mondial, dont celui-ci. Pas de pub, avant-match complet, commentaires dédiés. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement.
+**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse les 104 matchs du Mondial, dont celui-ci. Pas de pub, avant-match complet, commentaires dédiés. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois.
 
 Le truc c'est que pour un France - Sénégal gratuit sur M6, l'abonnement n'est pas indispensable. Mais si tu veux voir TOUS les matchs du tournoi (y compris les Maroc, Algérie, Tunisie, Côte d'Ivoire qui ne passent pas forcément sur M6), [beIN Sports](/chaines/bein-sports) est le passage obligé.
 

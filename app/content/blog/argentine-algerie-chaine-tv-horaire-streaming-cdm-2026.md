@@ -37,7 +37,7 @@ match_card:
     {
       "@type": "Question",
       "name": "Comment regarder Argentine - Algérie sans abonnement ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Il n'y a pas d'option gratuite pour ce match. Argentine - Algérie est diffusé uniquement sur beIN Sports 1, qui nécessite un abonnement. L'offre Canal+ Sport à 19,99€/mois sans engagement inclut beIN Sports." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Il n'y a pas d'option gratuite pour ce match. Argentine - Algérie est diffusé uniquement sur beIN Sports 1, qui nécessite un abonnement. L'offre Canal+ Sport à 29,99€/mois inclut beIN Sports." }
     },
     {
       "@type": "Question",
@@ -79,7 +79,7 @@ match_card:
 
 Soyons clairs tout de suite : **ce match n'est pas sur M6**. Pas de solution gratuite ici.
 
-**[beIN Sports](/chaines/bein-sports) 1 - la seule option.** beIN diffuse l'intégralité des 104 matchs du Mondial 2026, dont tous les matchs de l'Algérie. C'est la seule chaîne qui passe ce match en France. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement - et franchement, si tu veux suivre les Fennecs sur tout le tournoi, c'est le seul moyen.
+**[beIN Sports](/chaines/bein-sports) 1 - la seule option.** beIN diffuse l'intégralité des 104 matchs du Mondial 2026, dont tous les matchs de l'Algérie. C'est la seule chaîne qui passe ce match en France. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois - et franchement, si tu veux suivre les Fennecs sur tout le tournoi, c'est le seul moyen.
 
 Le truc c'est que les trois matchs de l'Algérie se jouent tous à des horaires tardifs (3h, 5h). L'avantage de beIN Sports Connect, c'est que le replay est dispo juste après le match. Tu peux te coucher et tout regarder au réveil.
 
@@ -90,7 +90,7 @@ Pour les matchs de la France et du Maroc qui passent sur M6, [Molotov](https://m
 À 3h du matin, on ne va pas se mentir, la majorité des gens vont regarder le replay. Voici les options :
 
 - **beIN Sports Connect** (abonnement) : le direct à 3h + replay complet disponible dès le coup de sifflet final. Sur téléphone, tablette, ordi ou télé connectée.
-- **L'offre [Canal+ Sport](/chaines/canal-plus)** à 19,99€/mois sans engagement inclut beIN Sports + beIN Sports Connect. C'est le chemin le plus direct pour avoir accès au match.
+- **L'offre [Canal+ Sport](/chaines/canal-plus)** à 29,99€/mois inclut beIN Sports + beIN Sports Connect. C'est le chemin le plus direct pour avoir accès au match.
 
 ## Ce qu'il faut savoir sur l'Argentine
 
@@ -131,7 +131,7 @@ Pour le [programme complet du Mondial](/blog/programme-tv-coupe-du-monde-2026), 
 
 ### Sur quelle chaîne est diffusé Argentine - Algérie ?
 
-Le match est sur **[beIN Sports](/chaines/bein-sports) 1** uniquement (abonnement). Il n'est pas diffusé sur M6. L'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement inclut beIN Sports.
+Le match est sur **[beIN Sports](/chaines/bein-sports) 1** uniquement (abonnement). Il n'est pas diffusé sur M6. L'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois inclut beIN Sports.
 
 ### À quelle heure se joue Argentine - Algérie ?
 
@@ -139,7 +139,7 @@ Dans la **nuit du mardi 16 au mercredi 17 juin 2026, à 3h00 du matin** heure fr
 
 ### Comment regarder le match sans M6 ?
 
-L'abonnement [beIN Sports](/chaines/bein-sports) est la seule option légale. Il est disponible via [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement, avec accès à beIN Sports Connect pour le streaming et le replay.
+L'abonnement [beIN Sports](/chaines/bein-sports) est la seule option légale. Il est disponible via [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois, avec accès à beIN Sports Connect pour le streaming et le replay.
 
 ### Argentine - Algérie est-il gratuit à la télé ?
 

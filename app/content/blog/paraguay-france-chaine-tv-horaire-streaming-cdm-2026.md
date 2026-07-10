@@ -92,7 +92,7 @@ Un détail à anticiper : coup d'envoi à 23h un samedi, c'est confortable, mais
 
 <!-- MOLOTOV_CARD -->
 
-Pour la suite du tournoi, si la France passe, les [quarts de finale](/blog/quarts-finale-coupe-du-monde-2026) se jouent du 9 au 12 juillet. Un quart est exclusivement sur [beIN Sports](/chaines/bein-sports) - un abonnement [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) couvre tout.
+Pour la suite du tournoi, si la France passe, les [quarts de finale](/blog/quarts-finale-coupe-du-monde-2026) se jouent du 9 au 12 juillet. Un quart est exclusivement sur [beIN Sports](/chaines/bein-sports) - un abonnement [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) couvre tout.
 
 ## Ce qu'il faut savoir sur la France
 

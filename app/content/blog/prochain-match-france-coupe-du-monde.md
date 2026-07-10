@@ -46,7 +46,7 @@ Pour le streaming gratuit, deux options :
 - **[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)** - le direct M6 est gratuit. Avec un abonnement Molotov, tu débloques l'enregistrement et le replay confort. Mon option préférée si tu n'as pas de télé ou si tu regardes depuis ton téléphone.
 - **M6+** - l'appli officielle de M6, disponible aussi en direct le soir du match.
 
-Pour ceux qui veulent voir tous les matchs de la Coupe du Monde (pas seulement la France), **[Canal+ Sport](/chaines/canal-plus)** à 19,99 €/mois inclut beIN Sports - c'est le combo le plus complet.
+Pour ceux qui veulent voir tous les matchs de la Coupe du Monde (pas seulement la France), **[Canal+ Sport](/chaines/canal-plus)** à 29,99 €/mois inclut beIN Sports - c'est le combo le plus complet.
 
 ## Comment ne rater aucun match des Bleus
 
@@ -81,7 +81,7 @@ Les matchs se jouent aux États-Unis, mais les horaires restent confortables pou
 
 ### Comment regarder la France en streaming ?
 
-[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour le direct M6 gratuit, ou avec un abonnement Molotov pour l'enregistrement et le replay confort. M6+ propose aussi le direct et le replay. Pour tous les matchs du Mondial, [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois inclut beIN Sports.
+[Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour le direct M6 gratuit, ou avec un abonnement Molotov pour l'enregistrement et le replay confort. M6+ propose aussi le direct et le replay. Pour tous les matchs du Mondial, [Canal+ Sport](/chaines/canal-plus) à 29,99 €/mois inclut beIN Sports.
 
 <script type="application/ld+json">
 {
@@ -125,7 +125,7 @@ Les matchs se jouent aux États-Unis, mais les horaires restent confortables pou
       "name": "Comment regarder la France en streaming ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Molotov pour le direct M6 gratuit, ou avec un abonnement Molotov pour l'enregistrement et le replay confort. M6+ propose aussi le direct et le replay. Pour tous les matchs du Mondial, Canal+ Sport à 19,99 €/mois inclut beIN Sports."
+        "text": "Molotov pour le direct M6 gratuit, ou avec un abonnement Molotov pour l'enregistrement et le replay confort. M6+ propose aussi le direct et le replay. Pour tous les matchs du Mondial, Canal+ Sport à 29,99 €/mois inclut beIN Sports."
       }
     }
   ]

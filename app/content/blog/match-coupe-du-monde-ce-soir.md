@@ -27,7 +27,7 @@ La Coupe du Monde 2026 se joue du 11 juin au 19 juillet aux États-Unis, au Mexi
 En France, deux diffuseurs se partagent le Mondial 2026 :
 
 - **[M6](/chaines/m6)** diffuse **54 matchs en clair**, dont le match d'ouverture, tous les matchs de la France, les quarts de finale, les demi-finales et la finale. Pas besoin d'abonnement, c'est gratuit.
-- **[beIN Sports](/chaines/bein-sports)** diffuse **l'intégralité du tournoi (104 matchs)**, dont une cinquantaine en exclusivité. Il faut un abonnement beIN Sports (~15 €/mois), ou l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois qui inclut beIN.
+- **[beIN Sports](/chaines/bein-sports)** diffuse **l'intégralité du tournoi (104 matchs)**, dont une cinquantaine en exclusivité. Il faut un abonnement beIN Sports (~15 €/mois), ou l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99 €/mois qui inclut beIN.
 
 Pour le streaming, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) permet de regarder M6 gratuitement en direct. Et avec un abonnement Molotov, tu peux enregistrer les matchs et les revoir quand tu veux - parfait si tu risques de rater le coup d'envoi ou si le match est en pleine nuit.
 
@@ -47,7 +47,7 @@ Récapitulatif rapide pour ne pas se tromper :
 |-----------|--------|-------|
 | **[M6](/chaines/m6)** | 54 matchs dont France, quarts, demis, finale | Gratuit (TNT, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)) |
 | **[beIN Sports](/chaines/bein-sports)** | 104 matchs (intégralité) | ~15 €/mois |
-| **[Canal+ Sport](/chaines/canal-plus)** | beIN inclus dans l'offre | 19,99 €/mois |
+| **[Canal+ Sport](/chaines/canal-plus)** | beIN inclus dans l'offre | 29,99 €/mois |
 
 Les matchs M6 sont aussi disponibles en streaming sur [6play](https://www.6play.fr) et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour les matchs beIN, il faut passer par beIN Connect ou l'appli Canal+.
 

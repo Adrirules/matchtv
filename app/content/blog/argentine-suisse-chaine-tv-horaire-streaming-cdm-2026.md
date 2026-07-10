@@ -58,7 +58,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Combien de buts Messi a-t-il marqué dans ce Mondial ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Lionel Messi totalise 8 buts en 5 matchs à la Coupe du Monde 2026, dont un triplé contre l'Algérie. Il est le meilleur buteur du tournoi et le meilleur buteur de l'histoire de la Coupe du Monde avec 16 buts, devant Miroslav Klose." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Lionel Messi totalise 8 buts en 5 matchs à la Coupe du Monde 2026, dont un triplé contre l'Algérie. Il est le meilleur buteur du tournoi et le meilleur buteur de l'histoire de la Coupe du Monde avec 21 buts au total (13 avant 2026 + 8 cette année), devant Miroslav Klose (16)." }
     }
   ]
 }
@@ -104,11 +104,11 @@ La bonne nouvelle, c'est que le **replay intégral** est disponible sur **beIN C
 
 Le plan du supporter mature, celui qu'on a mis des années à accepter : on coupe les notifications dimanche matin, on met le téléphone en mode avion, on évite Twitter comme la peste, et dimanche soir (ou lundi soir si on est patient), on se pose devant le replay en toute fraîcheur. Zéro cerne, plaisir intact, et on n'a pas gâché son dimanche à somnoler sur le canapé.
 
-Le kiff bonus : se faire tous les replays du week-end d'affilée. Revoir la Norvège faire tomber le Brésil (1-2, match hallucinant), digérer le résultat de France - Maroc, puis enchaîner avec Argentine - Suisse. Trois quarts de finale en une soirée, avec la télécommande et un bon repas. C'est presque mieux que le live.
+Le kiff bonus : se faire tous les replays du week-end d'affilée. Revoir la Norvège faire tomber le Brésil (1-2, match hallucinant), revoir France - Maroc (2-0, la France en demie), puis enchaîner avec Argentine - Suisse. Trois quarts de finale en une soirée, avec la télécommande et un bon repas. C'est presque mieux que le live.
 
 ## L'Argentine de Messi, pour une dernière danse
 
-**Lionel Messi** a 39 ans, c'est (très probablement) son dernier Mondial, et il joue comme si le temps n'avait aucune prise. Huit buts en cinq matchs. Meilleur buteur du tournoi. Meilleur buteur de l'histoire de la Coupe du Monde avec 16 buts, devant Miroslav Klose. Un triplé contre l'Algérie en ouverture qui a fait pleurer la moitié de la planète. Tout ça sous la direction de **Lionel Scaloni**, qui a déjà offert à l'Argentine un Mondial (2022) et deux Copa America (2021, 2024).
+**Lionel Messi** a 39 ans, c'est (très probablement) son dernier Mondial, et il joue comme si le temps n'avait aucune prise. Huit buts en cinq matchs. Meilleur buteur du tournoi. Meilleur buteur de l'histoire de la Coupe du Monde avec 21 buts au total (13 avant 2026 + 8 cette année), loin devant le record de Miroslav Klose (16). Un triplé contre l'Algérie en ouverture qui a fait pleurer la moitié de la planète. Tout ça sous la direction de **Lionel Scaloni**, qui a déjà offert à l'Argentine un Mondial (2022) et deux Copa America (2021, 2024).
 
 | Tour | Match | Score |
 |---|---|---|
@@ -138,7 +138,7 @@ Le parallèle avec la Norvège n'est pas anodin : deux équipes que personne n'a
 
 ## Le coeur et la raison
 
-Je vais être honnête. Le coeur est argentin. Le rêve, c'est une finale France-Argentine, la revanche de Qatar 2022, avec Messi et Mbappé qui se retrouvent pour un dernier acte. Ce serait le scénario parfait.
+Je vais être honnête. Le coeur est argentin. La France est déjà en demi-finale (2-0 contre le Maroc jeudi). Le rêve, c'est que l'Argentine passe cette nuit pour offrir la revanche de Qatar 2022 en demi, Messi contre Mbappé, un dernier acte. Ce serait le scénario parfait.
 
 Mais la raison dit de se méfier. La Suisse de Yakin ressemble à ces équipes dont on ne parle pas assez et qui finissent par créer la surprise. Invaincue en 5 matchs, première de son groupe, une défense qui ne cède presque rien. L'Argentine concède des buts (7 en 5 matchs) et vit des fins de match intenses. Face à une Suisse patiente et disciplinée, c'est le genre de profil qui peut piquer.
 
@@ -162,7 +162,7 @@ La Suisse n'a jamais battu l'Argentine, tous matchs confondus (7 confrontations 
 | Samedi 11 juillet - 23h | [Norvège - Angleterre](/blog/norvege-angleterre-chaine-tv-horaire-streaming-cdm-2026) | [M6](/chaines/m6) |
 | **Dimanche 12 juillet - 03h** | **Argentine - Suisse** | **[beIN Sports](/chaines/bein-sports)** |
 
-Le vainqueur d'Argentine - Suisse affrontera le vainqueur de [France - Maroc](/blog/france-maroc-chaine-tv-horaire-streaming-cdm-2026) en [demi-finale](/blog/demi-finales-coupe-du-monde-2026), le **mercredi 15 ou jeudi 16 juillet** sur M6.
+Le vainqueur d'Argentine - Suisse affrontera la **France** (victorieuse 2-0 face au [Maroc](/blog/france-maroc-chaine-tv-horaire-streaming-cdm-2026)) en [demi-finale](/blog/demi-finales-coupe-du-monde-2026), le **mercredi 15 ou jeudi 16 juillet** sur M6.
 
 Pour le [classement et les résultats complets](/classements/coupe-du-monde-2026) de la compétition, et pour le [programme TV complet de la Coupe du Monde](/blog/programme-tv-coupe-du-monde-2026).
 
@@ -184,7 +184,7 @@ Au **Arrowhead Stadium** de Kansas City (Missouri), stade des Chiefs en NFL. Cap
 **Non.** C'est le seul quart de finale qui n'est pas sur M6 en clair. Les [trois autres quarts](/blog/matchs-coupe-du-monde-2026-gratuits-m6) sont gratuits sur M6.
 
 ### Combien de buts Messi a-t-il marqué dans ce Mondial ?
-**8 buts en 5 matchs**, dont un triplé contre l'Algérie. Il est le meilleur buteur du tournoi et de l'histoire de la Coupe du Monde (16 buts au total, devant Klose).
+**8 buts en 5 matchs**, dont un triplé contre l'Algérie. Il est le meilleur buteur du tournoi et de l'histoire de la Coupe du Monde (21 buts au total, devant Klose qui en avait 16).
 
 Bon match - ou bon replay.
 
@@ -197,7 +197,7 @@ VÉRIFICATIONS FACTUELLES (10 juillet 2026)
 ☑ Stade : Arrowhead Stadium, Kansas City (~69 000 config CdM) — Sources : Wikipedia, kctv5.com, StadiumDB
 ☑ Scaloni sélectionneur Argentine — Sources : aninews, planetegrandesecoles, Goal.com — cohérent articles Argentine-Algérie
 ☑ Messi capitaine, 39 ans, dernier Mondial probable — Sources : SNRT, planetegrandesecoles
-☑ Messi 8 buts en 5 matchs, meilleur buteur tournoi + record historique 16 buts (dépassé Klose) — Sources : ESPN, FIFA.com, congoquotidien, touteleurope.eu, RTBF
+☑ Messi 8 buts en 5 matchs, meilleur buteur tournoi + record historique 21 buts all-time (13 pré-2026 + 8, dépassé Klose 16) — Sources : ESPN, FIFA.com, Eurosport, touteleurope.eu, RTBF
 ☑ Messi triplé vs Algérie — Sources : FIFA.com, RTBF
 ☑ Yakin sélectionneur Suisse — Sources : FIFA.com, beIN Sports, fourfourtwo, footballpickr
 ☑ Xhaka capitaine Suisse (Leverkusen, 33 ans, 4e Mondial) — Sources : FIFA.com, thedailystar

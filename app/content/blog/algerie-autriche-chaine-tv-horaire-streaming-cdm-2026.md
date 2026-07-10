@@ -33,7 +33,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Sur quelle chaîne voir Algérie - Autriche ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Algérie - Autriche est diffusé en direct sur beIN Sports 2 (abonnement requis) le dimanche 28 juin 2026 à 4h00 du matin (heure française). En streaming : beIN Sports Connect. L'offre Canal+ Sport à 19,99€/mois inclut beIN Sports." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Algérie - Autriche est diffusé en direct sur beIN Sports 2 (abonnement requis) le dimanche 28 juin 2026 à 4h00 du matin (heure française). En streaming : beIN Sports Connect. L'offre Canal+ Sport à 29,99€/mois inclut beIN Sports." }
     },
     {
       "@type": "Question",
@@ -48,7 +48,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Algérie - Autriche est-il gratuit à la télé ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Non, ce match n'est pas diffusé en clair. Algérie - Autriche est exclusivement sur beIN Sports 2 (abonnement à 15€/mois). L'offre Canal+ Sport à 19,99€/mois inclut beIN Sports et donne accès à tous les matchs du Mondial." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Non, ce match n'est pas diffusé en clair. Algérie - Autriche est exclusivement sur beIN Sports 2 (abonnement à 15€/mois). L'offre Canal+ Sport à 29,99€/mois inclut beIN Sports et donne accès à tous les matchs du Mondial." }
     },
     {
       "@type": "Question",
@@ -94,7 +94,7 @@ Mauvaise nouvelle pour ceux qui espéraient du gratuit : ce match n'est pas sur 
 
 **Deux façons de s'abonner à beIN Sports :**
 - **[beIN Sports](/chaines/bein-sports) direct** : 15€/mois - les 104 matchs du Mondial + replay sur beIN Connect
-- **[Canal+ Sport](/chaines/canal-plus)** : 19,99€/mois - beIN inclus + Canal+ Foot + toute la [Ligue 1](/competitions/ligue-1). C'est l'option la plus complète si tu veux aussi le foot français
+- **[Canal+ Sport](/chaines/canal-plus)** : 29,99€/mois - beIN inclus + Canal+ Foot + toute la [Ligue 1](/competitions/ligue-1). C'est l'option la plus complète si tu veux aussi le foot français
 
 ## Ce qu'il faut savoir sur l'Algérie
 
@@ -140,7 +140,7 @@ Avec 3 points et une différence de buts neutre, l'Autriche sait qu'un match nul
 
 ### Sur quelle chaîne voir Algérie - Autriche ?
 
-Le match est sur **[beIN Sports 2](/chaines/bein-sports)** (abonnement requis). En streaming : beIN Sports Connect (inclus dans l'abonnement). L'offre **[Canal+ Sport](/chaines/canal-plus)** à 19,99€/mois inclut beIN Sports.
+Le match est sur **[beIN Sports 2](/chaines/bein-sports)** (abonnement requis). En streaming : beIN Sports Connect (inclus dans l'abonnement). L'offre **[Canal+ Sport](/chaines/canal-plus)** à 29,99€/mois inclut beIN Sports.
 
 ### À quelle heure se joue le match ?
 
@@ -152,7 +152,7 @@ Le replay est disponible sur **beIN Sports Connect** dès la fin du match. Coupe
 
 ### Le match est-il gratuit ?
 
-Non. Ce match n'est pas diffusé en clair. Il faut un abonnement [beIN Sports](/chaines/bein-sports) (15€/mois) ou [Canal+ Sport](/chaines/canal-plus) (19,99€/mois, beIN inclus).
+Non. Ce match n'est pas diffusé en clair. Il faut un abonnement [beIN Sports](/chaines/bein-sports) (15€/mois) ou [Canal+ Sport](/chaines/canal-plus) (29,99€/mois, beIN inclus).
 
 ### Quel est l'enjeu pour l'Algérie ?
 

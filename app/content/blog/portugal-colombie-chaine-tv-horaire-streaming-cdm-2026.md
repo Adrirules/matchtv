@@ -81,7 +81,7 @@ Bonne nouvelle : tu n'as pas besoin de payer pour voir ce match.
 
 **[M6](/chaines/m6) - gratuit, en clair.** M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont ce Portugal - Colombie. C'est le dernier match du groupe K, celui qui décide qui passe et qui rentre à la maison. Le flux est disponible gratuitement sur l'appli **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) - et sur Molotov tu peux enregistrer le match si tu ne tiens pas jusqu'à 1h30 un samedi soir. Ce qui est parfaitement compréhensible.
 
-**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement. Avantage beIN : pas de pub, commentaires dédiés, avant-match complet - et tu peux aussi voir le match simultané RD Congo - Ouzbékistan à la même heure, qui pourrait avoir un impact direct sur le classement du groupe.
+**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois. Avantage beIN : pas de pub, commentaires dédiés, avant-match complet - et tu peux aussi voir le match simultané RD Congo - Ouzbékistan à la même heure, qui pourrait avoir un impact direct sur le classement du groupe.
 
 <!-- MOLOTOV_CARD -->
 

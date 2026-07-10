@@ -48,7 +48,7 @@ canal_plus_card: true
     {
       "@type": "Question",
       "name": "Peut-on voir Norvège - Sénégal gratuitement ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Non. Le match n'est pas diffusé sur M6 ni sur aucune chaîne gratuite. Il faut un abonnement à beIN Sports (en direct via beIN Connect) ou l'offre Canal+ Sport à 19,99€/mois qui inclut beIN Sports." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Non. Le match n'est pas diffusé sur M6 ni sur aucune chaîne gratuite. Il faut un abonnement à beIN Sports (en direct via beIN Connect) ou l'offre Canal+ Sport à 29,99€/mois qui inclut beIN Sports." }
     },
     {
       "@type": "Question",
@@ -68,7 +68,7 @@ canal_plus_card: true
 
 Le Sénégal de Sadio Mané contre la Norvège d'Erling Haaland. Un match de poules, mais qui n'en a que le nom. Après la défaite 3-1 contre [la France](/blog/france-senegal-chaine-tv-horaire-streaming-cdm-2026) en ouverture, les Lions de la Teranga n'ont plus le choix : c'est gagner ou commencer à faire les valises. En face, la Norvège arrive lancée par un 4-1 contre l'Irak avec un Haaland déjà en mode machine. L'enjeu est limpide - mais il faudra se lever tôt pour le voir.
 
-> **Réponse rapide** : Norvège - Sénégal se joue le **mardi 23 juin à 2h00 du matin** (heure de Paris) au MetLife Stadium de New York. Le match est diffusé en exclusivité sur **[beIN Sports](/chaines/bein-sports)**, accessible via beIN Connect ou l'offre [Canal+ Sport à 19,99€/mois](/chaines/canal-plus).
+> **Réponse rapide** : Norvège - Sénégal se joue le **mardi 23 juin à 2h00 du matin** (heure de Paris) au MetLife Stadium de New York. Le match est diffusé en exclusivité sur **[beIN Sports](/chaines/bein-sports)**, accessible via beIN Connect ou l'offre [Canal+ Sport à 29,99€/mois](/chaines/canal-plus).
 
 ## Les infos du match
 
@@ -79,7 +79,7 @@ Le Sénégal de Sadio Mané contre la Norvège d'Erling Haaland. Un match de pou
 | **Coup d'envoi** | 2h00 (heure de Paris) / 20h00 (heure locale) |
 | **Stade** | MetLife Stadium, New York/New Jersey (82 500 places) |
 | **Diffusion TV** | [beIN Sports 1](/chaines/bein-sports) (exclusivité) |
-| **Streaming** | beIN Connect / [Canal+ Sport](/chaines/canal-plus) (19,99€/mois, inclut beIN) |
+| **Streaming** | beIN Connect / [Canal+ Sport](/chaines/canal-plus) (29,99€/mois, inclut beIN) |
 
 ## Sur quelle chaîne voir le match ?
 
@@ -88,7 +88,7 @@ Ce match n'est **pas diffusé sur M6** ni sur aucune chaîne gratuite. Coup d'en
 Pour voir Norvège - Sénégal en direct, deux options :
 
 - **[beIN Sports](/chaines/bein-sports)** : diffuseur exclusif. Abonnement via beIN Connect (15€/mois) ou chez les opérateurs (Free, Orange, SFR, Bouygues)
-- **[Canal+ Sport](/chaines/canal-plus)** à **19,99€/mois** : cette offre inclut beIN Sports. Si vous suivez la CdM au-delà des matchs gratuits M6, c'est probablement le meilleur rapport qualité-prix pour le tournoi
+- **[Canal+ Sport](/chaines/canal-plus)** à **29,99€/mois** : cette offre inclut beIN Sports. Si vous suivez la CdM au-delà des matchs gratuits M6, c'est probablement le meilleur rapport qualité-prix pour le tournoi
 
 Pas de replay gratuit prévu pour ce match. Le résumé sera disponible sur beIN Sports après le coup de sifflet final.
 
@@ -132,7 +132,7 @@ Premier Mondial depuis **1998**. Vingt-huit ans d'attente. **Ståle Solbakken** 
 
 ### Sur quelle chaîne voir Norvège - Sénégal ?
 
-En exclusivité sur **[beIN Sports 1](/chaines/bein-sports)**. Pas de diffusion sur M6 ni sur aucune chaîne gratuite. Accessible via beIN Connect ou l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois (inclut beIN).
+En exclusivité sur **[beIN Sports 1](/chaines/bein-sports)**. Pas de diffusion sur M6 ni sur aucune chaîne gratuite. Accessible via beIN Connect ou l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois (inclut beIN).
 
 ### À quelle heure se joue le match ?
 
@@ -144,7 +144,7 @@ Au **MetLife Stadium** de New York/New Jersey, environ 82 500 places. C'est le p
 
 ### Peut-on voir le match gratuitement ?
 
-Non. Aucune diffusion gratuite. L'option la plus accessible est l'offre **[Canal+ Sport](/chaines/canal-plus)** à 19,99€/mois qui inclut beIN Sports.
+Non. Aucune diffusion gratuite. L'option la plus accessible est l'offre **[Canal+ Sport](/chaines/canal-plus)** à 29,99€/mois qui inclut beIN Sports.
 
 ### Quels sont les résultats de la 1re journée ?
 

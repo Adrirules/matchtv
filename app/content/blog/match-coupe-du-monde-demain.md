@@ -43,13 +43,13 @@ J'ai vu trop de gens rater des matchs parce qu'ils ne savaient pas qu'il y en av
 Deux diffuseurs en France pour le Mondial 2026 :
 
 - **[M6](/chaines/m6)** diffuse **54 matchs en clair** (gratuit) - dont tous les matchs de la France, les quarts, les demi-finales et la finale. Disponible aussi en streaming sur **M6+** et sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) pour le direct gratuit. Avec un abonnement Molotov, tu débloques l'enregistrement et le replay confort.
-- **[beIN Sports](/chaines/bein-sports)** diffuse **l'intégralité des 104 matchs**, dont une cinquantaine en exclusivité. Abonnement ~15 €/mois, ou via [Canal+ Sport](/chaines/canal-plus) à 19,99 €/mois (beIN inclus).
+- **[beIN Sports](/chaines/bein-sports)** diffuse **l'intégralité des 104 matchs**, dont une cinquantaine en exclusivité. Abonnement ~15 €/mois, ou via [Canal+ Sport](/chaines/canal-plus) à 29,99 €/mois (beIN inclus).
 
 | Diffuseur | Matchs | Accès |
 |-----------|--------|-------|
 | **[M6](/chaines/m6)** | 54 matchs dont France, quarts, demis, finale | Gratuit (TNT, [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522)) |
 | **[beIN Sports](/chaines/bein-sports)** | 104 matchs (intégralité) | ~15 €/mois |
-| **[Canal+ Sport](/chaines/canal-plus)** | beIN inclus dans l'offre | 19,99 €/mois |
+| **[Canal+ Sport](/chaines/canal-plus)** | beIN inclus dans l'offre | 29,99 €/mois |
 
 ## Les horaires et le décalage à anticiper
 

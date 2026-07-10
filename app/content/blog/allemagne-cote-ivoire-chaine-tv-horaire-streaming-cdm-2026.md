@@ -81,7 +81,7 @@ Bonne nouvelle : ce match est gratuit.
 
 **[M6](/chaines/m6) - gratuit, en clair.** M6 diffuse 54 matchs de cette [Coupe du Monde 2026](/competitions/coupe-du-monde-2026), dont cet Allemagne - Côte d'Ivoire. L'affiche du samedi soir, à 22h, un horaire parfait. Le flux est disponible gratuitement sur l'appli **M6+** et en direct gratuitement sur [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Et si tu n'es pas devant ta télé à 22h un samedi, un abonnement Molotov te permet d'enregistrer le match et de le regarder en replay quand tu veux.
 
-**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. Pas de pub, commentaires dédiés, avant-match complet. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 19,99€/mois sans engagement. Avantage beIN : tu peux aussi voir le match simultané Équateur - Curaçao à Kansas City, qui se joue à la même heure.
+**[beIN Sports](/chaines/bein-sports) 1 - sur abonnement.** beIN diffuse l'intégralité des 104 matchs du Mondial. Pas de pub, commentaires dédiés, avant-match complet. L'abonnement beIN Sports est inclus dans l'offre [Canal+ Sport](/chaines/canal-plus) à 29,99€/mois. Avantage beIN : tu peux aussi voir le match simultané Équateur - Curaçao à Kansas City, qui se joue à la même heure.
 
 Pour la liste complète des matchs gratuits sur M6, consultez notre [guide des matchs de la CdM 2026 en clair](/blog/matchs-coupe-du-monde-2026-gratuits-m6).
 

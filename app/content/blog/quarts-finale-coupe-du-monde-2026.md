@@ -76,7 +76,7 @@ Huit équipes, quatre matchs, quatre billets pour les demi-finales. Les quarts d
 
 <!-- FRANCE_QUART -->
 
-Si la France se qualifie, son quart de finale est obligatoirement sur une chaîne gratuite (loi française). Direct sur M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour le quart exclusif beIN (celui de 02h50) et les demi-finales, un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (19,99 €/mois, beIN inclus) couvre la fin du tournoi.
+Si la France se qualifie, son quart de finale est obligatoirement sur une chaîne gratuite (loi française). Direct sur M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522). Pour le quart exclusif beIN (celui de 02h50) et les demi-finales, un abonnement [beIN Sports](/chaines/bein-sports) (15 €/mois) ou [Canal+ Sport](/chaines/canal-plus) (29,99 €/mois, beIN inclus) couvre la fin du tournoi.
 
 [Voir le prochain match de la France →](/blog/prochain-match-france-coupe-du-monde)
 
@@ -109,7 +109,7 @@ Le direct M6 sur Molotov est gratuit. L'enregistrement et le replay nécessitent
 Le quart 4 (dimanche 12 juillet, 02h50) est exclusivement sur [beIN Sports](/chaines/bein-sports). C'est le seul quart payant, et il tombe en pleine nuit. Pour le voir en direct ou en différé :
 
 - **[beIN Sports](/chaines/bein-sports)** à 15 €/mois - ce quart + les demi-finales et la finale sur beIN
-- **[Canal+ Sport](/chaines/canal-plus)** à 19,99 €/mois, beIN inclus - tout le reste du tournoi
+- **[Canal+ Sport](/chaines/canal-plus)** à 29,99 €/mois, beIN inclus - tout le reste du tournoi
 
 On est dans le dernier virage. Quatre matchs, quatre histoires, quatre éliminations. Les quarts de Coupe du Monde ont souvent produit des matchs plus serrés et plus nerveux que les finales elles-mêmes - la pression de manquer le dernier carré pèse sur toutes les équipes.
 
@@ -147,7 +147,7 @@ Du **9 au 12 juillet 2026**. Un match par jour sur quatre jours, avec des coups 
 
 ### Le quart de nuit est sur quelle chaîne ?
 
-Le quart 4 (dimanche 12 juillet, 02h50) est sur **[beIN Sports](/chaines/bein-sports)** exclusivement. Abonnement requis (15 €/mois, ou 19,99 €/mois via [Canal+ Sport](/chaines/canal-plus) avec beIN inclus).
+Le quart 4 (dimanche 12 juillet, 02h50) est sur **[beIN Sports](/chaines/bein-sports)** exclusivement. Abonnement requis (15 €/mois, ou 29,99 €/mois via [Canal+ Sport](/chaines/canal-plus) avec beIN inclus).
 
 ### Comment regarder les quarts en streaming ?
 
