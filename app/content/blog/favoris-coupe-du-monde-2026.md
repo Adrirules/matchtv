@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1731870881782-1948058d9ce1?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "France, Argentine, Brésil, Angleterre, Allemagne : cinq équipes, une liste qui tourne en boucle depuis que les groupes sont tombés. Notre podium avant le coup d'envoi."
+tags: ["coupe-du-monde"]
 match_pairs_title: "Les prochains matchs des 5 favoris"
 derby_pairs:
   - ["France", "Senegal"]
@@ -57,4 +58,4 @@ Deux éliminations en phase de poules en 2018 et 2022. Pour la Mannschaft c'est 
 
 Et vous ? Dites-moi en commentaire celui que vous voyez soulever le trophée à New York. Moi je vais regarder chaque match, du premier en groupe jusqu'à la finale, et si vous cherchez où voir tous ces matchs en France, [c'est par ici](/).
 
-*Retrouvez aussi notre [décryptage des 12 groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026), notre [analyse du Groupe I de la France](/blog/groupe-france-mondial-2026), le [calendrier complet des Bleus](/blog/calendrier-france-mondial-2026), le [guide des 16 stades](/blog/stades-villes-coupe-du-monde-2026), l'histoire de [l'Italie absente](/blog/italie-absente-mondial-2026) et le [calendrier de la Coupe du monde 2026](/competitions/coupe-du-monde-2026).*
+*Retrouvez aussi notre [décryptage des 12 groupes du Mondial 2026](/blog/groupes-coupe-du-monde-2026), notre [analyse du Groupe I de la France](/blog/groupe-france-mondial-2026), le [calendrier complet des Bleus](/blog/calendrier-france-mondial-2026), le [guide des 16 stades](/blog/stades-villes-coupe-du-monde-2026), l'histoire de [l'Italie absente](/blog/italie-absente-mondial-2026), le [programme TV du Mondial](/blog/programme-tv-coupe-du-monde-2026), le guide [sur quelle chaîne voir la CdM 2026](/blog/chaine-tv-coupe-du-monde-2026) et le [calendrier de la Coupe du monde 2026](/competitions/coupe-du-monde-2026).*

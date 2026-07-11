@@ -1,0 +1,52 @@
+<%#
+  Partial : bannière affiliée Canal+ OAE Spécial Sport (Kwanko)
+  Locals :
+    - page_context   (string GA4) default: 'site'
+    - mobile_only    (bool) default: false — masque le 300x250 desktop (quand 970x250 le remplace)
+  Desktop (>768px) : 300x250 (sauf si mobile_only: true)
+  Mobile (<768px)  : 320x100 toujours
+  Masqué si @noindex = true
+%>
+<% return if @noindex %>
+<% page_context = local_assigns.fetch(:page_context, 'site') %>
+<% mobile_only  = local_assigns.fetch(:mobile_only, false) %>
+
+<%# Desktop : 300x250 — masqué si mobile_only %>
+<% unless mobile_only %>
+<div class="kwanko-desktop" style="display:none; justify-content: flex-end; margin: 20px 0;">
+  <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+          width="300" height="250" scrolling="no" frameborder="0"
+          style="display:block; border:0;"
+          data-kwanko-track="<%= page_context %>"></iframe>
+</div>
+<% end %>
+
+<%# Mobile : 320x100 toujours %>
+<div class="kwanko-mobile" style="display:none; justify-content: center; margin: 16px 0;">
+  <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+          width="320" height="100" scrolling="no" frameborder="0"
+          style="display:block; border:0;"
+          data-kwanko-track="<%= page_context %>-mobile"></iframe>
+</div>
+
+<style>
+  @media (min-width: 768px) { .kwanko-desktop { display: flex !important; } }
+  @media (max-width: 767px) { .kwanko-mobile  { display: flex !important; } }
+</style>
+
+<script>
+(function() {
+  document.querySelectorAll('iframe[data-kwanko-track]').forEach(function(iframe) {
+    var pageCtx = iframe.dataset.kwankoTrack;
+    var over = false;
+    iframe.addEventListener('mouseenter', function() { over = true; });
+    iframe.addEventListener('mouseleave', function() { over = false; });
+    window.addEventListener('blur', function() {
+      if (over) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: pageCtx, affiliate_format: 'kwanko_display' });
+      }
+    });
+  });
+})();
+</script>

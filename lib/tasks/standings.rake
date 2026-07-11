@@ -1,6 +1,11 @@
 namespace :standings do
   desc "Synchronise les classements de toutes les ligues en DB (job daily)"
   task sync: :environment do
+    unless FootballApiService.within_budget?(:medium)
+      puts "⛔ standings:sync ignoré — quota API proche du seuil (priorité moyenne)"
+      next
+    end
+
     api     = FootballApiService.new
     leagues = FootballApiService::COMPETITIONS_META.select { |c| c[:has_standings] }
 
@@ -16,7 +21,8 @@ namespace :standings do
         next
       end
 
-      standing = Standing.find_or_initialize_by(league_id: league[:id], season: 2025)
+      season = FootballApiService::LEAGUE_SEASONS[league[:id]]
+      standing = Standing.find_or_initialize_by(league_id: league[:id], season: season)
       standing.data      = data
       standing.synced_at = Time.current
       standing.save!

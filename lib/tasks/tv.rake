@@ -79,6 +79,10 @@ namespace :tv do
         end
 
         if final_ch && m.tv_channels != final_ch
+          # CdM 2026 : ne pas écraser les chaînes manuellement corrigées (M6 / beIN Sports spécifiques)
+          if m.competition == 'Coupe du Monde 2026' && m.tv_channels.present? && !m.tv_channels.include?('/')
+            next
+          end
           m.update(tv_channels: final_ch)
           puts "✅ #{m.home_team} vs #{m.away_team} → #{final_ch}"
           updated_count += 1

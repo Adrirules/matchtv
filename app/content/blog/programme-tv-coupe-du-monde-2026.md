@@ -8,6 +8,7 @@ author: Adrien
 image: https://images.unsplash.com/photo-1728060555005-6bd4a359b431?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 image_credit: "Photo : Unsplash"
 excerpt: "Le programme TV complet de la Coupe du Monde 2026 : tous les matchs, horaires en heure de Paris, chaînes (M6 en clair, beIN Sports). Calendrier des Bleus et infos essentielles."
+tags: ["coupe-du-monde", "droits-tv"]
 ---
 
 # Programme TV Coupe du Monde 2026 : calendrier complet, chaînes et horaires
@@ -134,7 +135,7 @@ C'est la question numéro un. Voilà les trois rendez-vous de la phase de groupe
 
 Deux matchs en prime time, un à 23h - le décalage horaire avec la côte Est américaine reste gérable. On a connu pire (bonjour le Qatar et ses matchs à 16h un mardi).
 
-Pour tout le détail sur le parcours potentiel des Bleus, consultez notre [analyse du groupe I de la France](/blog/groupe-france-mondial-2026) et le [calendrier complet des matchs de l'équipe de France](/blog/calendrier-france-mondial-2026).
+Pour tout le détail sur le parcours potentiel des Bleus, consultez notre [analyse du groupe I de la France](/blog/groupe-france-mondial-2026) et le [calendrier complet des matchs de l'équipe de France](/blog/calendrier-france-mondial-2026). Et si vous hésitez encore sur la meilleure façon de tout suivre, notre [guide pratique pour regarder le Mondial 2026](/blog/comment-regarder-coupe-monde-2026-france) fait le tour de la question.
 
 ---
 
@@ -199,7 +200,7 @@ Oui, via **M6+** pour les 54 matchs en clair. La plateforme est accessible sur o
 
 ### Où voir les matchs de la Coupe du Monde 2026 en replay ?
 
-M6+ propose le replay des matchs en clair, avec une disponibilité limitée dans le temps. [beIN Sports](/chaines/bein-sports) propose un replay complet de l'intégralité des 104 matchs via son application, avec accès multi-écrans.
+M6+ propose le replay des matchs en clair, avec une disponibilité limitée dans le temps. [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522) est une alternative pratique pour les matchs M6 : live, replay et enregistrement des rencontres sur tous vos écrans. [beIN Sports](/chaines/bein-sports) propose un replay complet de l'intégralité des 104 matchs via son application, avec accès multi-écrans.
 
 ### Quand se joue la finale de la Coupe du Monde 2026 ?
 

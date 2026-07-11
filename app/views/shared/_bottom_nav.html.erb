@@ -2,7 +2,7 @@
      class="bottom-nav"
      data-controller="navbar"
      data-action="scroll@window->navbar#onScroll">
-  <%= link_to root_path, class: "nav-item #{request.path == '/' || request.path.start_with?('/days') ? 'active' : ''}" do %>
+  <%= link_to root_path, class: "nav-item #{request.path == '/' || request.path.start_with?('/days') || request.path.start_with?('/matches') ? 'active' : ''}" do %>
     <span>📺</span>
     Programme
   <% end %>

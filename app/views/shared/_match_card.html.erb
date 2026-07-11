@@ -1,46 +1,53 @@
 <% priority = local_assigns.fetch(:priority, false) %>
-<%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block;" do %>
-<% cache [match, match.updated_at, priority, 'tdnv1'] do %>
-<div class="match-card">
-  <%# Ligne 1 : Heure + Score + Chaîne %>
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <div style="font-weight: 800; font-size: 15px; background: #f4f4f4; padding: 2px 8px; border-radius: 4px;">
-        <%= match.start_time.strftime("%H:%M") %>
-      </div>
-      <% if match.has_score? %>
-        <span style="font-weight: 900; font-size: 15px; color: #222;"><%= match.home_score %> - <%= match.away_score %></span>
-        <% if match.live? %>
-          <span class="match-status live" style="font-size: 11px;">
-            <%= match.status == "HT" ? "MT" : "#{match.elapsed}′" %>
-          </span>
-        <% else %>
-          <span class="match-status finished" style="font-size: 11px;">Terminé</span>
-        <% end %>
+<%= link_to match_path(match.slug || match.id), style: "text-decoration: none; color: inherit; display: block; margin-bottom: 8px;" do %>
+<% cache [match, match.updated_at, priority, 'v2design4'] do %>
+<div class="match-card<%= ' match-card--live' if match.live? %>">
+
+  <%# Ligne 1 : Domicile — Score/Heure — Extérieur %>
+  <div style="display:flex;align-items:center;margin-bottom:6px;">
+
+    <%# Équipe domicile %>
+    <div style="display:flex;align-items:center;gap:4px;flex:1;min-width:0;overflow:hidden;">
+      <img src="<%= match.home_team_logo %>" alt="<%= team_display_name(match.home_team) %>" width="16" height="16"
+           loading="<%= priority ? 'eager' : 'lazy' %>" fetchpriority="<%= priority ? 'high' : 'low' %>"
+           style="width:16px;height:16px;object-fit:contain;flex-shrink:0;">
+      <span style="font-size:13px;font-weight:600;color:var(--color-text);font-family:'DM Sans',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0;"><%= team_display_name(match.home_team) %></span>
+    </div>
+
+    <%# Score / Heure %>
+    <div style="flex-shrink:0;width:52px;text-align:center;font-family:'Barlow Condensed',sans-serif;">
+      <% if match.live? %>
+        <span style="font-weight:800;font-size:15px;color:var(--color-live);"><%= match.home_score %> - <%= match.away_score %></span>
+      <% elsif match.has_score? %>
+        <span style="font-weight:800;font-size:15px;color:var(--color-text);"><%= match.home_score %> - <%= match.away_score %></span>
+      <% else %>
+        <span style="font-weight:700;font-size:14px;color:var(--color-muted);"><%= match.start_time.strftime("%H:%M") %></span>
       <% end %>
     </div>
-    <div style="font-size: 12px; color: #d9534f; font-weight: 700; text-transform: uppercase;">
-      <%= match.tv_channels %>
+
+    <%# Équipe extérieure %>
+    <div style="display:flex;align-items:center;gap:4px;flex:1;min-width:0;overflow:hidden;justify-content:flex-end;">
+      <span style="font-size:13px;font-weight:600;color:var(--color-text);font-family:'DM Sans',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0;text-align:right;"><%= team_display_name(match.away_team) %></span>
+      <img src="<%= match.away_team_logo %>" alt="<%= team_display_name(match.away_team) %>" width="16" height="16"
+           loading="<%= priority ? 'eager' : 'lazy' %>" fetchpriority="<%= priority ? 'high' : 'low' %>"
+           style="width:16px;height:16px;object-fit:contain;flex-shrink:0;">
     </div>
   </div>
 
-  <%# Ligne 2 : Équipes avec logos %>
-  <div style="display: flex; align-items: center; margin-bottom: 6px;">
-    <div style="display: flex; align-items: center; flex: 1;">
-      <img src="<%= match.home_team_logo %>" alt="Logo <%= team_display_name(match.home_team) %>" width="20" height="20" loading="<%= priority ? 'eager' : 'lazy' %>" fetchpriority="<%= priority ? 'high' : 'low' %>" style="width: 20px; height: 20px; object-fit: contain; margin-right: 10px;">
-      <span style="font-size: 16px; font-weight: 600;"><%= team_display_name(match.home_team) %></span>
+  <%# Ligne 2 : Live + Badge chaîne + Compétition %>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
+    <div style="display:flex;align-items:center;gap:6px;">
+      <% if match.live? %>
+        <span style="display:inline-flex;align-items:center;gap:4px;background:var(--color-live);color:white;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;">
+          <span style="width:5px;height:5px;background:white;border-radius:50%;animation:livepulse 1.2s ease-in-out infinite;flex-shrink:0;display:inline-block;"></span>
+          <% if match.status == 'HT' %>MT<% elsif match.elapsed.present? %><%= match.elapsed %>′<% end %>
+        </span>
+      <% end %>
+      <%= channel_badge(match.tv_channels, small: true) %>
     </div>
-    <span style="margin: 0 10px; color: #bbb; font-size: 12px;">vs</span>
-    <div style="display: flex; align-items: center; flex: 1; justify-content: flex-end;">
-      <span style="font-size: 16px; font-weight: 600; text-align: right;"><%= team_display_name(match.away_team) %></span>
-      <img src="<%= match.away_team_logo %>" alt="Logo <%= team_display_name(match.away_team) %>" width="20" height="20" loading="<%= priority ? 'eager' : 'lazy' %>" fetchpriority="<%= priority ? 'high' : 'low' %>" style="width: 20px; height: 20px; object-fit: contain; margin-left: 10px;">
-    </div>
+    <span style="font-size:10px;color:var(--color-muted);font-family:'DM Sans',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;"><%= match.competition %></span>
   </div>
 
-  <%# Ligne 3 : Compétition %>
-  <div style="font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">
-    <%= match.competition %>
-  </div>
 </div>
 <% end %>
 <% end %>

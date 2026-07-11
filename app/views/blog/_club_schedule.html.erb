@@ -1,0 +1,76 @@
+<div style="margin: 32px 0; padding: 24px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+    <h2 style="font-size: 17px; font-weight: 700; color: #010e1b; margin: 0;">
+      Prochains matchs - <%= config['display_name'] %>
+    </h2>
+    <% if config['team_path'].present? %>
+      <%= link_to "Fiche complète →", config['team_path'],
+          style: "font-size: 12px; color: #3b82f6; text-decoration: none; font-weight: 600; white-space: nowrap;" %>
+    <% end %>
+  </div>
+
+  <% if matches.nil? || matches.empty? %>
+    <div style="padding: 20px; text-align: center; background: #fff; border-radius: 6px; border: 1px solid #e2e8f0;">
+      <p style="font-size: 14px; color: #64748b; margin: 0;">
+        Aucun match à venir en base pour le moment.<br>
+        <span style="font-size: 12px; color: #94a3b8;">Le calendrier est mis à jour toutes les heures.</span>
+      </p>
+    </div>
+  <% else %>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <% matches.each do |match| %>
+        <%= link_to match_path(match.slug), style: "display:block; text-decoration:none; color:inherit;" do %>
+          <div style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px 14px; background: #fff; transition: all 0.15s;"
+               onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8faff'"
+               onmouseout="this.style.borderColor='#e2e8f0';this.style.background='#fff'">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+
+              <%# Équipes %>
+              <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0;">
+                <% if match.home_team_logo.present? %>
+                  <img src="<%= match.home_team_logo %>" alt="<%= match.home_team %>" width="22" height="22"
+                       style="object-fit:contain; flex-shrink:0;" loading="lazy">
+                <% end %>
+                <span style="font-weight: 600; font-size: 13px; color: #010e1b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  <%= team_display_name(match.home_team) %>
+                </span>
+                <span style="color: #cbd5e1; font-size: 12px; font-weight: 500; flex-shrink: 0;">vs</span>
+                <span style="font-weight: 600; font-size: 13px; color: #010e1b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  <%= team_display_name(match.away_team) %>
+                </span>
+                <% if match.away_team_logo.present? %>
+                  <img src="<%= match.away_team_logo %>" alt="<%= match.away_team %>" width="22" height="22"
+                       style="object-fit:contain; flex-shrink:0;" loading="lazy">
+                <% end %>
+              </div>
+
+              <%# Infos droite : compétition + date/heure + chaîne %>
+              <div style="text-align: right; flex-shrink: 0; min-width: 90px;">
+                <div style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 110px;">
+                  <%= match.competition %>
+                </div>
+                <div style="font-size: 13px; font-weight: 700; color: #010e1b;">
+                  <% if match.status == 'NS' %>
+                    <%= "#{match.start_time.day} #{ApplicationHelper::MONTHS_FR[match.start_time.month - 1]}" %>
+                    <span style="color: #475569; font-weight: 500;"><%= match.start_time.strftime('%Hh%M') %></span>
+                  <% else %>
+                    <span style="color: #ef4444; font-weight: 700;">&#9679; En direct</span>
+                  <% end %>
+                </div>
+                <% if match.tv_channels.present? %>
+                  <div style="font-size: 11px; color: #64748b; margin-top: 1px;">
+                    <%= match.tv_channels.split(',').first&.strip %>
+                  </div>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <p style="font-size: 11px; color: #94a3b8; margin: 8px 0 0; text-align: right;">
+      Mis à jour toutes les heures
+    </p>
+  <% end %>
+</div>

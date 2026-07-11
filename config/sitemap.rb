@@ -23,7 +23,11 @@ SitemapGenerator::Sitemap.create do
     add "/equipes/#{team.parameterize}", priority: 0.7, changefreq: 'weekly'
   end
 
-  Match.where.not(slug: nil).where("start_time > ?", 30.days.ago).find_each do |match|
+  # Seuls les matchs récents / à venir : matchs terminés < 6 semaines + tous les matchs à venir
+  cutoff = 6.weeks.ago
+  Match.where.not(slug: nil)
+       .where("start_time > ? OR status NOT IN (?)", cutoff, %w[FT AET PEN])
+       .find_each do |match|
     add "/matches/#{match.slug}", priority: 0.6, lastmod: match.updated_at, changefreq: 'never'
   end
 end

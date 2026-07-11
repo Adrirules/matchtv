@@ -17,8 +17,10 @@
   <% end %>
 <% end %>
 
-<%# --- HEADER --- %>
-<h1 style="font-size: 20px; font-weight: 700; margin: 20px 0 10px;">
+<%# --- CONTENU --- %>
+<div class="with-sidebar">
+<div><%# colonne principale %>
+<h1 style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #010e1b; padding: 12px 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; margin: 8px 0 16px;">
   Résultats foot <%= date_label %>
 </h1>
 
@@ -44,22 +46,20 @@
     known_order = FootballApiService::COMPETITIONS_META.map { |c| c[:name] }
     grouped = @matches.group_by(&:competition)
     sorted_groups = grouped.sort_by { |comp, _| known_order.index(comp) || 999 }
+    ad_728_positions = @date.day.even? ? [1, 4, 8] : [2, 6, 10]
   %>
 
   <% sorted_groups.each_with_index do |(competition, matches), group_index| %>
-    <% if group_index == 2 %>
-      <%= render 'shared/ad_unit', slot_id: '2773465276' %>
-    <% end %>
 
     <%# Header compétition %>
     <% comp_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == competition } %>
-    <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0 8px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin: 20px 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--color-accent);">
       <% if comp_meta %>
         <img src="<%= FootballApiService.league_logo(comp_meta[:id]) %>" alt="<%= competition %>"
-             width="18" height="18" loading="lazy"
-             style="width: 18px; height: 18px; object-fit: contain;">
+             width="20" height="20" loading="lazy"
+             style="width: 20px; height: 20px; object-fit: contain;">
       <% end %>
-      <span style="font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px;"><%= competition %></span>
+      <span style="font-size: 14px; font-weight: 800; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Barlow Condensed', sans-serif;"><%= competition %></span>
       <% if comp_meta&.dig(:has_standings) %>
         <%= link_to standing_path(competition.parameterize),
             style: "font-size: 10px; font-weight: 700; color: #007bff; background: #f0f6ff; padding: 2px 7px; border-radius: 5px; text-decoration: none;" do %>Classement<% end %>
@@ -100,11 +100,89 @@
         </div>
       <% end %>
     <% end %>
+
+    <%# Pub contextuelle : DAZN si ligue DAZN, Canal+ sinon %>
+    <% if ad_728_positions.include?(group_index) %>
+      <% is_dazn_comp = ['Ligue 1', 'Serie A', 'Eredivisie', 'Bundesliga', 'Jupiler Pro League'].include?(competition) %>
+      <% if is_dazn_comp %>
+        <div style="display:none; margin: 16px 0; justify-content: center;" class="kwanko-728-res" data-kwanko-track="results-dazn-728">
+          <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193929" rel="sponsored"
+             onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'results-728',affiliate_format:'dazn_728x90'});">
+            <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193929"
+                 width="728" height="90" border="0" loading="lazy" alt="DAZN">
+          </a>
+          <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193929" defer></script>
+        </div>
+        <% mobile_fmt = group_index % 2 %>
+        <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-res">
+          <% if mobile_fmt == 0 %>
+            <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193923" rel="sponsored"
+               onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'results-mobile',affiliate_format:'dazn_300x250'});">
+              <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193923"
+                   width="300" height="250" border="0" loading="lazy" alt="DAZN">
+            </a>
+            <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193923" defer></script>
+          <% else %>
+            <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193924" rel="sponsored"
+               onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'results-mobile',affiliate_format:'dazn_300x50'});">
+              <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193924"
+                   width="300" height="50" border="0" loading="lazy" alt="DAZN">
+            </a>
+            <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193924" defer></script>
+          <% end %>
+        </div>
+      <% else %>
+        <div style="display:none; margin: 16px 0;" class="kwanko-728-res" data-kwanko-track="results-main">
+          <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26513"
+                  width="728" height="90" scrolling="no" frameborder="0"
+                  style="display:block; border:0;"></iframe>
+        </div>
+        <% mobile_fmt = group_index % 3 %>
+        <div style="display:none; justify-content: center; margin: 12px 0;" class="kwanko-mobile-res" data-kwanko-track="results-mobile-<%= group_index %>">
+          <% if mobile_fmt == 0 %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D9"
+                    width="300" height="600" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% elsif mobile_fmt == 1 %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+                    width="320" height="100" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% else %>
+            <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+                    width="300" height="250" scrolling="no" frameborder="0"
+                    style="display:block; border:0;"></iframe>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 
 <% else %>
   <p style="text-align: center; padding: 40px 0; color: #666;">Aucun résultat disponible pour ce jour.</p>
 <% end %>
+
+<style>
+  @media (min-width: 1024px) { .kwanko-728-res   { display: block !important; } }
+  @media (max-width: 1023px) { .kwanko-mobile-res { display: flex !important;  } }
+</style>
+<script>
+(function() {
+  document.querySelectorAll('[data-kwanko-track]').forEach(function(el) {
+    var iframe = el.tagName === 'IFRAME' ? el : el.querySelector('iframe');
+    if (!iframe) return;
+    var ctx = el.dataset.kwankoTrack;
+    var over = false;
+    iframe.addEventListener('mouseenter', function() { over = true; });
+    iframe.addEventListener('mouseleave', function() { over = false; });
+    window.addEventListener('blur', function() {
+      if (over) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: ctx, affiliate_format: 'kwanko_display' });
+      }
+    });
+  });
+})();
+</script>
 
 <%# FAQ résultats %>
 <%
@@ -123,3 +201,6 @@
   <h2 style="font-size: 15px; font-weight: 800; color: #010e1b; margin-bottom: 12px;">Questions fréquentes</h2>
   <%= render 'shared/faq_accordion', items: results_faq, schema: true %>
 </div>
+</div><%# fin colonne principale %>
+<%= render 'shared/sidebar' %>
+</div><%# fin with-sidebar %>

@@ -1,0 +1,97 @@
+# Bios éditoriales joueurs — indexées par api_id API-Football
+# Ton : Adrien, passionné, humain — pas corporate, pas bot
+# Jamais de tiret long (—), toujours tiret simple (-)
+
+278: # Kylian Mbappé
+  slug: kylian-mbappe
+  bio: |
+    Kylian Mbappé, c'est le joueur dont tout le monde parle depuis qu'il a explosé en Ligue 1 à 17 ans sous le maillot de Monaco. Sacré champion du monde en 2018 à 19 ans, il est devenu le visage du football français pendant sept saisons au PSG - 256 buts, record absolu du club - avant de rejoindre le Real Madrid à l'été 2024, le club de ses rêves depuis l'enfance.
+
+    Sa vitesse est hors catégorie : sur les 30 premiers mètres, peu de défenseurs peuvent le suivre. Ce qui le distingue des autres attaquants rapides, c'est sa technique balle au pied à pleine vitesse et sa capacité à marquer de partout - du pied gauche, du pied droit, de la tête, en solo ou sur penalty. En équipe de France, il est capitaine depuis 2023 et porte les espoirs de tout un pays pour le Mondial 2026 qui se jouera en Amérique du Nord.
+
+    A Madrid, il découvre la pression d'une institution qui exige les titres chaque saison. La Ligue des Champions reste son grand objectif - il ne l'a jamais remportée. Le voir évoluer au Bernabeu reste un spectacle à part.
+
+154: # Lionel Messi
+  slug: l-messi
+  bio: |
+    Lionel Messi a gagné les deux débats qui ont traversé sa carrière : celui du GOAT contre Ronaldo, et celui du titre avec l'Argentine. La Coupe du Monde 2022 au Qatar a mis fin à la dernière question qui restait ouverte. À 35 ans, il a porté l'Albiceleste jusqu'au titre dans ce qui était probablement son dernier Mondial - et il l'a fait avec une finale contre la France qui restera dans les mémoires comme l'une des plus folles de l'histoire.
+
+    8 Ballons d'Or, 4 Ligues des Champions avec le Barça, 10 titres de champion d'Espagne, des records de buts en Liga qui ne seront peut-être jamais battus. Et pourtant, malgré tout ce palmarès, Messi a toujours semblé jouer pour le plaisir plutôt que pour les statistiques.
+
+    Depuis 2023, il évolue à l'Inter Miami en MLS. À presque 38 ans, il continue de jouer à un niveau élevé et attire des foules records partout où il se déplace. Voir Messi jouer reste un privilège, quelle que soit la compétition.
+
+874: # Cristiano Ronaldo
+  slug: cristiano-ronaldo
+  bio: |
+    Cristiano Ronaldo est la définition du joueur qui s'est construit à la force du travail. Parti de Madère, Portugal, il est devenu l'un des deux meilleurs joueurs de l'histoire du football - le débat avec Messi dure depuis vingt ans et n'est probablement jamais definitiement tranché. 5 Ballons d'Or, 5 Ligues des Champions, des records de buts dans toutes les compétitions où il est passé.
+
+    Après Manchester United, Real Madrid, Juventus et un retour à United, il a signé à Al-Nassr en Arabie Saoudite en janvier 2023. Un choix qui a surpris beaucoup de monde, mais Ronaldo continue de marquer à un rythme impressionnant et reste le joueur le plus suivi sur Instagram de la planète, toutes catégories confondues.
+
+    À 40 ans, il joue encore en sélection portugaise et a mené le Portugal à l'Euro 2024. Ronaldo est une machine à records autant qu'un phénomène marketing - et il assume les deux pleinement.
+
+1100: # Erling Haaland
+  slug: e-haaland
+  bio: |
+    Erling Haaland n'est pas un attaquant ordinaire - c'est une anomalie statistique. 36 buts en 35 matches lors de sa première saison en Premier League avec Manchester City en 2022-2023 : un record absolu dans l'histoire du championnat anglais. Pour donner une idée : le record précédent tenait depuis 1927.
+
+    Fils d'Alfie Haaland, ancien joueur de City et Leeds, Erling a grandi en Norvège avant de passer par le RB Salzburg et le Borussia Dortmund, où il avait déjà affolé les compteurs. À City, sous Guardiola, il a trouvé le système parfait pour ses qualités : vitesse en profondeur, sens du placement dans la surface, finition froide des deux pieds.
+
+    Ce qui est troublant avec Haaland, c'est qu'il n'a que 24 ans en 2025. Il pourrait facilement terminer avec les records de buts all-time si il reste à ce niveau. Seule ombre au tableau : il n'a pas encore remporté la Ligue des Champions - il était blessé lors de la finale 2023. Un manque à combler.
+
+306: # Mohamed Salah
+  slug: mohamed-salah
+  bio: |
+    Mohamed Salah est l'un des meilleurs joueurs de l'histoire de Liverpool, dans un club qui en a pourtant vu passer. Depuis son arrivée en 2017 en provenance de la Roma pour 42 millions d'euros - une somme qui semblait élevée à l'époque - il a tout remporté avec les Reds : Ligue des Champions en 2019, Premier League en 2020, FA Cup, League Cup.
+
+    Son bilan offensif est hallucinant : meilleur buteur de Premier League à plusieurs reprises, des saisons à 30 buts toutes compétitions confondues, une régularité qui défie le temps. À 32 ans, il affiche encore des statistiques de joueur en pleine force de l'âge.
+
+    Ce qui rend Salah particulier, c'est la combinaison de vitesse, de technique, de sens du but et de passes décisives. Il peut autant éliminer son adversaire sur son côté droit et centrer que couper vers l'intérieur et frapper du gauche. En Egypte, c'est une légende nationale absolue - le Pharaon, comme on l'appelle.
+
+# Dembélé - slug prédit quand importé depuis PSG
+276: # Ousmane Dembélé
+  slug: o-dembele
+  bio: |
+    Ousmane Dembélé a mis du temps à tenir la promesse qu'il montrait quand il explosait à Rennes à 19 ans, puis au Borussia Dortmund. Les blessures ont rythmé ses premières années au Barça - quadriceps, ischio-jambiers, genoux - au point qu'on a parfois douté de le voir atteindre son plein potentiel. Il l'a finalement atteint, et le timing était parfait : sous Xavi, puis après son transfert au PSG à l'été 2023.
+
+    À Paris, il est devenu l'un des joueurs les plus dangereux d'Europe. Sa capacité à éliminer sur les deux pieds est unique - il est droitier de naissance mais utilise son pied gauche presque aussi bien - et sa vitesse d'exécution rend son dribble impossible à anticiper.
+
+    Joueur de l'équipe de France, il a souffert de la comparaison avec Mbappé et Griezmann, mais il a progressivement imposé son style propre. A 27 ans en 2025, il est enfin dans le meilleur football de sa carrière. Quand il enchaîne les matchs sans blessure, il est un cauchemar pour n'importe quelle défense.
+
+# Vinícius Jr - slug prédit quand importé depuis Real Madrid
+541: # Vinícius Jr
+  slug: vinicius-jr
+  bio: |
+    Vinícius Jr est peut-être le joueur le plus excitant à regarder en ce moment dans le football mondial. Sur le côté gauche du Real Madrid, il a transformé son jeu depuis ses débuts perfectibles en 2018 : la finition, qui était son point faible, s'est considérablement améliorée. Sa vitesse et ses dribbles ont toujours été là - maintenant le reste suit.
+
+    Il a remporté la Ligue des Champions en 2022 et 2024 avec le Real, marquant le but décisif en finale à deux reprises. Lauréat de plusieurs distinctions individuelles, il reste cependant polarisant : ses célébrations provocatrices lui ont valu autant de fans que de détracteurs, et il a été victime de plusieurs épisodes de racisme sur les terrains espagnols, qu'il a dénoncé publiquement avec force.
+
+    Brésilien de 24 ans en 2025, il est l'un des visages de la Seleção pour le Mondial 2026 et la grande star montante d'une Liga où il règne aux côtés de Mbappé. Les nuits de Ligue des Champions au Bernabeu avec lui sur la pelouse sont d'un autre niveau.
+
+# Lamine Yamal
+2302: # Lamine Yamal
+  slug: lamine-yamal
+  bio: |
+    Lamine Yamal est né le 13 juillet 2007, le jour de la finale de la Coupe du Monde entre la France et l'Italie. Il a gagné l'Euro 2024 avec l'Espagne à 16 ans et 362 jours, devenant le plus jeune buteur de l'histoire de la compétition avec un coup-franc magistral en demi-finale contre la France. Ce n'était pas une erreur - c'était du football.
+
+    Au FC Barcelone, il est entré dans l'équipe première à 15 ans et n'a jamais eu l'air d'un adolescent sur un terrain de pros. Son pied gauche fait des choses qui semblent physiquement impossibles : vitesse d'exécution, angle de frappe, précision dans les passes vers l'intérieur. À droite de l'attaque barcelonaise, il forme un trio dévastateur avec Lewandowski et Raphinha.
+
+    Ce qui impressionne le plus chez Yamal au-delà du talent, c'est l'absence de pression apparente. À 17 ans en 2025, il joue comme si c'était évident. Le Barça tient peut-être le prochain Messi - et la comparaison, pour une fois, ne semble pas exagérée.
+
+521: # Robert Lewandowski
+  slug: r-lewandowski
+  bio: |
+    Robert Lewandowski a inscrit 41 buts en une seule saison de Bundesliga en 2020-2021, battant le record d'Uwe Seeler et Gerd Müller qui tenait depuis 49 ans. C'est le genre de stat qui résume une carrière : propre, précis, implacable.
+
+    Après avoir tout gagné avec le Bayern Munich - 8 titres de Bundesliga consécutifs, une Ligue des Champions en 2020 - il a rejoint le FC Barcelone en 2022 à 33 ans. Beaucoup pensaient que c'était une fin de carrière dorée. Il a mis 23 buts en Liga lors de sa première saison. La retraite attendra.
+
+    Attaquant complet au sens strict du terme : pivot dos au but, frappe des deux pieds, jeu de tête, placement dans la surface, pressing. Il a tout. Capitaine de la Pologne depuis des années, il mène sa sélection à chaque grande compétition. À 36 ans en 2025, les stats restent impressionnantes et Barcelone compte encore beaucoup sur lui.
+
+# Rodri - Ballon d'Or 2024
+1078: # Rodri
+  slug: rodri
+  bio: |
+    Rodri a remporté le Ballon d'Or 2024 et beaucoup de gens dans le grand public ont été surpris. Les fans de foot, eux, ne l'étaient pas. Le milieu défensif de Manchester City est depuis trois ans le meilleur joueur à son poste dans le monde - peut-être depuis longtemps.
+
+    Ce qui rend Rodri difficile à apprécier pour le grand public, c'est que son travail n'est pas spectaculaire. Pas de dribbles, pas de buts exceptionnels, peu de gestes techniques visibles. Ce qu'il fait, c'est contrôler le jeu : il choisit toujours le bon moment pour jouer vers l'avant ou retenir le ballon, il coupe les lignes de passe adverses avant qu'elles n'existent, et il récupère des ballons qui semblaient perdus. City sans Rodri en 2024-2025 a clairement souffert - sa blessure grave au genou en septembre 2024 a changé la saison du club entier.
+
+    Champion d'Europe avec l'Espagne à l'Euro 2024, vainqueur de la Premier League à plusieurs reprises avec City. Un joueur de la génération qui restera dans les livres d'histoire.

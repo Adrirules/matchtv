@@ -8,6 +8,19 @@
   else
     "Sur quelle chaîne voir #{home} vs #{away} ? Le #{match.start_time.strftime('%d/%m')}#{match.tv_channels.present? ? ' sur ' + match.tv_channels : ''} pour la #{match.competition}."
   end
+
+  competition_meta = FootballApiService::COMPETITIONS_META.find { |c| c[:name] == match.competition }
+  country_name = competition_meta&.dig(:country)
+  location_json = if match.venue_name.present?
+    addr = { "@type": "PostalAddress" }
+    addr["addressLocality"] = match.venue_city if match.venue_city.present?
+    addr["addressCountry"] = country_name if country_name.present?
+    { "@type": "Place", "name": match.venue_name, "address": addr }
+  elsif country_name.present?
+    { "@type": "Place", "name": country_name, "address": { "@type": "PostalAddress", "addressCountry": country_name } }
+  else
+    { "@type": "Place", "name": match.home_team || "Stade" }
+  end
 %>
 <script type="application/ld+json">
   <%= {
@@ -33,9 +46,16 @@
       "logo": match.away_team_logo,
       "url": "https://www.coupdenvoi.tv/equipes/#{match.away_team&.parameterize}"
     },
+    "url": "https://www.coupdenvoi.tv/matches/#{match.matchup&.slug || match.id}",
+    "location": location_json,
+    "performer": [
+      { "@type": "SportsTeam", "name": home },
+      { "@type": "SportsTeam", "name": away }
+    ],
     "organizer": {
       "@type": "Organization",
-      "name": match.competition || "Fédération de Football"
+      "name": match.competition || "Fédération de Football",
+      "url": "https://www.coupdenvoi.tv/competitions/#{match.competition&.parameterize}"
     },
     "offers": {
       "@type": "Offer",
@@ -48,4 +68,48 @@
     }
   }.to_json.html_safe %>
 </script>
+<%# BroadcastEvent — uniquement pour les matchs à venir/en direct avec une chaîne identifiable %>
+<% if !match.finished? && match.tv_channels.present? %>
+<%
+  ch_main = match.tv_channels.split(',').first&.strip
+  broadcast_url = if match.tv_channels.include?('DAZN')
+    'https://www.dazn.com'
+  elsif match.tv_channels.include?('Canal')
+    'https://www.canalplus.com'
+  elsif match.tv_channels.include?('beIN')
+    'https://www.beinsports.com'
+  elsif match.tv_channels.include?('RMC')
+    'https://rmcsport.bfmtv.com'
+  else
+    "https://www.coupdenvoi.tv/chaines/#{ch_main&.parameterize}"
+  end
+%>
+<script type="application/ld+json">
+<%= {
+  "@context": "https://schema.org",
+  "@type": "BroadcastEvent",
+  "name": "#{home} vs #{away} en direct",
+  "isLiveBroadcast": true,
+  "startDate": match.start_time.iso8601,
+  "endDate": (match.start_time + 115.minutes).iso8601,
+  "videoFormat": "HD",
+  "broadcastDisplayName": ch_main,
+  "broadcastOfEvent": {
+    "@type": "SportsEvent",
+    "name": "#{home} - #{away}",
+    "startDate": match.start_time.iso8601,
+    "url": "https://www.coupdenvoi.tv/matches/#{match.matchup&.slug || match.id}"
+  },
+  "publishedOn": {
+    "@type": "BroadcastService",
+    "name": ch_main,
+    "url": broadcast_url,
+    "broadcastAffiliateOf": {
+      "@type": "Organization",
+      "name": ch_main
+    }
+  }
+}.to_json.html_safe %>
+</script>
+<% end %>
 <% end %>

@@ -1,0 +1,37 @@
+<%#
+  Partial : bannière IAB DAZN (Partnerize)
+  Locals :
+    - page_context (string GA4) default: 'site'
+  Desktop (≥768px) : 300x250
+  Mobile (<768px)  : 300x50
+  Masqué si @noindex = true
+%>
+<% return if @noindex %>
+<% page_context = local_assigns.fetch(:page_context, 'site') %>
+
+<div style="margin: 20px 0;">
+  <%# Desktop 300x250 %>
+  <div class="dazn-sq" style="display:none; justify-content: center; margin: 0;">
+    <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193923" rel="sponsored"
+       onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'<%= page_context %>',affiliate_format:'dazn_300x250'});">
+      <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193923"
+           width="300" height="250" border="0" loading="lazy" alt="DAZN - Serie A, Ligue 1, Eredivisie">
+    </a>
+    <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193923" defer></script>
+  </div>
+
+  <%# Mobile 300x50 %>
+  <div class="dazn-mobile" style="display:none; justify-content: center; margin: 0;">
+    <a href="https://dazn.prf.hn/click/camref:1100l5JbRk/creativeref:1101l193924" rel="sponsored"
+       onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'affiliate_click',affiliate_partner:'dazn_banner',affiliate_page:'<%= page_context %>-mobile',affiliate_format:'dazn_300x50'});">
+      <img src="https://dazn-creative.prf.hn/source/camref:1100l5JbRk/creativeref:1101l193924"
+           width="300" height="50" border="0" loading="lazy" alt="DAZN">
+    </a>
+    <script type="text/javascript" src="https://dazn-creative.prf.hn/creative/camref:1100l5JbRk/creativeref:1101l193924" defer></script>
+  </div>
+</div>
+
+<style>
+  @media (min-width: 768px) { .dazn-sq     { display: flex !important; } }
+  @media (max-width: 767px) { .dazn-mobile { display: flex !important; } }
+</style>

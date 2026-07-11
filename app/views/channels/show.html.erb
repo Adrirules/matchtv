@@ -49,7 +49,7 @@
   .channel-editorial strong { font-weight: 700; color: #010e1b; }
 </style>
 
-<div style="max-width: 860px; margin: 0 auto; padding: 0 16px;">
+<div style="max-width: 970px; margin: 0 auto; padding: 0 16px;">
 
   <%# Fil d'Ariane %>
   <nav style="font-size: 12px; color: #999; margin-bottom: 20px;">
@@ -59,7 +59,45 @@
   </nav>
 
   <h1 style="font-size: 24px; font-weight: 800; color: #010e1b; margin: 0 0 6px;"><%= @channel[:name] %> - programme foot 2025-2026</h1>
-  <p style="font-size: 14px; color: #64748b; margin: 0 0 28px;"><%= @channel[:tagline] %></p>
+  <p style="font-size: 14px; color: #64748b; margin: 0 0 20px;"><%= @channel[:tagline] %></p>
+
+  <%# Billboard 970x250 — desktop uniquement, au-dessus de l'éditorial %>
+  <div class="kwanko-billboard" style="display:none; margin: 0 0 28px; overflow-x: auto;"
+       data-kwanko-track="channel-<%= @channel[:slug] %>">
+    <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26515"
+            width="970" height="250" scrolling="no" frameborder="0"
+            style="display:block; border:0;"></iframe>
+  </div>
+  <style>
+    @media (min-width: 1024px) { .kwanko-billboard       { display: block !important; } }
+    @media (max-width: 1023px) { .kwanko-channel-mobile  { display: flex !important;  } }
+  </style>
+  <%# Mobile 320x100 — remplace le billboard sur petits écrans %>
+  <div class="kwanko-channel-mobile" style="display:none; justify-content: center; margin: 0 0 20px;"
+       data-kwanko-track="channel-<%= @channel[:slug] %>-mobile">
+    <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD26527"
+            width="320" height="100" scrolling="no" frameborder="0"
+            style="display:block; border:0;"></iframe>
+  </div>
+  <script>
+  (function() {
+    document.querySelectorAll('[data-kwanko-track^="channel-"]').forEach(function(el) {
+      var iframe = el.querySelector('iframe');
+      if (!iframe) return;
+      var ctx = el.dataset.kwankoTrack;
+      var fmt = ctx.endsWith('-mobile') ? 'kwanko_display' : 'kwanko_billboard';
+      var over = false;
+      iframe.addEventListener('mouseenter', function() { over = true; });
+      iframe.addEventListener('mouseleave', function() { over = false; });
+      window.addEventListener('blur', function() {
+        if (over) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'affiliate_click', affiliate_partner: 'canal_plus_banner', affiliate_page: ctx, affiliate_format: fmt });
+        }
+      });
+    });
+  })();
+  </script>
 
   <%# 1. Contenu éditorial EN PREMIER — contexte avant les données %>
   <% if @editorial.present? %>
@@ -70,13 +108,35 @@
     </section>
   <% end %>
 
-  <%# 2. Card affilié DAZN (page DAZN uniquement) %>
+  <%# 2. Cards affiliées (Canal+ ou DAZN selon la chaîne) %>
+  <% if @channel[:slug] == 'canal-plus' %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        page_context: 'channel-canal-plus',
+        cta_index: 0,
+        subtitle: "Champions League, Premier League, Ligue 1 et toutes les Coupes d'Europe - regardez tous les matchs Canal+ en direct et en replay." %>
+  <% end %>
   <% if @channel[:slug] == 'dazn' %>
     <%= render 'shared/dazn_card',
         variant: :standard,
         page_context: 'channel-dazn',
         cta_index: 0,
         subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez tous les matchs DAZN en direct et en replay." %>
+  <% end %>
+  <% if @channel[:slug] == 'm6' %>
+    <%= render 'shared/molotov_card',
+        variant: :standard,
+        page_context: 'channel-m6',
+        cta_index: 0,
+        subtitle: "Tous les matchs M6 de la Coupe du Monde 2026 en direct, en replay ou en enregistrement sur Molotov." %>
+  <% end %>
+  <% if @channel[:slug] == 'bein-sports' %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        url: "https://action.metaffiliation.com/trk.php?mclic=P4F53158AAFD1571",
+        page_context: 'channel-bein',
+        cta_label: "Voir l'offre Canal+ Sport avec beIN →",
+        subtitle: "beIN Sports est inclus dans Canal+ Sport à 19,99€/mois sans engagement. Liga, Bundesliga, Ligue 2 et NBA - tout y est." %>
   <% end %>
 
   <%# 3. Prochains matchs %>

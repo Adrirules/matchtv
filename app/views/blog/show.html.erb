@@ -1,15 +1,19 @@
 <% content_for :title, @page_title %>
 <% content_for :meta_description, @page_desc %>
 <% content_for :og_image, @article[:image] if @article[:image].present? %>
+<% content_for :container_class, 'container--wide' %>
 
 <% content_for :json_ld do %>
+<% if @article[:image].present? %>
+<link rel="preload" as="image" href="<%= optimized_image_url(@article[:image], width: 800, height: 450) %>" fetchpriority="high">
+<% end %>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
+  "@type": "<%= (@article[:cdm_tonight] || @article[:france_next_match] || @article[:cdm_tomorrow]) ? 'Article' : 'BlogPosting' %>",
   "headline": "<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '')&.gsub('"', '\"') %>",
   "datePublished": "<%= @article[:published_at]&.to_date&.iso8601 %>",
-  "dateModified": "<%= @article[:published_at]&.to_date&.iso8601 %>",
+  "dateModified": "<%= (@article[:cdm_tonight] || @article[:france_next_match] || @article[:cdm_tomorrow]) ? Date.today.iso8601 : @article[:published_at]&.to_date&.iso8601 %>",
   "url": "https://www.coupdenvoi.tv/blog/<%= @article[:slug] %>",
   "author": {
     "@type": "Person",
@@ -64,7 +68,7 @@
   <%# Hero image + crédit %>
   <% if @article[:image].present? %>
     <div style="margin-bottom: 28px;">
-      <img src="<%= @article[:image] %>" alt="<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '') %>" width="800" height="450" style="width: 100%; height: auto; border-radius: 6px; display: block;" loading="lazy">
+      <img src="<%= optimized_image_url(@article[:image], width: 800, height: 450) %>" alt="<%= @article[:title]&.gsub(' | Coup d\'Envoi TV', '') %>" width="800" height="450" style="width: 100%; height: auto; border-radius: 6px; display: block;" loading="eager" fetchpriority="high">
       <% if @article[:image_credit].present? %>
         <p style="font-size: 12px; color: #94a3b8; margin: 6px 0 0; text-align: right;"><%= @article[:image_credit] %></p>
       <% end %>
@@ -83,6 +87,15 @@
     </nav>
   <% end %>
 
+  <%# Card Molotov pour articles tagués coupe-du-monde %>
+  <% if @article[:tags]&.include?('coupe-du-monde') %>
+    <%= render 'shared/molotov_card',
+        variant: :standard,
+        page_context: 'blog-cdm',
+        cta_index: 0,
+        subtitle: "Coupe du Monde 2026 sur M6 - direct gratuit sur Molotov. Abonnement pour enregistrer et revoir les matchs." %>
+  <% end %>
+
   <%# Card affilié DAZN avant le contenu si l'article mentionne DAZN et que dazn_card n'est pas désactivé %>
   <% if @article[:dazn_card] != false && @article_html&.include?('DAZN') %>
     <%= render 'shared/dazn_card',
@@ -92,22 +105,64 @@
         subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez tous les matchs sur DAZN." %>
   <% end %>
 
-  <%# Corps de l'article — les marqueurs <!-- DAZN_CARD --> sont remplacés par le partial %>
+  <%# Card affilié Canal+ avant le contenu si l'article mentionne Canal+ et que canal_plus_card n'est pas désactivé %>
+  <% if @article[:canal_plus_card] != false && @article_html&.include?('Canal+') %>
+    <%= render 'shared/canal_plus_card',
+        variant: :standard,
+        page_context: 'blog',
+        cta_index: 0,
+        subtitle: "Champions League, Europa League et Ligue 1 - regardez le foot en direct sur Canal+." %>
+  <% end %>
+
+  <%# Corps de l'article — les marqueurs inline sont remplacés par les partials correspondants %>
   <div class="blog-content">
-    <% if @article_html&.include?('<!-- DAZN_CARD -->') %>
-      <% @article_html.split('<!-- DAZN_CARD -->').each_with_index do |chunk, i| %>
-        <%= chunk.html_safe %>
-        <% if i < @article_html.split('<!-- DAZN_CARD -->').length - 1 %>
-          <%= render 'shared/dazn_card',
-              variant: :standard,
-              page_context: 'blog-inline',
-              cta_index: i,
-              subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez le foot en direct sur DAZN." %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <%= @article_html %>
-    <% end %>
+    <%
+      processed = @article_html.to_s.dup
+      processed.gsub!('<!-- CANAL_PLUS_CARD -->',   render('shared/canal_plus_card',  variant: :standard, page_context: 'blog-inline', cta_index: 0, subtitle: "Champions League, Europa League et Ligue 1 - regardez le foot en direct sur Canal+."))
+      processed.gsub!('<!-- DAZN_CARD -->',          render('shared/dazn_card',        variant: :standard, page_context: 'blog-inline', cta_index: 0, subtitle: "Serie A, Eredivisie et Ligue 1 inclus - regardez le foot en direct sur DAZN."))
+      processed.gsub!('<!-- CANAL_BANNER -->',       render('shared/kwanko_sport_banner', page_context: 'blog-canal'))
+      if @club_matches
+        processed.gsub!('<!-- CLUB_SCHEDULE -->', render('blog/club_schedule', matches: @club_matches, config: @article[:club_schedule]))
+      end
+      processed.gsub!('<!-- MOLOTOV_CARD -->',         render('shared/molotov_card',     variant: :standard, page_context: 'blog-inline-molotov', cta_index: 0, subtitle: "Coupe du Monde 2026 sur M6 - direct gratuit sur Molotov. Abonnement pour enregistrer et revoir les matchs."))
+      processed.gsub!('<!-- DAZN_BANNER -->',        render('shared/dazn_banner',      page_context: 'blog-dazn'))
+      processed.gsub!('<!-- RAT_SPORT_BANNER -->',   render('shared/rat_sport_banner', page_context: 'blog-rat'))
+      if @blog_match
+        processed.gsub!('<!-- MATCH_CARD -->', render('blog/blog_match_card', match: @blog_match))
+      else
+        processed.gsub!('<!-- MATCH_CARD -->', '')
+      end
+      if @article[:cdm_tonight]
+        processed.gsub!('<!-- CDM_TONIGHT -->', render('blog/cdm_tonight',
+          today_matches:  @cdm_today_matches || [],
+          next_matches:   @cdm_next_matches || [],
+          next_match_date: @cdm_next_match_date,
+          tournament_over: @cdm_tournament_over || false))
+        processed.gsub!('<!-- CDM_NEXT_DAYS -->', render('blog/cdm_next_days',
+          upcoming_by_date: @cdm_upcoming_by_date || {},
+          tournament_over:  @cdm_tournament_over || false))
+      end
+      if @article[:france_next_match]
+        processed.gsub!('<!-- FRANCE_NEXT_MATCH -->', render('blog/france_next_match',
+          france_match:       @france_match,
+          france_live:        @france_live || false,
+          france_today:       @france_today || false,
+          france_eliminated:  @france_eliminated || false,
+          tournament_over:    @france_tournament_over || false,
+          days_until:         @france_days_until,
+          france_past_matches: @france_past_matches || []))
+      end
+      if @article[:cdm_tomorrow]
+        processed.gsub!('<!-- CDM_TOMORROW -->', render('blog/cdm_tomorrow',
+          tomorrow_matches: @cdm_tomorrow_matches || [],
+          tomorrow_date:    @cdm_tomorrow_date || Date.tomorrow,
+          next_matches:     @cdm_tomorrow_next_matches || [],
+          next_match_date:  @cdm_tomorrow_next_date,
+          tournament_over:  @cdm_tournament_over_tomorrow || false,
+          highlight_match:  @cdm_tomorrow_highlight))
+      end
+    %>
+    <%= processed.html_safe %>
   </div>
 
   <%# Prochains derbies (dynamique) %>
@@ -193,6 +248,23 @@
     </div>
   <% end %>
 
+  <%# Tags %>
+  <% if @article[:tags]&.any? %>
+    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0; margin-bottom: 8px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+        <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">Thèmes :</span>
+        <% @article[:tags].each do |tag| %>
+          <%= link_to blog_tag_path(tag),
+              style: "display: inline-block; background: #f1f5f9; color: #475569; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.01em; text-decoration: none; transition: all 0.15s;",
+              onmouseover: "this.style.background='#e2e8f0'; this.style.color='#1e293b'",
+              onmouseout:  "this.style.background='#f1f5f9'; this.style.color='#475569'" do %>
+            <%= BlogController::TAG_LABELS[tag] || tag.gsub('-', ' ').split.map(&:capitalize).join(' ') %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <%# Boutons de partage %>
   <%= render 'shared/share_buttons',
       share_url:   "https://www.coupdenvoi.tv/blog/#{@article[:slug]}",
@@ -210,4 +282,10 @@
   </div>
 
 </article>
+
+<%# Tags + Vous aimerez aussi — pleine largeur hors de la card %>
+<%= render 'blog/related_articles',
+    related_articles: @related_articles %>
+
+
 </div>

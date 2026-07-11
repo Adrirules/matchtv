@@ -51,6 +51,21 @@ class StandingsController < ApplicationController
 
     @editorial_html = standing_editorial(@league_info[:name])
 
+    # Bracket pour les compétitions à élimination directe (CdM 2026, etc.)
+    knockout_league_ids = [1, 2, 3, 848]
+    if knockout_league_ids.include?(league_id)
+      knockout_rounds = Match.where("competition ILIKE ?", "%#{@league_info[:name]}%")
+                             .where.not(round: [nil, ''])
+                             .where("start_time >= ?", 3.months.ago)
+                             .order(:start_time)
+                             .group_by(&:round)
+      @knockout_rounds = knockout_rounds.reject do |round_name, _|
+        round_name.to_s.downcase.match?(/group|league phase|league stage|ligue|pool|poule|regular/)
+      end
+    else
+      @knockout_rounds = {}
+    end
+
     @page_title = "Classement #{@league_name || @league_info[:name]} 2025-2026 | Coup d'Envoi TV"
     @page_desc  = "Classement officiel #{@league_name || @league_info[:name]} 2025-2026 mis à jour en temps réel : points, victoires, défaites, différence de buts de toutes les équipes."
 

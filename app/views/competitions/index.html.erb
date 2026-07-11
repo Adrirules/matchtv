@@ -2,93 +2,61 @@
 <% content_for :meta_description, @page_desc %>
 
 <div style="padding: 0 15px;">
-  <h1 style="font-size: 20px; font-weight: 800; margin: 20px 0 6px; color: #010e1b;">
+  <h1 style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #010e1b; padding: 12px 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; margin: 8px 0 20px;">
     Compétitions Football 2025-2026
   </h1>
-  <p style="font-size: 14px; color: #666; margin-bottom: 20px; line-height: 1.5;">
-    Programme TV par compétition - matchs diffusés sur Canal+, beIN Sports, DAZN et France TV.
-  </p>
 
-  <% ["France", "Europe"].each do |country| %>
-    <% group = @competitions.select { |c| c[:name] != "Liga" && FootballApiService::COMPETITIONS_META.find { |m| m[:name] == c[:name] }&.dig(:country) == country } %>
+  <%
+    meta_list = FootballApiService::COMPETITIONS_META
+    active_names = @competitions.map { |c| c[:name] }
+    country_order = ["Monde", "France", "Europe"] +
+      (meta_list.map { |c| c[:country] }.uniq - ["Monde", "France", "Europe"])
+    flag = CompetitionsController::COUNTRY_FLAGS
+  %>
+
+  <% country_order.each do |country| %>
+    <% group = @competitions.select { |c|
+         meta_list.find { |m| m[:name] == c[:name] }&.dig(:country) == country
+       } %>
     <% next if group.empty? %>
-    <div style="font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;"><%= country %></div>
-    <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
-      <% group.each do |comp| %>
-        <%= link_to competition_path(comp[:slug]), style: "text-decoration: none; color: inherit;" do %>
-          <div style="background: white; border: 1px solid #f0f0f0; border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <% if comp[:logo].present? %>
-                <img src="<%= comp[:logo] %>" alt="Logo <%= comp[:name] %>" width="32" height="32"
-                     style="width: 32px; height: 32px; object-fit: contain;" loading="lazy">
-              <% else %>
-                <span style="font-size: 28px; width: 32px; text-align: center;">🏆</span>
-              <% end %>
-              <span style="font-weight: 700; font-size: 15px; color: #010e1b;"><%= comp[:name] %></span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <% if comp[:has_standings] %>
-                <%= link_to standing_path(comp[:standing_slug]),
-                    style: "font-size: 11px; font-weight: 700; color: #007bff; background: #f0f6ff; padding: 3px 8px; border-radius: 6px; text-decoration: none;",
-                    onclick: "event.stopPropagation();" do %>Classement<% end %>
-              <% end %>
-              <span style="color: #ccc; font-size: 18px; font-weight: 800;">›</span>
-            </div>
-          </div>
+
+    <%# En-tête de groupe %>
+    <div style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.07em; margin: 20px 0 6px; display: flex; align-items: center; gap: 6px;">
+      <% if flag[country] %>
+        <span style="font-size: 14px;"><%= flag[country] %></span>
+      <% end %>
+      <%= country %>
+    </div>
+
+    <%# Groupe iOS : une seule card avec dividers %>
+    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; margin-bottom: 6px;">
+      <% group.each_with_index do |comp, i| %>
+        <%= link_to competition_path(comp[:slug]), style: "display: flex; align-items: center; gap: 12px; padding: 13px 16px; text-decoration: none; color: inherit; #{i < group.size - 1 ? 'border-bottom: 1px solid #f1f5f9;' : ''}" do %>
+          <% if comp[:logo].present? %>
+            <img src="<%= comp[:logo] %>" alt="<%= comp[:name] %>" width="36" height="36"
+                 style="width: 36px; height: 36px; object-fit: contain; flex-shrink: 0;" loading="lazy">
+          <% else %>
+            <span style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 24px;">🏆</span>
+          <% end %>
+          <span style="flex: 1; font-size: 15px; font-weight: 700; color: #010e1b;"><%= comp[:name] %></span>
+          <span style="color: #cbd5e1; font-size: 18px; font-weight: 600; line-height: 1;">›</span>
         <% end %>
       <% end %>
     </div>
   <% end %>
 
-  <%# Championnats étrangers %>
-  <% foreign = @competitions.select { |c|
-       meta = FootballApiService::COMPETITIONS_META.find { |m| m[:name] == c[:name] }
-       meta && !["France", "Europe"].include?(meta[:country])
-     } %>
-  <% if foreign.any? %>
-    <div style="font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Championnats étrangers</div>
-    <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
-      <% foreign.each do |comp| %>
-        <%= link_to competition_path(comp[:slug]), style: "text-decoration: none; color: inherit;" do %>
-          <div style="background: white; border: 1px solid #f0f0f0; border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <% if comp[:logo].present? %>
-                <img src="<%= comp[:logo] %>" alt="Logo <%= comp[:name] %>" width="32" height="32"
-                     style="width: 32px; height: 32px; object-fit: contain;" loading="lazy">
-              <% end %>
-              <span style="font-weight: 700; font-size: 15px; color: #010e1b;"><%= comp[:name] %></span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <% if comp[:has_standings] %>
-                <%= link_to standing_path(comp[:standing_slug]),
-                    style: "font-size: 11px; font-weight: 700; color: #007bff; background: #f0f6ff; padding: 3px 8px; border-radius: 6px; text-decoration: none;",
-                    onclick: "event.stopPropagation();" do %>Classement<% end %>
-              <% end %>
-              <span style="color: #ccc; font-size: 18px; font-weight: 800;">›</span>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
-
+  <%# Compétitions passées %>
   <% if @archived_competitions.any? %>
-    <div style="font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Compétitions passées</div>
-    <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
-      <% @archived_competitions.each do |comp| %>
-        <%= link_to competition_path(comp[:slug]), style: "text-decoration: none; color: inherit;" do %>
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <% if comp[:logo].present? %>
-                <img src="<%= comp[:logo] %>" alt="Logo <%= comp[:name] %>" width="28" height="28"
-                     style="width: 28px; height: 28px; object-fit: contain; opacity: 0.7;" loading="lazy">
-              <% else %>
-                <span style="font-size: 22px; width: 28px; text-align: center; opacity: 0.7;">🏆</span>
-              <% end %>
-              <span style="font-weight: 600; font-size: 14px; color: #64748b;"><%= comp[:name] %></span>
-            </div>
-            <span style="font-size: 11px; font-weight: 600; color: #94a3b8; background: #f1f5f9; padding: 2px 8px; border-radius: 6px;">Terminée</span>
-          </div>
+    <div style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.07em; margin: 20px 0 6px;">Compétitions passées</div>
+    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; margin-bottom: 6px;">
+      <% @archived_competitions.each_with_index do |comp, i| %>
+        <%= link_to competition_path(comp[:slug]), style: "display: flex; align-items: center; gap: 12px; padding: 12px 16px; text-decoration: none; color: inherit; #{i < @archived_competitions.size - 1 ? 'border-bottom: 1px solid #f1f5f9;' : ''}" do %>
+          <% if comp[:logo].present? %>
+            <img src="<%= comp[:logo] %>" alt="<%= comp[:name] %>" width="30" height="30"
+                 style="width: 30px; height: 30px; object-fit: contain; opacity: 0.6; flex-shrink: 0;" loading="lazy">
+          <% end %>
+          <span style="flex: 1; font-size: 14px; font-weight: 600; color: #64748b;"><%= comp[:name] %></span>
+          <span style="font-size: 10px; font-weight: 700; color: #94a3b8; background: #f1f5f9; padding: 2px 8px; border-radius: 6px;">Terminée</span>
         <% end %>
       <% end %>
     </div>

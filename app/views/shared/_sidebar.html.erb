@@ -1,0 +1,59 @@
+<aside class="page-sidebar">
+
+  <%# Bloc 1 : Programme TV par compétition %>
+  <div class="sidebar-block">
+    <p class="sidebar-block-title">Programme TV des compétitions</p>
+    <ul class="sidebar-block-list">
+      <% FootballApiService::COMPETITIONS_META.reject { |c| c[:archived] }.each do |comp| %>
+        <li>
+          <%= link_to competition_path(comp[:name].parameterize), title: "Programme #{comp[:name]}" do %>
+            <%= comp[:name] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%# Bloc 2 : Résultats par compétition %>
+  <div class="sidebar-block">
+    <p class="sidebar-block-title">Résultats des compétitions</p>
+    <ul class="sidebar-block-list">
+      <% FootballApiService::COMPETITIONS_META.reject { |c| c[:archived] }.each do |comp| %>
+        <li>
+          <%= link_to competition_path(comp[:name].parameterize), title: "Résultats #{comp[:name]}" do %>
+            <%= comp[:name] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%# Bloc pub : entre Résultats et Chaînes TV — pair 300x250 / impair 300x600 %>
+  <% if defined?(@date) && @date.present? %>
+    <% is_even = @date.day.even? %>
+    <div class="sidebar-ad" data-kwanko-track="sidebar-days">
+      <% if is_even %>
+        <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D7"
+                width="300" height="250" scrolling="no" frameborder="0"></iframe>
+      <% else %>
+        <iframe src="https://action.metaffiliation.com/trk.php?maff=N4F53158AAFD25D9"
+                width="300" height="600" scrolling="no" frameborder="0"></iframe>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%# Bloc 3 : Chaînes TV %>
+  <div class="sidebar-block">
+    <p class="sidebar-block-title">Chaînes TV</p>
+    <ul class="sidebar-block-list">
+      <% ChannelsController::CHANNELS_META.each do |ch| %>
+        <li>
+          <%= link_to channel_path(ch[:slug]), title: "Matchs sur #{ch[:name]}" do %>
+            <%= ch[:name] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</aside>
