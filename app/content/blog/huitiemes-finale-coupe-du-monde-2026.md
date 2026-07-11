@@ -130,7 +130,7 @@ Pas de match retour, pas de règle du but à l'extérieur. Un seul match, un seu
 | **Seizièmes** | 28 juin - 4 juillet | 16 matchs | 9 M6, 7 beIN |
 | **Huitièmes** | 4 - 7 juillet | 8 matchs | 6 M6, 2 beIN |
 | **Quarts** | 9 - 12 juillet | 4 matchs | 3 M6, 1 beIN |
-| **Demi-finales** | 15 - 16 juillet | 2 matchs | 2 M6 |
+| **Demi-finales** | 14 - 15 juillet | 2 matchs | 2 M6 |
 | **Finale** | 19 juillet | 1 match | M6 |
 
 Plus le tournoi avance, plus M6 prend la main. À partir des demi-finales, tout est en clair.

@@ -144,7 +144,7 @@ Ce match est l'un des [8 huitièmes de finale](/blog/huitiemes-finale-coupe-du-m
 | ~~Seizièmes~~ | 28 juin - 4 juillet | 16 matchs | 9 M6, 7 beIN |
 | **Huitièmes** | 4 - 7 juillet | 8 matchs | 6 M6, 2 beIN |
 | Quarts | 9 - 12 juillet | 4 matchs | 3 M6, 1 beIN |
-| Demi-finales | 15 - 16 juillet | 2 matchs | 2 M6 |
+| Demi-finales | 14 - 15 juillet | 2 matchs | 2 M6 |
 | Finale | 19 juillet | 1 match | M6 |
 
 [Programme complet des huitièmes →](/blog/huitiemes-finale-coupe-du-monde-2026)

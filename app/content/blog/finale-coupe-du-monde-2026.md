@@ -105,7 +105,7 @@ Depuis les [demi-finales](/blog/demi-finales-coupe-du-monde-2026), tout le Mondi
 | ~~[Seizièmes](/blog/seiziemes-finale-coupe-du-monde-2026)~~ | 28 juin - 4 juillet | 16 matchs |
 | ~~[Huitièmes](/blog/huitiemes-finale-coupe-du-monde-2026)~~ | 4 - 7 juillet | 8 matchs |
 | ~~[Quarts](/blog/quarts-finale-coupe-du-monde-2026)~~ | 9 - 12 juillet | 4 matchs |
-| ~~[Demi-finales](/blog/demi-finales-coupe-du-monde-2026)~~ | 15 - 16 juillet | 2 matchs |
+| ~~[Demi-finales](/blog/demi-finales-coupe-du-monde-2026)~~ | 14 - 15 juillet | 2 matchs |
 | ~~Petite finale~~ | 18 juillet | 1 match |
 | **Finale** | 19 juillet | 1 match |
 

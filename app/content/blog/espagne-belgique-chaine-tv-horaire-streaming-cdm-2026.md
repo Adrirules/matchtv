@@ -158,7 +158,7 @@ De l'autre, la Belgique joue peut-être les prolongations de sa propre légende.
 | Samedi 11 juillet - 23h | Norvège - Angleterre | [M6](/chaines/m6) |
 | Dimanche 12 juillet - 03h | Argentine - Suisse | [beIN Sports](/chaines/bein-sports) |
 
-Le vainqueur d'Espagne - Belgique affrontera le vainqueur de Norvège - Angleterre en [demi-finale](/blog/demi-finales-coupe-du-monde-2026), le **mercredi 15 ou jeudi 16 juillet** sur M6. Trois des quatre quarts de finale sont diffusés en clair - seul Argentine - Suisse, programmé à 3h du matin, reste exclusif à [beIN Sports](/chaines/bein-sports).
+L'**Espagne**, victorieuse, affrontera la **France** en [demi-finale](/blog/demi-finales-coupe-du-monde-2026), le **mardi 14 juillet** à Dallas sur M6. Trois des quatre quarts de finale sont diffusés en clair - seul Argentine - Suisse, programmé à 3h du matin, reste exclusif à [beIN Sports](/chaines/bein-sports).
 
 Pour retrouver le [classement et les résultats complets](/classements/coupe-du-monde-2026) de la compétition, c'est sur Coup d'Envoi TV.
 

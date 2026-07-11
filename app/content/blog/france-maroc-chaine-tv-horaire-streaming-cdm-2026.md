@@ -142,14 +142,14 @@ La FIFA a désigné l'Argentin **Facundo Tello** pour diriger ce quart de finale
 
 ## Les quarts de finale en un coup d'oeil
 
-Ce match est l'un des [4 quarts de finale](/blog/quarts-finale-coupe-du-monde-2026) du Mondial 2026. Le vainqueur rejoint les [demi-finales](/blog/demi-finales-coupe-du-monde-2026) les 15 et 16 juillet, toutes sur M6.
+Ce match est l'un des [4 quarts de finale](/blog/quarts-finale-coupe-du-monde-2026) du Mondial 2026. Le vainqueur rejoint les [demi-finales](/blog/demi-finales-coupe-du-monde-2026) les 14 et 15 juillet, toutes sur M6.
 
 | Tour | Dates | Matchs | Chaînes |
 |------|-------|--------|---------|
 | ~~Seizièmes~~ | 28 juin - 4 juillet | 16 matchs | 9 M6, 7 beIN |
 | ~~Huitièmes~~ | 4 - 7 juillet | 8 matchs | 6 M6, 2 beIN |
 | **Quarts** | 9 - 12 juillet | 4 matchs | 3 M6, 1 beIN |
-| [Demi-finales](/blog/demi-finales-coupe-du-monde-2026) | 15 - 16 juillet | 2 matchs | 2 M6 |
+| [Demi-finales](/blog/demi-finales-coupe-du-monde-2026) | 14 - 15 juillet | 2 matchs | 2 M6 |
 | [Finale](/blog/finale-coupe-du-monde-2026) | 19 juillet | 1 match | M6 |
 
 [Programme complet des quarts →](/blog/quarts-finale-coupe-du-monde-2026)

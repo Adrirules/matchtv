@@ -161,7 +161,7 @@ Le souvenir que les Norvégiens chériront ce samedi soir remonte au **9 septemb
 | **Samedi 11 juillet - 23h** | **Norvège - Angleterre** | **[M6](/chaines/m6)** |
 | Dimanche 12 juillet - 03h | Argentine - Suisse | [beIN Sports](/chaines/bein-sports) |
 
-Le vainqueur de Norvège - Angleterre affrontera le vainqueur d'[Espagne - Belgique](/blog/espagne-belgique-chaine-tv-horaire-streaming-cdm-2026) en [demi-finale](/blog/demi-finales-coupe-du-monde-2026), le **mercredi 15 ou jeudi 16 juillet** sur M6. Trois des quatre quarts de finale sont diffusés en clair - seul Argentine - Suisse, à 3h du matin, reste exclusif à [beIN Sports](/chaines/bein-sports).
+Le vainqueur de Norvège - Angleterre affrontera le vainqueur d'[Argentine - Suisse](/blog/argentine-suisse-chaine-tv-horaire-streaming-cdm-2026) en [demi-finale](/blog/demi-finales-coupe-du-monde-2026), le **mercredi 15 juillet** à Atlanta sur M6. Trois des quatre quarts de finale sont diffusés en clair - seul Argentine - Suisse, à 3h du matin, reste exclusif à [beIN Sports](/chaines/bein-sports).
 
 Pour le [classement et les résultats complets](/classements/coupe-du-monde-2026) de la compétition, c'est sur Coup d'Envoi TV. Et pour le [programme TV complet de la Coupe du Monde](/blog/programme-tv-coupe-du-monde-2026), avec tous les matchs et toutes les chaînes.
 

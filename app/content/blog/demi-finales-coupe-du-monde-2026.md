@@ -1,13 +1,13 @@
 ---
 title: "Demi-finales de la Coupe du Monde 2026 : dates, chaînes TV et résultats | Coup d'Envoi TV"
-meta_description: "Les 2 demi-finales de la Coupe du Monde 2026 les 15 et 16 juillet sur M6 en clair. Affiches, horaires et résultats actualisés en direct."
+meta_description: "Les 2 demi-finales de la Coupe du Monde 2026 les 14 et 15 juillet sur M6 en clair. Affiches, horaires et résultats actualisés en direct."
 slug: demi-finales-coupe-du-monde-2026
 published_at: 2026-07-04
 published_time: "09h12"
 author: Adrien
 image: https://images.unsplash.com/photo-1781751981449-d66647e47e30?q=80&w=774&auto=format&fit=crop
 image_credit: "Photo : Unsplash"
-excerpt: "Les 2 demi-finales du Mondial 2026 : 15 et 16 juillet sur M6, intégralement gratuites. Plus besoin d'abonnement. Affiches et résultats en direct."
+excerpt: "Les 2 demi-finales du Mondial 2026 : 14 et 15 juillet sur M6, intégralement gratuites. Plus besoin d'abonnement. Affiches et résultats en direct."
 tags: ["coupe-du-monde", "chaines-tv"]
 dazn_card: false
 canal_plus_card: false
@@ -33,7 +33,7 @@ canal_plus_card: false
     {
       "@type": "Question",
       "name": "Quand se jouent les demi-finales de la Coupe du Monde 2026 ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Les demi-finales se jouent le mercredi 15 et le jeudi 16 juillet 2026, à 21h00 heure française les deux soirs." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Les demi-finales se jouent le mardi 14 et le mercredi 15 juillet 2026, à 21h00 heure française les deux soirs." }
     },
     {
       "@type": "Question",
@@ -65,7 +65,7 @@ Le dernier carré. Quatre équipes, deux matchs, deux billets pour la finale du 
 
 ## Réponse rapide
 
-> Les **demi-finales** se jouent le **mercredi 15 juillet** et le **jeudi 16 juillet 2026**, toutes les deux à **21h00** sur **[M6](/chaines/m6)** en clair. Plus besoin d'abonnement : à partir des demies, **tout est gratuit** jusqu'à la finale. Streaming sur M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522).
+> Les **demi-finales** se jouent le **mardi 14 juillet** et le **mercredi 15 juillet 2026**, toutes les deux à **21h00** sur **[M6](/chaines/m6)** en clair. Plus besoin d'abonnement : à partir des demies, **tout est gratuit** jusqu'à la finale. Streaming sur M6+ et [Molotov](https://molotov.pxf.io/c/7376919/3924296/16522).
 
 ## Les 2 matchs
 
@@ -104,7 +104,7 @@ En 2022, la Croatie avait battu le Maroc (2-1) dans ce match pour décrocher la 
 | ~~Seizièmes~~ | 28 juin - 4 juillet | 16 matchs | 9 M6, 7 beIN |
 | ~~Huitièmes~~ | 4 - 7 juillet | 8 matchs | 6 M6, 2 beIN |
 | ~~Quarts~~ | 9 - 12 juillet | 4 matchs | 3 M6, 1 beIN |
-| **Demi-finales** | 15 - 16 juillet | 2 matchs | 2 M6 |
+| **Demi-finales** | 14 - 15 juillet | 2 matchs | 2 M6 |
 | [Finale](/blog/finale-coupe-du-monde-2026) | 19 juillet | 1 match | M6 |
 
 32 équipes en seizièmes, 16 en huitièmes, 8 en quarts, 4 maintenant. Chaque tour divise par deux. Celui-ci mène directement au match pour le titre.
@@ -121,7 +121,7 @@ Pas de but en or, pas de but en argent - ces règles ont été abandonnées depu
 
 ### Quand se jouent les demi-finales du Mondial 2026 ?
 
-Le **mercredi 15 juillet** et le **jeudi 16 juillet 2026**, à **21h00** heure française les deux soirs.
+Le **mardi 14 juillet** et le **mercredi 15 juillet 2026**, à **21h00** heure française les deux soirs.
 
 ### Sur quelle chaîne voir les demi-finales ?
 
@@ -145,7 +145,7 @@ Deux matchs pour passer de quatre à deux. Les demi-finales de Coupe du Monde pr
 
 <!--
 VÉRIFICATIONS FACTUELLES (sources consultées le 3 juillet 2026)
-- Dates demi-finales : 15 et 16 juillet 2026 — calendrier FIFA + référence mémoire
+- Dates demi-finales : 14 et 15 juillet 2026 — calendrier FIFA + référence mémoire
 - Horaire : 21h00 heure française les deux soirs — référence mémoire (liste officielle M6)
 - Chaîne : M6 (gratuit) pour les deux demies — référence mémoire
 - Petite finale : samedi 18 juillet 23h00 M6 — référence mémoire

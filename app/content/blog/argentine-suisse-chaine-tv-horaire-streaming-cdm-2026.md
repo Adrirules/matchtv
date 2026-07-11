@@ -138,7 +138,7 @@ Le parallèle avec la Norvège n'est pas anodin : deux équipes que personne n'a
 
 ## Le coeur et la raison
 
-Je vais être honnête. Le coeur est argentin. La France est déjà en demi-finale (2-0 contre le Maroc jeudi). Le rêve, c'est que l'Argentine passe cette nuit pour offrir la revanche de Qatar 2022 en demi, Messi contre Mbappé, un dernier acte. Ce serait le scénario parfait.
+Je vais être honnête. Le coeur est argentin. La France est déjà en demi-finale (2-0 contre le Maroc jeudi), et elle affrontera l'Espagne mardi. De l'autre côté du tableau, le vainqueur de ce quart joue le vainqueur de Norvège - Angleterre. Le rêve, c'est une finale France-Argentine, la revanche de Qatar 2022, Messi contre Mbappé pour un dernier acte. Ce serait le scénario parfait.
 
 Mais la raison dit de se méfier. La Suisse de Yakin ressemble à ces équipes dont on ne parle pas assez et qui finissent par créer la surprise. Invaincue en 5 matchs, première de son groupe, une défense qui ne cède presque rien. L'Argentine concède des buts (7 en 5 matchs) et vit des fins de match intenses. Face à une Suisse patiente et disciplinée, c'est le genre de profil qui peut piquer.
 
@@ -162,7 +162,7 @@ La Suisse n'a jamais battu l'Argentine, tous matchs confondus (7 confrontations 
 | Samedi 11 juillet - 23h | [Norvège - Angleterre](/blog/norvege-angleterre-chaine-tv-horaire-streaming-cdm-2026) | [M6](/chaines/m6) |
 | **Dimanche 12 juillet - 03h** | **Argentine - Suisse** | **[beIN Sports](/chaines/bein-sports)** |
 
-Le vainqueur d'Argentine - Suisse affrontera la **France** (victorieuse 2-0 face au [Maroc](/blog/france-maroc-chaine-tv-horaire-streaming-cdm-2026)) en [demi-finale](/blog/demi-finales-coupe-du-monde-2026), le **mercredi 15 ou jeudi 16 juillet** sur M6.
+Le vainqueur d'Argentine - Suisse affrontera le vainqueur de [Norvège - Angleterre](/blog/norvege-angleterre-chaine-tv-horaire-streaming-cdm-2026) en [demi-finale](/blog/demi-finales-coupe-du-monde-2026), le **mercredi 15 juillet** à Atlanta sur M6.
 
 Pour le [classement et les résultats complets](/classements/coupe-du-monde-2026) de la compétition, et pour le [programme TV complet de la Coupe du Monde](/blog/programme-tv-coupe-du-monde-2026).
 
