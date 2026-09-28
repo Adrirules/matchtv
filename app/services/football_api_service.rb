@@ -31,8 +31,8 @@ class FootballApiService
     { id: 9,   name: "Copa America",       country: "Amérique du Sud", has_standings: false, archived: true },
   ].freeze
 
-  # Saison active par ligue — CDM 2026 utilise season 2026, tout le reste 2025
-  LEAGUE_SEASONS = Hash.new(2025).merge(1 => 2026).freeze
+  # Saison active par ligue — toutes les ligues en 2026-2027 depuis août 2026
+  LEAGUE_SEASONS = Hash.new(2026).freeze
 
   # Helper : logo officiel depuis l'API Sports CDN
   def self.league_logo(id)
@@ -139,7 +139,7 @@ class FootballApiService
     end
   end
 
-  def import_historical_fixtures(league_id:, season: 2025, from_date:, to_date:)
+  def import_historical_fixtures(league_id:, season: 2026, from_date:, to_date:)
     response = tracked_get('/fixtures', {
       league:  league_id,
       season:  season,
@@ -297,7 +297,7 @@ class FootballApiService
     end
   end
 
-  def fetch_player_stats(player_api_id, season: 2025)
+  def fetch_player_stats(player_api_id, season: 2026)
     Rails.cache.fetch("player_stats_#{player_api_id}_#{season}", expires_in: 6.hours) do
       response = tracked_get('/players', { id: player_api_id, season: season })
       return nil unless response.success?
@@ -305,7 +305,7 @@ class FootballApiService
     end
   end
 
-  def fetch_team_stats(team_api_id, league_id, season: 2025)
+  def fetch_team_stats(team_api_id, league_id, season: 2026)
     Rails.cache.fetch("team_stats_#{team_api_id}_#{league_id}_#{season}", expires_in: 24.hours) do
       response = tracked_get('/teams/statistics', { team: team_api_id, league: league_id, season: season })
       return nil unless response.success?
@@ -338,14 +338,14 @@ class FootballApiService
     end
   end
 
-  def get_standings(league_id, season: 2025)
+  def get_standings(league_id, season: 2026)
     Rails.cache.fetch("standings_league_#{league_id}", expires_in: 2.hours) do
       response = tracked_get('/standings', { league: league_id, season: season })
       response.success? ? JSON.parse(response.body)['response'] : []
     end
   end
 
-  def fetch_top_scorers(league_id, season: 2025)
+  def fetch_top_scorers(league_id, season: 2026)
     Rails.cache.fetch("top_scorers_#{league_id}_#{season}", expires_in: 6.hours) do
       response = tracked_get('/players/topscorers', { league: league_id, season: season })
       return [] unless response.success?

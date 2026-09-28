@@ -12,7 +12,7 @@ namespace :rounds do
       puts "🔄 Backfill rounds : #{league_name} (id=#{league_id})"
 
       begin
-        response = api.send(:client).get('/fixtures', { league: league_id, season: 2025 })
+        response = api.send(:client).get('/fixtures', { league: league_id, season: 2026 })
         fixtures = JSON.parse(response.body)['response'] || []
 
         if fixtures.empty?

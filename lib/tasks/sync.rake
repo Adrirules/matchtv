@@ -93,7 +93,7 @@ namespace :sync do
       begin
         result = api.import_historical_fixtures(
           league_id: id,
-          season:    2025,
+          season:    2026,
           from_date: from_date,
           to_date:   to_date
         )
