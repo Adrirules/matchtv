@@ -24,7 +24,7 @@ class DaysController < ApplicationController
     @days = (0..6).map { |i| today + i.days }
 
     # Matchs pour le jour sélectionné
-    @matches = Match.where(start_time: @date.all_day).order(:start_time)
+    @matches = Match.active_competitions.where(start_time: @date.all_day).order(:start_time)
 
     # Nombre de matchs en direct (pour le badge du bouton)
     @live_count = Match.where(status: %w[1H HT 2H ET BT P]).count

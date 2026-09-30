@@ -30,7 +30,8 @@ class MatchesController < ApplicationController
       # Matchs du même jour (même compétition en priorité, sinon tous)
       day_start = @match.start_time.beginning_of_day
       day_end   = @match.start_time.end_of_day
-      @same_day_matches = Match.where(start_time: day_start..day_end)
+      @same_day_matches = Match.active_competitions
+                               .where(start_time: day_start..day_end)
                                .where.not(id: @match.id)
                                .where.not(slug: [nil, ""])
                                .order(:start_time)

@@ -15,7 +15,7 @@ class ResultsController < ApplicationController
     # Fenêtre de 7 jours vers le passé
     @days = (1..7).map { |i| today - i.days }
 
-    scope = Match.where(start_time: @date.all_day).order(:start_time)
+    scope = Match.active_competitions.where(start_time: @date.all_day).order(:start_time)
 
     # Fetch API uniquement si des scores manquent — SQL au lieu de charger tout en Ruby
     if scope.where(home_score: nil).exists?

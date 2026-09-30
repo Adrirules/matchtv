@@ -4,6 +4,11 @@ class Match < ApplicationRecord
   LIVE_STATUSES     = %w[1H HT 2H ET BT P].freeze
   FINISHED_STATUSES = %w[FT AET PEN].freeze
 
+  ARCHIVED_COMPETITIONS = FootballApiService::COMPETITIONS_META
+    .select { |c| c[:archived] }.map { |c| c[:name] }.freeze
+
+  scope :active_competitions, -> { where.not(competition: ARCHIVED_COMPETITIONS) }
+
   def live?     = LIVE_STATUSES.include?(status)
   def finished? = FINISHED_STATUSES.include?(status)
   def has_score? = home_score.present? && away_score.present?
